@@ -1,10 +1,10 @@
 $:.unshift File.join( File.dirname(__FILE__), "..", "..", "lib")
 
-require 'vcr'
 require 'dotenv'
 Dotenv.load
 
-require 'event_monitor'
+require 'vcr'
+require 'cucumber/rspec/doubles'
 
 VCR.configure do |c|
   c.filter_sensitive_data("<EVENTBRITE_API_KEY>") { ENV['EVENTBRITE_API_KEY'] }

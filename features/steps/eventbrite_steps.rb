@@ -1,3 +1,5 @@
+require 'event_monitor'
+
 Given /^there is an event in Eventbrite$/ do
 end
 
@@ -10,11 +12,11 @@ Then /^I should be marked as wanting an invoice$/ do
   # https://www.eventbrite.co.uk/myevent?eid=5441375300
   # Poll eventbrite API for details
   # Find the relevant user and check the order type field
+  Resque.should_receive(:enqueue).with(AttendeeInvoicer, 'james.smith@theodi.org', 0.66)
   VCR.use_cassette('synopsis') do
     e = EventMonitor.new event_id: 5441375300
     e.check_invoices
   end
-  pending
 end
 
 Given /^I have asked to be invoiced$/ do
