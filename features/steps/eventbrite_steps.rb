@@ -10,7 +10,11 @@ Then /^I should be marked as wanting an invoice$/ do
   # https://www.eventbrite.co.uk/myevent?eid=5441375300
   # Poll eventbrite API for details
   # Find the relevant user and check the order type field
-  pending # express the regexp above with the code you wish you had
+  VCR.use_cassette('synopsis') do
+    e = EventMonitor.new event_id: 5441375300
+    e.check_invoices
+  end
+  pending
 end
 
 Given /^I have asked to be invoiced$/ do
