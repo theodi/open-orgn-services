@@ -1,7 +1,3 @@
-require 'resque'
-require 'eventbrite-client'
-require 'attendee_invoicer'
-
 class AttendeeLister
   @queue = :invoicing
 
