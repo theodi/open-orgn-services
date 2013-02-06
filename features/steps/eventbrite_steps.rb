@@ -12,3 +12,11 @@ Then /^I should be marked as wanting an invoice$/ do
   # Find the relevant user and check the order type field
   pending # express the regexp above with the code you wish you had
 end
+
+Given /^I have asked to be invoiced$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^an invoice should be raised in Xero$/ do
+  pending # express the regexp above with the code you wish you had
+end
