@@ -1,5 +1,3 @@
-require 'resque'
-
 class AttendeeInvoicer
   @queue = :invoicing
 

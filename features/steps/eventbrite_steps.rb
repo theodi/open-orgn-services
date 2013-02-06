@@ -1,8 +1,8 @@
-require 'event_monitor'
+require 'attendee_lister'
 
 Given /^there is an event in Eventbrite with id (\d+)$/ do |id|
-  # Set up eventbrite monitor
-  @e = EventMonitor.new event_id: id
+  # Store event ID
+  @event_id = id
 end
 
 When /^'(.*)' signs up to that event and asks to be invoiced$/ do |email|
@@ -22,7 +22,7 @@ Then /^he should be added to the invoicing queue$/ do
   Resque.should_receive(:enqueue).with(AttendeeInvoicer, @email, @price)
   # Check the attendees
   VCR.use_cassette('needs_invoice') do
-    @e.check_invoices
+    AttendeeLister.perform(@event_id)
   end
 end
 
@@ -31,7 +31,7 @@ Then /^he should not be added to the invoicing queue$/ do
   Resque.should_not_receive(:enqueue)
   # Check the attendees
   VCR.use_cassette('does_not_need_invoice') do
-    @e.check_invoices
+    AttendeeLister.perform(@event_id)
   end
 end
 
