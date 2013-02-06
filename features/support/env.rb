@@ -1,5 +1,10 @@
 $:.unshift File.join( File.dirname(__FILE__), "..", "..", "lib")
 
+require 'simplecov'
+require 'simplecov-rcov'
+SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+SimpleCov.start 'rails'
+
 require 'dotenv'
 Dotenv.load
 
