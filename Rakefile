@@ -13,6 +13,6 @@ task :default => [:features]
 
 namespace :resque do
   task :setup do
-    require 'attendee_invoicer'
+    require 'open-orgn-services'
   end
 end

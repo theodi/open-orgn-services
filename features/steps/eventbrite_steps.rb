@@ -1,5 +1,3 @@
-require 'attendee_lister'
-
 Given /^there is an event in Eventbrite with id (\d+)$/ do |id|
   # Store event ID
   @event_id = id
