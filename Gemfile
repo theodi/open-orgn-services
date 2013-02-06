@@ -4,3 +4,4 @@ gem 'rake'
 
 gem 'cucumber'
 gem 'dotenv'
+gem 'eventbrite-client'
