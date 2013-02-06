@@ -19,3 +19,9 @@ To get a web interface on your resque workers:
     resque-web -p 8282
 
 There isn't currently a main point of entry for the app itself, though that will come along soon.
+
+License
+-------
+
+This code is open source under the MIT license. See the LICENSE.md file for 
+full details.
