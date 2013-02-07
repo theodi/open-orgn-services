@@ -26,10 +26,26 @@ Feature: Invoicing for training events
     
   Scenario:
     Given there is an event in Eventbrite with id 5441375300
-		And my email address is 'sam.pikesley@theodi.org'
+	And my email address is 'sam.pikesley@theodi.org'
     Then I should not be added to the invoicing queue
     When I sign up to that event and get a free ticket
 
   Scenario:
     Given 'james.smith@theodi.org' needs to be invoiced for 0.66
-    Then an invoice should be raised in Xero
+    And 'james.smith@theodi.org' already exists as a contact in Xero
+    When the attendee invoicer runs
+    Then an invoice should be added to his account
+
+  Scenario:
+    Given 'tom.heath@theodi.org' needs to be invoiced for 0.66
+    And 'tom.heath@theodi.org' does not already exist as a contact in Xero
+    When the attendee invoicer runs
+    Then a Xero contact should be created for Tom
+    And an invoice should be added to his account
+
+  Scenario:
+    Given 'james.smith@theodi.org' needs to be invoiced for 0.66
+    And 'james.smith@theodi.org' already exists as a contact in Xero
+    And an invoice already exists for the Eventbrite event with id 5441375300
+    When the attendee invoicer runs
+    Then the total number of invoices on his account should not increase
