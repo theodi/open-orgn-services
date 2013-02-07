@@ -7,6 +7,9 @@ Our first 2-week sprint starts on 4th February. We're using [the issues](https:/
 Setup
 -----
 
+Configuration is loaded from environment variables. Copy env.example to .env 
+and enter the appropriate details.
+
 This app uses [resque](https://github.com/defunkt/resque) for async job queueing. 
 You'll need to install redis, run it, and then run a worker to process jobs. On OSX:
 
