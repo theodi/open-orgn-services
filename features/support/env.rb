@@ -29,4 +29,9 @@ Spork.each_run do
     c.cassette_library_dir = 'fixtures/vcr_cassettes'
     c.hook_into :webmock
   end
+  
+  # Clean up any state left behind
+  at_exit do
+    # TODO clean up things created in Xero
+  end
 end
