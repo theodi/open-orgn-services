@@ -14,5 +14,7 @@ task :default => [:features]
 namespace :resque do
   task :setup do
     require 'open-orgn-services'
+    require 'resque/failure/redis'
+    Resque::Failure.backend = Resque::Failure::Redis
   end
 end
