@@ -15,5 +15,6 @@ group :development, :test do
   gem 'simplecov'
   gem 'simplecov-rcov'
   gem 'guard-cucumber'
+  gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
 end
