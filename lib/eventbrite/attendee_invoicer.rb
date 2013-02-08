@@ -4,16 +4,20 @@ class AttendeeInvoicer
 
   # Public: Create an invoice for an event attendee
   #
-  # email - The email address of the attendee
-  # amount - The monetary amount to be invoiced in GBP
+  # user_details    - a hash containing details of the user.
+  #                   :email - the user's email address
+  # event_details   - a hash containing the details of the event.
+  #                   :id - the eventbrite ID
+  # payment_details - a hash containing payment details.
+  #                   :amount - The monetary amount to be invoiced in GBP
   #
   # Examples
   #
-  #   AttendeeInvoicer.perform('james.smith@theodi.org', 0.66)
+  #   AttendeeInvoicer.perform({:email => 'james.smith@theodi.org'}, {:id => 123456789}, {:amount => 0.66})
   #   # => nil
   #
   # Returns nil.
-  def self.perform(email, amount)
+  def self.perform(user_details, event_details, payment_details)
 
   end
 

@@ -39,7 +39,7 @@ end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, @email, @price)
+  Resque.should_receive(:enqueue).with(AttendeeInvoicer, {:email => @email}, {:id => @event_id}, {:amount => @price})
 end
 
 Then /^I should not be added to the invoicing queue$/ do
@@ -69,7 +69,7 @@ end
 
 When /^the attendee invoicer runs$/ do
   VCR.use_cassette('raise_invoice_in_xero') do
-    AttendeeInvoicer.perform(@email, @price)
+    AttendeeInvoicer.perform({:email => @email}, {:id => @event_id}, {:amount => @price})
   end
 end
 
