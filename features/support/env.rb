@@ -23,7 +23,7 @@ Spork.each_run do
 
   VCR.configure do |c|
     # Automatically filter all secure details that are stored in the environment
-    Dotenv.load.keys.each do |key|
+    ENV.keys.each do |key|
       c.filter_sensitive_data("<#{key}>") { ENV[key] }
     end
     c.cassette_library_dir = 'fixtures/vcr_cassettes'
