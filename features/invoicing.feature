@@ -4,25 +4,104 @@ Feature: Invoicing for training events
   As a prospective delegate
   I want to be sent an invoice when I sign up to attend an event
 
-  Scenario:
-    Given there is an event in Eventbrite with id 5441375300
-    And 'james.smith@theodi.org' needs to be invoiced for 0.66
-    And 'james.smith@theodi.org' already exists as a contact in Xero
-    When the attendee invoicer runs
-    Then an invoice should be added to his account
+  Background:
+    Given an event in Eventbrite called "Training Course" with id 5441375300
+    And the event is happening on 2012-04-14
+    And the price of the event is 0.01
+    And the eventbrite fee is 0.65
+    And my first name is "Bob"
+    And my last name is "Fish"
+    And my email address is 'bob.fish@example.com'
+    And I work for 'Existing Company Inc.'
+    And there is a contact in Xero for 'Existing Company Inc.'
+
+  # Invoicing basics
 
   Scenario:
-    Given there is an event in Eventbrite with id 5441375300
-    And 'tom.heath@theodi.org' needs to be invoiced for 0.66
-    And 'tom.heath@theodi.org' does not already exist as a contact in Xero
-    When the attendee invoicer runs
-    Then a Xero contact should be created for Tom
-    And an invoice should be added to his account
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should be a draft
 
   Scenario:
-    Given there is an event in Eventbrite with id 5441375300
-    And 'james.smith@theodi.org' needs to be invoiced for 0.66
-    And 'james.smith@theodi.org' already exists as a contact in Xero
-    And an invoice already exists for the Eventbrite event with id 5441375300
-    When the attendee invoicer runs
-    Then the total number of invoices on his account should not increase
+    Given I have registered for a ticket
+    And I entered a purchase order number '1234'
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should include the reference '1234'
+
+  Scenario:
+    Given I have registered for a ticket
+    And I entered a VAT registration number '5678'
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should include the VAT reference '5678'
+
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should be due on 2012-04-07
+
+  # VAT
+
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice total should be 0.79 # 0.66 * 1.2
+
+  Scenario:
+    Given I have registered for a ticket
+    And 'Existing Company Inc.' does not pay VAT
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice total should be 0.66
+
+  # Line items
+
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should contain one line item
+    And that line item should not have an account code set # ideally, we might need to change this to a default code
+
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should contain one line item
+    And that line item should have the description "Registration for 'Training Course (2012-04-14)' for Bob Fish <bob.fish@example.com>"
+
+  # Payment methods
+    
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should show that payment has been received
+    And that invoice should show that the payment was made with Paypal
+
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Google Checkout
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should show that payment has been received
+    And that invoice should show that the payment was made with Google Checkout
+
+  Scenario:
+    Given I have registered for a ticket
+    And I requested an invoice
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should show that payment has not been received
+    

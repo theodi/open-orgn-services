@@ -15,7 +15,21 @@ Feature: Invoicing for training events
     When I sign up to that event and ask to be invoiced
     
   Scenario:
+    Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
+    And my email address is 'james.smith@theodi.org'
+    Then I should be added to the invoicing queue
+    When I sign up to that event and ask to be invoiced
+
+  Scenario:
     Given there is an event in Eventbrite with id 5441375300
     And my email address is 'sam.pikesley@theodi.org'
     Then I should not be added to the invoicing queue
     When I sign up to that event and get a free ticket
+  
+  # VAT
+  
+  Scenario:
+    Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
+    And my email address is 'james.smith@theodi.org'
+    Then the cost to be invoiced should be 0.79 # Eventbrite should be adding VAT on top
+    When I sign up to that event and ask to be invoiced
