@@ -47,7 +47,7 @@ Then /^I should not be added to the invoicing queue$/ do
   Resque.should_not_receive(:enqueue)
 end
 
-When /^I sign up to that event and asks to be invoiced$/ do
+When /^I sign up to that event and ask to be invoiced$/ do
   # Check the attendees
   VCR.use_cassette('needs_invoice') do
     AttendeeLister.perform(@event_id)
