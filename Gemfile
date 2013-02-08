@@ -14,4 +14,6 @@ group :development, :test do
   gem 'dotenv'
   gem 'simplecov'
   gem 'simplecov-rcov'
+  gem 'guard-cucumber'
+  gem 'rb-fsevent', '~> 0.9.1'
 end
