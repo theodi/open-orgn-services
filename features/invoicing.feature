@@ -26,7 +26,7 @@ Feature: Invoicing for training events
     
   Scenario:
     Given there is an event in Eventbrite with id 5441375300
-	And my email address is 'sam.pikesley@theodi.org'
+    And my email address is 'sam.pikesley@theodi.org'
     Then I should not be added to the invoicing queue
     When I sign up to that event and get a free ticket
 
