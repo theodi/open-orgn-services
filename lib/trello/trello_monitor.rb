@@ -1,6 +1,6 @@
 require 'trello'
 
-def TrelloMonitor
+class TrelloMonitor
 
   @queue = :metrics
   
