@@ -32,8 +32,6 @@ class GithubMonitor
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_FORKS'], forks
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OPENPRS'], open_pull_requests
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_PULLS'], pull_requests
-  rescue Github::Error::ServiceError, Github::Error::Forbidden
-    nil
   end
   
 end
