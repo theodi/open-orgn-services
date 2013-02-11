@@ -10,19 +10,19 @@ Feature: Invoicing for training events
   
   Scenario:
     Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
-    And my email address is 'james.smith@theodi.org'
+    And my email address is "james.smith@theodi.org"
     Then I should be added to the invoicing queue
     When I sign up to that event and ask to be invoiced
     
   Scenario:
     Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
-    And my email address is 'james.smith@theodi.org'
+    And my email address is "james.smith@theodi.org"
     Then I should be added to the invoicing queue
     When I sign up to that event and ask to be invoiced
 
   Scenario:
     Given there is an event in Eventbrite with id 5441375300
-    And my email address is 'sam.pikesley@theodi.org'
+    And my email address is "sam.pikesley@theodi.org"
     Then I should not be added to the invoicing queue
     When I sign up to that event and get a free ticket
   
@@ -30,7 +30,9 @@ Feature: Invoicing for training events
   
   Scenario:
     Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
-    And my email address is 'james.smith@theodi.org'
-    Then the total cost to be invoiced should be 0.79 # Eventbrite should be adding VAT on top
-    And the net cost to be invoiced should be 0.66 # We send net cost into Xero
+    And my email address is "james.smith@theodi.org"
+    # Eventbrite should be adding VAT on top
+    Then the total cost to be invoiced should be 0.79 
+    # We send net cost into Xero
+    And the net cost to be invoiced should be 0.66 
     When I sign up to that event and ask to be invoiced
