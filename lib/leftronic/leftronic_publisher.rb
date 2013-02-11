@@ -1,6 +1,6 @@
 require 'leftronic'
 
-def LeftronicPublisher
+class LeftronicPublisher
   
   @queue = :metrics
   
