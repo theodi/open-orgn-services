@@ -1,6 +1,7 @@
 require 'jenkins-remote-api'
 
 class BuildStatusMonitor
+  
   @queue = :metrics
   
   def self.perform
@@ -29,7 +30,7 @@ class BuildStatusMonitor
         <img style='height:100%; margin-left: auto; margin-right: auto' src='#{img}'/>
       </div>
     EOF
-    Resqueue.enqueue LeftronicPublisher, :html, ENV['LEFTRONIC_JENKINS_HTML'], html
+    Resque.enqueue LeftronicPublisher, :html, ENV['LEFTRONIC_JENKINS_HTML'], html
   end
   
 end

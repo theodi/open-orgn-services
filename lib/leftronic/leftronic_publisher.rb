@@ -1,6 +1,7 @@
 require 'leftronic'
 
 def LeftronicPublisher
+  
   @queue = :metrics
   
   def self.api
