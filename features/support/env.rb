@@ -5,9 +5,6 @@ require 'simplecov-rcov'
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start 'rails'
 
-require 'dotenv'
-Dotenv.load
-
 require 'vcr'
 require 'cucumber/rspec/doubles'
 
