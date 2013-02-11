@@ -1,6 +1,7 @@
 require 'trello'
 
 def TrelloMonitor
+
   @queue = :metrics
   
   def self.perform
@@ -13,8 +14,8 @@ def TrelloMonitor
     todo = board.lists.find{|x| x.name == "To Do"}.cards.count
     doing = board.lists.find{|x| x.name == "Doing"}.cards.count
     # Publish
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_TRELLO_COUNT'], todo + doing # straight number
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_TRELLO_LINE'], todo + doing # sparkline  
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_TRELLO_COUNT'], todo + doing # straight number
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_TRELLO_LINE'], todo + doing # sparkline  
   end
   
 end

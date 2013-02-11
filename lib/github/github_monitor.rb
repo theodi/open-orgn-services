@@ -1,6 +1,7 @@
 require 'github_api'
 
 class GithubMonitor
+  
   @queue = :metrics
   
   def self.perform
@@ -9,7 +10,7 @@ class GithubMonitor
     # Get github organisation
     org = github.orgs.find(ENV['GITHUB_ORGANISATION'])
     # Public repos into leftronic
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_REPOS'], org.public_repos
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_REPOS'], org.public_repos
     # Count up stats across all repositories
     issues = 0
     watchers = 0
@@ -26,11 +27,11 @@ class GithubMonitor
       pull_requests += issues.select{|x| x["pull_request"] && x["pull_request"]["html_url"]}.count
     end
     # Push into leftronic
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_ISSUES'], issues
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_WATCHERS'], watchers
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_FORKS'], forks
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OPENPRS'], open_pull_requests
-    Resqueue.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_PULLS'], pull_requests
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_ISSUES'], issues
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_WATCHERS'], watchers
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_FORKS'], forks
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OPENPRS'], open_pull_requests
+    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_PULLS'], pull_requests
   rescue Github::Error::ServiceError, Github::Error::Forbidden
     nil
   end
