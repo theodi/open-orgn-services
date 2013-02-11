@@ -20,7 +20,7 @@ You'll need to install redis, run it, and then run a worker to process jobs. On 
 
 Regular jobs are handled by the resque scheduler, which you can run like so:
 
-    VVERBOSE=1 QUEUE=* rake resque:scheduler
+    QUEUE=* rake resque:scheduler
 
 To get a web interface on your resque workers:
 
