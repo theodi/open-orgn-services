@@ -18,11 +18,13 @@ You'll need to install redis, run it, and then run a worker to process jobs. On 
     bundle
     VVERBOSE=1 QUEUE=* rake resque:work
 
+Regular jobs are handled by the resque scheduler, which you can run like so:
+
+    VVERBOSE=1 QUEUE=* rake resque:scheduler
+
 To get a web interface on your resque workers:
 
-    resque-web -p 8282
-
-There isn't currently a main point of entry for the app itself, though that will come along soon.
+    resque-web config/resque-web.rb
 
 License
 -------
