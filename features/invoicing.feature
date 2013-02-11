@@ -106,13 +106,13 @@ Feature: Invoicing for training events
     And that invoice should show that payment has been received
     And that invoice should show that the payment was made with Paypal
 
-  Scenario:
-    Given I have registered for a ticket
-    And I paid with Google Checkout
-    When the invoicer runs
-    Then an invoice should be raised in Xero against 'Existing Company Inc.'
-    And that invoice should show that payment has been received
-    And that invoice should show that the payment was made with Google Checkout
+  # Scenario:
+  #   Given I have registered for a ticket
+  #   And I paid with Google Checkout
+  #   When the invoicer runs
+  #   Then an invoice should be raised in Xero against 'Existing Company Inc.'
+  #   And that invoice should show that payment has been received
+  #   And that invoice should show that the payment was made with Google Checkout
 
   Scenario:
     Given I have registered for a ticket
