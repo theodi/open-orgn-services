@@ -15,9 +15,28 @@ Given /^there is an event in Eventbrite with id (\d+) which costs ([\d\.]+) to a
   @price = 0.66
 end
 
-Given /^my email address is '(.*)'$/ do |email|
-  # Store event ID
-  @email = email
+Given /^an event in Eventbrite called "(.*?)" with id (\d+)$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^the event is happening on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^the price of the event is (\d+)\.(\d+)$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^the eventbrite fee is (\d+)\.(\d+)$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I have registered for a ticket$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I have registered for two tickets$/ do
+  pending # express the regexp above with the code you wish you had
 end
 
 When /^we poll eventbrite for all events$/ do
@@ -59,10 +78,4 @@ When /^I sign up to that event and get a free ticket$/ do
   VCR.use_cassette('does_not_need_invoice') do
     AttendeeLister.perform(@event_id)
   end
-end
-
-
-Given /^'(.*)' needs to be invoiced for ([\d\.]+)$/ do |email, price|
-  @email = email
-  @price = price.to_f
 end
