@@ -21,7 +21,11 @@ class GithubMonitor
       open_issues += repo.open_issues_count
       watchers += repo.watchers_count
       forks += repo.forks_count
-      issues = github.issues.list(user: ENV['GITHUB_ORGANISATION'], repo: repo.name)
+      begin
+        issues = github.issues.list(user: ENV['GITHUB_ORGANISATION'], repo: repo.name)
+      rescue Github::Error::ServiceError # gets raised if issues are disabled
+        issues = []
+      end
       open_pull_requests += issues.select{|x| x["state"] == "open" && x["pull_request"] && x["pull_request"]["html_url"]}.count
       # Tot up open and closed pull requests for the total count
       pull_requests += issues.select{|x| x["pull_request"] && x["pull_request"]["html_url"]}.count
