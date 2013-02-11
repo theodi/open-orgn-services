@@ -36,7 +36,14 @@ Feature: Invoicing for training events
     And I entered a VAT registration number '5678'
     When the invoicer runs
     Then an invoice should be raised in Xero against 'Existing Company Inc.'
-    And that invoice should include the VAT reference '5678'
+    And that invoice should include the note 'VAT registration number: 5678'
+
+  Scenario:
+    Given I have registered for a ticket
+    And I entered a membership number '9101112'
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should include the note 'Membership number: 9101112'
 
   Scenario:
     Given I have registered for a ticket
@@ -52,11 +59,11 @@ Feature: Invoicing for training events
     And I paid with Paypal
     When the invoicer runs
     Then an invoice should be raised in Xero against 'Existing Company Inc.'
-    And that invoice total should be 0.79 # 0.66 * 1.2
+    And that invoice total should be 0.79 # 0.66 * 1.2. Xero should add the VAT that eventbrite charged automatically.
 
   Scenario:
     Given I have registered for a ticket
-    And 'Existing Company Inc.' does not pay VAT
+    And I entered a VAT registration number '5678' # Overseas companies only, so excluded from VAT
     And I paid with Paypal
     When the invoicer runs
     Then an invoice should be raised in Xero against 'Existing Company Inc.'
@@ -64,6 +71,15 @@ Feature: Invoicing for training events
 
   # Line items
 
+  Scenario:
+    Given I have registered for two tickets
+    And I paid with Paypal
+    When the invoicer runs
+    Then an invoice should be raised in Xero against 'Existing Company Inc.'
+    And that invoice should have a total of 1.584
+    And that invoice should contain one line item
+    And that line item should have a quantity of 2
+    
   Scenario:
     Given I have registered for a ticket
     And I paid with Paypal
