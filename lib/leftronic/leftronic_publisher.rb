@@ -9,11 +9,11 @@ class LeftronicPublisher
   end
   
   def self.perform(datatype, id, data)
-    case datatype
+    case datatype.to_sym # because it turns into a string when being JSON serialised
     when :html
       api.push id, html: data
     when :number
-      api.push_number id, html: data
+      api.push_number id, data
     else
       raise ArgumentError.new("Unknown data type in LeftronicPublisher: #{datatype}")
     end
