@@ -20,6 +20,10 @@ Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
   end
 end
 
+Given /^I have already been invoiced$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
 When /^the attendee invoicer runs$/ do
   VCR.use_cassette('raise_invoice_in_xero') do
     AttendeeInvoicer.perform({:email => @email}, {:id => @event_id}, {:amount => @price})
@@ -46,6 +50,10 @@ Then /^a contact should be created in Xero for "(.*?)"$/ do |contact|
 end
 
 Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should not be invoiced again$/ do
   pending # express the regexp above with the code you wish you had
 end
 
@@ -106,5 +114,9 @@ Then /^that invoice should show that payment has not been received$/ do
 end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^the attendee invoicer should be requeued$/ do
   pending # express the regexp above with the code you wish you had
 end

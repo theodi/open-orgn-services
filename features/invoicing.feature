@@ -51,6 +51,15 @@ Feature: Invoicing for training events
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should be due on 2013-03-10
 
+  # Invoice idempotency
+  
+  Scenario:
+    Given I have registered for a ticket
+    And I paid with Paypal
+    And I have already been invoiced
+    When the attendee invoicer runs
+    Then I should not be invoiced again
+
   # VAT
 
   Scenario:
