@@ -38,7 +38,7 @@ Then /^the net cost to be invoiced should be ([\d\.]+)$/ do |cost|
   @net_cost = cost
 end
 
-Then /^a contact should be created in Xero for "(.*?)"$/ do |contact|
+Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_post_create_#{contact}") do
     xero = Xeroizer::PrivateApplication.new(
         ENV["XERO_CONSUMER_KEY"],
