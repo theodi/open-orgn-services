@@ -19,7 +19,7 @@ Feature: Invoicing for training events
     And I have registered for a ticket
     When the attendee invoicer runs
     Then a contact should be created in Xero for "Bob Fish"
-    And an invoice should be raised in Xero against "Bob Fish"
+    And the attendee invoicer should be requeued
 
   Scenario:
     Given I work for "New Company Inc."
@@ -27,7 +27,7 @@ Feature: Invoicing for training events
     And I have registered for a ticket
     When the attendee invoicer runs
     Then a contact should be created in Xero for "New Company Inc."
-    And an invoice should be raised in Xero against "New Company Inc."
+    And the attendee invoicer should be requeued
     
   # Storing of invoice-to details
     
