@@ -36,6 +36,7 @@ Feature: Invoicing for training events
   @clean_up_xero_contact
   Scenario:
     Given I work for "New Company Inc."
+    And my address is "12a Acacia Avenue, London, UK"
     And that company has a invoice contact email of "finance@newcompany.com"
     And that company has a invoice phone number of "01234 5678910"
     And that company has a invoice address of "123 Random Business Park, London, UK" 
@@ -45,7 +46,8 @@ Feature: Invoicing for training events
     Then a contact should exist in Xero for "New Company Inc."
     And that contact should have email "finance@newcompany.com"
     And that contact should have phone number "01234 5678910"
-    And that contact should have address "123 Random Business Park, London, UK"
+    And that contact should have physical address "12a Acacia Avenue, London, UK"
+    And that contact should have postal address "123 Random Business Park, London, UK"
     
   @clean_up_xero_contact
   Scenario:
@@ -58,4 +60,4 @@ Feature: Invoicing for training events
     Then a contact should exist in Xero for "Bob Fish"
     And that contact should have email "bob.fish@example.com"
     And that contact should have phone number "01234 098765"
-    And that contact should have address "12a Acacia Avenue, London, UK"
+    And that contact should have postal address "12a Acacia Avenue, London, UK"
