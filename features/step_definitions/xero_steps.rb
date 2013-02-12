@@ -21,24 +21,23 @@ def payment_details
     :amount => @price
   }
 end
+
+def xero
+  $xero ||= Xeroizer::PrivateApplication.new(
+    ENV["XERO_CONSUMER_KEY"],
+    ENV["XERO_CONSUMER_SECRET"],
+    ENV["XERO_PRIVATE_KEY_PATH"]
+  )
+end
+
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_#{contact}") do
-    xero = Xeroizer::PrivateApplication.new(
-        ENV["XERO_CONSUMER_KEY"],
-        ENV["XERO_CONSUMER_SECRET"],
-        ENV["XERO_PRIVATE_KEY_PATH"]
-    )
     xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
   end
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_#{contact}") do
-    xero = Xeroizer::PrivateApplication.new(
-        ENV["XERO_CONSUMER_KEY"],
-        ENV["XERO_CONSUMER_SECRET"],
-        ENV["XERO_PRIVATE_KEY_PATH"]
-    )
     xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
   end
 end
@@ -63,11 +62,6 @@ end
 
 Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_post_create_#{contact}") do
-    xero = Xeroizer::PrivateApplication.new(
-        ENV["XERO_CONSUMER_KEY"],
-        ENV["XERO_CONSUMER_SECRET"],
-        ENV["XERO_PRIVATE_KEY_PATH"]
-    )
     xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
   end
 end
