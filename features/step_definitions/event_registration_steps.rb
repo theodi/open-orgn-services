@@ -18,6 +18,14 @@ Given /^my email address is "(.*)"$/ do |email|
   @email = email
 end
 
+Given /^my phone number is "(.*?)"$/ do |phone|
+  @phone = phone
+end
+
+Given /^my address is "(.*?)"$/ do |address|
+  @address = address
+end
+
 Given /^that company has a invoice contact email of "(.*?)"$/ do |email|
   @invoice_email = email
 end
