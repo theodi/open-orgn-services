@@ -17,10 +17,6 @@ Given /^the price of the event is ([\d\.]+)$/ do |price|
   @price = price.to_f
 end
 
-Given /^the eventbrite fee is ([\d\.]+)$/ do |fee|
-  @fee = fee.to_f
-end
-
 Given /^I have registered for a ticket$/ do
   @tickets = 1
 end
