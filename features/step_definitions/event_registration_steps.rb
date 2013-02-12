@@ -19,15 +19,15 @@ Given /^my email address is "(.*)"$/ do |email|
 end
 
 Given /^that company has a invoice contact email of "(.*?)"$/ do |email|
-  @billing_email = email
+  @invoice_email = email
 end
 
 Given /^that company has a invoice phone number of "(.*?)"$/ do |phone|
-  @billing_phone = phone
+  @invoice_phone = phone
 end
 
 Given /^that company has a invoice address of "(.*?)"$/ do |invoice_address|
-  @billing_address = invoice_address
+  @invoice_address = invoice_address
 end
 
 Given /^I entered a purchase order number "(.*?)"$/ do |po_number|
