@@ -66,8 +66,9 @@ end
 
 Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_post_create_#{contact}") do
-    xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
+    @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
   end
+  @contact.should_not be_nil
 end
 
 Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact|
@@ -95,11 +96,11 @@ Then /^that invoice should be due on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
 end
 
 Then /^that contact should have email "(.*?)"$/ do |email|
-  pending # express the regexp above with the code you wish you had
+  @contact.email_address.should == email
 end
 
 Then /^that contact should have phone number "(.*?)"$/ do |number|
-  pending # express the regexp above with the code you wish you had
+  @contact.phones.find{|x| x.type == "DEFAULT"}.number.should == number
 end
 
 Then /^that contact should have address "(.*?)"$/ do |address|
