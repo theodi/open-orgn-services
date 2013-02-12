@@ -13,6 +13,7 @@ Feature: Invoicing for training events
 
   # Creation of Xero contacts and requeuing of jobs
 
+  @clean_up_xero_contact
   Scenario:
     Given I do not work for anyone
     And there is no contact in Xero for "Bob Fish"
@@ -21,6 +22,7 @@ Feature: Invoicing for training events
     When the attendee invoicer runs
     Then a contact should exist in Xero for "Bob Fish"
 
+  @clean_up_xero_contact
   Scenario:
     Given I work for "New Company Inc."
     And there is no contact in Xero for "New Company Inc."
@@ -30,7 +32,8 @@ Feature: Invoicing for training events
     Then a contact should exist in Xero for "New Company Inc."
     
   # Storing of invoice-to details
-    
+  
+  @clean_up_xero_contact
   Scenario:
     Given I work for "New Company Inc."
     And that company has a invoice contact email of "finance@newcompany.com"
