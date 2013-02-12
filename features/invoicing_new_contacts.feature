@@ -46,3 +46,16 @@ Feature: Invoicing for training events
     And that contact should have email "finance@newcompany.com"
     And that contact should have phone number "01234 5678910"
     And that contact should have address "123 Random Business Park, London, UK"
+    
+  @clean_up_xero_contact
+  Scenario:
+    Given I do not work for anyone
+    And my phone number is "01234 098765"
+    And my address is "12a Acacia Avenue, London, UK"
+    And there is no contact in Xero for "Bob Fish"
+    And I have registered for a ticket
+    When the attendee invoicer runs
+    Then a contact should exist in Xero for "Bob Fish"
+    And that contact should have email "bob.fish@example.com"
+    And that contact should have phone number "01234 098765"
+    And that contact should have address "12a Acacia Avenue, London, UK"
