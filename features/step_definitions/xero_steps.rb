@@ -5,7 +5,7 @@ Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
         ENV["XERO_CONSUMER_SECRET"],
         ENV["XERO_PRIVATE_KEY_PATH"]
     )
-    xero.Contact.all(:where => %{EmailAddress == "#{contact}"'}).should_not be_empty
+    xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
   end
 end
 
@@ -16,7 +16,7 @@ Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
         ENV["XERO_CONSUMER_SECRET"],
         ENV["XERO_PRIVATE_KEY_PATH"]
     )
-    xero.Contact.all(:where => %{EmailAddress == "#{contact}"'}).should be_empty
+    xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
   end
 end
 
@@ -35,7 +35,14 @@ Then /^the net cost to be invoiced should be ([\d\.]+)$/ do |cost|
 end
 
 Then /^a contact should be created in Xero for "(.*?)"$/ do |contact|
-  pending # express the regexp above with the code you wish you had
+  VCR.use_cassette("xero_contact_lookup_post_create_#{contact}") do
+    xero = Xeroizer::PrivateApplication.new(
+        ENV["XERO_CONSUMER_KEY"],
+        ENV["XERO_CONSUMER_SECRET"],
+        ENV["XERO_PRIVATE_KEY_PATH"]
+    )
+    xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
+  end
 end
 
 Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact|

@@ -1,42 +1,32 @@
-Given /^there is an event in Eventbrite with id (\d+)$/ do |id|
-  # Store event ID
+Given /^an event in Eventbrite called "(.*?)" with id (\d+)$/ do |title, id|
+  @event_title = title
   @event_id = id
   @price = 0
-end
-
-Given /^there is an event in Eventbrite with id (\d+) which is not live$/ do |id|
-  # Store event ID
-  @event_id = id
-end
-
-Given /^there is an event in Eventbrite with id (\d+) which costs ([\d\.]+) to attend$/ do |id, price|
-  # Store event ID
-  @event_id = id
-  @price = 0.66
-end
-
-Given /^an event in Eventbrite called "(.*?)" with id (\d+)$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  @event_live = true
 end
 
 Given /^the event is happening on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
-  pending # express the regexp above with the code you wish you had
+  @event_date = Date.new(year.to_i, month.to_i, day.to_i)
 end
 
-Given /^the price of the event is (\d+)\.(\d+)$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Given /^that event is not live$/ do
+  @event_live = false
 end
 
-Given /^the eventbrite fee is (\d+)\.(\d+)$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Given /^the price of the event is ([\d\.]+)$/ do |price|
+  @price = price.to_f
+end
+
+Given /^the eventbrite fee is ([\d\.]+)$/ do |fee|
+  @fee = fee.to_f
 end
 
 Given /^I have registered for a ticket$/ do
-  pending # express the regexp above with the code you wish you had
+  @tickets = 1
 end
 
 Given /^I have registered for two tickets$/ do
-  pending # express the regexp above with the code you wish you had
+  @tickets = 2
 end
 
 When /^we poll eventbrite for all events$/ do
