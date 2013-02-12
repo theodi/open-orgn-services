@@ -11,23 +11,23 @@ Feature: Invoicing for training events
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"
 
-  # Creation of Xero contacts
+  # Creation of Xero contacts and requeuing of jobs
 
   Scenario:
     Given I do not work for anyone
     And there is no contact in Xero for "Bob Fish"
     And I have registered for a ticket
+    Then the attendee invoicer should be requeued
     When the attendee invoicer runs
-    Then a contact should be created in Xero for "Bob Fish"
-    And the attendee invoicer should be requeued
+    Then a contact should exist in Xero for "Bob Fish"
 
   Scenario:
     Given I work for "New Company Inc."
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
+    Then the attendee invoicer should be requeued
     When the attendee invoicer runs
-    Then a contact should be created in Xero for "New Company Inc."
-    And the attendee invoicer should be requeued
+    Then a contact should exist in Xero for "New Company Inc."
     
   # Storing of invoice-to details
     
