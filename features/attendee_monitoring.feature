@@ -9,30 +9,31 @@ Feature: Invoicing for training events
 	# a better way in the steps.
   
   Scenario:
-    Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
-    And my email address is "james.smith@theodi.org"
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And my email address is "bob.fish@example.com"
     Then I should be added to the invoicing queue
     When I sign up to that event and ask to be invoiced
     
   Scenario:
-    Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
-    And my email address is "james.smith@theodi.org"
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And my email address is "bob.fish@example.com"
     Then I should be added to the invoicing queue
     When I sign up to that event and ask to be invoiced
 
   Scenario:
-    Given there is an event in Eventbrite with id 5441375300
-    And my email address is "sam.pikesley@theodi.org"
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And my email address is "brian.fish@example.com"
     Then I should not be added to the invoicing queue
     When I sign up to that event and get a free ticket
   
   # VAT
   
   Scenario:
-    Given there is an event in Eventbrite with id 5441375300 which costs 0.66 to attend
-    And my email address is "james.smith@theodi.org"
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And the price of the event is 1.00
+    And my email address is "bob.fish@example.com"
     # Eventbrite should be adding VAT on top
-    Then the total cost to be invoiced should be 0.79 
+    Then the total cost to be invoiced should be 1.2
     # We send net cost into Xero
-    And the net cost to be invoiced should be 0.66 
+    And the net cost to be invoiced should be 1.00
     When I sign up to that event and ask to be invoiced

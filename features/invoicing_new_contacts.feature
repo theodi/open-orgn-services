@@ -5,9 +5,8 @@ Feature: Invoicing for training events
   I want to be sent an invoice when I sign up to attend an event
 
   Background:
-    Given an event in Eventbrite called "Training Course" with id 5441375300
-    And the price of the event is 0.01
-    And the eventbrite fee is 0.65
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And the price of the event is 1.00
     And my first name is "Bob"
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"
