@@ -9,11 +9,12 @@ Feature: Monitoring eventbrite events
 	# a better way in the steps.
   
 	Scenario:
-    Given there is an event in Eventbrite with id 5441375300
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
 		Then that event should be queued for attendee checking
 		When we poll eventbrite for all events
 	
 	Scenario:
-    Given there is an event in Eventbrite with id 5449726278 which is not live
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5449726278 
+    And that event is not live
 		Then that event should not be queued for attendee checking
 		When we poll eventbrite for all events

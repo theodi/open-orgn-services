@@ -5,10 +5,9 @@ Feature: Invoicing for training events
   I want to be sent an invoice when I sign up to attend an event
 
   Background:
-    Given an event in Eventbrite called "Training Course" with id 5441375300
-    And the event is happening on 2012-04-14
-    And the price of the event is 0.01
-    And the eventbrite fee is 0.65
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And the event is happening on 2013-03-17
+    And the price of the event is 1.00
     And my first name is "Bob"
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"
@@ -50,7 +49,7 @@ Feature: Invoicing for training events
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should be due on 2012-04-07
+    And that invoice should be due on 2013-03-10
 
   # VAT
 
@@ -60,7 +59,7 @@ Feature: Invoicing for training events
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     # 0.66 * 1.2. Xero should add the VAT that eventbrite charged automatically.
-    And that invoice should have a total of 0.79 
+    And that invoice should have a total of 1.20
 
   Scenario:
     Given I have registered for a ticket
@@ -69,7 +68,7 @@ Feature: Invoicing for training events
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should have a total of 0.66
+    And that invoice should have a total of 1.00
 
   # Line items
 
@@ -78,7 +77,7 @@ Feature: Invoicing for training events
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should have a total of 1.584
+    And that invoice should have a total of 2.40
     And that invoice should contain 1 line item
     And that line item should have a quantity of 2
     
@@ -97,7 +96,7 @@ Feature: Invoicing for training events
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And that line item should have the description "Registration for 'Training Course (2012-04-14)' for Bob Fish <bob.fish@example.com>"
+    And that line item should have the description "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2012-04-14)' for Bob Fish <bob.fish@example.com>"
 
   # Payment methods
     
