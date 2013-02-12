@@ -46,16 +46,6 @@ Then /^that event should not be queued for attendee checking$/ do
   Resque.should_not_receive(:enqueue).with(AttendeeLister, @event_id)
 end
 
-Then /^I should be added to the invoicing queue$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, {:email => @email}, {:id => @event_id}, {:amount => @price})
-end
-
-Then /^I should not be added to the invoicing queue$/ do
-  # Set expectation
-  Resque.should_not_receive(:enqueue)
-end
-
 When /^I sign up to that event and ask to be invoiced$/ do
   # Check the attendees
   VCR.use_cassette('needs_invoice') do

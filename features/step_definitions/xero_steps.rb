@@ -1,3 +1,26 @@
+def user_details
+  {
+    :company => @company,
+    :first_name => @first_name,
+    :last_name => @last_name,
+    :email => @email,
+    :invoice_email => @invoice_email,
+    :phone => @phone,
+    :invoice_phone => @invoice_phone,
+  }
+end
+
+def event_details
+  {
+    :id => @event_id
+  }
+end
+
+def payment_details
+  {
+    :amount => @price
+  }
+end
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_#{contact}") do
     xero = Xeroizer::PrivateApplication.new(
@@ -117,6 +140,17 @@ Then /^that invoice should show that the payment was made with Paypal$/ do
   pending # express the regexp above with the code you wish you had
 end
 
+Then /^I should be added to the invoicing queue$/ do
+  # Set expectation
+  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
+end
+
+Then /^I should not be added to the invoicing queue$/ do
+  # Set expectation
+  Resque.should_not_receive(:enqueue)
+end
+
 Then /^the attendee invoicer should be requeued$/ do
-  pending # express the regexp above with the code you wish you had
+  # Set expectation
+  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
 end
