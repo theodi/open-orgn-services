@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 def user_details
   {
     :company => @company,
@@ -47,8 +49,10 @@ Given /^I have already been invoiced$/ do
 end
 
 When /^the attendee invoicer runs$/ do
-  VCR.use_cassette('raise_invoice_in_xero') do
-    AttendeeInvoicer.perform({:email => @email}, {:id => @event_id}, {:amount => @price})
+  # Invoice
+  hash = Digest::MD5.hexdigest(user_details.merge(event_details).merge(payment_details).inspect)
+  VCR.use_cassette("raise_invoice_in_xero_#{hash}") do
+    AttendeeInvoicer.perform(user_details, event_details, payment_details)
   end
 end
 
