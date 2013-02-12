@@ -42,7 +42,7 @@ Feature: Invoicing for training events
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
     When the attendee invoicer runs
-    Then a contact should be created in Xero for "New Company Inc."
+    Then a contact should exist in Xero for "New Company Inc."
     And that contact should have email "finance@newcompany.com"
     And that contact should have phone number "01234 5678910"
     And that contact should have address "123 Random Business Park, London, UK"
