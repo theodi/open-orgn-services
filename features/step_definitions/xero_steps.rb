@@ -84,7 +84,7 @@ Then /^that contact should have phone number "(.*?)"$/ do |number|
 end
 
 Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field, value|
-  @contact.addresses.find{|x| x.type='DEFAULT'}.send(field).should == value
+  @contact.addresses.find{|x| x.type='POBOX'}.send(field).should == value
 end
 
 # Invoices 
