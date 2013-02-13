@@ -36,28 +36,40 @@ Feature: Invoicing for training events
   @clean_up_xero_contact
   Scenario:
     Given I work for "New Company Inc."
-    And my address is "12a Acacia Avenue, London, UK"
-    And that company has a invoice contact email of "finance@newcompany.com"
-    And that company has a invoice phone number of "01234 5678910"
-    And that company has a invoice address of "123 Random Business Park, London, UK" 
+    And my address is "29 Acacia Road"
+    And my city is "Dandytown"
+    And my country is "UK"
+    And that company has an invoice contact email of "finance@newcompany.com"
+    And that company has an invoice phone number of "01234 5678910"
+    And that company has an invoice address of "123 Random Business Park"
+    And that company has an invoice city of "London"
+    And that company has an invoice country of "UK" 
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
     When the attendee invoicer runs
     Then a contact should exist in Xero for "New Company Inc."
     And that contact should have email "finance@newcompany.com"
     And that contact should have phone number "01234 5678910"
-    And that contact should have physical address "12a Acacia Avenue, London, UK"
-    And that contact should have postal address "123 Random Business Park, London, UK"
+    And that contact should have street address (line1) of "29 Acacia Road"
+    And that contact should have street address (city) of "Dandytown"
+    And that contact should have street address (country) of "UK"
+    And that contact should have postal address (line1) of "123 Random Business Park"
+    And that contact should have postal address (city) of "London"
+    And that contact should have postal address (country) of "UK"
     
   @clean_up_xero_contact
   Scenario:
     Given I do not work for anyone
     And my phone number is "01234 098765"
-    And my address is "12a Acacia Avenue, London, UK"
+    And my address is "29 Acacia Road"
+    And my city is "Dandytown"
+    And my country is "UK"
     And there is no contact in Xero for "Bob Fish"
     And I have registered for a ticket
     When the attendee invoicer runs
     Then a contact should exist in Xero for "Bob Fish"
     And that contact should have email "bob.fish@example.com"
     And that contact should have phone number "01234 098765"
-    And that contact should have postal address "12a Acacia Avenue, London, UK"
+    And that contact should have postal address (line1) of "29 Acacia Road"
+    And that contact should have postal address (city) of "Dandytown"
+    And that contact should have postal address (country) of "UK"
