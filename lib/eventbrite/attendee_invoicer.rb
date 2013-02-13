@@ -36,10 +36,20 @@ class AttendeeInvoicer
   end
 
   def self.create_contact(user_details, event_details, payment_details)
+    addresses = []
+    # Billing address
+    addresses << {
+      type: 'POBOX',
+      line1: user_details[:invoice_address_line1] || user_details[:address_line1],
+      city: user_details[:invoice_address_city] || user_details[:address_city],
+      country: user_details[:invoice_address_country] || user_details[:address_country],
+    }
+    # Create contact
     contact = xero.Contact.create(
       name: contact_name(user_details),
       email_address: user_details[:invoice_email] || user_details[:email],
       phones: [{type: 'DEFAULT', number: user_details[:invoice_phone] || user_details[:phone]}],
+      addresses: addresses
     )
     contact.save
     # Requeue

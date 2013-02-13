@@ -11,6 +11,12 @@ def user_details
     :invoice_email => @invoice_email,
     :phone => @phone,
     :invoice_phone => @invoice_phone,
+    :address_line1 => @address_line1,
+    :address_city => @address_city,
+    :address_country => @address_country,
+    :invoice_address_line1 => @invoice_address_line1,
+    :invoice_address_city => @invoice_address_city,
+    :invoice_address_country => @invoice_address_country,
   }
 end
 
@@ -73,28 +79,8 @@ Then /^that contact should have phone number "(.*?)"$/ do |number|
   @contact.phones.find{|x| x.type == "DEFAULT"}.number.should == number
 end
 
-Then /^that contact should have street address \(line1\) of "(.*?)"$/ do |line1|
-  @contact.addresses.find{|x| x.type='STREET'}.line_1.should == line1
-end
-
-Then /^that contact should have street address \(city\) of "(.*?)"$/ do |city|
-  @contact.addresses.find{|x| x.type='STREET'}.city.should == city
-end
-
-Then /^that contact should have street address \(country\) of "(.*?)"$/ do |country|
-  @contact.addresses.find{|x| x.type='STREET'}.country.should == country
-end
-
-Then /^that contact should have postal address \(line1\) of "(.*?)"$/ do |line1|
-  @contact.addresses.find{|x| x.type='POBOX'}.line_1.should == line1
-end
-
-Then /^that contact should have postal address \(city\) of "(.*?)"$/ do |city|
-  @contact.addresses.find{|x| x.type='POBOX'}.city.should == city
-end
-
-Then /^that contact should have postal address \(country\) of "(.*?)"$/ do |country|
-  @contact.addresses.find{|x| x.type='POBOX'}.country.should == country
+Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field, value|
+  @contact.addresses.find{|x| x.type='DEFAULT'}.send(field).should == value
 end
 
 # Invoices 
