@@ -23,7 +23,8 @@ Spork.each_run do
 
   VCR.configure do |c|
     # Automatically filter all secure details that are stored in the environment
-    (ENV.keys-['SHLVL']).select{|x| x =~ /\A[A-Z_]*\Z/}.each do |key|
+    ignore_env = %w{SHLVL RUNLEVEL}
+    (ENV.keys-ignore_env).select{|x| x =~ /\A[A-Z_]*\Z/}.each do |key|
       c.filter_sensitive_data("<#{key}>") { ENV[key] }
     end
     c.default_cassette_options = { :record => :new_episodes }
