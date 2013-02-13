@@ -31,7 +31,8 @@ def payment_details
   {
     :price => @price,
     :quantity => @quantity,
-    :overseas_vat_reg_no => @vat_reg_number
+    :overseas_vat_reg_no => @vat_reg_number,
+    :purchase_order_number => @purchase_order_number
   }
 end
 
@@ -111,7 +112,7 @@ Then /^that invoice should be a draft$/ do
 end
 
 Then /^that invoice should include the reference "(.*?)"$/ do |reference|
-  pending # express the regexp above with the code you wish you had
+  @invoice.reference.should == reference
 end
 
 Then /^that invoice should include the note "(.*?)"$/ do |note|
