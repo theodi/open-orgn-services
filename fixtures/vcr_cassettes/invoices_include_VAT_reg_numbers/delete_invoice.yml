@@ -1,0 +1,155 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices/5f09075c-efe2-4cb3-ba54-6d97645ae968
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.5
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="fmmOJMUFO0wDi1sNdzxvhcTCYCCsFRzDCmcBd3mk",
+        oauth_signature="PJDb%2FZCWaTsIrqIceW%2B%2F58N4IdZ%2BQCeMKsU37hIra55CYyOWjpfSzggOiD6UDTcSzQBen9V7yghwDohP7q5NBq8fhUzSqDFRcLNDUNNK2Yl10WGDPJsgGWHlKRemmzG4qoTryfSLzFBcMD7tJcXhgxbiK1CXZHFhjhET5NmDsMk%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1360770557", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445758-O1VMAP01
+      Date:
+      - Wed, 13 Feb 2013 15:49:12 GMT
+      Content-Length:
+      - '2365'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>95d0214e-9f73-4e2c-a6ca-875480f30713</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-02-13T15:49:12.9450729Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>214814d5-64bb-409b-8000-764aa0da91df</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2013-02-12T08:29:03.76</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer><GUARD_NOTIFY></IsCustomer>\r\n      </Contact>\r\n      <Date>2013-02-13T00:00:00</Date>\r\n
+        \     <DueDate>2013-02-13T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
+        \       <LineItem>\r\n          <Description>placeholder</Description>\r\n
+        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>NONE</TaxType>\r\n
+        \         <TaxAmount>0.00</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
+        \         <AccountCode>200</AccountCode>\r\n          <Quantity>1.0000</Quantity>\r\n
+        \       </LineItem>\r\n      </LineItems>\r\n      <SubTotal>1.00</SubTotal>\r\n
+        \     <TotalTax>0.00</TotalTax>\r\n      <Total>1.00</Total>\r\n      <UpdatedDateUTC>2013-02-13T15:49:10.997</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>5f09075c-efe2-4cb3-ba54-6d97645ae968</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0261</InvoiceNumber>\r\n      <AmountDue>1.00</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 13 Feb 2013 15:49:17 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3CInvoice%3E%0A++%3CInvoice%3E%0A++++%3CContactID%3E214814d5-64bb-409b-8000-764aa0da91df%3C%2FContactID%3E%0A++++%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A++++%3CName%3EExisting+Company+Inc.%3C%2FName%3E%0A++++%3CAddresses%3E%0A++++++%3CAddress%3E%0A++++++++%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A++++++%3C%2FAddress%3E%0A++++++%3CAddress%3E%0A++++++++%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A++++++%3C%2FAddress%3E%0A++++%3C%2FAddresses%3E%0A++++%3CPhones%3E%0A++++++%3CPhone%3E%0A++++++++%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A++++++%3C%2FPhone%3E%0A++++++%3CPhone%3E%0A++++++++%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A++++++%3C%2FPhone%3E%0A++++++%3CPhone%3E%0A++++++++%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A++++++%3C%2FPhone%3E%0A++++++%3CPhone%3E%0A++++++++%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A++++++%3C%2FPhone%3E%0A++++%3C%2FPhones%3E%0A++++%3CUpdatedDateUTC%3E2013-02-12T08%3A29%3A03%3C%2FUpdatedDateUTC%3E%0A++++%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A++++%3CIsCustomer%3E<GUARD_NOTIFY>%3C%2FIsCustomer%3E%0A++%3C%2FInvoice%3E%0A++%3CDate%3E2013-02-13%3C%2FDate%3E%0A++%3CDueDate%3E2013-02-13%3C%2FDueDate%3E%0A++%3CStatus%3EDELETED%3C%2FStatus%3E%0A++%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A++%3CLineItems%3E%0A++++%3CLineItem%3E%0A++++++%3CDescription%3Eplaceholder%3C%2FDescription%3E%0A++++++%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A++++++%3CTaxType%3ENONE%3C%2FTaxType%3E%0A++++++%3CTaxAmount%3E0.0%3C%2FTaxAmount%3E%0A++++++%3CLineAmount%3E1.0%3C%2FLineAmount%3E%0A++++++%3CAccountCode%3E200%3C%2FAccountCode%3E%0A++++++%3CQuantity%3E1.0%3C%2FQuantity%3E%0A++++%3C%2FLineItem%3E%0A++%3C%2FLineItems%3E%0A++%3CSubTotal%3E1.0%3C%2FSubTotal%3E%0A++%3CTotalTax%3E0.0%3C%2FTotalTax%3E%0A++%3CTotal%3E1.0%3C%2FTotal%3E%0A++%3CUpdatedDateUTC%3E2013-02-13T15%3A49%3A10%3C%2FUpdatedDateUTC%3E%0A++%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A++%3CType%3EACCREC%3C%2FType%3E%0A++%3CInvoiceID%3E5f09075c-efe2-4cb3-ba54-6d97645ae968%3C%2FInvoiceID%3E%0A++%3CInvoiceNumber%3EINV-0261%3C%2FInvoiceNumber%3E%0A++%3CAmountDue%3E1.0%3C%2FAmountDue%3E%0A++%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A++%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.5
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="L2k6ylZ0u1V3zKvOq2z9FOl2Q8GCekpzLhaSbn7FCc",
+        oauth_signature="HIIGj1xw6L86BMywAyrpXFCuB97Qmpxn9uEb5YS6nhe8za5a7kQj8%2FNM0GcbKStGh5byweqOe5nxd288yDNEVr3q%2FimlxYfPQVz2x%2FlQUGxA2CxeL9J3hDDGSpr1OV3kCA6glemR252CCbYd3nV9w9wNHVVnclOKtPsLmIn19bg%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1360770557", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445758-O1VMAP01
+      Date:
+      - Wed, 13 Feb 2013 15:49:13 GMT
+      Content-Length:
+      - '2366'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>7b6e4ef4-4167-4412-bfde-95c52463b714</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-02-13T15:49:13.7250629Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>214814d5-64bb-409b-8000-764aa0da91df</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2013-02-12T08:29:03.76</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer><GUARD_NOTIFY></IsCustomer>\r\n      </Contact>\r\n      <Date>2013-02-13T00:00:00</Date>\r\n
+        \     <DueDate>2013-02-13T00:00:00</DueDate>\r\n      <Status>DELETED</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
+        \       <LineItem>\r\n          <Description>placeholder</Description>\r\n
+        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>NONE</TaxType>\r\n
+        \         <TaxAmount>0.00</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
+        \         <AccountCode>200</AccountCode>\r\n          <Quantity>1.0000</Quantity>\r\n
+        \       </LineItem>\r\n      </LineItems>\r\n      <SubTotal>1.00</SubTotal>\r\n
+        \     <TotalTax>0.00</TotalTax>\r\n      <Total>1.00</Total>\r\n      <UpdatedDateUTC>2013-02-13T15:49:13.71</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>5f09075c-efe2-4cb3-ba54-6d97645ae968</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0261</InvoiceNumber>\r\n      <AmountDue>1.00</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 13 Feb 2013 15:49:18 GMT
+recorded_with: VCR 2.4.0
