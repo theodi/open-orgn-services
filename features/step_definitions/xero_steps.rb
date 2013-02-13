@@ -22,7 +22,8 @@ end
 
 def event_details
   {
-    :id => @event_id
+    :id => @event_id,
+    :date => @event_date
   }
 end
 
@@ -118,7 +119,9 @@ Then /^that invoice should include the note "(.*?)"$/ do |note|
 end
 
 Then /^that invoice should be due on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
-  pending # express the regexp above with the code you wish you had
+  VCR.use_cassette("#{@scenario_name}/due_date_for_invoice") do
+    @invoice.due_date.should == Date.new(year.to_i, month.to_i, day.to_i)
+  end
 end
 
 Then /^that invoice should have a total of ([\d\.]+)$/ do |total|

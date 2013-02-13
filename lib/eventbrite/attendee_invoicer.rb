@@ -1,3 +1,5 @@
+require 'date'
+
 class AttendeeInvoicer
 
   @queue = :invoicing
@@ -70,7 +72,7 @@ class AttendeeInvoicer
     invoice = xero.Invoice.create(
       :type => 'ACCREC',
       :contact => contact,
-      :due_date => Date.today,
+      :due_date => (event_details[:date] ? event_details[:date] - 7 : Date.today),
       :status => 'DRAFT',
       :line_items => [line_item]
     )
