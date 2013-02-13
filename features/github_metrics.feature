@@ -33,10 +33,10 @@ Feature: Github monitoring
     Then the number 1 should be stored in the open pull requests stat
     When the github monitor runs
 
-  @wip
   Scenario:
     Given the repository "open-orgn-services" has 1 open pull request
     And the repository "open-orgn-services" has 1 closed pull request
     And the repository "public-keys" has 3 closed pull requests
-    Then the number 5 should be stored in the total pull requests stat
+    And the repository "odibot" has 1 closed pull request
+    Then the number 6 should be stored in the total pull requests stat
     When the github monitor runs

@@ -21,14 +21,10 @@ class GithubMonitor
       open_issues += repo.open_issues_count
       watchers += repo.watchers_count
       forks += repo.forks_count
-      begin
-        issues = github.issues.list(user: ENV['GITHUB_ORGANISATION'], repo: repo.name)
-      rescue Github::Error::ServiceError # gets raised if issues are disabled
-        issues = []
-      end
-      open_pull_requests += issues.select{|x| x["state"] == "open" && x["pull_request"] && x["pull_request"]["html_url"]}.count
-      # Tot up open and closed pull requests for the total count
-      pull_requests += issues.select{|x| x["pull_request"] && x["pull_request"]["html_url"]}.count
+      open_pulls = github.pulls.list(ENV['GITHUB_ORGANISATION'], repo.name)
+      open_pull_requests += open_pulls.count
+      pull_requests += open_pulls.count
+      pull_requests += github.pulls.list(ENV['GITHUB_ORGANISATION'], repo.name, state: 'closed').count
     end
     # Push into leftronic
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_ISSUES'], open_issues
