@@ -16,11 +16,19 @@ After("@record_all_cassettes") do
   end
 end
 
-After("@clean_up_xero_contact") do |scenario|
+After("@clean_up_xero_contact") do
   if @contact
     @contact.name = [@contact.name, @contact.id].join(' ')
     VCR.use_cassette("#{@scenario_name}/rename_contact") do
       @contact.save
+    end
+  end
+end
+
+After do
+  if @invoice
+    VCR.use_cassette("#{@scenario_name}/delete_invoice") do
+      @invoice.delete!
     end
   end
 end
