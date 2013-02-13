@@ -58,12 +58,21 @@ class AttendeeInvoicer
   
   def self.invoice_contact(contact, user_details, event_details, payment_details)
     # Raise invoice
+    line_item = {
+      :description => 'placeholder', 
+      :quantity => payment_details[:quantity], 
+      :unit_amount => payment_details[:price],
+      :account_code => 200
+    }
+    # Don't charge tax overseas if vat reg number supplied
+    line_item[:tax_type] = "NONE" if payment_details[:overseas_vat_reg_no]
+    # Create invoice
     invoice = xero.Invoice.create(
       :type => 'ACCREC',
       :contact => contact,
       :due_date => Date.today,
       :status => 'DRAFT',
-      :line_items => [{:description => 'placeholder', :quantity => 1, :unit_amount => 1.00, :account_code => 200}]
+      :line_items => [line_item]
     )
     raise 'invalid' unless invoice.valid?
     invoice.save
