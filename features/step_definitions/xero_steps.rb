@@ -89,8 +89,14 @@ Given /^I have already been invoiced$/ do
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact|
-  pending # express the regexp above with the code you wish you had
+Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
+  VCR.use_cassette("xero_contact_lookup_#{contact_name}") do
+    @contact = xero.Contact.all(:where => %{Name == "#{contact_name}"}).first
+  end
+  VCR.use_cassette("xero_invoices_lookup_#{contact_name}", :record => :all) do
+    @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}")}).last
+  end
+  @invoice.should_not be_nil
 end
 
 Then /^I should not be invoiced again$/ do
@@ -98,7 +104,7 @@ Then /^I should not be invoiced again$/ do
 end
 
 Then /^that invoice should be a draft$/ do
-  pending # express the regexp above with the code you wish you had
+  @invoice.status.should == 'DRAFT'
 end
 
 Then /^that invoice should include the reference "(.*?)"$/ do |reference|
