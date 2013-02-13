@@ -31,14 +31,14 @@ end
 
 When /^I sign up to that event and ask to be invoiced$/ do
   # Check the attendees
-  VCR.use_cassette('needs_invoice') do
+  VCR.use_cassette("#{@scenario_name}/needs_invoice") do
     AttendeeLister.perform(@event_id)
   end
 end
 
 When /^I sign up to that event and get a free ticket$/ do
   # Check the attendees
-  VCR.use_cassette('does_not_need_invoice') do
+  VCR.use_cassette("#{@scenario_name}/does_not_need_invoice") do
     AttendeeLister.perform(@event_id)
   end
 end
@@ -47,7 +47,7 @@ end
 
 When /^we poll eventbrite for all events$/ do
   # Check the events list
-  VCR.use_cassette('all_events') do
+  VCR.use_cassette("#{@scenario_name}/all_events") do
     EventLister.perform
   end
 end
