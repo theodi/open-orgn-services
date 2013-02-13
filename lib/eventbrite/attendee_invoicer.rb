@@ -74,9 +74,9 @@ class AttendeeInvoicer
       :contact => contact,
       :due_date => (event_details[:date] ? event_details[:date] - 7 : Date.today),
       :status => 'DRAFT',
-      :line_items => [line_item]
+      :line_items => [line_item],
+      :reference => payment_details[:purchase_order_number],
     )
-    raise 'invalid' unless invoice.valid?
     invoice.save
   end
 
