@@ -45,13 +45,13 @@ end
 # Xero contacts
 
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
-  VCR.use_cassette("xero_contact_lookup_#{contact}") do
+  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup") do
     xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
   end
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
-  VCR.use_cassette("xero_contact_lookup_#{contact}") do
+  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup") do
     xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
   end
 end
@@ -65,7 +65,7 @@ Then /^the net cost to be invoiced should be ([\d\.]+)$/ do |cost|
 end
 
 Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
-  VCR.use_cassette("xero_contact_lookup_post_create_#{contact}") do
+  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup_post_create") do
     @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
   end
   @contact.should_not be_nil
@@ -90,10 +90,10 @@ Given /^I have already been invoiced$/ do
 end
 
 Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
-  VCR.use_cassette("xero_contact_lookup_#{contact_name}") do
+  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup") do
     @contact = xero.Contact.all(:where => %{Name == "#{contact_name}"}).first
   end
-  VCR.use_cassette("xero_invoices_lookup_#{contact_name}", :record => :all) do
+  VCR.use_cassette("#{@scenario_name}/xero_invoices_lookup") do
     @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}")}).last
   end
   @invoice.should_not be_nil
@@ -157,8 +157,7 @@ end
 
 When /^the attendee invoicer runs$/ do
   # Invoice
-  hash = Digest::MD5.hexdigest(user_details.merge(event_details).merge(payment_details).inspect)
-  VCR.use_cassette("raise_invoice_in_xero_#{hash}") do
+  VCR.use_cassette("#{@scenario_name}/raise_invoice_in_xero") do
     AttendeeInvoicer.perform(user_details, event_details, payment_details)
   end
 end

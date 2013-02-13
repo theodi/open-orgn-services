@@ -16,35 +16,35 @@ Feature: Invoicing for training events
 
   # Invoicing basics
 
-  Scenario:
+  Scenario: invoices are drafts
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should be a draft
 
-  Scenario:
+  Scenario: invoices include purchase order numbers
     Given I have registered for a ticket
     And I entered a purchase order number "1234"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the reference "1234"
 
-  Scenario:
+  Scenario: invoices include VAT reg numbers
     Given I have registered for a ticket
     And I entered a VAT registration number "5678"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the note "VAT registration number: 5678"
 
-  Scenario:
+  Scenario: invoices include membership numbers
     Given I have registered for a ticket
     And I entered a membership number "9101112"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the note "Membership number: 9101112"
 
-  Scenario:
+  Scenario: invoices have due date 7 days before event
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
@@ -53,7 +53,7 @@ Feature: Invoicing for training events
 
   # Invoice idempotency
   
-  Scenario:
+  Scenario: invoices are not generated more than once for same purchase
     Given I have registered for a ticket
     And I paid with Paypal
     And I have already been invoiced
@@ -62,7 +62,7 @@ Feature: Invoicing for training events
 
   # VAT
 
-  Scenario:
+  Scenario: invoices have VAT added
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
@@ -70,7 +70,7 @@ Feature: Invoicing for training events
     # 0.66 * 1.2. Xero should add the VAT that eventbrite charged automatically.
     And that invoice should have a total of 1.20
 
-  Scenario:
+  Scenario: invoices do not have VAT added for overseas purchasers with VAT registration numbers
     Given I have registered for a ticket
     # Overseas companies only, so excluded from VAT
     And I entered a VAT registration number "5678" 
@@ -81,7 +81,7 @@ Feature: Invoicing for training events
 
   # Line items
 
-  Scenario:
+  Scenario: line items have correct quantity for multiple tickets
     Given I have registered for two tickets
     And I paid with Paypal
     When the attendee invoicer runs
@@ -90,7 +90,7 @@ Feature: Invoicing for training events
     And that invoice should contain 1 line item
     And that line item should have a quantity of 2
     
-  Scenario:
+  Scenario: line items should have 'incoming' account code
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
@@ -99,7 +99,7 @@ Feature: Invoicing for training events
     # ideally, we might need to change this to a default code
     And that line item should not have an account code set 
 
-  Scenario:
+  Scenario: line items should have description
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
@@ -109,7 +109,7 @@ Feature: Invoicing for training events
 
   # Payment methods
     
-  Scenario:
+  Scenario: invoices show paypal payment method as fully paid
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
@@ -117,7 +117,7 @@ Feature: Invoicing for training events
     And that invoice should show that payment has been received
     And that invoice should show that the payment was made with Paypal
 
-  # Scenario:
+  # Scenario: invoices show google checkout payment method as fully paid
   #   Given I have registered for a ticket
   #   And I paid with Google Checkout
   #   When the attendee invoicer runs
@@ -125,7 +125,7 @@ Feature: Invoicing for training events
   #   And that invoice should show that payment has been received
   #   And that invoice should show that the payment was made with Google Checkout
 
-  Scenario:
+  Scenario: invoices to be paid later show as unpaid
     Given I have registered for a ticket
     And I requested an invoice
     When the attendee invoicer runs
