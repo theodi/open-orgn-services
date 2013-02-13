@@ -103,7 +103,27 @@ Then /^that contact should have phone number "(.*?)"$/ do |number|
   @contact.phones.find{|x| x.type == "DEFAULT"}.number.should == number
 end
 
-Then /^that contact should have address "(.*?)"$/ do |address|
+Then /^that contact should have street address \(line1\) of "(.*?)"$/ do |address|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that contact should have street address \(city\) of "(.*?)"$/ do |address|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that contact should have street address \(country\) of "(.*?)"$/ do |address|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that contact should have postal address \(line1\) of "(.*?)"$/ do |address|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that contact should have postal address \(city\) of "(.*?)"$/ do |address|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that contact should have postal address \(country\) of "(.*?)"$/ do |address|
   pending # express the regexp above with the code you wish you had
 end
 

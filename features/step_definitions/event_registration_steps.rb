@@ -26,16 +26,32 @@ Given /^my address is "(.*?)"$/ do |address|
   @address = address
 end
 
-Given /^that company has a invoice contact email of "(.*?)"$/ do |email|
+Given /^my city is "(.*?)"$/ do |city|
+  @city = city
+end
+
+Given /^my country is "(.*?)"$/ do |country|
+  @country = country
+end
+
+Given /^that company has an invoice contact email of "(.*?)"$/ do |email|
   @invoice_email = email
 end
 
-Given /^that company has a invoice phone number of "(.*?)"$/ do |phone|
+Given /^that company has an invoice phone number of "(.*?)"$/ do |phone|
   @invoice_phone = phone
 end
 
-Given /^that company has a invoice address of "(.*?)"$/ do |invoice_address|
+Given /^that company has an invoice address of "(.*?)"$/ do |invoice_address|
   @invoice_address = invoice_address
+end
+
+Given /^that company has an invoice city of "(.*?)"$/ do |invoice_city|
+  @invoice_city = invoice_city
+end
+
+Given /^that company has an invoice country of "(.*?)"$/ do |invoice_country|
+  @invoice_country = invoice_country
 end
 
 Given /^I entered a purchase order number "(.*?)"$/ do |po_number|
