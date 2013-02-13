@@ -22,11 +22,11 @@ end
 # Registration
 
 Given /^I have registered for a ticket$/ do
-  @tickets = 1
+  @quantity = 1
 end
 
 Given /^I have registered for two tickets$/ do
-  @tickets = 2
+  @quantity = 2
 end
 
 When /^I sign up to that event and ask to be invoiced$/ do

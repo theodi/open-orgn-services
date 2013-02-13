@@ -28,7 +28,9 @@ end
 
 def payment_details
   {
-    :amount => @price
+    :price => @price,
+    :quantity => @quantity,
+    :overseas_vat_reg_no => @vat_reg_number
   }
 end
 
@@ -120,17 +122,25 @@ Then /^that invoice should be due on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
 end
 
 Then /^that invoice should have a total of ([\d\.]+)$/ do |total|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^that invoice should contain (\d+) line item$/ do |line_item_count|
-  pending # express the regexp above with the code you wish you had
+  VCR.use_cassette("#{@scenario_name}/total_for_invoice") do
+    @invoice.total.should == total.to_f
+  end
 end
 
 # Line items 
 
+Then /^that invoice should contain (\d+) line item$/ do |line_item_count|
+  VCR.use_cassette("#{@scenario_name}/line_items_for_invoice") do
+    @line_items = @invoice.line_items
+    @line_items.count.should == line_item_count.to_i
+  end
+  if @line_items.count == 1
+    @line_item = @line_items.first
+  end
+end
+
 Then /^that line item should have a quantity of (\d+)$/ do |quantity|
-  pending # express the regexp above with the code you wish you had
+  @line_item.quantity.should == quantity.to_i
 end
 
 Then /^that line item should not have an account code set$/ do
