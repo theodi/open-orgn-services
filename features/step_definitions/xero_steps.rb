@@ -1,5 +1,7 @@
 require 'digest/md5'
 
+# Utility functions to marshal setup variables into appropriate hashes
+
 def user_details
   {
     :company => @company,
@@ -24,6 +26,8 @@ def payment_details
   }
 end
 
+# Shared setup for the Xero connection
+
 def xero
   $xero ||= Xeroizer::PrivateApplication.new(
     ENV["XERO_CONSUMER_KEY"],
@@ -31,6 +35,8 @@ def xero
     ENV["XERO_PRIVATE_KEY_PATH"]
   )
 end
+
+# Xero contacts
 
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_#{contact}") do
@@ -41,18 +47,6 @@ end
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
   VCR.use_cassette("xero_contact_lookup_#{contact}") do
     xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
-  end
-end
-
-Given /^I have already been invoiced$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-When /^the attendee invoicer runs$/ do
-  # Invoice
-  hash = Digest::MD5.hexdigest(user_details.merge(event_details).merge(payment_details).inspect)
-  VCR.use_cassette("raise_invoice_in_xero_#{hash}") do
-    AttendeeInvoicer.perform(user_details, event_details, payment_details)
   end
 end
 
@@ -69,30 +63,6 @@ Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
     @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
   end
   @contact.should_not be_nil
-end
-
-Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should not be invoiced again$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^that invoice should be a draft$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^that invoice should include the reference "(.*?)"$/ do |reference|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^that invoice should include the note "(.*?)"$/ do |note|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^that invoice should be due on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
-  pending # express the regexp above with the code you wish you had
 end
 
 Then /^that contact should have email "(.*?)"$/ do |email|
@@ -127,6 +97,36 @@ Then /^that contact should have postal address \(country\) of "(.*?)"$/ do |coun
   @contact.addresses.find{|x| x.type='POBOX'}.country.should == country
 end
 
+# Invoices 
+
+Given /^I have already been invoiced$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should not be invoiced again$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that invoice should be a draft$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that invoice should include the reference "(.*?)"$/ do |reference|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that invoice should include the note "(.*?)"$/ do |note|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that invoice should be due on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
+  pending # express the regexp above with the code you wish you had
+end
+
 Then /^that invoice should have a total of ([\d\.]+)$/ do |total|
   pending # express the regexp above with the code you wish you had
 end
@@ -134,6 +134,8 @@ end
 Then /^that invoice should contain (\d+) line item$/ do |line_item_count|
   pending # express the regexp above with the code you wish you had
 end
+
+# Line items 
 
 Then /^that line item should have a quantity of (\d+)$/ do |quantity|
   pending # express the regexp above with the code you wish you had
@@ -157,6 +159,16 @@ end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
   pending # express the regexp above with the code you wish you had
+end
+
+# Invoice queue
+
+When /^the attendee invoicer runs$/ do
+  # Invoice
+  hash = Digest::MD5.hexdigest(user_details.merge(event_details).merge(payment_details).inspect)
+  VCR.use_cassette("raise_invoice_in_xero_#{hash}") do
+    AttendeeInvoicer.perform(user_details, event_details, payment_details)
+  end
 end
 
 Then /^I should be added to the invoicing queue$/ do

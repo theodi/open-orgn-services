@@ -1,3 +1,5 @@
+# Events
+
 Given /^an event in Eventbrite called "(.*?)" with id (\d+)$/ do |title, id|
   @event_title = title
   @event_id = id
@@ -17,6 +19,8 @@ Given /^the price of the event is ([\d\.]+)$/ do |price|
   @price = price.to_f
 end
 
+# Registration
+
 Given /^I have registered for a ticket$/ do
   @tickets = 1
 end
@@ -24,6 +28,22 @@ end
 Given /^I have registered for two tickets$/ do
   @tickets = 2
 end
+
+When /^I sign up to that event and ask to be invoiced$/ do
+  # Check the attendees
+  VCR.use_cassette('needs_invoice') do
+    AttendeeLister.perform(@event_id)
+  end
+end
+
+When /^I sign up to that event and get a free ticket$/ do
+  # Check the attendees
+  VCR.use_cassette('does_not_need_invoice') do
+    AttendeeLister.perform(@event_id)
+  end
+end
+
+# Queueing
 
 When /^we poll eventbrite for all events$/ do
   # Check the events list
@@ -40,18 +60,4 @@ end
 Then /^that event should not be queued for attendee checking$/ do
   # Set expectation
   Resque.should_not_receive(:enqueue).with(AttendeeLister, @event_id)
-end
-
-When /^I sign up to that event and ask to be invoiced$/ do
-  # Check the attendees
-  VCR.use_cassette('needs_invoice') do
-    AttendeeLister.perform(@event_id)
-  end
-end
-
-When /^I sign up to that event and get a free ticket$/ do
-  # Check the attendees
-  VCR.use_cassette('does_not_need_invoice') do
-    AttendeeLister.perform(@event_id)
-  end
 end
