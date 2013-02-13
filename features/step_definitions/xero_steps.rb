@@ -96,7 +96,7 @@ Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
     @contact = xero.Contact.all(:where => %{Name == "#{contact_name}"}).first
   end
   VCR.use_cassette("#{@scenario_name}/xero_invoices_lookup") do
-    @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}")}).last
+    @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
   end
   @invoice.should_not be_nil
 end
