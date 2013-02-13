@@ -55,6 +55,8 @@ It can also export to a set of [Upstart](http://upstart.ubuntu.com/) scripts:
 
 This picks up some values from the [.foreman](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/.foreman) file. Note that we're using the template at [config/foreman/master.conf.erb](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/config/foreman/master.conf.erb) for the master script because the default start conditions didn't seem to work for me. You can control the whole lot with something like ```sudo start resque```.
 
+Next step is to proxy the web interface with nginx, but that's an infrastucture thing.
+
 License
 -------
 
