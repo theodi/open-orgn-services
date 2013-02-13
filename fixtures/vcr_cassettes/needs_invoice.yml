@@ -1,0 +1,109 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.eventbrite.com/json/event_list_attendees?app_key=&id=5441375300&page=0&user_key=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 13 Feb 2013 11:46:23 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Service:
+      - djc
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, must-revalidate, no-cache="Set-Cookie", private
+      P3p:
+      - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
+      Set-Cookie:
+      - G=v%3D1%26i%3D4141753e-53bd-4377-8210-30e084213c6b%26a%3D28e%26s%3DAPDvTK7VibaN7Fg5ZJU2eLrbLXv5uUboew;
+        Domain=.eventbrite.com; expires=Thu, 13-Feb-2014 11:46:23 GMT; Path=/
+      - eblang=lo%3Den_US%26la%3Den-us; Domain=.eventbrite.com; expires=Thu, 13-Feb-2014
+        11:46:23 GMT; Path=/
+      - mgref=typeins; Domain=.eventbrite.com; expires=Thu, 13-Feb-2014 11:46:23 GMT;
+        Max-Age=31536000; Path=/
+      - mgrefby=; Domain=.eventbrite.com; expires=Thu, 13-Feb-2014 11:46:23 GMT; Max-Age=31536000;
+        Path=/
+    body:
+      encoding: US-ASCII
+      string: ! '{"error": {"error_type": "Application Key Error", "error_message":
+        "Please provide your Application Key in the URL as \"?app_key=<APP_KEY>\"."}}'
+    http_version: 
+  recorded_at: Wed, 13 Feb 2013 11:46:25 GMT
+- request:
+    method: get
+    uri: https://www.eventbrite.com/json/event_list_attendees?app_key=<EVENTBRITE_API_KEY>&id=5441375300&page=0&user_key=<EVENTBRITE_USER_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 13 Feb 2013 11:56:24 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Vary:
+      - Accept-Encoding
+      X-Service:
+      - djc
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, must-revalidate, no-cache="Set-Cookie", private
+      P3p:
+      - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
+      Set-Cookie:
+      - G=v%3D1%26i%3Db1107e0d-549e-4cec-b43c-cda12b3a6432%26a%3D28e%26s%3DAPDvTK7_bws-SJpS7yruSvk2ZCWiD7VhWA;
+        Domain=.eventbrite.com; expires=Thu, 13-Feb-2014 11:56:24 GMT; Path=/
+      - eblang=lo%3Den_US%26la%3Den-us; Domain=.eventbrite.com; expires=Thu, 13-Feb-2014
+        11:56:24 GMT; Path=/
+      - mgref=typeins; Domain=.eventbrite.com; expires=Thu, 13-Feb-2014 11:56:24 GMT;
+        Max-Age=31536000; Path=/
+      - mgrefby=; Domain=.eventbrite.com; expires=Thu, 13-Feb-2014 11:56:24 GMT; Max-Age=31536000;
+        Path=/
+    body:
+      encoding: US-ASCII
+      string: ! '{"attendees": [{"attendee": {"work_postal_code": "EC1A 2AA", "last_name":
+        "Fish", "suffix": "", "currency": "GBP", "prefix": "", "id": 180266750, "first_name":
+        "Bob", "order_type": "Send an Invoice - Payment Not Received", "work_phone":
+        "01234 5678910", "work_country_code": "GB", "work_region": "London", "work_address_2":
+        "", "blog": "", "ticket_id": 17042456, "work_address": "123 Random Business
+        Park", "event_date": "", "email": "bob.fish@example.com", "job_title": "",
+        "website": "", "order_id": 140827650, "company": "Existing Company Inc.",
+        "barcode": "140827650180266750001", "answers": [], "work_country": "GB", "discount":
+        "", "work_city": "London", "amount_paid": "1.20", "created": "2013-02-11 08:02:47",
+        "gender": "", "age": "", "modified": "2013-02-11 08:04:16", "event_id": 5441375300,
+        "affiliate": "", "birth_date": "", "cell_phone": "", "notes": "", "quantity":
+        1}}]}'
+    http_version: 
+  recorded_at: Wed, 13 Feb 2013 11:56:27 GMT
+recorded_with: VCR 2.4.0
