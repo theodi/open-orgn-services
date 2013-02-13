@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A++%3CContactID%3E8ed7e5a2-3c5d-47f7-ade5-9819661fe1a2%3C%2FContactID%3E%0A++%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A++%3CName%3ENew+Company+Inc.+8ed7e5a2-3c5d-47f7-ade5-9819661fe1a2%3C%2FName%3E%0A++%3CEmailAddress%3Ebob.fish%40example.com%3C%2FEmailAddress%3E%0A++%3CAddresses%3E%0A++++%3CAddress%3E%0A++++++%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A++++%3C%2FAddress%3E%0A++++%3CAddress%3E%0A++++++%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A++++%3C%2FAddress%3E%0A++%3C%2FAddresses%3E%0A++%3CPhones%3E%0A++++%3CPhone%3E%0A++++++%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A++++%3C%2FPhone%3E%0A++++%3CPhone%3E%0A++++++%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A++++%3C%2FPhone%3E%0A++++%3CPhone%3E%0A++++++%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A++++%3C%2FPhone%3E%0A++++%3CPhone%3E%0A++++++%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A++++%3C%2FPhone%3E%0A++%3C%2FPhones%3E%0A++%3CUpdatedDateUTC%3E2013-02-13T11%3A56%3A53%3C%2FUpdatedDateUTC%3E%0A++%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A++%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.5
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="uVocRTI1v6aaUUgEa8FgDdDEJ1NJR7fIGbsZ03gko",
+        oauth_signature="V8wN7lJuOXXEoy2zUqgfgjn4Bx4D2fHn89O4lF2sQT%2FW9mTUgaejZ10NIGEhHNGnMRnp4n%2F12yxGxadtsrOHvMbNpBuIjnP1ErCg2UWs8tUE2lzzGCnjYLSaRaPHX%2Bh%2FVWYJg%2BldYPldBOu7eELZ3nzKPNc9mK6Gbq3TbcLxP9E%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1360756617", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445759-O1VMAP02
+      Date:
+      - Wed, 13 Feb 2013 11:56:56 GMT
+      Content-Length:
+      - '1284'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>c4b95833-4d58-4b19-a089-cb00e47b6da2</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-02-13T11:56:56.2859273Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>8ed7e5a2-3c5d-47f7-ade5-9819661fe1a2</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>New Company Inc.
+        8ed7e5a2-3c5d-47f7-ade5-9819661fe1a2</Name>\r\n      <EmailAddress>bob.fish@example.com</EmailAddress>\r\n
+        \     <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2013-02-13T11:56:56.27</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 13 Feb 2013 11:56:58 GMT
+recorded_with: VCR 2.4.0

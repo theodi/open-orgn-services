@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name%20==%20%22Bob%20Fish%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.5
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="m2nOwx4owTSgAhjDMziPNF1sS6tPniOdGTtwYMb8HRQ",
+        oauth_signature="IBplJtMCohEQ6PSML%2BU8R1YxDsKA%2BOtNHI%2BL0zF6zrlkAySjk4JtCqZbBqxliGrvH7VK0%2FK64SR72bcoUdeMeHoZzHe3GZ1HDEf5FtDuVNpjzpIYPBuGV6h7UUmZdlA6AaXG5LID6ZqIpxQZqS3Iy4d5XatfTuMs9F3AG4mNVZ4%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1360756627", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445759-O1VMAP02
+      Date:
+      - Wed, 13 Feb 2013 11:57:04 GMT
+      Content-Length:
+      - '1413'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>e71c7c1f-dd50-4ebf-a694-2941090d8001</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-02-13T11:57:05.4743273Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>9986e947-1420-4d65-9eae-3bc94741c976</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Bob Fish</Name>\r\n
+        \     <EmailAddress>bob.fish@example.com</EmailAddress>\r\n      <Addresses>\r\n
+        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n          <AddressLine1>29
+        Acacia Road</AddressLine1>\r\n          <City>Dandytown</City>\r\n          <Country>UK</Country>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n          <PhoneNumber>01234 098765</PhoneNumber>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
+        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-02-13T11:57:03.617</UpdatedDateUTC>\r\n
+        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 13 Feb 2013 11:57:08 GMT
+recorded_with: VCR 2.4.0

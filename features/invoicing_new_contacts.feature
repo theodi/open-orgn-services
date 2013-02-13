@@ -14,7 +14,7 @@ Feature: Invoicing for training events
   # Creation of Xero contacts and requeuing of jobs
 
   @clean_up_xero_contact
-  Scenario:
+  Scenario: personal contact creation
     Given I do not work for anyone
     And there is no contact in Xero for "Bob Fish"
     And I have registered for a ticket
@@ -23,7 +23,7 @@ Feature: Invoicing for training events
     Then a contact should exist in Xero for "Bob Fish"
 
   @clean_up_xero_contact
-  Scenario:
+  Scenario: company contact creation
     Given I work for "New Company Inc."
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
@@ -34,7 +34,7 @@ Feature: Invoicing for training events
   # Storing of invoice-to details
   
   @clean_up_xero_contact
-  Scenario:
+  Scenario: store company 'invoice to' details
     Given I work for "New Company Inc."
     And my address (line1) is "29 Acacia Road"
     And my address (city) is "Dandytown"
@@ -55,7 +55,7 @@ Feature: Invoicing for training events
     And that contact should have postal address (country) of "UK"
     
   @clean_up_xero_contact
-  Scenario:
+  Scenario: store personal 'invoice to' details
     Given I do not work for anyone
     And my phone number is "01234 098765"
     And my address (line1) is "29 Acacia Road"
