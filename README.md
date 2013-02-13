@@ -26,6 +26,37 @@ To get a web interface on your resque workers:
 
     resque-web config/resque-web.rb
 
+Foreman
+-------
+
+[Foreman](http://ddollar.github.com/foreman/) uses the [Procfile](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/Procfile) to launch our Resque services. So we can do like:
+
+    $ foreman start
+    14:50:10 worker.1    | started with pid 6122
+    14:50:10 worker.2    | started with pid 6125
+    14:50:10 worker.3    | started with pid 6128
+    14:50:10 worker.4    | started with pid 6131
+    14:50:10 scheduler.1 | started with pid 6137
+    14:50:10 web.1       | started with pid 6140
+
+It can also export to a set of [Upstart](http://upstart.ubuntu.com/) scripts:
+
+    # foreman export upstart /etc/init
+    [foreman export] writing: resque.conf
+    [foreman export] writing: resque-worker.conf
+    [foreman export] writing: resque-worker-1.conf
+    [foreman export] writing: resque-worker-2.conf
+    [foreman export] writing: resque-worker-3.conf
+    [foreman export] writing: resque-worker-4.conf
+    [foreman export] writing: resque-scheduler.conf
+    [foreman export] writing: resque-scheduler-1.conf
+    [foreman export] writing: resque-web.conf
+    [foreman export] writing: resque-web-1.conf
+
+This picks up some values from the [.foreman](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/.foreman) file. Note that we're using the template at [config/foreman/master.conf.erb](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/config/foreman/master.conf.erb) for the master script because the default start conditions didn't seem to work for me. You can control the whole lot with something like ```sudo start resque```.
+
+Next step is to proxy the web interface with nginx, but that's an infrastucture thing.
+
 License
 -------
 

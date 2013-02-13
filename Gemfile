@@ -19,3 +19,5 @@ gem 'webmock'
 gem 'simplecov'
 gem 'simplecov-rcov'
 
+gem 'thin'
+gem 'foreman'
