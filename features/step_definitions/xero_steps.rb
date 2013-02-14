@@ -49,15 +49,11 @@ end
 # Xero contacts
 
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
-  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup") do
-    xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
-  end
+  xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
-  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup") do
-    xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
-  end
+  xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
 end
 
 Then /^the total cost to be invoiced should be (#{FLOAT})$/ do |cost|
@@ -69,9 +65,7 @@ Then /^the net cost to be invoiced should be (#{FLOAT})$/ do |cost|
 end
 
 Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
-  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup_post_create") do
-    @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
-  end
+  @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
   @contact.should_not be_nil
 end
 
@@ -94,12 +88,8 @@ Given /^I have already been invoiced$/ do
 end
 
 Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
-  VCR.use_cassette("#{@scenario_name}/xero_contact_lookup") do
-    @contact = xero.Contact.all(:where => %{Name == "#{contact_name}"}).first
-  end
-  VCR.use_cassette("#{@scenario_name}/xero_invoices_lookup") do
-    @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
-  end
+  @contact = xero.Contact.all(:where => %{Name == "#{contact_name}"}).first
+  @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
   @invoice.should_not be_nil
 end
 
@@ -120,24 +110,18 @@ Then /^that invoice should include the note "(.*?)"$/ do |note|
 end
 
 Then /^that invoice should be due on (#{DATE})$/ do |date|
-  VCR.use_cassette("#{@scenario_name}/due_date_for_invoice") do
-    @invoice.due_date.should == date
-  end
+  @invoice.due_date.should == date
 end
 
 Then /^that invoice should have a total of (#{FLOAT})$/ do |total|
-  VCR.use_cassette("#{@scenario_name}/total_for_invoice") do
-    @invoice.total.should == total
-  end
+  @invoice.total.should == total
 end
 
 # Line items 
 
 Then /^that invoice should contain (#{INTEGER}) line item$/ do |line_item_count|
-  VCR.use_cassette("#{@scenario_name}/line_items_for_invoice") do
-    @line_items = @invoice.line_items
-    @line_items.count.should == line_item_count
-  end
+  @line_items = @invoice.line_items
+  @line_items.count.should == line_item_count
   if @line_items.count == 1
     @line_item = @line_items.first
   end
@@ -171,9 +155,7 @@ end
 
 When /^the attendee invoicer runs$/ do
   # Invoice
-  VCR.use_cassette("#{@scenario_name}/raise_invoice_in_xero") do
-    AttendeeInvoicer.perform(user_details, event_details, payment_details)
-  end
+  AttendeeInvoicer.perform(user_details, event_details, payment_details)
 end
 
 Then /^I should be added to the invoicing queue$/ do

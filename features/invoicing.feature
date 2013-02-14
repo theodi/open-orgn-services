@@ -1,3 +1,4 @@
+@vcr
 Feature: Invoicing for training events
 
   In order to be invoiced for the training so that my company or government department can pay for it

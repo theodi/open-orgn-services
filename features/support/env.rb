@@ -32,8 +32,8 @@ Spork.each_run do
     c.hook_into :webmock
   end
   
-  # Clean up any state left behind
-  at_exit do
-    # TODO clean up things created in Xero
+  VCR.cucumber_tags do |t|
+    t.tag '@vcr', use_scenario_name: true 
   end
+  
 end
