@@ -31,25 +31,19 @@ end
 
 When /^I sign up to that event and ask to be invoiced$/ do
   # Check the attendees
-  VCR.use_cassette("#{@scenario_name}/needs_invoice") do
-    AttendeeLister.perform(@event_id)
-  end
+  AttendeeLister.perform(@event_id)
 end
 
 When /^I sign up to that event and get a free ticket$/ do
   # Check the attendees
-  VCR.use_cassette("#{@scenario_name}/does_not_need_invoice") do
-    AttendeeLister.perform(@event_id)
-  end
+  AttendeeLister.perform(@event_id)
 end
 
 # Queueing
 
 When /^we poll eventbrite for all events$/ do
   # Check the events list
-  VCR.use_cassette("#{@scenario_name}/all_events") do
-    EventLister.perform
-  end
+  EventLister.perform
 end
 
 Then /^that event should be queued for attendee checking$/ do
