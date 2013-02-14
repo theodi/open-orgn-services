@@ -17,6 +17,7 @@ class EventLister
         if e['id'] && e['status'] == 'Live' && Date.parse(e['start_date']) >= Date.today
           Resque.enqueue(AttendeeLister, {
             :id => e['id'].to_s,
+            :live => true,
             :title => e['title'],
           })
         end
