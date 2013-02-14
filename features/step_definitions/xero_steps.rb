@@ -135,7 +135,7 @@ Then /^that line item should have account code (#{INTEGER})$/ do |code|
 end
 
 Then /^that line item should have the description "(.*?)"$/ do |description|
-  pending # express the regexp above with the code you wish you had
+  @line_item.description.should == description
 end
 
 Then /^that invoice should show that payment has been received$/ do
