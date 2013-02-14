@@ -14,7 +14,7 @@ class EventLister
     if response = e.organizer_list_events(id: ENV['EVENTBRITE_ORGANIZER_ID'])
       response.parsed_response['events'].each do |event|
         e = event['event']
-        if e['id'] && e['status'] == 'Live'
+        if e['id'] && e['status'] == 'Live' && Date.parse(e['start_date']) >= Date.today
           Resque.enqueue(AttendeeLister, e['id'].to_s)
         end
       end
