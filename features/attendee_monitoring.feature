@@ -11,6 +11,7 @@ Feature: Monitoring attendee signups
   
   Scenario: add users to invoicing queue if they ask for an invoice
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And the net price of the event is 1.00
     And my email address is "bob.fish@example.com"
     Then I should be added to the invoicing queue
     When I sign up to that event and ask to be invoiced
@@ -25,10 +26,8 @@ Feature: Monitoring attendee signups
   
   Scenario: invoices are raised net of VAT
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And the price of the event is 1.00
+    And the gross price of the event in Eventbrite is 1.20
+    And the net price of the event is 1.00
     And my email address is "bob.fish@example.com"
-    # Eventbrite should be adding VAT on top
-    Then the total cost to be invoiced should be 1.2
-    # We send net cost into Xero
-    And the net cost to be invoiced should be 1.00
+    Then I should be added to the invoicing queue
     When I sign up to that event and ask to be invoiced
