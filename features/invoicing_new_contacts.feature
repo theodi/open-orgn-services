@@ -17,11 +17,11 @@ Feature: Invoicing new contacts for training events
   @clean_up_xero_contact
   Scenario: personal contact creation
     Given I do not work for anyone
-    And there is no contact in Xero for "Bob Fish"
+    And there is no contact in Xero for "Bob Fish <bob.fish@example.com>"
     And I have registered for a ticket
     Then the attendee invoicer should be requeued
     When the attendee invoicer runs
-    Then a contact should exist in Xero for "Bob Fish"
+    Then a contact should exist in Xero for "Bob Fish <bob.fish@example.com>"
 
   @clean_up_xero_contact
   Scenario: company contact creation
@@ -62,10 +62,10 @@ Feature: Invoicing new contacts for training events
     And my address (line1) is "29 Acacia Road"
     And my address (city) is "Dandytown"
     And my address (country) is "UK"
-    And there is no contact in Xero for "Bob Fish"
+    And there is no contact in Xero for "Bob Fish <bob.fish@example.com>"
     And I have registered for a ticket
     When the attendee invoicer runs
-    Then a contact should exist in Xero for "Bob Fish"
+    Then a contact should exist in Xero for "Bob Fish <bob.fish@example.com>"
     And that contact should have email "bob.fish@example.com"
     And that contact should have phone number "01234 098765"
     And that contact should have postal address (line1) of "29 Acacia Road"
