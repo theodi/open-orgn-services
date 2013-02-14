@@ -56,7 +56,8 @@ end
 # Xero contacts
 
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
-  xero.Contact.all(:where => %{Name == "#{contact}"}).should_not be_empty
+  @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
+  @contact.should_not be_nil
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
@@ -83,7 +84,9 @@ end
 # Invoices 
 
 Given /^I have already been invoiced$/ do
-  pending # express the regexp above with the code you wish you had
+  # Raise invoice
+  AttendeeInvoicer.perform(user_details, event_details, payment_details)
+  xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
 Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
@@ -93,7 +96,9 @@ Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
 end
 
 Then /^I should not be invoiced again$/ do
-  pending # express the regexp above with the code you wish you had
+  pending
+  @invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"})
+  @invoices.count.should == 1
 end
 
 Then /^that invoice should be a draft$/ do

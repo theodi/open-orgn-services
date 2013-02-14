@@ -21,4 +21,10 @@ After do
   if @invoice
     @invoice.delete!
   end
+  # Clear up after multiple invoices are created
+  if @invoices
+    @invoices.each do |invoice|
+      invoice.delete!
+    end
+  end
 end
