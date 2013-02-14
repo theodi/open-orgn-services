@@ -97,8 +97,7 @@ Feature: Invoicing for training events
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    # ideally, we might need to change this to a default code
-    And that line item should not have an account code set 
+    And that line item should have account code 200
 
   Scenario: line items should have description
     Given I have registered for a ticket
