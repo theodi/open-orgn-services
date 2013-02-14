@@ -143,7 +143,7 @@ Then /^that invoice should show that payment has been received$/ do
 end
 
 Then /^that invoice should show that payment has not been received$/ do
-  pending # express the regexp above with the code you wish you had
+  @invoice.amount_paid.should == 0.0
 end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
