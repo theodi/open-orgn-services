@@ -2,6 +2,12 @@ require 'digest/md5'
 
 # Utility functions to marshal setup variables into appropriate hashes
 
+class Hash
+  def compact
+    delete_if { |k, v| !v }
+  end
+end
+
 def user_details
   {
     :company => @company,
@@ -17,23 +23,23 @@ def user_details
     :invoice_address_line1 => @invoice_address_line1,
     :invoice_address_city => @invoice_address_city,
     :invoice_address_country => @invoice_address_country,
-  }
+  }.compact
 end
 
 def event_details
   {
     :id => @event_id,
     :date => @event_date
-  }
+  }.compact
 end
 
 def payment_details
   {
-    :price => @price,
+    :price => @net_price,
     :quantity => @quantity,
     :overseas_vat_reg_no => @vat_reg_number,
     :purchase_order_number => @purchase_order_number
-  }
+  }.compact
 end
 
 # Shared setup for the Xero connection
@@ -151,15 +157,13 @@ When /^the attendee invoicer runs$/ do
 end
 
 Then /^I should be added to the invoicing queue$/ do
-  pending
   # Set expectation
   Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
 end
 
 Then /^I should not be added to the invoicing queue$/ do
-  pending
   # Set expectation
-  Resque.should_not_receive(:enqueue)
+  Resque.should_not_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
 end
 
 Then /^the attendee invoicer should be requeued$/ do

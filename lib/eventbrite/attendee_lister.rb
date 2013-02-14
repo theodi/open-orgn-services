@@ -18,7 +18,7 @@ class AttendeeLister
       response.parsed_response['attendees'].each do |attendee|
         a = attendee['attendee']
         if a['order_type'] == "Send an Invoice - Payment Not Received"
-          Resque.enqueue(AttendeeInvoicer, {:email => a['email']}, {:id => event_id}, {:amount => a['amount_paid'].to_f})
+          Resque.enqueue(AttendeeInvoicer, {:email => a['email']}, {:id => event_id}, {:price => a['amount_paid'].to_f/1.2})
         end
       end
     end
