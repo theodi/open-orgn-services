@@ -11,6 +11,10 @@ Given /^the event is happening on (#{DATE})$/ do |date|
   @event_date = date
 end
 
+Given /^the event is happening in the past$/ do
+  # this is set in eventbrite
+end
+
 Given /^that event is not live$/ do
   @event_live = false
 end

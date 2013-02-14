@@ -19,3 +19,9 @@ Feature: Monitoring eventbrite events
     And that event is not live
 		Then that event should not be queued for attendee checking
 		When we poll eventbrite for all events
+    
+	Scenario: Historical events should not be queued for checking
+    Given an event in Eventbrite called "Past Event" with id 5530182926 
+    And the event is happening in the past
+		Then that event should not be queued for attendee checking
+		When we poll eventbrite for all events
