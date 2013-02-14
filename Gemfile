@@ -4,7 +4,12 @@ gem 'rake'
 
 gem 'eventbrite-client'
 gem 'resque'
-gem 'xeroizer'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+gem 'xeroizer', :git => 'https://github.com/theodi/xeroizer.git'
+gem 'github_api'
+gem 'leftronicapi'
+gem 'ruby-trello'
+gem 'jenkins-remote-api'
 
 group :development, :test do
   gem 'cucumber'
@@ -18,3 +23,6 @@ group :development, :test do
   gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
 end
+
+gem 'thin'
+gem 'foreman'
