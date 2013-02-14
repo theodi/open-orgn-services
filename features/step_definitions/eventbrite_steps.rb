@@ -38,12 +38,12 @@ end
 
 When /^I sign up to that event and ask to be invoiced$/ do
   # Check the attendees
-  AttendeeLister.perform(@event_id)
+  AttendeeLister.perform(event_details)
 end
 
 When /^I sign up to that event and get a free ticket$/ do
   # Check the attendees
-  AttendeeLister.perform(@event_id)
+  AttendeeLister.perform(event_details)
 end
 
 # Queueing
@@ -55,12 +55,12 @@ end
 
 Then /^that event should be queued for attendee checking$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeLister, @event_id).once
+  Resque.should_receive(:enqueue).with(AttendeeLister, event_details).once
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^that event should not be queued for attendee checking$/ do
   # Set expectation
-  Resque.should_not_receive(:enqueue).with(AttendeeLister, @event_id)
+  Resque.should_not_receive(:enqueue).with(AttendeeLister, event_details)
   Resque.should_receive(:enqueue).any_number_of_times
 end

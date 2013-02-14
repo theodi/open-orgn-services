@@ -29,7 +29,8 @@ end
 def event_details
   {
     :id => @event_id,
-    :date => @event_date
+    :title => @event_title,
+    :date => @event_date,
   }.compact
 end
 

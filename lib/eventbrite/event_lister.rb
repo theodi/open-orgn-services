@@ -15,7 +15,10 @@ class EventLister
       response.parsed_response['events'].each do |event|
         e = event['event']
         if e['id'] && e['status'] == 'Live' && Date.parse(e['start_date']) >= Date.today
-          Resque.enqueue(AttendeeLister, e['id'].to_s)
+          Resque.enqueue(AttendeeLister, {
+            :id => e['id'].to_s,
+            :title => e['title'],
+          })
         end
       end
     end
