@@ -11,6 +11,15 @@ Feature: Monitoring eventbrite events
   
 	Scenario: Live events should be queued for checking
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And that event has a url 'http://www.eventbrite.com/event/5441375300'
+    And that event starts at 2013-03-17 19:00
+    And that event ends at 2013-03-17 22:00
+    And that event is being held at 'The office'
+    And that event has 100 tickets called "Free Ticket" which cost GBP 0.00
+    And that ticket type is on sale from 2013-02-11 09:00
+    And that ticket type is on sale until 2013-03-17 18:00
+    And that event has 100 tickets called "Cheap Ticket" which cost GBP 1.00
+    And that ticket type is on sale until 2013-03-17 18:00
 		Then that event should be queued for attendee checking
 		When we poll eventbrite for all events
 	
