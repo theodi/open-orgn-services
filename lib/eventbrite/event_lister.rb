@@ -10,18 +10,24 @@ class EventLister
   #
   # Returns nil. Queues further jobs to handle inspection of attendee lists.
   def self.perform
+    events = []
     e = EventbriteClient.new ({ :app_key => ENV["EVENTBRITE_API_KEY"], :user_key => ENV["EVENTBRITE_USER_KEY"]})
     if response = e.organizer_list_events(id: ENV['EVENTBRITE_ORGANIZER_ID'])
       response.parsed_response['events'].each do |event|
         e = event['event']
         if e['id'] && e['status'] == 'Live' && Date.parse(e['start_date']) >= Date.today
-          Resque.enqueue(AttendeeLister, {
+          events << {
             :id => e['id'].to_s,
             :live => true,
             :title => e['title'],
-          })
+          }
         end
       end
     end
+    # Queue subsequent jobs
+    events.each do |event| 
+      Resque.enqueue(AttendeeLister, event)
+    end
+    Resque.enqueue(EventSummaryGenerator, events)
   end
 end
