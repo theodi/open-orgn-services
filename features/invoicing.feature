@@ -36,14 +36,14 @@ Feature: Invoicing for training events
     And I entered a VAT registration number "AB5678"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should include the note "VAT registration number: AB5678"
+    And the line item description should include "VAT registration number: AB5678"
 
   Scenario: invoices include membership numbers
     Given I have registered for a ticket
     And I entered a membership number "9101112"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should include the note "Membership number: 9101112"
+    And the line item description should include "Membership number: 9101112"
 
   Scenario: invoices have due date 7 days before event
     Given I have registered for a ticket
@@ -97,7 +97,7 @@ Feature: Invoicing for training events
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And that line item should have account code 200
+    And that line item should have account code "050"
 
   Scenario: line items should have description
     Given I have registered for a ticket
