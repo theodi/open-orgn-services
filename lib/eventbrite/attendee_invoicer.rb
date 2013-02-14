@@ -61,7 +61,7 @@ class AttendeeInvoicer
   def self.invoice_contact(contact, user_details, event_details, payment_details)
     # Raise invoice
     line_item = {
-      :description => 'placeholder', 
+      :description => "Registration for '#{event_details[:title]} (#{event_details[:date]})' for #{user_details[:first_name]} #{user_details[:last_name]} <#{user_details[:email]}>", 
       :quantity => payment_details[:quantity], 
       :unit_amount => payment_details[:price],
       :account_code => 200

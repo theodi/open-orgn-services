@@ -105,7 +105,7 @@ Feature: Invoicing for training events
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And that line item should have the description "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2012-04-14)' for Bob Fish <bob.fish@example.com>"
+    And that line item should have the description "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com>"
 
   # Payment methods
     
