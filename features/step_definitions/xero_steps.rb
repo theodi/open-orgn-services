@@ -27,11 +27,7 @@ def user_details
 end
 
 def event_details
-  {
-    :id => @event_id,
-    :title => @event_title,
-    :date => @event_date,
-  }.compact
+  @events.last.compact
 end
 
 def payment_details

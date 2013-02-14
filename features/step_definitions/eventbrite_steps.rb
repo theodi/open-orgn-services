@@ -1,13 +1,24 @@
 # Events
 
 Given /^an event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
-  @event_title = title
-  @event_id = id.to_s
-  @event_live = true
+  @events ||= []
+  @events << {
+    :title => title,
+    :id => id.to_s,
+    :live => true
+  }
+end
+
+Given /^another event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
+  @events << {
+    :title => title,
+    :id => id.to_s,
+    :live => true
+  }
 end
 
 Given /^the event is happening on (#{DATE})$/ do |date|
-  @event_date = date
+  @events.last[:date] = date
 end
 
 Given /^the event is happening in the past$/ do
@@ -15,7 +26,7 @@ Given /^the event is happening in the past$/ do
 end
 
 Given /^that event is not live$/ do
-  @event_live = false
+  @events.last[:live] = false
 end
 
 Given /^the gross price of the event in Eventbrite is (#{FLOAT})$/ do |price|
