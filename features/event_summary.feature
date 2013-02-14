@@ -1,4 +1,4 @@
-@vcr @wip
+@vcr
 Feature: Create a JSON description of all upcoming events
 
   In order to display upcoming events on the main website
@@ -129,5 +129,7 @@ Feature: Create a JSON description of all upcoming events
     """
     {"foo":"bar"}
     """
+    Then the json should be written to a temporary file
+    And the temporary file should be rsync'd to the web server
     When the summary uploader runs
     Then the JSON document should be available at the target URL
