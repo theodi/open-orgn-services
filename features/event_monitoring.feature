@@ -15,7 +15,7 @@ Feature: Monitoring eventbrite events
 		When we poll eventbrite for all events
 	
 	Scenario: Draft events should not be queued for checking
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5449726278 
+    Given an event in Eventbrite called "Draft Event" with id 5530178914 
     And that event is not live
 		Then that event should not be queued for attendee checking
 		When we poll eventbrite for all events

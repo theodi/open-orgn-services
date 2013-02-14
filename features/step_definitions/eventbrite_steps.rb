@@ -47,13 +47,13 @@ When /^we poll eventbrite for all events$/ do
 end
 
 Then /^that event should be queued for attendee checking$/ do
-  pending
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeLister, @event_id)
+  Resque.should_receive(:enqueue).with(AttendeeLister, @event_id).once
+  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^that event should not be queued for attendee checking$/ do
-  pending
   # Set expectation
   Resque.should_not_receive(:enqueue).with(AttendeeLister, @event_id)
+  Resque.should_receive(:enqueue).any_number_of_times
 end
