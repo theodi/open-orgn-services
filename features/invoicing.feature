@@ -8,7 +8,7 @@ Feature: Invoicing for training events
   Background:
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
     And the event is happening on 2013-03-17
-    And the price of the event is 1.00
+    And the net price of the event is 1.00
     And my first name is "Bob"
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"

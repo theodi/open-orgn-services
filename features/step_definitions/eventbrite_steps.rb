@@ -3,7 +3,6 @@
 Given /^an event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
   @event_title = title
   @event_id = id.to_s
-  @price = 0
   @event_live = true
 end
 
@@ -19,8 +18,12 @@ Given /^that event is not live$/ do
   @event_live = false
 end
 
-Given /^the price of the event is (#{FLOAT})$/ do |price|
-  @price = price
+Given /^the gross price of the event in Eventbrite is (#{FLOAT})$/ do |price|
+  @gross_price = price
+end
+
+Then /^the net price of the event is (#{FLOAT})$/ do |price|
+  @net_price = price
 end
 
 # Registration

@@ -56,14 +56,6 @@ Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
   xero.Contact.all(:where => %{Name == "#{contact}"}).should be_empty
 end
 
-Then /^the total cost to be invoiced should be (#{FLOAT})$/ do |cost|
-  @total_cost = cost
-end
-
-Then /^the net cost to be invoiced should be (#{FLOAT})$/ do |cost|
-  @net_cost = cost
-end
-
 Then /^a contact should exist in Xero for "(.*?)"$/ do |contact|
   @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
   @contact.should_not be_nil
