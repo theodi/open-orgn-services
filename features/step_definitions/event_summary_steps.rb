@@ -4,11 +4,11 @@ Then /^the event summary generator should be queued$/ do
 end
 
 Then /^the summary uploader should be queued with the following JSON:$/ do |json|
-  pending # express the regexp above with the code you wish you had
+  Resque.should_receive(:enqueue).with(EventSummaryUploader, json).once
 end
 
 When /^the event summary generator is run$/ do
-  pending # express the regexp above with the code you wish you had
+  EventSummaryGenerator.perform(@events)
 end
 
 Given /^a JSON document like this:$/ do |json|
