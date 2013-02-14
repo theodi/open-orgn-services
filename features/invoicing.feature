@@ -25,17 +25,17 @@ Feature: Invoicing for training events
 
   Scenario: invoices include purchase order numbers
     Given I have registered for a ticket
-    And I entered a purchase order number "1234"
+    And I entered a purchase order number "AB1234"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should include the reference "1234"
+    And that invoice should include the reference "AB1234"
 
   Scenario: invoices include VAT reg numbers
     Given I have registered for a ticket
-    And I entered a VAT registration number "5678"
+    And I entered a VAT registration number "AB5678"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should include the note "VAT registration number: 5678"
+    And that invoice should include the note "VAT registration number: AB5678"
 
   Scenario: invoices include membership numbers
     Given I have registered for a ticket

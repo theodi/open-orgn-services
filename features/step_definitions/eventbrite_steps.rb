@@ -1,22 +1,22 @@
 # Events
 
-Given /^an event in Eventbrite called "(.*?)" with id (\d+)$/ do |title, id|
+Given /^an event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
   @event_title = title
-  @event_id = id
+  @event_id = id.to_s
   @price = 0
   @event_live = true
 end
 
-Given /^the event is happening on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
-  @event_date = Date.new(year.to_i, month.to_i, day.to_i)
+Given /^the event is happening on (#{DATE})$/ do |date|
+  @event_date = date
 end
 
 Given /^that event is not live$/ do
   @event_live = false
 end
 
-Given /^the price of the event is ([\d\.]+)$/ do |price|
-  @price = price.to_f
+Given /^the price of the event is (#{FLOAT})$/ do |price|
+  @price = price
 end
 
 # Registration

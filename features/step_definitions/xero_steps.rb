@@ -60,11 +60,11 @@ Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
   end
 end
 
-Then /^the total cost to be invoiced should be ([\d\.]+)$/ do |cost|
+Then /^the total cost to be invoiced should be (#{FLOAT})$/ do |cost|
   @total_cost = cost
 end
 
-Then /^the net cost to be invoiced should be ([\d\.]+)$/ do |cost|
+Then /^the net cost to be invoiced should be (#{FLOAT})$/ do |cost|
   @net_cost = cost
 end
 
@@ -119,32 +119,32 @@ Then /^that invoice should include the note "(.*?)"$/ do |note|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^that invoice should be due on (\d+)\-(\d+)\-(\d+)$/ do |year, month, day|
+Then /^that invoice should be due on (#{DATE})$/ do |date|
   VCR.use_cassette("#{@scenario_name}/due_date_for_invoice") do
-    @invoice.due_date.should == Date.new(year.to_i, month.to_i, day.to_i)
+    @invoice.due_date.should == date
   end
 end
 
-Then /^that invoice should have a total of ([\d\.]+)$/ do |total|
+Then /^that invoice should have a total of (#{FLOAT})$/ do |total|
   VCR.use_cassette("#{@scenario_name}/total_for_invoice") do
-    @invoice.total.should == total.to_f
+    @invoice.total.should == total
   end
 end
 
 # Line items 
 
-Then /^that invoice should contain (\d+) line item$/ do |line_item_count|
+Then /^that invoice should contain (#{INTEGER}) line item$/ do |line_item_count|
   VCR.use_cassette("#{@scenario_name}/line_items_for_invoice") do
     @line_items = @invoice.line_items
-    @line_items.count.should == line_item_count.to_i
+    @line_items.count.should == line_item_count
   end
   if @line_items.count == 1
     @line_item = @line_items.first
   end
 end
 
-Then /^that line item should have a quantity of (\d+)$/ do |quantity|
-  @line_item.quantity.should == quantity.to_i
+Then /^that line item should have a quantity of (#{INTEGER})$/ do |quantity|
+  @line_item.quantity.should == quantity
 end
 
 Then /^that line item should not have an account code set$/ do
