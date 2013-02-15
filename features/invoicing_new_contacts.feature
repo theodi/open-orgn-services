@@ -71,7 +71,7 @@ Feature: Invoicing new contacts for training events
     And that contact should have postal address (city) of "London"
     And that contact should have postal address (region) of "Greater London"
     And that contact should have postal address (country) of "UK"
-    And that contact should have postal address (postcode) of "EC1A 1AA"
+    And that contact should have postal address (postal_code) of "EC1A 1AA"
     
   Scenario: store personal 'invoice to' details
     Given I do not work for anyone
@@ -93,5 +93,5 @@ Feature: Invoicing new contacts for training events
     And that contact should have postal address (city) of "Dandytown"
     And that contact should have postal address (region) of "Nuttyshire"
     And that contact should have postal address (country) of "UK"
-    And that contact should have postal address (postcode) of "NT4 3HG"
+    And that contact should have postal address (postal_code) of "NT4 3HG"
   

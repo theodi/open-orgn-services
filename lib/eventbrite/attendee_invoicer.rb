@@ -44,8 +44,11 @@ class AttendeeInvoicer
     addresses << {
       type: 'POBOX',
       line1:       user_details[:invoice_address_line1]    || user_details[:address_line1],
+      line2:       user_details[:invoice_address_line2]    || user_details[:address_line2],
       city:        user_details[:invoice_address_city]     || user_details[:address_city],
+      region:      user_details[:invoice_address_region]   || user_details[:address_region],
       country:     user_details[:invoice_address_country]  || user_details[:address_country],
+      postal_code: user_details[:invoice_address_postcode] || user_details[:address_postcode],
     }
     # Create contact
     contact = xero.Contact.create(
