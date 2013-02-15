@@ -62,6 +62,7 @@ class AttendeeInvoicer
   def self.invoice_contact(contact, user_details, event_details, payment_details)
     # Build description
     description = "Registration for '#{event_details[:title]} (#{event_details[:date]})' for #{user_details[:first_name]} #{user_details[:last_name]} <#{user_details[:email]}> ("
+    description += "Order number: #{payment_details[:order_number]}," if payment_details[:order_number]
     description += ")"
     # Raise invoice
     line_item = {
