@@ -1,14 +1,32 @@
+GIT
+  remote: https://github.com/theodi/xeroizer.git
+  revision: 6cda7938f682636b45a919422303beb73a4f3cca
+  specs:
+    xeroizer (2.15.3)
+      activesupport
+      activesupport
+      builder (>= 2.1.2)
+      builder (>= 2.1.2)
+      i18n
+      nokogiri
+      nokogiri
+      oauth (>= 0.3.6)
+      oauth (~> 0.4.5)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.2.11)
-      activesupport (= 3.2.11)
+    activemodel (3.2.12)
+      activesupport (= 3.2.12)
       builder (~> 3.0.0)
-    activesupport (3.2.11)
+    activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
     builder (3.0.4)
+    childprocess (0.3.7)
+      ffi (~> 1.0, >= 1.0.6)
+    coderay (1.0.8)
     crack (0.3.2)
     cucumber (1.2.1)
       builder (>= 2.1.2)
@@ -25,6 +43,7 @@ GEM
     eventmachine (1.0.0)
     faraday (0.8.5)
       multipart-post (~> 1.1)
+    ffi (1.3.1)
     foreman (0.61.0)
       thor (>= 0.13.6)
     gherkin (2.11.6)
@@ -35,6 +54,19 @@ GEM
       multi_json (~> 1.4)
       nokogiri (~> 1.5.2)
       oauth2
+    guard (1.6.2)
+      listen (>= 0.6.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      terminal-table (>= 1.4.3)
+      thor (>= 0.14.6)
+    guard-cucumber (1.3.2)
+      cucumber (>= 1.2.0)
+      guard (>= 1.1.0)
+    guard-spork (1.4.2)
+      childprocess (>= 0.2.3)
+      guard (>= 1.1)
+      spork (>= 0.8.4)
     hashie (1.2.0)
     httparty (0.8.3)
       multi_json (~> 1.0)
@@ -46,7 +78,7 @@ GEM
       mechanize (~> 2.0.1)
       terminal-table
       thor
-    json (1.7.6)
+    json (1.7.7)
     jwt (0.1.5)
       multi_json (>= 1.0)
     leftronicapi (1.2.0)
@@ -54,15 +86,16 @@ GEM
       json
       rake
     libxml-ruby (2.2.2)
+    listen (0.7.2)
+    lumberjack (1.0.2)
     mechanize (2.0.1)
-      net-http-digest_auth (~> 1.1, >= 1.1.1)
       net-http-digest_auth (~> 1.1, >= 1.1.1)
       net-http-persistent (~> 1.8)
       nokogiri (~> 1.4)
       webrobots (~> 0.0, >= 0.0.9)
-      webrobots (~> 0.0, >= 0.0.9)
+    method_source (0.8.1)
     mime-types (1.21)
-    multi_json (1.5.0)
+    multi_json (1.6.0)
     multi_xml (0.5.3)
     multipart-post (1.1.5)
     net-http-digest_auth (1.2.1)
@@ -76,10 +109,15 @@ GEM
       multi_json (~> 1.0)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    pry (0.9.11.4)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.5.2)
     rack-protection (1.3.2)
       rack
     rake (10.0.3)
+    rb-fsevent (0.9.3)
     redis (3.0.2)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
@@ -122,6 +160,8 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
+    slop (3.4.3)
+    spork (0.9.2)
     terminal-table (1.4.5)
     thin (1.5.0)
       daemons (>= 1.0.9)
@@ -147,9 +187,12 @@ DEPENDENCIES
   eventbrite-client
   foreman
   github_api
+  guard-cucumber
+  guard-spork
   jenkins-remote-api
   leftronicapi
   rake
+  rb-fsevent (~> 0.9.1)
   resque
   resque-scheduler
   rspec
@@ -159,3 +202,4 @@ DEPENDENCIES
   thin
   vcr
   webmock
+  xeroizer!
