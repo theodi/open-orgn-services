@@ -18,11 +18,17 @@ def user_details
     :phone => @phone,
     :invoice_phone => @invoice_phone,
     :address_line1 => @address_line1,
+    :address_line2 => @address_line2,
     :address_city => @address_city,
+    :address_region => @address_region,
     :address_country => @address_country,
+    :address_postcode => @address_postcode,
     :invoice_address_line1 => @invoice_address_line1,
+    :invoice_address_line2 => @invoice_address_line2,
     :invoice_address_city => @invoice_address_city,
+    :invoice_address_region => @invoice_address_region,
     :invoice_address_country => @invoice_address_country,
+    :invoice_address_postcode => @invoice_address_postcode,
   }.compact
 end
 
