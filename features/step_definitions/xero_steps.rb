@@ -29,6 +29,7 @@ def user_details
     :invoice_address_region => @invoice_address_region,
     :invoice_address_country => @invoice_address_country,
     :invoice_address_postcode => @invoice_address_postcode,
+    :vat_number => @vat_reg_number,
   }.compact
 end
 
@@ -41,7 +42,6 @@ def payment_details
     :order_number => @order_number,
     :price => @net_price,
     :quantity => @quantity,
-    :overseas_vat_reg_no => @vat_reg_number,
     :purchase_order_number => @purchase_order_number
   }.compact
 end
@@ -85,8 +85,7 @@ Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field,
 end
 
 Then /^that contact should have VAT number "(.*?)"$/ do |vat_number|
-  pending
-  @contact.vat_number.should == vat_number
+  @contact.tax_number.should == vat_number
 end
 
 # Invoices 

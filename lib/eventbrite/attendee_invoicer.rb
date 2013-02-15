@@ -52,7 +52,8 @@ class AttendeeInvoicer
       name:          contact_name(user_details),
       email_address: user_details[:invoice_email] || user_details[:email],
       phones:        [{type: 'DEFAULT', number: user_details[:invoice_phone] || user_details[:phone]}],
-      addresses:     addresses
+      addresses:     addresses,
+      tax_number:    user_details[:vat_number],
     )
     contact.save
     # Requeue
@@ -71,7 +72,7 @@ class AttendeeInvoicer
       unit_amount:  payment_details[:price]
     }
     # Don't charge tax overseas if vat reg number supplied
-    line_item[:tax_type] = "NONE" if payment_details[:overseas_vat_reg_no]
+    line_item[:tax_type] = "NONE" if user_details[:vat_number]
     # Create invoice
     invoice = xero.Invoice.create(
       type:       'ACCREC',
