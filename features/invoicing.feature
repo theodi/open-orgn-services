@@ -49,6 +49,7 @@ Feature: Invoicing for training events
   
   Scenario: invoices are not generated more than once for same purchase
     Given I have registered for a ticket
+    And my order number is 1243543543
     And I paid with Paypal
     And I have already been invoiced
     When the attendee invoicer runs

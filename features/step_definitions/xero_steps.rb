@@ -99,7 +99,6 @@ Then /^an invoice should be raised in Xero against "(.*?)"$/ do |contact_name|
 end
 
 Then /^I should not be invoiced again$/ do
-  pending
   @invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"})
   @invoices.count.should == 1
 end
