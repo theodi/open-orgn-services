@@ -34,3 +34,10 @@ Feature: Monitoring eventbrite events
     And the event is happening in the past
 		Then that event should not be queued for attendee checking
 		When we poll eventbrite for all events
+    
+  # Check failures in eventbrite
+  Scenario: Get empty list of attendees
+    Given an event in Eventbrite called "Open Data, Law and Licensing" with id 5519765768
+    And that event has not sold any tickets
+    When the attendee lister runs
+    Then no errors should be raised

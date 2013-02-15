@@ -17,7 +17,12 @@ class AttendeeLister
   # Returns nil. Queues further jobs to handle invoice raising.
   def self.perform(event_details)
     e = EventbriteClient.new ({ :app_key => ENV["EVENTBRITE_API_KEY"], :user_key => ENV["EVENTBRITE_USER_KEY"]})
-    if response = e.event_list_attendees(id: event_details['id'], page: 0)
+    begin
+      response = e.event_list_attendees(id: event_details['id'], page: 0)
+    rescue RuntimeError
+      response = nil
+    end
+    if response
       attendees = response.parsed_response['attendees']
       orders = attendees.group_by{|x| x['attendee']['order_id']}
       orders.each_pair do |order_id, attendees|

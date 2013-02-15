@@ -110,3 +110,11 @@ Then /^that event should not be queued for attendee checking$/ do
   Resque.should_not_receive(:enqueue).with(AttendeeLister, event_details)
   Resque.should_receive(:enqueue).any_number_of_times
 end
+
+Given /^that event has not sold any tickets$/ do
+  # nothing to check here, we rely on the cassette or the remote API being correct. Probably a bit lame
+end
+
+Then /^no errors should be raised$/ do
+  # Errors will be raised in the previous step, so we don't need to check explicitly here
+end
