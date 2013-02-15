@@ -93,13 +93,13 @@ Feature: Invoicing for training events
     And that invoice should contain 1 line item
     And that line item should have a quantity of 2
     
-  Scenario: line items should have 'incoming' account code
+  Scenario: line items should not have an account code
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And that line item should have account code "050"
+    And that line item should not have account code set
 
   Scenario: line item description should include event name and date
     Given I have registered for a ticket

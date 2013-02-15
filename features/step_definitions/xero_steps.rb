@@ -144,8 +144,8 @@ Then /^that line item should have a quantity of (#{INTEGER})$/ do |quantity|
   @line_item.quantity.should == quantity
 end
 
-Then /^that line item should have account code "(#{INTEGER})"$/ do |code|
-  @line_item.account_code.should == code.to_s
+Then /^that line item should not have account code set$/ do
+  @line_item.account_code.should be_nil
 end
 
 Then /^that invoice should show that payment has been received$/ do

@@ -65,7 +65,6 @@ class AttendeeInvoicer
       :description => "Registration for '#{event_details[:title]} (#{event_details[:date]})' for #{user_details[:first_name]} #{user_details[:last_name]} <#{user_details[:email]}>", 
       :quantity => payment_details[:quantity], 
       :unit_amount => payment_details[:price],
-      :account_code => 200
     }
     # Don't charge tax overseas if vat reg number supplied
     line_item[:tax_type] = "NONE" if payment_details[:overseas_vat_reg_no]
