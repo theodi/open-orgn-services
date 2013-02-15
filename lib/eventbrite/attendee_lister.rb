@@ -48,11 +48,12 @@ class AttendeeLister
             }.compact, 
             event_details, 
             {
-              payment_method:    payment_method(a['order_type']),
-              quantity:          attendees.count,
-              price:             a['amount_paid'].to_f/1.2,
-              order_number:      order_id,
-              membership_number: custom_answer(a, 'Membership Number'),
+              payment_method:        payment_method(a['order_type']),
+              quantity:              attendees.count,
+              price:                 a['amount_paid'].to_f/1.2,
+              order_number:          order_id,
+              membership_number:     custom_answer(a, 'Membership Number'),
+              purchase_order_number: custom_answer(a, 'Purchase Order Number'),
             }.compact
           )
         end

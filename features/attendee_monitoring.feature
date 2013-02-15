@@ -31,6 +31,7 @@ Feature: Monitoring attendee signups
     And that company has an invoice address (postcode) of "EC1A 1AA" 
     And I entered a VAT registration number "AB5678"
     And I entered a membership number "9101112"
+    And I entered a purchase order number "AB1234"
     And I requested an invoice
     
   Scenario: add users to invoicing queue if they have a paid ticket
