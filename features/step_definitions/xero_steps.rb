@@ -2,12 +2,6 @@ require 'digest/md5'
 
 # Utility functions to marshal setup variables into appropriate hashes
 
-class Hash
-  def compact
-    delete_if { |k, v| !v }
-  end
-end
-
 def user_details
   {
     :company => @company,
@@ -43,7 +37,8 @@ def payment_details
     :price => @net_price,
     :quantity => @quantity,
     :purchase_order_number => @purchase_order_number,
-    :membership_number => @membership_number
+    :membership_number => @membership_number,
+    :payment_method => @payment_method
   }.compact
 end
 
@@ -172,12 +167,14 @@ end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
+  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details).once
+  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^I should not be added to the invoicing queue$/ do
-  # Set expectation
-  Resque.should_not_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
+  Resque.should_not_receive(:enqueue).with do |klass, user, event, payment|
+    payment[:order_number] == @order_number
+  end
 end
 
 Then /^the attendee invoicer should be requeued$/ do

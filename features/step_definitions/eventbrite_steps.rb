@@ -29,6 +29,12 @@ Given /^that event is not live$/ do
   @events.last[:live] = false
 end
 
+Given /^I have signed up for (#{INTEGER}) tickets? called "(.*?)" which has a net price of (#{FLOAT})$/ do |count, name, price|
+  @quantity = count
+  @ticket_type = name
+  @net_price = price
+end
+
 Given /^the gross price of the event in Eventbrite is (#{FLOAT})$/ do |price|
   @gross_price = price
 end
@@ -64,7 +70,7 @@ Given /^that ticket type is on sale from (#{DATETIME})$/ do |datetime|
 end
 
 Given /^that ticket type is on sale until (#{DATETIME})$/ do |datetime|
-@events.last[:ticket_types].last[:ends_at] = datetime
+  @events.last[:ticket_types].last[:ends_at] = datetime
 end
 
 Then /^the net price of the event is (#{FLOAT})$/ do |price|
@@ -81,12 +87,7 @@ Given /^I have registered for two tickets$/ do
   @quantity = 2
 end
 
-When /^I sign up to that event and ask to be invoiced$/ do
-  # Check the attendees
-  AttendeeLister.perform(event_details)
-end
-
-When /^I sign up to that event and get a free ticket$/ do
+When /^the attendee lister runs$/ do
   # Check the attendees
   AttendeeLister.perform(event_details)
 end
