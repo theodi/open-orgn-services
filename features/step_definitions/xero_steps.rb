@@ -118,7 +118,7 @@ end
 
 Then /^the line item description should include "(.*?)"$/ do |text|
   @line_item ||= @invoice.line_items.first
-  @line_item.description.should include(text)
+  @line_item.description.should include(text.to_s)
 end
 
 Then /^that invoice should be due on (#{DATE})$/ do |date|
