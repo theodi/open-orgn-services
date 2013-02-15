@@ -51,13 +51,13 @@ Given /^I entered a VAT registration number "(.*?)"$/ do |vat_reg_number|
 end
 
 Given /^I entered a membership number "(.*?)"$/ do |membership_number|
-  @membership_number = membership_number
+  @membership_number = membership_number.to_s
 end
 
 Given /^I paid with Paypal$/ do
-  @payment_method = :paypal
+  @payment_method = 'paypal'
 end
 
 Given /^I requested an invoice$/ do
-  @payment_method = :invoice
+  @payment_method = 'invoice'
 end
