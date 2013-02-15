@@ -4,14 +4,14 @@ class AttendeeLister
 
   # Public: Inspect the list of attendees for an event
   #
-  # event_detais - a hash containing the details of the event from Eventbrite
-  #                :id - the eventbrite ID
-  #                :title - the title of the event
-  #                :date - the start date of the event 
+  # event_details - a hash containing the details of the event from Eventbrite. Required keys are:
+  #                 'id'        - the unique identifier supplied from Eventbrite
+  #                 'title'     - the event name
+  #                 'starts_at' - the starting DateTime of the event
   #
   # Examples
   #
-  #   AttendeeLister.perform(123456789)
+  #   AttendeeLister.perform('id' => 1235, 'title' => 'Open Data for Dummies', 'starts_at' => Date.new(2013,3,1))
   #   # => nil
   #
   # Returns nil. Queues further jobs to handle invoice raising.
@@ -59,7 +59,6 @@ class AttendeeLister
               'order_number'          => order_id,
               'membership_number'     => custom_answer(a, 'Membership Number'),
               'purchase_order_number' => custom_answer(a, 'Purchase Order Number'),
-
             }.compact
           )
         end
