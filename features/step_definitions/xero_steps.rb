@@ -42,7 +42,8 @@ def payment_details
     :order_number => @order_number,
     :price => @net_price,
     :quantity => @quantity,
-    :purchase_order_number => @purchase_order_number
+    :purchase_order_number => @purchase_order_number,
+    :membership_number => @membership_number
   }.compact
 end
 
