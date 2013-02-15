@@ -62,7 +62,7 @@ Feature: Invoicing for training events
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    # 0.66 * 1.2. Xero should add the VAT that eventbrite charged automatically.
+    # 1.00 * 1.2. Xero should add the VAT that eventbrite charged automatically.
     And that invoice should have a total of 1.20
 
   Scenario: invoices do not have VAT added for overseas purchasers with VAT registration numbers
@@ -79,7 +79,6 @@ Feature: Invoicing for training events
   Scenario: line items include order number from Eventbrite
     Given I have registered for a ticket
     And my order number is 1243543543
-    And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
@@ -87,16 +86,14 @@ Feature: Invoicing for training events
 
   Scenario: line items have correct quantity for multiple tickets
     Given I have registered for two tickets
-    And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should have a total of 2.40
     And that invoice should contain 1 line item
     And that line item should have a quantity of 2
+    And that invoice should have a total of 2.40
     
   Scenario: line items should not have an account code
     Given I have registered for a ticket
-    And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
@@ -104,7 +101,6 @@ Feature: Invoicing for training events
 
   Scenario: line item description should include event name and date
     Given I have registered for a ticket
-    And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
@@ -112,7 +108,6 @@ Feature: Invoicing for training events
 
   Scenario: line item description should include registrant name and email
     Given I have registered for a ticket
-    And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
