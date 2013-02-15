@@ -84,7 +84,7 @@ class AttendeeInvoicer
         unit_amount:  payment_details[:price]
       }]
       # Don't charge tax overseas if vat reg number supplied
-      line_item.first[:tax_type] = "NONE" if user_details[:vat_number]
+      line_items.first[:tax_type] = "NONE" if user_details[:vat_number]
       # Add an empty line item for Paypal payment if appropriate
       if payment_details[:payment_method] == 'paypal'
         line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
