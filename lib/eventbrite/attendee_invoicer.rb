@@ -81,7 +81,7 @@ class AttendeeInvoicer
   end
 
   def self.contact_name(user_details)
-    user_details[:company] || [user_details[:first_name], user_details[:last_name]].join(' ')
+    user_details[:company] || [user_details[:first_name], user_details[:last_name], "<#{user_details[:email]}>"].join(' ')
   end
 
 end
