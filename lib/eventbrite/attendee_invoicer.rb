@@ -21,10 +21,11 @@ class AttendeeInvoicer
   # Returns nil.
   def self.perform(user_details, event_details, payment_details)
     # Connect to Xero
-    xero ||= Xeroizer::PrivateApplication.new(
+    @@xero ||= Xeroizer::PrivateApplication.new(
       ENV["XERO_CONSUMER_KEY"],
       ENV["XERO_CONSUMER_SECRET"],
-      ENV["XERO_PRIVATE_KEY_PATH"]
+      ENV["XERO_PRIVATE_KEY_PATH"],
+      :rate_limit_sleep => 5
     )
     # Find appropriate contact in Xero
     contact = xero.Contact.all(:where => %{Name == "#{contact_name(user_details)}"}).first
