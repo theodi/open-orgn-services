@@ -2,6 +2,28 @@ class EventSummaryGenerator
   
   @queue = :invoicing
   
+  # Public: Generates a JSON summary of event listings
+  #
+  # events - an array containing a hash for each event. Each hash contains:
+  #          'url'          - the canonical event URL
+  #          'title'        - the event name
+  #          'location'     - the textual location of the event (e.g. "Open Data Institute")
+  #          'starts_at'    - the starting DateTime of the event
+  #          'ends_at'      - the starting DateTime of the event
+  #          'ticket_types' - an array of ticket types. Each one is a hash containing:
+  #                           'name'      - the descriptive name of the ticket (e.g. 'Free Ticket')
+  #                           'price'     - the price of the ticket
+  #                           'currency'  - currency code, e.g. GBP
+  #                           'starts_at' - when the ticket goes on sale
+  #                           'ends_at'   - when the ticket is on sale until
+  #                           'remaining' - the number of tickets available
+  #
+  # Examples
+  #
+  #   EventSummaryGenerator.perform([{:id => 1234, :title => 'Open Data for Dummies', ...}])
+  #   # => nil
+  #
+  # Returns nil. Queues an EventSummaryUploader job to upload the JSON to the target location
   def self.perform(events)
     data = {}
     events.each do |event|

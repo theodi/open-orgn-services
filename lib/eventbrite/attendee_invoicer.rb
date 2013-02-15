@@ -7,15 +7,40 @@ class AttendeeInvoicer
   # Public: Create an invoice for an event attendee
   #
   # user_details    - a hash containing details of the user.
-  #                   :email - the user's email address
+  #                   'company'                  => Company name
+  #                   'first_name'               => First name of main attendee
+  #                   'last_name'                => Last name of main attendee
+  #                   'email'                    => Email address of main attendee
+  #                   'invoice_email'            => Email address for invoicing
+  #                   'phone'                    => Phone number of main attendee
+  #                   'invoice_phone'            => Phone number for invoicing
+  #                   'address_line1'            => Address for delivery (i.e. not billing)
+  #                   'address_line2'            => Address for delivery (i.e. not billing)
+  #                   'address_city'             => Address for delivery (i.e. not billing)
+  #                   'address_region'           => Address for delivery (i.e. not billing)
+  #                   'address_country'          => Address for delivery (i.e. not billing)
+  #                   'address_postcode'         => Address for delivery (i.e. not billing)
+  #                   'invoice_address_line1'    => Address for invoicing
+  #                   'invoice_address_line2'    => Address for invoicing
+  #                   'invoice_address_city'     => Address for invoicing
+  #                   'invoice_address_region'   => Address for invoicing
+  #                   'invoice_address_country'  => Address for invoicing
+  #                   'invoice_address_postcode' => Address for invoicing
+  #                   'vat_number'               => Tax number for overseas customers
   # event_details   - a hash containing the details of the event.
-  #                   :id - the eventbrite ID
+  #                   'title'                    => the event name
+  #                   'starts_at'                => the starting DateTime of the event
   # payment_details - a hash containing payment details.
-  #                   :amount - The monetary amount to be invoiced in GBP
+  #                   'payment_method'           => Payment method; 'paypal', or 'invoice'
+  #                   'quantity'                 => number of tickets
+  #                   'price'                    => net price per ticket
+  #                   'order_number'             => unique order number from eventbrite
+  #                   'membership_number'        => ODI membership number
+  #                   'purchase_order_number'    => PO number for reference
   #
   # Examples
   #
-  #   AttendeeInvoicer.perform({:email => 'james.smith@theodi.org'}, {:id => 123456789}, {:amount => 0.66})
+  #   AttendeeInvoicer.perform({:email => 'james.smith@theodi.org', ...}, {:id => 123456789, ...}, {:price => 0.66, ...})
   #   # => nil
   #
   # Returns nil.
@@ -65,8 +90,9 @@ class AttendeeInvoicer
       end
     end
     unless existing
+      date = event_details['starts_at'].to_date rescue nil
       # Build description
-      description = "Registration for '#{event_details['title']} (#{event_details['date']})' for #{user_details['first_name']} #{user_details['last_name']} <#{user_details['email']}> ("
+      description = "Registration for '#{event_details['title']} (#{date})' for #{user_details['first_name']} #{user_details['last_name']} <#{user_details['email']}> ("
       description += "Order number: #{payment_details['order_number']}" if payment_details['order_number']
       description += ",Membership number: #{payment_details['membership_number']}" if payment_details['membership_number']
       description += ")"
@@ -85,7 +111,7 @@ class AttendeeInvoicer
       invoice = xero.Invoice.create(
         type:       'ACCREC',
         contact:    contact,
-        due_date:   (event_details['date'] ? event_details['date'] - 7 : Date.today),
+        due_date:   (event_details['starts_at'] ? date - 7 : Date.today),
         status:     'DRAFT',
         line_items: line_items,
         reference:  payment_details['purchase_order_number'],
