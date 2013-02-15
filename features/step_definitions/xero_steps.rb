@@ -144,9 +144,7 @@ Then /^that line item should not have account code set$/ do
 end
 
 Then /^that invoice should show that payment has been received$/ do
-  pending
-  @invoice.amount_due.should == 0.0
-  @invoice.amount_paid.should == @invoice.total
+  @invoice.line_items.last.description.should include("PAID")
 end
 
 Then /^that invoice should show that payment has not been received$/ do
@@ -155,7 +153,7 @@ Then /^that invoice should show that payment has not been received$/ do
 end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
-  pending # express the regexp above with the code you wish you had
+  @invoice.line_items.last.description.should include("PAYPAL")
 end
 
 # Invoice queue

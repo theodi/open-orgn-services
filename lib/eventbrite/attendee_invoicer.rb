@@ -70,20 +70,24 @@ class AttendeeInvoicer
     description += "Membership number: #{payment_details[:membership_number]}" if payment_details[:membership_number]
     description += ")"
     # Raise invoice
-    line_item = {
+    line_items = [{
       description:  description,
       quantity:     payment_details[:quantity], 
       unit_amount:  payment_details[:price]
-    }
+    }]
     # Don't charge tax overseas if vat reg number supplied
-    line_item[:tax_type] = "NONE" if user_details[:vat_number]
+    line_item.first[:tax_type] = "NONE" if user_details[:vat_number]
+    # Add an empty line item for Paypal payment if appropriate
+    if payment_details[:payment_method] == 'paypal'
+      line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
+    end
     # Create invoice
     invoice = xero.Invoice.create(
       type:       'ACCREC',
       contact:    contact,
       due_date:   (event_details[:date] ? event_details[:date] - 7 : Date.today),
       status:     'DRAFT',
-      line_items: [line_item],
+      line_items: line_items,
       reference:  payment_details[:purchase_order_number],
     )
     invoice.save

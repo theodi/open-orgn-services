@@ -120,6 +120,11 @@ Feature: Invoicing for training events
   # Payment methods
     
   Scenario: invoices show paypal payment method as fully paid
+  
+    We can't actually add the payment into Xero, that 
+    needs to be matched up from PayPal. Instead, we add a zero-value
+    line item saying that it's been paid.
+  
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
