@@ -92,13 +92,21 @@ Feature: Invoicing for training events
     And that invoice should contain 1 line item
     And that line item should have account code "050"
 
-  Scenario: line items should have description
+  Scenario: line item description should include event name and date
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And that line item should have the description "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com>"
+    And the line item description should include "[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)"
+
+  Scenario: line item description should include registrant name and email
+    Given I have registered for a ticket
+    And I paid with Paypal
+    When the attendee invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 1 line item
+    And the line item description should include "Bob Fish <bob.fish@example.com>"
 
   # Payment methods
     

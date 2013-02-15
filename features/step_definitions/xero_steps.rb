@@ -110,8 +110,9 @@ Then /^that invoice should include the reference "(.*?)"$/ do |reference|
   @invoice.reference.should == reference
 end
 
-Then /^that invoice should include the note "(.*?)"$/ do |note|
-  pending # express the regexp above with the code you wish you had
+Then /^the line item description should include "(.*?)"$/ do |text|
+  @line_item ||= @invoice.line_items.first
+  @line_item.description.should include(text)
 end
 
 Then /^that invoice should be due on (#{DATE})$/ do |date|
@@ -138,10 +139,6 @@ end
 
 Then /^that line item should have account code (#{INTEGER})$/ do |code|
   @line_item.account_code.should == code.to_s
-end
-
-Then /^that line item should have the description "(.*?)"$/ do |description|
-  @line_item.description.should == description
 end
 
 Then /^that invoice should show that payment has been received$/ do
