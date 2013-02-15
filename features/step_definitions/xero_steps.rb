@@ -32,6 +32,7 @@ end
 
 def payment_details
   {
+    :order_number => @order_number,
     :price => @net_price,
     :quantity => @quantity,
     :overseas_vat_reg_no => @vat_reg_number,

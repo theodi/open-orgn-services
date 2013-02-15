@@ -38,6 +38,10 @@ Given /^that company has an invoice address \((.*?)\) of "(.*?)"$/ do |type, val
   instance_variable_set("@invoice_address_#{type}", value)
 end
 
+Given /^my order number is "(.*?)"$/ do |order_number|
+  @order_number = order_number.to_s
+end
+
 Given /^I entered a purchase order number "(.*?)"$/ do |po_number|
   @purchase_order_number = po_number
 end
