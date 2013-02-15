@@ -77,7 +77,7 @@ Feature: Invoicing for training events
 
   Scenario: line items include order number from Eventbrite
     Given I have registered for a ticket
-    And my order number is "1243543543"
+    And my order number is 1243543543
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
