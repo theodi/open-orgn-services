@@ -77,6 +77,11 @@ Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field,
   @contact.addresses.find{|x| x.type='POBOX'}.send(field).should == value
 end
 
+Then /^that contact should have VAT number "(.*?)"$/ do |vat_number|
+  pending
+  @contact.vat_number.should == vat_number
+end
+
 # Invoices 
 
 Given /^I have already been invoiced$/ do
