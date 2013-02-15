@@ -138,7 +138,7 @@ Then /^that line item should have a quantity of (#{INTEGER})$/ do |quantity|
   @line_item.quantity.should == quantity
 end
 
-Then /^that line item should have account code (#{INTEGER})$/ do |code|
+Then /^that line item should have account code "(#{INTEGER})"$/ do |code|
   @line_item.account_code.should == code.to_s
 end
 
