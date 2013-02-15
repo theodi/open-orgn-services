@@ -36,20 +36,20 @@ class AttendeeInvoicer
     # Billing address
     addresses << {
       type: 'POBOX',
-      line1:       user_details[:invoice_address_line1]    || user_details[:address_line1],
-      line2:       user_details[:invoice_address_line2]    || user_details[:address_line2],
-      city:        user_details[:invoice_address_city]     || user_details[:address_city],
-      region:      user_details[:invoice_address_region]   || user_details[:address_region],
-      country:     user_details[:invoice_address_country]  || user_details[:address_country],
-      postal_code: user_details[:invoice_address_postcode] || user_details[:address_postcode],
+      line1:       user_details['invoice_address_line1']    || user_details['address_line1'],
+      line2:       user_details['invoice_address_line2']    || user_details['address_line2'],
+      city:        user_details['invoice_address_city']     || user_details['address_city'],
+      region:      user_details['invoice_address_region']   || user_details['address_region'],
+      country:     user_details['invoice_address_country']  || user_details['address_country'],
+      postal_code: user_details['invoice_address_postcode'] || user_details['address_postcode'],
     }
     # Create contact
     contact = xero.Contact.create(
       name:          contact_name(user_details),
-      email_address: user_details[:invoice_email] || user_details[:email],
-      phones:        [{type: 'DEFAULT', number: user_details[:invoice_phone] || user_details[:phone]}],
+      email_address: user_details['invoice_email'] || user_details['email'],
+      phones:        [{type: 'DEFAULT', number: user_details['invoice_phone'] || user_details['phone']}],
       addresses:     addresses,
-      tax_number:    user_details[:vat_number],
+      tax_number:    user_details['vat_number'],
     )
     contact.save
     # Requeue
@@ -61,41 +61,41 @@ class AttendeeInvoicer
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}") AND Status != "DELETED"})
     existing = invoices.find do |invoice| 
       invoice.line_items.find do |line| 
-        line.description =~ /Order number: #{payment_details[:order_number]}/
+        line.description =~ /Order number: #{payment_details['order_number']}/
       end
     end
     unless existing
       # Build description
-      description = "Registration for '#{event_details[:title]} (#{event_details[:date]})' for #{user_details[:first_name]} #{user_details[:last_name]} <#{user_details[:email]}> ("
-      description += "Order number: #{payment_details[:order_number]}" if payment_details[:order_number]
-      description += ",Membership number: #{payment_details[:membership_number]}" if payment_details[:membership_number]
+      description = "Registration for '#{event_details['title']} (#{event_details['date']})' for #{user_details['first_name']} #{user_details['last_name']} <#{user_details['email']}> ("
+      description += "Order number: #{payment_details['order_number']}" if payment_details['order_number']
+      description += ",Membership number: #{payment_details['membership_number']}" if payment_details['membership_number']
       description += ")"
       # Raise invoice
       line_items = [{
         description:  description,
-        quantity:     payment_details[:quantity], 
-        unit_amount:  payment_details[:price],
-        tax_type:     user_details[:vat_number] ? 'NONE' : 'OUTPUT2'
+        quantity:     payment_details['quantity'], 
+        unit_amount:  payment_details['price'],
+        tax_type:     user_details['vat_number'] ? 'NONE' : 'OUTPUT2'
       }]
       # Add an empty line item for Paypal payment if appropriate
-      if payment_details[:payment_method] == 'paypal'
+      if payment_details['payment_method'] == 'paypal'
         line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
       end
       # Create invoice
       invoice = xero.Invoice.create(
         type:       'ACCREC',
         contact:    contact,
-        due_date:   (event_details[:date] ? event_details[:date] - 7 : Date.today),
+        due_date:   (event_details['date'] ? event_details['date'] - 7 : Date.today),
         status:     'DRAFT',
         line_items: line_items,
-        reference:  payment_details[:purchase_order_number],
+        reference:  payment_details['purchase_order_number'],
       )
       invoice.save
     end
   end
 
   def self.contact_name(user_details)
-    user_details[:company] || [user_details[:first_name], user_details[:last_name], "<#{user_details[:email]}>"].join(' ')
+    user_details['company'] || [user_details['first_name'], user_details['last_name'], "<#{user_details['email']}>"].join(' ')
   end
 
   def self.xero
