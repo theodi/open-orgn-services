@@ -43,16 +43,16 @@ class AttendeeInvoicer
     # Billing address
     addresses << {
       type: 'POBOX',
-      line1: user_details[:invoice_address_line1] || user_details[:address_line1],
-      city: user_details[:invoice_address_city] || user_details[:address_city],
-      country: user_details[:invoice_address_country] || user_details[:address_country],
+      line1:       user_details[:invoice_address_line1]    || user_details[:address_line1],
+      city:        user_details[:invoice_address_city]     || user_details[:address_city],
+      country:     user_details[:invoice_address_country]  || user_details[:address_country],
     }
     # Create contact
     contact = xero.Contact.create(
-      name: contact_name(user_details),
+      name:          contact_name(user_details),
       email_address: user_details[:invoice_email] || user_details[:email],
-      phones: [{type: 'DEFAULT', number: user_details[:invoice_phone] || user_details[:phone]}],
-      addresses: addresses
+      phones:        [{type: 'DEFAULT', number: user_details[:invoice_phone] || user_details[:phone]}],
+      addresses:     addresses
     )
     contact.save
     # Requeue
@@ -60,22 +60,25 @@ class AttendeeInvoicer
   end
   
   def self.invoice_contact(contact, user_details, event_details, payment_details)
+    # Build description
+    description = "Registration for '#{event_details[:title]} (#{event_details[:date]})' for #{user_details[:first_name]} #{user_details[:last_name]} <#{user_details[:email]}> ("
+    description += ")"
     # Raise invoice
     line_item = {
-      :description => "Registration for '#{event_details[:title]} (#{event_details[:date]})' for #{user_details[:first_name]} #{user_details[:last_name]} <#{user_details[:email]}>", 
-      :quantity => payment_details[:quantity], 
-      :unit_amount => payment_details[:price],
+      description:  description,
+      quantity:     payment_details[:quantity], 
+      unit_amount:  payment_details[:price]
     }
     # Don't charge tax overseas if vat reg number supplied
     line_item[:tax_type] = "NONE" if payment_details[:overseas_vat_reg_no]
     # Create invoice
     invoice = xero.Invoice.create(
-      :type => 'ACCREC',
-      :contact => contact,
-      :due_date => (event_details[:date] ? event_details[:date] - 7 : Date.today),
-      :status => 'DRAFT',
-      :line_items => [line_item],
-      :reference => payment_details[:purchase_order_number],
+      type:       'ACCREC',
+      contact:    contact,
+      due_date:   (event_details[:date] ? event_details[:date] - 7 : Date.today),
+      status:     'DRAFT',
+      line_items: [line_item],
+      reference:  payment_details[:purchase_order_number],
     )
     invoice.save
   end
