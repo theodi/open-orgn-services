@@ -1,4 +1,4 @@
-@vcr
+@vcr @clean_up_xero_contact
 Feature: Invoicing new contacts for training events
 
   In order to be invoiced for the training so that my company or government department can pay for it
@@ -14,7 +14,6 @@ Feature: Invoicing new contacts for training events
 
   # Creation of Xero contacts and requeuing of jobs
 
-  @clean_up_xero_contact
   Scenario: personal contact creation
     Given I do not work for anyone
     And there is no contact in Xero for "Bob Fish <bob.fish@example.com>"
@@ -23,7 +22,6 @@ Feature: Invoicing new contacts for training events
     When the attendee invoicer runs
     Then a contact should exist in Xero for "Bob Fish <bob.fish@example.com>"
 
-  @clean_up_xero_contact
   Scenario: company contact creation
     Given I work for "New Company Inc."
     And there is no contact in Xero for "New Company Inc."
@@ -34,7 +32,6 @@ Feature: Invoicing new contacts for training events
     
   # VAT registration numbers for overseas companies
   
-  @clean_up_xero_contact
   Scenario: store VAT numbers for contacts
     Given I work for "New Company Inc."
     And there is no contact in Xero for "New Company Inc."
@@ -47,7 +44,6 @@ Feature: Invoicing new contacts for training events
     
   # Storing of invoice-to details
   
-  @clean_up_xero_contact
   Scenario: store company 'invoice to' details
     Given I work for "New Company Inc."
     And my address (line1) is "29 Acacia Road"
@@ -77,7 +73,6 @@ Feature: Invoicing new contacts for training events
     And that contact should have postal address (country) of "UK"
     And that contact should have postal address (postcode) of "EC1A 1AA"
     
-  @clean_up_xero_contact
   Scenario: store personal 'invoice to' details
     Given I do not work for anyone
     And my phone number is "01234 098765"
