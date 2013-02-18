@@ -25,9 +25,9 @@ class EventLister
               'remaining' => t['quantity_available'],
               'price'     => t['price'].to_f,
               'currency'  => t['currency'],
-              'ends_at'   => DateTime.parse(t['end_date'])
+              'ends_at'   => DateTime.parse(t['end_date']).to_s
             }
-            tickets.last['starts_at'] = DateTime.parse(t['start_date']) if t['start_date']
+            tickets.last['starts_at'] = DateTime.parse(t['start_date']).to_s if t['start_date']
           end
           # Everything else
           events << {
@@ -35,8 +35,8 @@ class EventLister
             'live'         => true,
             'title'        => e['title'],
             'url'          => e['url'],
-            'starts_at'    => DateTime.parse(e['start_date']),
-            'ends_at'      => DateTime.parse(e['end_date']),
+            'starts_at'    => DateTime.parse(e['start_date']).to_s,
+            'ends_at'      => DateTime.parse(e['end_date']).to_s,
             'ticket_types' => tickets,
           }
           events.last['location'] = e['venue']['name'] if e['venue']
