@@ -1,5 +1,9 @@
 # Open Organisation Services
 
+[![Build Status](http://jenkins.theodi.org/job/open-orgn-services-build-master/badge/icon)](http://jenkins.theodi.org/job/open-orgn-services-build-master/)
+[![Dependency Status](https://gemnasium.com/theodi/open-orgn-services.png)](https://gemnasium.com/theodi/open-orgn-services)
+[![Code Climate](https://codeclimate.com/github/theodi/open-orgn-services.png)](https://codeclimate.com/github/theodi/open-orgn-services)
+
 This repository is for code for services that support the ODI's operation as an open organisation. Our aim is to publish open data as a mechanism to help us function more effectively, and to act as a demonstrator of both the technical and policy challenges.
 
 Our first 2-week sprint starts on 4th February. We're using [the issues](https://github.com/theodi/open-orgn-services/issues) to scope and track what we're doing.
