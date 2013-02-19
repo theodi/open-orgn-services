@@ -30,9 +30,9 @@ Given /^that event is not live$/ do
 end
 
 Given /^I have signed up for (#{INTEGER}) tickets? called "(.*?)" which has a net price of (#{FLOAT})$/ do |count, name, price|
-  @quantity = count
+  @quantity    = count
   @ticket_type = name
-  @net_price = price
+  @net_price   = price
 end
 
 Given /^the gross price of the event in Eventbrite is (#{FLOAT})$/ do |price|
