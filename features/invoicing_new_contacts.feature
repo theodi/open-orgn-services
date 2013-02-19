@@ -62,6 +62,7 @@ Feature: Invoicing new contacts for training events
     And that company has an invoice address (postcode) of "EC1A 1AA" 
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
+    Then the attendee invoicer should be requeued    
     When the attendee invoicer runs
     Then a contact should exist in Xero for "New Company Inc."
     And that contact should have email "finance@newcompany.com"
@@ -84,6 +85,7 @@ Feature: Invoicing new contacts for training events
     And my address (postcode) is "NT4 3HG"
     And there is no contact in Xero for "Bob Fish <bob.fish@example.com>"
     And I have registered for a ticket
+    Then the attendee invoicer should be requeued    
     When the attendee invoicer runs
     Then a contact should exist in Xero for "Bob Fish <bob.fish@example.com>"
     And that contact should have email "bob.fish@example.com"
