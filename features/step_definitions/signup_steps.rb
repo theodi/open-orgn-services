@@ -1,12 +1,3 @@
-class User
-  def initialize(user)
-    Resque.enqueue(SignupProcessor, user)
-  end
-end
-
-class SignupProcessor
-end
-
 Given /^that I want to sign up as a (\w*)$/ do |level|
   @level = level
 end
