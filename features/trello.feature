@@ -4,7 +4,7 @@ Feature: Trello monitoring
   As a member of the tech team
   I want to capture stats from Trello and push them to a dashboard
   
-  Scenario:
+  Scenario: trello housekeeping graph
     Given there are 41 cards on the To Do list on Trello
     Given there are 12 cards on the Doing list on Trello
     Then the number 53 should be stored in the housekeeping graph stat
