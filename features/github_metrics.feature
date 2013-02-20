@@ -40,3 +40,8 @@ Feature: Github monitoring
     And the repository "odibot" has 1 closed pull request
     Then the number 6 should be stored in the total pull requests stat
     When the github monitor runs
+    
+  Scenario: get outgoing pull request count
+    Given the repository "waynerobinson/xeroizer" has 1 pull request from us
+    Then the number 1 should be stored in the outgoing pull requests stat
+    When the github monitor runs

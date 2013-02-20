@@ -1,13 +1,14 @@
 def statistic_id(stat_name)
   ids = {
-    'public repositories' => 'LEFTRONIC_GITHUB_REPOS',
-    'open issues'         => 'LEFTRONIC_GITHUB_ISSUES',
-    'watchers'            => 'LEFTRONIC_GITHUB_WATCHERS',
-    'forks'               => 'LEFTRONIC_GITHUB_FORKS',
-    'open pull requests'  => 'LEFTRONIC_GITHUB_OPENPRS',
-    'total pull requests' => 'LEFTRONIC_GITHUB_PULLS',
-    'housekeeping graph'  => 'LEFTRONIC_TRELLO_LINE',
-    'irc'                 => 'LEFTRONIC_IRC_COUNT'
+    'public repositories'    => 'LEFTRONIC_GITHUB_REPOS',
+    'open issues'            => 'LEFTRONIC_GITHUB_ISSUES',
+    'watchers'               => 'LEFTRONIC_GITHUB_WATCHERS',
+    'forks'                  => 'LEFTRONIC_GITHUB_FORKS',
+    'open pull requests'     => 'LEFTRONIC_GITHUB_OPENPRS',
+    'total pull requests'    => 'LEFTRONIC_GITHUB_PULLS',
+    'outgoing pull requests' => 'LEFTRONIC_GITHUB_OUTGOING_PRS',
+    'housekeeping graph'     => 'LEFTRONIC_TRELLO_LINE',
+    'irc'                    => 'LEFTRONIC_IRC_COUNT'
   }
   if ids[stat_name]
     ENV[ids[stat_name]]
