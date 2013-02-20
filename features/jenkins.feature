@@ -1,3 +1,4 @@
+@vcr
 Feature: Jenkins monitoring
 
   In order to track our build status
@@ -6,10 +7,10 @@ Feature: Jenkins monitoring
   
   Scenario: passing builds
     Given no builds in Jenkins are failing
-    Then the html '' should be stored in the build status stat
+    Then html containing 'background-color:green' should be stored in the build status stat
     When the jenkins monitor runs
     
   Scenario: failing builds
     Given a build in Jenkins is failing
-    Then the html '' should be stored in the build status stat
+    Then html containing 'background-color:red' should be stored in the build status stat
     When the jenkins monitor runs
