@@ -38,6 +38,13 @@ Given /^the repository "(.*?)" has (\d+) open pull requests?$/ do |repo, open_pr
   end
 end
 
+Given /^the repository "(.*?)\/(.*?)" has (#{INTEGER}) pull requests? from us?$/ do |user, repo, open_prs|
+  VCR.use_cassette("github_check_outgoing_pull_requests_on_#{user}_#{repo}") do
+    @pulls = github.pulls.list(user, repo).select{|x| x[:head][:repo][:owner][:login] == ENV['GITHUB_ORGANISATION']}
+    @pulls.count.should == open_prs.to_i
+  end
+end
+
 Given /^the repository "(.*?)" has (\d+) closed pull requests?$/ do |repo, closed_prs|
   VCR.use_cassette("github_check_closed_pull_requests_on_#{repo}") do
     @pulls = github.pulls.list(ENV['GITHUB_ORGANISATION'], repo, state: 'closed')
