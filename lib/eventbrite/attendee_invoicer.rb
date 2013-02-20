@@ -90,7 +90,7 @@ class AttendeeInvoicer
       end
     end
     unless existing
-      date = event_details['starts_at'].to_date rescue nil
+      date = Date.parse(event_details['starts_at']) rescue nil
       # Build description
       description = "Registration for '#{event_details['title']} (#{date})' for #{user_details['first_name']} #{user_details['last_name']} <#{user_details['email']}> ("
       description += "Order number: #{payment_details['order_number']}" if payment_details['order_number']
