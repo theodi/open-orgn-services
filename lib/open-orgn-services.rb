@@ -22,3 +22,6 @@ require 'jenkins/build_status_monitor'
 require 'leftronic/dashboard_time'
 require 'leftronic/leftronic_publisher'
 require 'trello/trello_monitor'
+
+require 'signup/user'
+require 'signup/signup_processor'

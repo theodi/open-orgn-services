@@ -94,7 +94,7 @@ end
 
 Then /^that invoice should show that payment has not been received$/ do
   @invoice.amount_paid.should == 0.0
-  @invoice.amount_due.should == @invoice.total
+  @invoice.amount_due.should  == @invoice.total
 end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do

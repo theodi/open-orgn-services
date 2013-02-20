@@ -18,7 +18,7 @@ Given /^another event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |ti
 end
 
 Given /^the event is happening on (#{DATE})$/ do |date|
-  @events.last['date'] = date
+  @events.last['starts_at'] = date.to_s
 end
 
 Given /^the event is happening in the past$/ do
@@ -30,9 +30,9 @@ Given /^that event is not live$/ do
 end
 
 Given /^I have signed up for (#{INTEGER}) tickets? called "(.*?)" which has a net price of (#{FLOAT})$/ do |count, name, price|
-  @quantity = count
+  @quantity    = count
   @ticket_type = name
-  @net_price = price
+  @net_price   = price
 end
 
 Given /^the gross price of the event in Eventbrite is (#{FLOAT})$/ do |price|
@@ -44,11 +44,11 @@ Given /^that event has a url '(.*?)'$/ do |url|
 end
 
 Given /^that event starts at (#{DATETIME})$/ do |datetime|
-  @events.last['starts_at'] = datetime
+  @events.last['starts_at'] = datetime.to_s
 end
 
 Given /^that event ends at (#{DATETIME})$/ do |datetime|
-  @events.last['ends_at'] = datetime
+  @events.last['ends_at'] = datetime.to_s
 end
 
 Given /^that event is being held at '(.*?)'$/ do |location|
@@ -66,11 +66,11 @@ Given /^that event has (#{INTEGER}) tickets called "(.*?)" which cost ([A-Z]{3})
 end
 
 Given /^that ticket type is on sale from (#{DATETIME})$/ do |datetime|
-  @events.last['ticket_types'].last['starts_at'] = datetime
+  @events.last['ticket_types'].last['starts_at'] = datetime.to_s
 end
 
 Given /^that ticket type is on sale until (#{DATETIME})$/ do |datetime|
-  @events.last['ticket_types'].last['ends_at'] = datetime
+  @events.last['ticket_types'].last['ends_at'] = datetime.to_s
 end
 
 Then /^the net price of the event is (#{FLOAT})$/ do |price|
