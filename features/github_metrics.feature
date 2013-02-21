@@ -1,3 +1,4 @@
+@vcr 
 Feature: Github monitoring
 
   In order to track our open-source metrics
