@@ -1,7 +1,8 @@
 def setup_trello
-  Trello::Authorization.const_set :AuthPolicy, Trello::Authorization::OAuthPolicy
-  Trello::Authorization::OAuthPolicy.consumer_credential = Trello::Authorization::OAuthCredential.new ENV['TRELLO_DEV_KEY'], ENV['TRELLO_DEV_SECRET']
-  Trello::Authorization::OAuthPolicy.token = Trello::Authorization::OAuthCredential.new ENV['TRELLO_MEMBER_KEY'], nil
+  Trello.configure do |config|
+    config.developer_public_key = ENV['TRELLO_DEV_KEY']
+    config.member_token = ENV['TRELLO_MEMBER_KEY']
+  end
 end
 
 Given /^there are (\d+) cards on the (.*?) list on Trello$/ do |count, queue|
