@@ -10,12 +10,13 @@ Feature: Github monitoring
     Then the number 16 should be stored in the public repositories stat
     When the github monitor runs
 
+  @wip
   Scenario: get open issue count
-    Given the repository "open-orgn-services" has 48 open issues
+    Given the repository "open-orgn-services" has 67 open issues
     And the repository "public-displays" has 2 open issues
     And the repository "csv-profiler" has 1 open issue
     And the repository "open-data-tech-review" has 1 open issue
-    Then the number 52 should be stored in the open issues stat
+    Then the number 71 should be stored in the open issues stat
     When the github monitor runs
 
   Scenario: get watcher count
