@@ -23,6 +23,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'relish'
+  gem 'timecop'
 end
 
 gem 'thin'
