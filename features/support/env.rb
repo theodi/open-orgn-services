@@ -12,6 +12,7 @@ require 'spork'
 #require 'spork/ext/ruby-debug'
 
 require 'vcr'
+require 'webmock/cucumber'
 require 'cucumber/rspec/doubles'
 require 'timecop'
 
