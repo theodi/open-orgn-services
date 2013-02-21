@@ -6,8 +6,8 @@ Feature: Github monitoring
   I want to capture stats from github and push them to a dashboard
   
   Scenario: get public repository count
-    Given there are 13 public repositories on github
-    Then the number 13 should be stored in the public repositories stat
+    Given there are 16 public repositories on github
+    Then the number 16 should be stored in the public repositories stat
     When the github monitor runs
 
   Scenario: get open issue count
