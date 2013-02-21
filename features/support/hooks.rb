@@ -10,6 +10,10 @@ After("@record_all_cassettes") do
   end
 end
 
+After("@timecop") do
+  Timecop.return
+end
+
 After("@clean_up_xero_contact") do
   if @contact
     @contact.name = [@contact.name, @contact.id].join(' ')
