@@ -9,7 +9,8 @@ def statistic_id(stat_name)
     'outgoing pull requests' => 'LEFTRONIC_GITHUB_OUTGOING_PRS',
     'housekeeping graph'     => 'LEFTRONIC_TRELLO_LINE',
     'irc'                    => 'LEFTRONIC_IRC_COUNT',
-    'build status'           => 'LEFTRONIC_JENKINS_HTML'
+    'build status'           => 'LEFTRONIC_JENKINS_HTML',
+    'time'                   => 'LEFTRONIC_JENKINS_TIME'
   }
   if ids[stat_name]
     ENV[ids[stat_name]]
