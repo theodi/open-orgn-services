@@ -35,3 +35,13 @@ end
 When /^the dashboard time publisher runs$/ do
   DashboardTime.perform
 end
+
+Given /^we are publishing a data type called '(.*?)' instead$/ do |type|
+  @datatype = type
+end
+
+When /^the leftronic publisher runs it should raise an error$/ do
+  lambda {
+    LeftronicPublisher.perform(@datatype, @stat, @number)
+  }.should raise_error(ArgumentError, "Unknown data type in LeftronicPublisher: #{@datatype}")
+end
