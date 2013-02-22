@@ -27,7 +27,7 @@ Feature: Create a JSON description of all upcoming events
     And that event starts at 2013-04-16 09:30
     And that event ends at 2013-04-16 12:30
     And that event is being held at 'Open Data Institute'
-    And that event has 100 tickets called "Full Registration" which cost GBP 231.28
+    And that event has 100 tickets called "Full Registration" which cost GBP 1231.50
     And that ticket type is on sale until 2013-04-16 08:30
     And that event has 100 tickets called "Early Bird" which cost GBP 195.40
     And that ticket type is on sale until 2013-04-16 08:30
@@ -97,7 +97,7 @@ Feature: Create a JSON description of all upcoming events
           {
             "@type": "http://schema.org/Offer",
             "name": "Full Registration",
-            "price": 231.28,
+            "price": 1231.5,
             "priceCurrency": "GBP",
             "validThrough": "2013-04-16T08:30:00+00:00",
             "inventoryLevel": 100
