@@ -22,7 +22,7 @@ class EventLister
             t = ticket['ticket']
             tickets << {
               'name'      => t['name'],
-              'remaining' => t['quantity_available'],
+              'remaining' => t['quantity_available'] - t['quantity_sold'],
               'price'     => t['price'].delete(',').to_f,
               'currency'  => t['currency'],
               'ends_at'   => DateTime.parse(t['end_date']).to_s
