@@ -5,6 +5,11 @@ class Hash
 end
 
 require 'resque'
+
+# Setup redis server
+raise "ENV['RESQUE_REDIS_SERVER'] not set" unless ENV['RESQUE_REDIS_SERVER']
+Resque.redis = ENV['RESQUE_REDIS_SERVER']
+
 require 'xeroizer'
 
 require 'eventbrite-client'
