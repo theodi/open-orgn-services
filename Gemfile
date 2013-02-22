@@ -24,6 +24,3 @@ group :development, :test do
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'relish'
 end
-
-gem 'thin'
-gem 'foreman'
