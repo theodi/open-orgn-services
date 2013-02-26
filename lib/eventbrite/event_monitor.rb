@@ -45,7 +45,7 @@ class EventMonitor
     end
     # Queue subsequent jobs
     events.each do |event| 
-      Resque.enqueue(AttendeeLister, event)
+      Resque.enqueue(AttendeeMonitor, event)
     end
     Resque.enqueue(EventSummaryGenerator, events)
   end

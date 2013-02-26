@@ -1,4 +1,4 @@
-class AttendeeLister
+class AttendeeMonitor
 
   @queue = :invoicing
 
@@ -11,7 +11,7 @@ class AttendeeLister
   #
   # Examples
   #
-  #   AttendeeLister.perform('id' => 1235, 'title' => 'Open Data for Dummies', 'starts_at' => Date.new(2013,3,1))
+  #   AttendeeMonitor.perform('id' => 1235, 'title' => 'Open Data for Dummies', 'starts_at' => Date.new(2013,3,1))
   #   # => nil
   #
   # Returns nil. Queues further jobs to handle invoice raising.

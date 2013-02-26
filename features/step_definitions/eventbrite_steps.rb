@@ -89,7 +89,7 @@ end
 
 When /^the attendee lister runs$/ do
   # Check the attendees
-  AttendeeLister.perform(event_details)
+  AttendeeMonitor.perform(event_details)
 end
 
 # Queueing
@@ -101,13 +101,13 @@ end
 
 Then /^that event should be queued for attendee checking$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeLister, event_details).once
+  Resque.should_receive(:enqueue).with(AttendeeMonitor, event_details).once
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^that event should not be queued for attendee checking$/ do
   # Set expectation
-  Resque.should_not_receive(:enqueue).with(AttendeeLister, event_details)
+  Resque.should_not_receive(:enqueue).with(AttendeeMonitor, event_details)
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
