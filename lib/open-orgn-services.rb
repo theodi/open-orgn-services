@@ -13,7 +13,7 @@ Resque.redis = ENV['RESQUE_REDIS_SERVER']
 require 'xeroizer'
 
 require 'eventbrite-client'
-require 'eventbrite/event_lister'
+require 'eventbrite/event_monitor'
 require 'eventbrite/attendee_lister'
 require 'eventbrite/attendee_invoicer'
 require 'eventbrite/event_summary_generator'

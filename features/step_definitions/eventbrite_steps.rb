@@ -96,7 +96,7 @@ end
 
 When /^we poll eventbrite for all events$/ do
   # Check the events list
-  EventLister.perform
+  EventMonitor.perform
 end
 
 Then /^that event should be queued for attendee checking$/ do
