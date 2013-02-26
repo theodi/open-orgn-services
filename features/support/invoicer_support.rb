@@ -1,8 +1,8 @@
-module XeroSupport
+module InvoicerSupport
   
   # Utility functions to marshal setup variables into appropriate hashes
 
-  def user_details
+  def create_invoicer_user_hash
     {
       'company'                  => @company,
       'first_name'               => @first_name,
@@ -28,11 +28,11 @@ module XeroSupport
     }.compact
   end
 
-  def event_details
+  def create_invoicer_event_hash
     @events.last.compact
   end
 
-  def payment_details
+  def create_invoicer_payment_hash
     {
       'order_number'          => @order_number,
       'price'                 => @net_price,
@@ -43,17 +43,6 @@ module XeroSupport
     }.compact
   end
 
-  # Shared setup for the Xero connection
-
-  def xero
-    @xero ||= Xeroizer::PrivateApplication.new(
-      ENV["XERO_CONSUMER_KEY"],
-      ENV["XERO_CONSUMER_SECRET"],
-      ENV["XERO_PRIVATE_KEY_PATH"],
-      :rate_limit_sleep => 5
-    )
-  end
-  
 end
 
-World(XeroSupport)
+World(InvoicerSupport)
