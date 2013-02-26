@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rake'
+gemspec
 
 gem 'eventbrite-client'
 gem 'resque'
 gem 'resque-scheduler', :require => 'resque_scheduler'
+# This should be grabbed from git, not rubygems, as we have our own fixes
 gem 'xeroizer', :git => 'https://github.com/theodi/xeroizer.git'
 gem 'github_api'
 gem 'leftronicapi'

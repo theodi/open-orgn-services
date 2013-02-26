@@ -11,23 +11,23 @@ Feature: Create a JSON description of all upcoming events
     And that event starts at 2013-03-17 19:00
     And that event ends at 2013-03-17 22:00
     And that event is being held at 'The office'
-    And that event has 100 tickets called "Free Ticket" which cost GBP 0.00
+    And that event has 99 tickets called "Free Ticket" which cost GBP 0.00
     And that ticket type is on sale from 2013-02-11 09:00
     And that ticket type is on sale until 2013-03-17 18:00
-    And that event has 100 tickets called "Cheap Ticket" which cost GBP 1.00
+    And that event has 94 tickets called "Cheap Ticket" which cost GBP 1.00
     And that ticket type is on sale until 2013-03-17 18:00
     And another event in Eventbrite called "How to Find an Eventbrite Event ID" with id 5449726278
     And that event has a url 'http://foobarrubbishevent.eventbrite.com'
     And that event starts at 2013-03-24 19:00
     And that event ends at 2013-03-24 22:00
-    And that event has 10 tickets called "Free" which cost GBP 0.00
+    And that event has 9 tickets called "Free" which cost GBP 0.00
     And that ticket type is on sale until 2013-03-24 18:00
     And another event in Eventbrite called "Open Data, Law and Licensing" with id 5519765768  
     And that event has a url 'http://www.eventbrite.com/event/5519765768'
     And that event starts at 2013-04-16 09:30
     And that event ends at 2013-04-16 12:30
     And that event is being held at 'Open Data Institute'
-    And that event has 100 tickets called "Full Registration" which cost GBP 231.28
+    And that event has 100 tickets called "Full Registration" which cost GBP 1231.50
     And that ticket type is on sale until 2013-04-16 08:30
     And that event has 100 tickets called "Early Bird" which cost GBP 195.40
     And that ticket type is on sale until 2013-04-16 08:30
@@ -57,7 +57,7 @@ Feature: Create a JSON description of all upcoming events
             "price": 0.0,
             "priceCurrency": "GBP",
             "validThrough": "2013-03-17T18:00:00+00:00",
-            "inventoryLevel": 100,
+            "inventoryLevel": 99,
             "validFrom": "2013-02-11T09:00:00+00:00"
           },
           {
@@ -66,7 +66,7 @@ Feature: Create a JSON description of all upcoming events
             "price": 1.0,
             "priceCurrency": "GBP",
             "validThrough": "2013-03-17T18:00:00+00:00",
-            "inventoryLevel": 100
+            "inventoryLevel": 94
           }
         ]
       },
@@ -81,7 +81,7 @@ Feature: Create a JSON description of all upcoming events
             "price": 0.0,
             "priceCurrency": "GBP",
             "validThrough": "2013-03-24T18:00:00+00:00",
-            "inventoryLevel": 10
+            "inventoryLevel": 9
           }
         ]
       },
@@ -97,7 +97,7 @@ Feature: Create a JSON description of all upcoming events
           {
             "@type": "http://schema.org/Offer",
             "name": "Full Registration",
-            "price": 231.28,
+            "price": 1231.5,
             "priceCurrency": "GBP",
             "validThrough": "2013-04-16T08:30:00+00:00",
             "inventoryLevel": 100
