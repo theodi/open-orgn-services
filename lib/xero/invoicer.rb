@@ -1,6 +1,6 @@
 require 'date'
 
-class AttendeeInvoicer
+class Invoicer
 
   @queue = :invoicing
 
@@ -40,7 +40,7 @@ class AttendeeInvoicer
   #
   # Examples
   #
-  #   AttendeeInvoicer.perform({:email => 'james.smith@theodi.org', ...}, {:id => 123456789, ...}, {:price => 0.66, ...})
+  #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:id => 123456789, ...}, {:price => 0.66, ...})
   #   # => nil
   #
   # Returns nil.
@@ -78,7 +78,7 @@ class AttendeeInvoicer
     )
     contact.save
     # Requeue
-    Resque.enqueue AttendeeInvoicer, user_details, event_details, payment_details
+    Resque.enqueue Invoicer, user_details, event_details, payment_details
   end
   
   def self.invoice_contact(contact, user_details, event_details, payment_details)
