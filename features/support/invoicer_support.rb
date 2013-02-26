@@ -32,6 +32,10 @@ module InvoicerSupport
     @events.last.compact
   end
 
+  def create_invoicer_membership_hash
+    @membership = { :description => "ODI " + @level + " membership " + @company.nil? ? "for " + @company : ( @firstname && @lastname ? "for " + @firstname + @lastname : "" ) }
+  end
+
   def create_invoicer_payment_hash
     {
       'order_number'          => @order_number,

@@ -24,5 +24,5 @@ Given /^my purchase order number is (\d+)$/ do |po_number|
 end
 
 When /^the signup processor runs$/ do
-  SignupMonitor.perform(membership_details)
+  SignupMonitor.perform(create_signup_processor_membership_hash)
 end
