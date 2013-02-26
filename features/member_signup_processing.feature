@@ -31,5 +31,5 @@ Feature: Processing membership signups
 
 
 #    And I work for "New Company Inc."
-#    And I entered a VAT registration number "AB5678"
+#    And I entered a VAT registration number "AB5678" << should be named tax number
 #    And I entered a purchase order number "AB1234"

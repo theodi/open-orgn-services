@@ -26,6 +26,7 @@ class SignupProcessor
   #   # => nil
   #
   # Returns nil. Queues invoicing and CRM task creation jobs.
+
   def self.perform(user_details)
   end
   
