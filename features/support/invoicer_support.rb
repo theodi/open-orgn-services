@@ -29,7 +29,7 @@ module InvoicerSupport
   end
 
   def create_invoicer_event_hash
-    @events.last.compact
+    @events ? @events.last.compact : {}
   end
 
   def create_invoicer_membership_hash
