@@ -1,11 +1,11 @@
-class EventLister
+class EventMonitor
   @queue = :invoicing
 
   # Public: Inspect the list of event on Eventbrite
   #
   # Examples
   #
-  #   EventLister.perform
+  #   EventMonitor.perform
   #   # => nil
   #
   # Returns nil. Queues further jobs to handle inspection of attendee lists.
@@ -22,8 +22,8 @@ class EventLister
             t = ticket['ticket']
             tickets << {
               'name'      => t['name'],
-              'remaining' => t['quantity_available'],
-              'price'     => t['price'].to_f,
+              'remaining' => t['quantity_available'] - t['quantity_sold'],
+              'price'     => t['price'].delete(',').to_f,
               'currency'  => t['currency'],
               'ends_at'   => DateTime.parse(t['end_date']).to_s
             }
@@ -45,7 +45,7 @@ class EventLister
     end
     # Queue subsequent jobs
     events.each do |event| 
-      Resque.enqueue(AttendeeLister, event)
+      Resque.enqueue(AttendeeMonitor, event)
     end
     Resque.enqueue(EventSummaryGenerator, events)
   end
