@@ -34,7 +34,7 @@ end
 
 Given /^I have already been invoiced$/ do
   # Raise invoice
-  AttendeeInvoicer.perform(user_details, event_details, payment_details)
+  Invoicer.perform(user_details, event_details, payment_details)
   xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
@@ -99,28 +99,4 @@ end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
   @invoice.line_items.last.description.should include("PAYPAL")
-end
-
-# Invoice queue
-
-When /^the attendee invoicer runs$/ do
-  # Invoice
-  AttendeeInvoicer.perform(user_details, event_details, payment_details)
-end
-
-Then /^I should be added to the invoicing queue$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details).once
-  Resque.should_receive(:enqueue).any_number_of_times
-end
-
-Then /^I should not be added to the invoicing queue$/ do
-  Resque.should_not_receive(:enqueue).with do |klass, user, event, payment|
-    payment[:order_number] == @order_number
-  end
-end
-
-Then /^the attendee invoicer should be requeued$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
 end

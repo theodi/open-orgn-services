@@ -1,11 +1,11 @@
-class EventLister
+class EventMonitor
   @queue = :invoicing
 
   # Public: Inspect the list of event on Eventbrite
   #
   # Examples
   #
-  #   EventLister.perform
+  #   EventMonitor.perform
   #   # => nil
   #
   # Returns nil. Queues further jobs to handle inspection of attendee lists.
@@ -45,7 +45,7 @@ class EventLister
     end
     # Queue subsequent jobs
     events.each do |event| 
-      Resque.enqueue(AttendeeLister, event)
+      Resque.enqueue(AttendeeMonitor, event)
     end
     Resque.enqueue(EventSummaryGenerator, events)
   end
