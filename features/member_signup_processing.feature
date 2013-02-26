@@ -1,4 +1,4 @@
-@vcr
+@vcr @wip
 Feature: Processing membership signups
 
   In order to make sure that new member signups are managed properly in ODI systems

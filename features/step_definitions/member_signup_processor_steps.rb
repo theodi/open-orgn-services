@@ -19,7 +19,7 @@ Given /^a membership level called "(.*?)" which has a base annual cost of (\d+)$
   @cost = cost
 end
 
-Given /^my purchase order number is (\d+)$/ do |po_number|
+Given /^my purchase order number is (\d+)$/ do |purchase_order_number|
   @purchase_order_number = purchase_order_number
 end
 
