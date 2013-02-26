@@ -34,7 +34,7 @@ end
 
 Given /^I have already been invoiced$/ do
   # Raise invoice
-  AttendeeInvoicer.perform(user_details, event_details, payment_details)
+  Invoicer.perform(user_details, event_details, payment_details)
   xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
@@ -105,12 +105,12 @@ end
 
 When /^the attendee invoicer runs$/ do
   # Invoice
-  AttendeeInvoicer.perform(user_details, event_details, payment_details)
+  Invoicer.perform(user_details, event_details, payment_details)
 end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details).once
+  Resque.should_receive(:enqueue).with(Invoicer, user_details, event_details, payment_details).once
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
@@ -122,5 +122,5 @@ end
 
 Then /^the attendee invoicer should be requeued$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
+  Resque.should_receive(:enqueue).with(Invoicer, user_details, event_details, payment_details)
 end

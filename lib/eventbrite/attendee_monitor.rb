@@ -28,7 +28,7 @@ class AttendeeMonitor
       orders.each_pair do |order_id, attendees|
         a = attendees.first['attendee']
         if a['amount_paid'].to_f > 0
-          Resque.enqueue(AttendeeInvoicer, 
+          Resque.enqueue(Invoicer, 
             {
               'company'                  => a['company'],
               'first_name'               => a['first_name'],
