@@ -151,30 +151,6 @@ Given /^I have registered for two tickets$/ do
   @quantity = 2
 end
 
-When /^the attendee lister runs$/ do
-  # Check the attendees
-  AttendeeMonitor.perform(event_details)
-end
-
-# Queueing
-
-When /^we poll eventbrite for all events$/ do
-  # Check the events list
-  EventMonitor.perform
-end
-
-Then /^that event should be queued for attendee checking$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeMonitor, event_details).once
-  Resque.should_receive(:enqueue).any_number_of_times
-end
-
-Then /^that event should not be queued for attendee checking$/ do
-  # Set expectation
-  Resque.should_not_receive(:enqueue).with(AttendeeMonitor, event_details)
-  Resque.should_receive(:enqueue).any_number_of_times
-end
-
 Given /^that event has not sold any tickets$/ do
   # nothing to check here, we rely on the cassette or the remote API being correct. Probably a bit lame
 end
