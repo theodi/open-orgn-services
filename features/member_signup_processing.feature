@@ -23,11 +23,15 @@ Feature: Processing membership signups
     And I have an invoice address (postcode) of "EC1A 1AA" 
     And I have a membership number "9101112"
 
-  Scenario: add users to invoicing queue
+  Scenario: add users to new style invoicing queue
     Given a membership level called "supporter" which has a base annual cost of 1000
     And my purchase order number is 142052968
-    Then I should be added to the invoicing queue
+    Then I should be added to the new style invoicing queue
     When the signup processor runs
+
+
+# add description to the scenario
+# add scenarios for different membership levels
 
 
 #    And I work for "New Company Inc."

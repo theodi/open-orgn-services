@@ -39,5 +39,5 @@ Feature: Monitoring eventbrite events
   Scenario: Get empty list of attendees
     Given an event in Eventbrite called "Open Data, Law and Licensing" with id 5519765768
     And that event has not sold any tickets
-    When the attendee lister runs
+    When the attendee monitor runs
     Then no errors should be raised
