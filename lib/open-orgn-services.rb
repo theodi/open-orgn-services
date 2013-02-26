@@ -15,9 +15,10 @@ require 'xeroizer'
 require 'eventbrite-client'
 require 'eventbrite/event_monitor'
 require 'eventbrite/attendee_monitor'
-require 'eventbrite/attendee_invoicer'
 require 'eventbrite/event_summary_generator'
 require 'eventbrite/event_summary_uploader'
+
+require 'xero/invoicer'
 
 require 'github/github_monitor'
 require 'jenkins/build_status_monitor'
