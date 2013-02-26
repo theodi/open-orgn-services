@@ -1,4 +1,4 @@
-class AttendeeLister
+class AttendeeMonitor
 
   @queue = :invoicing
 
@@ -11,7 +11,7 @@ class AttendeeLister
   #
   # Examples
   #
-  #   AttendeeLister.perform('id' => 1235, 'title' => 'Open Data for Dummies', 'starts_at' => Date.new(2013,3,1))
+  #   AttendeeMonitor.perform('id' => 1235, 'title' => 'Open Data for Dummies', 'starts_at' => Date.new(2013,3,1))
   #   # => nil
   #
   # Returns nil. Queues further jobs to handle invoice raising.
@@ -28,7 +28,7 @@ class AttendeeLister
       orders.each_pair do |order_id, attendees|
         a = attendees.first['attendee']
         if a['amount_paid'].to_f > 0
-          Resque.enqueue(AttendeeInvoicer, 
+          Resque.enqueue(Invoicer, 
             {
               'company'                  => a['company'],
               'first_name'               => a['first_name'],

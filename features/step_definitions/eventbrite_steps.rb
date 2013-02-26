@@ -1,3 +1,67 @@
+Given /^my first name is "(.*?)"$/ do |name|
+  @first_name = name
+end
+
+Given /^my last name is "(.*?)"$/ do |name|
+  @last_name = name
+end
+
+Given /^I do not work for anyone$/ do
+  @company = nil
+end
+
+Given /^I work for "(.*?)"$/ do |company|
+  @company = company
+end
+
+Given /^my email address is "(.*)"$/ do |email|
+  @email = email
+end
+
+Given /^my phone number is "(.*?)"$/ do |phone|
+  @phone = phone
+end
+
+Given /^my address \((.*?)\) is "(.*?)"$/ do |type, value|
+  instance_variable_set("@address_#{type}", value)
+end
+
+Given /^that company has an invoice contact email of "(.*?)"$/ do |email|
+  @invoice_email = email
+end
+
+Given /^that company has an invoice phone number of "(.*?)"$/ do |phone|
+  @invoice_phone = phone
+end
+
+Given /^that company has an invoice address \((.*?)\) of "(.*?)"$/ do |type, value|
+  instance_variable_set("@invoice_address_#{type}", value)
+end
+
+Given /^my order number is (#{INTEGER})$/ do |order_number|
+  @order_number = order_number
+end
+
+Given /^I entered a purchase order number "(.*?)"$/ do |po_number|
+  @purchase_order_number = po_number
+end
+
+Given /^I entered a VAT registration number "(.*?)"$/ do |vat_reg_number|
+  @vat_reg_number = vat_reg_number
+end
+
+Given /^I entered a membership number "(.*?)"$/ do |membership_number|
+  @membership_number = membership_number.to_s
+end
+
+Given /^I paid with Paypal$/ do
+  @payment_method = 'paypal'
+end
+
+Given /^I requested an invoice$/ do
+  @payment_method = 'invoice'
+end
+
 # Events
 
 Given /^an event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
@@ -85,30 +149,6 @@ end
 
 Given /^I have registered for two tickets$/ do
   @quantity = 2
-end
-
-When /^the attendee lister runs$/ do
-  # Check the attendees
-  AttendeeLister.perform(event_details)
-end
-
-# Queueing
-
-When /^we poll eventbrite for all events$/ do
-  # Check the events list
-  EventLister.perform
-end
-
-Then /^that event should be queued for attendee checking$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeLister, event_details).once
-  Resque.should_receive(:enqueue).any_number_of_times
-end
-
-Then /^that event should not be queued for attendee checking$/ do
-  # Set expectation
-  Resque.should_not_receive(:enqueue).with(AttendeeLister, event_details)
-  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Given /^that event has not sold any tickets$/ do
