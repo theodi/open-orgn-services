@@ -26,7 +26,7 @@ class Invoicer
   #                   'invoice_address_region'   => Address for invoicing
   #                   'invoice_address_country'  => Address for invoicing
   #                   'invoice_address_postcode' => Address for invoicing
-  #                   'vat_number'               => Tax number for overseas customers
+  #                   'tax_number'               => Tax number for overseas customers
   # event_details   - a hash containing the details of the event.
   #                   'title'                    => the event name
   #                   'starts_at'                => the starting DateTime of the event
@@ -74,7 +74,7 @@ class Invoicer
       email_address: user_details['invoice_email'] || user_details['email'],
       phones:        [{type: 'DEFAULT', number: user_details['invoice_phone'] || user_details['phone']}],
       addresses:     addresses,
-      tax_number:    user_details['vat_number'],
+      tax_number:    user_details['tax_number'],
     )
     contact.save
     # Requeue
@@ -101,7 +101,7 @@ class Invoicer
         description:  description,
         quantity:     payment_details['quantity'], 
         unit_amount:  payment_details['price'],
-        tax_type:     user_details['vat_number'] ? 'NONE' : 'OUTPUT2'
+        tax_type:     user_details['tax_number'] ? 'NONE' : 'OUTPUT2'
       }]
       # Add an empty line item for Paypal payment if appropriate
       if payment_details['payment_method'] == 'paypal'

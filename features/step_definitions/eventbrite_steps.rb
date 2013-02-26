@@ -46,8 +46,8 @@ Given /^I entered a purchase order number "(.*?)"$/ do |po_number|
   @purchase_order_number = po_number
 end
 
-Given /^I entered a VAT registration number "(.*?)"$/ do |vat_reg_number|
-  @vat_reg_number = vat_reg_number
+Given /^I entered a tax registration number "(.*?)"$/ do |tax_reg_number|
+  @tax_reg_number = tax_reg_number
 end
 
 Given /^I entered a membership number "(.*?)"$/ do |membership_number|
