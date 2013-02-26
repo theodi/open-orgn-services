@@ -39,14 +39,14 @@ Feature: Monitoring attendee signups
     And I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
     And my order number is 142052968
     Then I should be added to the invoicing queue
-    When the attendee lister runs
+    When the attendee monitor runs
 
   Scenario: don't add users to invoicing queue if they have a free ticket
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
     And I have signed up for 1 ticket called "Free Ticket" which has a net price of 0.00
     And my order number is 142055824
     Then I should not be added to the invoicing queue
-    When the attendee lister runs
+    When the attendee monitor runs
 
   # Payment types
   Scenario: pay via Paypal
@@ -55,7 +55,7 @@ Feature: Monitoring attendee signups
     And I paid with Paypal
     And my order number is 142059188
     Then I should be added to the invoicing queue
-    When the attendee lister runs
+    When the attendee monitor runs
   
   Scenario: pay with invoice
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
@@ -63,7 +63,7 @@ Feature: Monitoring attendee signups
     And I requested an invoice
     And my order number is 142052968
     Then I should be added to the invoicing queue
-    When the attendee lister runs
+    When the attendee monitor runs
 
   # VAT
   
@@ -74,4 +74,4 @@ Feature: Monitoring attendee signups
     And I paid with Paypal
     And my order number is 142059188
     Then I should be added to the invoicing queue
-    When the attendee lister runs
+    When the attendee monitor runs
