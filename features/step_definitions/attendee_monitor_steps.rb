@@ -6,7 +6,7 @@ end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, user_details, event_details, payment_details).once
+  Resque.should_receive(:enqueue).with(Invoicer, create_invoicer_user_hash, create_invoicer_event_hash, create_invoicer_payment_hash).once
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
