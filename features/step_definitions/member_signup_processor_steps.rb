@@ -20,9 +20,9 @@ Given /^a membership level called "(.*?)" which has a base annual cost of (\d+)$
 end
 
 Given /^my purchase order number is (\d+)$/ do |po_number|
-  @po_number = po_number
+  @purchase_order_number = purchase_order_number
 end
 
 When /^the signup processor runs$/ do
-  SignupMonitor.perform(create_signup_processor_membership_hash)
+  SignupProcessor.perform(create_signup_processor_membership_hash)
 end
