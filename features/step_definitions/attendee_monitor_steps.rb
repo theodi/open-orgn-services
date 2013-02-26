@@ -1,7 +1,7 @@
 
 When /^the attendee lister runs$/ do
   # Check the attendees
-  AttendeeMonitor.perform(event_details)
+  AttendeeMonitor.perform(create_attendee_monitor_event_hash)
 end
 
 Then /^I should be added to the invoicing queue$/ do
