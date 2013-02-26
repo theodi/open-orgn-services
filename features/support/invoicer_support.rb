@@ -23,7 +23,7 @@ module InvoicerSupport
       'invoice_address_region'   => @invoice_address_region,
       'invoice_address_country'  => @invoice_address_country,
       'invoice_address_postcode' => @invoice_address_postcode,
-      'vat_number'               => @vat_reg_number,
+      'tax_number'               => @tax_reg_number,
 
     }.compact
   end
