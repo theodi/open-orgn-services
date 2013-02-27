@@ -1,28 +1,15 @@
-Given /^I have an invoice contact email of "(.*?)"$/ do |email|
-  @invoice_email = email
+
+Given /^I have a membership id "(.*?)"$/ do |membership_id|
+  @membership_id = membership_id
 end
 
-Given /^I have an invoice phone number of "(.*?)"$/ do |phone|
-  @invoice_phone = phone
-end
-
-Given /^I have an invoice address \((.*?)\) of "(.*?)"$/ do |type, value|
-  instance_variable_set("@invoice_#{type}", value)
-end
-
-Given /^I have a membership number "(.*?)"$/ do |membership_number|
-  @membership_number = membership_number
-end
-
-Given /^a membership level called "(.*?)" which has a base annual cost of (\d+)$/ do |level, cost|
-  @level = level
-  @cost = cost
-end
-
-Given /^my purchase order number is (\d+)$/ do |purchase_order_number|
-  @purchase_order_number = purchase_order_number
+Given /^I requested (\d+) membership at the level called "(.*?)" which has a base annual price of (\d+)$/ do |quantity, membership_level, base_price|
+  @quantity = quantity
+  @membership_level = membership_level
+  @base_price = base_price
 end
 
 When /^the signup processor runs$/ do
-  SignupProcessor.perform(create_signup_processor_membership_hash)
+  organization, contact_person, billing, purchase = create_signup_processor_membership_hash
+  SignupProcessor.perform(organization, contact_person, billing, purchase)
 end

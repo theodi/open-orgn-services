@@ -10,30 +10,32 @@ Feature: Processing membership signups
     # a better way in the steps.
 
   Background:
-    Given my email address is "bob.fish@example.com"
-    And my first name is "Bob"
-    And my last name is "Fish"
-    And I have an invoice contact email of "finance@newcompany.com"
-    And I have an invoice phone number of "01234 5678910"
-    And I have an invoice address (line1) of "123 Random Business Park"
-    And I have an invoice address (line2) of "The Rough End"
-    And I have an invoice address (city) of "London"
-    And I have an invoice address (region) of "Greater London"
-    And I have an invoice address (country) of "UK" 
-    And I have an invoice address (postcode) of "EC1A 1AA" 
-    And I have a membership number "9101112"
+    Given my name is "Joe Nerd"
+    And my first name is "Joe"
+    And my last name is "Nerd"
+    And my email address is "joe@nerd.eg"
+    And I work for "Nerd Enterprises Inc"
+    And I have an invoice contact email of "finance@nerd.eg"
+    And I have an invoice phone number of "+1 1010 101010"
+    And I have an invoice address (line1) of "01 Geek Street"
+    And I have an invoice address (line2) of "Techington"
+    And I have an invoice address (city) of "Austin"
+    And I have an invoice address (region) of "Techsus"
+    And I have an invoice address (country) of "USA" 
+    And I have an invoice address (postcode) of "01010"
+    And my organisation has a tax registration number "A0A0A0A0"
+    And I have a membership id "01010101"
 
   Scenario: add users to new style invoicing queue
-    Given a membership level called "supporter" which has a base annual cost of 1000
-    And my purchase order number is 142052968
-    Then I should be added to the new style invoicing queue
+    Given I requested 1 membership at the level called "supporter" which has a base annual price of 1000
+    And my purchase order reference is "ABC000001"
+    And I requested an invoice
+    Then the invoice description should read "ODI Supporter Membership for Nerd Enterprises Inc"
+    And I should be added to the new style invoicing queue
     When the signup processor runs
 
 
-# add description to the scenario
 # add scenarios for different membership levels
+# currently an issue with leading zeros being removed from postcode and membership number
 
 
-#    And I work for "New Company Inc."
-#    And I entered a tax registration number "AB5678"
-#    And I entered a purchase order number "AB1234"
