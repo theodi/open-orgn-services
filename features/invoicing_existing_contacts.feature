@@ -65,10 +65,10 @@ Feature: Invoicing for training events
     # 1.00 * 1.2. Xero should add the VAT that eventbrite charged automatically.
     And that invoice should have a total of 1.20
 
-  Scenario: invoices do not have VAT added for overseas purchasers with VAT registration numbers
+  Scenario: invoices do not have VAT added for overseas purchasers with tax registration numbers
     Given I have registered for a ticket
     # Overseas companies only, so excluded from VAT
-    And I entered a VAT registration number "5678" 
+    And I entered a tax registration number "5678" 
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
