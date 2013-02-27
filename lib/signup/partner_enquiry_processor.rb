@@ -4,12 +4,13 @@ class PartnerEnquiryProcessor
   # Public: Process new enquiries
   #
   # enquiry_details - a hash containing details of the enquiry.
-  #                   'name'         => the name of the enquirer
-  #                   'affiliation'  => the person's organisation
-  #                   'job_title'    => role
-  #                   'email'        => email address
-  #                   'telephone'    => phone number
-  #                   'note'         => free text, 'what would you like to talk about'
+  #                   'name'           => the name of the enquirer
+  #                   'affiliation'    => the person's organisation
+  #                   'job_title'      => role
+  #                   'email'          => email address
+  #                   'telephone'      => phone number
+  #                   'offer_category' => the membership level they have expressed an interest in
+  #                   'note'           => free text, 'what would you like to talk about'
   #
   # Examples
   #
