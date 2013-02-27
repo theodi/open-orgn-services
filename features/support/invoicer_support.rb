@@ -23,13 +23,17 @@ module InvoicerSupport
       'invoice_address_region'   => @invoice_address_region,
       'invoice_address_country'  => @invoice_address_country,
       'invoice_address_postcode' => @invoice_address_postcode,
-      'vat_number'               => @vat_reg_number,
+      'tax_number'               => @tax_reg_number,
 
     }.compact
   end
 
   def create_invoicer_event_hash
-    @events.last.compact
+    @events ? @events.last.compact : {}
+  end
+
+  def create_invoicer_membership_hash
+    @membership = { :description => "ODI " + @level + " membership " + @company.nil? ? "for " + @company : ( @firstname && @lastname ? "for " + @firstname + @lastname : "" ) }
   end
 
   def create_invoicer_payment_hash
