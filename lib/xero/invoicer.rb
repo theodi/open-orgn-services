@@ -27,16 +27,14 @@ class Invoicer
   #                   'invoice_address_country'  => Address for invoicing
   #                   'invoice_address_postcode' => Address for invoicing
   #                   'tax_number'               => Tax number for overseas customers
-  # event_details   - a hash containing the details of the event.
-  #                   'title'                    => the event name
-  #                   'starts_at'                => the starting DateTime of the event
   # payment_details - a hash containing payment details.
   #                   'payment_method'           => Payment method; 'paypal', or 'invoice'
   #                   'quantity'                 => number of tickets
-  #                   'price'                    => net price per ticket
+  #                   'price'                    => net price
   #                   'order_number'             => unique order number from eventbrite
   #                   'membership_number'        => ODI membership number
   #                   'purchase_order_number'    => PO number for reference
+  #                   'due_date'                 => Date the invoice is due
   #
   # Examples
   #
@@ -44,19 +42,19 @@ class Invoicer
   #   # => nil
   #
   # Returns nil.
-  def self.perform(user_details, event_details, payment_details)
+  def self.perform(user_details, payment_details)
     # Find appropriate contact in Xero
     contact = xero.Contact.all(:where => %{Name == "#{contact_name(user_details)}"}).first
     # Create contact if it doesn't exist, otherwise invoice them. 
     # Create contact will requeue this invoicing request.
     if contact.nil?
-      create_contact(user_details, event_details, payment_details)
+      create_contact(user_details, payment_details)
     else
-      invoice_contact(contact, user_details, event_details, payment_details)
+      invoice_contact(contact, user_details, payment_details)
     end
   end
 
-  def self.create_contact(user_details, event_details, payment_details)
+  def self.create_contact(user_details, payment_details)
     addresses = []
     # Billing address
     addresses << {
@@ -78,10 +76,10 @@ class Invoicer
     )
     contact.save
     # Requeue
-    Resque.enqueue Invoicer, user_details, event_details, payment_details
+    Resque.enqueue Invoicer, user_details, payment_details
   end
   
-  def self.invoice_contact(contact, user_details, event_details, payment_details)
+  def self.invoice_contact(contact, user_details, payment_details)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}") AND Status != "DELETED"})
     existing = invoices.find do |invoice| 
@@ -90,15 +88,9 @@ class Invoicer
       end
     end
     unless existing
-      date = Date.parse(event_details['starts_at']) rescue nil
-      # Build description
-      description = "Registration for '#{event_details['title']} (#{date})' for #{user_details['first_name']} #{user_details['last_name']} <#{user_details['email']}> ("
-      description += "Order number: #{payment_details['order_number']}" if payment_details['order_number']
-      description += ",Membership number: #{payment_details['membership_number']}" if payment_details['membership_number']
-      description += ")"
       # Raise invoice
       line_items = [{
-        description:  description,
+        description:  payment_details['invoice_description'],
         quantity:     payment_details['quantity'], 
         unit_amount:  payment_details['price'],
         tax_type:     user_details['tax_number'] ? 'NONE' : 'OUTPUT2'
@@ -107,11 +99,12 @@ class Invoicer
       if payment_details['payment_method'] == 'paypal'
         line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
       end
+      
       # Create invoice
       invoice = xero.Invoice.create(
         type:       'ACCREC',
         contact:    contact,
-        due_date:   (event_details['starts_at'] ? date - 7 : Date.today),
+        due_date:   payment_details['due_date'] || Date.today,
         status:     'DRAFT',
         line_items: line_items,
         reference:  payment_details['purchase_order_number'],

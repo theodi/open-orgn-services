@@ -11,8 +11,6 @@ Feature: Processing membership signups
 
   Background:
     Given my name is "Joe Nerd"
-    And my first name is "Joe"
-    And my last name is "Nerd"
     And my email address is "joe@nerd.eg"
     And I work for "Nerd Enterprises Inc"
     And I have an invoice contact email of "finance@nerd.eg"
@@ -30,7 +28,7 @@ Feature: Processing membership signups
     Given I requested 1 membership at the level called "supporter" which has a base annual price of 1000
     And my purchase order reference is "ABC000001"
     And I requested an invoice
-    Then the invoice description should read "ODI Supporter Membership for Nerd Enterprises Inc"
+    Then the invoice description should read "ODI Supporter Membership (1010101)"
     And I should be added to the new style invoicing queue
     When the signup processor runs
 
