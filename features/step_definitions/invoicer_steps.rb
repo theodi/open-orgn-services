@@ -14,33 +14,33 @@ end
 
 ## for new style invoicing queue
 Then /^I should be added to the new style invoicing queue$/ do
-
-  user_details = {
-    :contact_name             => @name,
-    :contact_email            => @email,                      # do we need this still at the invoice stage?
-    :organisation             => @company,
-    :invoice_email            => @invoice_email,
-    :invoice_phone            => @invoice_phone,              # can we expect the person registering to know the invoice phone?
-    :invoice_address_line1    => @invoice_address_line1,
-    :invoice_address_line2    => @invoice_address_line2,
-    :invoice_address_city     => @invoice_address_city,
-    :invoice_address_region   => @invoice_address_region,
-    :invoice_address_country  => @invoice_address_country,
-    :invoice_address_postcode => @invoice_address_postcode,
-    :tax_registration_number  => @tax_registration_number,
-    :membership_number        => @membership_number
+  
+  invoice_to = {
+    'name' => @company,
+    'contact_point' => {
+      'name' => @name,
+      'email' => @invoice_email,
+      'telephone' => @invoice_phone,
+    },
+    'address' => {
+      'street_address' => @invoice_address_line1,
+      'address_locality' => @invoice_address_city,
+      'address_region' => @invoice_address_region,
+      'address_country' => @invoice_address_country,
+      'postal_code' => @invoice_address_postcode
+    },
+    'vat_id' => @tax_registration_number
   }
-
+  
   invoice_details = {
-    :payment_method           => @payment_method,
-    :quantity                 => @quantity,
-    :base_price               => @base_price,
-    :purchase_order_reference => @purchase_order_reference,
-    :invoice_description      => @invoice_description
+    'quantity' => 1,
+    'base_price' => @base_price,
+    'purchase_order_reference' => @purchase_order_reference,
+    'description' => @invoice_description
   }
 
   # Set expectation
-  #Resque.should_receive(:enqueue).with(Invoicer, user_details, invoice_details).once
+  Resque.should_receive(:enqueue).with(Invoicer, invoice_to, invoice_details).once
 end
 ## for new style invoicing queue
 
