@@ -35,6 +35,40 @@ class Invoicer
   #                   'membership_number'        => ODI membership number
   #                   'purchase_order_number'    => PO number for reference
   #                   'due_date'                 => Date the invoice is due
+  
+
+  # def create_invoice_to_hash
+  #   {
+  #     'name'               => @company,
+  #     'contact_point'      => {
+  #       'name'             => @name || @first_name + " " + @last_name,
+  #       'email'            => @invoice_email,
+  #       'telephone'        => @invoice_phone,
+  #       }.compact,
+  #     'address'            => {
+  #       'street_address'   => @invoice_address_line1 || @invoice_address_line2 ? [@invoice_address_line1, @invoice_address_line2].compact.join(", ") : nil,
+  #       'address_locality' => @invoice_address_city,
+  #       'address_region'   => @invoice_address_region,
+  #       'address_country'  => @invoice_address_country,
+  #       'postal_code'      => @invoice_address_postcode
+  #     }.compact,
+  #     'vat_id'             => @tax_registration_number
+  #     
+  #   }.compact
+  # end
+  # 
+  # def create_invoice_details_hash
+  #   {
+  #     'payment_method'           => @payment_method,
+  #     'quantity'                 => @quantity,
+  #     'base_price'               => @base_price,
+  #     'purchase_order_reference' => @purchase_order_reference,
+  #     'description'              => @invoice_description,
+  #     'due_date'                 => @invoice_due_date ? @invoice_due_date.to_s : nil
+  # 
+  #   }.compact    
+  # end
+  
   #
   # Examples
   #
@@ -42,41 +76,39 @@ class Invoicer
   #   # => nil
   #
   # Returns nil.
-  def self.perform(user_details, payment_details)
+  def self.perform(invoice_to, invoice_details)
     # Find appropriate contact in Xero
-    contact = xero.Contact.all(:where => %{Name == "#{contact_name(user_details)}"}).first
+    contact = xero.Contact.all(:where => %{Name == "#{contact_name(invoice_to)}"}).first
     # Create contact if it doesn't exist, otherwise invoice them. 
     # Create contact will requeue this invoicing request.
     if contact.nil?
-      create_contact(user_details, payment_details)
+      create_contact(invoice_to)
+      Resque.enqueue Invoicer, invoice_to, invoice_details
     else
       invoice_contact(contact, user_details, payment_details)
     end
   end
 
-  def self.create_contact(user_details, payment_details)
+  def self.create_contact(invoice_to)
     addresses = []
     # Billing address
     addresses << {
       type: 'POBOX',
-      line1:       user_details['invoice_address_line1']    || user_details['address_line1'],
-      line2:       user_details['invoice_address_line2']    || user_details['address_line2'],
-      city:        user_details['invoice_address_city']     || user_details['address_city'],
-      region:      user_details['invoice_address_region']   || user_details['address_region'],
-      country:     user_details['invoice_address_country']  || user_details['address_country'],
-      postal_code: user_details['invoice_address_postcode'] || user_details['address_postcode'],
+      line1:       invoice_to['address']['street_address'] ,
+      city:        invoice_to['address']['address_locality'],
+      region:      invoice_to['address']['address_region'],
+      country:     invoice_to['address']['address_country'],
+      postal_code: invoice_to['address']['postal_code'],
     }
     # Create contact
     contact = xero.Contact.create(
-      name:          contact_name(user_details),
-      email_address: user_details['invoice_email'] || user_details['email'],
-      phones:        [{type: 'DEFAULT', number: user_details['invoice_phone'] || user_details['phone']}],
+      name:          contact_name(invoice_to),
+      email_address: invoice_to['contact_point']['email'],
+      phones:        [{type: 'DEFAULT', number: invoice_to['contact_point']['telephone']}],
       addresses:     addresses,
-      tax_number:    user_details['tax_number'],
+      tax_number:    invoice_to['vat_id'],
     )
-    contact.save
-    # Requeue
-    Resque.enqueue Invoicer, user_details, payment_details
+    contact.save    
   end
   
   def self.invoice_contact(contact, user_details, payment_details)
@@ -113,8 +145,8 @@ class Invoicer
     end
   end
 
-  def self.contact_name(user_details)
-    user_details['company'] || [user_details['first_name'], user_details['last_name'], "<#{user_details['email']}>"].join(' ')
+  def self.contact_name(invoice_to)
+    invoice_to['name'] || [invoice_to['contact_point']['name'], "<#{invoice_to['contact_point']['email']}>"].join(' ')
   end
 
   def self.xero
