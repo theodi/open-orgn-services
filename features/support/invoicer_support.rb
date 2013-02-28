@@ -9,14 +9,14 @@ module InvoicerSupport
         'name'             => @name || @first_name + " " + @last_name,
         'email'            => @invoice_email,
         'telephone'        => @invoice_phone,
-      },
+        }.compact,
       'address'            => {
-        'street_address'   => [@invoice_address_line1, @invoice_address_line2].compact.join(", "),
+        'street_address'   => @invoice_address_line1 || @invoice_address_line2 ? [@invoice_address_line1, @invoice_address_line2].compact.join(", ") : nil,
         'address_locality' => @invoice_address_city,
         'address_region'   => @invoice_address_region,
         'address_country'  => @invoice_address_country,
         'postal_code'      => @invoice_address_postcode
-      },
+      }.compact,
       'vat_id'             => @tax_registration_number
       
     }.compact
