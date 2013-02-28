@@ -27,7 +27,6 @@ Feature: Processing membership signups
   Scenario: add users to new style invoicing queue
     Given I requested 1 membership at the level called "supporter" which has a base annual price of 1000
     And my purchase order reference is "ABC000001"
-    And I requested an invoice
     Then the invoice description should read "ODI Supporter Membership (1010101)"
     And I should be added to the new style invoicing queue
     When the signup processor runs
