@@ -7,8 +7,12 @@ end
 require 'resque'
 
 # Setup redis server
-raise "ENV['RESQUE_REDIS_SERVER'] not set" unless ENV['RESQUE_REDIS_SERVER']
-Resque.redis = ENV['RESQUE_REDIS_SERVER']
+raise "Redis configuration not set" unless ENV['RESQUE_REDIS_HOST'] && ENV['RESQUE_REDIS_PORT']
+Resque.redis = Redis.new(
+  :host => ENV['RESQUE_REDIS_HOST'], 
+  :port => ENV['RESQUE_REDIS_PORT'], 
+  :password => (ENV['RESQUE_REDIS_PASSWORD'].nil? || ENV['RESQUE_REDIS_PASSWORD']=='' ? nil : ENV['RESQUE_REDIS_PASSWORD'])
+)
 
 require 'xeroizer'
 

@@ -34,7 +34,7 @@ end
 
 Given /^I have already been invoiced$/ do
   # Raise invoice
-  Invoicer.perform(create_invoicer_user_hash, create_invoicer_event_hash, create_invoicer_payment_hash)
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
   xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
