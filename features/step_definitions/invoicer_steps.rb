@@ -13,7 +13,7 @@ end
 
 Then /^I should not be added to the invoicing queue$/ do
   Resque.should_not_receive(:enqueue).with do |klass, user, payment|
-    payment[:order_number] == @order_number
+    payment[:description] == @invoice_description
   end
 end
 
