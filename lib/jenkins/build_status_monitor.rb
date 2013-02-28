@@ -15,6 +15,7 @@ class BuildStatusMonitor
          'http://cdn.memegenerator.net/instances/400x/25381088.jpg',
          'http://cdn.memegenerator.net/instances/400x/26324172.jpg',
          'http://cdn.memegenerator.net/instances/400x/34551997.jpg',
+         'http://mlkshk.com/r/OT39.gif'
       ].shuffle.first
       colour = 'red'
     else
