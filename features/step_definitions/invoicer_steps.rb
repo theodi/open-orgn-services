@@ -14,33 +14,8 @@ end
 
 ## for new style invoicing queue
 Then /^I should be added to the new style invoicing queue$/ do
-  
-  invoice_to = {
-    'name' => @company,
-    'contact_point' => {
-      'name' => @name,
-      'email' => @invoice_email,
-      'telephone' => @invoice_phone,
-    },
-    'address' => {
-      'street_address' => @invoice_address_line1,
-      'address_locality' => @invoice_address_city,
-      'address_region' => @invoice_address_region,
-      'address_country' => @invoice_address_country,
-      'postal_code' => @invoice_address_postcode
-    },
-    'vat_id' => @tax_registration_number
-  }
-  
-  invoice_details = {
-    'quantity' => 1,
-    'base_price' => @base_price,
-    'purchase_order_reference' => @purchase_order_reference,
-    'description' => @invoice_description
-  }
-
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, invoice_to, invoice_details).once
+  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
 end
 ## for new style invoicing queue
 
