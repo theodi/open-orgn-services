@@ -11,7 +11,7 @@ module InvoicerSupport
         'telephone'        => @invoice_phone,
       },
       'address'            => {
-        'street_address'   => [@invoice_address_line1, @invoice_address_line2].join(", "),
+        'street_address'   => [@invoice_address_line1, @invoice_address_line2].compact.join(", "),
         'address_locality' => @invoice_address_city,
         'address_region'   => @invoice_address_region,
         'address_country'  => @invoice_address_country,
@@ -29,7 +29,7 @@ module InvoicerSupport
       'base_price'               => @base_price,
       'purchase_order_reference' => @purchase_order_reference,
       'description'              => @invoice_description,
-      'due_date'                 => @invoice_due_date.to_s
+      'due_date'                 => @invoice_due_date ? @invoice_due_date.to_s : nil
 
     }.compact    
   end
