@@ -6,73 +6,32 @@ class Invoicer
 
   # Public: Create an invoice for an event attendee
   #
-  # user_details    - a hash containing details of the user.
-  #                   'company'                  => Company name
-  #                   'first_name'               => First name of main attendee
-  #                   'last_name'                => Last name of main attendee
-  #                   'email'                    => Email address of main attendee
-  #                   'invoice_email'            => Email address for invoicing
-  #                   'phone'                    => Phone number of main attendee
-  #                   'invoice_phone'            => Phone number for invoicing
-  #                   'address_line1'            => Address for delivery (i.e. not billing)
-  #                   'address_line2'            => Address for delivery (i.e. not billing)
-  #                   'address_city'             => Address for delivery (i.e. not billing)
-  #                   'address_region'           => Address for delivery (i.e. not billing)
-  #                   'address_country'          => Address for delivery (i.e. not billing)
-  #                   'address_postcode'         => Address for delivery (i.e. not billing)
-  #                   'invoice_address_line1'    => Address for invoicing
-  #                   'invoice_address_line2'    => Address for invoicing
-  #                   'invoice_address_city'     => Address for invoicing
-  #                   'invoice_address_region'   => Address for invoicing
-  #                   'invoice_address_country'  => Address for invoicing
-  #                   'invoice_address_postcode' => Address for invoicing
-  #                   'tax_number'               => Tax number for overseas customers
-  # payment_details - a hash containing payment details.
+  # invoice_to         - a hash containing details of the user.
+  #                   'name'          => Company name
+  #
+  #                   'contact_point' - A hash containing contact details of the point of contact for the invoice
+  #                                   'name'      => Contact name
+  #                                   'email'     => Email address
+  #                                   'telephone' => Telephone number
+  #
+  #                   'address'       - A hash containing the address
+  #                                   'street_address'   => Street address,
+  #                                   'address_locality' => Locality / city,
+  #                                   'address_region'   => Region,
+  #                                   'address_country'  => Country,
+  #                                   'postal_code'      => Postcode
+  #
+  #                   'vat_id'        => Tax number for overseas customers
+  # invoice_details   - a hash containing payment details.
   #                   'payment_method'           => Payment method; 'paypal', or 'invoice'
   #                   'quantity'                 => number of tickets
-  #                   'price'                    => net price
-  #                   'order_number'             => unique order number from eventbrite
-  #                   'membership_number'        => ODI membership number
+  #                   'base_price'                    => net price
   #                   'purchase_order_number'    => PO number for reference
-  #                   'due_date'                 => Date the invoice is due
-  
-
-  # def create_invoice_to_hash
-  #   {
-  #     'name'               => @company,
-  #     'contact_point'      => {
-  #       'name'             => @name || @first_name + " " + @last_name,
-  #       'email'            => @invoice_email,
-  #       'telephone'        => @invoice_phone,
-  #       }.compact,
-  #     'address'            => {
-  #       'street_address'   => @invoice_address_line1 || @invoice_address_line2 ? [@invoice_address_line1, @invoice_address_line2].compact.join(", ") : nil,
-  #       'address_locality' => @invoice_address_city,
-  #       'address_region'   => @invoice_address_region,
-  #       'address_country'  => @invoice_address_country,
-  #       'postal_code'      => @invoice_address_postcode
-  #     }.compact,
-  #     'vat_id'             => @tax_registration_number
-  #     
-  #   }.compact
-  # end
-  # 
-  # def create_invoice_details_hash
-  #   {
-  #     'payment_method'           => @payment_method,
-  #     'quantity'                 => @quantity,
-  #     'base_price'               => @base_price,
-  #     'purchase_order_reference' => @purchase_order_reference,
-  #     'description'              => @invoice_description,
-  #     'due_date'                 => @invoice_due_date ? @invoice_due_date.to_s : nil
-  # 
-  #   }.compact    
-  # end
-  
+  #                   'due_date'                 => Date the invoice is due  
   #
   # Examples
   #
-  #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:id => 123456789, ...}, {:price => 0.66, ...})
+  #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:base_price => 0.66, ...})
   #   # => nil
   #
   # Returns nil.
