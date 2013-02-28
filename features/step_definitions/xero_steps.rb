@@ -26,8 +26,8 @@ Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field,
   @contact.addresses.find{|x| x.type=='POBOX'}.send(field).should == value
 end
 
-Then /^that contact should have VAT number "(.*?)"$/ do |vat_number|
-  @contact.tax_number.should == vat_number
+Then /^that contact should have tax number "(.*?)"$/ do |tax_number|
+  @contact.tax_number.should == tax_number
 end
 
 # Invoices 
