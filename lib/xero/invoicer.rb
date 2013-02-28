@@ -85,7 +85,7 @@ class Invoicer
       create_contact(invoice_to)
       Resque.enqueue Invoicer, invoice_to, invoice_details
     else
-      invoice_contact(contact, user_details, payment_details)
+      invoice_contact(contact, invoice_to, invoice_details)
     end
   end
 
@@ -111,24 +111,24 @@ class Invoicer
     contact.save    
   end
   
-  def self.invoice_contact(contact, user_details, payment_details)
+  def self.invoice_contact(contact, invoice_to, invoice_details)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}") AND Status != "DELETED"})
     existing = invoices.find do |invoice| 
       invoice.line_items.find do |line| 
-        line.description =~ /Order number: #{payment_details['order_number']}/
+        line.description == invoice_details['description']
       end
     end
     unless existing
       # Raise invoice
       line_items = [{
-        description:  payment_details['invoice_description'],
-        quantity:     payment_details['quantity'], 
-        unit_amount:  payment_details['price'],
-        tax_type:     user_details['tax_number'] ? 'NONE' : 'OUTPUT2'
+        description:  invoice_details['description'],
+        quantity:     invoice_details['quantity'], 
+        unit_amount:  invoice_details['base_price'],
+        tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2'
       }]
       # Add an empty line item for Paypal payment if appropriate
-      if payment_details['payment_method'] == 'paypal'
+      if invoice_details['payment_method'] == 'paypal'
         line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
       end
       
@@ -136,10 +136,10 @@ class Invoicer
       invoice = xero.Invoice.create(
         type:       'ACCREC',
         contact:    contact,
-        due_date:   payment_details['due_date'] || Date.today,
+        due_date:   invoice_details['due_date'] || Date.today,
         status:     'DRAFT',
         line_items: line_items,
-        reference:  payment_details['purchase_order_number'],
+        reference:  invoice_details['purchase_order_reference'],
       )
       invoice.save
     end

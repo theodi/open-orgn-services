@@ -26,7 +26,7 @@ Feature: Invoicing for training events
 
   Scenario: invoices include purchase order numbers
     Given I have registered for a ticket
-    And I entered a purchase order number "AB1234"
+    And my purchase order reference is "AB1234"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the reference "AB1234"
@@ -68,7 +68,7 @@ Feature: Invoicing for training events
   Scenario: invoices do not have VAT added for overseas purchasers with tax registration numbers
     Given I have registered for a ticket
     # Overseas companies only, so excluded from VAT
-    And I entered a tax registration number "5678" 
+    And my organisation has a tax registration number "5678" 
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
