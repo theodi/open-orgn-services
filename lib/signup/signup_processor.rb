@@ -3,30 +3,75 @@ class SignupProcessor
   
   # Public: Process new signups from the member site
   #
-  # user_details    - a hash containing details of the newly signed-up user.
-  #                   'level'                 => Membership level
-  #                   'organisation_name'     => Name or organisation
-  #                   'contact_name'          => Name of contact
-  #                   'email'                 => Email address of contact
-  #                   'phone'                 => Phone number of contact 
-  #                   'address_line1'         => Address
-  #                   'address_line2'         => Address
-  #                   'address_city'          => Address
-  #                   'address_region'        => Address
-  #                   'address_country'       => Address
-  #                   'address_postcode'      => Address
-  #                   'tax_number'            => Tax number for overseas customers 
-  #                   'purchase_order_number' => PO number if supplied
-  #                   'membership_number'        => New membership number
-  # 
+  # expects input of the following form...
   #
-  # Examples
+  # organization      - a hash containing the details of the member organisation
+  #                   'name'
+  #                   'vat_id'
   #
-  #   SignupProcessor.perform({:organisation_name => 'New Company Inc.', ...})
-  #   # => nil
+  # contact_person    - a hash containing details of the main contact for the member organisation
+  #                    'name'
+  #                    'email'
+  #                    'telephone'
   #
+  # billing           - a hash containing the details of the billing contact for the member organisation
+  #                   'name'
+  #                   'email'
+  #                   'telephone'
+  #                   'address' => {
+  #                      'street_address' => ...,
+  #                      'address_locality',
+  #                      'address_region',
+  #                      'address_country',
+  #                      'postal_code'
+  #                    }
+  #
+  # purchase          - a hash containing information about the purchase
+  #                   'offer_category'
+  #                   'purchase_order_reference'
+  #                   'membership_id'
+
+
   # Returns nil. Queues invoicing and CRM task creation jobs.
-  def self.perform(user_details)
+
+
+  def self.base_price
+    # get the base price for this level of membership
+    # hardcoded for now, because
+    1000
+  end
+
+  def self.description(membership_id, offer_category)
+      "ODI #{offer_category.capitalize} Membership (#{membership_id})"
+  end
+
+
+  def self.perform(organization, contact_person, billing, purchase)
+
+    invoice_to = {
+      'name' => organization['name'],
+      'contact_point' => {
+        'name' => billing['name'],
+        'email' => billing['email'],
+        'telephone' => billing['telephone'],
+      },
+      'address' => {
+        'street_address' => billing['address']['street_address'],
+        'address_locality' => billing['address']['address_locality'],
+        'address_region' => billing['address']['address_region'],
+        'address_country' => billing['address']['address_country'],
+        'postal_code' => billing['address']['postal_code']
+      },
+      'vat_id' => organization['vat_id']
+    }
+    invoice_details = {
+      'quantity' => 1,
+      'base_price' => base_price,
+      'purchase_order_reference' => purchase['purchase_order_reference'],
+      'description' => description(purchase['membership_id'], purchase['offer_category'])
+    }
+
+    Resque.enqueue(Invoicer, invoice_to, invoice_details)
   end
   
 end
