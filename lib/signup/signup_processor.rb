@@ -41,12 +41,8 @@ class SignupProcessor
     1000
   end
 
-  def self.description(membership_id, name)
-    if name.nil?
-      "ODI membership (#{membership_id})"
-    else
-      "ODI membership (#{membership_id}) for #{name}"
-    end
+  def self.description(membership_id, offer_category)
+      "ODI #{offer_category.capitalize} Membership (#{membership_id})"
   end
 
 
@@ -72,7 +68,7 @@ class SignupProcessor
       'quantity' => 1,
       'base_price' => base_price,
       'purchase_order_reference' => purchase['purchase_order_reference'],
-      'description' => description(purchase['membership_id'], organization['name'])
+      'description' => description(purchase['membership_id'], purchase['offer_category'])
     }
 
     Resque.enqueue(Invoicer, invoice_to, invoice_details)

@@ -10,7 +10,9 @@ Feature: Monitoring attendee signups
 	# a better way in the steps.
   
   Background: 
-    Given my email address is "bob.fish@example.com"
+    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
+    And that event starts at 2013-03-17 19:00
+    And my email address is "bob.fish@example.com"
     And my first name is "Bob"
     And my last name is "Fish"
     And my phone number is "01234 098765"
@@ -29,49 +31,50 @@ Feature: Monitoring attendee signups
     And that company has an invoice address (region) of "Greater London"
     And that company has an invoice address (country) of "UK" 
     And that company has an invoice address (postcode) of "EC1A 1AA" 
-    And I entered a tax registration number "AB5678"
+    And my organisation has a tax registration number "AB5678"
     And I entered a membership number "9101112"
-    And I entered a purchase order number "AB1234"
+    And my purchase order reference is "AB1234"
     And I requested an invoice
+	Then the invoice should be due on 2013-03-10
     
   Scenario: add users to invoicing queue if they have a paid ticket
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
+    Given I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
     And my order number is 142052968
-    Then I should be added to the invoicing queue
+	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
+    And I should be added to the invoicing queue
     When the attendee monitor runs
 
   Scenario: don't add users to invoicing queue if they have a free ticket
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And I have signed up for 1 ticket called "Free Ticket" which has a net price of 0.00
+    Given I have signed up for 1 ticket called "Free Ticket" which has a net price of 0.00
     And my order number is 142055824
-    Then I should not be added to the invoicing queue
+	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142055824,Membership number: 9101112)"
+    And I should not be added to the invoicing queue
     When the attendee monitor runs
 
   # Payment types
   Scenario: pay via Paypal
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And I have signed up for 1 ticket called "Cheap Ticket" which has a net price of 1.00
+    Given I have signed up for 1 ticket called "Cheap Ticket" which has a net price of 1.00
     And I paid with Paypal
     And my order number is 142059188
-    Then I should be added to the invoicing queue
+	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
+    And I should be added to the invoicing queue
     When the attendee monitor runs
   
   Scenario: pay with invoice
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
+    Given I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
     And I requested an invoice
     And my order number is 142052968
-    Then I should be added to the invoicing queue
+	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
+    And I should be added to the invoicing queue
     When the attendee monitor runs
 
   # VAT
   
   Scenario: invoices are raised net of VAT
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And I have signed up for 1 ticket called "Cheap Ticket" which has a net price of 1.00
+    Given I have signed up for 1 ticket called "Cheap Ticket" which has a net price of 1.00
     And the gross price of the event in Eventbrite is 1.20
     And I paid with Paypal
     And my order number is 142059188
-    Then I should be added to the invoicing queue
+	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
+    And I should be added to the invoicing queue
     When the attendee monitor runs

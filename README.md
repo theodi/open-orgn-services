@@ -44,7 +44,9 @@ Environment
 
 The following environment variables should be set in order to use this gem.
 
-    RESQUE_REDIS_SERVER
+    RESQUE_REDIS_HOST
+    RESQUE_REDIS_PORT
+    RESQUE_REDIS_PASSWORD (optional)
     
     EVENTBRITE_API_KEY
     EVENTBRITE_USER_KEY
