@@ -11,14 +11,11 @@ Feature: Processing membership signups
 
   Background:
     Given my name is "Joe Nerd"
-    And my first name is "Joe"
-    And my last name is "Nerd"
     And my email address is "joe@nerd.eg"
     And I work for "Nerd Enterprises Inc"
     And I have an invoice contact email of "finance@nerd.eg"
     And I have an invoice phone number of "+1 1010 101010"
-    And I have an invoice address (line1) of "01 Geek Street"
-    And I have an invoice address (line2) of "Techington"
+    And I have an invoice address (line1) of "01 Geek Street, Techington"
     And I have an invoice address (city) of "Austin"
     And I have an invoice address (region) of "Techsus"
     And I have an invoice address (country) of "USA" 
@@ -29,9 +26,8 @@ Feature: Processing membership signups
   Scenario: add users to new style invoicing queue
     Given I requested 1 membership at the level called "supporter" which has a base annual price of 1000
     And my purchase order reference is "ABC000001"
-    And I requested an invoice
-    Then the invoice description should read "ODI Supporter Membership for Nerd Enterprises Inc"
-    And I should be added to the new style invoicing queue
+    Then the invoice description should read "ODI Supporter Membership (1010101)"
+    And I should be added to the invoicing queue
     When the signup processor runs
 
 
