@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ruby-trello'        , '~> 0.5' , '>= 0.5.1'
   s.add_dependency 'jenkins-remote-api' , '~> 0.0' , '>= 0.0.4'
   s.add_dependency 'xeroizer'           , '~> 2.15', '>= 2.15.3'
+  s.add_dependency 'capsulecrm'
 
   s.add_development_dependency 'cucumber'         , '~> 1.2' , '>= 1.2.1'
   s.add_development_dependency 'rspec'            , '~> 2.12', '>= 2.12.0'
