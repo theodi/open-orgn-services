@@ -3,22 +3,21 @@ class PartnerEnquiryProcessor
   
   # Public: Process new enquiries
   #
-  # enquiry_details - a hash containing details of the enquiry.
-  #                   'name'           => the name of the enquirer
-  #                   'affiliation'    => the person's organisation
-  #                   'job_title'      => role
-  #                   'email'          => email address
-  #                   'telephone'      => phone number
-  #                   'offer_category' => the membership level they have expressed an interest in
-  #                   'note'           => free text, 'what would you like to talk about'
-  #
-  # Examples
-  #
-  #   SignupProcessor.perform({:name => 'Bob Fish', :affiliation => 'New Company Inc.', ...})
-  #   # => nil
+  # person  - a hash containing details of the person sending the enquiry.
+  #           'name'           => the name of the enquirer
+  #           'affiliation'    => the person's organisation
+  #           'job_title'      => role
+  #           'email'          => email address
+  #           'telephone'      => phone number
+  # 
+  # product - a hash describing the product being enquired about
+  #           'name'           => textual name of membership level they have expressed an interest in
+  # 
+  # comment - a hash describing the comment submitted in the contact form
+  #           'text'           => the text content of the comment
   #
   # Returns nil. Queues CRM task creation jobs.
-  def self.perform(enquiry_details)
+  def self.perform(person, product, comment)
   end
   
 end
