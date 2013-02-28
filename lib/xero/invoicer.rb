@@ -6,122 +6,106 @@ class Invoicer
 
   # Public: Create an invoice for an event attendee
   #
-  # user_details    - a hash containing details of the user.
-  #                   'company'                  => Company name
-  #                   'first_name'               => First name of main attendee
-  #                   'last_name'                => Last name of main attendee
-  #                   'email'                    => Email address of main attendee
-  #                   'invoice_email'            => Email address for invoicing
-  #                   'phone'                    => Phone number of main attendee
-  #                   'invoice_phone'            => Phone number for invoicing
-  #                   'address_line1'            => Address for delivery (i.e. not billing)
-  #                   'address_line2'            => Address for delivery (i.e. not billing)
-  #                   'address_city'             => Address for delivery (i.e. not billing)
-  #                   'address_region'           => Address for delivery (i.e. not billing)
-  #                   'address_country'          => Address for delivery (i.e. not billing)
-  #                   'address_postcode'         => Address for delivery (i.e. not billing)
-  #                   'invoice_address_line1'    => Address for invoicing
-  #                   'invoice_address_line2'    => Address for invoicing
-  #                   'invoice_address_city'     => Address for invoicing
-  #                   'invoice_address_region'   => Address for invoicing
-  #                   'invoice_address_country'  => Address for invoicing
-  #                   'invoice_address_postcode' => Address for invoicing
-  #                   'vat_number'               => Tax number for overseas customers
-  # event_details   - a hash containing the details of the event.
-  #                   'title'                    => the event name
-  #                   'starts_at'                => the starting DateTime of the event
-  # payment_details - a hash containing payment details.
+  # invoice_to         - a hash containing details of the user.
+  #                   'name'          => Company name
+  #
+  #                   'contact_point' - A hash containing contact details of the point of contact for the invoice
+  #                                   'name'      => Contact name
+  #                                   'email'     => Email address
+  #                                   'telephone' => Telephone number
+  #
+  #                   'address'       - A hash containing the address
+  #                                   'street_address'   => Street address,
+  #                                   'address_locality' => Locality / city,
+  #                                   'address_region'   => Region,
+  #                                   'address_country'  => Country,
+  #                                   'postal_code'      => Postcode
+  #
+  #                   'vat_id'        => Tax number for overseas customers
+  # invoice_details   - a hash containing payment details.
   #                   'payment_method'           => Payment method; 'paypal', or 'invoice'
   #                   'quantity'                 => number of tickets
-  #                   'price'                    => net price per ticket
-  #                   'order_number'             => unique order number from eventbrite
-  #                   'membership_number'        => ODI membership number
+  #                   'base_price'                    => net price
   #                   'purchase_order_number'    => PO number for reference
+  #                   'due_date'                 => Date the invoice is due  
   #
   # Examples
   #
-  #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:id => 123456789, ...}, {:price => 0.66, ...})
+  #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:base_price => 0.66, ...})
   #   # => nil
   #
   # Returns nil.
-  def self.perform(user_details, event_details, payment_details)
+  def self.perform(invoice_to, invoice_details)
     # Find appropriate contact in Xero
-    contact = xero.Contact.all(:where => %{Name == "#{contact_name(user_details)}"}).first
+    contact = xero.Contact.all(:where => %{Name == "#{contact_name(invoice_to)}"}).first
     # Create contact if it doesn't exist, otherwise invoice them. 
     # Create contact will requeue this invoicing request.
     if contact.nil?
-      create_contact(user_details, event_details, payment_details)
+      create_contact(invoice_to)
+      Resque.enqueue Invoicer, invoice_to, invoice_details
     else
-      invoice_contact(contact, user_details, event_details, payment_details)
+      invoice_contact(contact, invoice_to, invoice_details)
     end
   end
 
-  def self.create_contact(user_details, event_details, payment_details)
+  def self.create_contact(invoice_to)
     addresses = []
     # Billing address
     addresses << {
       type: 'POBOX',
-      line1:       user_details['invoice_address_line1']    || user_details['address_line1'],
-      line2:       user_details['invoice_address_line2']    || user_details['address_line2'],
-      city:        user_details['invoice_address_city']     || user_details['address_city'],
-      region:      user_details['invoice_address_region']   || user_details['address_region'],
-      country:     user_details['invoice_address_country']  || user_details['address_country'],
-      postal_code: user_details['invoice_address_postcode'] || user_details['address_postcode'],
+      line1:       invoice_to['address']['street_address'] ,
+      city:        invoice_to['address']['address_locality'],
+      region:      invoice_to['address']['address_region'],
+      country:     invoice_to['address']['address_country'],
+      postal_code: invoice_to['address']['postal_code'],
     }
     # Create contact
     contact = xero.Contact.create(
-      name:          contact_name(user_details),
-      email_address: user_details['invoice_email'] || user_details['email'],
-      phones:        [{type: 'DEFAULT', number: user_details['invoice_phone'] || user_details['phone']}],
+      name:          contact_name(invoice_to),
+      email_address: invoice_to['contact_point']['email'],
+      phones:        [{type: 'DEFAULT', number: invoice_to['contact_point']['telephone']}],
       addresses:     addresses,
-      tax_number:    user_details['vat_number'],
+      tax_number:    invoice_to['vat_id'],
     )
-    contact.save
-    # Requeue
-    Resque.enqueue Invoicer, user_details, event_details, payment_details
+    contact.save    
   end
   
-  def self.invoice_contact(contact, user_details, event_details, payment_details)
+  def self.invoice_contact(contact, invoice_to, invoice_details)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}") AND Status != "DELETED"})
     existing = invoices.find do |invoice| 
       invoice.line_items.find do |line| 
-        line.description =~ /Order number: #{payment_details['order_number']}/
+        line.description == invoice_details['description']
       end
     end
     unless existing
-      date = Date.parse(event_details['starts_at']) rescue nil
-      # Build description
-      description = "Registration for '#{event_details['title']} (#{date})' for #{user_details['first_name']} #{user_details['last_name']} <#{user_details['email']}> ("
-      description += "Order number: #{payment_details['order_number']}" if payment_details['order_number']
-      description += ",Membership number: #{payment_details['membership_number']}" if payment_details['membership_number']
-      description += ")"
       # Raise invoice
       line_items = [{
-        description:  description,
-        quantity:     payment_details['quantity'], 
-        unit_amount:  payment_details['price'],
-        tax_type:     user_details['vat_number'] ? 'NONE' : 'OUTPUT2'
+        description:  invoice_details['description'],
+        quantity:     invoice_details['quantity'], 
+        unit_amount:  invoice_details['base_price'],
+        tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2'
       }]
       # Add an empty line item for Paypal payment if appropriate
-      if payment_details['payment_method'] == 'paypal'
+      if invoice_details['payment_method'] == 'paypal'
         line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
       end
+      
       # Create invoice
       invoice = xero.Invoice.create(
         type:       'ACCREC',
         contact:    contact,
-        due_date:   (event_details['starts_at'] ? date - 7 : Date.today),
+        due_date:   invoice_details['due_date'] || Date.today,
         status:     'DRAFT',
         line_items: line_items,
-        reference:  payment_details['purchase_order_number'],
+        reference:  invoice_details['purchase_order_reference'],
       )
       invoice.save
     end
   end
 
-  def self.contact_name(user_details)
-    user_details['company'] || [user_details['first_name'], user_details['last_name'], "<#{user_details['email']}>"].join(' ')
+  def self.contact_name(invoice_to)
+    invoice_to['name'] || [invoice_to['contact_point']['name'], "<#{invoice_to['contact_point']['email']}>"].join(' ')
   end
 
   def self.xero

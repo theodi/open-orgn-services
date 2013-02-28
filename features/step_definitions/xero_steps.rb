@@ -26,15 +26,15 @@ Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field,
   @contact.addresses.find{|x| x.type=='POBOX'}.send(field).should == value
 end
 
-Then /^that contact should have VAT number "(.*?)"$/ do |vat_number|
-  @contact.tax_number.should == vat_number
+Then /^that contact should have tax number "(.*?)"$/ do |tax_number|
+  @contact.tax_number.should == tax_number
 end
 
 # Invoices 
 
 Given /^I have already been invoiced$/ do
   # Raise invoice
-  Invoicer.perform(user_details, event_details, payment_details)
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
   xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
