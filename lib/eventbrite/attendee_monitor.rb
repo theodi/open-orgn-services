@@ -49,7 +49,7 @@ class AttendeeMonitor
               'invoice_address_region'   => custom_answer(a, 'Billing Address (region)'),
               'invoice_address_country'  => custom_answer(a, 'Billing Address (country)'),
               'invoice_address_postcode' => custom_answer(a, 'Billing Address (postcode)'),
-              'vat_number'               => custom_answer(a, 'VAT reg number (if non-UK)'),
+              'tax_number'               => custom_answer(a, 'VAT reg number (if non-UK)'),
             }.compact, 
             event_details, 
             {

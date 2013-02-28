@@ -27,6 +27,5 @@ require 'leftronic/leftronic_publisher'
 require 'trello/trello_monitor'
 require 'hubot/hubot_monitor'
 
-require 'signup/user'
 require 'signup/signup_processor'
 require 'signup/partner_enquiry_processor'

@@ -30,17 +30,17 @@ Feature: Invoicing new contacts for training events
     When the attendee invoicer runs
     Then a contact should exist in Xero for "New Company Inc."
     
-  # VAT registration numbers for overseas companies
+  # tax registration numbers for overseas companies
   
-  Scenario: store VAT numbers for contacts
+  Scenario: store tax numbers for contacts
     Given I work for "New Company Inc."
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
-    And I entered a VAT registration number "AB5678"
+    And I entered a tax registration number "AB5678"
     Then the attendee invoicer should be requeued
     When the attendee invoicer runs
     Then a contact should exist in Xero for "New Company Inc."
-    And that contact should have VAT number "AB5678"
+    And that contact should have tax number "AB5678"
     
   # Storing of invoice-to details
   
