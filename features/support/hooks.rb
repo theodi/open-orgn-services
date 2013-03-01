@@ -21,7 +21,14 @@ After("@clean_up_xero_contact") do
   end
 end
 
+Before("@capsulecrm") do
+  @capsule_cleanup = []
+end
+
 After("@capsulecrm") do
+  @capsule_cleanup.each do |x|
+    x.delete!
+  end
 end
 
 After do
