@@ -1,7 +1,7 @@
 # Setup
 
-Given /^there is no organisation in CapsuleCRM called "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given /^there is no organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
+  CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
 end
 
 Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |arg1|
@@ -18,8 +18,10 @@ end
 
 # Organisations
 
-Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
+  @org = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
+  @org.should_not be_nil
+  @capsule_cleanup << @org
 end
 
 # People
