@@ -1,68 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n  <about
-        nil=\"true\"/>\n  <name>ACME widgets Inc.</name>\n</organisation>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Fri, 01 Mar 2013 18:59:54 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=B082932B1F6A8196920D7751223BFFA8.nodea06; Path=/; Secure
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140419
-      Content-Length:
-      - '0'
-      Content-Type:
-      - text/plain
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Fri, 01 Mar 2013 19:00:04 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 01 Mar 2013 18:59:54 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=51D8F29BD1915616E01E4B0C6A029C16.nodea01; Path=/; Secure
-      Content-Length:
-      - '369'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37140419</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-01T19:00:03Z</createdOn><updatedOn>2013-03-01T19:00:03Z</updatedOn><name>ACME
-        widgets Inc.</name></organisation></parties>
-    http_version: 
-  recorded_at: Fri, 01 Mar 2013 19:00:05 GMT
-- request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140419/people
     body:
@@ -91,99 +29,6 @@ http_interactions:
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
     http_version: 
   recorded_at: Fri, 01 Mar 2013 19:00:05 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 01 Mar 2013 18:59:55 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=97976DD70128A32E9E0C721A381A713C.nodea02; Path=/; Secure
-      Content-Length:
-      - '369'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37140419</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-01T19:00:03Z</createdOn><updatedOn>2013-03-01T19:00:03Z</updatedOn><name>ACME
-        widgets Inc.</name></organisation></parties>
-    http_version: 
-  recorded_at: Fri, 01 Mar 2013 19:00:05 GMT
-- request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <about nil=\"true\"/>\n
-        \ <firstName>Turk Turkleton</firstName>\n  <lastName nil=\"true\"/>\n  <title
-        nil=\"true\"/>\n  <jobTitle>CTO</jobTitle>\n  <organisationId type=\"integer\">37140419</organisationId>\n</person>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Fri, 01 Mar 2013 18:59:56 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=88CF524741FEC961C13C4D49582DC8EB.nodea02; Path=/; Secure
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140420
-      Content-Length:
-      - '0'
-      Content-Type:
-      - text/plain
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Fri, 01 Mar 2013 19:00:06 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 01 Mar 2013 18:59:56 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=4B5876195820F6111308F6C0DA7C9559.nodea01; Path=/; Secure
-      Content-Length:
-      - '369'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37140419</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-01T19:00:03Z</createdOn><updatedOn>2013-03-01T19:00:03Z</updatedOn><name>ACME
-        widgets Inc.</name></organisation></parties>
-    http_version: 
-  recorded_at: Fri, 01 Mar 2013 19:00:07 GMT
 - request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140419/people
@@ -273,4 +118,335 @@ http_interactions:
       string: ''
     http_version: 
   recorded_at: Fri, 01 Mar 2013 19:00:08 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:00 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=C3C85E08E210342AD2BBF5336DC4EFA2.nodea04; Path=/; Secure
+      Content-Length:
+      - '74'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:10 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n  <about
+        nil=\"true\"/>\n  <name>ACME widgets Inc.</name>\n</organisation>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:00 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=514432FF0C7DF40511CC2555EAE856C5.nodea02; Path=/; Secure
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140703
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:11 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:01 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=E4345A232B2B1CA11CCC64BC54F39DF0.nodea04; Path=/; Secure
+      Content-Length:
+      - '369'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37140703</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-01T19:21:09Z</createdOn><updatedOn>2013-03-01T19:21:09Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:11 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140703/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:01 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=9498426BB4C1F11B425E6741FD3CE705.nodea01; Path=/; Secure
+      Content-Length:
+      - '74'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:12 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:01 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=AD000249E5736FD6F48F132FC3433EBE.nodea01; Path=/; Secure
+      Content-Length:
+      - '369'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37140703</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-01T19:21:09Z</createdOn><updatedOn>2013-03-01T19:21:09Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:12 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140703/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:02 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=4F67FB16E83F36062EB881486C862870.nodea07; Path=/; Secure
+      Content-Length:
+      - '74'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:13 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <about nil=\"true\"/>\n
+        \ <firstName>Turk Turkleton</firstName>\n  <lastName nil=\"true\"/>\n  <title
+        nil=\"true\"/>\n  <jobTitle>CTO</jobTitle>\n  <organisationId type=\"integer\">37140703</organisationId>\n</person>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:02 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=BBA891998DEE12748CFF6EA8A40D6C75.nodea10; Path=/; Secure
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140704
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:13 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:03 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=487BAB723CFF22B9807BD89F19D6F3E0.nodea08; Path=/; Secure
+      Content-Length:
+      - '369'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37140703</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-01T19:21:09Z</createdOn><updatedOn>2013-03-01T19:21:09Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:14 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140703/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:03 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=AFAF2819D499AA624C1B45788F9BAE2A.nodea11; Path=/; Secure
+      Content-Length:
+      - '486'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>37140704</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362143125/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2013-03-01T19:21:12Z</createdOn><updatedOn>2013-03-01T19:21:12Z</updatedOn><firstName>Turk
+        Turkleton</firstName><jobTitle>CTO</jobTitle><organisationId>37140703</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:14 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140703
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:04 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=36F375D2B2FAB1877B54BC9D3C05E357.nodea04; Path=/; Secure
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:15 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37140704
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 19:21:04 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=7F2116854642F78B0C722CF69D9033E0.nodea08; Path=/; Secure
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 19:21:15 GMT
 recorded_with: VCR 2.4.0
