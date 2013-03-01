@@ -51,7 +51,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that organisation should have an opportunity against it
     And that opportunity should have the name "Membership at sponsor level"
     And that opportunity should have the description "Hey, I really want us to join the ODI!"
-    And that opportunity should have the value £25000 per year for 3 years
+    And that opportunity should have the value 25000 per year for 3 years
     And that opportunity should have the milestone "New"
     And that opportunity should have the probability 10%
     And that opportunity should have an expected close date 2 months from today
@@ -64,7 +64,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that organisation should have an opportunity against it
     And that opportunity should have the name "Membership at partner level"
     And that opportunity should have the description "Hey, I really want us to join the ODI!"
-    And that opportunity should have the value £50000 per year for 3 years
+    And that opportunity should have the value 50000 per year for 3 years
     And that opportunity should have the milestone "New"
     And that opportunity should have the probability 10%
     And that opportunity should have an expected close date 2 months from today
