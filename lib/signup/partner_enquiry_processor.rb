@@ -25,13 +25,18 @@ class PartnerEnquiryProcessor
       organisation.save
     end
     # Create person
-    person = CapsuleCRM::Person.new(
-      :organisation_id => organisation.id,
-      :first_name => person['name'].split(' ', 1)[0],
-      :last_name => person['name'].split(' ', 1)[1],
-      :job_title => person['job_title'],
-    )
-    person.save
+    contact = organisation.people.find do |p| 
+      [p.first_name, p.last_name].compact.join(' ') == person['name']
+    end
+    if contact.nil?
+      contact = CapsuleCRM::Person.new(
+        :organisation_id => organisation.id,
+        :first_name => person['name'].split(' ', 1)[0],
+        :last_name => person['name'].split(' ', 1)[1],
+      )
+    end
+    contact.job_title = person['job_title']
+    contact.save
   end
   
 end
