@@ -27,7 +27,7 @@ Spork.each_run do
     (ENV.keys-ignore_env).select{|x| x =~ /\A[A-Z_]*\Z/}.each do |key|
       c.filter_sensitive_data("<#{key}>") { ENV[key] }
     end
-    c.default_cassette_options = { :record => :new_episodes }
+    c.default_cassette_options = { :record => :once }
     c.cassette_library_dir = 'fixtures/vcr_cassettes'
     c.hook_into :webmock
   end
