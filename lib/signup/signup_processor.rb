@@ -35,10 +35,9 @@ class SignupProcessor
   # Returns nil. Queues invoicing and CRM task creation jobs.
 
 
-  def self.base_price
+  def self.base_price(offer_category)
     # get the base price for this level of membership
-    # hardcoded for now, because
-    1000
+    offer_category == 'supporter' ? 45 : 400
   end
 
   def self.description(membership_id, offer_category)
@@ -66,7 +65,7 @@ class SignupProcessor
     }
     invoice_details = {
       'quantity' => 1,
-      'base_price' => base_price,
+      'base_price' => base_price(purchase['offer_category']),
       'purchase_order_reference' => purchase['purchase_order_reference'],
       'description' => description(purchase['membership_id'], purchase['offer_category'])
     }

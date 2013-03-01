@@ -29,6 +29,10 @@ Then /^the invoice description should read "(.*?)"$/ do |invoice_description|
   @invoice_description = invoice_description
 end
 
+Then /^the invoice price should be "(.*?)"$/ do |base_price|
+  @base_price = base_price
+end
+
 Then /^the invoice should be due on (#{DATE})$/ do |date|
   @invoice_due_date = date
 end
