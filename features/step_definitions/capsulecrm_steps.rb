@@ -4,12 +4,14 @@ Given /^there is no organisation in CapsuleCRM called "(.*?)"$/ do |organisation
   CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
 end
 
-Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
+  @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
+  @organisation.save
+  CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
 end
 
 Given /^that organisation does not have a person called "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  @organisation.people.should be_empty
 end
 
 Given /^that organisation has a person called "(.*?)"$/ do |arg1|
@@ -21,6 +23,13 @@ end
 Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
   @organisation = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
   @organisation.should_not be_nil
+  @capsule_cleanup << @organisation
+end
+
+Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
+  organisations = CapsuleCRM::Organisation.find_all(:q => organisation_name)
+  organisations.size.should == 1
+  @organisation = organisations.first
   @capsule_cleanup << @organisation
 end
 

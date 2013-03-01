@@ -19,8 +19,11 @@ class PartnerEnquiryProcessor
   # Returns nil. Queues CRM task creation jobs.
   def self.perform(person, product, comment)
     # Create organisation in CapsuleCRM
-    organisation = CapsuleCRM::Organisation.new(:name => person['affiliation'])
-    organisation.save
+    organisation = CapsuleCRM::Organisation.find_all(:q => person['affiliation']).first
+    if organisation.nil?
+      organisation = CapsuleCRM::Organisation.new(:name => person['affiliation'])
+      organisation.save
+    end
     # Create person
     person = CapsuleCRM::Person.new(
       :organisation_id => organisation.id,
