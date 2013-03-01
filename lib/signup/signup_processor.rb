@@ -37,7 +37,14 @@ class SignupProcessor
 
   def self.base_price(offer_category)
     # get the base price for this level of membership
-    offer_category == 'supporter' ? 45 : 400
+    case offer_category
+    when 'supporter'
+      45
+    when 'member'
+      400
+    else
+      raise ArgumentError.new("Member level is invalid")
+    end
   end
 
   def self.description(membership_id, offer_category)
