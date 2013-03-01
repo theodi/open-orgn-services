@@ -5,6 +5,7 @@ Given /^there is no organisation in CapsuleCRM called "(.*?)"$/ do |organisation
 end
 
 Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
+  CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
   @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
   @organisation.save
   CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
