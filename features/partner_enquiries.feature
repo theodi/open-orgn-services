@@ -1,4 +1,4 @@
-@wip @vcr @clean_up_capsule
+@wip @vcr @capsulecrm
 Feature: Raise tasks and opportunities in CapsuleCRM for higher-level memberships
 
   In order to get higher-level members in
