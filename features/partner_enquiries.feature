@@ -56,6 +56,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that opportunity should have the probability 10%
     And that opportunity should have an expected close date 2 months from today
     And that opportunity should be owned by "defaultuser"
+    And that opportunity should have a type of "Membership"
 
   Scenario: Create partner opportunity against organisation
     Given I requested membership at the level called "partner"
@@ -69,6 +70,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that opportunity should have the probability 10%
     And that opportunity should have an expected close date 2 months from today
     And that opportunity should be owned by "defaultuser"
+    And that opportunity should have a type of "Membership"
 
   Scenario: Create task against person
     Given that it's 2013-02-01 13:45

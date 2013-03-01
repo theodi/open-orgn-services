@@ -74,6 +74,10 @@ Then /^that opportunity should be owned by "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
+Then /^that opportunity should have a type of "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
 # Tasks
 
 Then /^that person should have a task against him$/ do
