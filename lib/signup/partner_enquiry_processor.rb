@@ -25,7 +25,8 @@ class PartnerEnquiryProcessor
     person = CapsuleCRM::Person.new(
       :organisation_id => organisation.id,
       :first_name => person['name'].split(' ', 1)[0],
-      :last_name => person['name'].split(' ', 1)[1]
+      :last_name => person['name'].split(' ', 1)[1],
+      :job_title => person['job_title'],
     )
     person.save
   end
