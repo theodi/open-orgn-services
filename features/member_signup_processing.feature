@@ -23,15 +23,22 @@ Feature: Processing membership signups
     And my organisation has a tax registration number "A0A0A0A0"
     And I have a membership id "01010101"
 
-  Scenario: add users to new style invoicing queue
-    Given I requested 1 membership at the level called "supporter" which has a base annual price of 1000
+  Scenario: add supporters to new style invoicing queue
+    Given I requested 1 membership at the level called "supporter"
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "ODI Supporter Membership (1010101)"
+    And the invoice price should be "45"
     And I should be added to the invoicing queue
     When the signup processor runs
 
+  Scenario: add members to new style invoicing queue
+    Given I requested 1 membership at the level called "member"
+    And my purchase order reference is "ABC000001"
+    Then the invoice description should read "ODI Member Membership (1010101)"
+    And the invoice price should be "400"
+    And I should be added to the invoicing queue
+    When the signup processor runs
 
-# add scenarios for different membership levels
 # currently an issue with leading zeros being removed from postcode and membership number
 
 
