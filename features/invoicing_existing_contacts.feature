@@ -83,6 +83,13 @@ Feature: Invoicing existing contacts
     And that invoice should contain 1 line item
     And that line item should not have account code set
 
+  Scenario: line item  should have description
+    Given I have registered for a ticket
+    When the attendee invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 1 line item 	
+    And the line item description should include "my fantastic invoice description"
+
   # Payment methods
     
   Scenario: invoices show paypal payment method as fully paid
