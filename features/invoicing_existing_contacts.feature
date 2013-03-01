@@ -6,9 +6,9 @@ Feature: Invoicing existing contacts
   I want to be sent an invoice when I sign up to attend an event
 
   Background:
-    Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
-    And the event is happening on 2013-03-17
-    And the net price of the event is 1.00
+    Given the invoice is due on 2013-03-10
+    And the invoice amount is 1.00
+    And the invoice description is "my fantastic invoice description"
     And my first name is "Bob"
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"
@@ -31,14 +31,7 @@ Feature: Invoicing existing contacts
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the reference "AB1234"
 
-  Scenario: invoices include membership numbers
-    Given I have registered for a ticket
-    And I entered a membership number "9101112"
-    When the attendee invoicer runs
-    Then an invoice should be raised in Xero against "Existing Company Inc."
-    And the line item description should include "Membership number: 9101112"
-
-  Scenario: invoices have due date 7 days before event
+  Scenario: invoices have correct due date
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
@@ -49,7 +42,6 @@ Feature: Invoicing existing contacts
   
   Scenario: invoices are not generated more than once for same purchase
     Given I have registered for a ticket
-    And my order number is 1243543543
     And I paid with Paypal
     And I have already been invoiced
     When the attendee invoicer runs
@@ -76,14 +68,6 @@ Feature: Invoicing existing contacts
 
   # Line items
 
-  Scenario: line items include order number from Eventbrite
-    Given I have registered for a ticket
-    And my order number is 1243543543
-    When the attendee invoicer runs
-    Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should contain 1 line item
-    And the line item description should include "1243543543"
-
   Scenario: line items have correct quantity for multiple tickets
     Given I have registered for two tickets
     When the attendee invoicer runs
@@ -98,20 +82,6 @@ Feature: Invoicing existing contacts
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
     And that line item should not have account code set
-
-  Scenario: line item description should include event name and date
-    Given I have registered for a ticket
-    When the attendee invoicer runs
-    Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should contain 1 line item
-    And the line item description should include "[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)"
-
-  Scenario: line item description should include registrant name and email
-    Given I have registered for a ticket
-    When the attendee invoicer runs
-    Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should contain 1 line item
-    And the line item description should include "Bob Fish <bob.fish@example.com>"
 
   # Payment methods
     

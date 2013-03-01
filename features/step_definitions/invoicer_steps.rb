@@ -2,6 +2,8 @@
 
 When /^the attendee invoicer runs$/ do
   # Invoice
+  @invoice_description ||= SecureRandom.hexdigest(32)
+  @base_price ||= SecureRandom.number(9999)
   Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
 end
 
