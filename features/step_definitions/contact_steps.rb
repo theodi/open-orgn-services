@@ -32,6 +32,14 @@ Given /^my address \((.*?)\) is "(.*?)"$/ do |type, value|
   instance_variable_set("@address_#{type}", value)
 end
 
+Given /^my job title is "(.*?)"$/ do |job_title|
+  @job_title = job_title
+end
+
+Given /^my interest is "(.*?)"$/ do |comment_text|
+  @comment_text = comment_text
+end
+
 # invoicing contact stuff
 # loads of duplication here
 
