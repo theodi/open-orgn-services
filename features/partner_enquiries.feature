@@ -24,11 +24,12 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that person should have the email address "turkleton@acme.com"
     And that person should have the telephone number "+44 1738 494032"
 
+  @wip
   Scenario: Create new person in existing organisation
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation does not have a person called "Turk Turkleton"
     When I have asked to be contacted
-    Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
+    Then there should still be just one organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a person called "Turk Turkleton"
     And that person should have the job title "CTO"
     And that person should have the email address "turkleton@acme.com"
