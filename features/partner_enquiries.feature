@@ -1,4 +1,4 @@
-@vcr @clean_up_capsule
+@wip @vcr @clean_up_capsule
 Feature: Raise tasks and opportunities in CapsuleCRM for higher-level memberships
 
   In order to get higher-level members in
@@ -7,13 +7,13 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
   when interested parties fill in the web form
 
   Background:
-    My name is "Turk Turkleton"
+    Given my name is "Turk Turkleton"
     And I work for "ACME widgets Inc."
     And my job title is "CTO"
     And my email address is "turkleton@acme.com"
-    And my telephone number is "+44 1738 494032"
+    And my phone number is "+44 1738 494032"
     And my interest is "Hey, I really want us to join the ODI!"
-    And I want to join as a 'partner'
+    And I requested membership at the level called "partner"
   
   Scenario: Create new organisation and person
     Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
@@ -48,7 +48,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that person should have the telephone number "+44 1738 494032"
 
   Scenario: Create sponsor opportunity against organisation
-    Given I want to join as a 'sponsor'
+    Given I requested membership at the level called "sponsor"
     When I have asked to be contacted
     And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
@@ -62,7 +62,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that opportunity should be owned by "defaultuser"
 
   Scenario: Create partner opportunity against organisation
-    Given I want to join as a 'partner'
+    Given I requested membership at the level called "partner"
     When I have asked to be contacted
     And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
