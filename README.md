@@ -56,6 +56,9 @@ The following environment variables should be set in order to use this gem.
     XERO_CONSUMER_SECRET
     XERO_PRIVATE_KEY_PATH
     
+    CAPSULECRM_ACCOUNT_NAME
+    CAPSULECRM_API_TOKEN
+    
     COURSES_RSYNC_PATH
     COURSES_TARGET_URL
     
