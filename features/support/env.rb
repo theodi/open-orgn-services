@@ -13,6 +13,7 @@ require 'spork'
 
 require 'vcr'
 require 'cucumber/rspec/doubles'
+require 'timecop'
 
 Spork.prefork do
   Dotenv.load
