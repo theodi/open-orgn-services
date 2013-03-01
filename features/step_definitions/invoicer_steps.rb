@@ -1,9 +1,10 @@
 # Invoice queue
 
 When /^the attendee invoicer runs$/ do
+  # Set some things that must exist, if they don't already
+  @invoice_description ||= SecureRandom.hex(32)
+  @base_price ||= SecureRandom.random_number(9999)
   # Invoice
-  @invoice_description ||= SecureRandom.hexdigest(32)
-  @base_price ||= SecureRandom.number(9999)
   Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
 end
 
@@ -20,6 +21,9 @@ Then /^I should not be added to the invoicing queue$/ do
 end
 
 Then /^the attendee invoicer should be requeued$/ do
+  # Set some things that must exist, if they don't already
+  @invoice_description ||= SecureRandom.hex(32)
+  @base_price ||= SecureRandom.random_number(9999)
   # Set expectation
   Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
 end
