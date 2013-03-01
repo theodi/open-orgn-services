@@ -19,9 +19,9 @@ end
 # Organisations
 
 Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
-  @org = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
-  @org.should_not be_nil
-  @capsule_cleanup << @org
+  @organisation = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
+  @organisation.should_not be_nil
+  @capsule_cleanup << @organisation
 end
 
 # People
