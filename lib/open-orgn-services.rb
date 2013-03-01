@@ -14,6 +14,13 @@ Resque.redis = Redis.new(
   :password => (ENV['RESQUE_REDIS_PASSWORD'].nil? || ENV['RESQUE_REDIS_PASSWORD']=='' ? nil : ENV['RESQUE_REDIS_PASSWORD'])
 )
 
+# Configure CapsuleCRM connection
+require 'capsulecrm'
+CapsuleCRM.account_name = ENV['CAPSULECRM_ACCOUNT_NAME']
+CapsuleCRM.api_token = ENV['CAPSULECRM_API_TOKEN']
+CapsuleCRM.initialize!
+
+
 require 'xeroizer'
 
 require 'eventbrite-client'

@@ -21,12 +21,6 @@ After("@clean_up_xero_contact") do
   end
 end
 
-Before("@capsulecrm") do
-  CapsuleCRM.account_name = ENV['CAPSULECRM_ACCOUNT_NAME']
-  CapsuleCRM.api_token = ENV['CAPSULECRM_API_TOKEN']
-  CapsuleCRM.initialize!
-end
-
 After("@capsulecrm") do
 end
 
