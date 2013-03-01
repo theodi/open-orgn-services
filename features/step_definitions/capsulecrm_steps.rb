@@ -32,8 +32,8 @@ Then /^that organisation should have a person called "(.*?)"$/ do |name|
   @capsule_cleanup << @person
 end
 
-Then /^that person should have the job title "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that person should have the job title "(.*?)"$/ do |job_title|
+  @person.job_title.should == job_title
 end
 
 Then /^that person should have the email address "(.*?)"$/ do |arg1|
