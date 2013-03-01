@@ -3,10 +3,9 @@ Given /^I have a membership id "(.*?)"$/ do |membership_id|
   @membership_id = membership_id
 end
 
-Given /^I requested (\d+) membership at the level called "(.*?)" which has a base annual price of (\d+)$/ do |quantity, membership_level, base_price|
+Given /^I requested (\d+) membership at the level called "(.*?)"$/ do |quantity, membership_level|
   @quantity = quantity
   @membership_level = membership_level
-  @base_price = base_price
 end
 
 When /^the signup processor runs$/ do
