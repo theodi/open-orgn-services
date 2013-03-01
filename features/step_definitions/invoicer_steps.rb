@@ -8,7 +8,7 @@ end
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
   Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
-  #Resque.should_receive(:enqueue).any_number_of_times
+  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^I should not be added to the invoicing queue$/ do
