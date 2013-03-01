@@ -18,7 +18,6 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
   Scenario: Create new organisation and person
     Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
     When I have asked to be contacted
-    And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a person called "Turk Turkleton"
     And that person should have the job title "CTO"
@@ -29,7 +28,6 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation does not have a person called "Turk Turkleton"
     When I have asked to be contacted
-    And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a person called "Turk Turkleton"
     And that person should have the job title "CTO"
@@ -40,7 +38,6 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation has a person called "Turk Turkleton"
     When I have asked to be contacted
-    And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a person called "Turk Turkleton"
     And that person should have the job title "CTO"
@@ -50,7 +47,6 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
   Scenario: Create sponsor opportunity against organisation
     Given I requested membership at the level called "sponsor"
     When I have asked to be contacted
-    And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have an opportunity against it
     And that opportunity should have the name "Membership at sponsor level"
@@ -64,7 +60,6 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
   Scenario: Create partner opportunity against organisation
     Given I requested membership at the level called "partner"
     When I have asked to be contacted
-    And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have an opportunity against it
     And that opportunity should have the name "Membership at partner level"
@@ -78,7 +73,6 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
   Scenario: Create task against person
     Given it is 2013-02-01
     When I have asked to be contacted
-    And the partner enquiry processor runs
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a person called "Turk Turkleton"
     And that person should have a task against him
