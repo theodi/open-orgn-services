@@ -26,8 +26,10 @@ end
 
 # People
 
-Then /^that organisation should have a person called "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that organisation should have a person called "(.*?)"$/ do |name|
+  @person = @organisation.people.first
+  [@person.first_name, @person.last_name].compact.join(' ').should == name
+  @capsule_cleanup << @person
 end
 
 Then /^that person should have the job title "(.*?)"$/ do |arg1|
