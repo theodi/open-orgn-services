@@ -1,4 +1,4 @@
-@vcr @wip
+@vcr
 Feature: Hubot monitoring
 
   In order to track our IRC users

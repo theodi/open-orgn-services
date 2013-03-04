@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-spork'      , '~> 1.4' , '>= 1.4.2'
   s.add_development_dependency 'rb-fsevent'       , '~> 0.9' , '>= 0.9.3'
   s.add_development_dependency 'relish'           , '~> 0.6' , '>= 0.6.0'
+  s.add_development_dependency 'timecop'          , '~> 0.5' , '>= 0.5.9.2'
 
   s.files        = Dir.glob("{lib}/**/*") + %w(LICENSE.md README.md)
   s.require_path = 'lib'
