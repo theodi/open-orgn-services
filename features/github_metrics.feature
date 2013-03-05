@@ -39,17 +39,29 @@ Feature: Github monitoring
     When the github watcher and fork monitor runs
 
   Scenario: get open pull request count
-    Given the repository "open-orgn-services" has 1 open pull request
-    Then the number 1 should be stored in the open pull requests stat
-    When the github monitor runs
+    Given the repository "capsulecrm" has 1 open pull request
+    And the repository "member-directory" has 2 open pull requests
+    And the repository "open-orgn-services" has 1 open pull request
+    And the repository "services-manager" has 1 open pull request
+    Then the number 5 should be stored in the open pull requests stat
+    When the github pull request monitor runs
 
   Scenario: get total pull request count
-    Given the repository "open-orgn-services" has 1 open pull request
-    And the repository "open-orgn-services" has 1 closed pull request
+    Given the repository "capsulecrm" has 1 open pull request
+    And the repository "bootstrap" has 2 closed pull requests
+    And the repository "hot-drinks" has 2 closed pull requests
+    And the repository "member-directory" has 2 open pull requests
+    And the repository "member-directory" has 23 closed pull requests
+    And the repository "odibot" has 1 closed pull requests
+    And the repository "open-orgn-services" has 1 open pull request
+    And the repository "open-orgn-services" has 30 closed pull requests
     And the repository "public-keys" has 3 closed pull requests
-    And the repository "odibot" has 1 closed pull request
-    Then the number 6 should be stored in the total pull requests stat
-    When the github monitor runs
+    And the repository "services-manager" has 1 open pull request
+    And the repository "services-manager" has 3 closed pull requests
+    And the repository "signin-web" has 5 closed pull requests
+    And the repository "www" has 10 closed pull requests
+    Then the number 84 should be stored in the total pull requests stat
+    When the github pull request monitor runs
     
   Scenario: get outgoing pull request count
     Given the repository "waynerobinson/xeroizer" has 1 pull request from us
