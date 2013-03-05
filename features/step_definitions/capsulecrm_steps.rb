@@ -91,8 +91,10 @@ Then /^that opportunity should have the description "(.*?)"$/ do |description|
   @opportunity.description.should == description
 end
 
-Then /^that opportunity should have the value (\d+) per year for (\d+) years$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should have the value (#{INTEGER}) per (.*?) for (#{INTEGER}) years$/ do |value, basis, years|
+  @opportunity.value.to_f.should == value.to_f
+  @opportunity.duration_basis.should == basis.upcase
+  @opportunity.duration.should == years.to_s
 end
 
 Then /^that opportunity should have the milestone "(.*?)"$/ do |arg1|

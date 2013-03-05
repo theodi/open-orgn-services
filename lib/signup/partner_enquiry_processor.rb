@@ -49,6 +49,8 @@ class PartnerEnquiryProcessor
       :currency => 'GBP',
       :description => comment['text'],
       :value => value_for_product_name(product['name']),
+      :duration => 3,
+      :duration_basis => 'YEAR',
       :milestone => 'New',
     )
     opportunity.save
