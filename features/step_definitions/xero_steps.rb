@@ -3,6 +3,8 @@
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
   @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
   @contact.should_not be_nil
+  # Contact should not have any invoices - if it does, fail early.
+  xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).should be_empty
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
@@ -26,15 +28,15 @@ Then /^that contact should have postal address \((.*?)\) of "(.*?)"$/ do |field,
   @contact.addresses.find{|x| x.type=='POBOX'}.send(field).should == value
 end
 
-Then /^that contact should have VAT number "(.*?)"$/ do |vat_number|
-  @contact.tax_number.should == vat_number
+Then /^that contact should have tax number "(.*?)"$/ do |tax_number|
+  @contact.tax_number.should == tax_number
 end
 
 # Invoices 
 
 Given /^I have already been invoiced$/ do
   # Raise invoice
-  AttendeeInvoicer.perform(user_details, event_details, payment_details)
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
   xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
@@ -99,28 +101,4 @@ end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
   @invoice.line_items.last.description.should include("PAYPAL")
-end
-
-# Invoice queue
-
-When /^the attendee invoicer runs$/ do
-  # Invoice
-  AttendeeInvoicer.perform(user_details, event_details, payment_details)
-end
-
-Then /^I should be added to the invoicing queue$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details).once
-  Resque.should_receive(:enqueue).any_number_of_times
-end
-
-Then /^I should not be added to the invoicing queue$/ do
-  Resque.should_not_receive(:enqueue).with do |klass, user, event, payment|
-    payment[:order_number] == @order_number
-  end
-end
-
-Then /^the attendee invoicer should be requeued$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeInvoicer, user_details, event_details, payment_details)
 end

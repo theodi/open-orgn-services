@@ -1,3 +1,4 @@
+
 # Events
 
 Given /^an event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
@@ -32,7 +33,7 @@ end
 Given /^I have signed up for (#{INTEGER}) tickets? called "(.*?)" which has a net price of (#{FLOAT})$/ do |count, name, price|
   @quantity    = count
   @ticket_type = name
-  @net_price   = price
+  @base_price  = price
 end
 
 Given /^the gross price of the event in Eventbrite is (#{FLOAT})$/ do |price|
@@ -85,30 +86,6 @@ end
 
 Given /^I have registered for two tickets$/ do
   @quantity = 2
-end
-
-When /^the attendee lister runs$/ do
-  # Check the attendees
-  AttendeeLister.perform(event_details)
-end
-
-# Queueing
-
-When /^we poll eventbrite for all events$/ do
-  # Check the events list
-  EventLister.perform
-end
-
-Then /^that event should be queued for attendee checking$/ do
-  # Set expectation
-  Resque.should_receive(:enqueue).with(AttendeeLister, event_details).once
-  Resque.should_receive(:enqueue).any_number_of_times
-end
-
-Then /^that event should not be queued for attendee checking$/ do
-  # Set expectation
-  Resque.should_not_receive(:enqueue).with(AttendeeLister, event_details)
-  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Given /^that event has not sold any tickets$/ do
