@@ -1,3 +1,5 @@
+require 'pry'
+
 class PartnerEnquiryProcessor
   @queue = :signup
   
@@ -52,6 +54,7 @@ class PartnerEnquiryProcessor
       :duration => 3,
       :duration_basis => 'YEAR',
       :milestone => 'New',
+      :probability => 10,
     )
     opportunity.save
   end
