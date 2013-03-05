@@ -14,9 +14,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="206AK3JO7Duw4OJCYMqISrMhghBTdga11TCbZURmk",
-        oauth_signature="BRmgiFINJ7KrL9DRZZcu7b7uDU%2FlFum25PVCffud66oD8CDzsJLa9TMbKj7n8HmZRI%2FZ%2F2t%2FrqQFG9chtWaZln%2Fyt8YSoojKWAoV6U%2FD98bSY39eEbUvmaZ0GZbh%2BBPx8CJv%2FBX1U6Mu4AfOqL8G57h6pPi457RdWastuq%2BAHi8%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362428382", oauth_token="<XERO_CONSUMER_KEY>",
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="DUxunKZ2stVyVbui0o6ZAMaFu0TvcWAPFmiguYro9Ds",
+        oauth_signature="MOA%2BzuTDdzk5tSwzU8t6sxNPiEcShu9TMOtHl%2BDEULQ2e1YW3KDr2bNoNnJgR98SkkXh9x4YJfrlueG6u9mFlZeGq3MRkBl3bOFm1ZsE4WMaKo%2Fp%2FC1je%2BsSwIvnMiRPodGOGihi0WRvI7StjI5YbiULkX9pCdPiWkQLOF%2FMhsE%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362474705", oauth_token="<XERO_CONSUMER_KEY>",
         oauth_version="1.0"
   response:
     status:
@@ -38,47 +38,327 @@ http_interactions:
       X-Powered-By:
       - TeamXero
       X-S:
-      - 445758-O1VMAP01
+      - 445760-O1VMAP03
       Date:
-      - Mon, 04 Mar 2013 20:19:42 GMT
+      - Tue, 05 Mar 2013 09:11:44 GMT
       Content-Length:
-      - '2805'
+      - '304'
     body:
       encoding: US-ASCII
       string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>39498487-93e7-4968-a040-c39b081b3be3</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-04T20:19:42.805136Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>8266aef2-b3b1-44b5-9ea6-059d58583a57</ContactID>\r\n
+        \ <Id>9e1b0505-e538-4f74-9016-c1e5a0e29b30</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-05T09:11:45.2753243Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Tue, 05 Mar 2013 09:11:45 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name%20==%20%22New%20Company%20Inc.%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="oSmzn98AmJqTN7bvlHlZdMEj3kLBxEx49qwYJ0S40",
+        oauth_signature="l71twM1PWi9grLzkoLK%2Bn03PY3H2e95tNLVdqMnia%2F6ZCsR3UaYnh%2BIHkSfFpRc%2FAWSEsOXy9XVjnpMyF84HfpRp%2FY5Jk3bTOndi9aMDLKSm%2Fnl65ysT4cqODyVmlfGlS1EU77tXLz5%2BOi4QV8XAkKabX%2F2CRQBGNsDxbdthUc8%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362474705", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445760-O1VMAP03
+      Date:
+      - Tue, 05 Mar 2013 09:11:45 GMT
+      Content-Length:
+      - '304'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>603d7d60-9d00-43bf-8d08-c8dad6a6b354</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-05T09:11:45.9773333Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Tue, 05 Mar 2013 09:11:46 GMT
+- request:
+    method: put
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CName%3ENew%20Company%20Inc.%3C%2FName%3E%0A%20%20%3CEmailAddress%3Ebob.fish%40example.com%3C%2FEmailAddress%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CTaxNumber%3EAB5678%3C%2FTaxNumber%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="lXhTi3p2xBcHKbSuDvvjeJfa5mgnXpcfhjkx3ghp9Q",
+        oauth_signature="MH8TUA4PtKzCBrh%2BghfB7LKVsus9y47F5tWUUmHb4ya4RV0fSfznsvtDgS3bqO0YBzo4dXeyz%2FOJ8SBKA9hR2TUDDA06HFjk53C9dpOhyL89ADKmFLqRvjLk3iz39MXsjzapX3wzYj6KL6hE%2FrfAHXQueJV2ejWfwjR4tmuICvI%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362474706", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445760-O1VMAP03
+      Date:
+      - Tue, 05 Mar 2013 09:11:45 GMT
+      Content-Length:
+      - '1285'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>351b6a01-65f3-438a-82c5-f1473077822f</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-05T09:11:46.9445457Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>a52f8c41-2633-489f-9c75-0f46d0f1fce6</ContactID>\r\n
         \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>New Company Inc.</Name>\r\n
-        \     <EmailAddress>finance@newcompany.com</EmailAddress>\r\n      <TaxNumber>AB5678</TaxNumber>\r\n
-        \     <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
-        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
-        \         <AddressLine1>123 Random Business Park, The Rough End</AddressLine1>\r\n
-        \         <City>London</City>\r\n          <Region>Greater London</Region>\r\n
-        \         <PostalCode>EC1A 1AA</PostalCode>\r\n          <Country>UK</Country>\r\n
-        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
-        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>DEFAULT</PhoneType>\r\n          <PhoneNumber>01234 5678910</PhoneNumber>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
-        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-03-04T10:34:56.69</UpdatedDateUTC>\r\n
-        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>true</IsCustomer>\r\n
-        \   </Contact>\r\n    <Contact>\r\n      <ContactID>22267c16-099c-41ba-8639-17d587414b09</ContactID>\r\n
-        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>New Company Inc.</Name>\r\n
-        \     <EmailAddress>finance@newcompany.com</EmailAddress>\r\n      <TaxNumber>AB5678</TaxNumber>\r\n
+        \     <EmailAddress>bob.fish@example.com</EmailAddress>\r\n      <TaxNumber>AB5678</TaxNumber>\r\n
         \     <Addresses>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
-        \         <AddressLine1>123 Random Business Park, The Rough End</AddressLine1>\r\n
-        \         <City>London</City>\r\n          <Region>Greater London</Region>\r\n
-        \         <PostalCode>EC1A 1AA</PostalCode>\r\n          <Country>UK</Country>\r\n
         \       </Address>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
         \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
         \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>DEFAULT</PhoneType>\r\n          <PhoneNumber>01234 5678910</PhoneNumber>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2013-03-05T09:11:46.897</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Tue, 05 Mar 2013 09:11:47 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CContactID%3Ea52f8c41-2633-489f-9c75-0f46d0f1fce6%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3ENew%20Company%20Inc.%3C%2FName%3E%0A%20%20%3CEmailAddress%3Ebob.fish%40example.com%3C%2FEmailAddress%3E%0A%20%20%3CTaxNumber%3EAB5678%3C%2FTaxNumber%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CUpdatedDateUTC%3E2013-03-05T09%3A11%3A46%3C%2FUpdatedDateUTC%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="mQchTufNkM7odMlOzp8qnfsyJGvNbvR3yGZjkbmjJQ",
+        oauth_signature="GYzfz6otQilPHxsPl4AEMNHilz89YctxdOZpGBg2nYO2NFrzOzIKFmnWLftUy6pzqMf7d3eEcUwB%2FOYh9M%2Bcha3WmhIjAI%2FuxQX9sEWOsdvkNo3Qm%2BxI2nmnjXAQRAFESADduKMEbSS76BbDiHEk7kBHnKcInRYC8jT9kE%2Boj%2Bc%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362474707", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445760-O1VMAP03
+      Date:
+      - Tue, 05 Mar 2013 09:11:47 GMT
+      Content-Length:
+      - '1285'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>627e154f-a3c7-4598-b526-121f50d2e94e</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-05T09:11:48.0053593Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>a52f8c41-2633-489f-9c75-0f46d0f1fce6</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>New Company Inc.</Name>\r\n
+        \     <EmailAddress>bob.fish@example.com</EmailAddress>\r\n      <TaxNumber>AB5678</TaxNumber>\r\n
+        \     <Addresses>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2013-03-05T09:11:46.897</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Tue, 05 Mar 2013 09:11:48 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name%20==%20%22New%20Company%20Inc.%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="ov1D0siOzBJSqWuL9u7UA9g0Ugg3Fa4OiFUe2uHRW24",
+        oauth_signature="ag5xvOXno9fRIF2Tl1%2F8KmzreFeCugP28r5BvHJOjpMeXarVrTDHIyBdFdT3AxYW95%2FqEdXoUzeZLMcY0avvWc%2BNyNojtvcL3PZLQBYryDeGJ4XS5C07NUsLPZnIiM6fhIcHnX6t24coBceLsp7FghFehsIeh9pZdXpF1f5iTwE%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362474708", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445760-O1VMAP03
+      Date:
+      - Tue, 05 Mar 2013 09:11:47 GMT
+      Content-Length:
+      - '1285'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>c4e6c46f-9a60-415b-a7d7-808f39a4fda2</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-05T09:11:48.7853693Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>a52f8c41-2633-489f-9c75-0f46d0f1fce6</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>New Company Inc.</Name>\r\n
+        \     <EmailAddress>bob.fish@example.com</EmailAddress>\r\n      <TaxNumber>AB5678</TaxNumber>\r\n
+        \     <Addresses>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2013-03-05T09:11:46.897</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Tue, 05 Mar 2013 09:11:49 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CContactID%3Ea52f8c41-2633-489f-9c75-0f46d0f1fce6%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3ENew%20Company%20Inc.%20a52f8c41-2633-489f-9c75-0f46d0f1fce6%3C%2FName%3E%0A%20%20%3CEmailAddress%3Ebob.fish%40example.com%3C%2FEmailAddress%3E%0A%20%20%3CTaxNumber%3EAB5678%3C%2FTaxNumber%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CUpdatedDateUTC%3E2013-03-05T09%3A11%3A46%3C%2FUpdatedDateUTC%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="XAAUhL42p1dBqfTlOXMC54jfcqRwhTNWMf1Stwf560",
+        oauth_signature="Y5Znc%2Bg27ZdCzxyBtsNYULP2axM1IUNZp3hEOePoroCNNPD1tESTd21oiQiFHKvEtFvgD9GJUZ8eSuxKu59sTApAu2Z7fzAd1umiKciPcRP97POiDgHqX0wy4DDah5Gfm5cEINoKsusc%2FxfPJZYLSntopB3HBcYs%2BzmUoC8IC5I%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1362474709", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - TeamXero
+      X-S:
+      - 445760-O1VMAP03
+      Date:
+      - Tue, 05 Mar 2013 09:11:49 GMT
+      Content-Length:
+      - '1320'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>6cc2b026-cd83-4c9d-b7de-5f61286504b0</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>open-orgn-services</ProviderName>\r\n  <DateTimeUTC>2013-03-05T09:11:49.8149825Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>a52f8c41-2633-489f-9c75-0f46d0f1fce6</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>New Company Inc.
+        a52f8c41-2633-489f-9c75-0f46d0f1fce6</Name>\r\n      <EmailAddress>bob.fish@example.com</EmailAddress>\r\n
+        \     <TaxNumber>AB5678</TaxNumber>\r\n      <Addresses>\r\n        <Address>\r\n
+        \         <AddressType>POBOX</AddressType>\r\n        </Address>\r\n        <Address>\r\n
+        \         <AddressType>STREET</AddressType>\r\n        </Address>\r\n      </Addresses>\r\n
+        \     <Phones>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
         \       </Phone>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
         \       </Phone>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
-        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-03-04T10:34:56.69</UpdatedDateUTC>\r\n
+        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-03-05T09:11:49.8</UpdatedDateUTC>\r\n
         \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
         \   </Contact>\r\n  </Contacts>\r\n</Response>"
     http_version: 
-  recorded_at: Mon, 04 Mar 2013 20:19:43 GMT
+  recorded_at: Tue, 05 Mar 2013 09:11:50 GMT
 recorded_with: VCR 2.4.0
