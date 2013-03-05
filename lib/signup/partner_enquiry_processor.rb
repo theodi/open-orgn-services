@@ -55,6 +55,7 @@ class PartnerEnquiryProcessor
       :duration_basis => 'YEAR',
       :milestone => 'New',
       :probability => 10,
+      :expected_close_date => Date.today + 2.months,
     )
     opportunity.save
   end

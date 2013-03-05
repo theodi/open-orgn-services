@@ -106,7 +106,7 @@ Then /^that opportunity should have the probability (#{INTEGER})%$/ do |probabil
 end
 
 Then /^that opportunity should have an expected close date of (#{DATE})$/ do |date|
-  pending # express the regexp above with the code you wish you had
+  Date.parse(@opportunity.expected_close_date).should == date
 end
 
 Then /^that opportunity should be owned by "(.*?)"$/ do |arg1|
