@@ -64,9 +64,8 @@ The following environment variables should be set in order to use this gem.
     TRELLO_MEMBER_KEY
     TRELLO_CLEANUP_BOARD
     
-    GITHUB_LOGIN
-    GITHUB_PASSWORD
     GITHUB_ORGANISATION
+    GITHUB_OAUTH_TOKEN
     
     LEFTRONIC_API_KEY
     LEFTRONIC_GITHUB_REPOS
