@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'cucumber'         , '~> 1.2' , '>= 1.2.1'
   s.add_development_dependency 'rspec'            , '~> 2.12', '>= 2.12.0'
   s.add_development_dependency 'vcr'              , '~> 2.4' , '>= 2.4.0'
-  s.add_development_dependency 'webmock'          , '~> 1.9' , '>= 1.9.3'
+  s.add_development_dependency 'webmock'          , '~> 1.9' , '= 1.9'
   s.add_development_dependency 'dotenv'           , '~> 0.5' , '>= 0.5.0'
   s.add_development_dependency 'simplecov-rcov'   , '~> 0.2' , '>= 0.2.3'
   s.add_development_dependency 'guard-cucumber'   , '~> 1.3' , '>= 1.3.2'
