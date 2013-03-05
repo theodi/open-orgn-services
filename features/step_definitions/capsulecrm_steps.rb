@@ -11,15 +11,15 @@ Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |org
   CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
 end
 
-Given /^that organisation does not have a person called "(.*?)"$/ do |arg1|
+Given /^that organisation does not have a person$/ do
   @organisation.people.should be_empty
 end
 
 Given /^that organisation has a person called "(.*?)"$/ do |name|
   p = CapsuleCRM::Person.new(
     :organisation_id => @organisation.id,
-    :first_name => name.split(' ', 1)[0],
-    :last_name => name.split(' ', 1)[1]
+    :first_name => name.split(' ', 2)[0],
+    :last_name => name.split(' ', 2)[1]
   )
   p.save
   person = @organisation.people.find do |p| 
@@ -45,20 +45,23 @@ end
 
 # People
 
-Then /^that organisation should have a person called "(.*?)"$/ do |name|
-  @person = @organisation.people.find do |person| 
-    [person.first_name, person.last_name].compact.join(' ') == name
-  end
+Then /^that organisation should have a person$/ do
+  @person = @organisation.people.first
   @person.should be_present
   @capsule_cleanup << @person
 end
 
-Then /^that organisation should have just one person called "(.*?)"$/ do |name|
-  people = @organisation.people.select do |person| 
-    [person.first_name, person.last_name].compact.join(' ') == name
-  end
-  people.count.should == 1
-  @person = people.first
+Then /^that organisation should have just one person$/ do
+  @organisation.people.count.should == 1
+  @person = @organisation.people.first
+end
+
+Then /^that person should have the first name "(.*?)"$/ do |name|
+  @person.first_name.should == name
+end
+
+Then /^that person should have the last name "(.*?)"$/ do |name|
+  @person.last_name.should == name
 end
 
 Then /^that person should have the job title "(.*?)"$/ do |job_title|

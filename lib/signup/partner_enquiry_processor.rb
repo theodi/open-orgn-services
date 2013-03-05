@@ -32,8 +32,8 @@ class PartnerEnquiryProcessor
     if contact.nil?
       contact = CapsuleCRM::Person.new(
         :organisation_id => organisation.id,
-        :first_name => person['name'].split(' ', 1)[0],
-        :last_name => person['name'].split(' ', 1)[1],
+        :first_name => person['name'].split(' ', 2)[0],
+        :last_name => person['name'].split(' ', 2)[1],
       )
     end
     # Update contact with new details
