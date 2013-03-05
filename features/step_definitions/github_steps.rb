@@ -25,16 +25,15 @@ end
 
 Given /^the repository "(.*?)\/(.*?)" has (#{INTEGER}) pull requests? from us?$/ do |user, repo, open_prs|
   @pulls = Github.connection.pulls.list(user, repo).select{|x| x[:head][:repo][:owner][:login] == ENV['GITHUB_ORGANISATION']}
-  @pulls.count.should == open_prs.to_i
+  count = @pulls.count
+  @pulls = Github.connection.pulls.list(user, repo, state: 'closed').select{|x| x[:head][:repo] && x[:head][:repo][:owner][:login] == ENV['GITHUB_ORGANISATION']}
+  count += @pulls.count
+  count.should == open_prs.to_i
 end
 
 Given /^the repository "(.*?)" has (\d+) closed pull requests?$/ do |repo, closed_prs|
   @pulls = Github.connection.pulls.list(ENV['GITHUB_ORGANISATION'], repo, state: 'closed')
   @pulls.count.should == closed_prs.to_i
-end
-
-When /^the github monitor runs$/ do
-  GithubMonitor.perform
 end
 
 When /^the github organisation monitor runs$/ do
@@ -51,4 +50,8 @@ end
 
 When /^the github pull request monitor runs$/ do
   Github::PullRequestMonitor.perform
+end
+
+When /^the github outgoing pull request monitor runs$/ do
+  Github::OutgoingPullRequestMonitor.perform
 end
