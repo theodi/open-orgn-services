@@ -56,6 +56,7 @@ class PartnerEnquiryProcessor
       :milestone => 'New',
       :probability => 10,
       :expected_close_date => Date.today + 2.months,
+      :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
     )
     opportunity.save
   end

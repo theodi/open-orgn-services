@@ -109,8 +109,8 @@ Then /^that opportunity should have an expected close date of (#{DATE})$/ do |da
   Date.parse(@opportunity.expected_close_date).should == date
 end
 
-Then /^that opportunity should be owned by "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should be owned by "(.*?)"$/ do |owner|
+  @opportunity.owner.should == owner
 end
 
 Then /^that opportunity should have a type of "(.*?)"$/ do |arg1|

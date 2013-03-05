@@ -58,6 +58,7 @@ The following environment variables should be set in order to use this gem.
     
     CAPSULECRM_ACCOUNT_NAME
     CAPSULECRM_API_TOKEN
+    CAPSULECRM_DEFAULT_OWNER
     
     COURSES_RSYNC_PATH
     COURSES_TARGET_URL
