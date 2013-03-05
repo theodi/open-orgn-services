@@ -87,8 +87,8 @@ Then /^that opportunity should have the name "(.*?)"$/ do |name|
   @opportunity.name.should == name
 end
 
-Then /^that opportunity should have the description "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should have the description "(.*?)"$/ do |description|
+  @opportunity.description.should == description
 end
 
 Then /^that opportunity should have the value (\d+) per year for (\d+) years$/ do |arg1, arg2|
