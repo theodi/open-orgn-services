@@ -40,3 +40,7 @@ end
 When /^the github organisation monitor runs$/ do
   Github::OrganisationMonitor.perform
 end
+
+When /^the github issue monitor runs$/ do
+  Github::IssueMonitor.perform
+end
