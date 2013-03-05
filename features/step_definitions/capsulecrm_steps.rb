@@ -142,6 +142,6 @@ Then /^that task should be assigned to "(.*?)"$/ do |owner|
   @task.owner.should == owner
 end
 
-Then /^that task should have the detailed description "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that task should have the detailed description "(.*?)"$/ do |detail|
+  @task.detail.should == detail
 end

@@ -73,7 +73,8 @@ class PartnerEnquiryProcessor
       :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
       :description => "Call #{person['name']} to discuss #{product['name']} membership",
       :due_date_time => due,
-      :category => 'Call'
+      :category => 'Call',
+      :detail => comment['text']
     )
     task.save
   end
