@@ -1,16 +1,10 @@
-require 'github_api'
-
 class GithubMonitor
   
   @queue = :metrics
   
   def self.perform
     # Connect
-    github = Github.new login: ENV['GITHUB_USER'], password: ENV['GITHUB_PASSWORD'], user: ENV['GITHUB_ORGANISATION']
-    # Get github organisation
-    org = github.orgs.find(ENV['GITHUB_ORGANISATION'])
-    # Public repos into leftronic
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_REPOS'], org.public_repos
+    github = Github.connection
     # Count up stats across all repositories
     open_issues = 0
     watchers = 0

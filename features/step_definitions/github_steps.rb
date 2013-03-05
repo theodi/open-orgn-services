@@ -36,3 +36,7 @@ end
 When /^the github monitor runs$/ do
   GithubMonitor.perform
 end
+
+When /^the github organisation monitor runs$/ do
+  Github::OrganisationMonitor.perform
+end
