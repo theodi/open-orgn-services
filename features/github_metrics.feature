@@ -64,6 +64,9 @@ Feature: Github monitoring
     When the github pull request monitor runs
     
   Scenario: get outgoing pull request count
-    Given the repository "waynerobinson/xeroizer" has 1 pull request from us
-    Then the number 1 should be stored in the outgoing pull requests stat
-    When the github monitor runs
+    Given the repository "Atalanta/cucumber-chef" has 1 pull request from us
+    And the repository "nandub/hubot-irc" has 1 pull request from us
+    And the repository "cassianoleal/vagrant-butcher" has 1 pull request from us
+    And the repository "waynerobinson/xeroizer" has 1 pull request from us
+    Then the number 4 should be stored in the outgoing pull requests stat
+    When the github outgoing pull request monitor runs
