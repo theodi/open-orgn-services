@@ -12,12 +12,19 @@ Feature: Github monitoring
 
   @wip
   Scenario: get open issue count
-    Given the repository "open-orgn-services" has 67 open issues
-    And the repository "public-displays" has 2 open issues
-    And the repository "csv-profiler" has 1 open issue
-    And the repository "open-data-tech-review" has 1 open issue
-    Then the number 71 should be stored in the open issues stat
-    When the github monitor runs
+  
+    Given the repository "capsulecrm" has 1 open issue
+    And   the repository "csv-profiler" has 1 open issue
+    And   the repository "hot-drinks" has 1 open issue
+    And   the repository "member-directory" has 11 open issues
+    And   the repository "open-data-certificate" has 20 open issues
+    And   the repository "open-data-tech-review" has 1 open issue
+    And   the repository "open-orgn-services" has 75 open issues
+    And   the repository "public-displays" has 2 open issues
+    And   the repository "services-manager" has 1 open issue
+    And   the repository "signin-web" has 7 open issues
+    Then the number 120 should be stored in the open issues stat
+    When the github issue monitor runs
 
   Scenario: get watcher count
     Given the repository "open-data-tech-review" has 28 watchers
