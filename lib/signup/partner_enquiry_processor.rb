@@ -39,6 +39,7 @@ class PartnerEnquiryProcessor
     # Update contact with new details
     contact.job_title = person['job_title']
     contact.emails << CapsuleCRM::Email.new(contact, :type => "Work", :address => person['email'])
+    contact.phone_numbers << CapsuleCRM::Phone.new(contact, :type => "Work", :number => person['telephone'])
     contact.save
   end
   

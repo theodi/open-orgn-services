@@ -72,8 +72,8 @@ Then /^that person should have the email address "(.*?)"$/ do |email|
   @person.emails.first.address.should == email
 end
 
-Then /^that person should have the telephone number "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that person should have the telephone number "(.*?)"$/ do |number|
+  @person.phone_numbers.first.number.should == number
 end
 
 # Opportunities
