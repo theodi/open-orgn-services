@@ -128,8 +128,8 @@ Then /^that task should have the description "(.*?)"$/ do |description|
   @task.description.should == description
 end
 
-Then /^that task should be due at (\d+)\-(\d+)\-(\d+) (\d+):(\d+)$/ do |arg1, arg2, arg3, arg4, arg5|
-  pending # express the regexp above with the code you wish you had
+Then /^that task should be due at (#{DATETIME})$/ do |due|
+  DateTime.parse(@task.due_date_time).should == due
 end
 
 Then /^that task should have the category "(.*?)"$/ do |arg1|

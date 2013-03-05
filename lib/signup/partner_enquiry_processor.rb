@@ -60,11 +60,12 @@ class PartnerEnquiryProcessor
     )
     opportunity.save
     # Create task for followup
+    due = DateTime.tomorrow + 9.hours
     task = CapsuleCRM::Task.new(
       :party_id => contact.id, 
       :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
       :description => "Call #{person['name']} to discuss #{product['name']} membership",
-      :due_date_time => Time.now,
+      :due_date_time => due,
       :category => 'Fish'
     )
     task.save
