@@ -113,8 +113,10 @@ Then /^that opportunity should be owned by "(.*?)"$/ do |owner|
   @opportunity.owner.should == owner
 end
 
-Then /^that opportunity should have a type of "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should have a type of "(.*?)"$/ do |type|
+  field = @opportunity.custom_fields.find{|x| x.name == "Type"}
+  field.should be_present
+  field.text.should == type
 end
 
 # Tasks
@@ -132,8 +134,8 @@ Then /^that task should be due at (#{DATETIME})$/ do |due|
   DateTime.parse(@task.due_date_time).should == due
 end
 
-Then /^that task should have the category "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that task should have the category "(.*?)"$/ do |category|
+  @task.category.should == category
 end
 
 Then /^that task should be assigned to "(.*?)"$/ do |arg1|
