@@ -114,7 +114,7 @@ Then /^that opportunity should be owned by "(.*?)"$/ do |owner|
 end
 
 Then /^that opportunity should have a type of "(.*?)"$/ do |type|
-  field = @opportunity.custom_fields.find{|x| x.name == "Type"}
+  field = @opportunity.custom_fields.find{|x| x.label == "Type"}
   field.should be_present
   field.text.should == type
 end
