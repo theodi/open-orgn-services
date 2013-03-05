@@ -45,7 +45,8 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that person should have the telephone number "+44 1738 494032"
 
   Scenario: Create sponsor opportunity against organisation
-    Given I requested membership at the level called "sponsor"
+    Given that it's 2013-02-01 13:45
+    And I requested membership at the level called "sponsor"
     When I have asked to be contacted
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have an opportunity against it
@@ -54,13 +55,13 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that opportunity should have the value 25000 per year for 3 years
     And that opportunity should have the milestone "New"
     And that opportunity should have the probability 10%
-    And that opportunity should have an expected close date 2 months from today
+    And that opportunity should have an expected close date of 2013-04-01
     And that opportunity should be owned by "defaultuser"
     And that opportunity should have a type of "Membership"
 
   Scenario: Create partner opportunity against organisation
     Given that it's 2013-02-01 13:45
-    Given I requested membership at the level called "partner"
+    And I requested membership at the level called "partner"
     When I have asked to be contacted
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have an opportunity against it
