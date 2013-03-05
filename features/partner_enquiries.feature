@@ -84,7 +84,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     Given that it's 2013-02-01 13:45
     When I have asked to be contacted
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
-    And that organisation should have a person called "Turk Turkleton"
+    And that organisation should have a person
     And that person should have a task against him
     And that task should have the description "Call Turk Turkleton to discuss partner membership"
     And that task should be due at 2013-02-02 09:00
