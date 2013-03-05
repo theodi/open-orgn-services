@@ -18,7 +18,7 @@ Feature: Monitoring eventbrite events
     And that event has 100 tickets called "Free Ticket" which cost GBP 0.00
     And that ticket type is on sale from 2013-02-11 09:00
     And that ticket type is on sale until 2013-03-17 18:00
-    And that event has 100 tickets called "Cheap Ticket" which cost GBP 1.00
+    And that event has 99 tickets called "Cheap Ticket" which cost GBP 1.00
     And that ticket type is on sale until 2013-03-17 18:00
 		Then that event should be queued for attendee checking
 		When we poll eventbrite for all events
@@ -39,5 +39,5 @@ Feature: Monitoring eventbrite events
   Scenario: Get empty list of attendees
     Given an event in Eventbrite called "Open Data, Law and Licensing" with id 5519765768
     And that event has not sold any tickets
-    When the attendee lister runs
+    When the attendee monitor runs
     Then no errors should be raised

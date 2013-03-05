@@ -11,55 +11,15 @@ This repository is for code for services that support the ODI's operation as an 
 Setup
 -----
 
-Configuration is loaded from environment variables. Copy env.example to .env 
-and enter the appropriate details.
+Add to gemfile:
 
-This app uses [resque](https://github.com/defunkt/resque) for async job queueing. 
-You'll need to install redis, run it, and then run a worker to process jobs. On OSX:
+    gem 'open-orgn-services', :git => 'https://github.com/theodi/open-orgn-services.git'
 
-    brew install redis
-    redis-server &
-    bundle
-    VVERBOSE=1 QUEUE=* rake resque:work
+And require if necessary:
 
-Regular jobs are handled by the resque scheduler, which you can run like so:
+    require 'open-orgn-services'
 
-    QUEUE=* rake resque:scheduler
-
-To get a web interface on your resque workers:
-
-    resque-web config/resque-web.rb
-
-Foreman
--------
-
-[Foreman](http://ddollar.github.com/foreman/) uses the [Procfile](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/Procfile) to launch our Resque services. So we can do like:
-
-    $ foreman start
-    14:50:10 worker.1    | started with pid 6122
-    14:50:10 worker.2    | started with pid 6125
-    14:50:10 worker.3    | started with pid 6128
-    14:50:10 worker.4    | started with pid 6131
-    14:50:10 scheduler.1 | started with pid 6137
-    14:50:10 web.1       | started with pid 6140
-
-It can also export to a set of [Upstart](http://upstart.ubuntu.com/) scripts:
-
-    # foreman export upstart /etc/init
-    [foreman export] writing: resque.conf
-    [foreman export] writing: resque-worker.conf
-    [foreman export] writing: resque-worker-1.conf
-    [foreman export] writing: resque-worker-2.conf
-    [foreman export] writing: resque-worker-3.conf
-    [foreman export] writing: resque-worker-4.conf
-    [foreman export] writing: resque-scheduler.conf
-    [foreman export] writing: resque-scheduler-1.conf
-    [foreman export] writing: resque-web.conf
-    [foreman export] writing: resque-web-1.conf
-
-This picks up some values from the [.foreman](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/.foreman) file. Note that we're using the template at [config/foreman/master.conf.erb](https://github.com/theodi/open-orgn-services/blob/feature-53-infrastructure/config/foreman/master.conf.erb) for the master script because the default start conditions didn't seem to work for me. You can control the whole lot with something like ```sudo start resque```.
-
-Next step is to proxy the web interface with nginx, but that's an infrastucture thing.
+Configuration is loaded from environment variables. See the environment section below for the list of which variables must be set. The main one to make sure you add is `RESQUE_REDIS_SERVER`, which should be the hostname and port of the redis server where jobs should be queued.
 
 License
 -------
@@ -78,3 +38,50 @@ This repository consists of a whole bunch of glue scripts which connect various 
 * Testable; minimal jobs are very easy to test. This is generally done with cucumber features.
 
 We use [VCR](https://github.com/vcr/vcr) to mock away any HTTP requests during tests.
+
+Environment
+-----------
+
+The following environment variables should be set in order to use this gem.
+
+    RESQUE_REDIS_HOST
+    RESQUE_REDIS_PORT
+    RESQUE_REDIS_PASSWORD (optional)
+    
+    EVENTBRITE_API_KEY
+    EVENTBRITE_USER_KEY
+    EVENTBRITE_ORGANIZER_ID
+    
+    XERO_CONSUMER_KEY
+    XERO_CONSUMER_SECRET
+    XERO_PRIVATE_KEY_PATH
+    
+    COURSES_RSYNC_PATH
+    COURSES_TARGET_URL
+    
+    TRELLO_DEV_KEY
+    TRELLO_DEV_SECRET
+    TRELLO_MEMBER_KEY
+    TRELLO_CLEANUP_BOARD
+    
+    GITHUB_LOGIN
+    GITHUB_PASSWORD
+    GITHUB_ORGANISATION
+    
+    LEFTRONIC_API_KEY
+    LEFTRONIC_GITHUB_REPOS
+    LEFTRONIC_GITHUB_FORKS
+    LEFTRONIC_GITHUB_ISSUES
+    LEFTRONIC_GITHUB_OPENPRS
+    LEFTRONIC_GITHUB_PULLS
+    LEFTRONIC_GITHUB_OUTGOING_PRS
+    LEFTRONIC_GITHUB_WATCHERS
+    LEFTRONIC_TRELLO_COUNT
+    LEFTRONIC_TRELLO_LINE
+    LEFTRONIC_JENKINS_HTML
+    LEFTRONIC_JENKINS_TIME
+    LEFTRONIC_IRC_COUNT
+    
+    HUBOT_USER_LIST
+    
+    JENKINS_URL
