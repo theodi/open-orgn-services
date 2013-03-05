@@ -48,3 +48,7 @@ end
 When /^the github watcher and fork monitor runs$/ do
   Github::WatchersForksMonitor.perform
 end
+
+When /^the github pull request monitor runs$/ do
+  Github::PullRequestMonitor.perform
+end
