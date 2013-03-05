@@ -40,6 +40,7 @@ class PartnerEnquiryProcessor
     contact.job_title = person['job_title']
     contact.emails << CapsuleCRM::Email.new(contact, :type => "Work", :address => person['email'])
     contact.phone_numbers << CapsuleCRM::Phone.new(contact, :type => "Work", :number => person['telephone'])
+    contact.contacts_will_change! # We have to mark this manually for now
     contact.save
   end
   
