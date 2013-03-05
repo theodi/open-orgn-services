@@ -120,7 +120,8 @@ end
 # Tasks
 
 Then /^that person should have a task against him$/ do
-  pending # express the regexp above with the code you wish you had
+  @task = @person.tasks.first
+  @task.should be_present
 end
 
 Then /^that task should have the description "(.*?)"$/ do |arg1|

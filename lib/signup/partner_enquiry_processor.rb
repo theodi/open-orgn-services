@@ -59,6 +59,15 @@ class PartnerEnquiryProcessor
       :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
     )
     opportunity.save
+    # Create task for followup
+    task = CapsuleCRM::Task.new(
+      :party_id => contact.id, 
+      :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
+      :description => 'description',
+      :due_date_time => Time.now,
+      :category => 'Fish'
+    )
+    task.save
   end
   
   def self.value_for_product_name(product)
