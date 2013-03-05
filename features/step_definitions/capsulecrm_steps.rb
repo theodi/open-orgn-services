@@ -79,11 +79,12 @@ end
 # Opportunities
 
 Then /^that organisation should have an opportunity against it$/ do
-  pending # express the regexp above with the code you wish you had
+  @opportunity = @organisation.opportunities.first
+  @opportunity.should_not be_nil
 end
 
-Then /^that opportunity should have the name "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should have the name "(.*?)"$/ do |name|
+  @opportunity.name.should == name
 end
 
 Then /^that opportunity should have the description "(.*?)"$/ do |arg1|
