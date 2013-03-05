@@ -10,9 +10,7 @@ Feature: Github monitoring
     Then the number 27 should be stored in the public repositories stat
     When the github organisation monitor runs
 
-  @wip
-  Scenario: get open issue count
-  
+  Scenario: get open issue count  
     Given the repository "capsulecrm" has 1 open issue
     And   the repository "csv-profiler" has 1 open issue
     And   the repository "hot-drinks" has 1 open issue
@@ -27,15 +25,18 @@ Feature: Github monitoring
     When the github issue monitor runs
 
   Scenario: get watcher count
-    Given the repository "open-data-tech-review" has 28 watchers
-    Then the number 28 should be stored in the watchers stat
-    When the github monitor runs
+    Given the repository "bootstrap" has 1 watcher
+    And the repository "open-data-certificate" has 1 watcher
+    And the repository "open-data-tech-review" has 29 watchers
+    Then the number 31 should be stored in the watchers stat
+    When the github watcher and fork monitor runs
 
   Scenario: get fork count
-    Given the repository "open-data-tech-review" has 4 forks
+    Given the repository "hot-drinks" has 1 fork
     And the repository "odibot" has 1 fork
-    Then the number 5 should be stored in the forks stat
-    When the github monitor runs
+    And the repository "open-data-tech-review" has 4 forks
+    Then the number 6 should be stored in the forks stat
+    When the github watcher and fork monitor runs
 
   Scenario: get open pull request count
     Given the repository "open-orgn-services" has 1 open pull request
