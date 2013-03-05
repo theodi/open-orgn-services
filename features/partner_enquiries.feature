@@ -19,7 +19,9 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
     When I have asked to be contacted
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
-    And that organisation should have a person called "Turk Turkleton"
+    And that organisation should have a person
+    And that person should have the firstname "Turk"
+    And that person should have the surname "Turkleton"
     And that person should have the job title "CTO"
     And that person should have the email address "turkleton@acme.com"
     And that person should have the telephone number "+44 1738 494032"
