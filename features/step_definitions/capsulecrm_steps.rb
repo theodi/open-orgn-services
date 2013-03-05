@@ -69,8 +69,7 @@ Then /^that person should have the job title "(.*?)"$/ do |job_title|
 end
 
 Then /^that person should have the email address "(.*?)"$/ do |email|
-  pending # express the regexp above with the code you wish you had
-  #@person.emails.first.address.should == email
+  @person.emails.first.address.should == email
 end
 
 Then /^that person should have the telephone number "(.*?)"$/ do |arg1|
