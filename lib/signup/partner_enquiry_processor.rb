@@ -63,7 +63,7 @@ class PartnerEnquiryProcessor
     task = CapsuleCRM::Task.new(
       :party_id => contact.id, 
       :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
-      :description => 'description',
+      :description => "Call #{person['name']} to discuss #{product['name']} membership",
       :due_date_time => Time.now,
       :category => 'Fish'
     )
