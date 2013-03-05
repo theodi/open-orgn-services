@@ -50,35 +50,25 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that person should have the email address "turkleton@acme.com"
     And that person should have the telephone number "+44 1738 494032"
 
-  Scenario: Create sponsor opportunity against organisation
+  Scenario Outline: Create opportunities against organisations
     Given that it's 2013-02-01 13:45
-    And I requested membership at the level called "sponsor"
+    And I requested membership at the level called "<level>"
     When I have asked to be contacted
     Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have an opportunity against it
-    And that opportunity should have the name "Membership at sponsor level"
+    And that opportunity should have the name "Membership at <level> level"
     And that opportunity should have the description "Hey, I really want us to join the ODI!"
-    And that opportunity should have the value 25000 per year for 3 years
+    And that opportunity should have the value <amount> per year for 3 years
     And that opportunity should have the milestone "New"
     And that opportunity should have the probability 10%
     And that opportunity should have an expected close date of 2013-04-01
     And that opportunity should be owned by "defaultuser"
     And that opportunity should have a type of "Membership"
 
-  Scenario: Create partner opportunity against organisation
-    Given that it's 2013-02-01 13:45
-    And I requested membership at the level called "partner"
-    When I have asked to be contacted
-    Then an organisation should exist in CapsuleCRM called "ACME widgets Inc."
-    And that organisation should have an opportunity against it
-    And that opportunity should have the name "Membership at partner level"
-    And that opportunity should have the description "Hey, I really want us to join the ODI!"
-    And that opportunity should have the value 50000 per year for 3 years
-    And that opportunity should have the milestone "New"
-    And that opportunity should have the probability 10%
-    And that opportunity should have an expected close date of 2013-04-01
-    And that opportunity should be owned by "defaultuser"
-    And that opportunity should have a type of "Membership"
+    Examples:
+    | level    | amount |
+    | sponsor  | 25000  |
+    | partner  | 50000  |
 
   Scenario: Create task against person
     Given that it's 2013-02-01 13:45
