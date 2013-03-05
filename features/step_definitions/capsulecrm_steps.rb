@@ -97,12 +97,12 @@ Then /^that opportunity should have the value (#{INTEGER}) per (.*?) for (#{INTE
   @opportunity.duration.should == years.to_s
 end
 
-Then /^that opportunity should have the milestone "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should have the milestone "(.*?)"$/ do |milestone|
+  @opportunity.milestone.should == milestone
 end
 
-Then /^that opportunity should have the probability (\d+)%$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^that opportunity should have the probability (#{INTEGER})%$/ do |probability|
+  @opportunity.probability.should == probability.to_s
 end
 
 Then /^that opportunity should have an expected close date of (#{DATE})$/ do |date|
