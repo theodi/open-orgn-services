@@ -44,3 +44,7 @@ end
 When /^the github issue monitor runs$/ do
   Github::IssueMonitor.perform
 end
+
+When /^the github watcher and fork monitor runs$/ do
+  Github::WatchersForksMonitor.perform
+end

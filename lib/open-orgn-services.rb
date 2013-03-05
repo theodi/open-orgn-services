@@ -28,6 +28,7 @@ require 'github/github_connection'
 require 'github/github_monitor'
 require 'github/organisation_monitor'
 require 'github/issue_monitor'
+require 'github/watchers_forks_monitor'
 
 require 'jenkins/build_status_monitor'
 require 'leftronic/dashboard_time'

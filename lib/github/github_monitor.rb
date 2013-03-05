@@ -6,14 +6,10 @@ class GithubMonitor
     # Connect
     github = Github.connection
     # Count up stats across all repositories
-    watchers = 0
-    forks = 0
     open_pull_requests = 0
     pull_requests = 0
     outgoing_pull_requests = 0
     github.repos.list(user: ENV['GITHUB_ORGANISATION']) do |repo|
-      watchers += repo.watchers_count
-      forks += repo.forks_count
       open_pulls = github.pulls.list(ENV['GITHUB_ORGANISATION'], repo.name)
       open_pull_requests += open_pulls.count
       pull_requests += open_pulls.count
@@ -27,8 +23,6 @@ class GithubMonitor
       end
     end
     # Push into leftronic
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_WATCHERS'], watchers
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_FORKS'], forks
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OPENPRS'], open_pull_requests
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_PULLS'], pull_requests
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OUTGOING_PRS'], outgoing_pull_requests
