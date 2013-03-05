@@ -42,6 +42,27 @@ class PartnerEnquiryProcessor
     contact.phone_numbers << CapsuleCRM::Phone.new(contact, :type => "Work", :number => person['telephone'])
     contact.contacts_will_change! # We have to mark this manually for now
     contact.save
+    # Create opportunity for organisation
+    opportunity = CapsuleCRM::Opportunity.new(
+      :party_id => organisation.id, 
+      :name => "Membership at #{product['name']} level",
+      :currency => 'GBP',
+      :description => comment['text'],
+      :value => value_for_product_name(product['name']),
+      :milestone => 'New',
+    )
+    opportunity.save
+  end
+  
+  def self.value_for_product_name(product)
+    case product.to_sym
+    when :sponsor
+      25000
+    when :partner
+      50000
+    else
+      raise ArgumentError.new("Unknown product name #{product}")
+    end
   end
   
 end
