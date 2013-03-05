@@ -60,12 +60,12 @@ class PartnerEnquiryProcessor
     )
     opportunity.save
     # Write custom field for opportunity type
-    # field = CapsuleCRM::CustomField.new(
- #      organisation,
- #      :label => 'Type',
- #      :text => 'Membership'
- #    )
- #    field.save
+    field = CapsuleCRM::CustomField.new(
+      opportunity,
+      :label => 'Type',
+      :text => 'Membership'
+    )
+    field.save
     # Create task for followup
     due = DateTime.tomorrow + 9.hours
     task = CapsuleCRM::Task.new(
