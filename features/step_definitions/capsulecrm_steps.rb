@@ -100,7 +100,7 @@ Then /^that opportunity should have the probability (\d+)%$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^that opportunity should have an expected close date (\d+) months from today$/ do |arg1|
+Then /^that opportunity should have an expected close date of (#{DATE})$/ do |date|
   pending # express the regexp above with the code you wish you had
 end
 
