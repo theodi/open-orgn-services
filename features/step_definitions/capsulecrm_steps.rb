@@ -91,10 +91,10 @@ Then /^that opportunity should have the description "(.*?)"$/ do |description|
   @opportunity.description.should == description
 end
 
-Then /^that opportunity should have the value (#{INTEGER}) per (.*?) for (#{INTEGER}) years$/ do |value, basis, years|
+Then /^that opportunity should have the value (#{INTEGER}) per (.*?) for (#{INTEGER}) .*?$/ do |value, basis, duration|
   @opportunity.value.to_f.should == value.to_f
   @opportunity.duration_basis.should == basis.upcase
-  @opportunity.duration.should == years.to_s
+  @opportunity.duration.should == duration.to_s
 end
 
 Then /^that opportunity should have the milestone "(.*?)"$/ do |milestone|

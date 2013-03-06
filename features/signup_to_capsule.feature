@@ -18,16 +18,23 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     Then my signup should be requeued for later processing once the contact has synced from Xero
     When I sign up via the website
 
-  Scenario: attach opportunities to existing organisations
+  Scenario Outline: attach opportunities to existing organisations
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
+    And I requested membership at the level called "<level>"
     When I sign up via the website
     Then there should still be just one organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have an opportunity against it
-    And that opportunity should have the name "Membership at supporter level"
+    And that opportunity should have the name "Membership at <level> level"
+    And that opportunity should have the description "Membership #: AB1234YZ"
     And that opportunity should have the milestone "Won"
     And that opportunity should have the probability 100%
+    And that opportunity should have the value <amount> per month for 12 month
     And that opportunity should be owned by "defaultuser"
     And that opportunity should have a type of "Membership"
+    Examples:
+    | level     | amount |
+    | supporter | 45     |
+    | member    | 400    |
 
   Scenario: attach tag to existing organisation
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."

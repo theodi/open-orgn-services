@@ -25,9 +25,9 @@ class SendSignupToCapsule
         :name => "Membership at #{membership['product_name']} level",
         :currency => 'GBP',
         :description => "Membership #: #{membership['number']}",
-        # :value => value_for_product_name(membership['product_name']),
-        # :duration => 12,
-        # :duration_basis => 'MONTH',
+        :value => value_for_product_name(membership['product_name']),
+        :duration => 12,
+        :duration_basis => 'MONTH',
         :milestone => 'Won',
         :probability => 100,
         :expected_close_date => Date.parse(membership['join_date']),
@@ -37,4 +37,15 @@ class SendSignupToCapsule
     end
   end
   
+  def self.value_for_product_name(product)
+    case product.to_sym
+    when :supporter
+      45
+    when :member
+      400
+    else
+      raise ArgumentError.new("Unknown product name #{product}")
+    end
+  end
+
 end
