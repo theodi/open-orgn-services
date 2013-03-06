@@ -29,6 +29,7 @@ Feature: Processing membership signups
     Then the invoice description should read "ODI <level_description> Membership (1010101)"
     And the invoice price should be "<price>"
     And I should be added to the invoicing queue
+    And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
     | level     | level_description | price |
