@@ -52,6 +52,7 @@ class SendSignupToCapsule
       # Membership level
       field = CapsuleCRM::CustomField.new(
         organisation,
+        :tag => 'Membership',
         :label => 'Level',
         :text => membership['product_name'],
       )
@@ -59,13 +60,15 @@ class SendSignupToCapsule
       # Membership number
       field = CapsuleCRM::CustomField.new(
         organisation,
-        :label => 'Membership number',
+        :tag => 'Membership',
+        :label => 'Membership Number',
         :text => membership['number'],
       )
       field.save
       # Membership number
       field = CapsuleCRM::CustomField.new(
         organisation,
+        :tag => 'Membership',
         :label => 'Joined',
         :date => Date.parse(membership['join_date']),
       )
