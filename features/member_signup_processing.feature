@@ -23,7 +23,7 @@ Feature: Processing membership signups
     And my organisation has a tax registration number "A0A0A0A0"
     And I have a membership id "01010101"
 
-  Scenario: add supporters to new style invoicing queue
+  Scenario: add supporters to invoicing queue
     Given I requested 1 membership at the level called "supporter"
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "ODI Supporter Membership (1010101)"
@@ -31,7 +31,7 @@ Feature: Processing membership signups
     And I should be added to the invoicing queue
     When the signup processor runs
 
-  Scenario: add members to new style invoicing queue
+  Scenario: add members to invoicing queue
     Given I requested 1 membership at the level called "member"
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "ODI Member Membership (1010101)"
