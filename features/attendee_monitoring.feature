@@ -41,7 +41,7 @@ Feature: Monitoring attendee signups
     Given I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
     And my order number is 142052968
 	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
-    And I should be added to the invoicing queue
+    And I should be added to the invoicing queue along with others
     When the attendee monitor runs
 
   Scenario: don't add users to invoicing queue if they have a free ticket
@@ -57,7 +57,7 @@ Feature: Monitoring attendee signups
     And I paid with Paypal
     And my order number is 142059188
 	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
-    And I should be added to the invoicing queue
+    And I should be added to the invoicing queue along with others
     When the attendee monitor runs
   
   Scenario: pay with invoice
@@ -65,7 +65,7 @@ Feature: Monitoring attendee signups
     And I requested an invoice
     And my order number is 142052968
 	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
-    And I should be added to the invoicing queue
+    And I should be added to the invoicing queue along with others
     When the attendee monitor runs
 
   # VAT
@@ -76,5 +76,5 @@ Feature: Monitoring attendee signups
     And I paid with Paypal
     And my order number is 142059188
 	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
-    And I should be added to the invoicing queue
+    And I should be added to the invoicing queue along with others
     When the attendee monitor runs
