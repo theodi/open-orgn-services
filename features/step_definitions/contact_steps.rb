@@ -73,7 +73,7 @@ end
 # also similar step in member_signup_processor_steps.rb
 
 Given /^I entered a membership number "(.*?)"$/ do |membership_number|
-  @membership_number = membership_number.to_s
+  @membership_id = membership_number.to_s
 end
 
 
