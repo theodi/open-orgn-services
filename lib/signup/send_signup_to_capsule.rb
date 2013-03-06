@@ -43,6 +43,11 @@ class SendSignupToCapsule
       field.save
       # Create data tag on organisation
       # TODO - the following will not work until we can do this
+      # Steps:
+      #   1. ensure tag is defined via web interface
+      #   2. add data tag to party via api
+      #   3. add custom fields to tag
+      
       # Set custom fields (in data tag)
       # Currently we have code to do these individually, so let's do that. Collections may come later.
       # Membership level
