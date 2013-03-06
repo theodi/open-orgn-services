@@ -149,14 +149,14 @@ end
 # Data tags
 
 Then /^that organisation should have a data tag$/ do
-  # add if/else logic here to add the tag if it doesnt exist
-  @tags = @organisation.tags
-  @tags.size.should == 1
+  tags = @organisation.tags
+  tags.size.should == 1
+  @tag = tags.first
+  @tag.should_not be_nil
 end
 
 Then /^that data tag should have the type "(.*?)"$/ do |type|
-  pending #@tag = @tags.first
-  #@tag.name.should == 'Membership'
+  @tag.name.should == 'Membership'
 end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
