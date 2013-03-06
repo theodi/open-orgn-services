@@ -34,6 +34,31 @@ class SendSignupToCapsule
         :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
       )
       opportunity.save
+      # Create data tag on organisation
+      # TODO - the following will not work until we can do this
+      # Set custom fields (in data tag)
+      # Currently we have code to do these individually, so let's do that. Collections may come later.
+      # Membership level
+      field = CapsuleCRM::CustomField.new(
+        organisation,
+        :label => 'Level',
+        :text => membership['product_name'],
+      )
+      field.save
+      # Membership number
+      field = CapsuleCRM::CustomField.new(
+        organisation,
+        :label => 'Membership number',
+        :text => membership['number'],
+      )
+      field.save
+      # Membership number
+      field = CapsuleCRM::CustomField.new(
+        organisation,
+        :label => 'Joined',
+        :date => Date.parse(membership['join_date']),
+      )
+      field.save  
     end
   end
   
