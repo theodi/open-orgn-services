@@ -145,3 +145,25 @@ end
 Then /^that task should have the detailed description "(.*?)"$/ do |detail|
   @task.detail.should == detail
 end
+
+# Data tags
+
+Then /^that organisation should have a data tag$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the type "(.*?)"$/ do |type|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the level "(.*?)"$/ do |level|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the join date (#{DATE})$/ do |date|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
+  pending # express the regexp above with the code you wish you had
+end
