@@ -1,4 +1,4 @@
-@vcr @capsulecrm
+@vcr @capsulecrm @timecop
 Feature: Create opportunities and tags against organisations in CapsuleCRM
 
   In order to see lower-level members in our sales pipeline
@@ -9,8 +9,8 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
   Background:
     Given my name is "Turk Turkleton"
     And I work for "ACME widgets Inc."
-    And I signed up for membership at the level called "supporter"
-    And I signed up on 2013-01-01
+    And I requested membership at the level called "supporter"
+    And that it's 2013-01-01 14:35
     And my membership number is "AB1234YZ"
 
   Scenario: wait for Xero to capsule sync
