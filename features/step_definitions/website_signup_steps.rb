@@ -7,5 +7,5 @@ Given /^I signed up on (#{DATE})$/ do |date|
 end
 
 Given /^my membership number is "(.*?)"$/ do |membership_number|
-  @membership_number = membership_number  
+  @membership_id = membership_number  
 end
