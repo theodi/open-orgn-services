@@ -76,8 +76,19 @@ class SignupProcessor
       'purchase_order_reference' => purchase['purchase_order_reference'],
       'description' => description(purchase['membership_id'], purchase['offer_category'])
     }
-
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
+    
+    # Save details in capsule
+    
+    organization = {
+      'name' => organization['name']
+    }
+    membership = {
+      'product_name' => purchase['offer_category'],
+      'number'       => purchase['membership_id'].to_s,
+      'join_date'    => Date.today.to_s,
+    }
+    Resque.enqueue(SendSignupToCapsule, organization, membership)
   end
   
 end

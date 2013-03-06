@@ -46,3 +46,4 @@ require 'hubot/hubot_monitor'
 
 require 'signup/signup_processor'
 require 'signup/partner_enquiry_processor'
+require 'signup/send_signup_to_capsule'

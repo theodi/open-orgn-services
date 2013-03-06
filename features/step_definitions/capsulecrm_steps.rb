@@ -91,10 +91,10 @@ Then /^that opportunity should have the description "(.*?)"$/ do |description|
   @opportunity.description.should == description
 end
 
-Then /^that opportunity should have the value (#{INTEGER}) per (.*?) for (#{INTEGER}) years$/ do |value, basis, years|
+Then /^that opportunity should have the value (#{INTEGER}) per (.*?) for (#{INTEGER}) .*?$/ do |value, basis, duration|
   @opportunity.value.to_f.should == value.to_f
   @opportunity.duration_basis.should == basis.upcase
-  @opportunity.duration.should == years.to_s
+  @opportunity.duration.should == duration.to_s
 end
 
 Then /^that opportunity should have the milestone "(.*?)"$/ do |milestone|
@@ -144,4 +144,26 @@ end
 
 Then /^that task should have the detailed description "(.*?)"$/ do |detail|
   @task.detail.should == detail
+end
+
+# Data tags
+
+Then /^that organisation should have a data tag$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the type "(.*?)"$/ do |type|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the level "(.*?)"$/ do |level|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the join date (#{DATE})$/ do |date|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
+  pending # express the regexp above with the code you wish you had
 end
