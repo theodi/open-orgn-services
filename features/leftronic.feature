@@ -21,7 +21,6 @@ Feature: Leftronic dashboard publishing
     Then html containing '2013-03-04T14:54:00+00:00' should be stored in the time stat
     When the dashboard time publisher runs
     
-  @wip
   Scenario: raise an error when publishing something silly
     Given the number 5 has been queued for publishing in the irc stat
     But we are publishing a data type called 'test' instead

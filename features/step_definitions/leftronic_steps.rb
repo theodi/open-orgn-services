@@ -28,10 +28,6 @@ Then /^the HTML '(.*?)' should be published to the leftronic (.*?) stat$/ do |ht
   ).once
 end
 
-Given /^that it's (#{DATETIME})$/ do |datetime|
-  Timecop.freeze(datetime)
-end
-
 When /^the dashboard time publisher runs$/ do
   DashboardTime.perform
 end
