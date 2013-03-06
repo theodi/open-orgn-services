@@ -23,22 +23,18 @@ Feature: Processing membership signups
     And my organisation has a tax registration number "A0A0A0A0"
     And I have a membership id "01010101"
 
-  Scenario: add supporters to invoicing queue
-    Given I requested 1 membership at the level called "supporter"
+  Scenario Outline: add signups to correct queues
+    Given I requested 1 membership at the level called "<level>"
     And my purchase order reference is "ABC000001"
-    Then the invoice description should read "ODI Supporter Membership (1010101)"
-    And the invoice price should be "45"
+    Then the invoice description should read "ODI <level_description> Membership (1010101)"
+    And the invoice price should be "<price>"
     And I should be added to the invoicing queue
     When the signup processor runs
-
-  Scenario: add members to invoicing queue
-    Given I requested 1 membership at the level called "member"
-    And my purchase order reference is "ABC000001"
-    Then the invoice description should read "ODI Member Membership (1010101)"
-    And the invoice price should be "400"
-    And I should be added to the invoicing queue
-    When the signup processor runs
-
+    Examples:
+    | level     | level_description | price |
+    | supporter | Supporter         | 45    |
+    | member    | Member            | 400   |
+    
 # currently an issue with leading zeros being removed from postcode and membership number
 
 
