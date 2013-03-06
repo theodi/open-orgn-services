@@ -149,21 +149,27 @@ end
 # Data tags
 
 Then /^that organisation should have a data tag$/ do
-  pending # express the regexp above with the code you wish you had
+  # add if/else logic here to add the tag if it doesnt exist
+  @tags = @organisation.tags
+  @tags.size.should == 1
 end
 
 Then /^that data tag should have the type "(.*?)"$/ do |type|
-  pending # express the regexp above with the code you wish you had
+  pending #@tag = @tags.first
+  #@tag.name.should == 'Membership'
 end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
+  # need to express this in terms of custom fields that reference the data tag
   pending # express the regexp above with the code you wish you had
 end
 
 Then /^that data tag should have the join date (#{DATE})$/ do |date|
+  # need to express this in terms of custom fields that reference the data tag
   pending # express the regexp above with the code you wish you had
 end
 
 Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
+  # need to express this in terms of custom fields that reference the data tag
   pending # express the regexp above with the code you wish you had
 end
