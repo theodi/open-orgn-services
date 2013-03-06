@@ -1,0 +1,873 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342984/opportunity
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
+        at supporter level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">45</value>\n
+        \ <milestone>Won</milestone>\n  <probability type=\"integer\">100</probability>\n
+        \ <description>Membership #: AB1234YZ</description>\n  <duration type=\"integer\">12</duration>\n
+        \ <durationBasis>MONTH</durationBasis>\n  <expectedCloseDate type=\"date\">2013-01-01</expectedCloseDate>\n
+        \ <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:04 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=F6434CEBD3386854BA96D25CB1F5BB67.nodec06; Path=/; Secure
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211551
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342984/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>supporter</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:05 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '140'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Level definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342984/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Membership number</label>\n    <text>AB1234YZ</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:06 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '152'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Membership number definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342984/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Joined</label>\n    <text nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:06 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '141'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Joined definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342984/opportunity
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:07 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=30BD4A84FD0E4069D46576B1589D97DF.nodec01; Path=/; Secure
+      Content-Length:
+      - '674'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><opportunities
+        size="1"><opportunity><id>1211551</id><name>Membership at supporter level</name><description>Membership
+        #: AB1234YZ</description><partyId>37342984</partyId><currency>GBP</currency><value>45.00</value><durationBasis>MONTH</durationBasis><duration>12</duration><expectedCloseDate>2013-01-01T00:00:00Z</expectedCloseDate><actualCloseDate>2013-03-06T00:00:00Z</actualCloseDate><milestoneId>154049</milestoneId><milestone>Won</milestone><probability>100</probability><owner><CAPSULECRM_DEFAULT_OWNER></owner><createdOn>2013-03-06T18:05:15Z</createdOn><updatedOn>2013-03-06T18:05:15Z</updatedOn></opportunity></opportunities>'
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211551/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:08 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=EA0369CD1B33DD1975049B3E33DBB4D1.nodec01; Path=/; Secure
+      Content-Length:
+      - '79'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="0"/>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342984
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:05:08 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=2A44E5C2F7CE03F6ACA8AAA18302040D.nodec08; Path=/; Secure
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342998/opportunity
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
+        at supporter level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">45</value>\n
+        \ <milestone>Won</milestone>\n  <probability type=\"integer\">100</probability>\n
+        \ <description>Membership #: AB1234YZ</description>\n  <duration type=\"integer\">12</duration>\n
+        \ <durationBasis>MONTH</durationBasis>\n  <expectedCloseDate type=\"date\">2013-01-01</expectedCloseDate>\n
+        \ <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:07 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=C310D65B874EDB9F70765241A5DAB055.nodec11; Path=/; Secure
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211556
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211556/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Type</label>\n    <text>Membership</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:08 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=68F4D119F517C42B2645472A28BBA8EB.nodec05; Path=/; Secure
+      Content-Length:
+      - '178'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>1460150</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342998/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>supporter</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:08 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '140'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Level definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342998/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Membership number</label>\n    <text>AB1234YZ</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:09 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '152'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Membership number definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342998/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Joined</label>\n    <text nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:09 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '141'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Joined definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342998/opportunity
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:10 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=7B70E35CD3243F3E402A4A8F9A8991D9.nodec11; Path=/; Secure
+      Content-Length:
+      - '674'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><opportunities
+        size="1"><opportunity><id>1211556</id><name>Membership at supporter level</name><description>Membership
+        #: AB1234YZ</description><partyId>37342998</partyId><currency>GBP</currency><value>45.00</value><durationBasis>MONTH</durationBasis><duration>12</duration><expectedCloseDate>2013-01-01T00:00:00Z</expectedCloseDate><actualCloseDate>2013-03-06T00:00:00Z</actualCloseDate><milestoneId>154049</milestoneId><milestone>Won</milestone><probability>100</probability><owner><CAPSULECRM_DEFAULT_OWNER></owner><createdOn>2013-03-06T18:06:18Z</createdOn><updatedOn>2013-03-06T18:06:19Z</updatedOn></opportunity></opportunities>'
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211556/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:11 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=66E9C2C9F3AC39ED51D39658A5084FF6.nodec02; Path=/; Secure
+      Content-Length:
+      - '178'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>1460150</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37342998
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:06:11 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=0CDD886E52BC48E5FDC25A3AD7360247.nodec02; Path=/; Secure
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:04 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=44074B2F2FCDF0C64FA67955A600F3BD.nodec06; Path=/; Secure
+      Content-Length:
+      - '74'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n  <about
+        nil=\"true\"/>\n  <name>ACME widgets Inc.</name>\n</organisation>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:04 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=F9EEBCFAEEB83D00635DB9193A8861ED.nodec02; Path=/; Secure
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:05 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=5A2086C6A9A55C10A45524FB8430F90D.nodec07; Path=/; Secure
+      Content-Length:
+      - '369'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37343007</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362503395/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-06T18:07:15Z</createdOn><updatedOn>2013-03-06T18:07:15Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:05 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=283F4429AA18B4D1DF44AFC05FE21C91.nodec03; Path=/; Secure
+      Content-Length:
+      - '369'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37343007</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362503395/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-06T18:07:15Z</createdOn><updatedOn>2013-03-06T18:07:15Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007/opportunity
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
+        at supporter level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">45</value>\n
+        \ <milestone>Won</milestone>\n  <probability type=\"integer\">100</probability>\n
+        \ <description>Membership #: AB1234YZ</description>\n  <duration type=\"integer\">12</duration>\n
+        \ <durationBasis>MONTH</durationBasis>\n  <expectedCloseDate type=\"date\">2013-01-01</expectedCloseDate>\n
+        \ <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:06 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=B9004DD22D15536ED35CD6940B85D51A.nodec09; Path=/; Secure
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211561
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211561/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Type</label>\n    <text>Membership</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:06 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=D7BC126C90FB668C7D1167405DC429B6.nodec02; Path=/; Secure
+      Content-Length:
+      - '178'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>1460158</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>supporter</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:07 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '140'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Level definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Membership number</label>\n    <text>AB1234YZ</text>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:07 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '152'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Membership number definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Joined</label>\n    <text nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:08 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '141'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>custom
+        field Joined definition cannot be found</message></response>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:08 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=E84E3E1A98AA628BAAA748DC8B1A0340.nodec03; Path=/; Secure
+      Content-Length:
+      - '369'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37343007</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362503395/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-06T18:07:15Z</createdOn><updatedOn>2013-03-06T18:07:15Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007/opportunity
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:09 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=2015378001EA0C7E6969DAC790EFD9C2.nodec10; Path=/; Secure
+      Content-Length:
+      - '674'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><opportunities
+        size="1"><opportunity><id>1211561</id><name>Membership at supporter level</name><description>Membership
+        #: AB1234YZ</description><partyId>37343007</partyId><currency>GBP</currency><value>45.00</value><durationBasis>MONTH</durationBasis><duration>12</duration><expectedCloseDate>2013-01-01T00:00:00Z</expectedCloseDate><actualCloseDate>2013-03-06T00:00:00Z</actualCloseDate><milestoneId>154049</milestoneId><milestone>Won</milestone><probability>100</probability><owner><CAPSULECRM_DEFAULT_OWNER></owner><createdOn>2013-03-06T18:07:17Z</createdOn><updatedOn>2013-03-06T18:07:17Z</updatedOn></opportunity></opportunities>'
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211561/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:09 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=5D71A28E0222F6280D7EFF6E10EDAA1A.nodec09; Path=/; Secure
+      Content-Length:
+      - '178'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>1460158</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37343007
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Mar 2013 18:07:10 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=DAA82A8A46B8B7A6A5F019114562B0C6.nodec08; Path=/; Secure
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
+recorded_with: VCR 2.4.0
