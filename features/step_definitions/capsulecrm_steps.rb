@@ -160,16 +160,19 @@ Then /^that data tag should have the type "(.*?)"$/ do |type|
 end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
-  # need to express this in terms of custom fields that reference the data tag
-  pending # express the regexp above with the code you wish you had
+  field = @organisation.custom_fields.find{|x| x.label == "Level" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == level
 end
 
 Then /^that data tag should have the join date (#{DATE})$/ do |date|
-  # need to express this in terms of custom fields that reference the data tag
-  pending # express the regexp above with the code you wish you had
+  field = @organisation.custom_fields.find{|x| x.label == "Joined" && x.tag == @tag.name}
+  field.should be_present
+  field.date.should == date
 end
 
 Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
-  # need to express this in terms of custom fields that reference the data tag
-  pending # express the regexp above with the code you wish you had
+  field = @organisation.custom_fields.find{|x| x.label == "Membership Number" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == membership_number
 end
