@@ -149,21 +149,30 @@ end
 # Data tags
 
 Then /^that organisation should have a data tag$/ do
-  pending # express the regexp above with the code you wish you had
+  tags = @organisation.tags
+  tags.size.should == 1
+  @tag = tags.first
+  @tag.should_not be_nil
 end
 
 Then /^that data tag should have the type "(.*?)"$/ do |type|
-  pending # express the regexp above with the code you wish you had
+  @tag.name.should == 'Membership'
 end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
-  pending # express the regexp above with the code you wish you had
+  field = @organisation.custom_fields.find{|x| x.label == "Level" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == level
 end
 
 Then /^that data tag should have the join date (#{DATE})$/ do |date|
-  pending # express the regexp above with the code you wish you had
+  field = @organisation.custom_fields.find{|x| x.label == "Joined" && x.tag == @tag.name}
+  field.should be_present
+  field.date.should == date
 end
 
 Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
-  pending # express the regexp above with the code you wish you had
+  field = @organisation.custom_fields.find{|x| x.label == "Membership Number" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == membership_number
 end
