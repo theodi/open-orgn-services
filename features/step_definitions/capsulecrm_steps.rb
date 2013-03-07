@@ -172,7 +172,7 @@ Then /^that data tag should have the join date (#{DATE})$/ do |date|
 end
 
 Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
-  field = @organisation.custom_fields.find{|x| x.label == "Membership Number" && x.tag == @tag.name}
+  field = @organisation.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
   field.should be_present
   field.text.should == membership_number
 end

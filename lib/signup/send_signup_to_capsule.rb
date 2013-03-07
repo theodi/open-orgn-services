@@ -7,7 +7,7 @@ class SendSignupToCapsule
   #
   # membership   - a hash containing details of the new membership
   #              'product_name' => the membership level
-  #              'number'       => the newly-generated membership number
+  #              'id'           => the newly-generated membership number
   #              'join_date'    => the date of signup
   # 
   # organization - a hash containing details of the organization
@@ -24,7 +24,7 @@ class SendSignupToCapsule
         :party_id => organisation.id, 
         :name => "Membership at #{membership['product_name']} level",
         :currency => 'GBP',
-        :description => "Membership #: #{membership['number']}",
+        :description => "Membership #: #{membership['id']}",
         :value => value_for_product_name(membership['product_name']),
         :duration => 12,
         :duration_basis => 'MONTH',
@@ -61,8 +61,8 @@ class SendSignupToCapsule
       field = CapsuleCRM::CustomField.new(
         organisation,
         :tag => 'Membership',
-        :label => 'Membership Number',
-        :text => membership['number'],
+        :label => 'ID',
+        :text => membership['id'],
       )
       field.save
       # Membership number
