@@ -1,5 +1,3 @@
-require 'pry'
-
 class PartnerEnquiryProcessor
   @queue = :signup
   
