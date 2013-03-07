@@ -1,293 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/opportunity
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
-        at supporter level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">45</value>\n
-        \ <milestone>Won</milestone>\n  <probability type=\"integer\">100</probability>\n
-        \ <description>Membership #: AB1234YZ</description>\n  <duration type=\"integer\">12</duration>\n
-        \ <durationBasis>MONTH</durationBasis>\n  <expectedCloseDate type=\"date\">2013-01-01</expectedCloseDate>\n
-        \ <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:44 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=CA1CD291ED5307C8F0819213275FEAB5.nodec01; Path=/; Secure
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211945
-      Content-Length:
-      - '0'
-      Content-Type:
-      - text/plain
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211945/customfields
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Type</label>\n    <text>Membership</text>\n    <tag nil=\"true\"/>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:45 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=D34B8B550A5208C0D56FD67D7BE08715.nodec01; Path=/; Secure
-      Content-Length:
-      - '178'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="1"><customField><id>1460684</id><label>Type</label><text>Membership</text></customField></customFields>
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/tag/Membership
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
-        \ </tag>\n</tags>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:46 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=6EB8913A2D0C3829D5AC3FCD58A90FD1.nodec09; Path=/; Secure
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/tag/Membership
-      Content-Length:
-      - '0'
-      Content-Type:
-      - text/plain
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/customfields
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Level</label>\n    <text>supporter</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:46 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=8450F9976865B6220686A6C5D94458F0.nodec03; Path=/; Secure
-      Content-Length:
-      - '200'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="1"><customField><id>37453125</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField></customFields>
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/customfields
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Membership Number</label>\n    <text>AB1234YZ</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:47 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=45EC48FFA4F7622A0D78D6E439D84B68.nodec02; Path=/; Secure
-      Content-Length:
-      - '318'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="2"><customField><id>37453125</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37453126</id><tag>Membership</tag><label>Membership
-        Number</label><text>AB1234YZ</text></customField></customFields>
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/customfields
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Joined</label>\n    <text nil=\"true\"/>\n    <tag>Membership</tag>\n
-        \   <date type=\"date\">2013-01-01</date>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:47 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=1481531A26D5BCAA0685673CF9E06CF3.nodec02; Path=/; Secure
-      Content-Length:
-      - '437'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="3"><customField><id>37453125</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37453126</id><tag>Membership</tag><label>Membership
-        Number</label><text>AB1234YZ</text></customField><customField><id>37453127</id><tag>Membership</tag><label>Joined</label><date>2013-01-01T00:00:00Z</date></customField></customFields>
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/tag
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:48 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=A196FCBC766D57FEE7ACBE48EA735BBE.nodec02; Path=/; Secure
-      Content-Length:
-      - '111'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><name>Membership</name></tag></tags>
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799/customfield
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:49 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=E96E1AA6BD9054EEF30F65F0ACEBCB7E.nodec03; Path=/; Secure
-      Content-Length:
-      - '437'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="3"><customField><id>37453125</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37453126</id><tag>Membership</tag><label>Membership
-        Number</label><text>AB1234YZ</text></customField><customField><id>37453127</id><tag>Membership</tag><label>Joined</label><date>2013-01-01T00:00:00Z</date></customField></customFields>
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
-    method: delete
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348799
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 06 Mar 2013 21:22:49 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=7A4DD099998354065272E0293D5BC226.nodec04; Path=/; Secure
-      Content-Length:
-      - '0'
-      Content-Type:
-      - text/plain
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
-- request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
     body:
@@ -302,11 +15,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:31 GMT
+      - Thu, 07 Mar 2013 10:28:50 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=7477ABFBBB6059C033C791F5EF75DC3B.nodec04; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '74'
       Content-Type:
@@ -332,17 +45,19 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:32 GMT
+      - Thu, 07 Mar 2013 10:28:50 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=5C21A6D563E56BAD356254ADACD0BE60.nodec05; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716
       Content-Length:
       - '0'
       Content-Type:
       - text/plain
+      X-Pad:
+      - avoid browser bug
     body:
       encoding: US-ASCII
       string: ''
@@ -363,18 +78,18 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:32 GMT
+      - Thu, 07 Mar 2013 10:28:51 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=CB8AAB709836D95104B3A59D9897CF2A.nodec02; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '369'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37348813</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362503395/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-06T21:23:43Z</createdOn><updatedOn>2013-03-06T21:23:43Z</updatedOn><name>ACME
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37378716</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362580351/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-07T10:29:02Z</createdOn><updatedOn>2013-03-07T10:29:02Z</updatedOn><name>ACME
         widgets Inc.</name></organisation></parties>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
@@ -393,24 +108,24 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:33 GMT
+      - Thu, 07 Mar 2013 10:28:51 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=47D3CCDA0CEBF849B8CBCA934BB1C509.nodec05; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '369'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37348813</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362503395/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-06T21:23:43Z</createdOn><updatedOn>2013-03-06T21:23:43Z</updatedOn><name>ACME
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37378716</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362580351/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-07T10:29:02Z</createdOn><updatedOn>2013-03-07T10:29:02Z</updatedOn><name>ACME
         widgets Inc.</name></organisation></parties>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/opportunity
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/opportunity
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
@@ -428,13 +143,13 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:33 GMT
+      - Thu, 07 Mar 2013 10:28:52 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=E69CC9B1DE0BBFF31759600B117257F6.nodec06; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211948
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1212867
       Content-Length:
       - '0'
       Content-Type:
@@ -446,7 +161,7 @@ http_interactions:
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1211948/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1212867/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -461,11 +176,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:34 GMT
+      - Thu, 07 Mar 2013 10:28:52 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=99067F28228C1846364D9DE7A260378D.nodec02; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '178'
       Content-Type:
@@ -473,12 +188,12 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="1"><customField><id>1460687</id><label>Type</label><text>Membership</text></customField></customFields>
+        size="1"><customField><id>1461500</id><label>Type</label><text>Membership</text></customField></customFields>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/tag/Membership
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/tag/Membership
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
@@ -492,13 +207,13 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:34 GMT
+      - Thu, 07 Mar 2013 10:28:53 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=46CB6D3D62593521E6301D5F9C97454F.nodec04; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/tag/Membership
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/tag/Membership
       Content-Length:
       - '0'
       Content-Type:
@@ -510,7 +225,7 @@ http_interactions:
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -525,11 +240,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:35 GMT
+      - Thu, 07 Mar 2013 10:28:53 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=65EAB6A62DD9A8DF10C5DA779AC46058.nodec09; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '200'
       Content-Type:
@@ -537,16 +252,16 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="1"><customField><id>37453134</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField></customFields>
+        size="1"><customField><id>37465832</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField></customFields>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Membership Number</label>\n    <text>AB1234YZ</text>\n    <tag>Membership</tag>\n
+        \   <label>ID</label>\n    <text>AB1234YZ</text>\n    <tag>Membership</tag>\n
         \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -557,25 +272,24 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:36 GMT
+      - Thu, 07 Mar 2013 10:28:54 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=0D7A9B4AC530CC3D5B89A0486D31A1B8.nodec11; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '318'
+      - '303'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="2"><customField><id>37453134</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37453135</id><tag>Membership</tag><label>Membership
-        Number</label><text>AB1234YZ</text></customField></customFields>
+        size="2"><customField><id>37465832</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37465833</id><tag>Membership</tag><label>ID</label><text>AB1234YZ</text></customField></customFields>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -590,20 +304,19 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:36 GMT
+      - Thu, 07 Mar 2013 10:28:54 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=7FA637C5566A71C61D6BBB42CA438623.nodec11; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '437'
+      - '422'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="3"><customField><id>37453134</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37453135</id><tag>Membership</tag><label>Membership
-        Number</label><text>AB1234YZ</text></customField><customField><id>37453136</id><tag>Membership</tag><label>Joined</label><date>2013-01-01T00:00:00Z</date></customField></customFields>
+        size="3"><customField><id>37465832</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37465833</id><tag>Membership</tag><label>ID</label><text>AB1234YZ</text></customField><customField><id>37465834</id><tag>Membership</tag><label>Joined</label><date>2013-01-01T00:00:00Z</date></customField></customFields>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
@@ -621,24 +334,24 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:37 GMT
+      - Thu, 07 Mar 2013 10:28:55 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=5DA976E81BA817D3C952374BB7F25BC8.nodec03; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '369'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37348813</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362503395/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-06T21:23:43Z</createdOn><updatedOn>2013-03-06T21:23:47Z</updatedOn><name>ACME
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37378716</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362580351/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-07T10:29:02Z</createdOn><updatedOn>2013-03-07T10:29:06Z</updatedOn><name>ACME
         widgets Inc.</name></organisation></parties>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/tag
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/tag
     body:
       encoding: US-ASCII
       string: ''
@@ -651,11 +364,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:37 GMT
+      - Thu, 07 Mar 2013 10:28:55 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=7EFFDEFF96D75A2FEEDC2DF6BE0FD339.nodec08; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '111'
       Content-Type:
@@ -667,7 +380,7 @@ http_interactions:
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813/customfield
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716/customfield
     body:
       encoding: US-ASCII
       string: ''
@@ -680,25 +393,24 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:38 GMT
+      - Thu, 07 Mar 2013 10:28:56 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=4CCFBC4CEA685900C32CD7EC7ACA6452.nodec03; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '437'
+      - '422'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="3"><customField><id>37453134</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37453135</id><tag>Membership</tag><label>Membership
-        Number</label><text>AB1234YZ</text></customField><customField><id>37453136</id><tag>Membership</tag><label>Joined</label><date>2013-01-01T00:00:00Z</date></customField></customFields>
+        size="3"><customField><id>37465832</id><tag>Membership</tag><label>Level</label><text>supporter</text></customField><customField><id>37465833</id><tag>Membership</tag><label>ID</label><text>AB1234YZ</text></customField><customField><id>37465834</id><tag>Membership</tag><label>Joined</label><date>2013-01-01T00:00:00Z</date></customField></customFields>
     http_version: 
   recorded_at: Tue, 01 Jan 2013 14:35:00 GMT
 - request:
     method: delete
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37348813
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37378716
     body:
       encoding: US-ASCII
       string: ''
@@ -711,11 +423,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Mar 2013 21:23:38 GMT
+      - Thu, 07 Mar 2013 10:28:56 GMT
       Server:
       - Apache
       Set-Cookie:
-      - JSESSIONID=7B20949B2750D1AAF5315CAFD29FF169.nodec08; Path=/; Secure
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '0'
       Content-Type:

@@ -4,7 +4,7 @@ Then /^my signup should be requeued for later processing once the contact has sy
   }
   membership  = {
     'product_name' => @membership_level,
-    'number'       => @membership_id.to_s,
+    'id'           => @membership_id.to_s,
     'join_date'    => Date.today.to_s
   }
   Resque.should_receive(:enqueue_in).with(1.hour, SendSignupToCapsule, organization, membership).once
@@ -16,7 +16,7 @@ When /^I sign up via the website$/ do
   }
   membership  = {
     'product_name' => @membership_level,
-    'number'       => @membership_id.to_s,
+    'id'           => @membership_id.to_s,
     'join_date'    => Date.today.to_s
   }
   SendSignupToCapsule.perform(organization, membership)
@@ -28,7 +28,7 @@ Then /^I should be added to the capsulecrm queue$/ do
   }
   membership  = {
     'product_name' => @membership_level,
-    'number'       => @membership_id.to_s,
+    'id'           => @membership_id.to_s,
     'join_date'    => Date.today.to_s
   }
   Resque.should_receive(:enqueue).with(SendSignupToCapsule, organization, membership).once
