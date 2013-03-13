@@ -7,11 +7,13 @@ class SendDirectoryEntryToCapsule
   #                   'name'         => the organisation name
   #
   # directory_entry   - a hash containing details of the directory entry
-  #                  'description'  => the description that will appear against the
-  #                                organisation in the business directory
-  #                  'url'          => the website address of the business
-  #                  'logo'         => a url that links to the full size 
-  #                                version of the business's logo
+  #                   'description'  => the description that will appear against the
+  #                                     organisation in the business directory
+  #                   'homepage'     => the website address of the business
+  #                   'logo'         => a url that links to the full size 
+  #                                     version of the business's logo
+  #                   'thumbnail'    => a url that links to the thumbnail 
+  #                                     version of the business's logo
   # 
   # 
   # Returns nil.
@@ -21,34 +23,43 @@ class SendDirectoryEntryToCapsule
     if organisation.nil?
       Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry)
     else
+      capsule = {}
       # Create new data tag for directory entry
-      tag = CapsuleCRM::Tag.new(
+      capsule[:tag] = CapsuleCRM::Tag.new(
         organisation,
-        :name => URI::encode('Directory entry')
+        :name => 'DirectoryEntry'
       )
-      tag.save
       # Set custom fields (in data tag)
-      field = CapsuleCRM::CustomField.new(
+      capsule[:description] = CapsuleCRM::CustomField.new(
         organisation,
-        :tag => 'Directory entry',
+        :tag => 'DirectoryEntry',
         :label => 'Description',
         :text => directory_entry['description'],
       )
-      field.save
-      field = CapsuleCRM::CustomField.new(
+      capsule[:url] = CapsuleCRM::CustomField.new(
         organisation,
-        :tag => 'Directory entry',
-        :label => 'Url',
-        :text => directory_entry['url'],
+        :tag => 'DirectoryEntry',
+        :label => 'Homepage',
+        :text => directory_entry['homepage'],
       )
-      field.save
-      field = CapsuleCRM::CustomField.new(
+      capsule[:logo] = CapsuleCRM::CustomField.new(
         organisation,
-        :tag => 'Directory entry',
+        :tag => 'DirectoryEntry',
         :label => 'Logo',
         :text => directory_entry['logo'],
       )
-      field.save
+      capsule[:thumb] = CapsuleCRM::CustomField.new(
+        organisation,
+        :tag => 'DirectoryEntry',
+        :label => 'Thumbnail',
+        :text => directory_entry['thumbnail'],
+      )
+      capsule.each do |obj, val|
+        val.save
+        unless CapsuleCRM::Base.last_response.code <= 201
+          Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry)
+        end
+      end
     end
   end
   
