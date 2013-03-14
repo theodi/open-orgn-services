@@ -18,6 +18,10 @@ Given /^my organisation logo \(thumbnail\) is stored at "(.*?)"$/ do |thumb|
   @thumb = thumb
 end
 
+Given /^the date and time is "(.*?)"$/ do |date|
+  @date = DateTime.parse(date).to_s
+end
+
 When /^I enter my organisation details$/ do
   organization = {
       'name'        => @name
@@ -28,8 +32,9 @@ When /^I enter my organisation details$/ do
       'logo'        => @logo,
       'thumbnail'   => @thumb
   }
+  date = DateTime.now.to_s
   
-  SendDirectoryEntryToCapsule.perform(organization, directory_entry)
+  SendDirectoryEntryToCapsule.perform(organization, directory_entry, date)
 end
 
 Then /^my directory entry should be requeued for later processing once the contact has synced from Xero$/ do
@@ -42,7 +47,40 @@ Then /^my directory entry should be requeued for later processing once the conta
       'logo'        => @logo,
       'thumbnail'   => @thumb
   }
-  Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry).once
+  date = DateTime.now.to_s
+  
+  Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date).once
+end
+
+Given /^there is an existing organisation in CapsuleCRM called "(.*?)" with a data tag$/ do |organisation_name|
+  CapsuleCRM::Organisation.find_all(:q => organisation_name).each do |x|
+    x.delete
+  end
+  CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
+  @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
+  @organisation.save
+  CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
+  
+  organization = {
+      'name'        => @name
+  }
+  directory_entry = {
+      'description' => @description,
+      'homepage'    => @homepage,
+      'logo'        => @logo,
+      'thumbnail'   => @thumb
+  }
+  date = DateTime.now.to_s
+  
+  SendDirectoryEntryToCapsule.perform(organization, directory_entry, date)
+end
+
+Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|
+  Timecop.freeze(datetime) do
+    organisation = CapsuleCRM::Organisation.new(:name => @name)
+    organisation.save
+    @capsule_cleanup << organisation
+  end
 end
 
 Then /^that data tag should have a description "(.*?)"$/ do |description|
