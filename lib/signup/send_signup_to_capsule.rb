@@ -7,6 +7,7 @@ class SendSignupToCapsule
   #              'product_name' => the membership level
   #              'id'           => the newly-generated membership number
   #              'join_date'    => the date of signup
+  #              'contact_email'=> a contact email for the signup
   # 
   # organization - a hash containing details of the organization
   #              'name' => the org name in Xero - should be the same as that in capsule
@@ -71,6 +72,14 @@ class SendSignupToCapsule
         :date => Date.parse(membership['join_date']),
       )
       field.save  
+      # Membership contact email
+      field = CapsuleCRM::CustomField.new(
+        organisation,
+        :tag => 'Membership',
+        :label => 'Email',
+        :text => membership['contact_email'],
+      )
+      field.save
     end
   end
   
