@@ -18,8 +18,8 @@ Given /^my organisation logo \(thumbnail\) is stored at "(.*?)"$/ do |thumb|
   @thumb = thumb
 end
 
-Given /^the date and time is "(.*?)"$/ do |date|
-  @date = DateTime.parse(date).to_s
+Given /^the date and time is (#{DATETIME})$/ do |date|
+  @date = date.to_s
 end
 
 When /^I enter my organisation details$/ do
