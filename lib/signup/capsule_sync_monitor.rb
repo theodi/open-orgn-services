@@ -6,7 +6,7 @@ class CapsuleSyncMonitor
     orgs = CapsuleCRM::Organisation.find_all(:tag => "Membership")
     orgs.each do |org|
       # Check if data tags have been updated
-      if org.updated_at > 2.hours.ago && org.tags.find {|t| t.name == "Membership"}
+      if org.updated_at > 2.hours.ago
         Resque.enqueue(SyncCapsuleData, org.id)
       end
     end
