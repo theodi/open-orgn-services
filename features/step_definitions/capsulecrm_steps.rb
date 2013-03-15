@@ -183,3 +183,10 @@ Then /^that data tag should have the membership number "(.*?)"$/ do |membership_
   field.should be_present
   field.text.should == membership_number
 end
+
+Then /^that data tag should have the email "(.*?)"$/ do |email|
+  field = @organisation.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == email
+end
+
