@@ -156,7 +156,7 @@ Then /^that organisation should have a data tag$/ do
 end
 
 Then /^that data tag should have the type "(.*?)"$/ do |type|
-  @tag.name.should == 'Membership'
+  @tag.name.should == type
 end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
