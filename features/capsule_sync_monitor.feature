@@ -1,4 +1,4 @@
-@vcr @capsulecrm @wip
+@vcr @capsulecrm
 Feature: Synchronize data update in CapsuleCRM
   In order to keep the member directory up to date
   As a commercial team member
@@ -18,23 +18,3 @@ Feature: Synchronize data update in CapsuleCRM
     Given that it's 3 hours into the future
     Then that organisation should not be queued for sync
     When the capsule monitor runs
-
-  # Scenario: Create a new member in the directory
-  #   Given context
-  #   When event
-  #   Then outcome
-  # 
-  # Scenario: Update existing members with changed data
-  #   Given context
-  #   When event
-  #   Then outcome
-  #   
-  # Scenario: Activate existing members when flag is set in CapsuleCRM
-  #   Given context
-  #   When event
-  #   Then outcome
-  # 
-  # Scenario: Deactivate existing members when flag is unset in CapsuleCRM
-  #   Given context
-  #   When event
-  #   Then outcome
