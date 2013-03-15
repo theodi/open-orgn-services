@@ -16,8 +16,7 @@ class SendDirectoryEntryToCapsule
   #                                     version of the business's logo
   #                   'date'         => the date and time of the update
   # 
-  # date              - the date the data was added via the front-end
-  #                     as a DateTime object
+  # date              - the date the data was added via the front-end as a string
   # 
   # Returns nil.
 
