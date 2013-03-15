@@ -148,11 +148,11 @@ end
 # Data tags
 
 Given /^that organisation has a data tag called "(.*?)"$/ do |tag_name|
-  tag = CapsuleCRM::Tag.new(
+  @tag = CapsuleCRM::Tag.new(
     @organisation,
     :name => tag_name
   )
-  tag.save  
+  @tag.save
 end
 
 Then /^that organisation should have a data tag$/ do
