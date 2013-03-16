@@ -44,12 +44,13 @@ end
 
 Then /^the observer should be notified with the organisation's information$/ do
   data = {
-    'active'      => @organization_active,
-    'email'       => @organization_email,
-    'name'        => @organisation.name,
-    'description' => @organization_description,
-    'url'         => @organization_homepage,
-    'product_name'=> @organization_level,
+    'active'        => @organization_active,
+    'email'         => @organization_email,
+    'name'          => @organisation.name,
+    'description'   => @organization_description,
+    'url'           => @organization_homepage,
+    'product_name'  => @organization_level,
+    'membership_id' => @organization_id,
   }.compact
   MyObserverClass.should_receive(:update).with(data)
 end
