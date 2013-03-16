@@ -8,8 +8,8 @@ Feature: Synchronize a single updated organisation
     Given there is an existing organisation in CapsuleCRM called "Omni Consumer Products"
     And that organisation has a data tag called "Membership"
     And that data tag has the following fields:
-    | Level   | Email        |
-    | partner | info@ocp.com |
+    | Level   | Email        | ID            |
+    | partner | info@ocp.com | AB1234YZ      |
 
   Scenario: Send updated organization data to observer without directory entry
     Given an observer object has been registered
