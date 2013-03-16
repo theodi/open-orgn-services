@@ -11,13 +11,13 @@ class SyncCapsuleData
     org = CapsuleCRM::Organisation.find(organization_id)
     if org
       data = {
-        'product_name'=> field(org, "Membership", "Level").text,
-        'email'       => field(org, "Membership", "Email").text,
+        'product_name'=> field(org, "Membership", "Level").try(:text),
+        'email'       => field(org, "Membership", "Email").try(:text),
         'name'        => org.name,
-        'active'      => field(org, "DirectoryEntry", "Active").boolean.to_s,
-        'description' => field(org, "DirectoryEntry", "Description").text,
-        'url'         => field(org, "DirectoryEntry", "Homepage").text,
-      }
+        'active'      => field(org, "DirectoryEntry", "Active").try(:boolean).try(:to_s),
+        'description' => field(org, "DirectoryEntry", "Description").try(:text),
+        'url'         => field(org, "DirectoryEntry", "Homepage").try(:text),
+      }.compact
       # Notify the observers
       changed
       notify_observers(data)
