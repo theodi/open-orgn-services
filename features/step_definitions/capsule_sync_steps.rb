@@ -50,6 +50,6 @@ Then /^the observer should be notified with the organisation's information$/ do
     'description' => @organization_description,
     'url'         => @organization_homepage,
     'product_name'=> @organization_level,
-  }
+  }.compact
   MyObserverClass.should_receive(:update).with(data)
 end

@@ -10,13 +10,17 @@ Feature: Synchronize a single updated organisation
     And that data tag has the following fields:
     | Level   | Email        |
     | partner | info@ocp.com |
-    And that organisation has a data tag called "DirectoryEntry"
+
+  Scenario: Send updated organization data to observer without directory entry
+    Given an observer object has been registered
+    Then the observer should be notified with the organisation's information
+    When the capsule sync job for that organisation runs
+  
+  Scenario: Send updated organization data to observer with directory entry
+    Given that organisation has a data tag called "DirectoryEntry"
     And that data tag has the following fields:
     | Description          | Homepage       | Active |
     | 20 seconds to comply | http://ocp.com | true   |
-
-  
-  Scenario: Send updated organization data to observer
     And an observer object has been registered
     Then the observer should be notified with the organisation's information
     When the capsule sync job for that organisation runs
