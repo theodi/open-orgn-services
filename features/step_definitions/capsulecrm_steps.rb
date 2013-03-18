@@ -9,6 +9,7 @@ Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |org
   @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
   @organisation.save
   CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
+  @capsule_cleanup << @organisation
 end
 
 Given /^that organisation does not have a person$/ do
@@ -26,6 +27,7 @@ Given /^that organisation has a person called "(.*?)"$/ do |name|
     [p.first_name, p.last_name].compact.join(' ') == name
   end
   person.should be_present
+  @capsule_cleanup << person
 end
 
 # Organisations
@@ -33,14 +35,12 @@ end
 Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
   @organisation = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
   @organisation.should_not be_nil
-  @capsule_cleanup << @organisation
 end
 
 Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
   organisations = CapsuleCRM::Organisation.find_all(:q => organisation_name)
   organisations.size.should == 1
   @organisation = organisations.first
-  @capsule_cleanup << @organisation
 end
 
 # People
@@ -48,7 +48,6 @@ end
 Then /^that organisation should have a person$/ do
   @person = @organisation.people.first
   @person.should be_present
-  @capsule_cleanup << @person
 end
 
 Then /^that organisation should have just one person$/ do
@@ -148,6 +147,14 @@ end
 
 # Data tags
 
+Given /^that organisation has a data tag called "(.*?)"$/ do |tag_name|
+  @tag = CapsuleCRM::Tag.new(
+    @organisation,
+    :name => tag_name
+  )
+  @tag.save
+end
+
 Then /^that organisation should have a data tag$/ do
   tags = @organisation.tags
   tags.size.should == 1
@@ -176,3 +183,10 @@ Then /^that data tag should have the membership number "(.*?)"$/ do |membership_
   field.should be_present
   field.text.should == membership_number
 end
+
+Then /^that data tag should have the email "(.*?)"$/ do |email|
+  field = @organisation.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == email
+end
+

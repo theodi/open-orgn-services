@@ -9,6 +9,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
   Background:
     Given my name is "Turk Turkleton"
     And I work for "ACME widgets Inc."
+    And my email address is "turkleton@acme.com"
     And I requested membership at the level called "supporter"
     And that it's 2013-01-01 14:35
     And my membership number is "AB1234YZ"
@@ -45,3 +46,4 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that data tag should have the level "supporter"
     And that data tag should have the join date 2013-01-01
     And that data tag should have the membership number "AB1234YZ"
+    And that data tag should have the email "turkleton@acme.com"

@@ -87,6 +87,7 @@ class SignupProcessor
       'product_name' => purchase['offer_category'],
       'id'           => purchase['membership_id'].to_s,
       'join_date'    => Date.today.to_s,
+      'contact_email'=> contact_person['email']
     }
     Resque.enqueue(SendSignupToCapsule, organization, membership)
   end
