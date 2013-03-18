@@ -6,6 +6,7 @@ Feature: Create a JSON description of all upcoming events
   I want to be able to access a JSON file including the details from some client-side Javascript
   
   Background:
+    Given that it's 2013-02-01 19:00
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
     And that event has a url 'http://www.eventbrite.com/event/5441375300'
     And that event starts at 2013-03-17 19:00
