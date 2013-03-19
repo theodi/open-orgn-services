@@ -18,14 +18,16 @@ module CapsuleHelper
       "Email"  => :text,
       "Joined" => :date
     }
+    success = true
     fields.each_pair do |label,value|
-      set_custom_field_on_tag(
+      success &&= set_custom_field_on_tag(
         party, 
         "Membership",
         :label => label,
         types[label] => value
       )
     end
+    success
   end
 
   def set_custom_field_on_tag(party, tag, data)
@@ -34,6 +36,7 @@ module CapsuleHelper
       data.merge(:tag => tag)
     )
     custom_field.save
+    return CapsuleCRM::Base.last_response.code <= 201
   end
 
 
