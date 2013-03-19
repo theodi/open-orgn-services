@@ -6,9 +6,6 @@ module CapsuleHelper
   end
   
   def set_membership_tag(party, fields)
-    # Create membership tag
-    add_data_tag(party, "Membership")
-    # Set custom fields
     types = {
       "Level"  => :text,
       "ID"     => :text,
@@ -19,9 +16,6 @@ module CapsuleHelper
   end
 
   def set_directory_entry_tag(party, fields)
-    # Create directory entry tag
-    add_data_tag(party, "DirectoryEntry")
-    # Set custom fields
     types = {
       'Description' => :text,
       'Homepage'    => :text,
@@ -32,6 +26,9 @@ module CapsuleHelper
   end
   
   def set_custom_fields_on_tag(party, tag, fields, types)
+    # Create data tag
+    add_data_tag(party, tag)
+    # Set custom fields
     success = true
     fields.each_pair do |label,value|
       # Get data type and raise if not found
