@@ -35,6 +35,7 @@ end
 Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
   @organisation = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
   @organisation.should_not be_nil
+  @capsule_cleanup << @organisation
 end
 
 Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
