@@ -14,6 +14,10 @@ Given /^that data tag has the following fields:$/ do |table|
   end
 end
 
+Given /^a membership has been created for me$/ do
+  @membership_id = "AB6543GF"
+end
+
 Then /^that organisation should be queued for sync$/ do
   Resque.should_receive(:enqueue).with(SyncCapsuleData, @organisation.id)
 end
@@ -53,4 +57,14 @@ Then /^the observer should be notified with the organisation's information$/ do
     'membership_id' => @organization_id,
   }.compact
   MyObserverClass.should_receive(:update).with(data)
+end
+
+When /^the job is run to store the membership ID back into capsule$/ do
+  SaveMembershipIdInCapsule.perform(@organisation.name, @membership_id)
+end
+
+Then /^that data tag should have my new membership number set$/ do
+  field = @organisation.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == @membership_id
 end
