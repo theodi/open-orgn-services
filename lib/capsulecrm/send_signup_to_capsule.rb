@@ -1,6 +1,7 @@
 class SendSignupToCapsule
   @queue = :signup
   
+  extend ProductHelper
   extend CapsuleHelper
 
   # Public: Store details of self-signups in CapsuleCRM
@@ -26,9 +27,9 @@ class SendSignupToCapsule
         :name                => "Membership at #{membership['product_name']} level",
         :currency            => 'GBP',
         :description         => "Membership #: #{membership['id']}",
-        :value               => value_for_product_name(membership['product_name']),
-        :duration            => 12,
-        :duration_basis      => 'MONTH',
+        :value               => product_value(membership['product_name']),
+        :duration            => product_duration(membership['product_name']),
+        :duration_basis      => product_basis(membership['product_name']),
         :milestone           => 'Won',
         :probability         => 100,
         :expected_close_date => Date.parse(membership['join_date']),
@@ -50,17 +51,6 @@ class SendSignupToCapsule
         "Joined" => Date.parse(membership['join_date']),
         "Email"  => membership['contact_email']
       )
-    end
-  end
-  
-  def self.value_for_product_name(product)
-    case product.to_sym
-    when :supporter
-      45
-    when :member
-      400
-    else
-      raise ArgumentError.new("Unknown product name #{product}")
     end
   end
 
