@@ -40,7 +40,7 @@ module CapsuleHelper
       success &&= set_custom_field_on_tag(
         party, 
         tag,
-        :label => label,
+        :label    => label,
         data_type => value
       )
     end
