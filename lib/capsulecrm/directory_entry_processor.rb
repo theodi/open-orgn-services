@@ -23,14 +23,14 @@ class SendDirectoryEntryToCapsule
   # Returns nil.
 
   def self.perform(organization, directory_entry, date)
-    organisation = organization_by_name(organization['name'])
-    if organisation.nil?
+    org = organization_by_name(organization['name'])
+    if org.nil?
       requeue(organization, directory_entry, date)
     else
-      if DateTime.parse(date) >= DateTime.parse(organisation.raw_data['updatedOn'])
+      if DateTime.parse(date) >= DateTime.parse(org.raw_data['updatedOn'])
         capsule = {}
         success = set_directory_entry_tag(
-          organisation,
+          org,
           'Description' => directory_entry['description'],
           'Homepage'    => directory_entry['homepage'],
           'Logo'        => directory_entry['logo'],

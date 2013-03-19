@@ -16,13 +16,13 @@ class SendSignupToCapsule
   # 
   # Returns nil.
   def self.perform(organization, membership)
-    organisation = organization_by_name(organization['name'])
-    if organisation.nil?
+    org = organization_by_name(organization['name'])
+    if org.nil?
       Resque.enqueue_in(1.hour, SendSignupToCapsule, organization, membership)
     else
       # Create opportunity against organisation
       opportunity = CapsuleCRM::Opportunity.new(
-        :party_id            => organisation.id, 
+        :party_id            => org.id, 
         :name                => "Membership at #{membership['product_name']} level",
         :currency            => 'GBP',
         :description         => "Membership #: #{membership['id']}",
@@ -44,7 +44,7 @@ class SendSignupToCapsule
       field.save
       # Set up membership tag
       set_membership_tag(
-        organisation,
+        org,
         "Level"  => membership['product_name'],
         "ID"     => membership['id'],
         "Joined" => Date.parse(membership['join_date']),
