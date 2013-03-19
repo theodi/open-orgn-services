@@ -1,6 +1,6 @@
 module ProductHelper
 
-  def self.product_value(product)
+  def product_value(product)
     case product.to_sym
     when :supporter
       45
@@ -16,7 +16,7 @@ module ProductHelper
   end
   
   
-  def self.product_duration(product)
+  def product_duration(product)
     case product.to_sym
     when :supporter, :member
       12
@@ -27,7 +27,7 @@ module ProductHelper
     end
   end
     
-  def self.product_basis(product)
+  def product_basis(product)
     case product.to_sym
     when :supporter, :member
       'MONTH'
