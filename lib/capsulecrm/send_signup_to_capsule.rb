@@ -22,24 +22,24 @@ class SendSignupToCapsule
     else
       # Create opportunity against organisation
       opportunity = CapsuleCRM::Opportunity.new(
-        :party_id => organisation.id, 
-        :name => "Membership at #{membership['product_name']} level",
-        :currency => 'GBP',
-        :description => "Membership #: #{membership['id']}",
-        :value => value_for_product_name(membership['product_name']),
-        :duration => 12,
-        :duration_basis => 'MONTH',
-        :milestone => 'Won',
-        :probability => 100,
+        :party_id            => organisation.id, 
+        :name                => "Membership at #{membership['product_name']} level",
+        :currency            => 'GBP',
+        :description         => "Membership #: #{membership['id']}",
+        :value               => value_for_product_name(membership['product_name']),
+        :duration            => 12,
+        :duration_basis      => 'MONTH',
+        :milestone           => 'Won',
+        :probability         => 100,
         :expected_close_date => Date.parse(membership['join_date']),
-        :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
+        :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
       )
       opportunity.save
       # Write custom field for opportunity type
       field = CapsuleCRM::CustomField.new(
         opportunity,
         :label => 'Type',
-        :text => 'Membership'
+        :text  => 'Membership'
       )
       field.save
       # Set up membership tag
