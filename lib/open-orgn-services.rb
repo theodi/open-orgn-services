@@ -46,9 +46,9 @@ require 'hubot/hubot_monitor'
 
 require 'signup/product_helper'
 require 'signup/signup_processor'
-require 'signup/partner_enquiry_processor'
 
 require 'capsulecrm/capsule_helper'
+require 'capsulecrm/partner_enquiry_processor'
 require 'capsulecrm/send_signup_to_capsule'
 require 'capsulecrm/directory_entry_processor'
 require 'capsulecrm/capsule_sync_monitor'
