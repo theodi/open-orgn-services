@@ -1,7 +1,8 @@
 module CapsuleHelper
   
   def organization_by_name(name)
-    CapsuleCRM::Organisation.find_all(:q => name).first
+    orgs = CapsuleCRM::Organisation.find_all(:q => name)
+    orgs.length == 1 ? orgs.first : nil
   end
   
   def set_membership_tag(party, fields)
