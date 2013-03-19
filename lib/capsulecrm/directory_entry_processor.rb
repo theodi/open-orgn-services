@@ -25,48 +25,26 @@ class SendDirectoryEntryToCapsule
   def self.perform(organization, directory_entry, date)
     organisation = organization_by_name(organization['name'])
     if organisation.nil?
-      Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date)
+      requeue(organization, directory_entry, date)
     else
       if DateTime.parse(date) >= DateTime.parse(organisation.raw_data['updatedOn'])
         capsule = {}
-        # Create new data tag for directory entry
-        capsule[:tag] = CapsuleCRM::Tag.new(
+        success = set_directory_entry_tag(
           organisation,
-          :name => 'DirectoryEntry'
+          'Description' => directory_entry['description'],
+          'Homepage'    => directory_entry['homepage'],
+          'Logo'        => directory_entry['logo'],
+          'Thumbnail'   => directory_entry['thumbnail'],
         )
-        # Set custom fields (in data tag)
-        capsule[:description] = CapsuleCRM::CustomField.new(
-          organisation,
-          :tag => 'DirectoryEntry',
-          :label => 'Description',
-          :text => directory_entry['description'],
-        )
-        capsule[:url] = CapsuleCRM::CustomField.new(
-          organisation,
-          :tag => 'DirectoryEntry',
-          :label => 'Homepage',
-          :text => directory_entry['homepage'],
-        )
-        capsule[:logo] = CapsuleCRM::CustomField.new(
-          organisation,
-          :tag => 'DirectoryEntry',
-          :label => 'Logo',
-          :text => directory_entry['logo'],
-        )
-        capsule[:thumb] = CapsuleCRM::CustomField.new(
-          organisation,
-          :tag => 'DirectoryEntry',
-          :label => 'Thumbnail',
-          :text => directory_entry['thumbnail'],
-        )
-        capsule.each do |obj, val|
-          val.save
-          unless CapsuleCRM::Base.last_response.code <= 201
-            Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry)
-          end
+        unless success
+          requeue(organization, directory_entry, date)
         end
       end
     end
+  end
+  
+  def self.requeue(organization, directory_entry, date)
+    Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date)
   end
   
 end
