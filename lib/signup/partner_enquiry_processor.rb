@@ -1,6 +1,8 @@
 class PartnerEnquiryProcessor
   @queue = :signup
   
+  extend ProductHelper
+
   # Public: Process new enquiries
   #
   # person  - a hash containing details of the person sending the enquiry.
@@ -48,9 +50,9 @@ class PartnerEnquiryProcessor
       :name => "Membership at #{product['name']} level",
       :currency => 'GBP',
       :description => comment['text'],
-      :value => value_for_product_name(product['name']),
-      :duration => 3,
-      :duration_basis => 'YEAR',
+      :value => product_value(product['name']),
+      :duration => product_duration(product['name']),
+      :duration_basis => product_basis(product['name']),
       :milestone => 'New',
       :probability => 10,
       :expected_close_date => Date.today + 2.months,
@@ -75,17 +77,6 @@ class PartnerEnquiryProcessor
       :detail => comment['text']
     )
     task.save
-  end
-  
-  def self.value_for_product_name(product)
-    case product.to_sym
-    when :sponsor
-      25000
-    when :partner
-      50000
-    else
-      raise ArgumentError.new("Unknown product name #{product}")
-    end
   end
   
 end
