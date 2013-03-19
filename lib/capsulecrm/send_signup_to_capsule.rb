@@ -42,46 +42,14 @@ class SendSignupToCapsule
         :text => 'Membership'
       )
       field.save
-      # Create data tag on organisation
-      tag = CapsuleCRM::Tag.new(
+      # Set up membership tag
+      set_membership_tag(
         organisation,
-        :name => 'Membership'
+        "Level"  => membership['product_name'],
+        "ID"     => membership['id'],
+        "Joined" => Date.parse(membership['join_date']),
+        "Email"  => membership['contact_email']
       )
-      tag.save
-      # Set custom fields (in data tag)
-      # Currently we have code to do these individually, so let's do that. Collections may come later.
-      # Membership level
-      field = CapsuleCRM::CustomField.new(
-        organisation,
-        :tag => 'Membership',
-        :label => 'Level',
-        :text => membership['product_name'],
-      )
-      field.save
-      # Membership number
-      field = CapsuleCRM::CustomField.new(
-        organisation,
-        :tag => 'Membership',
-        :label => 'ID',
-        :text => membership['id'],
-      )
-      field.save
-      # Membership number
-      field = CapsuleCRM::CustomField.new(
-        organisation,
-        :tag => 'Membership',
-        :label => 'Joined',
-        :date => Date.parse(membership['join_date']),
-      )
-      field.save  
-      # Membership contact email
-      field = CapsuleCRM::CustomField.new(
-        organisation,
-        :tag => 'Membership',
-        :label => 'Email',
-        :text => membership['contact_email'],
-      )
-      field.save
     end
   end
   
