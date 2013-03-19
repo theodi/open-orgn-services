@@ -8,8 +8,8 @@ Feature: Store membership ID in capsuleCRM
     Given there is an existing organisation in CapsuleCRM called "Weyland-Yutani Corp"
     Given that organisation has a data tag called "Membership"
     And that data tag has the following fields:
-    | Level   | Email                   |
-    | partner | info@weyland-yutani.com |
+    | Level   | Email                   | ID |
+    | partner | info@weyland-yutani.com |    |
 
   Scenario: Member ID should be stored
     Given a membership has been created for me
