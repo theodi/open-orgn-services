@@ -2,6 +2,7 @@ class PartnerEnquiryProcessor
   @queue = :signup
   
   extend ProductHelper
+  extend CapsuleHelper
 
   # Public: Process new enquiries
   #
