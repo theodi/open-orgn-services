@@ -53,12 +53,10 @@ Then /^my directory entry should be requeued for later processing once the conta
 end
 
 Given /^there is an existing organisation in CapsuleCRM called "(.*?)" with a data tag$/ do |organisation_name|
-  CapsuleCRM::Organisation.find_all(:q => organisation_name).each do |x|
-    x.delete
-  end
   CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
   @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
   @organisation.save
+  @capsule_cleanup << @organisation
   CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
   
   organization = {

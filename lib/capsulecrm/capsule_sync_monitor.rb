@@ -1,6 +1,8 @@
 class CapsuleSyncMonitor
   @queue = :signup
   
+  extend CapsuleHelper
+  
   # This monitors capsuleCRM for changes and queues up individual changes for update in the frontend app
   def self.perform
     orgs = CapsuleCRM::Organisation.find_all(:tag => "Membership")

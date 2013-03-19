@@ -4,6 +4,7 @@ class SyncCapsuleData
   @queue = :directory # This runs inside the directory app
   
   extend Observable
+  extend CapsuleHelper
   
   # Syncs a single organization into the local DB
   def self.perform(organization_id)
