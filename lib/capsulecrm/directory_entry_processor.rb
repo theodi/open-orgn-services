@@ -1,6 +1,8 @@
 class SendDirectoryEntryToCapsule
   @queue = :directoryentry
   
+  extend CapsuleHelper
+
   # Public: Store directory entries for organisations in capsule
   #
   # organization      - a hash containing details of the organization
@@ -21,7 +23,7 @@ class SendDirectoryEntryToCapsule
   # Returns nil.
 
   def self.perform(organization, directory_entry, date)
-    organisation = CapsuleCRM::Organisation.find_all(:q => organization['name']).first
+    organisation = organization_by_name(organization['name'])
     if organisation.nil?
       Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date)
     else

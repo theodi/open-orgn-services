@@ -1,6 +1,8 @@
 class SendSignupToCapsule
   @queue = :signup
   
+  extend CapsuleHelper
+
   # Public: Store details of self-signups in CapsuleCRM
   #
   # membership   - a hash containing details of the new membership
@@ -14,7 +16,7 @@ class SendSignupToCapsule
   # 
   # Returns nil.
   def self.perform(organization, membership)
-    organisation = CapsuleCRM::Organisation.find_all(:q => organization['name']).first
+    organisation = organization_by_name(organization['name'])
     if organisation.nil?
       Resque.enqueue_in(1.hour, SendSignupToCapsule, organization, membership)
     else
