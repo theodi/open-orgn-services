@@ -1,20 +1,48 @@
+Given /^I enter my organisation details$/ do
+  @name        = "The RAND Corporation"
+  @description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  @homepage    = "http://www.example.com"
+  @logo        = "http://stuff.theodi.org/images/acmelogo.png"
+  @thumb       = "http://stuff.theodi.org/images/thumbs/acmelogo.png"
+end
+
+Given /^I change my organisation details$/ do
+  # Store old details
+  @original_name        = @name        
+  @original_description = @description 
+  @original_homepage    = @homepage    
+  @original_logo        = @logo        
+  @original_thumb       = @thumb       
+  # Update details  
+  @name        = "The RAND Corporation"
+  @description = "Bacon ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto"
+  @homepage    = "http://www.example.com/homepage"
+  @logo        = "http://stuff.theodi.org/images/acmelogo_new.png"
+  @thumb       = "http://stuff.theodi.org/images/thumbs/acmelogo_new.png"
+end
+
 Given /^my organisation name is "(.*?)"$/ do |name|
+  @original_name = @name
   @name = name
 end
 
 Given /^my description is "(.*?)"$/ do |description|
+  @original_description = @description
   @description = description
 end
 
 Given /^my organisation homepage is "(.*?)"$/ do |homepage|
+  @original_homepage = @homepage
   @homepage = homepage
 end
 
 Given /^my organisation logo \(original\) is stored at "(.*?)"$/ do |logo|
+  @original_logo = @logo
   @logo = logo
 end
 
 Given /^my organisation logo \(thumbnail\) is stored at "(.*?)"$/ do |thumb|
+  @original_thumb = @thumb
   @thumb = thumb
 end
 
@@ -22,7 +50,7 @@ Given /^the date and time is (#{DATETIME})$/ do |date|
   @date = date.to_s
 end
 
-When /^I enter my organisation details$/ do
+When /^the directory entry job runs$/ do
   organization = {
       'name'        => @name
   }
@@ -81,26 +109,30 @@ Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|
   end
 end
 
-Then /^that data tag should have a description "(.*?)"$/ do |description|
-  field = @organisation.custom_fields.find{|x| x.label == "Description" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == description
+Then /^my details should be stored in that data tag$/ do
+  tests = {
+    "Description" => @description,
+    "Homepage"    => @homepage,
+    "Logo"        => @logo,
+    "Thumbnail"   => @thumb,
+  }
+  tests.each_pair do |field_name, value|
+    field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
+    field.should be_present
+    field.text.should == value
+  end
 end
 
-Then /^that data tag should have an organisation homepage "(.*?)"$/ do |homepage|
-  field = @organisation.custom_fields.find{|x| x.label == "Homepage" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == homepage
-end
-
-Then /^that data tag should have a logo url of "(.*?)"$/ do |logo|
-  field = @organisation.custom_fields.find{|x| x.label == "Logo" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == logo
-end
-
-Then /^that data tag should have a thumbnail url of "(.*?)"$/ do |thumb|
-  field = @organisation.custom_fields.find{|x| x.label == "Thumbnail" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == thumb
+Then /^my original details should still be stored in that data tag$/ do
+  tests = {
+    "Description" => @original_description,
+    "Homepage"    => @original_homepage,
+    "Logo"        => @original_logo,
+    "Thumbnail"   => @original_thumb,
+  }
+  tests.each_pair do |field_name, value|
+    field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
+    field.should be_present
+    field.text.should == value
+  end
 end
