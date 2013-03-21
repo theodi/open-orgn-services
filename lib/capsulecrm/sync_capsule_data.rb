@@ -15,7 +15,7 @@ class SyncCapsuleData
         'membership' => {
           'email'         => field(org, "Membership", "Email").try(:text),
           'product_name'  => field(org, "Membership", "Level").try(:text),
-          'membership_id' => field(org, "Membership", "ID").try(:text),
+          'id'            => field(org, "Membership", "ID").try(:text),
         }.compact,
         'directory_entry' => {
           'active'        => field(org, "DirectoryEntry", "Active").try(:boolean).try(:to_s),
