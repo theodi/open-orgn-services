@@ -51,7 +51,7 @@ Then /^the observer should be notified with the organisation's information$/ do
     'membership'      => {
       'email'         => @organization_email,
       'product_name'  => @organization_level,
-      'membership_id' => @organization_id,      
+      'id'            => @organization_id,      
     }.compact,
     'directory_entry' => {
       'active'        => @organization_directoryentry_active,
