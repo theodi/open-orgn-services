@@ -47,26 +47,24 @@ When /^the capsule sync job for that organisation runs$/ do
 end
 
 Then /^the observer should be notified with the organisation's information$/ do
-  data = {
-    'membership'      => {
-      'email'         => @organization_email,
-      'product_name'  => @organization_level,
-      'id'            => @organization_id,      
-    }.compact,
-    'directory_entry' => {
-      'active'        => @organization_directoryentry_active,
-      'name'          => @organisation.name,
-      'description'   => @organization_directoryentry_description,
-      'url'           => @organization_directoryentry_homepage,
-      'contact'       => @organization_directoryentry_contact,
-      'phone'         => @organization_directoryentry_phone,
-      'email'         => @organization_directoryentry_email,
-      'twitter'       => @organization_directoryentry_twitter,
-      'linkedin'      => @organization_directoryentry_linkedin,
-      'facebook'      => @organization_directoryentry_facebook,      
-    }.compact
-  }
-  MyObserverClass.should_receive(:update).with(data)
+  membership = {
+    'email'         => @organization_email,
+    'product_name'  => @organization_level,
+    'id'            => @organization_id,      
+  }.compact
+  directory_entry = {
+    'active'        => @organization_directoryentry_active,
+    'name'          => @organisation.name,
+    'description'   => @organization_directoryentry_description,
+    'url'           => @organization_directoryentry_homepage,
+    'contact'       => @organization_directoryentry_contact,
+    'phone'         => @organization_directoryentry_phone,
+    'email'         => @organization_directoryentry_email,
+    'twitter'       => @organization_directoryentry_twitter,
+    'linkedin'      => @organization_directoryentry_linkedin,
+    'facebook'      => @organization_directoryentry_facebook,      
+  }.compact
+  MyObserverClass.should_receive(:update).with(membership, directory_entry)
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do
