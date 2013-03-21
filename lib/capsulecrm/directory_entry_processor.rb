@@ -17,6 +17,12 @@ class SendDirectoryEntryToCapsule
   #                   'thumbnail'    => a url that links to the thumbnail 
   #                                     version of the business's logo
   #                   'date'         => the date and time of the update
+  #                   'contact'      => the name of the contact person to show in the directory
+  #                   'phone'        => the phone number for the directory
+  #                   'email'        => the email address for the directory
+  #                   'twitter'      => organization twitter account
+  #                   'linkedin'     => organization linkedin url
+  #                   'facebook'     => organization facebook url 
   # 
   # date              - the date the data was added via the front-end as a string
   # 
@@ -35,6 +41,12 @@ class SendDirectoryEntryToCapsule
           'Homepage'    => directory_entry['homepage'],
           'Logo'        => directory_entry['logo'],
           'Thumbnail'   => directory_entry['thumbnail'],
+          'Contact'     => directory_entry['contact'],
+          'Phone'       => directory_entry['phone'],
+          'Email'       => directory_entry['email'],
+          'Twitter'     => directory_entry['twitter'],
+          'LinkedIn'    => directory_entry['linkedin'],
+          'Facebook'    => directory_entry['facebook'],          
         )
         unless success
           requeue(organization, directory_entry, date)

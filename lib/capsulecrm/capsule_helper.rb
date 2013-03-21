@@ -27,6 +27,12 @@ module CapsuleHelper
       'Homepage'    => :text,
       'Logo'        => :text,
       'Thumbnail'   => :text,
+      'Contact'     => :text,
+      'Phone'       => :text,
+      'Email'       => :text,
+      'Twitter'     => :text,
+      'LinkedIn'    => :text,
+      'Facebook'    => :text,
     }
     set_custom_fields_on_tag(party, "DirectoryEntry", fields, types)
   end
