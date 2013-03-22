@@ -27,6 +27,7 @@ class SyncCapsuleData
         'twitter'       => field(org, "DirectoryEntry", "Twitter").try(:text),
         'linkedin'      => field(org, "DirectoryEntry", "Linkedin").try(:text),
         'facebook'      => field(org, "DirectoryEntry", "Facebook").try(:text),          
+        'tagline'       => field(org, "DirectoryEntry", "Tagline").try(:text),          
       }.compact
       # Notify the observers
       changed
