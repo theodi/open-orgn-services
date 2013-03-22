@@ -17,7 +17,7 @@ class SendSignupToCapsule
   # 
   # Returns nil.
   def self.perform(organization, membership)
-    org = organization_by_name(organization['name'])
+    org = find_organization(organization['name'])
     if org.nil?
       Resque.enqueue_in(1.hour, SendSignupToCapsule, organization, membership)
     else

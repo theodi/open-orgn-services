@@ -167,6 +167,11 @@ Then /^that data tag should have the type "(.*?)"$/ do |type|
   @tag.name.should == type
 end
 
+Then /^that organisation should have a "(.*?)" data tag$/ do |type|
+  @tag = @organisation.tags.find{|x| x.name == type}
+  @tag.should_not be_nil
+end
+
 Then /^that data tag should have the level "(.*?)"$/ do |level|
   field = @organisation.custom_fields.find{|x| x.label == "Level" && x.tag == @tag.name}
   field.should be_present

@@ -5,6 +5,8 @@ class SendDirectoryEntryToCapsule
 
   # Public: Store directory entries for organisations in capsule
   #
+  # membership_id     - the membership ID to match on
+  #
   # organization      - a hash containing details of the organization
   #                   'name'         => the organisation name
   #
@@ -17,15 +19,22 @@ class SendDirectoryEntryToCapsule
   #                   'thumbnail'    => a url that links to the thumbnail 
   #                                     version of the business's logo
   #                   'date'         => the date and time of the update
+  #                   'contact'      => the name of the contact person to show in the directory
+  #                   'phone'        => the phone number for the directory
+  #                   'email'        => the email address for the directory
+  #                   'twitter'      => organization twitter account
+  #                   'linkedin'     => organization linkedin url
+  #                   'facebook'     => organization facebook url 
+  #                   'tagline'      => organization tag line
   # 
   # date              - the date the data was added via the front-end as a string
   # 
   # Returns nil.
 
-  def self.perform(organization, directory_entry, date)
-    org = organization_by_name(organization['name'])
+  def self.perform(membership_id, organization, directory_entry, date)
+    org = find_organization(membership_id)
     if org.nil?
-      requeue(organization, directory_entry, date)
+      requeue(membership_id, organization, directory_entry, date)
     else
       if DateTime.parse(date) >= DateTime.parse(org.raw_data['updatedOn'])
         capsule = {}
@@ -35,16 +44,23 @@ class SendDirectoryEntryToCapsule
           'Homepage'    => directory_entry['homepage'],
           'Logo'        => directory_entry['logo'],
           'Thumbnail'   => directory_entry['thumbnail'],
+          'Contact'     => directory_entry['contact'],
+          'Phone'       => directory_entry['phone'],
+          'Email'       => directory_entry['email'],
+          'Twitter'     => directory_entry['twitter'],
+          'LinkedIn'    => directory_entry['linkedin'],
+          'Facebook'    => directory_entry['facebook'],          
+          'Tagline'     => directory_entry['tagline'],          
         )
         unless success
-          requeue(organization, directory_entry, date)
+          requeue(membership_id, organization, directory_entry, date)
         end
       end
     end
   end
   
-  def self.requeue(organization, directory_entry, date)
-    Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date)
+  def self.requeue(membership_id, organization, directory_entry, date)
+    Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, membership_id, organization, directory_entry, date)
   end
   
 end

@@ -11,7 +11,7 @@ class SaveMembershipIdInCapsule
   # Returns nil.
   def self.perform(organization_name, membership_id)
     # Find organization
-    organization = organization_by_name(organization_name)
+    organization = find_organization(organization_name)
     raise ArgumentError.new("Organization name #{organization_name} not found") if organization.nil?
     # Store membership ID
     set_membership_tag(organization, "ID" => membership_id)

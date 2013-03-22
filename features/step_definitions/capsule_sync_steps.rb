@@ -1,7 +1,7 @@
 Given /^that data tag has the following fields:$/ do |table|
   table.hashes.each do |row|
     row.each_pair do |key, value|      
-      instance_variable_set("@organization_#{key.downcase}", value)
+      instance_variable_set("@organization_#{@tag.name.downcase}_#{key.downcase}", value)
       field = CapsuleCRM::CustomField.new(
         @organisation,
         :tag => @tag.name,
@@ -47,16 +47,25 @@ When /^the capsule sync job for that organisation runs$/ do
 end
 
 Then /^the observer should be notified with the organisation's information$/ do
-  data = {
-    'active'        => @organization_active,
-    'email'         => @organization_email,
-    'name'          => @organisation.name,
-    'description'   => @organization_description,
-    'url'           => @organization_homepage,
-    'product_name'  => @organization_level,
-    'membership_id' => @organization_id,
+  membership = {
+    'email'         => @organization_membership_email,
+    'product_name'  => @organization_membership_level,
+    'id'            => @organization_membership_id,      
   }.compact
-  MyObserverClass.should_receive(:update).with(data)
+  directory_entry = {
+    'active'        => @organization_directoryentry_active,
+    'name'          => @organisation.name,
+    'description'   => @organization_directoryentry_description,
+    'url'           => @organization_directoryentry_homepage,
+    'contact'       => @organization_directoryentry_contact,
+    'phone'         => @organization_directoryentry_phone,
+    'email'         => @organization_directoryentry_email,
+    'twitter'       => @organization_directoryentry_twitter,
+    'linkedin'      => @organization_directoryentry_linkedin,
+    'facebook'      => @organization_directoryentry_facebook,      
+    'tagline'       => @organization_directoryentry_tagline,
+  }.compact
+  MyObserverClass.should_receive(:update).with(membership, directory_entry)
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do
