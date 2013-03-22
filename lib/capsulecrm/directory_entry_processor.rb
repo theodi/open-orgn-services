@@ -34,7 +34,7 @@ class SendDirectoryEntryToCapsule
   def self.perform(membership_id, organization, directory_entry, date)
     org = find_organization(membership_id)
     if org.nil?
-      requeue(organization, directory_entry, date)
+      requeue(membership_id, organization, directory_entry, date)
     else
       if DateTime.parse(date) >= DateTime.parse(org.raw_data['updatedOn'])
         capsule = {}
@@ -53,14 +53,14 @@ class SendDirectoryEntryToCapsule
           'Tagline'     => directory_entry['tagline'],          
         )
         unless success
-          requeue(organization, directory_entry, date)
+          requeue(membership_id, organization, directory_entry, date)
         end
       end
     end
   end
   
-  def self.requeue(organization, directory_entry, date)
-    Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date)
+  def self.requeue(membership_id, organization, directory_entry, date)
+    Resque.enqueue_in(1.hour, SendDirectoryEntryToCapsule, membership_id, organization, directory_entry, date)
   end
   
 end

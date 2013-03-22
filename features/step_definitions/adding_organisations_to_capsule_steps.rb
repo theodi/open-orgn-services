@@ -65,7 +65,7 @@ When /^the directory entry job runs$/ do
   }
   date = DateTime.now.to_s
   
-  SendDirectoryEntryToCapsule.perform(organization, directory_entry, date)
+  SendDirectoryEntryToCapsule.perform(@membership_id, organization, directory_entry, date)
 end
 
 Then /^my directory entry should be requeued for later processing once the contact has synced from Xero$/ do
@@ -87,7 +87,7 @@ Then /^my directory entry should be requeued for later processing once the conta
   }
   date = DateTime.now.to_s
   
-  Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, organization, directory_entry, date).once
+  Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
 end
 
 Given /^there is an existing organisation in CapsuleCRM called "(.*?)" with a data tag$/ do |organisation_name|
@@ -117,7 +117,7 @@ Given /^there is an existing organisation in CapsuleCRM called "(.*?)" with a da
   }
   date = DateTime.now.to_s
   
-  SendDirectoryEntryToCapsule.perform(organization, directory_entry, date)
+  SendDirectoryEntryToCapsule.perform(@membership_id, organization, directory_entry, date)
 end
 
 Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|
