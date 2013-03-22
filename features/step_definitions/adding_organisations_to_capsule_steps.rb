@@ -10,6 +10,7 @@ Given /^I enter my organisation details$/ do
   @twitter       = "rimmer"
   @linkedin      = "http://linkedin.com/company/jmc"
   @facebook      = "http://facebook.com/pages/jmc"
+  @tagline       = "empowering synergistic solutions"
 end
 
 Given /^I change my organisation details$/ do
@@ -25,6 +26,7 @@ Given /^I change my organisation details$/ do
   @original_twitter       = @twitter
   @original_linkedin      = @linkedin
   @original_facebook      = @facebook
+  @original_tagline       = @tagline
   # Update details  
   @name          = "The RAND Corporation"
   @description   = "Bacon ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto"
@@ -37,6 +39,7 @@ Given /^I change my organisation details$/ do
   @twitter       = "ajrimmer"
   @linkedin      = "http://linkedin.com/company/j-m-c"
   @facebook      = "http://facebook.com/pages/j-m-c"
+  @tagline       = "synergising solution empowerment"
 end
 
 Given /^the date and time is (#{DATETIME})$/ do |date|
@@ -58,6 +61,7 @@ When /^the directory entry job runs$/ do
       'twitter'     => @twitter,
       'linkedin'    => @linkedin,
       'facebook'    => @facebook,      
+      'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
   
@@ -79,6 +83,7 @@ Then /^my directory entry should be requeued for later processing once the conta
       'twitter'     => @twitter,
       'linkedin'    => @linkedin,
       'facebook'    => @facebook,
+      'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
   
@@ -108,6 +113,7 @@ Given /^there is an existing organisation in CapsuleCRM called "(.*?)" with a da
       'twitter'     => @twitter,
       'linkedin'    => @linkedin,
       'facebook'    => @facebook,
+      'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
   
@@ -134,6 +140,7 @@ Then /^my details should be stored in that data tag$/ do
     "Twitter"     => @twitter,
     "Linkedin"    => @linkedin,
     "Facebook"    => @facebook,
+    "Tagline"     => @tagline,
   }
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
@@ -154,6 +161,7 @@ Then /^my original details should still be stored in that data tag$/ do
     "Twitter"     => @original_twitter,
     "Linkedin"    => @original_linkedin,
     "Facebook"    => @original_facebook,
+    "Tagline"     => @original_tagline,
   }
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}

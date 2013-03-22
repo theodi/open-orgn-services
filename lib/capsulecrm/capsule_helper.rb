@@ -33,6 +33,7 @@ module CapsuleHelper
       'Twitter'     => :text,
       'LinkedIn'    => :text,
       'Facebook'    => :text,
+      'Tagline'     => :text,
     }
     set_custom_fields_on_tag(party, "DirectoryEntry", fields, types)
   end

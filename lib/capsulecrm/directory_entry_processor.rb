@@ -23,6 +23,7 @@ class SendDirectoryEntryToCapsule
   #                   'twitter'      => organization twitter account
   #                   'linkedin'     => organization linkedin url
   #                   'facebook'     => organization facebook url 
+  #                   'tagline'      => organization tag line
   # 
   # date              - the date the data was added via the front-end as a string
   # 
@@ -47,6 +48,7 @@ class SendDirectoryEntryToCapsule
           'Twitter'     => directory_entry['twitter'],
           'LinkedIn'    => directory_entry['linkedin'],
           'Facebook'    => directory_entry['facebook'],          
+          'Tagline'     => directory_entry['tagline'],          
         )
         unless success
           requeue(organization, directory_entry, date)

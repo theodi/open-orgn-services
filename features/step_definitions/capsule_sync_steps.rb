@@ -63,6 +63,7 @@ Then /^the observer should be notified with the organisation's information$/ do
     'twitter'       => @organization_directoryentry_twitter,
     'linkedin'      => @organization_directoryentry_linkedin,
     'facebook'      => @organization_directoryentry_facebook,      
+    'tagline'       => @organization_directoryentry_tagline,
   }.compact
   MyObserverClass.should_receive(:update).with(membership, directory_entry)
 end
