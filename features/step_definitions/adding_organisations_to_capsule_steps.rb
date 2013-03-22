@@ -90,34 +90,54 @@ Then /^my directory entry should be requeued for later processing once the conta
   Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
 end
 
-Given /^there is an existing organisation in CapsuleCRM called "(.*?)" with a data tag$/ do |organisation_name|
-  CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
-  @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
-  @organisation.save
-  @capsule_cleanup << @organisation
-  CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
-  
-  # I'm not at all sure about this. This seems to be using our code to 
-  # set up preconditions for our testing of our own code.
-  organization = {
-      'name'        => @name
-  }
-  directory_entry = {
-      'description' => @description,
-      'homepage'    => @homepage,
-      'logo'        => @logo,
-      'thumbnail'   => @thumb,
-      'contact'     => @contact_name,
-      'phone'       => @contact_phone,
-      'email'       => @contact_email,
-      'twitter'     => @twitter,
-      'linkedin'    => @linkedin,
-      'facebook'    => @facebook,
-      'tagline'     => @tagline,
-  }
-  date = DateTime.now.to_s
-  
-  SendDirectoryEntryToCapsule.perform(@membership_id, organization, directory_entry, date)
+Given /^that organisation is a member$/ do
+  tag = CapsuleCRM::Tag.new(
+    @organisation,
+    :name => "Membership"
+  )
+  tag.save
+  {
+    "ID" => @membership_id
+  }.each_pair do |field, value|
+    field = CapsuleCRM::CustomField.new(
+      @organisation,
+      :tag => tag.name,
+      :label => field,
+      :text => value,
+      :boolean => (value == "true")
+    )
+    field.save
+  end
+end
+
+Given /^that organisation has a directory entry$/ do
+  tag = CapsuleCRM::Tag.new(
+    @organisation,
+    :name => "DirectoryEntry"
+  )
+  tag.save
+  {
+    "Description" => @description,
+    "Homepage"    => @homepage,
+    "Logo"        => @logo,
+    "Thumbnail"   => @thumb,
+    "Contact"     => @contact_name,
+    "Phone"       => @contact_phone,
+    "Email"       => @contact_email,
+    "Twitter"     => @twitter,
+    "Linkedin"    => @linkedin,
+    "Facebook"    => @facebook,
+    "Tagline"     => @tagline,
+  }.each_pair do |field, value|
+    field = CapsuleCRM::CustomField.new(
+      @organisation,
+      :tag => tag.name,
+      :label => field,
+      :text => value,
+      :boolean => (value == "true")
+    )
+    field.save
+  end
 end
 
 Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|

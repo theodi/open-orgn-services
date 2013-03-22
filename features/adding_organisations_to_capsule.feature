@@ -29,11 +29,9 @@ Feature: Add organisation details to Capsule CRM
     And my details should be stored in that data tag
   
   Scenario: Updating data in Capsule
-    Given there is an existing organisation in CapsuleCRM called "The RAND Corporation" with a data tag 
-    And that organisation has a data tag called "Membership"
-    And that data tag has the following fields:
-    | Level   | Email         | ID       |
-    | partner | info@rand.com | HG5646HD |
+    And there is an existing organisation in CapsuleCRM called "The RAND Corporation"
+    And that organisation is a member
+    And that organisation has a directory entry
     And I change my organisation details
     When the directory entry job runs
     Then there should still be just one organisation in CapsuleCRM called "The RAND Corporation"
@@ -42,11 +40,9 @@ Feature: Add organisation details to Capsule CRM
   
   @timecop
   Scenario: Updating data in Capsule when the data in Capsule is newer
-    Given there is an existing organisation in CapsuleCRM called "The RAND Corporation" with a data tag 
-    And that organisation has a data tag called "Membership"
-    And that data tag has the following fields:
-    | Level   | Email         | ID       |
-    | partner | info@rand.com | HG5646HD |
+    And there is an existing organisation in CapsuleCRM called "The RAND Corporation"
+    And that organisation is a member
+    And that organisation has a directory entry
     And I change my organisation details
     And that it's 2012-03-04 14:54
     When the directory entry job runs
