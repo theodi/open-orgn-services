@@ -5,6 +5,8 @@ class SendDirectoryEntryToCapsule
 
   # Public: Store directory entries for organisations in capsule
   #
+  # membership_id     - the membership ID to match on
+  #
   # organization      - a hash containing details of the organization
   #                   'name'         => the organisation name
   #
@@ -29,8 +31,8 @@ class SendDirectoryEntryToCapsule
   # 
   # Returns nil.
 
-  def self.perform(organization, directory_entry, date)
-    org = organization_by_name(organization['name'])
+  def self.perform(membership_id, organization, directory_entry, date)
+    org = find_organization(membership_id)
     if org.nil?
       requeue(organization, directory_entry, date)
     else

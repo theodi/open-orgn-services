@@ -1,6 +1,6 @@
 module CapsuleHelper
   
-  def organization_by_name(name)
+  def find_organization(name)
     orgs = CapsuleCRM::Organisation.find_all(:q => name)
     orgs.length == 1 ? orgs.first : nil
   end
