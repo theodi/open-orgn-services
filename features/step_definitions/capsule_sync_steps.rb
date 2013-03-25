@@ -51,6 +51,7 @@ Then /^the observer should be notified with the organisation's information$/ do
     'email'         => @organization_membership_email,
     'product_name'  => @organization_membership_level,
     'id'            => @organization_membership_id,      
+    'newsletter'    => (@organization_membership_newsletter == 'true'),
   }.compact
   directory_entry = {
     'active'        => @organization_directoryentry_active,
@@ -76,4 +77,30 @@ Then /^that data tag should have my new membership number set$/ do
   field = @organisation.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
   field.should be_present
   field.text.should == @membership_id
+end
+
+# Store membership details
+
+Given /^I have updated my membership details$/ do
+  @updated_email = 'contact@weyland-yutani.com'
+  @updated_newsletter = true
+end
+
+When /^the job is run to update my membership details in capsule$/ do
+  SaveMembershipDetailsToCapsule.perform(@organization_membership_id, {
+    'email'      => @updated_email,
+    'newsletter' => @updated_newsletter
+  })
+end
+
+Then /^that data tag should have my updated email$/ do
+  field = @organisation.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == @updated_email
+end
+
+Then /^that data tag should have my updated newsletter preferences$/ do
+  field = @organisation.custom_fields.find{|x| x.label == "Newsletter" && x.tag == @tag.name}
+  field.should be_present
+  field.boolean.should == @updated_newsletter
 end
