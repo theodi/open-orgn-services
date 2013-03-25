@@ -7,10 +7,11 @@ module CapsuleHelper
   
   def set_membership_tag(party, fields)
     types = {
-      "Level"  => :text,
-      "ID"     => :text,
-      "Email"  => :text,
-      "Joined" => :date
+      "Level"      => :text,
+      "ID"         => :text,
+      "Email"      => :text,
+      "Joined"     => :date,
+      "Newsletter" => :boolean
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end
