@@ -51,6 +51,7 @@ Then /^the observer should be notified with the organisation's information$/ do
     'email'         => @organization_membership_email,
     'product_name'  => @organization_membership_level,
     'id'            => @organization_membership_id,      
+    'newsletter'    => (@organization_membership_newsletter == 'true'),
   }.compact
   directory_entry = {
     'active'        => @organization_directoryentry_active,
