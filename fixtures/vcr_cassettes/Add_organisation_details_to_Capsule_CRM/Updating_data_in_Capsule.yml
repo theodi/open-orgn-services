@@ -15,7 +15,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:19 GMT
+      - Fri, 22 Mar 2013 16:30:40 GMT
       Server:
       - Apache
       Set-Cookie:
@@ -28,7 +28,7 @@ http_interactions:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:33 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:53 GMT
 - request:
     method: post
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
@@ -45,13 +45,13 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:20 GMT
+      - Fri, 22 Mar 2013 16:30:40 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027
       Content-Length:
       - '0'
       Content-Type:
@@ -62,7 +62,7 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:34 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:54 GMT
 - request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=The%20RAND%20Corporation
@@ -78,7 +78,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:20 GMT
+      - Fri, 22 Mar 2013 16:30:41 GMT
       Server:
       - Apache
       Set-Cookie:
@@ -89,43 +89,78 @@ http_interactions:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37951820</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362758938/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-19T12:21:28Z</createdOn><updatedOn>2013-03-19T12:21:28Z</updatedOn><name>The
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>38218027</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1363957278/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-22T16:30:51Z</createdOn><updatedOn>2013-03-22T16:30:51Z</updatedOn><name>The
         RAND Corporation</name></organisation></parties>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:34 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=The%20RAND%20Corporation
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 19 Mar 2013 12:21:21 GMT
-      Server:
-      - Apache
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      Content-Length:
-      - '372'
-      Content-Type:
-      - ! '*/*'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37951820</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362758938/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-19T12:21:28Z</createdOn><updatedOn>2013-03-19T12:21:28Z</updatedOn><name>The
-        RAND Corporation</name></organisation></parties>
-    http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:35 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:54 GMT
 - request:
     method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/tag/DirectoryEntry
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/tag/Membership
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:41 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/tag/Membership
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:30:55 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>ID</label>\n    <text>HG5646HD</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:42 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '196'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:30:56 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/tag/DirectoryEntry
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>DirectoryEntry</name>\n
@@ -139,13 +174,13 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:21 GMT
+      - Fri, 22 Mar 2013 16:30:42 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/tag/DirectoryEntry
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/tag/DirectoryEntry
       Content-Length:
       - '0'
       Content-Type:
@@ -154,16 +189,16 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:36 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:56 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
         \   <label>Description</label>\n    <text>Lorem ipsum dolor sit amet, consectetur
         adipiscing elit.</text>\n    <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n
-        \   <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+        \   <boolean type=\"boolean\">false</boolean>\n  </customField>\n</customFields>\n"
     headers:
       Content-Type:
       - text/xml
@@ -173,30 +208,31 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:22 GMT
+      - Fri, 22 Mar 2013 16:30:43 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '257'
+      - '360'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="1"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        size="2"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
         ipsum dolor sit amet, consectetur adipiscing elit.</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:36 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:57 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
         \   <label>Homepage</label>\n    <text>http://www.example.com</text>\n    <tag>DirectoryEntry</tag>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
     headers:
       Content-Type:
       - text/xml
@@ -206,30 +242,30 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:22 GMT
+      - Fri, 22 Mar 2013 16:30:44 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '384'
+      - '487'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="2"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
-        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField></customFields>
+        size="3"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:37 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:57 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
         \   <label>Logo</label>\n    <text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text>\n
-        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -240,30 +276,30 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:23 GMT
+      - Fri, 22 Mar 2013 16:30:44 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '528'
+      - '631'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="3"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
-        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField></customFields>
+        size="4"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:37 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:58 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
         \   <label>Thumbnail</label>\n    <text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text>\n
-        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -274,25 +310,277 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:23 GMT
+      - Fri, 22 Mar 2013 16:30:45 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '684'
+      - '787'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="4"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
-        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38086204</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField></customFields>
+        size="5"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:38 GMT
+  recorded_at: Fri, 22 Mar 2013 16:30:58 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Contact</label>\n    <text>Arnold Rimmer</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:45 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '904'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:30:59 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Phone</label>\n    <text>+44 7473 439430</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:46 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1021'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="7"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>rimmer@jmc.com</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:46 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1137'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Twitter</label>\n    <text>rimmer</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:47 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1247'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="9"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:01 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Linkedin</label>\n    <text>http://linkedin.com/company/jmc</text>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:47 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1384'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="10"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:01 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Facebook</label>\n    <text>http://facebook.com/pages/jmc</text>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:48 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1518'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="11"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:02 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Tagline</label>\n    <text>empowering synergistic solutions</text>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:49 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1654'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit.</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:02 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=The%20RAND%20Corporation
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=HG5646HD
     body:
       encoding: US-ASCII
       string: ''
@@ -305,7 +593,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:24 GMT
+      - Fri, 22 Mar 2013 16:30:49 GMT
       Server:
       - Apache
       Set-Cookie:
@@ -316,13 +604,13 @@ http_interactions:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37951820</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362758938/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-19T12:21:28Z</createdOn><updatedOn>2013-03-19T12:21:32Z</updatedOn><name>The
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>38218027</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1363957278/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-22T16:30:51Z</createdOn><updatedOn>2013-03-22T16:31:00Z</updatedOn><name>The
         RAND Corporation</name></organisation></parties>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:38 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:03 GMT
 - request:
     method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/tag/DirectoryEntry
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/tag/DirectoryEntry
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>DirectoryEntry</name>\n
@@ -336,23 +624,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:24 GMT
+      - Fri, 22 Mar 2013 16:30:50 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '115'
+      - '149'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><name>DirectoryEntry</name></tag></tags>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="2"><tag><name>Membership</name></tag><tag><name>DirectoryEntry</name></tag></tags>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:39 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:03 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -368,25 +656,28 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:25 GMT
+      - Fri, 22 Mar 2013 16:30:50 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '703'
+      - '1673'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="4"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
-        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38086204</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField></customFields>
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:39 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:04 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -402,25 +693,28 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:25 GMT
+      - Fri, 22 Mar 2013 16:30:51 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '712'
+      - '1682'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="4"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
-        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38086204</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField></customFields>
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:40 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:04 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -436,25 +730,28 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:26 GMT
+      - Fri, 22 Mar 2013 16:30:51 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '716'
+      - '1686'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="4"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
-        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38086204</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField></customFields>
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:40 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:05 GMT
 - request:
     method: put
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfields
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
@@ -470,22 +767,280 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:26 GMT
+      - Fri, 22 Mar 2013 16:30:52 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '720'
+      - '1690'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="4"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
-        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38086204</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField></customFields>
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:41 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:06 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Contact</label>\n    <text>Arnold J Rimmer</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:52 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1692'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:06 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Phone</label>\n    <text>+44 7473 439430 x42</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:53 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1696'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:07 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>a.j.rimmer@jmc.com</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:54 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1700'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>a.j.rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>rimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:07 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Twitter</label>\n    <text>ajrimmer</text>\n    <tag>DirectoryEntry</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:54 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1702'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>a.j.rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>ajrimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/jmc</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:08 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>LinkedIn</label>\n    <text>http://linkedin.com/company/j-m-c</text>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:55 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1704'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>a.j.rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>ajrimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/j-m-c</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/jmc</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:08 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Facebook</label>\n    <text>http://facebook.com/pages/j-m-c</text>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:55 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1706'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>a.j.rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>ajrimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/j-m-c</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/j-m-c</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>empowering
+        synergistic solutions</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:09 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Tagline</label>\n    <text>synergising solution empowerment</text>\n
+        \   <tag>DirectoryEntry</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2013 16:30:56 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      Content-Length:
+      - '1706'
+      Content-Type:
+      - ! '*/*'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>a.j.rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>ajrimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/j-m-c</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/j-m-c</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>synergising
+        solution empowerment</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2013 16:31:10 GMT
 - request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=The%20RAND%20Corporation
@@ -501,7 +1056,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:27 GMT
+      - Fri, 22 Mar 2013 16:30:56 GMT
       Server:
       - Apache
       Set-Cookie:
@@ -512,13 +1067,13 @@ http_interactions:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>37951820</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1362758938/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-19T12:21:28Z</createdOn><updatedOn>2013-03-19T12:21:32Z</updatedOn><name>The
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>38218027</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1363957278/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2013-03-22T16:30:51Z</createdOn><updatedOn>2013-03-22T16:31:05Z</updatedOn><name>The
         RAND Corporation</name></organisation></parties>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:41 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:10 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/tag
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/tag
     body:
       encoding: US-ASCII
       string: ''
@@ -531,23 +1086,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:27 GMT
+      - Fri, 22 Mar 2013 16:30:57 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '115'
+      - '149'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><name>DirectoryEntry</name></tag></tags>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="2"><tag><name>Membership</name></tag><tag><name>DirectoryEntry</name></tag></tags>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:42 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:11 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820/customfield
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027/customfield
     body:
       encoding: US-ASCII
       string: ''
@@ -560,25 +1115,28 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:28 GMT
+      - Fri, 22 Mar 2013 16:30:57 GMT
       Server:
       - Apache
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
-      - '720'
+      - '1706'
       Content-Type:
       - ! '*/*'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
-        size="4"><customField><id>38086198</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
-        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38086199</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38086203</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38086204</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField></customFields>
+        size="12"><customField><id>38265550</id><tag>Membership</tag><label>ID</label><text>HG5646HD</text></customField><customField><id>38265551</id><tag>DirectoryEntry</tag><label>Description</label><text>Bacon
+        ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto</text></customField><customField><id>38265552</id><tag>DirectoryEntry</tag><label>Homepage</label><text>http://www.example.com/homepage</text></customField><customField><id>38265553</id><tag>DirectoryEntry</tag><label>Logo</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/acmelogo_new.png</text></customField><customField><id>38265554</id><tag>DirectoryEntry</tag><label>Thumbnail</label><text>http://stuff.<GITHUB_ORGANISATION>.org/images/thumbs/acmelogo_new.png</text></customField><customField><id>38265555</id><tag>DirectoryEntry</tag><label>Contact</label><text>Arnold
+        J Rimmer</text></customField><customField><id>38265556</id><tag>DirectoryEntry</tag><label>Phone</label><text>+44
+        7473 439430 x42</text></customField><customField><id>38265557</id><tag>DirectoryEntry</tag><label>Email</label><text>a.j.rimmer@jmc.com</text></customField><customField><id>38265558</id><tag>DirectoryEntry</tag><label>Twitter</label><text>ajrimmer</text></customField><customField><id>38265559</id><tag>DirectoryEntry</tag><label>Linkedin</label><text>http://linkedin.com/company/j-m-c</text></customField><customField><id>38265560</id><tag>DirectoryEntry</tag><label>Facebook</label><text>http://facebook.com/pages/j-m-c</text></customField><customField><id>38265561</id><tag>DirectoryEntry</tag><label>Tagline</label><text>synergising
+        solution empowerment</text></customField></customFields>
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:42 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:11 GMT
 - request:
     method: delete
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/37951820
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/38218027
     body:
       encoding: US-ASCII
       string: ''
@@ -591,7 +1149,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 19 Mar 2013 12:21:28 GMT
+      - Fri, 22 Mar 2013 16:30:58 GMT
       Server:
       - Apache
       Set-Cookie:
@@ -604,5 +1162,5 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: 
-  recorded_at: Tue, 19 Mar 2013 12:21:43 GMT
+  recorded_at: Fri, 22 Mar 2013 16:31:12 GMT
 recorded_with: VCR 2.4.0

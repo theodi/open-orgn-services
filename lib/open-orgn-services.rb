@@ -5,6 +5,8 @@ class Hash
 end
 
 require 'resque'
+require 'resque_scheduler'
+require 'resque/scheduler'
 
 # Setup redis server
 raise "Redis configuration not set" unless ENV['RESQUE_REDIS_HOST'] && ENV['RESQUE_REDIS_PORT']
