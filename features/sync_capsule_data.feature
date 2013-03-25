@@ -19,8 +19,8 @@ Feature: Synchronize a single updated organisation
   Scenario: Send updated organization data to observer with directory entry
     Given that organisation has a data tag called "DirectoryEntry"
     And that data tag has the following fields:
-    | Description          | Homepage       | Active |
-    | 20 seconds to comply | http://ocp.com | true   |
+    | Description          | Homepage       | Active | Contact    | Email         | Phone           | Twitter | Linkedin                       | Facebook                      | Tagline              |
+    | 20 seconds to comply | http://ocp.com | true   | Dick Jones | jones@ocp.com | +44 1111 222222 | ocp     | http://linkedin.com/company/ocp| http://facebook.com/pages/ocp | empowering solutions |
     And an observer object has been registered
     Then the observer should be notified with the organisation's information
     When the capsule sync job for that organisation runs

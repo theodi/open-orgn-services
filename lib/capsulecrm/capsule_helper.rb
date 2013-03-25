@@ -1,6 +1,6 @@
 module CapsuleHelper
   
-  def organization_by_name(name)
+  def find_organization(name)
     orgs = CapsuleCRM::Organisation.find_all(:q => name)
     orgs.length == 1 ? orgs.first : nil
   end
@@ -21,6 +21,13 @@ module CapsuleHelper
       'Homepage'    => :text,
       'Logo'        => :text,
       'Thumbnail'   => :text,
+      'Contact'     => :text,
+      'Phone'       => :text,
+      'Email'       => :text,
+      'Twitter'     => :text,
+      'LinkedIn'    => :text,
+      'Facebook'    => :text,
+      'Tagline'     => :text,
     }
     set_custom_fields_on_tag(party, "DirectoryEntry", fields, types)
   end
