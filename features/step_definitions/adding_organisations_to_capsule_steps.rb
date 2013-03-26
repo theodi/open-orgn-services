@@ -13,6 +13,10 @@ Given /^I enter my organisation details$/ do
   @tagline       = "empowering synergistic solutions"
 end
 
+Given /^I enter a description that is (#{INTEGER}) characters long$/ do |length|
+  @description = 'a'*length
+end
+
 Given /^I change my organisation details$/ do
   # Store old details
   @original_name          = @name        
@@ -150,18 +154,21 @@ end
 
 Then /^my details should be stored in that data tag$/ do
   tests = {
-    "Description" => @description,
-    "Homepage"    => @homepage,
-    "Logo"        => @logo,
-    "Thumbnail"   => @thumb,
-    "Contact"     => @contact_name,
-    "Phone"       => @contact_phone,
-    "Email"       => @contact_email,
-    "Twitter"     => @twitter,
-    "Linkedin"    => @linkedin,
-    "Facebook"    => @facebook,
-    "Tagline"     => @tagline,
-  }
+    "Description"   => @description.slice(0,250),
+    "Description-2" => @description.slice(250,250),
+    "Description-3" => @description.slice(500,250),
+    "Description-4" => @description.slice(750,250),
+    "Homepage"      => @homepage,
+    "Logo"          => @logo,
+    "Thumbnail"     => @thumb,
+    "Contact"       => @contact_name,
+    "Phone"         => @contact_phone,
+    "Email"         => @contact_email,
+    "Twitter"       => @twitter,
+    "Linkedin"      => @linkedin,
+    "Facebook"      => @facebook,
+    "Tagline"       => @tagline,
+  }.compact
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
     field.should be_present
@@ -171,18 +178,21 @@ end
 
 Then /^my original details should still be stored in that data tag$/ do
   tests = {
-    "Description" => @original_description,
-    "Homepage"    => @original_homepage,
-    "Logo"        => @original_logo,
-    "Thumbnail"   => @original_thumb,
-    "Contact"     => @original_contact_name,
-    "Phone"       => @original_contact_phone,
-    "Email"       => @original_contact_email,
-    "Twitter"     => @original_twitter,
-    "Linkedin"    => @original_linkedin,
-    "Facebook"    => @original_facebook,
-    "Tagline"     => @original_tagline,
-  }
+    "Description"   => @original_description.slice(0,250),
+    "Description-2" => @original_description.slice(250,250),
+    "Description-3" => @original_description.slice(500,250),
+    "Description-4" => @original_description.slice(750,250),
+    "Homepage"      => @original_homepage,
+    "Logo"          => @original_logo,
+    "Thumbnail"     => @original_thumb,
+    "Contact"       => @original_contact_name,
+    "Phone"         => @original_contact_phone,
+    "Email"         => @original_contact_email,
+    "Twitter"       => @original_twitter,
+    "Linkedin"      => @original_linkedin,
+    "Facebook"      => @original_facebook,
+    "Tagline"       => @original_tagline,
+  }.compact
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
     field.should be_present
