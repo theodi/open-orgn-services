@@ -17,10 +17,16 @@ class SyncCapsuleData
         'id'            => field(org, "Membership", "ID").try(:text),
         'newsletter'    => field(org, "Membership", "Newsletter").try(:boolean),
       }.compact
+      description = [
+        field(org, "DirectoryEntry", "Description").try(:text),
+        field(org, "DirectoryEntry", "Description-2").try(:text),
+        field(org, "DirectoryEntry", "Description-3").try(:text),
+        field(org, "DirectoryEntry", "Description-4").try(:text)
+      ].compact.join
       directory_entry = {
         'active'        => field(org, "DirectoryEntry", "Active").try(:boolean).try(:to_s),
         'name'          => org.name,
-        'description'   => field(org, "DirectoryEntry", "Description").try(:text),
+        'description'   => description.present? ? description : nil,
         'url'           => field(org, "DirectoryEntry", "Homepage").try(:text),
         'contact'       => field(org, "DirectoryEntry", "Contact").try(:text),
         'phone'         => field(org, "DirectoryEntry", "Phone").try(:text),
