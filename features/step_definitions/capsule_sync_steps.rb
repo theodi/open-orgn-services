@@ -1,7 +1,7 @@
 Given /^that data tag has the following fields:$/ do |table|
   table.hashes.each do |row|
     row.each_pair do |key, value|      
-      instance_variable_set("@organization_#{@tag.name.downcase}_#{key.downcase}", value)
+      instance_variable_set("@organization_#{@tag.name.downcase}_#{key.downcase.delete('-')}", value)
       field = CapsuleCRM::CustomField.new(
         @organisation,
         :tag => @tag.name,
@@ -53,10 +53,16 @@ Then /^the observer should be notified with the organisation's information$/ do
     'id'            => @organization_membership_id,      
     'newsletter'    => (@organization_membership_newsletter == 'true'),
   }.compact
+  description = [
+    @organization_directoryentry_description,
+    @organization_directoryentry_description2,
+    @organization_directoryentry_description3,
+    @organization_directoryentry_description4
+  ].compact.join
   directory_entry = {
     'active'        => @organization_directoryentry_active,
     'name'          => @organisation.name,
-    'description'   => @organization_directoryentry_description,
+    'description'   => description.present? ? description : nil,
     'url'           => @organization_directoryentry_homepage,
     'contact'       => @organization_directoryentry_contact,
     'phone'         => @organization_directoryentry_phone,
