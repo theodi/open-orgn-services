@@ -18,17 +18,20 @@ module CapsuleHelper
 
   def set_directory_entry_tag(party, fields)
     types = {
-      'Description' => :text,
-      'Homepage'    => :text,
-      'Logo'        => :text,
-      'Thumbnail'   => :text,
-      'Contact'     => :text,
-      'Phone'       => :text,
-      'Email'       => :text,
-      'Twitter'     => :text,
-      'LinkedIn'    => :text,
-      'Facebook'    => :text,
-      'Tagline'     => :text,
+      'Description'   => :text,
+      'Description-2' => :text,
+      'Description-3' => :text,
+      'Description-4' => :text,
+      'Homepage'      => :text,
+      'Logo'          => :text,
+      'Thumbnail'     => :text,
+      'Contact'       => :text,
+      'Phone'         => :text,
+      'Email'         => :text,
+      'Twitter'       => :text,
+      'LinkedIn'      => :text,
+      'Facebook'      => :text,
+      'Tagline'       => :text,
     }
     set_custom_fields_on_tag(party, "DirectoryEntry", fields, types)
   end
