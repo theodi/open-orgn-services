@@ -49,3 +49,17 @@ Feature: Add organisation details to Capsule CRM
     Then there should still be just one organisation in CapsuleCRM called "The RAND Corporation"
     And that organisation should have a "DirectoryEntry" data tag
     And my original details should still be stored in that data tag
+    
+  @timecop
+  Scenario: User adds a long description
+    Given that it's 2100-03-04 14:54
+    And there is an existing organisation in CapsuleCRM called "The RAND Corporation"
+    And that organisation has a data tag called "Membership"
+    And that data tag has the following fields:
+    | Level   | Email         | ID       |
+    | partner | info@rand.com | HG5646HD |
+    But I enter a description that is 800 characters long
+    When the directory entry job runs
+    Then there should still be just one organisation in CapsuleCRM called "The RAND Corporation"
+    And that organisation should have a "DirectoryEntry" data tag
+    And my details should be stored in that data tag
