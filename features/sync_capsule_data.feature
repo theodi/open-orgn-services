@@ -25,3 +25,12 @@ Feature: Synchronize a single updated organisation
     Then the observer should be notified with the organisation's information
     When the capsule sync job for that organisation runs
 
+  Scenario: Handle long descriptions
+    Given that organisation has a data tag called "DirectoryEntry"
+    And that data tag has the following fields:
+    | Description | Description-2 | Description-3 | Description-4 |
+    | you have 1  | 0 second      | s to com      | ply           |
+    And an observer object has been registered
+    Then the observer should be notified with the organisation's information
+    When the capsule sync job for that organisation runs
+
