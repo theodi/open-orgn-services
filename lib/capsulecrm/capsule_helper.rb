@@ -1,8 +1,10 @@
 module CapsuleHelper
   
   def find_organization(name)
+    # Run fuzzy capsuleCRM match
     orgs = CapsuleCRM::Organisation.find_all(:q => name)
-    orgs.length == 1 ? orgs.first : nil
+    # Find exact name match
+    orgs.find{|x| x.name == name}
   end
   
   def set_membership_tag(party, fields)
