@@ -29,9 +29,10 @@ class EventSummaryGenerator
     events.each do |event|
       # Marshal all event data
       data[event['url']] = {
+        :name      => event['title'],
         :@type     => "http://schema.org/Event",
         :startDate => event['starts_at'],
-        :endDate   => event['ends_at'],
+        :endDate   => event['ends_at']
       }
       if event['location']
         data[event['url']]['location'] = {
