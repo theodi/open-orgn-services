@@ -37,6 +37,7 @@ class EventMonitor
             'url'          => e['url'],
             'starts_at'    => DateTime.parse(e['start_date']).to_s,
             'ends_at'      => DateTime.parse(e['end_date']).to_s,
+            'capacity'     => e['capacity'],
             'ticket_types' => tickets,
           }
           events.last['location'] = e['venue']['name'] if e['venue']
