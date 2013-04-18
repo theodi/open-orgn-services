@@ -28,13 +28,19 @@ class EventSummaryGenerator
     data = {}
     events.each do |event|
       # Marshal all event data
+      if event['title'] =~ /lunchtime/
+        capacity = event['capacity']
+      else
+        capacity = nil
+      end
+      
       data[event['url']] = {
         :name      => event['title'],
         :@type     => "http://schema.org/Event",
         :startDate => event['starts_at'],
         :endDate   => event['ends_at'],
-        :capacity  => event['capacity']
-      }
+        :capacity  => capacity
+      }.compact
       if event['location']
         data[event['url']]['location'] = {
           :@type => "http://schema.org/Place",
