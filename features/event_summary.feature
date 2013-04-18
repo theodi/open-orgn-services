@@ -125,7 +125,6 @@ Feature: Create a JSON description of all upcoming events
     """
     {"foo":"bar"}
     """
-    And the JSON document has the type "courses"
     Then the json should be written to a temporary file
     And the temporary file should be rsync'd to the web server
     When the summary uploader runs
