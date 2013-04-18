@@ -11,7 +11,7 @@ Feature: Create a JSON description of all upcoming events
     
       | title                                        | id         | url                                        | starts_at        | ends_at          | capacity | location            |
       | [Test Event 00] Drupal: Down the Rabbit Hole | 5441375300 | http://www.eventbrite.com/event/5441375300 | 2013-03-17 19:00 | 2013-03-17 22:00 | 100      | The office          |
-      | How to Find an Eventbrite Event ID           | 5449726278 | http://foobarrubbishevent.eventbrite.com   | 2013-03-24 19:00 | 2013-03-24 22:00 | 10       |                     | 
+      | How to Find an Eventbrite Event ID           | 5449726278 | http://foobarrubbishevent.eventbrite.com   | 2013-03-24 19:00 | 2013-03-24 22:00 | 10       |                     |
       | Open Data, Law and Licensing                 | 5519765768 | http://www.eventbrite.com/event/5519765768 | 2013-04-16 09:30 | 2013-04-16 12:30 | 120      | Open Data Institute |
       
     And the events have the following ticket types:
@@ -29,7 +29,7 @@ Feature: Create a JSON description of all upcoming events
 		When we poll eventbrite for all events
     
   Scenario: Generate JSON
-    Then the summary uploader should be queued with the following JSON:
+    Then the courses summary uploader should be queued with the following JSON:
     """
     {
       "http://www.eventbrite.com/event/5441375300": {
@@ -37,6 +37,7 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/Event",
         "startDate": "2013-03-17T19:00:00+00:00",
         "endDate": "2013-03-17T22:00:00+00:00",
+        "additionalType": "Course",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The office"
@@ -66,6 +67,7 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/Event",
         "startDate": "2013-03-24T19:00:00+00:00",
         "endDate": "2013-03-24T22:00:00+00:00",
+        "additionalType": "Course",
         "offers": [
           {
             "@type": "http://schema.org/Offer",
@@ -82,6 +84,7 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/Event",
         "startDate": "2013-04-16T09:30:00+00:00",
         "endDate": "2013-04-16T12:30:00+00:00",
+        "additionalType": "Course",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "Open Data Institute"
@@ -122,6 +125,7 @@ Feature: Create a JSON description of all upcoming events
     """
     {"foo":"bar"}
     """
+    And the JSON document has the type "courses"
     Then the json should be written to a temporary file
     And the temporary file should be rsync'd to the web server
     When the summary uploader runs
