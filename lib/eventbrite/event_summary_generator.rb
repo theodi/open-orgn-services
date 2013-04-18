@@ -32,7 +32,8 @@ class EventSummaryGenerator
         :name      => event['title'],
         :@type     => "http://schema.org/Event",
         :startDate => event['starts_at'],
-        :endDate   => event['ends_at']
+        :endDate   => event['ends_at'],
+        :capacity  => event['capacity']
       }
       if event['location']
         data[event['url']]['location'] = {
