@@ -26,7 +26,7 @@ Given(/^the events have the following ticket types:$/) do |tickets|
           }.compact
       end
     end
-  end
+  end  
 end
 
 Then /^the event summary generator should be queued$/ do

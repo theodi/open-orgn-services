@@ -37,7 +37,6 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/Event",
         "startDate": "2013-03-17T19:00:00+00:00",
         "endDate": "2013-03-17T22:00:00+00:00",
-        "capacity": 100,
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The office"
@@ -67,7 +66,6 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/Event",
         "startDate": "2013-03-24T19:00:00+00:00",
         "endDate": "2013-03-24T22:00:00+00:00",
-        "capacity": 10,
         "offers": [
           {
             "@type": "http://schema.org/Offer",
@@ -84,7 +82,6 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/Event",
         "startDate": "2013-04-16T09:30:00+00:00",
         "endDate": "2013-04-16T12:30:00+00:00",
-        "capacity": 120,
         "location": {
           "@type": "http://schema.org/Place",
           "name": "Open Data Institute"

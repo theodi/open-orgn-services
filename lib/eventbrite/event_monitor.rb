@@ -39,6 +39,7 @@ class EventMonitor
             'ends_at'      => DateTime.parse(e['end_date']).to_s,
             'capacity'     => e['capacity'],
             'ticket_types' => tickets,
+            'capacity'     => get_capacity(e)
           }
           events.last['location'] = e['venue']['name'] if e['venue']
         end
@@ -50,4 +51,20 @@ class EventMonitor
     end
     Resque.enqueue(EventSummaryGenerator, events)
   end
+  
+  # If an event only has one ticket type, or the capacity has not been specified, we need to add together the ticket types to get the capacity
+  def self.get_capacity(event) 
+    if event['capacity'] > 0
+      capacity = event['capacity']
+    else
+      capacity = 0
+      if event['tickets']
+        event['tickets'].each do |ticket|
+          capacity += ticket['ticket']['quantity_available']
+        end
+      end
+    end 
+    return capacity
+  end
+  
 end
