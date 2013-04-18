@@ -34,8 +34,14 @@ Then /^the event summary generator should be queued$/ do
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
-Then /^the summary uploader should be queued with the following JSON:$/ do |json|
-  Resque.should_receive(:enqueue).with(EventSummaryUploader, json).once
+Then /^the courses summary uploader should be queued with the following JSON:$/ do |json|
+  Resque.should_receive(:enqueue).with(EventSummaryUploader, json, "courses").once
+  Resque.should_receive(:enqueue).any_number_of_times
+end
+
+Then /^the lectures summary uploader should be queued with the following JSON:$/ do |json|
+  Resque.should_receive(:enqueue).with(EventSummaryUploader, json, "lectures").once
+  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 When /^the event summary generator is run$/ do
@@ -47,7 +53,7 @@ Given /^a JSON document like this:$/ do |json|
 end
 
 When /^the summary uploader runs$/ do
-  EventSummaryUploader.perform(@json)
+  EventSummaryUploader.perform(@json, @type)
 end
 
 Then /^the json should be written to a temporary file$/ do
@@ -58,7 +64,7 @@ Then /^the json should be written to a temporary file$/ do
 end
 
 Then /^the temporary file should be rsync'd to the web server$/ do
-  Kernel.should_receive(:system).with("rsync", "/tmp/courses.json", ENV['COURSES_RSYNC_PATH'])
+  Kernel.should_receive(:system).with("rsync", "/tmp/#ENV['COURSES_RSYNC_PATH'].json", path)
 end
 
 Then /^the JSON document should be available at the target URL$/ do

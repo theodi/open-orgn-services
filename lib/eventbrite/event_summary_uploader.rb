@@ -12,8 +12,8 @@ class EventSummaryUploader
   #   # => nil
   #
   # Returns nothing
-  def self.perform(json)
-    filename = "/tmp/courses.json"
+  def self.perform(json, type)
+    type == "courses" ? filename = filename = "/tmp/courses.json" : filename = "/tmp/lectures.json"
     # Write tempfile
     begin
       f = File.open(filename, "w")
@@ -22,7 +22,8 @@ class EventSummaryUploader
       f.close if f
     end
     # rsync the file to the right place
-    Kernel.system "rsync", filename, ENV['COURSES_RSYNC_PATH']
+    type == "courses" ? path = ENV['COURSES_RSYNC_PATH'] : path = ENV['LECTURES_RSYNC_PATH']
+    Kernel.system "rsync", filename, path
   end
   
 end

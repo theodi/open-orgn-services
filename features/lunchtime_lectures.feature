@@ -25,7 +25,7 @@ Feature: Create a JSON description of all upcoming lunchtime lectures
 		When we poll eventbrite for all events
   
   Scenario: Generate JSON
-    Then the summary uploader should be queued with the following JSON:
+    Then the lectures summary uploader should be queued with the following JSON:
     """
     {
       "http://www.eventbrite.com/event/6339143549": {
@@ -34,6 +34,7 @@ Feature: Create a JSON description of all upcoming lunchtime lectures
         "startDate": "2013-05-31T13:00:00+00:00",
         "endDate": "2013-05-31T13:45:00+00:00",
         "capacity": 100,
+        "additionalType": "Lecture",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"
@@ -55,6 +56,7 @@ Feature: Create a JSON description of all upcoming lunchtime lectures
         "startDate": "2013-06-07T13:00:00+00:00",
         "endDate": "2013-06-07T13:45:00+00:00",
         "capacity": 100,
+        "additionalType": "Lecture",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"

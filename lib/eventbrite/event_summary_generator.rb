@@ -30,16 +30,19 @@ class EventSummaryGenerator
       # Marshal all event data
       if event['title'] =~ /lunchtime/
         capacity = event['capacity']
+        type     = "Lecture"
       else
         capacity = nil
+        type     = "Course"
       end
       
       data[event['url']] = {
-        :name      => event['title'],
-        :@type     => "http://schema.org/Event",
-        :startDate => event['starts_at'],
-        :endDate   => event['ends_at'],
-        :capacity  => capacity
+        :name           => event['title'],
+        :@type          => "http://schema.org/Event",
+        :startDate      => event['starts_at'],
+        :endDate        => event['ends_at'],
+        :capacity       => capacity,
+        :additionalType => type
       }.compact
       if event['location']
         data[event['url']]['location'] = {
@@ -75,10 +78,24 @@ class EventSummaryGenerator
       end
       data[event['url']]['offers'] = tickets
     end
+    # Marshal courses and lectures into separate arrays
+    courses = {}
+    lectures = {}
+            
+    data.each do |uri, event|
+      if event[:additionalType] == "Lecture"
+        lectures[uri] = event
+      else
+        courses[uri] = event
+      end
+    end
+    
     # Generate JSON
-    json = JSON.pretty_generate(data, :indent => '  ')
+    coursejson = JSON.pretty_generate(courses, :indent => '  ')
+    lecturejson = JSON.pretty_generate(lectures, :indent => '  ')
     # Enqueue
-    Resque.enqueue(EventSummaryUploader, json)
+    Resque.enqueue(EventSummaryUploader, coursejson, "courses")
+    Resque.enqueue(EventSummaryUploader, lecturejson, "lectures")
   end
   
 end
