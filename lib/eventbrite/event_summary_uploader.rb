@@ -13,7 +13,7 @@ class EventSummaryUploader
   #
   # Returns nothing
   def self.perform(json, type)
-    type == "courses" ? filename = filename = "/tmp/courses.json" : filename = "/tmp/lectures.json"
+    filename = "/tmp/#{type}.json"
     # Write tempfile
     begin
       f = File.open(filename, "w")
