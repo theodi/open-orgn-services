@@ -53,7 +53,7 @@ Given /^a JSON document like this:$/ do |json|
 end
 
 When /^the summary uploader runs$/ do
-  EventSummaryUploader.perform(@json, @type)
+  EventSummaryUploader.perform(@json, "courses")
 end
 
 Then /^the json should be written to a temporary file$/ do
@@ -64,7 +64,7 @@ Then /^the json should be written to a temporary file$/ do
 end
 
 Then /^the temporary file should be rsync'd to the web server$/ do
-  Kernel.should_receive(:system).with("rsync", "/tmp/#ENV['COURSES_RSYNC_PATH'].json", path)
+  Kernel.should_receive(:system).with("rsync", "/tmp/courses.json", ENV['COURSES_RSYNC_PATH'])
 end
 
 Then /^the JSON document should be available at the target URL$/ do
