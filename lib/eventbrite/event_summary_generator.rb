@@ -78,21 +78,13 @@ class EventSummaryGenerator
       end
       data[event['url']]['offers'] = tickets
     end
+        
     # Marshal courses and lectures into separate arrays
-    courses = {}
-    lectures = {}
-            
-    data.each do |uri, event|
-      if event[:additionalType] == "Lecture"
-        lectures[uri] = event
-      else
-        courses[uri] = event
-      end
-    end
-    
+    data = data.partition { |uri, event| event[:additionalType] == "Course" }
+        
     # Generate JSON
-    coursejson = JSON.pretty_generate(courses, :indent => '  ')
-    lecturejson = JSON.pretty_generate(lectures, :indent => '  ')
+    coursejson = JSON.pretty_generate(Hash[*data[0].flatten], :indent => '  ')
+    lecturejson = JSON.pretty_generate(Hash[*data[1].flatten], :indent => '  ')
     # Enqueue
     Resque.enqueue(EventSummaryUploader, coursejson, "courses")
     Resque.enqueue(EventSummaryUploader, lecturejson, "lectures")
