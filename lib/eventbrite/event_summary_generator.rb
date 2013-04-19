@@ -28,7 +28,7 @@ class EventSummaryGenerator
     data = {}
     events.each do |event|
       # Marshal all event data
-      if event['title'] =~ /lunchtime/
+      if event['title'] =~ /lunchtime/i
         capacity = event['capacity']
         type     = "Lecture"
       else
