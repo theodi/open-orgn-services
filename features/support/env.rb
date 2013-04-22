@@ -15,6 +15,7 @@ require 'vcr'
 require 'webmock/cucumber'
 require 'cucumber/rspec/doubles'
 require 'timecop'
+require 'pry'
 
 Spork.prefork do
   Dotenv.load
