@@ -36,12 +36,10 @@ end
 
 Then /^the courses summary uploader should be queued with the following JSON:$/ do |json|
   Resque.should_receive(:enqueue).with(EventSummaryUploader, json, "courses").once
-  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^the lectures summary uploader should be queued with the following JSON:$/ do |json|
   Resque.should_receive(:enqueue).with(EventSummaryUploader, json, "lectures").once
-  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 When /^the event summary generator is run$/ do
