@@ -41,7 +41,7 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-16T09:30:00+00:00",
         "endDate": "2013-06-16T12:30:00+00:00",
-        "category": "Course",
+        "additionalType": "http://linkedscience.org/teach/ns/#Course",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "Open Data Institute"
@@ -78,7 +78,7 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-17T19:00:00+00:00",
         "endDate": "2013-06-17T22:00:00+00:00",
-        "category": "Course",
+        "additionalType": "http://linkedscience.org/teach/ns/#Course",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The office"
@@ -108,7 +108,7 @@ Feature: Create a JSON description of all upcoming events
         "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-24T19:00:00+00:00",
         "endDate": "2013-06-24T22:00:00+00:00",
-        "category": "Course",
+        "additionalType": "http://linkedscience.org/teach/ns/#Course",
         "offers": [
           {
             "@type": "http://schema.org/Offer",
@@ -131,7 +131,7 @@ Feature: Create a JSON description of all upcoming events
         "startDate": "2013-05-31T13:00:00+00:00",
         "endDate": "2013-05-31T13:45:00+00:00",
         "capacity": 100,
-        "category": "Lunchtime Lecture",
+        "additionalType": "http://linkedscience.org/teach/ns/#Lecture",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"
@@ -153,7 +153,7 @@ Feature: Create a JSON description of all upcoming events
         "startDate": "2013-06-07T13:00:00+00:00",
         "endDate": "2013-06-07T13:45:00+00:00",
         "capacity": 100,
-        "category": "Lunchtime Lecture",
+        "additionalType": "http://linkedscience.org/teach/ns/#Lecture",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"
