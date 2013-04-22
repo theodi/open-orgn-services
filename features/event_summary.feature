@@ -38,10 +38,10 @@ Feature: Create a JSON description of all upcoming events
     {
       "http://www.eventbrite.com/event/5519765768": {
         "name": "Open Data, Law and Licensing",
-        "@type": "http://schema.org/Event",
+        "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-16T09:30:00+00:00",
         "endDate": "2013-06-16T12:30:00+00:00",
-        "additionalType": "Course",
+        "category": "Course",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "Open Data Institute"
@@ -75,10 +75,10 @@ Feature: Create a JSON description of all upcoming events
       },
       "http://www.eventbrite.com/event/5441375300": {
         "name": "[Test Event 00] Drupal: Down the Rabbit Hole",
-        "@type": "http://schema.org/Event",
+        "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-17T19:00:00+00:00",
         "endDate": "2013-06-17T22:00:00+00:00",
-        "additionalType": "Course",
+        "category": "Course",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The office"
@@ -105,10 +105,10 @@ Feature: Create a JSON description of all upcoming events
       },
       "http://foobarrubbishevent.eventbrite.com": {
         "name": "How to Find an Eventbrite Event ID",
-        "@type": "http://schema.org/Event",
+        "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-24T19:00:00+00:00",
         "endDate": "2013-06-24T22:00:00+00:00",
-        "additionalType": "Course",
+        "category": "Course",
         "offers": [
           {
             "@type": "http://schema.org/Offer",
@@ -127,11 +127,11 @@ Feature: Create a JSON description of all upcoming events
     {
       "http://www.eventbrite.com/event/6339143549": {
         "name": "Friday lunchtime lectures: Something something data",
-        "@type": "http://schema.org/Event",
+        "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-05-31T13:00:00+00:00",
         "endDate": "2013-05-31T13:45:00+00:00",
         "capacity": 100,
-        "additionalType": "Lecture",
+        "category": "Lunchtime Lecture",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"
@@ -149,11 +149,11 @@ Feature: Create a JSON description of all upcoming events
       },
       "http://www.eventbrite.com/event/6339320077": {
         "name": "Friday lunchtime lectures: We heard you like data...",
-        "@type": "http://schema.org/Event",
+        "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-07T13:00:00+00:00",
         "endDate": "2013-06-07T13:45:00+00:00",
         "capacity": 100,
-        "additionalType": "Lecture",
+        "category": "Lunchtime Lecture",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"
