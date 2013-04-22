@@ -30,10 +30,10 @@ class EventSummaryGenerator
       # Marshal all event data
       if event['title'] =~ /lunchtime/i
         capacity = event['capacity']
-        type     = "Lunchtime Lecture"
+        type     = "http://linkedscience.org/teach/ns/#Lecture"
       else
         capacity = nil
-        type     = "Course"
+        type     = "http://linkedscience.org/teach/ns/#Course"
       end
       
       data[event['url']] = {
@@ -42,7 +42,7 @@ class EventSummaryGenerator
         :startDate      => event['starts_at'],
         :endDate        => event['ends_at'],
         :capacity       => capacity,
-        :category       => type
+        :additionalType => type
       }.compact
       if event['location']
         data[event['url']]['location'] = {
@@ -80,7 +80,7 @@ class EventSummaryGenerator
     end
         
     # Marshal courses and lectures into separate arrays
-    data = data.partition { |uri, event| event[:category] == "Course" }
+    data = data.partition { |uri, event| event[:additionalType] == "http://linkedscience.org/teach/ns/#Course" }
         
     # Generate JSON
     coursejson = JSON.pretty_generate(Hash[*data[0].flatten], :indent => '  ')
