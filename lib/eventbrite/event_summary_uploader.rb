@@ -13,17 +13,20 @@ class EventSummaryUploader
   #
   # Returns nothing
   def self.perform(json, type)
-    filename = "/tmp/#{type}.json"
-    # Write tempfile
-    begin
-      f = File.open(filename, "w")
-      f.write json
-    ensure
-      f.close if f
-    end
-    # rsync the file to the right place
-    type == "courses" ? path = ENV['COURSES_RSYNC_PATH'] : path = ENV['LECTURES_RSYNC_PATH']
-    Kernel.system "rsync", filename, path
+    require 'fog'
+        
+    service = Fog::Storage.new({
+        :provider            => 'Rackspace',
+        :rackspace_username  => ENV['RACKSPACE_USERNAME'],
+        :rackspace_api_key   => ENV['RACKSPACE_API_KEY'],
+        :rackspace_auth_url  => Fog::Rackspace::UK_AUTH_ENDPOINT,
+        :rackspace_region    => :lon
+    })
+
+    # Upload to Rackspace
+    # The container is in an ENV variable at the moment, as we can't currently mock requests away, so the files get put in a real place during tests. This is a bit crap, and needs sorting at some point.
+    dir = service.directories.get ENV['RACKSPACE_CONTAINER']
+    dir.files.create :key => "#{type}.json", :body => json
   end
   
 end
