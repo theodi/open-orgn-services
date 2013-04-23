@@ -28,11 +28,22 @@ class EventSummaryGenerator
     data = {}
     events.each do |event|
       # Marshal all event data
+      if event['title'] =~ /lunchtime/i
+        capacity = event['capacity']
+        type     = "http://linkedscience.org/teach/ns/#Lecture"
+      else
+        capacity = nil
+        type     = "http://linkedscience.org/teach/ns/#Course"
+      end
+      
       data[event['url']] = {
-        :@type     => "http://schema.org/Event",
-        :startDate => event['starts_at'],
-        :endDate   => event['ends_at'],
-      }
+        :name           => event['title'],
+        :@type          => "http://schema.org/EducationEvent",
+        :startDate      => event['starts_at'],
+        :endDate        => event['ends_at'],
+        :capacity       => capacity,
+        :additionalType => type
+      }.compact
       if event['location']
         data[event['url']]['location'] = {
           :@type => "http://schema.org/Place",
@@ -67,10 +78,16 @@ class EventSummaryGenerator
       end
       data[event['url']]['offers'] = tickets
     end
+        
+    # Marshal courses and lectures into separate arrays
+    data = data.partition { |uri, event| event[:additionalType] == "http://linkedscience.org/teach/ns/#Course" }
+        
     # Generate JSON
-    json = JSON.pretty_generate(data, :indent => '  ')
+    coursejson = JSON.pretty_generate(Hash[*data[0].flatten], :indent => '  ')
+    lecturejson = JSON.pretty_generate(Hash[*data[1].flatten], :indent => '  ')
     # Enqueue
-    Resque.enqueue(EventSummaryUploader, json)
+    Resque.enqueue(EventSummaryUploader, coursejson, "courses")
+    Resque.enqueue(EventSummaryUploader, lecturejson, "lectures")
   end
   
 end

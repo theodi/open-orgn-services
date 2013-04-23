@@ -56,6 +56,10 @@ Given /^that event is being held at '(.*?)'$/ do |location|
   @events.last['location'] = location
 end
 
+Given(/^that event has a capacity of (\d+)$/) do |capacity|
+  @events.last['capacity'] = capacity
+end
+
 Given /^that event has (#{INTEGER}) tickets called "(.*?)" which cost ([A-Z]{3}) (#{FLOAT})$/ do |tickets, name, currency, price|
   @events.last['ticket_types'] ||= []
   @events.last['ticket_types'] << {
