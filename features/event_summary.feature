@@ -10,6 +10,8 @@ Feature: Create a JSON description of all upcoming events
     And the following events exist:
     
       | title                                                | id         | url                                        | starts_at        | ends_at          | capacity | location            |
+      | Past Event                                           | 5530182926 | http://www.eventbrite.com/event/5530182926 | 2013-02-14 07:00 | 2013-02-14 08:00 | 100      |                     | 
+      | Big Event (2013-02-14)                               | 5531683414 | http://www.eventbrite.com/event/5531683414 | 2013-02-14 19:00 | 2013-02-14 22:00 | 10       | The ODI             |
       | Friday lunchtime lectures: Something something data  | 6339143549 | http://www.eventbrite.com/event/6339143549 | 2013-05-31 13:00 | 2013-05-31 13:45 | 100      | The ODI             |
       | Friday lunchtime lectures: We heard you like data... | 6339320077 | http://www.eventbrite.com/event/6339320077 | 2013-06-07 13:00 | 2013-06-07 13:45 | 100      | The ODI             |
       | Open Data, Law and Licensing                         | 5519765768 | http://www.eventbrite.com/event/5519765768 | 2013-06-16 09:30 | 2013-06-16 12:30 | 100      | Open Data Institute |
@@ -19,6 +21,8 @@ Feature: Create a JSON description of all upcoming events
     And the events have the following ticket types:
     
       | event_id    | name                                  | price   | currency | starts_at        | ends_at          | tickets   |
+      | 5531683414  | Cheap Seats                           | 0.66    | GBP      |                  | 2013-02-14 18:00 | 10        |
+      | 5530182926  | Free but useless                      | 0.00    | GBP      |                  | 2013-02-14 06:00 | 100       |
       | 5441375300  | Free Ticket                           | 0.00    | GBP      | 2013-02-11 09:00 | 2013-06-17 18:00 | 99        |
       | 5441375300  | Cheap Ticket                          | 1.00    | GBP      |                  | 2013-06-17 18:00 | 93        |
       | 5449726278  | Free                                  | 0.00    | GBP      |                  | 2013-06-24 18:00 | 9         |
@@ -36,12 +40,62 @@ Feature: Create a JSON description of all upcoming events
     Then the courses summary uploader should be queued with the following JSON:
     """
     {
+      "http://foobarrubbishevent.eventbrite.com": {
+        "name": "How to Find an Eventbrite Event ID",
+        "@type": "http://schema.org/EducationEvent",
+        "startDate": "2013-06-24T19:00:00+00:00",
+        "endDate": "2013-06-24T22:00:00+00:00",
+        "additionalType": "http://linkedscience.org/teach/ns/#Course",
+        "status": "Live",
+        "offers": [
+          {
+            "@type": "http://schema.org/Offer",
+            "name": "Free",
+            "price": 0.0,
+            "priceCurrency": "GBP",
+            "validThrough": "2013-06-24T18:00:00+00:00",
+            "inventoryLevel": 9
+          }
+        ]
+      },
+      "http://www.eventbrite.com/event/5441375300": {
+        "name": "[Test Event 00] Drupal: Down the Rabbit Hole",
+        "@type": "http://schema.org/EducationEvent",
+        "startDate": "2013-06-17T19:00:00+00:00",
+        "endDate": "2013-06-17T22:00:00+00:00",
+        "additionalType": "http://linkedscience.org/teach/ns/#Course",
+        "status": "Live",
+        "location": {
+          "@type": "http://schema.org/Place",
+          "name": "The office"
+        },
+        "offers": [
+          {
+            "@type": "http://schema.org/Offer",
+            "name": "Free Ticket",
+            "price": 0.0,
+            "priceCurrency": "GBP",
+            "validThrough": "2013-06-17T18:00:00+00:00",
+            "inventoryLevel": 99,
+            "validFrom": "2013-02-11T09:00:00+00:00"
+          },
+          {
+            "@type": "http://schema.org/Offer",
+            "name": "Cheap Ticket",
+            "price": 1.0,
+            "priceCurrency": "GBP",
+            "validThrough": "2013-06-17T18:00:00+00:00",
+            "inventoryLevel": 93
+          }
+        ]
+      },
       "http://www.eventbrite.com/event/5519765768": {
         "name": "Open Data, Law and Licensing",
         "@type": "http://schema.org/EducationEvent",
         "startDate": "2013-06-16T09:30:00+00:00",
         "endDate": "2013-06-16T12:30:00+00:00",
         "additionalType": "http://linkedscience.org/teach/ns/#Course",
+        "status": "Live",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "Open Data Institute"
@@ -73,50 +127,43 @@ Feature: Create a JSON description of all upcoming events
           }
         ]
       },
-      "http://www.eventbrite.com/event/5441375300": {
-        "name": "[Test Event 00] Drupal: Down the Rabbit Hole",
+      "http://www.eventbrite.com/event/5531683414": {
+        "name": "Big Event (2013-02-14)",
         "@type": "http://schema.org/EducationEvent",
-        "startDate": "2013-06-17T19:00:00+00:00",
-        "endDate": "2013-06-17T22:00:00+00:00",
+        "startDate": "2013-02-14T19:00:00+00:00",
+        "endDate": "2013-02-14T22:00:00+00:00",
         "additionalType": "http://linkedscience.org/teach/ns/#Course",
+        "status": "Completed",
         "location": {
           "@type": "http://schema.org/Place",
-          "name": "The office"
+          "name": "The ODI"
         },
         "offers": [
           {
             "@type": "http://schema.org/Offer",
-            "name": "Free Ticket",
-            "price": 0.0,
+            "name": "Cheap Seats",
+            "price": 0.66,
             "priceCurrency": "GBP",
-            "validThrough": "2013-06-17T18:00:00+00:00",
-            "inventoryLevel": 99,
-            "validFrom": "2013-02-11T09:00:00+00:00"
-          },
-          {
-            "@type": "http://schema.org/Offer",
-            "name": "Cheap Ticket",
-            "price": 1.0,
-            "priceCurrency": "GBP",
-            "validThrough": "2013-06-17T18:00:00+00:00",
-            "inventoryLevel": 93
+            "validThrough": "2013-02-14T18:00:00+00:00",
+            "inventoryLevel": 10
           }
         ]
       },
-      "http://foobarrubbishevent.eventbrite.com": {
-        "name": "How to Find an Eventbrite Event ID",
+      "http://www.eventbrite.com/event/5530182926": {
+        "name": "Past Event",
         "@type": "http://schema.org/EducationEvent",
-        "startDate": "2013-06-24T19:00:00+00:00",
-        "endDate": "2013-06-24T22:00:00+00:00",
+        "startDate": "2013-02-14T07:00:00+00:00",
+        "endDate": "2013-02-14T08:00:00+00:00",
         "additionalType": "http://linkedscience.org/teach/ns/#Course",
+        "status": "Completed",
         "offers": [
           {
             "@type": "http://schema.org/Offer",
-            "name": "Free",
+            "name": "Free but useless",
             "price": 0.0,
             "priceCurrency": "GBP",
-            "validThrough": "2013-06-24T18:00:00+00:00",
-            "inventoryLevel": 9
+            "validThrough": "2013-02-14T06:00:00+00:00",
+            "inventoryLevel": 100
           }
         ]
       }
@@ -125,28 +172,6 @@ Feature: Create a JSON description of all upcoming events
     And the lectures summary uploader should be queued with the following JSON:
     """
     {
-      "http://www.eventbrite.com/event/6339143549": {
-        "name": "Friday lunchtime lectures: Something something data",
-        "@type": "http://schema.org/EducationEvent",
-        "startDate": "2013-05-31T13:00:00+00:00",
-        "endDate": "2013-05-31T13:45:00+00:00",
-        "capacity": 100,
-        "additionalType": "http://linkedscience.org/teach/ns/#Lecture",
-        "location": {
-          "@type": "http://schema.org/Place",
-          "name": "The ODI"
-        },
-        "offers": [
-          {
-            "@type": "http://schema.org/Offer",
-            "name": "Guest",
-            "price": 0.0,
-            "priceCurrency": "GBP",
-            "validThrough": "2013-05-31T12:00:00+00:00",
-            "inventoryLevel": 100
-          }
-        ]
-      },
       "http://www.eventbrite.com/event/6339320077": {
         "name": "Friday lunchtime lectures: We heard you like data...",
         "@type": "http://schema.org/EducationEvent",
@@ -154,6 +179,7 @@ Feature: Create a JSON description of all upcoming events
         "endDate": "2013-06-07T13:45:00+00:00",
         "capacity": 100,
         "additionalType": "http://linkedscience.org/teach/ns/#Lecture",
+        "status": "Live",
         "location": {
           "@type": "http://schema.org/Place",
           "name": "The ODI"
@@ -165,6 +191,29 @@ Feature: Create a JSON description of all upcoming events
             "price": 0.0,
             "priceCurrency": "GBP",
             "validThrough": "2013-06-07T12:00:00+00:00",
+            "inventoryLevel": 100
+          }
+        ]
+      },
+      "http://www.eventbrite.com/event/6339143549": {
+        "name": "Friday lunchtime lectures: Something something data",
+        "@type": "http://schema.org/EducationEvent",
+        "startDate": "2013-05-31T13:00:00+00:00",
+        "endDate": "2013-05-31T13:45:00+00:00",
+        "capacity": 100,
+        "additionalType": "http://linkedscience.org/teach/ns/#Lecture",
+        "status": "Live",
+        "location": {
+          "@type": "http://schema.org/Place",
+          "name": "The ODI"
+        },
+        "offers": [
+          {
+            "@type": "http://schema.org/Offer",
+            "name": "Guest",
+            "price": 0.0,
+            "priceCurrency": "GBP",
+            "validThrough": "2013-05-31T12:00:00+00:00",
             "inventoryLevel": 100
           }
         ]
