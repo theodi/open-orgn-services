@@ -15,7 +15,7 @@ class EventMonitor
     if response = e.organizer_list_events(id: ENV['EVENTBRITE_ORGANIZER_ID'])
       response.parsed_response['events'].each do |event|
         e = event['event']
-        if e['id'] && e['status'] == 'Live' && Date.parse(e['start_date']) >= Date.today
+        if e['id'] && e['status'] !~ /Canceled|Unsaved|Draft/i
           # Tickets
           tickets = []
           e['tickets'].each do |ticket|
@@ -47,7 +47,10 @@ class EventMonitor
     end
     # Queue subsequent jobs
     events.each do |event| 
-      Resque.enqueue(AttendeeMonitor, event)
+      # We only want to queue future events
+      if Date.parse(event['starts_at']) >= Date.today
+        Resque.enqueue(AttendeeMonitor, event)
+      end
     end
     Resque.enqueue(EventSummaryGenerator, events)
   end
