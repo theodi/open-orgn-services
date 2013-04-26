@@ -26,6 +26,9 @@ class EventSummaryGenerator
   # Returns nil. Queues an EventSummaryUploader job to upload the JSON to the target location
   def self.perform(events)
     data = {}
+    
+    events.reverse!
+    
     events.each do |event|
       # Marshal all event data
       if event['title'] =~ /lunchtime/i
@@ -36,13 +39,20 @@ class EventSummaryGenerator
         type     = "http://linkedscience.org/teach/ns/#Course"
       end
       
+      if Date.parse(event['starts_at']) >= Date.today
+        status = 'Live'
+      else
+        status = 'Completed'
+      end
+      
       data[event['url']] = {
         :name           => event['title'],
         :@type          => "http://schema.org/EducationEvent",
         :startDate      => event['starts_at'],
         :endDate        => event['ends_at'],
         :capacity       => capacity,
-        :additionalType => type
+        :additionalType => type,
+        :status         => status
       }.compact
       if event['location']
         data[event['url']]['location'] = {
