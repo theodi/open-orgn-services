@@ -26,6 +26,9 @@ class EventSummaryGenerator
   # Returns nil. Queues an EventSummaryUploader job to upload the JSON to the target location
   def self.perform(events)
     data = {}
+    
+    events.reverse!
+    
     events.each do |event|
       # Marshal all event data
       if event['title'] =~ /lunchtime/i
