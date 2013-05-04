@@ -42,9 +42,5 @@ class SyncCapsuleData
     end
   end
   
-  def self.field(org, tag, field)
-    org.custom_fields.find{|x| x.label == field && x.tag == tag}
-  end
-  
 end
 
