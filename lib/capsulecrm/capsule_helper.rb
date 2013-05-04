@@ -1,10 +1,10 @@
 module CapsuleHelper
   
-  def find_organization(name)
+  def find_organization(query)
     # Run fuzzy capsuleCRM match
-    orgs = CapsuleCRM::Organisation.find_all(:q => name)
-    # Find exact name match
-    orgs.find{|x| x.name == name}
+    orgs = CapsuleCRM::Organisation.find_all(:q => query)
+    # Find exact name or membership ID match
+    orgs.find{|x| x.name == query || field(x, "Membership", "ID").try(:text) == query}
   end
   
   def set_membership_tag(party, fields)
@@ -76,5 +76,8 @@ module CapsuleHelper
     return CapsuleCRM::Base.last_response.code <= 201
   end
 
+  def field(org, tag, field)
+    org.custom_fields.find{|x| x.label == field && x.tag == tag}
+  end  
 
 end
