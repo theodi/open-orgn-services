@@ -60,6 +60,11 @@ Then(/^the following json should be posted to hubot:$/) do |json|
   HTTParty.should_receive(:post).with("#{ENV['HUBOT_URL']}/pull-requests", :body => json, :headers => { 'Content-Type' => 'application/json' }).once
 end
 
+Given(/^the pull requests have not already been sent to hubot$/) do
+  Resque.redis.set("cuke-chef", nil)
+  Resque.redis.set("hot-drinks", nil)
+end
+
 Given(/^the pull requests have already been sent to hubot$/) do
   Resque.redis.set("cuke-chef", DateTime.now)
   Resque.redis.set("hot-drinks", DateTime.now)

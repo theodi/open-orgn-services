@@ -66,6 +66,7 @@ Feature: Github monitoring
   Scenario: send new pull requests to hubot
     Given the repository "cuke-chef" has 1 open pull request
     And the repository "hot-drinks" has 1 open pull request
+    And the pull requests have not already been sent to hubot
     Then the following json should be posted to hubot:
     """
     {"url":"https://github.com/theodi/cuke-chef/pull/8","repo":"cuke-chef","title":"I think this is a working role for the git data viewer app"}
