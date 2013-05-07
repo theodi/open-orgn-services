@@ -9,6 +9,7 @@ gemspec
 gem 'xeroizer', :git => 'https://github.com/theodi/xeroizer.git'
 gem 'capsulecrm', :git => 'https://github.com/theodi/capsulecrm.git'
 gem 'fog'
+gem 'httparty'
 
 group :development, :test do
   gem 'pry'
