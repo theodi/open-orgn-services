@@ -55,3 +55,16 @@ end
 When /^the github outgoing pull request monitor runs$/ do
   Github::OutgoingPullRequestMonitor.perform
 end
+
+Then(/^the following json should be posted to hubot:$/) do |json|
+  HTTParty.should_receive(:post).with("#{ENV['HUBOT_URL']}/pull-requests", :body => json, :headers => { 'Content-Type' => 'application/json' }).any_number_of_times
+end
+
+Given(/^the pull requests have already been sent to hubot$/) do
+  Resque.redis.set("cuke-chef", DateTime.now)
+  Resque.redis.set("hot-drinks", DateTime.now)
+end
+
+Then(/^hubot should not recieve anything$/) do
+  HTTParty.should_not_receive(:post).any_number_of_times
+end
