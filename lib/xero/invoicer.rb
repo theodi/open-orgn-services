@@ -37,7 +37,7 @@ class Invoicer
   # Returns nil.
   def self.perform(invoice_to, invoice_details)
     # Find appropriate contact in Xero
-    contact = xero.Contact.all(:where => %{Name == "#{contact_name(invoice_to)}"}).first
+    contact = xero.Contact.all(:where => %{Name.ToLower() == "#{contact_name(invoice_to).downcase}"}).first
     # Create contact if it doesn't exist, otherwise invoice them. 
     # Create contact will requeue this invoicing request.
     if contact.nil?
