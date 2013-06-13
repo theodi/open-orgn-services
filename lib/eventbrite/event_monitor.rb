@@ -15,7 +15,7 @@ class EventMonitor
     if response = e.organizer_list_events(id: ENV['EVENTBRITE_ORGANIZER_ID'])
       response.parsed_response['events'].each do |event|
         e = event['event']
-        if e['id'] && e['status'] == 'Live' && Date.parse(e['start_date']) >= Date.today
+        if e['id'] && e['status'] !~ /Canceled|Unsaved|Draft/i
           # Tickets
           tickets = []
           e['tickets'].each do |ticket|
@@ -37,7 +37,9 @@ class EventMonitor
             'url'          => e['url'].split('?')[0],
             'starts_at'    => DateTime.parse(e['start_date']).to_s,
             'ends_at'      => DateTime.parse(e['end_date']).to_s,
+            'capacity'     => e['capacity'],
             'ticket_types' => tickets,
+            'capacity'     => get_capacity(e)
           }
           events.last['location'] = e['venue']['name'] if e['venue']
         end
@@ -45,8 +47,27 @@ class EventMonitor
     end
     # Queue subsequent jobs
     events.each do |event| 
-      Resque.enqueue(AttendeeMonitor, event)
+      # We only want to queue future events
+      if Date.parse(event['starts_at']) >= Date.today
+        Resque.enqueue(AttendeeMonitor, event)
+      end
     end
     Resque.enqueue(EventSummaryGenerator, events)
   end
+  
+  # If an event only has one ticket type, or the capacity has not been specified, we need to add together the ticket types to get the capacity
+  def self.get_capacity(event) 
+    if event['capacity'] > 0
+      capacity = event['capacity']
+    else
+      capacity = 0
+      if event['tickets']
+        event['tickets'].each do |ticket|
+          capacity += ticket['ticket']['quantity_available']
+        end
+      end
+    end 
+    return capacity
+  end
+  
 end
