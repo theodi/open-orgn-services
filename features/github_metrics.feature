@@ -63,6 +63,27 @@ Feature: Github monitoring
     Then the number 84 should be stored in the total pull requests stat
     When the github pull request monitor runs
     
+  Scenario: send new pull requests to hubot
+    Given the repository "cuke-chef" has 1 open pull request
+    And the repository "hot-drinks" has 1 open pull request
+    And the pull requests have not already been sent to hubot
+    Then the following json should be posted to hubot:
+    """
+    {"url":"https://github.com/theodi/cuke-chef/pull/8","repo":"cuke-chef","title":"I think this is a working role for the git data viewer app"}
+    """
+    And the following json should be posted to hubot:
+    """
+    {"url":"https://github.com/theodi/hot-drinks/pull/6","repo":"hot-drinks","title":"DON'T MERGE THIS!"}
+    """
+    When the github pull request monitor runs
+    
+  Scenario: don't send old pull requests to hubot
+    Given the repository "cuke-chef" has 1 open pull request
+    And the repository "hot-drinks" has 1 open pull request
+    And the pull requests have already been sent to hubot
+    Then hubot should not recieve anything
+    When the github pull request monitor runs
+    
   Scenario: get outgoing pull request count
     Given the repository "Atalanta/cucumber-chef" has 1 pull request from us
     And the repository "nandub/hubot-irc" has 1 pull request from us
