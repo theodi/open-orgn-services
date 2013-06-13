@@ -34,7 +34,7 @@ class EventMonitor
             'id'           => e['id'].to_s,
             'live'         => true,
             'title'        => e['title'],
-            'url'          => e['url'],
+            'url'          => e['url'].split('?')[0],
             'starts_at'    => DateTime.parse(e['start_date']).to_s,
             'ends_at'      => DateTime.parse(e['end_date']).to_s,
             'capacity'     => e['capacity'],
