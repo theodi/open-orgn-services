@@ -1,6 +1,6 @@
 # Open Organisation Services
 
-[![Build Status](http://jenkins.theodi.org/job/open-orgn-services-build-master/badge/icon)](http://jenkins.theodi.org/job/open-orgn-services-build-master/)
+[![Build Status](http://jenkins.theodi.org/job/open-orgn-services-master/badge/icon)](http://jenkins.theodi.org/job/open-orgn-services-master/)
 [![Dependency Status](https://gemnasium.com/theodi/open-orgn-services.png)](https://gemnasium.com/theodi/open-orgn-services)
 [![Code Climate](https://codeclimate.com/github/theodi/open-orgn-services.png)](https://codeclimate.com/github/theodi/open-orgn-services)
 
