@@ -105,7 +105,11 @@ class Invoicer
   end
 
   def self.contact_name(invoice_to)
-    invoice_to['name'] || [invoice_to['contact_point']['name'], "<#{invoice_to['contact_point']['email']}>"].join(' ')
+    name = invoice_to['name']
+    if name.nil? || name.blank?
+      name = [invoice_to['contact_point']['name'], "<#{invoice_to['contact_point']['email']}>"].join(' ')
+    end
+    name
   end
 
   def self.xero
