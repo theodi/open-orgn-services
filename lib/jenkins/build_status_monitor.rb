@@ -19,7 +19,8 @@ class BuildStatusMonitor
          'https://pbs.twimg.com/media/BG2Yb-JCMAEmFIW.jpg:large',
          'http://cdn.memegenerator.net/instances/400x/37100162.jpg',
          'http://blogs.telegraph.co.uk/finance/files/2013/01/edBalls_1394334c.jpg',
-         'http://i.imgur.com/HXPqs7I.gif'
+         'http://i.imgur.com/HXPqs7I.gif',
+         'http://25.media.tumblr.com/5e0698e0227f4a4980d278b714106fbd/tumblr_mq0qi9x9qc1s4aj1ho1_400.png'
       ].shuffle.first
       colour = 'red'
     else
