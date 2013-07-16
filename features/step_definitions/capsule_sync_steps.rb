@@ -72,7 +72,7 @@ Then /^the observer should be notified with the organisation's information$/ do
     'facebook'      => @organization_directoryentry_facebook,      
     'tagline'       => @organization_directoryentry_tagline,
   }.compact
-  MyObserverClass.should_receive(:update).with(membership, directory_entry)
+  MyObserverClass.should_receive(:update).with(membership, directory_entry, @organisation.id)
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do
