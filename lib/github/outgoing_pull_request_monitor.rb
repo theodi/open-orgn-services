@@ -12,7 +12,7 @@ class Github::OutgoingPullRequestMonitor
         r = github.repos.find(ENV['GITHUB_ORGANISATION'], repo.name)
         # Open PRs
         parent_pulls = github.pulls.list(r[:parent][:owner][:login], r[:parent][:name])
-        count = parent_pulls.select{|x| x[:head][:repo][:owner][:login] == ENV['GITHUB_ORGANISATION']}.count
+        count = parent_pulls.select{|x| x[:head][:repo][:owner][:login] == ENV['GITHUB_ORGANISATION']}.count rescue 0
         # Closed PRs
         parent_pulls = github.pulls.list(r[:parent][:owner][:login], r[:parent][:name], state: 'closed')
         count += parent_pulls.select{|x| x[:head][:repo] && x[:head][:repo][:owner][:login] == ENV['GITHUB_ORGANISATION']}.count
