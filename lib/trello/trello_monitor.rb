@@ -17,6 +17,9 @@ class TrelloMonitor
     # Publish
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_TRELLO_COUNT'], todo + doing # straight number
     Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_TRELLO_LINE'], todo + doing # sparkline  
+  rescue Trello::Error, OpenSSL::SSL::SSLError
+    # Trello sometimes errors out, but then recovers. We'll just ignore it.
+    nil
   end
   
 end
