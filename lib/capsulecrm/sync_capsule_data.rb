@@ -38,7 +38,7 @@ class SyncCapsuleData
       }.compact
       # Notify the observers
       changed
-      notify_observers(membership, directory_entry)
+      notify_observers(membership, directory_entry, organization_id)
     end
   end
   
