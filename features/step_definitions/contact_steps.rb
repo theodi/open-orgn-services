@@ -13,7 +13,7 @@ Given /^my last name is "(.*?)"$/ do |name|
 end
 
 Given /^I do not work for anyone$/ do
-  @company = nil
+  @company = ""
 end
 
 Given /^I work for "(.*?)"$/ do |company|
