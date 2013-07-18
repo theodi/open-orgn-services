@@ -17,7 +17,7 @@ class LeftronicPublisher
     else
       raise ArgumentError.new("Unknown data type in LeftronicPublisher: #{datatype}")
     end
-  rescue Timeout::Error
+  rescue Timeout::Error, OpenSSL::SSL::SSLError
     # Silently absorb timeouts, leftronic does this on a regular basis, but we don't really care.
     nil
   end
