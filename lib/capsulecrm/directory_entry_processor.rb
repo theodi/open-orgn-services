@@ -36,30 +36,28 @@ class SendDirectoryEntryToCapsule
     if org.nil?
       requeue(membership_id, organization, directory_entry, date)
     else
-      if DateTime.parse(date) >= DateTime.parse(org.raw_data['updatedOn'])
-        # Chunk description into 250-char sections
-        description = directory_entry['description'].scan(/.{1,250}/)
-        # Store
-        fields = {
-          'Description'   => description[0],
-          'Description-2' => description[1],
-          'Description-3' => description[2],
-          'Description-4' => description[3],
-          'Homepage'      => directory_entry['homepage'],
-          'Logo'          => directory_entry['logo'],
-          'Thumbnail'     => directory_entry['thumbnail'],
-          'Contact'       => directory_entry['contact'],
-          'Phone'         => directory_entry['phone'],
-          'Email'         => directory_entry['email'],
-          'Twitter'       => directory_entry['twitter'],
-          'LinkedIn'      => directory_entry['linkedin'],
-          'Facebook'      => directory_entry['facebook'],          
-          'Tagline'       => directory_entry['tagline'], 
-        }.compact
-        success = set_directory_entry_tag(org, fields)
-        unless success
-          requeue(membership_id, organization, directory_entry, date)
-        end
+      # Chunk description into 250-char sections
+      description = directory_entry['description'].scan(/.{1,250}/)
+      # Store
+      fields = {
+        'Description'   => description[0],
+        'Description-2' => description[1],
+        'Description-3' => description[2],
+        'Description-4' => description[3],
+        'Homepage'      => directory_entry['homepage'],
+        'Logo'          => directory_entry['logo'],
+        'Thumbnail'     => directory_entry['thumbnail'],
+        'Contact'       => directory_entry['contact'],
+        'Phone'         => directory_entry['phone'],
+        'Email'         => directory_entry['email'],
+        'Twitter'       => directory_entry['twitter'],
+        'LinkedIn'      => directory_entry['linkedin'],
+        'Facebook'      => directory_entry['facebook'],          
+        'Tagline'       => directory_entry['tagline'], 
+      }.compact
+      success = set_directory_entry_tag(org, fields)
+      unless success
+        requeue(membership_id, organization, directory_entry, date)
       end
     end
   end
