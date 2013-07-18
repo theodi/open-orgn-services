@@ -48,7 +48,7 @@ Feature: Add organisation details to Capsule CRM
     When the directory entry job runs
     Then there should still be just one organisation in CapsuleCRM called "The RAND Corporation"
     And that organisation should have a "DirectoryEntry" data tag
-    And my details should still be stored in that data tag
+    And my details should be stored in that data tag
     
   @timecop
   Scenario: User adds a long description
