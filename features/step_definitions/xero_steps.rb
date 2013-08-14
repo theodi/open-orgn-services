@@ -1,10 +1,8 @@
 # Xero contacts
 
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
-  @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
+  @contact = xero.Contact.create( name: contact )
   @contact.should_not be_nil
-  # Contact should not have any invoices - if it does, fail early.
-  xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).should be_empty
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|
@@ -101,4 +99,15 @@ end
 
 Then /^that invoice should show that the payment was made with Paypal$/ do
   @invoice.line_items.last.description.should include("PAYPAL")
+end
+
+When(/^that invoice is deleted$/) do
+  @invoice.delete!
+  @deleted_invoice = @invoice
+  @invoice = nil
+end
+
+Then /^an invoice should not be raised in Xero against "(.*?)"$/ do |contact_name|
+  @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
+  @invoice.should be_nil
 end
