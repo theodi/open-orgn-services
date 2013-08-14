@@ -1,10 +1,8 @@
 # Xero contacts
 
 Given /^there is a contact in Xero for "(.*?)"$/ do |contact|
-  @contact = xero.Contact.all(:where => %{Name == "#{contact}"}).first
+  @contact = xero.Contact.create( name: contact )
   @contact.should_not be_nil
-  # Contact should not have any invoices - if it does, fail early.
-  xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).should be_empty
 end
 
 Given /^there is no contact in Xero for "(.*?)"$/ do |contact|

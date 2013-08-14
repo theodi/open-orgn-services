@@ -19,7 +19,7 @@ After("@capsulecrm") do
   end
 end
 
-After do
+After("@clean_up_xero_invoice") do
   if @invoice
     @invoice.delete!
   end
