@@ -1,4 +1,4 @@
-@vcr
+@vcr @clean_up_xero_contact @clean_up_xero_invoice
 Feature: Invoicing existing contacts
 
   In order to be invoiced for the training so that my company or government department can pay for it
