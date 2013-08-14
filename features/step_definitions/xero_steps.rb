@@ -100,3 +100,14 @@ end
 Then /^that invoice should show that the payment was made with Paypal$/ do
   @invoice.line_items.last.description.should include("PAYPAL")
 end
+
+When(/^that invoice is deleted$/) do
+  @invoice.delete!
+  @deleted_invoice = @invoice
+  @invoice = nil
+end
+
+Then /^an invoice should not be raised in Xero against "(.*?)"$/ do |contact_name|
+  @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
+  @invoice.should be_nil
+end
