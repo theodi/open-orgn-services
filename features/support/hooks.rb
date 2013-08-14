@@ -1,15 +1,3 @@
-Before("@record_all_cassettes") do
-  VCR.configure do |c|
-    c.default_cassette_options = {:record => :all}
-  end
-end
-
-After("@record_all_cassettes") do
-  VCR.configure do |c|
-    c.default_cassette_options = {:record => :new_episodes}
-  end
-end
-
 After("@timecop") do
   Timecop.return
 end
