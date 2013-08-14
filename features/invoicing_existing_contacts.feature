@@ -1,4 +1,4 @@
-@vcr
+@vcr @clean_up_xero_contact @clean_up_xero_invoice
 Feature: Invoicing existing contacts
 
   In order to be invoiced for the training so that my company or government department can pay for it
@@ -120,3 +120,11 @@ Feature: Invoicing existing contacts
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should show that payment has not been received
     
+  Scenario: deleted invoices should not be re-raised
+    Given I have registered for a ticket
+    And I requested an invoice
+    When the attendee invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    When that invoice is deleted
+    When the attendee invoicer runs
+    Then an invoice should not be raised in Xero against "Existing Company Inc."

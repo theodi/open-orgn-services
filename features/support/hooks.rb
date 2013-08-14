@@ -1,15 +1,3 @@
-Before("@record_all_cassettes") do
-  VCR.configure do |c|
-    c.default_cassette_options = {:record => :all}
-  end
-end
-
-After("@record_all_cassettes") do
-  VCR.configure do |c|
-    c.default_cassette_options = {:record => :new_episodes}
-  end
-end
-
 After("@timecop") do
   Timecop.return
 end
@@ -31,7 +19,7 @@ After("@capsulecrm") do
   end
 end
 
-After do
+After("@clean_up_xero_invoice") do
   if @invoice
     @invoice.delete!
   end
