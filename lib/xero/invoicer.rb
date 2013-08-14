@@ -72,7 +72,7 @@ class Invoicer
   
   def self.invoice_contact(contact, invoice_to, invoice_details)
     # Check existing invoices for order number
-    invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}") AND Status != "DELETED"})
+    invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}")})
     existing = invoices.find do |invoice| 
       invoice.line_items.find do |line| 
         line.description == invoice_details['description']
