@@ -16,11 +16,11 @@ Feature: Invoicing new contacts for training events
 
   Scenario: personal contact creation
     Given I do not work for anyone
-    And there is no contact in Xero for "Bob Fish <bob.fish@example.com>"
+    And there is no contact in Xero for "Bob Fish (bob.fish@example.com)"
     And I have registered for a ticket
     Then the attendee invoicer should be requeued
     When the attendee invoicer runs
-    Then a contact should exist in Xero for "Bob Fish <bob.fish@example.com>"
+    Then a contact should exist in Xero for "Bob Fish (bob.fish@example.com)"
 
   Scenario: company contact creation
     Given I work for "New Company Inc."
