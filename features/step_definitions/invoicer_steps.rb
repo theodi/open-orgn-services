@@ -5,19 +5,19 @@ When /^the attendee invoicer runs$/ do
   @invoice_description ||= SecureRandom.hex(32)
   @base_price ||= SecureRandom.random_number(9999)
   # Invoice
-  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash, create_redis_key)
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid)
 end
 
 When /^I have not already been invoiced$/ do
-  Invoicer.should_receive(:invoice_sent?).with(create_redis_key).once.and_return(false)
+  Invoicer.should_receive(:invoice_sent?).with(create_invoice_uid).once.and_return(false)
 end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
-  if create_redis_key.nil?
+  if create_invoice_uid.nil?
     Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
   else
-    Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
+    Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
   end
 end
 
@@ -27,7 +27,7 @@ end
 
 Then /^I should be added to the invoicing queue along with others$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
+  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
@@ -42,11 +42,11 @@ Then /^the attendee invoicer should be requeued$/ do
   @invoice_description ||= SecureRandom.hex(32)
   @base_price ||= SecureRandom.random_number(9999)
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
+  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
 end
 
 Given /^I have been sent an invoice$/ do
-  Invoicer.should_receive(:invoice_sent?).with(create_redis_key).once.and_return(true)
+  Invoicer.should_receive(:invoice_sent?).with(create_invoice_uid).once.and_return(true)
 end
 
 Then /^my registration should not be sent to Xero$/ do

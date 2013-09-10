@@ -35,17 +35,17 @@ class Invoicer
   #   # => nil
   #
   # Returns nil.
-  def self.perform(invoice_to, invoice_details, redis_key = nil)
-    unless invoice_sent?(redis_key)
+  def self.perform(invoice_to, invoice_details, invoice_uid = nil)
+    unless invoice_sent?(invoice_uid)
       # Find appropriate contact in Xero
       contact = xero.Contact.all(:where => %{Name.ToLower() == "#{contact_name(invoice_to).downcase}"}).first
       # Create contact if it doesn't exist, otherwise invoice them. 
       # Create contact will requeue this invoicing request.
       if contact.nil?
         create_contact(invoice_to)
-        Resque.enqueue Invoicer, invoice_to, invoice_details, redis_key
+        Resque.enqueue Invoicer, invoice_to, invoice_details, invoice_uid
       else
-        invoice_contact(contact, invoice_to, invoice_details, redis_key)
+        invoice_contact(contact, invoice_to, invoice_details, invoice_uid)
       end
     end
   end
@@ -72,7 +72,7 @@ class Invoicer
     contact.save    
   end
   
-  def self.invoice_contact(contact, invoice_to, invoice_details, redis_key = nil)
+  def self.invoice_contact(contact, invoice_to, invoice_details, invoice_uid = nil)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}")})
     existing = invoices.find do |invoice| 
@@ -104,7 +104,7 @@ class Invoicer
       )
       invoice.save
       # Set redis state to show the invoice has been sent
-      remember_invoice(redis_key)
+      remember_invoice(invoice_uid)
     end
   end
 
