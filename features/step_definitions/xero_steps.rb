@@ -102,6 +102,8 @@ Then /^that invoice should show that the payment was made with Paypal$/ do
 end
 
 When(/^that invoice is deleted$/) do
+  # Mock away the redis de-duplication here so we can test that deleted invoices are not reraised - this is an edge case now, but still worth checking in case we lose the redis state
+  Invoicer.should_receive(:invoice_sent?).with(create_invoice_uid).once.and_return(false)
   @invoice.delete!
   @deleted_invoice = @invoice
   @invoice = nil
