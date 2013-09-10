@@ -28,6 +28,7 @@ class AttendeeMonitor
       orders.each_pair do |order_id, attendees|
         a = attendees.first['attendee']
         if a['amount_paid'].to_f > 0
+          redis_key = "eventbrite-#{event_details['id']}-#{order_id}-invoice-sent"
           
           date = Date.parse(event_details['starts_at']) rescue nil
           
@@ -46,9 +47,8 @@ class AttendeeMonitor
               'postal_code'      => custom_answer(a, 'Billing Address (postcode)')
             },
             'vat_id'             => custom_answer(a, 'VAT reg number (if non-UK)')
-      
           }          
-          
+        
           invoice_details =  {
             'payment_method'           => payment_method(a['order_type']),
             'quantity'                 => attendees.count,
@@ -56,10 +56,9 @@ class AttendeeMonitor
             'purchase_order_reference' => custom_answer(a, 'Purchase Order Number'),
             'description'              => description(event_details['title'], date, a['first_name'], a['last_name'], a['email'], order_id, custom_answer(a, 'Membership Number')),
             'due_date'                 => (date ? date - 7 : Date.today).to_s
-      
-          }        
-          
-          Resque.enqueue(Invoicer, invoice_to, invoice_details)
+          }
+                    
+          Resque.enqueue(Invoicer, invoice_to, invoice_details, redis_key)
         end
       end
     end
