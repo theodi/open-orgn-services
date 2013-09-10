@@ -33,6 +33,15 @@ module InvoicerSupport
 
     }.compact    
   end
+  
+  def create_redis_key
+    if @order_number
+      event_id = @events.first['id'] rescue 1234567
+      "eventbrite-#{event_id}-#{@order_number}-invoice-sent"
+    else
+      nil
+    end
+  end
 
 end
 

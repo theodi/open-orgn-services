@@ -5,17 +5,29 @@ When /^the attendee invoicer runs$/ do
   @invoice_description ||= SecureRandom.hex(32)
   @base_price ||= SecureRandom.random_number(9999)
   # Invoice
-  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash, create_redis_key)
+end
+
+When /^I have not already been invoiced$/ do
+  Invoicer.should_receive(:invoice_sent?).with(create_redis_key).once.and_return(false)
 end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
+  if create_redis_key.nil?
+    Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
+  else
+    Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
+  end
+end
+
+Then(/^my booking should not be requeued$/) do
+  pending # express the regexp above with the code you wish you had
 end
 
 Then /^I should be added to the invoicing queue along with others$/ do
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
+  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
   Resque.should_receive(:enqueue).any_number_of_times
 end
 
@@ -30,5 +42,5 @@ Then /^the attendee invoicer should be requeued$/ do
   @invoice_description ||= SecureRandom.hex(32)
   @base_price ||= SecureRandom.random_number(9999)
   # Set expectation
-  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
+  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
 end

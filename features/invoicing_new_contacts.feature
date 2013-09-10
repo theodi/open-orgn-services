@@ -11,6 +11,7 @@ Feature: Invoicing new contacts for training events
     And my first name is "Bob"
     And my last name is "Fish"
     And I have an invoice contact email of "bob.fish@example.com"
+    And I have not already been invoiced
 
   # Creation of Xero contacts and requeuing of jobs
 
