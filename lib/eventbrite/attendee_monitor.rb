@@ -28,10 +28,10 @@ class AttendeeMonitor
       orders.each_pair do |order_id, attendees|
         a = attendees.first['attendee']
         if a['amount_paid'].to_f > 0
-          redis_key = "eventbrite-#{event_details['id']}-#{order_id}-invoice-sent"
+          invoice_uid = "eventbrite-#{event_details['id']}-#{order_id}-invoice-sent"
           
           date = Date.parse(event_details['starts_at']) rescue nil
-          
+        
           invoice_to = {
             'name'               => a['company'],
             'contact_point'      => {
@@ -58,7 +58,7 @@ class AttendeeMonitor
             'due_date'                 => (date ? date - 7 : Date.today).to_s
           }
                     
-          Resque.enqueue(Invoicer, invoice_to, invoice_details, redis_key)
+          Resque.enqueue(Invoicer, invoice_to, invoice_details, invoice_uid)
         end
       end
     end
