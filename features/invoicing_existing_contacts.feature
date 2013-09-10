@@ -20,6 +20,7 @@ Feature: Invoicing existing contacts
   Scenario: invoices are drafts
     Given I have registered for a ticket
     And I paid with Paypal
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should be a draft
@@ -27,6 +28,7 @@ Feature: Invoicing existing contacts
   Scenario: invoices include purchase order numbers
     Given I have registered for a ticket
     And my purchase order reference is "AB1234"
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the reference "AB1234"
@@ -34,6 +36,7 @@ Feature: Invoicing existing contacts
   Scenario: invoices have correct due date
     Given I have registered for a ticket
     And I paid with Paypal
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should be due on 2013-03-10
@@ -52,6 +55,7 @@ Feature: Invoicing existing contacts
   Scenario: invoices have VAT added
     Given I have registered for a ticket
     And I paid with Paypal
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     # 1.00 * 1.2. Xero should add the VAT that eventbrite charged automatically.
@@ -62,6 +66,7 @@ Feature: Invoicing existing contacts
     # Overseas companies only, so excluded from VAT
     And my organisation has a tax registration number "5678" 
     And I paid with Paypal
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should have a total of 1.00
@@ -70,6 +75,7 @@ Feature: Invoicing existing contacts
 
   Scenario: line items have correct quantity for multiple tickets
     Given I have registered for two tickets
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
@@ -78,6 +84,7 @@ Feature: Invoicing existing contacts
     
   Scenario: line items should not have an account code
     Given I have registered for a ticket
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
@@ -85,6 +92,7 @@ Feature: Invoicing existing contacts
 
   Scenario: line item  should have description
     Given I have registered for a ticket
+    And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item 	
@@ -99,6 +107,7 @@ Feature: Invoicing existing contacts
     line item saying that it's been paid.
   
     Given I have registered for a ticket
+    And I have not already been invoiced
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
@@ -115,6 +124,7 @@ Feature: Invoicing existing contacts
 
   Scenario: invoices to be paid later show as unpaid
     Given I have registered for a ticket
+    And I have not already been invoiced
     And I requested an invoice
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
@@ -122,6 +132,7 @@ Feature: Invoicing existing contacts
     
   Scenario: deleted invoices should not be re-raised
     Given I have registered for a ticket
+    And I have not already been invoiced
     And I requested an invoice
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."

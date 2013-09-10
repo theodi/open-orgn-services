@@ -29,22 +29,26 @@ class Invoicer
   #                   'purchase_order_number'    => PO number for reference
   #                   'due_date'                 => Date the invoice is due  
   #
+  # invoice_uid       - a string with a unique identifier for the invoice to be raised (optional)
+  #
   # Examples
   #
   #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:base_price => 0.66, ...})
   #   # => nil
   #
   # Returns nil.
-  def self.perform(invoice_to, invoice_details)
-    # Find appropriate contact in Xero
-    contact = xero.Contact.all(:where => %{Name.ToLower() == "#{contact_name(invoice_to).downcase}"}).first
-    # Create contact if it doesn't exist, otherwise invoice them. 
-    # Create contact will requeue this invoicing request.
-    if contact.nil?
-      create_contact(invoice_to)
-      Resque.enqueue Invoicer, invoice_to, invoice_details
-    else
-      invoice_contact(contact, invoice_to, invoice_details)
+  def self.perform(invoice_to, invoice_details, invoice_uid = nil)
+    unless invoice_sent?(invoice_uid)
+      # Find appropriate contact in Xero
+      contact = xero.Contact.all(:where => %{Name.ToLower() == "#{contact_name(invoice_to).downcase}"}).first
+      # Create contact if it doesn't exist, otherwise invoice them. 
+      # Create contact will requeue this invoicing request.
+      if contact.nil?
+        create_contact(invoice_to)
+        Resque.enqueue Invoicer, invoice_to, invoice_details, invoice_uid
+      else
+        invoice_contact(contact, invoice_to, invoice_details, invoice_uid)
+      end
     end
   end
 
@@ -70,7 +74,7 @@ class Invoicer
     contact.save    
   end
   
-  def self.invoice_contact(contact, invoice_to, invoice_details)
+  def self.invoice_contact(contact, invoice_to, invoice_details, invoice_uid = nil)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}")})
     existing = invoices.find do |invoice| 
@@ -101,6 +105,8 @@ class Invoicer
         reference:  invoice_details['purchase_order_reference'],
       )
       invoice.save
+      # Set redis state to show the invoice has been sent
+      remember_invoice(invoice_uid)
     end
   end
 
@@ -120,6 +126,14 @@ class Invoicer
       ENV["XERO_PRIVATE_KEY_PATH"],
       :rate_limit_sleep => 5
     )
+  end
+  
+  def self.remember_invoice(key)
+    Resque.redis.set(key, true)
+  end
+  
+  def self.invoice_sent?(key)
+    Resque.redis.get(key).present?
   end
 
 end
