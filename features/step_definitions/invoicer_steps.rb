@@ -44,3 +44,11 @@ Then /^the attendee invoicer should be requeued$/ do
   # Set expectation
   Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_redis_key).once
 end
+
+Given /^I have been sent an invoice$/ do
+  Invoicer.should_receive(:invoice_sent?).with(create_redis_key).once.and_return(true)
+end
+
+Then /^my registration should not be sent to Xero$/ do
+  Invoicer.should_not_receive(:invoice_contact)
+end
