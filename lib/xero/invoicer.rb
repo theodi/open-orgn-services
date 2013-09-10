@@ -29,6 +29,8 @@ class Invoicer
   #                   'purchase_order_number'    => PO number for reference
   #                   'due_date'                 => Date the invoice is due  
   #
+  # invoice_uid       - a string with a unique identifier for the invoice to be raised (optional)
+  #
   # Examples
   #
   #   Invoicer.perform({:email => 'james.smith@theodi.org', ...}, {:base_price => 0.66, ...})
