@@ -75,8 +75,6 @@ class Invoicer
   end
   
   def self.invoice_contact(contact, invoice_to, invoice_details, invoice_uid = nil)
-    # Set redis state to show the invoice has been sent - needs to be here so existing invoices don't get rechecked
-    remember_invoice(invoice_uid)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}")})
     existing = invoices.find do |invoice| 
@@ -107,6 +105,11 @@ class Invoicer
         reference:  invoice_details['purchase_order_reference'],
       )
       invoice.save
+      # Set redis state to show the invoice has been sent
+      remember_invoice(invoice_uid)
+    else
+      # If the invoice has already been raised, set the state anyway - so existing invoices without a uid don't get rechecked
+      remember_invoice(invoice_uid)
     end
   end
 
