@@ -52,3 +52,11 @@ end
 Then /^my registration should not be sent to Xero$/ do
   Invoicer.should_not_receive(:invoice_contact)
 end
+
+Given(/^a uid has not been set$/) do
+  Resque.redis.set(create_invoice_uid, nil)
+end
+
+Given(/^a uid is set$/) do
+  Resque.redis.set(create_invoice_uid, true)
+end

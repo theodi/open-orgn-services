@@ -107,6 +107,9 @@ class Invoicer
       invoice.save
       # Set redis state to show the invoice has been sent
       remember_invoice(invoice_uid)
+    else
+      # If the invoice has already been raised, set the state anyway - so existing invoices without a uid don't get rechecked
+      remember_invoice(invoice_uid)
     end
   end
 

@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="2NKFIsx5yLr6FbidwxHzzVWf9gp0O7kXRB6XpwsimS8",
+        oauth_signature="K5nSfjbbGDUmHgSKhP6qOoQCA%2Fxzbt56if9vFJ9zCGY0RDZoGEvN1Ed52Eea6W0uTqRon4AVnRDwhMMPuoYk1W38a4zDz9bPqy5RMf%2F8xfpvW%2F%2BXyOd4WpZVAQw1zKW4bJqPhhpZg7Yv0Rro2G%2Fm9UFfRDTMdrj0HmzTjX52TcA%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1378901129", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 445761-O1VMAP04
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 11 Sep 2013 12:05:32 GMT
+      Content-Length:
+      - '1182'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>03cb9d88-74a0-409f-979d-68aa3334797d</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Grrrrr</ProviderName>\r\n  <DateTimeUTC>2013-09-11T12:05:33.359932Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>204b00de-7784-4cfb-b350-ecd144f8b253</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
+        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2013-09-11T12:05:33.25</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 11 Sep 2013 12:05:34 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CContactID%3E204b00de-7784-4cfb-b350-ecd144f8b253%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%20204b00de-7784-4cfb-b350-ecd144f8b253%3C%2FName%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CUpdatedDateUTC%3E2013-09-11T11%3A05%3A33%3C%2FUpdatedDateUTC%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="EocOpZNCcv4xxZ3ZNLxeOFaYBg5qIz26fJdsINqH68",
+        oauth_signature="YN%2FKHOTV7mknC8dPdglVFwzwctN%2FTjCAuHPK1dzbADwDMz%2FJnSQ95yW2oIyc65qAO81KXsgSqpW6gt4%2FMinphezhmyQD%2BWVs3oxzLlIBLOdIxg9fhtAERLC5Lm0IDT3ag5hYQeXB%2F4yFC9j7P3U%2BbVhW4a9U%2FSB0SWr4sAdXq78%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1378901134", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 445761-O1VMAP04
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 11 Sep 2013 12:05:37 GMT
+      Content-Length:
+      - '1221'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>02887d26-6b86-406e-a3bf-4e3e23c2c9f6</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Grrrrr</ProviderName>\r\n  <DateTimeUTC>2013-09-11T12:05:37.6030776Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>204b00de-7784-4cfb-b350-ecd144f8b253</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
+        Inc. 204b00de-7784-4cfb-b350-ecd144f8b253</Name>\r\n      <Addresses>\r\n
+        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n        </Address>\r\n
+        \       <Address>\r\n          <AddressType>STREET</AddressType>\r\n        </Address>\r\n
+        \     </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
+        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-09-11T12:05:37.587</UpdatedDateUTC>\r\n
+        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 11 Sep 2013 12:05:38 GMT
+recorded_with: VCR 2.5.0
