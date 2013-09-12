@@ -15,8 +15,16 @@ Feature: Old Invoices are not requeued
     And I work for "EXISTING COMPANY INC."
     And there is a contact in Xero for "Existing Company Inc."
   
-  Scenario: invoices that have already been raised are not requed
+  Scenario: invoices that have already been raised are not requeued
     Given I have registered for a ticket
     And I have been sent an invoice
     And the attendee invoicer runs
+    Then my registration should not be sent to Xero
+    
+  Scenario: invoices that have already been raised but don't have a uid set are not requeued
+    Given I have registered for a ticket
+    And I have been sent an invoice
+    And a uid has not been set
+    And the attendee invoicer runs
+    And a uid is set
     Then my registration should not be sent to Xero
