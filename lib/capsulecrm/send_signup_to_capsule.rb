@@ -35,18 +35,14 @@ class SendSignupToCapsule
         :expected_close_date => Date.parse(membership['join_date']),
         :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
       )
-      opportunity.save
-      # Shout loudly if this fails, because SOMEONE'S CHANGED SOMETHING!
-      if opportunity.errors.any? > 0
-        raise "Creating the opportunity raised the following errors: #{opportunity.errors.join(', ')}"
-      end
+      save_item(opportunity)
       # Write custom field for opportunity type
       field = CapsuleCRM::CustomField.new(
         opportunity,
         :label => 'Type',
         :text  => 'Membership'
       )
-      field.save
+      save_item(opportunity)
       # Set up membership tag
       set_membership_tag(
         org,
