@@ -118,7 +118,7 @@ class Invoicer
     if name.nil? || name.blank?
       name = [invoice_to['contact_point']['name'], "(#{invoice_to['contact_point']['email']})"].join(' ')
     end
-    name
+    name.strip
   end
 
   def self.xero
