@@ -36,6 +36,10 @@ class SendSignupToCapsule
         :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
       )
       opportunity.save
+      # Shout loudly if this fails, because SOMEONE'S CHANGED SOMETHING!
+      if opportunity.errors.any? > 0
+        raise "Creating the opportunity raised the following errors: #{opportunity.errors.join(', ')}"
+      end
       # Write custom field for opportunity type
       field = CapsuleCRM::CustomField.new(
         opportunity,
