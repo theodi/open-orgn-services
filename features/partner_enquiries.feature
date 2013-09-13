@@ -59,7 +59,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And that opportunity should have the name "Membership at <level> level"
     And that opportunity should have the description "Hey, I really want us to join the ODI!"
     And that opportunity should have the value <amount> per year for 3 years
-    And that opportunity should have the milestone "New"
+    And that opportunity should have the milestone "Prospect"
     And that opportunity should have the probability 10%
     And that opportunity should have an expected close date of 2013-04-01
     And that opportunity should be owned by "defaultuser"

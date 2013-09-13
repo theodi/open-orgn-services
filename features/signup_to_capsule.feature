@@ -27,7 +27,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that organisation should have an opportunity against it
     And that opportunity should have the name "Membership at <level> level"
     And that opportunity should have the description "Membership #: AB1234YZ"
-    And that opportunity should have the milestone "Won"
+    And that opportunity should have the milestone "Invoiced"
     And that opportunity should have the probability 100%
     And that opportunity should have the value <amount> per month for 12 month
     And that opportunity should be owned by "defaultuser"
