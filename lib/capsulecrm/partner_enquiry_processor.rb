@@ -25,7 +25,7 @@ class PartnerEnquiryProcessor
     organisation = CapsuleCRM::Organisation.find_all(:q => person['affiliation']).first
     if organisation.nil?
       organisation = CapsuleCRM::Organisation.new(:name => person['affiliation'])
-      organisation.save
+      save_item(organisation)
     end
     # Find existing contact for this organisation in CapsuleCRM
     contact = organisation.people.find do |p| 
@@ -44,7 +44,7 @@ class PartnerEnquiryProcessor
     contact.emails << CapsuleCRM::Email.new(contact, :type => "Work", :address => person['email'])
     contact.phone_numbers << CapsuleCRM::Phone.new(contact, :type => "Work", :number => person['telephone'])
     contact.contacts_will_change! # We have to mark this manually for now
-    contact.save
+    save_item(contact)
     # Create opportunity for organisation
     opportunity = CapsuleCRM::Opportunity.new(
       :party_id => organisation.id, 
@@ -59,18 +59,14 @@ class PartnerEnquiryProcessor
       :expected_close_date => Date.today + 2.months,
       :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
     )
-    opportunity.save
-    # Shout loudly if this fails, because SOMEONE'S CHANGED SOMETHING!
-    if opportunity.errors.any? > 0
-      raise "Creating the opportunity raised the following errors: #{opportunity.errors.join(', ')}"
-    end
+    save_item(opportunity)
     # Write custom field for opportunity type
     field = CapsuleCRM::CustomField.new(
       opportunity,
       :label => 'Type',
       :text => 'Membership'
     )
-    field.save
+    save_item(field)
     # Create task for followup
     due = DateTime.tomorrow + 9.hours
     task = CapsuleCRM::Task.new(
@@ -81,7 +77,7 @@ class PartnerEnquiryProcessor
       :category => 'Call',
       :detail => comment['text']
     )
-    task.save
+    save_item(task)
   end
   
 end
