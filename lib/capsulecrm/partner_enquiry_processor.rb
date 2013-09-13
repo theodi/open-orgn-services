@@ -54,7 +54,7 @@ class PartnerEnquiryProcessor
       :value => product_value(product['name']),
       :duration => product_duration(product['name']),
       :duration_basis => product_basis(product['name']),
-      :milestone => 'New',
+      :milestone => 'Prospect',
       :probability => 10,
       :expected_close_date => Date.today + 2.months,
       :owner => ENV['CAPSULECRM_DEFAULT_OWNER'],
