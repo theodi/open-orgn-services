@@ -63,7 +63,7 @@ module CapsuleHelper
       party,
       :name => tag
     )
-    tag.save
+    save_item(tag)
     return CapsuleCRM::Base.last_response.code <= 201
   end
 
@@ -72,12 +72,23 @@ module CapsuleHelper
       party,
       data.merge(:tag => tag)
     )
-    custom_field.save
+    save_item(custom_field)
     return CapsuleCRM::Base.last_response.code <= 201
   end
 
   def field(org, tag, field)
     org.custom_fields.find{|x| x.label == field && x.tag == tag}
-  end  
+  end
+  
+  def check_errors(obj)
+    unless obj
+      raise "Creating the #{obj} raised the following errors: #{obj.errors.join(', ')}"
+    end
+  end
+  
+  def save_item(obj)
+    obj.save
+    check_errors(obj)
+  end
 
 end

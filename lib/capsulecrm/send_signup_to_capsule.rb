@@ -30,19 +30,19 @@ class SendSignupToCapsule
         :value               => product_value(membership['product_name']),
         :duration            => product_duration(membership['product_name']),
         :duration_basis      => product_basis(membership['product_name']),
-        :milestone           => 'Won',
+        :milestone           => 'Invoiced',
         :probability         => 100,
         :expected_close_date => Date.parse(membership['join_date']),
         :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
       )
-      opportunity.save
+      save_item(opportunity)
       # Write custom field for opportunity type
       field = CapsuleCRM::CustomField.new(
         opportunity,
         :label => 'Type',
         :text  => 'Membership'
       )
-      field.save
+      save_item(opportunity)
       # Set up membership tag
       set_membership_tag(
         org,
