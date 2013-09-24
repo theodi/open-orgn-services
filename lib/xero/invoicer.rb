@@ -132,7 +132,7 @@ class Invoicer
   end
   
   def self.remember_invoice(key)
-    Resque.redis.set(key, true)
+    Resque.redis.set(key, true) unless key.nil?
   end
   
   def self.invoice_sent?(key)
