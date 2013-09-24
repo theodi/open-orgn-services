@@ -22,6 +22,9 @@ class BuildStatusMonitor
       </div>
     EOF
     Resque.enqueue LeftronicPublisher, :html, ENV['LEFTRONIC_JENKINS_HTML'], html
+  rescue RuntimeError
+    # Sometimes the Jenkins CI gem will complain if there's any projects with a 'notbuilt' status. Just rescue from these an move on for now 
+    nil
   end
   
 end
