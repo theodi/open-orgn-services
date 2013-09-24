@@ -136,7 +136,11 @@ class Invoicer
   end
   
   def self.invoice_sent?(key)
-    Resque.redis.get(key).present?
+    if key.nil?
+      false
+    else
+      Resque.redis.get(key).present?
+    end
   end
 
 end
