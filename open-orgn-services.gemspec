@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'capsulecrm'
   s.add_dependency 'fog'                , '~> 1.12', '>= 1.12.1'
   s.add_dependency 'httparty'
+  s.add_dependency 'rufus-scheduler'    , '< 3.0.0'
 
   s.add_development_dependency 'cucumber'         , '~> 1.2' , '>= 1.2.1'
   s.add_development_dependency 'rspec'            , '~> 2.12', '>= 2.12.0'
