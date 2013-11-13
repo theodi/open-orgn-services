@@ -48,3 +48,13 @@ end
 Then /^the invoice should be due on (#{DATE})$/ do |date|
   @invoice_due_date = date
 end
+
+# Spaces
+
+When(/^my contact name is generated$/) do
+  @contact_name = Invoicer.contact_name(create_invoice_to_hash)
+end
+
+Then(/^the generated name should be "(.*?)"$/) do |arg1|
+  @contact_name.should == arg1
+end
