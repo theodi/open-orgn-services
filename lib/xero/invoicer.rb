@@ -116,7 +116,7 @@ class Invoicer
   def self.contact_name(invoice_to)
     name = invoice_to['name']
     if name.nil? || name.blank?
-      name = [invoice_to['contact_point']['name'], "(#{invoice_to['contact_point']['email']})"].join(' ')
+      name = [invoice_to['contact_point']['name'], "(#{invoice_to['contact_point']['email']})"].join(' ').squeeze(' ')
     end
     name.strip
   end
