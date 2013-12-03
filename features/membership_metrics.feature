@@ -13,9 +13,9 @@ Feature: Generate membership metrics
       | energy   |
     Given the following members exist in CapsuleCRM:
       | level     | category | renewal_in_x_weeks |
-      | sponsor   | health   | 1                  |
-      | partner   | telecoms | 1                  |
-      | partner   | energy   | 3.9                |
+      | partner   | health   | 1                  |
+      | sponsor   | telecoms | 1                  |
+      | sponsor   | energy   | 3.9                |
       | member    | health   | 1                  |
       | member    | telecoms | 4.1                |
       | member    | energy   | 25                 |
@@ -36,8 +36,8 @@ Feature: Generate membership metrics
     Then the following data should be stored in the "membership-breakdown" metric
       """
       {
-        "sponsor": 0.1,
-        "partner": 0.2,
+        "partner": 0.1,
+        "sponsor": 0.2,
         "member": 0.3,
         "supporter": 0.4,
       }
@@ -49,8 +49,8 @@ Feature: Generate membership metrics
     Then the following data should be stored in the "membership-revenue-ratio" metric
       """
       {
-        "sponsor": 0.1,
-        "partner": 0.2,
+        "partner": 0.1,
+        "sponsor": 0.2,
         "member": 0.3,
         "supporter": 0.4,
       }
@@ -74,20 +74,20 @@ Feature: Generate membership metrics
       """
       {
         4: {
-          "sponsor": 1,
-          "partner": 2,
+          "partner": 1,
+          "sponsor": 2,
           "member": 1,
           "supporter": 1,
         },
         13: {
-          "sponsor": 1,
-          "partner": 2,
+          "partner": 1,
+          "sponsor": 2,
           "member": 2,
           "supporter": 2,
         },
         26: {
-          "sponsor": 1,
-          "partner": 2,
+          "partner": 1,
+          "sponsor": 2,
           "member": 3,
           "supporter": 3,
         },
