@@ -71,3 +71,6 @@ Feature: Generate commercial metrics
     10000
     """    
     When event
+
+  Scenario: Total Grant income backlog
+    Given we still need to work out what this is exactly
