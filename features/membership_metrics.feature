@@ -102,11 +102,3 @@ Feature: Generate membership metrics
       10
       """
     When the stories job runs
-  
-  
-  
-  
-  
-  
-  
-  
