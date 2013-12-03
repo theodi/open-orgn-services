@@ -7,14 +7,14 @@ Feature: Generate commercial metrics
   
   Background:
     Given the following opportunities in CapsuleCRM:
-      | stage     | likelihood | value | close_in_X_weeks |
-      | Closed    | 100%       | 50000 | -10              | 
-      | Proposal  | 50%        | 50000 | 20               | 
-      | Contract  | 70%        | 30000 | 10               |
-      | Lost      | 0%         | 50000 | 3                |
-      | Prospect  | 10%        | 10000 | 60               |
-      | Qualified | 30%        | 20000 | 40               |
-      | Forecast  | 90%        | 20000 | 200              |
+      | stage     | likelihood | value | close_in_x_weeks | opened_x_days_ago |
+      | Closed    | 100%       | 50000 | -10              | 200               |
+      | Proposal  | 50%        | 50000 | 20               | 150               |
+      | Contract  | 70%        | 30000 | 10               | 120               |
+      | Lost      | 0%         | 50000 | 3                | 110               |
+      | Prospect  | 10%        | 10000 | 60               | 80                |
+      | Qualified | 30%        | 20000 | 40               | 70                |
+      | Forecast  | 90%        | 20000 | 200              | 60                |
     And that it's "2013-06-01"
   
   Scenario: Total pipeline for current year
@@ -37,4 +37,14 @@ Feature: Generate commercial metrics
     110000
     """    
     When the pipeline job runs  
+    
+  Scenario: Average age of opportunity on capsule
+    Then the following data should be stored in the "average-opportunity-age" metric
+    """
+    96
+    """    
+    When event
+  
+  
+  
   
