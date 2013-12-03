@@ -12,17 +12,17 @@ Feature: Generate membership metrics
       | telecoms |
       | energy   |
     Given the following members exist in CapsuleCRM:
-      | level     | category |
-      | sponsor   | health   |
-      | partner   | telecoms |
-      | partner   | energy   |
-      | member    | health   |
-      | member    | telecoms |
-      | member    | energy   |
-      | supporter | health   |
-      | supporter | telecoms |
-      | supporter | energy   |
-      | supporter | health   |
+      | level     | category | renewal_in_x_weeks |
+      | sponsor   | health   | 1                  |
+      | partner   | telecoms | 1                  |
+      | partner   | energy   | 3.9                |
+      | member    | health   | 1                  |
+      | member    | telecoms | 4.1                |
+      | member    | energy   | 25                 |
+      | supporter | health   | 1                  |
+      | supporter | telecoms | 12.9               |
+      | supporter | energy   | 13.1               |
+      | supporter | health   | 27                 |
     And that time is frozen
   
   Scenario: Total number of members
@@ -68,6 +68,33 @@ Feature: Generate membership metrics
       }
       """
     When the membership coverage job runs
+  
+  Scenario: Number of renewals coming up in next X months
+    Then the following data should be stored in the "membership-renewals" metric
+      """
+      {
+        4: {
+          "sponsor": 1,
+          "partner": 2,
+          "member": 1,
+          "supporter": 1,
+        },
+        13: {
+          "sponsor": 1,
+          "partner": 2,
+          "member": 2,
+          "supporter": 2,
+        },
+        26: {
+          "sponsor": 1,
+          "partner": 2,
+          "member": 3,
+          "supporter": 3,
+        },
+      }
+      """
+    When the membership renewals job runs
+  
   
   
   
