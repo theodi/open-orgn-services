@@ -30,3 +30,21 @@ Feature: Generate membership metrics
       }
       """
     When the membership count job runs
+    
+  Scenario: Precentage of members per level
+    Then the following data should be stored in the "membership-breakdown" metric
+      """
+      {
+        "name": "membership-breakdown",
+        "time": "<%= @time.xmlschema %>",
+        "value": {
+          "sponsor": 0.1,
+          "partner": 0.2,
+          "member": 0.3,
+          "supporter": 0.4,
+        },
+      }
+      """
+    When the membership breakdown job runs  
+  
+  
