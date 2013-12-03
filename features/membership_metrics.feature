@@ -37,6 +37,22 @@ Feature: Generate membership metrics
         "supporter": 0.4,
       }
       """
-    When the membership breakdown job runs  
+    When the membership breakdown job runs
+    
+  Scenario: Member revenue income ratio
+    Given we still need to work out what this is exactly
+    Then the following data should be stored in the "membership-revenue-ratio" metric
+      """
+      {
+        "sponsor": 0.1,
+        "partner": 0.2,
+        "member": 0.3,
+        "supporter": 0.4,
+      }
+      """
+    When the membership revenue ratio job runs
+  
+  
+  
   
   
