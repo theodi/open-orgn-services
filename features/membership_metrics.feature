@@ -6,18 +6,23 @@ Feature: Generate membership metrics
   I want to generate various important metrics for display on a dashboard
   
   Background:
+    Given the following market categories exist in CapsuleCRM:
+      | name     |
+      | health   |
+      | telecoms |
+      | energy   |
     Given the following members exist in CapsuleCRM:
-      | level     | 
-      | sponsor   |
-      | partner   |
-      | partner   |
-      | member    |
-      | member    |
-      | member    |
-      | supporter |
-      | supporter |
-      | supporter |
-      | supporter |
+      | level     | category |
+      | sponsor   | health   |
+      | partner   | telecoms |
+      | partner   | energy   |
+      | member    | health   |
+      | member    | telecoms |
+      | member    | energy   |
+      | supporter | health   |
+      | supporter | telecoms |
+      | supporter | energy   |
+      | supporter | health   |
     And that time is frozen
   
   Scenario: Total number of members
@@ -51,6 +56,19 @@ Feature: Generate membership metrics
       }
       """
     When the membership revenue ratio job runs
+  
+  Scenario: Ranking of membership coverage against white space
+    Given we still need to work out what this is exactly
+    Then the following data should be stored in the "membership-coverage" metric
+      """
+      {
+        "health": 0.33,
+        "telecoms": 0.33,
+        "energy": 0.33,
+      }
+      """
+    When the membership coverage job runs
+  
   
   
   
