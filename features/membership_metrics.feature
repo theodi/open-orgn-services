@@ -95,6 +95,15 @@ Feature: Generate membership metrics
       """
     When the membership renewals job runs
   
+  Scenario: Total number of stories / use cases 
+    Given we still need to work out what this is exactly
+    Then the following data should be stored in the "number-of-stories" metric
+      """
+      10
+      """
+    When the stories job runs
+  
+  
   
   
   
