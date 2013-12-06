@@ -1,4 +1,4 @@
-@vcr @timecop
+@vcr @timecop @capsulecrm
 Feature: Generate membership metrics
 
   In order to track the health of our membership model
@@ -6,43 +6,39 @@ Feature: Generate membership metrics
   I want to generate various important metrics for display on a dashboard
   
   Background:
-    Given the following market categories exist in CapsuleCRM:
+    Given the following sectors exist in CapsuleCRM:
       | name     |
       | health   |
       | telecoms |
       | energy   |
     Given the following members exist in CapsuleCRM:
-      | level     | category | renewal_in_x_weeks |
-      | partner   | health   | 1                  |
-      | sponsor   | telecoms | 1                  |
-      | sponsor   | energy   | 3.9                |
-      | member    | health   | 1                  |
-      | member    | telecoms | 4.1                |
-      | member    | energy   | 25                 |
-      | supporter | health   | 1                  |
-      | supporter | telecoms | 12.9               |
-      | supporter | energy   | 13.1               |
-      | supporter | health   | 27                 |
+      | name        | level     | sector   | renewal_in_x_weeks |
+      | Partner 1   | partner   | health   | 1                  |
+      | Sponsor 1   | sponsor   | telecoms | 1                  |
+      | Sponsor 2   | sponsor   | energy   | 3.9                |
+      | Member 1    | member    | health   | 1                  |
+      | Member 2    | member    | telecoms | 4.1                |
+      | Member 3    | member    | energy   | 25                 |
+      | Supporter 1 | supporter | health   | 1                  |
+      | Supporter 2 | supporter | telecoms | 12.9               |
+      | Supporter 3 | supporter | energy   | 13.1               |
+      | Supporter 4 | supporter | health   | 27                 |
     And that time is frozen
   
-  Scenario: Total number of members
+  Scenario: Members at each level
     Then the following data should be stored in the "membership-count" metric
-    """
-    10
-    """    
-    When the membership count job runs
-    
-  Scenario: Precentage of members per level
-    Then the following data should be stored in the "membership-breakdown" metric
       """
       {
-        "partner": 0.1,
-        "sponsor": 0.2,
-        "member": 0.3,
-        "supporter": 0.4,
+        "total": 10,
+        "by_level": {
+          "member": 3,
+          "partner": 1,
+          "sponsor": 2,
+          "supporter": 4
+        }
       }
       """
-    When the membership breakdown job runs
+    When the membership count job runs
     
   Scenario: Member revenue income ratio
     Given we still need to work out what this is exactly

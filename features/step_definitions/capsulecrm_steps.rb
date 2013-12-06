@@ -32,6 +32,23 @@ end
 
 # Organisations
 
+Given(/^the following sectors exist in CapsuleCRM:$/) do |table|
+  # table is a Cucumber::Ast::Table
+  field = CapsuleCRM::Organisation.custom_field_definitions.find{|x| x.label == 'sector'}
+  table.hashes.each do |row|
+    field.options.split(';').should include(row['name'])
+  end
+end
+
+Given(/^the following members exist in CapsuleCRM:$/) do |table|
+  table.hashes.each do |row|
+    steps %{
+      Given there is an existing organisation in CapsuleCRM called "#{row["name"]}"
+      And the organisation is a member at level "#{row["level"]}"
+    }
+  end
+end
+
 Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
   @organisation = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
   @organisation.should_not be_nil
@@ -42,6 +59,23 @@ Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$
   organisations = CapsuleCRM::Organisation.find_all(:q => organisation_name)
   organisations.size.should == 1
   @organisation = organisations.first
+end
+
+Given(/^the organisation is a member at level "(.*?)"$/) do |level|
+  tag = CapsuleCRM::Tag.new(
+    @organisation,
+    :name => 'Membership'
+  )
+  tag.save
+  custom_field = CapsuleCRM::CustomField.new(
+    @organisation,
+    {
+      tag: 'Membership',
+      label: 'Level',
+      text: level,
+    }
+  )
+  custom_field.save
 end
 
 # People
