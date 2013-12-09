@@ -70,28 +70,28 @@ Feature: Generate membership metrics
       """
       {
         4: {
+          "member": 1,
           "partner": 1,
           "sponsor": 2,
-          "member": 1,
           "supporter": 1,
         },
         13: {
+          "member": 2,
           "partner": 1,
           "sponsor": 2,
-          "member": 2,
           "supporter": 2,
         },
         26: {
+          "member": 3,
           "partner": 1,
           "sponsor": 2,
-          "member": 3,
           "supporter": 3,
         },
       }
       """
     When the membership renewals job runs
   
-  Scenario: Total number of stories / use cases 
+  Scenario: Total number of stories and use cases 
     Given we still need to work out what this is exactly
     Then the following data should be stored in the "number-of-stories" metric
       """
