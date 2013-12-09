@@ -49,28 +49,29 @@ Feature: Generate commercial metrics
     """
     96
     """    
-    When event
+    When the opportunity age job runs
   
   Scenario: Total commercial bookings in current financial year
     Then the following data should be stored in the "current-year-total-bookings" metric
     """
     60070.98
     """    
-    When event
+    When the commercial bookings job runs
 
   Scenario: Total Commercial revenue recognised (Year to date)
     Then the following data should be stored in the "current-year-total-recognised" metric
     """
     60034.99
     """    
-    When event
+    When the revenue recognised job runs
 
   Scenario: Total grant income revenue recognised
     Then the following data should be stored in the "current-year-grants-recognised" metric
     """
     10000
     """    
-    When event
+    When the grant income recognised job runs
 
   Scenario: Total Grant income backlog
     Given we still need to work out what this is exactly
+    When the grant income backlog job runs
