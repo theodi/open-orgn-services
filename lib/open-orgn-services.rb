@@ -26,6 +26,7 @@ CapsuleCRM.initialize!
 require 'xeroizer'
 
 require 'helpers/metrics_helper'
+require 'helpers/membership_helper'
 
 require 'eventbrite-client'
 require 'eventbrite/event_monitor'
