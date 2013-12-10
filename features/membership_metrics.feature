@@ -40,61 +40,61 @@ Feature: Generate membership metrics
       """
     When the membership count job runs
     
-  Scenario: Member revenue income ratio
-    Given we still need to work out what this is exactly
-    Then the following data should be stored in the "membership-revenue-ratio" metric
-      """
-      {
-        "partner": 0.1,
-        "sponsor": 0.2,
-        "member": 0.3,
-        "supporter": 0.4,
-      }
-      """
-    When the membership revenue ratio job runs
+  # Scenario: Member revenue income ratio
+  #   Given we still need to work out what this is exactly
+  #   Then the following data should be stored in the "membership-revenue-ratio" metric
+  #     """
+  #     {
+  #       "partner": 0.1,
+  #       "sponsor": 0.2,
+  #       "member": 0.3,
+  #       "supporter": 0.4,
+  #     }
+  #     """
+  #   When the membership revenue ratio job runs
   
-  Scenario: Ranking of membership coverage against white space
-    Given we still need to work out what this is exactly
-    Then the following data should be stored in the "membership-coverage" metric
-      """
-      {
-        "health": 0.33,
-        "telecoms": 0.33,
-        "energy": 0.33,
-      }
-      """
-    When the membership coverage job runs
+  # Scenario: Ranking of membership coverage against white space
+  #   Given we still need to work out what this is exactly
+  #   Then the following data should be stored in the "membership-coverage" metric
+  #     """
+  #     {
+  #       "health": 0.33,
+  #       "telecoms": 0.33,
+  #       "energy": 0.33,
+  #     }
+  #     """
+  #   When the membership coverage job runs
   
-  Scenario: Number of renewals coming up in next X months
-    Then the following data should be stored in the "membership-renewals" metric
-      """
-      {
-        4: {
-          "member": 1,
-          "partner": 1,
-          "sponsor": 2,
-          "supporter": 1,
-        },
-        13: {
-          "member": 2,
-          "partner": 1,
-          "sponsor": 2,
-          "supporter": 2,
-        },
-        26: {
-          "member": 3,
-          "partner": 1,
-          "sponsor": 2,
-          "supporter": 3,
-        },
-      }
-      """
-    When the membership renewals job runs
+  # Scenario: Number of renewals coming up in next X months
+  #   Then the following data should be stored in the "membership-renewals" metric
+  #     """
+  #     {
+  #       4: {
+  #         "member": 1,
+  #         "partner": 1,
+  #         "sponsor": 2,
+  #         "supporter": 1,
+  #       },
+  #       13: {
+  #         "member": 2,
+  #         "partner": 1,
+  #         "sponsor": 2,
+  #         "supporter": 2,
+  #       },
+  #       26: {
+  #         "member": 3,
+  #         "partner": 1,
+  #         "sponsor": 2,
+  #         "supporter": 3,
+  #       },
+  #     }
+  #     """
+  #   When the membership renewals job runs
   
-  Scenario: Total number of stories and use cases 
-    Given we still need to work out what this is exactly
-    Then the following data should be stored in the "number-of-stories" metric
-      """
-      10
-      """
-    When the stories job runs
+  # Scenario: Total number of stories and use cases 
+  #   Given we still need to work out what this is exactly
+  #   Then the following data should be stored in the "number-of-stories" metric
+  #     """
+  #     10
+  #     """
+  #   When the stories job runs
