@@ -35,7 +35,7 @@ Then /^html containing '(.*?)' should be stored in the (.*?) stat$/ do |content,
 end
 
 Then(/^the following data should be stored in the "(.*?)" metric$/) do |metric, string|
-  json = "{\"name\":\"#{metric}\",\"date\":\"#{DateTime.now.xmlschema}\",\"value\":#{string.gsub(/\s+/, "")}}"
+  json = "{\"name\":\"#{metric}\",\"time\":\"#{DateTime.now.xmlschema}\",\"value\":#{string.gsub(/\s+/, "")}}"
   HTTParty.should_receive(:post).
       with("http://metrics.theodi.org/metrics/#{metric}", :body => json, :headers => { 'Content-Type' => 'application/json' }).
       once
