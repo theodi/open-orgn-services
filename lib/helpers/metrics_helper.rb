@@ -4,13 +4,13 @@ METRICS_BASE_URL = 'http://metrics.theodi.org'
 
 module MetricsHelper
   
-  def store_metric(name, date, data)
+  def store_metric(name, datetime, data)
     
     url = "#{METRICS_BASE_URL}/metrics/#{name}"
     
     json = {
       name: name,
-      date: date.xmlschema,
+      time: datetime.xmlschema,
       value: data
     }.to_json
     
