@@ -12,7 +12,9 @@ module MetricsHelper
       value: data
     }.to_json
     
-    HTTParty.post(url, :body => json, :headers => { 'Content-Type' => 'application/json' } )
+    auth = {:username => ENV['METRICS_API_USERNAME'], :password => ENV['METRICS_API_PASSWORD']}
+    
+    HTTParty.post(url, :body => json, :headers => { 'Content-Type' => 'application/json' }, :basic_auth => auth )
         
   end
   
