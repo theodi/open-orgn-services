@@ -32,6 +32,19 @@ end
 
 # Invoices 
 
+Given(/^the following invoices in Xero:$/) do |table|
+  table.hashes.each do |row|
+    steps %{
+      Given there is a contact in Xero for "#{row["organisation"]}"
+      And that contact has a paid invoice in Xero for #{row["amount"]} for "#{row["description"]}" on sales code "#{row["sales_code"]}"
+      And that invoice was raised on #{Date.today - row["raise_x_days_ago"].to_i.days}
+    }
+    if row["paid"] == "true"
+      step "And that invoice has been paid"
+    end
+  end
+end
+
 Given /^I have already been invoiced$/ do
   # Raise invoice
   Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
