@@ -32,6 +32,44 @@ end
 
 # Organisations
 
+Given(/^the following sectors exist in CapsuleCRM:$/) do |table|
+  # table is a Cucumber::Ast::Table
+  field = CapsuleCRM::Organisation.custom_field_definitions.find{|x| x.label == 'sector'}
+  table.hashes.each do |row|
+    field.options.split(';').should include(row['name'])
+  end
+end
+
+Given(/^the following members exist in CapsuleCRM:$/) do |table|
+  table.hashes.each do |row|
+    steps %{
+      Given there is an existing organisation in CapsuleCRM called "#{row["name"]}"
+      And the organisation is a member at level "#{row["level"]}"
+    }
+  end
+end
+
+Given(/^the following opportunities exist in CapsuleCRM with paid invoices in Xero if closed:$/) do |table|
+  table.hashes.each do |row|
+    steps %{
+      Given there is an existing organisation in CapsuleCRM called "#{row["organisation"]}"
+      And there is an opportunity against that organisation
+      And that opportunity is in stage "#{row["stage"]}" with likelihood #{row['likelihood']}
+      And that opportunity has the value #{row["value"]}
+      And that opportunity is expected to close on #{Date.today + row["close_in_x_weeks"].to_i.weeks}
+      And that opportunity was opened on #{Date.today - row["opened_x_weeks_ago"].to_i.weeks}
+    }
+    if row["stage"] == "Closed"
+      steps %{
+        Given there is a contact in Xero for "#{row["organisation"]}"
+        And that contact has a paid invoice in Xero for #{row["value"]} for "membership" on sales code "membership"
+        And that invoice was raised on #{Date.today - row["opened_x_weeks_ago"].to_i.weeks}
+        And that invoice has been paid
+      }
+    end
+  end
+end
+
 Then /^an organisation should exist in CapsuleCRM called "(.*?)"$/ do |organisation_name|
   @organisation = CapsuleCRM::Organisation.find_all(:q => organisation_name).first
   @organisation.should_not be_nil
@@ -42,6 +80,23 @@ Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$
   organisations = CapsuleCRM::Organisation.find_all(:q => organisation_name)
   organisations.size.should == 1
   @organisation = organisations.first
+end
+
+Given(/^the organisation is a member at level "(.*?)"$/) do |level|
+  tag = CapsuleCRM::Tag.new(
+    @organisation,
+    :name => 'Membership'
+  )
+  tag.save
+  custom_field = CapsuleCRM::CustomField.new(
+    @organisation,
+    {
+      tag: 'Membership',
+      label: 'Level',
+      text: level,
+    }
+  )
+  custom_field.save
 end
 
 # People

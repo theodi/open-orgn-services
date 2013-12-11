@@ -25,6 +25,9 @@ CapsuleCRM.initialize!
 
 require 'xeroizer'
 
+require 'helpers/metrics_helper'
+require 'helpers/membership_helper'
+
 require 'eventbrite-client'
 require 'eventbrite/event_monitor'
 require 'eventbrite/attendee_monitor'
@@ -57,3 +60,4 @@ require 'capsulecrm/capsule_sync_monitor'
 require 'capsulecrm/sync_capsule_data'
 require 'capsulecrm/save_membership_id_in_capsule'
 require 'capsulecrm/save_membership_details_to_capsule'
+require 'capsulecrm/membership_count'
