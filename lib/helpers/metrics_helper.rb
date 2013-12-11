@@ -1,12 +1,10 @@
 require "httparty"
 
-METRICS_BASE_URL = 'http://metrics.theodi.org'
-
 module MetricsHelper
   
   def store_metric(name, datetime, data)
     
-    url = "#{METRICS_BASE_URL}/metrics/#{name}"
+    url = "#{ENV['METRICS_BASE_URL']}metrics/#{name}"
     
     json = {
       name: name,

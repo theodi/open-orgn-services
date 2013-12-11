@@ -37,7 +37,7 @@ end
 Then(/^the following data should be stored in the "(.*?)" metric$/) do |metric, string|
   json = "{\"name\":\"#{metric}\",\"time\":\"#{DateTime.now.xmlschema}\",\"value\":#{string.gsub(/\s+/, "")}}"
   HTTParty.should_receive(:post).
-      with("http://metrics.theodi.org/metrics/#{metric}", :body => json, :headers => { 'Content-Type' => 'application/json' }).
+      with("#{ENV['METRICS_BASE_URL']}metrics/#{metric}", :body => json, :headers => { 'Content-Type' => 'application/json' }).
       once
 end
 
