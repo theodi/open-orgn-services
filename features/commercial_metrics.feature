@@ -75,14 +75,7 @@ Feature: Generate commercial metrics
   #   60070.98
   #   """    
   #   When the commercial bookings job runs
-  # 
-  # Scenario: Total Commercial revenue recognised (Year to date)
-  #   Then the following data should be stored in the "current-year-total-recognised" metric
-  #   """
-  #   60034.99
-  #   """    
-  #   When the revenue recognised job runs
-  # 
+  #
   # Scenario: Total grant income revenue recognised
   #   Then the following data should be stored in the "current-year-grants-recognised" metric
   #   """
