@@ -8,15 +8,15 @@ Feature: Generate commercial metrics
   # Background:
   #   Given that it's 2013-06-01 14:00
   #   And the following opportunities exist in CapsuleCRM with paid invoices in Xero if closed:
-  #     | organisation | stage     | likelihood | value | close_in_x_weeks | opened_x_days_ago |
-  #     | company A    | Closed    | 100%       | 60000 | -10              | 200               |
-  #     | company B    | Closed    | 100%       | 40000 | -30              | 300               |
-  #     | company C    | Proposal  | 50%        | 50000 | 20               | 150               |
-  #     | company D    | Contract  | 70%        | 30000 | 10               | 120               |
-  #     | company E    | Lost      | 0%         | 50000 | 3                | 110               |
-  #     | company F    | Prospect  | 10%        | 10000 | 60               | 80                |
-  #     | company G    | Qualified | 30%        | 20000 | 40               | 70                |
-  #     | company H    | Forecast  | 90%        | 20000 | 200              | 60                |
+  #     | organisation | stage     | likelihood | value | duration | close_in_x_weeks | opened_x_days_ago |
+  #     | company A    | Closed    | 100%       | 60000 | 1        | -10              | 200               |
+  #     | company B    | Closed    | 100%       | 40000 | 2        | -30              | 300               |
+  #     | company C    | Proposal  | 50%        | 50000 | 3        | 20               | 150               |
+  #     | company D    | Contract  | 70%        | 30000 | 3        | 10               | 120               |
+  #     | company E    | Lost      | 0%         | 50000 | 2        | 3                | 110               |
+  #     | company F    | Prospect  | 10%        | 10000 | 1        | 60               | 80                |
+  #     | company G    | Qualified | 30%        | 20000 | 2        | 40               | 70                |
+  #     | company H    | Forecast  | 90%        | 20000 | 3        | 200              | 60                |
   #   And the following invoices in Xero:
   #     | organisation | description     | amount | paid  | raised_x_days_ago | sales_code | 
   #     | company I    | event booking 1 | 34.99  | true  | 100               | events     |
