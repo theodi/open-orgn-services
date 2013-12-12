@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fog'                , '~> 1.12', '>= 1.12.1'
   s.add_dependency 'httparty'
   s.add_dependency 'rufus-scheduler'    , '< 3.0.0'
+  s.add_dependency 'pony'               , '~> 1.6' , '>= 1.6.2'
 
   s.add_development_dependency 'cucumber'         , '~> 1.2' , '>= 1.2.1'
   s.add_development_dependency 'rspec'            , '~> 2.12', '>= 2.12.0'
@@ -37,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rb-fsevent'       , '~> 0.9' , '>= 0.9.3'
   s.add_development_dependency 'relish'           , '~> 0.6' , '>= 0.6.0'
   s.add_development_dependency 'timecop'          , '~> 0.5' , '>= 0.5.9.2'
+  s.add_development_dependency 'email_spec'       , '~> 1.5' , '>= 1.5.0'
 
   s.files        = Dir.glob("{lib}/**/*") + %w(LICENSE.md README.md)
   s.require_path = 'lib'

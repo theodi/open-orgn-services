@@ -91,4 +91,8 @@ module CapsuleHelper
     check_errors(obj)
   end
 
+  def opportunity_closed?(opportunity)
+    ["Invoiced", "Lost", "No Project"].include?(opportunity.milestone)
+  end
+
 end
