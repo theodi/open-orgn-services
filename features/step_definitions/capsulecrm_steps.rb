@@ -177,7 +177,6 @@ end
 Given(/^that opportunity was opened on (#{DATE})$/) do |date|
   $opportunity_created_dates ||= {}
   $opportunity_created_dates[@opportunity.id] = date
-  puts $opportunity_created_dates.inspect
   # We can't set the actual created date in capsulecrm, so we have to mock it instead.
   # This is AWFUL, but I can't work out how to access the original object ID inside the partial mock.
   # Suggestions accepted!
