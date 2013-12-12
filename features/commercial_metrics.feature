@@ -49,8 +49,18 @@ Feature: Generate commercial metrics
     """
     96
     """    
-    When the opportunity age job runs
+    When the opportunity age monitor job runs
   
+  Scenario: Count old opportunities on capsule
+    Then the following data should be stored in the "old-opportunity-count" metric
+    """
+    2
+    """    
+    When the opportunity age monitor job runs
+
+  Scenario: Email about old opportunities
+    When the opportunity reminder job runs
+
   # Scenario: Total commercial bookings in current financial year
   #   Then the following data should be stored in the "current-year-total-bookings" metric
   #   """
