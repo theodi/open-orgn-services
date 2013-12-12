@@ -22,8 +22,8 @@ CapsuleCRM.account_name = ENV['CAPSULECRM_ACCOUNT_NAME']
 CapsuleCRM.api_token = ENV['CAPSULECRM_API_TOKEN']
 CapsuleCRM.initialize!
 
-
 require 'xeroizer'
+require 'pony'
 
 require 'helpers/metrics_helper'
 require 'helpers/membership_helper'
@@ -59,4 +59,6 @@ require 'capsulecrm/capsule_sync_monitor'
 require 'capsulecrm/sync_capsule_data'
 require 'capsulecrm/save_membership_id_in_capsule'
 require 'capsulecrm/save_membership_details_to_capsule'
+require 'capsulecrm/opportunity_age_monitor'
+require 'capsulecrm/send_opportunity_reminders'
 require 'capsulecrm/membership_count'

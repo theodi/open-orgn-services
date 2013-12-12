@@ -55,18 +55,18 @@ Given(/^the following opportunities exist in CapsuleCRM with paid invoices in Xe
       Given there is an existing organisation in CapsuleCRM called "#{row["organisation"]}"
       And there is an opportunity against that organisation
       And that opportunity is in stage "#{row["stage"]}" with likelihood #{row['likelihood']}
-      And that opportunity has the value #{row["value"]}
+      And that opportunity has the value #{row["value"]} per year for #{row['duration']} years
       And that opportunity is expected to close on #{Date.today + row["close_in_x_weeks"].to_i.weeks}
-      And that opportunity was opened on #{Date.today - row["opened_x_weeks_ago"].to_i.weeks}
+      And that opportunity was opened on #{Date.today - row["opened_x_days_ago"].to_i.days}
     }
-    if row["stage"] == "Closed"
-      steps %{
-        Given there is a contact in Xero for "#{row["organisation"]}"
-        And that contact has a paid invoice in Xero for #{row["value"]} for "membership" on sales code "membership"
-        And that invoice was raised on #{Date.today - row["opened_x_weeks_ago"].to_i.weeks}
-        And that invoice has been paid
-      }
-    end
+    # if row["stage"] == "Closed"
+    #   steps %{
+    #     Given there is a contact in Xero for "#{row["organisation"]}"
+    #     And that contact has a paid invoice in Xero for #{row["value"]} for "membership" on sales code "membership"
+    #     And that invoice was raised on #{Date.today - row["opened_x_weeks_ago"].to_i.weeks}
+    #     And that invoice has been paid
+    #   }
+    # end
   end
 end
 
@@ -94,6 +94,18 @@ Given(/^the organisation is a member at level "(.*?)"$/) do |level|
       tag: 'Membership',
       label: 'Level',
       text: level,
+    }
+  )
+  custom_field.save
+end
+
+Given(/^the organisation joined on (#{DATE})$/) do |date|
+  custom_field = CapsuleCRM::CustomField.new(
+    @organisation,
+    {
+      tag: 'Membership',
+      label: 'Joined',
+      date: date,
     }
   )
   custom_field.save
@@ -132,6 +144,48 @@ Then /^that person should have the telephone number "(.*?)"$/ do |number|
 end
 
 # Opportunities
+
+Given(/^there is an opportunity against that organisation$/) do
+  # Create opportunity against organisation
+  @opportunity = CapsuleCRM::Opportunity.new(
+    :party_id            => @organisation.id, 
+    :name                => "Membership",
+    :milestone           => 'Closed',
+    :probability         => 100,
+  )
+  @opportunity.save
+end
+
+Given(/^that opportunity is in stage "(.*?)" with likelihood (\d+)%$/) do |milestone, likelihood|
+  @opportunity.milestone = milestone
+  @opportunity.probability = likelihood.to_i
+  @opportunity.save
+end
+
+Given(/^that opportunity has the value (\d+) per year for (\d+) years$/) do |value, duration|
+  @opportunity.value = value.to_i
+  @opportunity.duration = duration.to_i
+  @opportunity.duration_basis = 'YEAR'
+  @opportunity.save
+end
+
+Given(/^that opportunity is expected to close on (#{DATE})$/) do |date|
+  @opportunity.expected_close_date = date
+  @opportunity.save
+end
+
+Given(/^that opportunity was opened on (#{DATE})$/) do |date|
+  $opportunity_created_dates ||= {}
+  $opportunity_created_dates[@opportunity.id] = date
+  # We can't set the actual created date in capsulecrm, so we have to mock it instead.
+  # This is AWFUL, but I can't work out how to access the original object ID inside the partial mock.
+  # Suggestions accepted!
+  class CapsuleCRM::Opportunity
+    def created_at
+      $opportunity_created_dates[id]
+    end
+  end
+end
 
 Then /^that organisation should have an opportunity against it$/ do
   @opportunity = @organisation.opportunities.first
