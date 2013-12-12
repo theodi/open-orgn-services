@@ -60,6 +60,14 @@ Feature: Generate commercial metrics
 
   Scenario: Email about old opportunities
     When the opportunity reminder job runs
+    Then "tech@theodi.org" should receive an email with subject "Old opportunity reminder: 150 days old"
+    And "tech@theodi.org" should receive an email with subject "Old opportunity reminder: 120 days old"
+    When I open the email with subject "Old opportunity reminder: 150 days old"
+    And I should see /http://theodi.capsulecrm.com/opportunity/[0-9]+\./ in the email body
+    Then I should see "company C" in the email body
+    When I open the email with subject "Old opportunity reminder: 120 days old"
+    And I should see /http://theodi.capsulecrm.com/opportunity/[0-9]+\./ in the email body
+    Then I should see "company D" in the email body
 
   # Scenario: Total commercial bookings in current financial year
   #   Then the following data should be stored in the "current-year-total-bookings" metric
