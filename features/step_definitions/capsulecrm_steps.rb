@@ -33,11 +33,7 @@ end
 # Organisations
 
 Given(/^the following sectors exist in CapsuleCRM:$/) do |table|
-  # table is a Cucumber::Ast::Table
-  field = CapsuleCRM::Organisation.custom_field_definitions.find{|x| x.label == 'sector'}
-  table.hashes.each do |row|
-    field.options.split(';').should include(row['name'])
-  end
+  pending
 end
 
 Given(/^the following members exist in CapsuleCRM:$/) do |table|
