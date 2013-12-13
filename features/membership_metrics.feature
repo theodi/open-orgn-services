@@ -65,28 +65,28 @@ Feature: Generate membership metrics
   #     """
   #   When the membership coverage job runs
   
-  # Scenario: Number of renewals coming up in next X months
-  #   Then the following data should be stored in the "membership-renewals" metric
-  #     """
-  #     {
-  #       4: {
-  #         "member": 1,
-  #         "partner": 1,
-  #         "sponsor": 2,
-  #         "supporter": 1,
-  #       },
-  #       13: {
-  #         "member": 2,
-  #         "partner": 1,
-  #         "sponsor": 2,
-  #         "supporter": 2,
-  #       },
-  #       26: {
-  #         "member": 3,
-  #         "partner": 1,
-  #         "sponsor": 2,
-  #         "supporter": 3,
-  #       },
-  #     }
-  #     """
-  #   When the membership renewals job runs
+  Scenario: Number of renewals coming up in next X months
+    Then the following data should be stored in the "membership-renewals" metric
+      """
+      {
+        "4": {
+          "member": 1,
+          "partner": 1,
+          "sponsor": 2,
+          "supporter": 1
+        },
+        "13": {
+          "member": 2,
+          "partner": 1,
+          "sponsor": 2,
+          "supporter": 2
+        },
+        "26": {
+          "member": 3,
+          "partner": 1,
+          "sponsor": 2,
+          "supporter": 3
+        }
+      }
+      """
+    When the membership renewals job runs
