@@ -1,5 +1,5 @@
 class PipelineMetrics
-  @queue = :directory # This runs inside the directory app
+  @queue = :metrics
   
   extend Observable
   extend CapsuleHelper
