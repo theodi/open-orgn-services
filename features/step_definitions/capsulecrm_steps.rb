@@ -176,6 +176,17 @@ end
 Given(/^that opportunity is expected to close on (#{DATE})$/) do |date|
   @opportunity.expected_close_date = date
   @opportunity.save
+  # Mock the actual close date, as it's done by capsule internally
+  if date <= Date.today
+    $opportunity_closed_dates ||= {}
+    $opportunity_closed_dates[@opportunity.id] = date.to_s 
+    class CapsuleCRM::Opportunity
+      def actual_close_date
+        $opportunity_closed_dates[id]
+      end
+    end
+  end
+  puts @opportunity.expected_close_date
 end
 
 Given(/^that opportunity was opened on (#{DATE})$/) do |date|
