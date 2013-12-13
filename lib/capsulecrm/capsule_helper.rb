@@ -92,7 +92,7 @@ module CapsuleHelper
   end
 
   def opportunity_closed?(opportunity)
-    ["Invoiced", "Lost", "No Project"].include?(opportunity.milestone)
+    ["Invoiced", "Lost", "No project"].include?(opportunity.milestone)
   end
 
 end
