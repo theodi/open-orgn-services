@@ -37,10 +37,18 @@ Given(/^the following sectors exist in CapsuleCRM:$/) do |table|
 end
 
 Given(/^the following members exist in CapsuleCRM:$/) do |table|
+  membership_length = {
+    "sponsor"   => 3.years,
+    "partner"   => 3.years,
+    "member"    => 1.year,
+    "supporter" => 1.year
+  }
   table.hashes.each do |row|
+    joined = (row["renewal_in_x_weeks"].to_f.weeks.from_now - membership_length[row["level"]]).to_date
     steps %{
       Given there is an existing organisation in CapsuleCRM called "#{row["name"]}"
       And the organisation is a member at level "#{row["level"]}"
+      And the organisation joined on #{joined}
     }
   end
 end
