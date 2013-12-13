@@ -186,7 +186,6 @@ Given(/^that opportunity is expected to close on (#{DATE})$/) do |date|
       end
     end
   end
-  puts @opportunity.expected_close_date
 end
 
 Given(/^that opportunity was opened on (#{DATE})$/) do |date|
