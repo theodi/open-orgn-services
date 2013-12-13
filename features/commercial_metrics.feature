@@ -27,8 +27,8 @@ Feature: Generate commercial metrics
     Then the following data should be stored in the "total-pipeline" metric
     """
     {
-      "2013-01-01/2013-12-31": 120000,
-      "2013-01-01/2015-12-31": 110000
+      "2013-01-01/2013-12-31": 190000,
+      "2013-01-01/2015-12-31": 220000
     }
     """    
     When the pipeline job runs
