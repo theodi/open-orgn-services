@@ -38,6 +38,7 @@ Feature: Generate commercial metrics
     """
     {
       "2013-01-01/2013-12-31": 46000,
+      "2013-01-01/2015-12-31": 53000
     }
     """    
     When the pipeline job runs
