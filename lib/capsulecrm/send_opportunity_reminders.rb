@@ -17,18 +17,19 @@ class SendOpportunityReminders
       owner = users.find{|x| x.username == opportunity.owner}
       owner = CapsuleCRM::Person.find(owner.party_id)
       
-      party = CapsuleCRM::Organisation.find(opportunity.party_id)
-      
+      party = CapsuleCRM::Party.find(opportunity.party_id)
+      party_name = party.is_a?(CapsuleCRM::Organisation) ? party.name : [party.first_name, party.last_name].join(' ')
       body = <<-EOF
       Hi,
       
-      This is your friendly reminder that there is an opportunity for #{party.name} that needs dealing with.
+      This is your friendly reminder that there is an opportunity for #{party_name} that needs dealing with.
       
       Update the opportunity status at http://theodi.capsulecrm.com/opportunity/#{opportunity.id}.
       
       EOF
       Pony.mail({
         :to => owner.emails[0].address,
+        :from => 'robots@theodi.org',
         :subject => "Old opportunity reminder: #{(Date.today - opportunity.created_at.to_date).to_i} days old",
         :body => body,
         :via => :smtp,
@@ -41,8 +42,9 @@ class SendOpportunityReminders
           :authentication => :plain,
           :enable_starttls_auto => true
         }
-      })    
+      })
     end
+    
   end
   
 end
