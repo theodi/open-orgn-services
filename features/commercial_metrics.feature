@@ -23,26 +23,24 @@ Feature: Generate commercial metrics
   #     | company J    | event booking 2 | 34.99  | false | 100               | events     |
   #     | foundation A | grant income 1  | 10000  | true  | 20                | grants     |
   # 
-  # Scenario: Total pipeline for current year
-  #   Then the following data should be stored in the "current-year-total-pipeline" metric
-  #   """
-  #   120000
-  #   """    
-  #   When the pipeline job runs  
-  # 
-  # Scenario: Weighted pipeline to end of financial year
-  #   Then the following data should be stored in the "current-year-weighted-pipeline" metric
-  #   """
-  #   46000
-  #   """    
-  #   When the pipeline job runs  
-  # 
-  # Scenario: Total Pipeline across next three years
-  #   Then the following data should be stored in the "three-year-total-pipeline" metric
-  #   """
-  #   110000
-  #   """    
-  #   When the pipeline job runs  
+  Scenario: Total pipeline for current year and next three years
+    Then the following data should be stored in the "total-pipeline" metric
+    """
+    {
+      "2013-01-01/2013-12-31": 120000,
+      "2013-01-01/2015-12-31": 110000
+    }
+    """    
+    When the pipeline job runs
+  
+  Scenario: Weighted pipeline
+    Then the following data should be stored in the "weighted-pipeline" metric
+    """
+    {
+      "2013-01-01/2013-12-31": 46000,
+    }
+    """    
+    When the pipeline job runs
     
   Scenario: Average age of opportunity on capsule
     Then the following data should be stored in the "average-opportunity-age" metric
