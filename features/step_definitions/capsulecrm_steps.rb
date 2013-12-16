@@ -32,8 +32,8 @@ end
 
 # Organisations
 
-Given(/^the following sectors exist in CapsuleCRM:$/) do |table|
-  pending
+Given(/^the following sector tags exist in CapsuleCRM:$/) do |table|
+  
 end
 
 Given(/^the following members exist in CapsuleCRM:$/) do |table|
@@ -49,6 +49,7 @@ Given(/^the following members exist in CapsuleCRM:$/) do |table|
       Given there is an existing organisation in CapsuleCRM called "#{row["name"]}"
       And the organisation is a member at level "#{row["level"]}"
       And the organisation joined on #{joined}
+      And that organisation has a tag called "#{row["sector"]}"
     }
   end
 end
@@ -271,12 +272,18 @@ end
 
 # Data tags
 
-Given /^that organisation has a data tag called "(.*?)"$/ do |tag_name|
+Given /^that organisation has a tag called "(.*?)"$/ do |tag_name|
   @tag = CapsuleCRM::Tag.new(
     @organisation,
     :name => tag_name
   )
   @tag.save
+end
+
+Given /^that organisation has a data tag called "(.*?)"$/ do |tag_name|
+  steps %{
+    that organisation has a tag called "#{tag_name}"
+  }
 end
 
 Then /^that organisation should have a data tag$/ do
