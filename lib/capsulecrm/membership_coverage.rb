@@ -14,7 +14,7 @@ class MembershipCoverage
       # Load parties in the sector
       parties = CapsuleCRM::Organisation.find_all(tag: sector) + CapsuleCRM::Person.find_all(tag: sector)
       # Split by level
-      grouped = parties.group_by{|org| field(org, "Membership", "Level").text }
+      grouped = parties.group_by{|org| x = field(org, "Membership", "Level"); x ? x.text : nil }
       # Count up
       products.each do |product|
         data[product] ||= {}
