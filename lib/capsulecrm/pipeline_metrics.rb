@@ -22,8 +22,8 @@ class PipelineMetrics
     [one_year_end_date, three_year_end_date].each do |end_date|
       # Find opportunities that have or are expected to close in the right time period
       relevant_opportunities = opportunities.select do |x| 
-        close = Date.parse(x.actual_close_date || x.expected_close_date)
-        close >= start_date && close <= end_date
+        close = Date.parse(x.actual_close_date || x.expected_close_date) rescue nil
+        close.present? && close >= start_date && close <= end_date  
       end
       # Find only those which are open but expected to close
       open_relevant_opportunities = relevant_opportunities.select{|x| !opportunity_closed?(x)}
