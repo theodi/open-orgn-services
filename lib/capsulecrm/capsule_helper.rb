@@ -95,4 +95,19 @@ module CapsuleHelper
     ["Invoiced", "Lost", "No project"].include?(opportunity.milestone)
   end
 
+  def sectors
+    [
+      "Charity, Not-for-Profit",
+      "Data & Information Services",
+      "Education",
+      "Finance",
+      "FMCG",
+      "Healthcare",
+      "Professional Services",
+      "Technology, Media, Telecommunications",
+      "Transport, Construction, Engineering",
+      "Utilities, Oil & Gas",
+    ]
+  end
+
 end
