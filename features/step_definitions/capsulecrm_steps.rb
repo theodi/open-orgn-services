@@ -33,7 +33,9 @@ end
 # Organisations
 
 Given(/^the following sector tags exist in CapsuleCRM:$/) do |table|
-  
+  # This is *impossible* to check. The CapsuleCRM API doesn't support listing available tags, or
+  # managing them, only what they are assigned to. We just have to assume that the tags are
+  # set up correctly in the UI.
 end
 
 Given(/^the following members exist in CapsuleCRM:$/) do |table|
