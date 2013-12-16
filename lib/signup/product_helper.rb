@@ -1,5 +1,14 @@
 module ProductHelper
 
+  def products
+    [
+      :supporter,
+      :member,
+      :sponsor,
+      :partner
+    ]
+  end
+
   def product_value(product)
     case product.to_sym
     when :supporter
