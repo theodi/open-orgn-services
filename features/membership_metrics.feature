@@ -6,23 +6,30 @@ Feature: Generate membership metrics
   I want to generate various important metrics for display on a dashboard
   
   Background:
-    # Given the following sectors exist in CapsuleCRM:
-    #   | name     |
-    #   | health   |
-    #   | telecoms |
-    #   | energy   |
+    Given the following sector tags exist in CapsuleCRM:
+      | name                                |
+      | Charity/Not-for-Profit              |
+      | Data & Information Services         |
+      | Education                           |
+      | Finance                             |
+      | FMCG                                |
+      | Healthcare                          |
+      | Professional Services               |
+      | Technology/Media/Telecommunications |
+      | Transport/Construction/Engineering  |
+      | Utilities/Oil & Gas                 |
     Given the following members exist in CapsuleCRM:
-      | name        | level     | renewal_in_x_weeks |
-      | Partner 1   | partner   | 1                  |
-      | Sponsor 1   | sponsor   | 1                  |
-      | Sponsor 2   | sponsor   | 3.9                |
-      | Member 1    | member    | 1                  |
-      | Member 2    | member    | 4.1                |
-      | Member 3    | member    | 25                 |
-      | Supporter 1 | supporter | 1                  |
-      | Supporter 2 | supporter | 12.9               |
-      | Supporter 3 | supporter | 13.1               |
-      | Supporter 4 | supporter | 27                 |
+      | name        | level     | renewal_in_x_weeks | sector                              |
+      | Partner 1   | partner   | 1                  | Charity/Not-for-Profit              |
+      | Sponsor 1   | sponsor   | 1                  | Data & Information Services         |
+      | Sponsor 2   | sponsor   | 3.9                | Education                           |
+      | Member 1    | member    | 1                  | Finance                             |
+      | Member 2    | member    | 4.1                | FMCG                                |
+      | Member 3    | member    | 25                 | Healthcare                          |
+      | Supporter 1 | supporter | 1                  | Professional Services               |
+      | Supporter 2 | supporter | 12.9               | Technology/Media/Telecommunications |
+      | Supporter 3 | supporter | 13.1               | Transport/Construction/Engineering  |
+      | Supporter 4 | supporter | 27                 | Utilities/Oil & Gas                 |
     And that time is frozen
   
   Scenario: Members at each level
@@ -53,17 +60,61 @@ Feature: Generate membership metrics
   #     """
   #   When the membership revenue ratio job runs
   
-  # Scenario: Ranking of membership coverage against white space
-  #   Given we still need to work out what this is exactly
-  #   Then the following data should be stored in the "membership-coverage" metric
-  #     """
-  #     {
-  #       "health": 0.33,
-  #       "telecoms": 0.33,
-  #       "energy": 0.33,
-  #     }
-  #     """
-  #   When the membership coverage job runs
+  Scenario: Ranking of membership coverage against white space
+    Then the following data should be stored in the "membership-coverage" metric
+      """
+      {
+        "supporter" : {
+          "Charity/Not-for-Profit" : 0,
+          "Data & Information Services" : 0,
+          "Education" : 0,
+          "Finance" : 0,
+          "FMCG" : 0,
+          "Healthcare" : 0,
+          "Professional Services" : 1,
+          "Technology/Media/Telecommunications" : 1,
+          "Transport/Construction/Engineering" : 1,
+          "Utilities/Oil & Gas" : 1
+        },
+        "member" : {
+          "Charity/Not-for-Profit" : 0,
+          "Data & Information Services" : 0,
+          "Education" : 0,
+          "Finance" : 1,
+          "FMCG" : 1,
+          "Healthcare" : 1,
+          "Professional Services" : 0,
+          "Technology/Media/Telecommunications" : 0,
+          "Transport/Construction/Engineering" : 0,
+          "Utilities/Oil & Gas" : 0
+        },
+        "sponsor" : {
+          "Charity/Not-for-Profit" : 0,
+          "Data & Information Services" : 1,
+          "Education" : 1,
+          "Finance" : 0,
+          "FMCG" : 0,
+          "Healthcare" : 0,
+          "Professional Services" : 0,
+          "Technology/Media/Telecommunications" : 0,
+          "Transport/Construction/Engineering" : 0,
+          "Utilities/Oil & Gas" : 0
+        },
+        "partner" : {
+          "Charity/Not-for-Profit" : 1,
+          "Data & Information Services" : 0,
+          "Education" : 0,
+          "Finance" : 0,
+          "FMCG" : 0,
+          "Healthcare" : 0,
+          "Professional Services" : 0,
+          "Technology/Media/Telecommunications" : 0,
+          "Transport/Construction/Engineering" : 0,
+          "Utilities/Oil & Gas" : 0
+        },
+      }
+      """
+    When the membership coverage job runs
   
   Scenario: Number of renewals coming up in next X months
     Then the following data should be stored in the "membership-renewals" metric
