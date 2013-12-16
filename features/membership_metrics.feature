@@ -15,13 +15,13 @@ Feature: Generate membership metrics
       | name        | level     | renewal_in_x_weeks |
       | Partner 1   | partner   | 1                  |
       | Sponsor 1   | sponsor   | 1                  |
-      | Sponsor 2   | sponsor   | 3.9                |
+      | Sponsor 2   | sponsor   | 3.8                |
       | Member 1    | member    | 1                  |
-      | Member 2    | member    | 4.1                |
+      | Member 2    | member    | 4.2                |
       | Member 3    | member    | 25                 |
       | Supporter 1 | supporter | 1                  |
-      | Supporter 2 | supporter | 12.9               |
-      | Supporter 3 | supporter | 13.1               |
+      | Supporter 2 | supporter | 12.8               |
+      | Supporter 3 | supporter | 13.2               |
       | Supporter 4 | supporter | 27                 |
     And that time is frozen
   
