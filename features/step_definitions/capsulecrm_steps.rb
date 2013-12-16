@@ -284,7 +284,7 @@ end
 
 Given /^that organisation has a data tag called "(.*?)"$/ do |tag_name|
   steps %{
-    that organisation has a tag called "#{tag_name}"
+    Given that organisation has a tag called "#{tag_name}"
   }
 end
 
