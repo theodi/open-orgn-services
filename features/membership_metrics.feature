@@ -8,28 +8,28 @@ Feature: Generate membership metrics
   Background:
     Given the following sector tags exist in CapsuleCRM:
       | name                                |
-      | Charity/Not-for-Profit              |
+      | Charity, Not-for-Profit              |
       | Data & Information Services         |
       | Education                           |
       | Finance                             |
       | FMCG                                |
       | Healthcare                          |
       | Professional Services               |
-      | Technology/Media/Telecommunications |
-      | Transport/Construction/Engineering  |
-      | Utilities/Oil & Gas                 |
+      | Technology, Media, Telecommunications |
+      | Transport, Construction, Engineering  |
+      | Utilities, Oil & Gas                 |
     Given the following members exist in CapsuleCRM:
-      | name        | level     | renewal_in_x_weeks | sector                              |
-      | Partner 1   | partner   | 1                  | Charity/Not-for-Profit              |
-      | Sponsor 1   | sponsor   | 1                  | Data & Information Services         |
-      | Sponsor 2   | sponsor   | 3.8                | Education                           |
-      | Member 1    | member    | 1                  | Finance                             |
-      | Member 2    | member    | 4.2                | FMCG                                |
-      | Member 3    | member    | 25                 | Healthcare                          |
-      | Supporter 1 | supporter | 1                  | Professional Services               |
-      | Supporter 2 | supporter | 12.8               | Technology/Media/Telecommunications |
-      | Supporter 3 | supporter | 13.2               | Transport/Construction/Engineering  |
-      | Supporter 4 | supporter | 27                 | Utilities/Oil & Gas                 |
+      | name        | level     | renewal_in_x_weeks | sector                                |
+      | Partner 1   | partner   | 1                  | Charity, Not-for-Profit               |
+      | Sponsor 1   | sponsor   | 1                  | Data & Information Services           |
+      | Sponsor 2   | sponsor   | 3.8                | Education                             |
+      | Member 1    | member    | 1                  | Finance                               |
+      | Member 2    | member    | 4.2                | FMCG                                  |
+      | Member 3    | member    | 25                 | Healthcare                            |
+      | Supporter 1 | supporter | 1                  | Professional Services                 |
+      | Supporter 2 | supporter | 12.8               | Technology, Media, Telecommunications |
+      | Supporter 3 | supporter | 13.2               | Transport, Construction, Engineering  |
+      | Supporter 4 | supporter | 27                 | Utilities, Oil & Gas                  |
     And that time is frozen
   
   Scenario: Members at each level
@@ -65,52 +65,52 @@ Feature: Generate membership metrics
       """
       {
         "supporter" : {
-          "Charity/Not-for-Profit" : 0,
+          "Charity, Not-for-Profit" : 0,
           "Data & Information Services" : 0,
           "Education" : 0,
           "Finance" : 0,
           "FMCG" : 0,
           "Healthcare" : 0,
           "Professional Services" : 1,
-          "Technology/Media/Telecommunications" : 1,
-          "Transport/Construction/Engineering" : 1,
-          "Utilities/Oil & Gas" : 1
+          "Technology, Media, Telecommunications" : 1,
+          "Transport, Construction, Engineering" : 1,
+          "Utilities, Oil & Gas" : 1
         },
         "member" : {
-          "Charity/Not-for-Profit" : 0,
+          "Charity, Not-for-Profit" : 0,
           "Data & Information Services" : 0,
           "Education" : 0,
           "Finance" : 1,
           "FMCG" : 1,
           "Healthcare" : 1,
           "Professional Services" : 0,
-          "Technology/Media/Telecommunications" : 0,
-          "Transport/Construction/Engineering" : 0,
-          "Utilities/Oil & Gas" : 0
+          "Technology, Media, Telecommunications" : 0,
+          "Transport, Construction, Engineering" : 0,
+          "Utilities, Oil & Gas" : 0
         },
         "sponsor" : {
-          "Charity/Not-for-Profit" : 0,
+          "Charity, Not-for-Profit" : 0,
           "Data & Information Services" : 1,
           "Education" : 1,
           "Finance" : 0,
           "FMCG" : 0,
           "Healthcare" : 0,
           "Professional Services" : 0,
-          "Technology/Media/Telecommunications" : 0,
-          "Transport/Construction/Engineering" : 0,
-          "Utilities/Oil & Gas" : 0
+          "Technology, Media, Telecommunications" : 0,
+          "Transport, Construction, Engineering" : 0,
+          "Utilities, Oil & Gas" : 0
         },
         "partner" : {
-          "Charity/Not-for-Profit" : 1,
+          "Charity, Not-for-Profit" : 1,
           "Data & Information Services" : 0,
           "Education" : 0,
           "Finance" : 0,
           "FMCG" : 0,
           "Healthcare" : 0,
           "Professional Services" : 0,
-          "Technology/Media/Telecommunications" : 0,
-          "Transport/Construction/Engineering" : 0,
-          "Utilities/Oil & Gas" : 0
+          "Technology, Media, Telecommunications" : 0,
+          "Transport, Construction, Engineering" : 0,
+          "Utilities, Oil & Gas" : 0
         }
       }
       """

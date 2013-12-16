@@ -97,16 +97,16 @@ module CapsuleHelper
 
   def sectors
     [
-      "Charity/Not-for-Profit",
+      "Charity, Not-for-Profit",
       "Data & Information Services",
       "Education",
       "Finance",
       "FMCG",
       "Healthcare",
       "Professional Services",
-      "Technology/Media/Telecommunications",
-      "Transport/Construction/Engineering",
-      "Utilities/Oil & Gas",
+      "Technology, Media, Telecommunications",
+      "Transport, Construction, Engineering",
+      "Utilities, Oil & Gas",
     ]
   end
 
