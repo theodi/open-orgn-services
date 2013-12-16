@@ -22,13 +22,13 @@ Feature: Generate membership metrics
       | name        | level     | renewal_in_x_weeks | sector                              |
       | Partner 1   | partner   | 1                  | Charity/Not-for-Profit              |
       | Sponsor 1   | sponsor   | 1                  | Data & Information Services         |
-      | Sponsor 2   | sponsor   | 3.9                | Education                           |
+      | Sponsor 2   | sponsor   | 3.8                | Education                           |
       | Member 1    | member    | 1                  | Finance                             |
-      | Member 2    | member    | 4.1                | FMCG                                |
+      | Member 2    | member    | 4.2                | FMCG                                |
       | Member 3    | member    | 25                 | Healthcare                          |
       | Supporter 1 | supporter | 1                  | Professional Services               |
-      | Supporter 2 | supporter | 12.9               | Technology/Media/Telecommunications |
-      | Supporter 3 | supporter | 13.1               | Transport/Construction/Engineering  |
+      | Supporter 2 | supporter | 12.8               | Technology/Media/Telecommunications |
+      | Supporter 3 | supporter | 13.2               | Transport/Construction/Engineering  |
       | Supporter 4 | supporter | 27                 | Utilities/Oil & Gas                 |
     And that time is frozen
   
