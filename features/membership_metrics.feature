@@ -111,7 +111,7 @@ Feature: Generate membership metrics
           "Technology/Media/Telecommunications" : 0,
           "Transport/Construction/Engineering" : 0,
           "Utilities/Oil & Gas" : 0
-        },
+        }
       }
       """
     When the membership coverage job runs
