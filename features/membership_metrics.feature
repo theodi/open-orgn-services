@@ -121,7 +121,7 @@ Feature: Generate membership metrics
       """
       {
         "4": {
-          "member": 1,
+          "member": 2,
           "partner": 1,
           "sponsor": 2,
           "supporter": 1
@@ -130,13 +130,13 @@ Feature: Generate membership metrics
           "member": 2,
           "partner": 1,
           "sponsor": 2,
-          "supporter": 2
+          "supporter": 3
         },
         "26": {
           "member": 3,
           "partner": 1,
           "sponsor": 2,
-          "supporter": 3
+          "supporter": 4
         }
       }
       """
