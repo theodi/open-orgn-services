@@ -6,6 +6,7 @@ Feature: Generate membership metrics
   I want to generate various important metrics for display on a dashboard
   
   Background:
+    Given that it's 2014-01-17 16:32
     Given the following sector tags exist in CapsuleCRM:
       | name                                |
       | Charity, Not-for-Profit              |
@@ -30,7 +31,6 @@ Feature: Generate membership metrics
       | Supporter 2 | supporter | 12.6               | Technology, Media, Telecommunications |
       | Supporter 3 | supporter | 13.4               | Transport, Construction, Engineering  |
       | Supporter 4 | supporter | 27                 | Utilities, Oil & Gas                  |
-    And that time is frozen
   
   Scenario: Members at each level
     Then the following data should be stored in the "membership-count" metric
