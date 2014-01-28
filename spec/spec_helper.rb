@@ -16,10 +16,10 @@ require 'open-orgn-services'
 VCR.configure do |c|
   # Automatically filter all secure details that are stored in the environment
   ignore_env = %w{SHLVL RUNLEVEL GUARD_NOTIFY DRB COLUMNS USER LOGNAME LINES TERM_PROGRAM_VERSION}
-  (ENV.keys-ignore_env).select{|x| x =~ /\A[A-Z_]*\Z/}.each do |key|
+  (ENV.keys-ignore_env).select { |x| x =~ /\A[A-Z_]*\Z/ }.each do |key|
     c.filter_sensitive_data("<#{key}>") { ENV[key] }
   end
-  c.cassette_library_dir = 'spec/cassettes'
+  c.cassette_library_dir     = 'spec/cassettes'
   c.default_cassette_options = { :record => :new_episodes }
   c.hook_into :webmock
   c.configure_rspec_metadata!
@@ -28,7 +28,7 @@ end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
-  config.run_all_when_everything_filtered = true
+  config.run_all_when_everything_filtered                = true
   config.filter_run :focus
 
   # Run specs in random order to surface order dependencies. If you find an
@@ -40,9 +40,9 @@ end
 
 def metrics_api_should_receive(metric, time, value)
   json = JSON.parse("{\"name\":\"#{metric}\",\"time\":\"#{time.xmlschema}\",\"value\":#{value}}").to_json
-  auth = {:username => ENV['METRICS_API_USERNAME'], :password => ENV['METRICS_API_PASSWORD']}
+  auth = { :username => ENV['METRICS_API_USERNAME'], :password => ENV['METRICS_API_PASSWORD'] }
   HTTParty.should_receive(:post).
       with("#{ENV['METRICS_API_BASE_URL']}metrics/#{metric}", :body => json, :headers => { 'Content-Type' => 'application/json' },
-          :basic_auth => auth).
+           :basic_auth                                              => auth).
       once
 end
