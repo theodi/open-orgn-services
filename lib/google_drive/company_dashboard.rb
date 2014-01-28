@@ -19,7 +19,7 @@ class CompanyDashboard
     # performance against KPIs
     store_metric("current-year-kpi-performance", DateTime.now, kpis(current_year))
     # Done - clear cached sheet
-    @@metrics_spreadsheet = nil
+    clear_cache!
   end
 
   def self.reach(year = nil)
@@ -65,4 +65,9 @@ class CompanyDashboard
   def self.years
     2013..Date.today.year
   end
+  
+  def self.clear_cache!
+    @@metrics_spreadsheet = nil
+  end
+    
 end

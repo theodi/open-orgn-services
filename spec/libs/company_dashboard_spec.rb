@@ -39,4 +39,8 @@ describe CompanyDashboard do
     CompanyDashboard.kpis(2014).should == 1.0
   end
 
+  after :each do
+    CompanyDashboard.clear_cache!
+  end
+
 end
