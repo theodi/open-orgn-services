@@ -1,8 +1,21 @@
 require 'trello'
 
 class QuarterlyProgress
+  @queue = :metrics
+
+  extend MetricsHelper
+
+  def self.perform
+    h = {
+        '2014' => progress(2014),
+        '2013' => progress(2013)
+    }
+    store_metric("quarterly-progress", DateTime.now, h)
+  end
 
   def self.progress(year)
+
+    year = year.to_i
 
     board_ids = {
         2013 => {
