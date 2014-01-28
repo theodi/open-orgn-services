@@ -50,6 +50,8 @@ require 'trello/quarterly_progress'
 
 require 'hubot/hubot_monitor'
 
+require 'certificates/certificate_count'
+
 require 'signup/product_helper'
 require 'signup/signup_processor'
 
