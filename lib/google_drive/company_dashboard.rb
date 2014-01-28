@@ -8,16 +8,16 @@ class CompanyDashboard
   def self.perform
     current_year = DateTime.now.year
     # reach
-    store_metric("reach", DateTime.now, reach(current_year))
+    store_metric("current-year-reach", DateTime.now, reach(current_year))
     store_metric("cumulative-reach", DateTime.now, reach(nil))
     # bookings
-    store_metric("bookings", DateTime.now, bookings(current_year))
+    store_metric("current-year-bookings", DateTime.now, bookings(current_year))
     store_metric("cumulative-bookings", DateTime.now, bookings(nil))
     # value-unlocked
-    store_metric("value-unlocked", DateTime.now, value(current_year))
+    store_metric("current-year-value-unlocked", DateTime.now, value(current_year))
     store_metric("cumulative-value-unlocked", DateTime.now, value(nil))
     # performance against KPIs
-    store_metric("kpi-performance", DateTime.now, kpis(current_year))
+    store_metric("current-year-kpi-performance", DateTime.now, kpis(current_year))
     # Done - clear cached sheet
     @@metrics_spreadsheet = nil
   end
