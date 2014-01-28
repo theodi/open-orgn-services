@@ -5,13 +5,13 @@ describe CompanyDashboard do
   it "should store right values in metrics API", :vcr do
     Timecop.freeze
     time = DateTime.now
-    metrics_api_should_recieve("current-year-reach", time, 0)
-    metrics_api_should_recieve("cumulative-reach", time, 303396)
-    metrics_api_should_recieve("current-year-bookings", time, 0)
-    metrics_api_should_recieve("cumulative-bookings", time, 2191064)
-    metrics_api_should_recieve("current-year-value-unlocked", time, 0)
-    metrics_api_should_recieve("cumulative-value-unlocked", time, 16924307)
-    metrics_api_should_recieve("current-year-kpi-performance", time, 1.0)
+    metrics_api_should_receive("current-year-reach", time, 0)
+    metrics_api_should_receive("cumulative-reach", time, 303396)
+    metrics_api_should_receive("current-year-bookings", time, 0)
+    metrics_api_should_receive("cumulative-bookings", time, 2191064)
+    metrics_api_should_receive("current-year-value-unlocked", time, 0)
+    metrics_api_should_receive("cumulative-value-unlocked", time, 16924307)
+    metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     CompanyDashboard.perform
     Timecop.return
   end
