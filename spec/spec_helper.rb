@@ -38,7 +38,7 @@ RSpec.configure do |config|
   config.order = 'random'
 end
 
-def metrics_api_should_recieve(metric, time, value)
+def metrics_api_should_receive(metric, time, value)
   json = JSON.parse("{\"name\":\"#{metric}\",\"time\":\"#{time.xmlschema}\",\"value\":#{value}}").to_json
   auth = {:username => ENV['METRICS_API_USERNAME'], :password => ENV['METRICS_API_PASSWORD']}
   HTTParty.should_receive(:post).
