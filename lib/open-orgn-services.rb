@@ -65,3 +65,5 @@ require 'capsulecrm/membership_count'
 require 'capsulecrm/membership_coverage'
 require 'capsulecrm/membership_renewals'
 require 'capsulecrm/pipeline_metrics'
+
+require 'google_drive/company_dashboard'
