@@ -1,6 +1,13 @@
 require 'trello'
 
 class QuarterlyProgress
+  @queue = :metrics
+
+  extend MetricsHelper
+
+  def self.perform
+
+  end
 
   def self.progress(year)
 
