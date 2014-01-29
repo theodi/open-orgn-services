@@ -39,6 +39,18 @@ describe CompanyDashboard do
     CompanyDashboard.kpis(2014).should == 1.0
   end
 
+  it "should show the correct network size", :vcr do
+    CompanyDashboard.network.should == {
+        :total     => 0,
+        :breakdown => {
+            :members    => 0,
+            :nodes      => 0,
+            :startups   => 0,
+            :affiliates => 0
+        }
+    }
+  end
+
   after :each do
     CompanyDashboard.clear_cache!
   end

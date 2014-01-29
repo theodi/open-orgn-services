@@ -2,7 +2,7 @@ require 'google_drive'
 
 class CompanyDashboard
   @queue = :metrics
-  
+
   extend MetricsHelper
 
   def self.perform
@@ -46,6 +46,21 @@ class CompanyDashboard
     end
   end
 
+  def self.network
+    h         = {}
+    h[:total] = metrics_worksheet['I24'].to_i
+
+    breakdown              = {}
+    breakdown[:members]    = metrics_worksheet['I25'].to_i
+    breakdown[:nodes]      = metrics_worksheet['I26'].to_i
+    breakdown[:startups]   = metrics_worksheet['I27'].to_i
+    breakdown[:affiliates] = metrics_worksheet['I28'].to_i
+
+    h[:breakdown] = breakdown
+
+    h
+  end
+
   def self.kpis(year)
     metrics_worksheet(year)[2, 2].to_f.round(1)
   end
@@ -58,16 +73,17 @@ class CompanyDashboard
     @@metrics_spreadsheet ||= google_drive.spreadsheet_by_key(ENV['GAPPS_METRICS_SPREADSHEET_ID'])
   end
 
-  def self.metrics_worksheet(year)
+  def self.metrics_worksheet(year = nil)
+    year = Date.today.year if year.nil?
     metrics_spreadsheet.worksheet_by_title year.to_s
   end
 
   def self.years
     2013..Date.today.year
   end
-  
+
   def self.clear_cache!
     @@metrics_spreadsheet = nil
   end
-    
+
 end
