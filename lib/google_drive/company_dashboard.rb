@@ -29,15 +29,16 @@ class CompanyDashboard
     if year.nil?
       years.inject(0) { |total, year| total += reach(year) }
     else
-      metrics_worksheet(year)[1, 2].to_i
+      metrics_cell('Reach', year).to_i
     end
+
   end
 
   def self.bookings(year = nil)
     if year.nil?
       years.inject(0) { |total, year| total += bookings(year) }
     else
-      metrics_worksheet(year)[4, 2].to_i
+      metrics_cell('Bookings', year).to_i
     end
   end
 
@@ -45,19 +46,19 @@ class CompanyDashboard
     if year.nil?
       years.inject(0) { |total, year| total += value(year) }
     else
-      metrics_worksheet(year)[3, 2].to_i
+      metrics_cell('Value unlocked', year).to_i
     end
   end
 
   def self.network
     h         = {}
-    h[:total] = metrics_worksheet['I24'].to_i
+    h[:total] = metrics_cell('Network size').to_i
 
     breakdown              = {}
-    breakdown[:members]    = metrics_worksheet['I25'].to_i
-    breakdown[:nodes]      = metrics_worksheet['I26'].to_i
-    breakdown[:startups]   = metrics_worksheet['I27'].to_i
-    breakdown[:affiliates] = metrics_worksheet['I28'].to_i
+    breakdown[:members]    = metrics_cell('Members').to_i
+    breakdown[:nodes]      = metrics_cell('Nodes').to_i
+    breakdown[:startups]   = metrics_cell('Startups').to_i
+    breakdown[:affiliates] = metrics_cell('Affiliates').to_i
 
     h[:breakdown] = breakdown
 
@@ -65,7 +66,7 @@ class CompanyDashboard
   end
 
   def self.kpis(year)
-    metrics_worksheet(year)[2, 2].to_f.round(1)
+    metrics_cell('KPI percentage', year).to_f.round(1)
   end
 
   def self.google_drive
@@ -76,9 +77,17 @@ class CompanyDashboard
     @@metrics_spreadsheet ||= google_drive.spreadsheet_by_key(ENV['GAPPS_METRICS_SPREADSHEET_ID'])
   end
 
-  def self.metrics_worksheet(year = nil)
-    year = Date.today.year if year.nil?
+  def self.metrics_worksheet year
     metrics_spreadsheet.worksheet_by_title year.to_s
+  end
+
+  def self.cell_reference year, identifier
+    @@lookups[year][identifier]
+  end
+
+  def self.metrics_cell identifier, year = nil
+    year = Date.today.year if year.nil?
+    metrics_worksheet(year)[cell_reference(year, identifier)]
   end
 
   def self.years
@@ -88,5 +97,4 @@ class CompanyDashboard
   def self.clear_cache!
     @@metrics_spreadsheet = nil
   end
-
 end
