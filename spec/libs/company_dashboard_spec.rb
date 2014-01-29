@@ -51,6 +51,10 @@ describe CompanyDashboard do
     }
   end
 
+#  it "should show grant funding amounts", :vcr do
+#    CompanyDashboard.grant_funding(2014).should == 0
+#  end
+
   after :each do
     CompanyDashboard.clear_cache!
   end
