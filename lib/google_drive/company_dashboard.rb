@@ -1,6 +1,9 @@
 require 'google_drive'
+require 'yaml'
 
 class CompanyDashboard
+  @@lookups = YAML.load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config/lookups.yaml')))
+
   @queue = :metrics
 
   extend MetricsHelper
