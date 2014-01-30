@@ -15,6 +15,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-non-commercial-bookings", time, '{"actual": 156.0,"target": 45.2}')
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
+    metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
     CompanyDashboard.perform
     Timecop.return
   end
