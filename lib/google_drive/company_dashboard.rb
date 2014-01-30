@@ -69,6 +69,10 @@ class CompanyDashboard
     metrics_cell('KPI percentage', year).to_f.round(1)
   end
 
+  def self.total_income(year)
+    metrics_cell('Total income', year).to_i
+  end
+
   def self.google_drive
     GoogleDrive.login(ENV['GAPPS_USER_EMAIL'], ENV['GAPPS_PASSWORD'])
   end

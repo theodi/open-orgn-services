@@ -51,6 +51,9 @@ describe CompanyDashboard do
     }
   end
 
+  it "should show total income", :vcr do
+    CompanyDashboard.total_income(2014).should == 666
+  end
 #  it "should show grant funding amounts", :vcr do
 #    CompanyDashboard.grant_funding(2014).should == 0
 #  end
