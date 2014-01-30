@@ -102,6 +102,12 @@ class CompanyDashboard
       network:  metrics_cell("Network income", year).to_f
     }
   end
+  
+  def self.income_by_sector(sector, type, year)
+    {
+      actual: metrics_cell("#{sector} #{type} income actual", year).to_f,
+      target: metrics_cell("#{sector} #{type} income target", year).to_f,
+    }
   end
   
   private

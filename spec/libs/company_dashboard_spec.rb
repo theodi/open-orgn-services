@@ -89,6 +89,52 @@ describe CompanyDashboard do
     }
   end
   
+  context "income by sector" do
+  
+    it "should show commercial income for research", :vcr do
+      CompanyDashboard.income_by_sector("Commercial", "research", 2014).should == {
+        actual: 890.00,
+        target: 1500.00
+      }
+    end
+    
+    it "should show non-commercial income for research", :vcr do
+      CompanyDashboard.income_by_sector("Non-commercial", "research", 2014).should == {
+        actual: 423.00,
+        target: 750.00
+      }
+    end
+    
+    it "should show commercial income for training", :vcr do
+      CompanyDashboard.income_by_sector("Commercial", "training", 2014).should == {
+        actual: 87.00,
+        target: 128.12
+      }
+    end
+    
+    it "should show non-commercial income for training", :vcr do
+      CompanyDashboard.income_by_sector("Non-commercial", "training", 2014).should == {
+        actual: 121.00,
+        target: 180.78
+      }
+    end
+
+    it "should show commercial income for projects", :vcr do
+      CompanyDashboard.income_by_sector("Commercial", "project", 2014).should == {
+        actual: 123.00,
+        target: 450.00
+      }
+    end
+    
+    it "should show non-commercial income for projects", :vcr do
+      CompanyDashboard.income_by_sector("Non-commercial", "project", 2014).should == {
+        actual: 212.00,
+        target: 500.00
+      }
+    end
+  
+  end
+  
 #  it "should show grant funding amounts", :vcr do
 #    CompanyDashboard.grant_funding(2014).should == 0
 #  end
