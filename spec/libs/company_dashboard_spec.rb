@@ -14,6 +14,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-commercial-bookings", time, '{"actual": 78.0,"target": 874.48}')
     metrics_api_should_receive("current-year-non-commercial-bookings", time, '{"actual": 156.0,"target": 45.2}')
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
+    metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
     CompanyDashboard.perform
     Timecop.return
   end
@@ -64,6 +65,13 @@ describe CompanyDashboard do
     CompanyDashboard.bookings_by_type("Non-commercial", 2014).should == {
       actual: 156.0,
       target: 45.2
+    }
+  end
+  
+  it "should show total grant funding", :vcr do
+    CompanyDashboard.grant_funding(2014).should == {
+      actual: 3040.00,
+      target: 3354.6176046176
     }
   end
 
