@@ -10,6 +10,8 @@ require 'simplecov-rcov'
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start
 
+ENV['RACK_ENV'] = "test"
+
 $:.unshift File.dirname(__FILE__)+'../lib'
 require 'open-orgn-services'
 

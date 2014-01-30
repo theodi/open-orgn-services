@@ -21,6 +21,8 @@ class CompanyDashboard
     store_metric("cumulative-value-unlocked", DateTime.now, value(nil))
     # performance against KPIs
     store_metric("current-year-kpi-performance", DateTime.now, kpis(current_year))
+    # commercial bookings
+    store_metric("current-year-commercial-bookings", DateTime.now, commercial_bookings(current_year))
     # Done - clear cached sheet
     clear_cache!
   end
@@ -71,6 +73,13 @@ class CompanyDashboard
 
   def self.total_income(year)
     metrics_cell('Total income', year).to_i
+  end
+  
+  def self.commercial_bookings(year)
+    {
+      actual: metrics_cell('Commercial Bookings Actual', year).to_f,
+      target: metrics_cell('Commercial Bookings Target', year).to_f
+    }
   end
 
   def self.google_drive
