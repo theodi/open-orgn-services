@@ -28,6 +28,13 @@ class CompanyDashboard
     store_metric("current-year-grant-funding", DateTime.now, grant_funding(current_year))
     # income by type
     store_metric("current-year-income-by-type", DateTime.now, income_by_type(current_year))
+    # income by sector
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "research", current_year))
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "research", current_year))
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "training", current_year))
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "training", current_year))
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "project", current_year))
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "project", current_year))
     # Done - clear cached sheet
     clear_cache!
   end
