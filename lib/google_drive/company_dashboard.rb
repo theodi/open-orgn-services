@@ -13,6 +13,8 @@ class CompanyDashboard
     # reach
     store_metric("current-year-reach", DateTime.now, reach(current_year))
     store_metric("cumulative-reach", DateTime.now, reach(nil))
+    store_metric("current-year-active-reach", DateTime.now, reach(current_year, "Active"))
+    store_metric("current-year-passive-reach", DateTime.now, reach(current_year, "Passive"))
     # bookings
     store_metric("current-year-bookings", DateTime.now, bookings(current_year))
     store_metric("cumulative-bookings", DateTime.now, bookings(nil))
@@ -39,13 +41,12 @@ class CompanyDashboard
     clear_cache!
   end
 
-  def self.reach(year = nil)
+  def self.reach(year = nil, type = nil)
     if year.nil?
-      years.inject(0) { |total, year| total += reach(year) }
+      years.inject(0) { |total, year| total += reach(year, type) }
     else
-      metrics_cell('Reach', year).to_i
+      metrics_cell("#{type} Reach".strip, year).to_i
     end
-
   end
 
   def self.bookings(year = nil)
