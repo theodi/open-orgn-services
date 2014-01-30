@@ -5,8 +5,8 @@ describe CompanyDashboard do
   it "should store right values in metrics API", :vcr do
     Timecop.freeze
     time = DateTime.now
-    metrics_api_should_receive("current-year-reach", time, 0)
-    metrics_api_should_receive("cumulative-reach", time, 303396)
+    metrics_api_should_receive("current-year-reach", time, 775655)
+    metrics_api_should_receive("cumulative-reach", time, 1079051)
     metrics_api_should_receive("current-year-bookings", time, 0)
     metrics_api_should_receive("cumulative-bookings", time, 2191064)
     metrics_api_should_receive("current-year-value-unlocked", time, 0)
@@ -28,8 +28,8 @@ describe CompanyDashboard do
 
   it "should show the correct reach", :vcr do
     CompanyDashboard.reach(2013).should == 303396
-    CompanyDashboard.reach(2014).should == 0
-    CompanyDashboard.reach.should == 303396
+    CompanyDashboard.reach(2014).should == 775655
+    CompanyDashboard.reach.should == 1079051
   end
 
   it "should show the correct bookings value", :vcr do
