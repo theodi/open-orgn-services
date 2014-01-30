@@ -22,7 +22,8 @@ class CompanyDashboard
     # performance against KPIs
     store_metric("current-year-kpi-performance", DateTime.now, kpis(current_year))
     # commercial bookings
-    store_metric("current-year-commercial-bookings", DateTime.now, commercial_bookings(current_year))
+    store_metric("current-year-commercial-bookings", DateTime.now, bookings_by_type("Commercial", current_year))
+    store_metric("current-year-non-commercial-bookings", DateTime.now, bookings_by_type("Non-commercial", current_year))
     # Done - clear cached sheet
     clear_cache!
   end
@@ -75,10 +76,10 @@ class CompanyDashboard
     metrics_cell('Total income', year).to_i
   end
   
-  def self.commercial_bookings(year)
+  def self.bookings_by_type(type, year)
     {
-      actual: metrics_cell('Commercial Bookings Actual', year).to_f,
-      target: metrics_cell('Commercial Bookings Target', year).to_f
+      actual: metrics_cell("#{type} Bookings Actual", year).to_f,
+      target: metrics_cell("#{type} Bookings Target", year).to_f
     }
   end
 
