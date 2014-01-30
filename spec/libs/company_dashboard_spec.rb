@@ -16,6 +16,12 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
     metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 890.00,"target": 1500.00}')
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 423.00,"target": 750.00}')
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 87.00,"target": 128.12}')
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 121.00,"target": 180.78}')
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 123.00,"target": 450.00}') 
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 212.00,"target": 500.00}')      
     CompanyDashboard.perform
     Timecop.return
   end
