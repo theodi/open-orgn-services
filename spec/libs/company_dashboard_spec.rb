@@ -7,10 +7,12 @@ describe CompanyDashboard do
     time = DateTime.now
     metrics_api_should_receive("current-year-reach", time, 775655)
     metrics_api_should_receive("cumulative-reach", time, 1079051)
+    metrics_api_should_receive("current-year-active-reach", time, 432423)
+    metrics_api_should_receive("current-year-passive-reach", time, 343232)
     metrics_api_should_receive("current-year-bookings", time, 0)
     metrics_api_should_receive("cumulative-bookings", time, 2191064)
-    metrics_api_should_receive("current-year-value-unlocked", time, 0)
-    metrics_api_should_receive("cumulative-value-unlocked", time, 16924307)
+    metrics_api_should_receive("current-year-value-unlocked", time, 775655)
+    metrics_api_should_receive("cumulative-value-unlocked", time, 17699962)
     metrics_api_should_receive("current-year-commercial-bookings", time, '{"actual": 78.0,"target": 874.48}')
     metrics_api_should_receive("current-year-non-commercial-bookings", time, '{"actual": 156.0,"target": 45.2}')
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
@@ -27,9 +29,23 @@ describe CompanyDashboard do
   end
 
   it "should show the correct reach", :vcr do
-    CompanyDashboard.reach(2013).should == 303396
-    CompanyDashboard.reach(2014).should == 775655
     CompanyDashboard.reach.should == 1079051
+  end
+  
+  it "should show the correct reach for 2013", :vcr do
+    CompanyDashboard.reach(2013).should == 303396
+  end
+  
+  it "should show the correct reach for 2014", :vcr do
+    CompanyDashboard.reach(2014).should == 775655
+  end
+  
+  it "should show the correct active reach", :vcr do
+    CompanyDashboard.reach(2014, "Active").should == 432423
+  end
+  
+  it "should show the correct passive reach", :vcr do
+    CompanyDashboard.reach(2014, "Passive").should == 343232
   end
 
   it "should show the correct bookings value", :vcr do
@@ -40,7 +56,7 @@ describe CompanyDashboard do
 
   it "should show the correct unlocked value", :vcr do
     CompanyDashboard.value(2013).should == 16924307
-    CompanyDashboard.value(2014).should == 0
+    CompanyDashboard.value(2014).should == 775655
     CompanyDashboard.value.should == 16924307
   end
 
