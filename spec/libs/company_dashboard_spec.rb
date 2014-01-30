@@ -11,6 +11,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("cumulative-bookings", time, 2191064)
     metrics_api_should_receive("current-year-value-unlocked", time, 0)
     metrics_api_should_receive("cumulative-value-unlocked", time, 16924307)
+    metrics_api_should_receive("current-year-commercial-bookings", time, '{"actual": 78.0,"target": 874.48}')
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     CompanyDashboard.perform
     Timecop.return
@@ -48,6 +49,13 @@ describe CompanyDashboard do
             :startups   => 0,
             :affiliates => 0
         }
+    }
+  end
+  
+  it "should show total commercial bookings", :vcr do
+    CompanyDashboard.commercial_bookings(2014).should == {
+      actual: 78.0,
+      target: 874.48
     }
   end
 
