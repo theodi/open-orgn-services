@@ -26,6 +26,8 @@ class CompanyDashboard
     store_metric("current-year-non-commercial-bookings", DateTime.now, bookings_by_type("Non-commercial", current_year))
     # grant funding
     store_metric("current-year-grant-funding", DateTime.now, grant_funding(current_year))
+    # income by type
+    store_metric("current-year-income-by-type", DateTime.now, income_by_type(current_year))
     # Done - clear cached sheet
     clear_cache!
   end
