@@ -24,6 +24,8 @@ class CompanyDashboard
     # commercial bookings
     store_metric("current-year-commercial-bookings", DateTime.now, bookings_by_type("Commercial", current_year))
     store_metric("current-year-non-commercial-bookings", DateTime.now, bookings_by_type("Non-commercial", current_year))
+    # grant funding
+    store_metric("current-year-grant-funding", DateTime.now, grant_funding(current_year))
     # Done - clear cached sheet
     clear_cache!
   end
@@ -80,6 +82,13 @@ class CompanyDashboard
     {
       actual: metrics_cell("#{type} Bookings Actual", year).to_f,
       target: metrics_cell("#{type} Bookings Target", year).to_f
+    }
+  end
+  
+  def self.grant_funding(year)
+    {
+      actual: metrics_cell("Grant Funding Actual", year).to_f,
+      target: metrics_cell("Grant Funding Target", year).to_f
     }
   end
 
