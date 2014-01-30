@@ -91,6 +91,15 @@ class CompanyDashboard
       target: metrics_cell("Grant Funding Target", year).to_f
     }
   end
+  
+  def self.income_by_type(year)
+    {
+      research: metrics_cell("Research income", year).to_f,
+      training: metrics_cell("Training income", year).to_f,
+      projects: metrics_cell("Project income", year).to_f,
+      network:  metrics_cell("Network income", year).to_f
+    }
+  end
 
   def self.google_drive
     GoogleDrive.login(ENV['GAPPS_USER_EMAIL'], ENV['GAPPS_PASSWORD'])

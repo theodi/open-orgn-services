@@ -78,6 +78,16 @@ describe CompanyDashboard do
   it "should show total income", :vcr do
     CompanyDashboard.total_income(2014).should == 666
   end
+  
+  it "should show income by type", :vcr do
+    CompanyDashboard.income_by_type(2014).should == {
+      research: 900.00,
+      training: 289.00,
+      projects: 900.00,
+      network: 912.00
+    }
+  end
+  
 #  it "should show grant funding amounts", :vcr do
 #    CompanyDashboard.grant_funding(2014).should == 0
 #  end
