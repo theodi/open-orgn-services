@@ -24,6 +24,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 121.00,"target": 180.78}')
     metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 123.00,"target": 450.00}') 
     metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 212.00,"target": 500.00}')      
+    metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 22.0}')      
     CompanyDashboard.perform
     Timecop.return
   end

@@ -10,6 +10,7 @@ class CompanyDashboard
 
   def self.perform
     current_year = DateTime.now.year
+    current_month = DateTime.now.month
     # reach
     store_metric("current-year-reach", DateTime.now, reach(current_year))
     store_metric("cumulative-reach", DateTime.now, reach(nil))
@@ -37,6 +38,8 @@ class CompanyDashboard
     store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "training", current_year))
     store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "project", current_year))
     store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "project", current_year))
+    # headcount
+    store_metric("current-year-headcount", DateTime.now, headcount(current_year, current_month))
     # Done - clear cached sheet
     clear_cache!
   end
