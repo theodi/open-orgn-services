@@ -18,7 +18,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
     metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
-    metrics_api_should_receive("current-year-income-by-sector", time, "{\"research\":{\"commercial\":{\"actual\":890.0,\"target\":1500.0},\"non_commercial\":{\"actual\":423.0,\"target\":750.0}},\"training\":{\"commercial\":{\"actual\":87.0,\"target\":128.12},\"non_commercial\":{\"actual\":121.0,\"target\":180.78}},\"projects\":{\"commercial\":{\"actual\":123.0,\"target\":450.0},\"non_commercial\":{\"actual\":212.0,\"target\":500.0}}}")      
+    metrics_api_should_receive("current-year-income-by-sector", time, "{\"research\":{\"commercial\":{\"actual\":890.0,\"target\":1500.0},\"non_commercial\":{\"actual\":423.0,\"target\":750.0}},\"training\":{\"commercial\":{\"actual\":87.0,\"target\":128.12},\"non_commercial\":{\"actual\":121.0,\"target\":180.78}},\"projects\":{\"commercial\":{\"actual\":123.0,\"target\":450.0},\"non_commercial\":{\"actual\":212.0,\"target\":500.0}},\"network\":{\"commercial\":{\"actual\":78.0,\"target\":874.48},\"non_commercial\":{\"actual\":156.0,\"target\":45.2}}}")      
     metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 22.0}')      
     metrics_api_should_receive("current-year-burn", time, '{"actual": 320.0,"target": 314.766666666667}')      
     CompanyDashboard.perform
@@ -138,6 +138,16 @@ describe CompanyDashboard do
         non_commercial: {
           actual: 212.00,
           target: 500.00
+        }
+      },
+      network: {
+        commercial: {
+          actual: 78.00,
+          target: 874.48
+        },
+        non_commercial: {
+          actual: 156.00,
+          target: 45.2
         }
       }
     }
