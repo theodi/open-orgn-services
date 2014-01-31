@@ -118,6 +118,14 @@ class CompanyDashboard
     }
   end
   
+  def self.headcount(year)
+    index = DateTime.now.month - 1
+    {
+      actual: metrics_cell("Headcount actual", year)[index].to_f,
+      target: metrics_cell("Headcount target", year)[index].to_f,
+    }
+  end
+  
   private
 
     def self.google_drive
