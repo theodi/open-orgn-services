@@ -18,12 +18,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
     metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 890.00,"target": 1500.00}')
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 423.00,"target": 750.00}')
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 87.00,"target": 128.12}')
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 121.00,"target": 180.78}')
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 123.00,"target": 450.00}') 
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 212.00,"target": 500.00}')      
+    metrics_api_should_receive("current-year-income-by-sector", time, "{\"research\":{\"commercial\":{\"actual\":890.0,\"target\":1500.0},\"non_commercial\":{\"actual\":423.0,\"target\":750.0}},\"training\":{\"commercial\":{\"actual\":87.0,\"target\":128.12},\"non_commercial\":{\"actual\":121.0,\"target\":180.78}},\"projects\":{\"commercial\":{\"actual\":123.0,\"target\":450.0},\"non_commercial\":{\"actual\":212.0,\"target\":500.0}}}")      
     metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 22.0}')      
     metrics_api_should_receive("current-year-burn", time, '{"actual": 320.0,"target": 314.766666666667}')      
     CompanyDashboard.perform
@@ -113,50 +108,39 @@ describe CompanyDashboard do
     }
   end
   
-  context "income by sector" do
-  
-    it "should show commercial income for research", :vcr do
-      CompanyDashboard.income_by_sector("Commercial", "research", 2014).should == {
-        actual: 890.00,
-        target: 1500.00
+  it "should show the correct income by sector", :vcr do
+    CompanyDashboard.income_by_sector(2014).should == {
+      research: {
+        commercial: {
+          actual: 890.00,
+          target: 1500.00
+        },
+        non_commercial: {
+          actual: 423.00,
+          target: 750.00
+        }
+      },
+      training: {
+        commercial: {
+          actual: 87.00,
+          target: 128.12
+        },
+        non_commercial: {
+          actual: 121.00,
+          target: 180.78
+        }
+      },
+      projects: {
+        commercial: {
+          actual: 123.00,
+          target: 450.00
+        },
+        non_commercial: {
+          actual: 212.00,
+          target: 500.00
+        }
       }
-    end
-    
-    it "should show non-commercial income for research", :vcr do
-      CompanyDashboard.income_by_sector("Non-commercial", "research", 2014).should == {
-        actual: 423.00,
-        target: 750.00
-      }
-    end
-    
-    it "should show commercial income for training", :vcr do
-      CompanyDashboard.income_by_sector("Commercial", "training", 2014).should == {
-        actual: 87.00,
-        target: 128.12
-      }
-    end
-    
-    it "should show non-commercial income for training", :vcr do
-      CompanyDashboard.income_by_sector("Non-commercial", "training", 2014).should == {
-        actual: 121.00,
-        target: 180.78
-      }
-    end
-
-    it "should show commercial income for projects", :vcr do
-      CompanyDashboard.income_by_sector("Commercial", "project", 2014).should == {
-        actual: 123.00,
-        target: 450.00
-      }
-    end
-    
-    it "should show non-commercial income for projects", :vcr do
-      CompanyDashboard.income_by_sector("Non-commercial", "project", 2014).should == {
-        actual: 212.00,
-        target: 500.00
-      }
-    end
-  
+    }
   end
   
   it "should show headcount", :vcr do

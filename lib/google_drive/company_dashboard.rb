@@ -32,12 +32,7 @@ class CompanyDashboard
     # income by type
     store_metric("current-year-income-by-type", DateTime.now, income_by_type(current_year))
     # income by sector
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "research", current_year))
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "research", current_year))
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "training", current_year))
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "training", current_year))
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Commercial", "project", current_year))
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "project", current_year))
+    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector(current_year))
     # headcount
     store_metric("current-year-headcount", DateTime.now, headcount(current_year, current_month))
     # burn
@@ -116,10 +111,38 @@ class CompanyDashboard
     }
   end
   
-  def self.income_by_sector(sector, type, year)
+  def self.income_by_sector(year)
     {
-      actual: metrics_cell("#{sector} #{type} income actual", year).to_f,
-      target: metrics_cell("#{sector} #{type} income target", year).to_f,
+      research: {
+        commercial: {
+          actual: metrics_cell("Commercial research income actual", year).to_f,
+          target: metrics_cell("Commercial research income target", year).to_f
+        },
+        non_commercial: {
+          actual: metrics_cell("Non-commercial research income actual", year).to_f,
+          target: metrics_cell("Non-commercial research income target", year).to_f
+        }
+      },
+      training: {
+        commercial: {
+          actual: metrics_cell("Commercial training income actual", year).to_f,
+          target: metrics_cell("Commercial training income target", year).to_f
+        },
+        non_commercial: {
+          actual: metrics_cell("Non-commercial training income actual", year).to_f,
+          target: metrics_cell("Non-commercial training income target", year).to_f
+        }
+      },
+      projects: {
+        commercial: {
+          actual: metrics_cell("Commercial projects income actual", year).to_f,
+          target: metrics_cell("Commercial projects income target", year).to_f
+        },
+        non_commercial: {
+          actual: metrics_cell("Non-commercial projects income actual", year).to_f,
+          target: metrics_cell("Non-commercial projects income target", year).to_f
+        }
+      }
     }
   end
   
@@ -138,7 +161,7 @@ class CompanyDashboard
       target: metrics_cell("Burn target", year)[index].to_f,
     }
   end
-  
+    
   private
 
     def self.google_drive
