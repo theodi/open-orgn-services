@@ -25,6 +25,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 123.00,"target": 450.00}') 
     metrics_api_should_receive("current-year-income-by-sector", time, '{"actual": 212.00,"target": 500.00}')      
     metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 22.0}')      
+    metrics_api_should_receive("current-year-burn", time, '{"actual": 320.0,"target": 314.766666666667}')      
     CompanyDashboard.perform
     Timecop.return
   end
@@ -162,6 +163,13 @@ describe CompanyDashboard do
     CompanyDashboard.headcount(2014, 1).should == {
       actual: 22,
       target: 22
+    }
+  end
+
+  it "should show burn", :vcr do
+    CompanyDashboard.burn_rate(2014, 1).should == {
+      actual: 320.0,
+      target: 314.766666666667
     }
   end
   
