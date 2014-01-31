@@ -142,6 +142,16 @@ class CompanyDashboard
           actual: metrics_cell("Non-commercial projects income actual", year).to_f,
           target: metrics_cell("Non-commercial projects income target", year).to_f
         }
+      },
+      network: {
+        commercial: {
+          actual: metrics_cell("Commercial network income actual", year).to_f,
+          target: metrics_cell("Commercial network income target", year).to_f
+        },
+        non_commercial: {
+          actual: metrics_cell("Non-commercial network income actual", year).to_f,
+          target: metrics_cell("Non-commercial network income target", year).to_f
+        }
       }
     }
   end
