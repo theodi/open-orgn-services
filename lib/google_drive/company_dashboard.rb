@@ -40,6 +40,8 @@ class CompanyDashboard
     store_metric("current-year-income-by-sector", DateTime.now, income_by_sector("Non-commercial", "project", current_year))
     # headcount
     store_metric("current-year-headcount", DateTime.now, headcount(current_year, current_month))
+    # burn
+    store_metric("current-year-burn", DateTime.now, burn_rate(current_year, current_month))
     # Done - clear cached sheet
     clear_cache!
   end
@@ -126,6 +128,14 @@ class CompanyDashboard
     {
       actual: metrics_cell("Headcount actual", year)[index].to_f,
       target: metrics_cell("Headcount target", year)[index].to_f,
+    }
+  end
+  
+  def self.burn_rate(year, month)
+    index = DateTime.now.month - 1
+    {
+      actual: metrics_cell("Burn actual", year)[index].to_f,
+      target: metrics_cell("Burn target", year)[index].to_f,
     }
   end
   
