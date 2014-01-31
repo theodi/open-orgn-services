@@ -158,12 +158,10 @@ describe CompanyDashboard do
   end
   
   it "should show headcount", :vcr do
-    Timecop.freeze(Time.local(2014, 1, 1, 12, 0, 0))
-    CompanyDashboard.headcount(2014).should == {
+    CompanyDashboard.headcount(2014, 1).should == {
       actual: 22,
       target: 22
     }
-    Timecop.return
   end
   
 #  it "should show grant funding amounts", :vcr do
