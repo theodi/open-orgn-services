@@ -185,6 +185,31 @@ class CompanyDashboard
     }
   end
 
+  def self.network_size(year)
+    {
+        partners:   {
+            actual: metrics_cell("Partners actual", year).to_i,
+            target: metrics_cell("Partners target", year).to_i
+        },
+        sponsors:   {
+            actual: metrics_cell("Sponsors actual", year).to_i,
+            target: metrics_cell("Sponsors target", year).to_i
+        },
+        supporters: {
+            actual: metrics_cell("Supporters actual", year).to_i,
+            target: metrics_cell("Supporters target", year).to_i
+        },
+        startups:   {
+            actual: metrics_cell("Startups actual", year).to_i,
+            target: metrics_cell("Startups target", year).to_i
+        },
+        nodes:      {
+            actual: metrics_cell("Nodes actual", year).to_i,
+            target: metrics_cell("Nodes target", year).to_i
+        }
+    }
+  end
+
   private
 
   def self.google_drive

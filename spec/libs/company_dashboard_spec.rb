@@ -181,6 +181,31 @@ describe CompanyDashboard do
     }
   end
 
+  it "should show correct network size", :vcr do
+    CompanyDashboard.network_size(2014).should == {
+        partners:   {
+            actual: 0,
+            target: 0
+        },
+        sponsors:   {
+            actual: 0,
+            target: 0
+        },
+        supporters: {
+            actual: 0,
+            target: 0
+        },
+        startups:   {
+            actual: 0,
+            target: 0
+        },
+        nodes:      {
+            actual: 0,
+            target: 0
+        }
+    }
+  end
+
   after :each do
     CompanyDashboard.clear_cache!
   end
