@@ -185,23 +185,23 @@ describe CompanyDashboard do
     CompanyDashboard.network_size(2014).should == {
         partners:   {
             actual: 0,
-            target: 0
+            target: 10
         },
         sponsors:   {
             actual: 0,
-            target: 0
+            target: 5
         },
         supporters: {
             actual: 0,
-            target: 0
+            target: 34
         },
         startups:   {
             actual: 0,
-            target: 0
+            target: 6
         },
         nodes:      {
             actual: 0,
-            target: 0
+            target: 20
         }
     }
   end
