@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CompanyDashboard do
 
   it "should store right values in metrics API", :vcr do
-    Timecop.freeze
+    Timecop.freeze(Date.new(2014,2,4))
     time = DateTime.now
     metrics_api_should_receive("current-year-reach", time, 775655)
     metrics_api_should_receive("cumulative-reach", time, 1079051)
@@ -19,9 +19,9 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
     metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
     metrics_api_should_receive("current-year-income-by-sector", time, "{\"research\":{\"commercial\":{\"actual\":890.0,\"target\":1500.0},\"non_commercial\":{\"actual\":423.0,\"target\":750.0}},\"training\":{\"commercial\":{\"actual\":87.0,\"target\":128.12},\"non_commercial\":{\"actual\":121.0,\"target\":180.78}},\"projects\":{\"commercial\":{\"actual\":123.0,\"target\":450.0},\"non_commercial\":{\"actual\":212.0,\"target\":500.0}},\"network\":{\"commercial\":{\"actual\":78.0,\"target\":874.48},\"non_commercial\":{\"actual\":156.0,\"target\":45.2}}}")
-    metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 22.0}')
-    metrics_api_should_receive("current-year-burn", time, '{"actual": 320.0,"target": 314.766666666667}')
-    metrics_api_should_receive("current-year-people-trained", time, '{"actual": 0,"target": 190}')
+    metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 26.0}')
+    metrics_api_should_receive("current-year-burn", time, '{"actual": 0.0,"target": 340.476666666667}')
+    metrics_api_should_receive("current-year-people-trained", time, '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}')
     CompanyDashboard.perform
     Timecop.return
   end
@@ -155,17 +155,21 @@ describe CompanyDashboard do
   end
 
   it "should show headcount", :vcr do
-    CompanyDashboard.headcount(2014, 1).should == {
-        actual: 22,
-        target: 22
+    Timecop.freeze(Date.new(2014,2,4))
+    CompanyDashboard.headcount(2014, 2).should == {
+        actual: 22.0,
+        target: 26.0
     }
+    Timecop.return
   end
 
   it "should show burn", :vcr do
+    Timecop.freeze(Date.new(2014,1,4))
     CompanyDashboard.burn_rate(2014, 1).should == {
         actual: 320.0,
         target: 314.766666666667
     }
+    Timecop.return
   end
 
   it "should show number of people trained", :vcr do
