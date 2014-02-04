@@ -39,6 +39,8 @@ class CompanyDashboard
     store_metric("current-year-burn", DateTime.now, burn_rate(current_year, current_month))
     # training
     store_metric("current-year-people-trained", DateTime.now, people_trained(current_year))
+    # network
+    store_metric("current-year-network-size", DateTime.now, network_size(current_year))
     # Done - clear cached sheet
     clear_cache!
   end

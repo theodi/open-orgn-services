@@ -22,6 +22,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 26.0}')
     metrics_api_should_receive("current-year-burn", time, '{"actual": 0.0,"target": 340.476666666667}')
     metrics_api_should_receive("current-year-people-trained", time, '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}')
+    metrics_api_should_receive("current-year-network-size", time, '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}')
     CompanyDashboard.perform
     Timecop.return
   end
