@@ -23,6 +23,8 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-burn", time, '{"actual": 0.0,"target": 340.476666666667}')
     metrics_api_should_receive("current-year-people-trained", time, '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}')
     metrics_api_should_receive("current-year-network-size", time, '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}')
+    metrics_api_should_receive("current-year-ebitda", time, '{"actual":275.5, "target":-82.7897922077922}')
+    metrics_api_should_receive("current-year-total-costs", time, '{"actual":0.0, "target":365.60200000000026}')
     CompanyDashboard.perform
     Timecop.return
   end
@@ -209,6 +211,24 @@ describe CompanyDashboard do
             target: 20
         }
     }
+  end
+
+  it "should load EBITDA information", :vcr do
+    Timecop.freeze(Date.new(2014,1,4))
+    CompanyDashboard.ebitda(2014, 1).should == {
+      actual: -44.5,
+      target: -69.9797922077923
+    }
+    Timecop.return
+  end
+
+  it "should load total cost information", :vcr do
+    Timecop.freeze(Date.new(2014,1,4))
+    CompanyDashboard.total_costs(2014, 1).should == {
+      actual: 320.0,
+      target: 334.238666666667
+    }
+    Timecop.return
   end
 
   after :each do

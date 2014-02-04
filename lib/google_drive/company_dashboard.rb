@@ -41,6 +41,9 @@ class CompanyDashboard
     store_metric("current-year-people-trained", DateTime.now, people_trained(current_year))
     # network
     store_metric("current-year-network-size", DateTime.now, network_size(current_year))
+    # cashflow
+    store_metric("current-year-ebitda", DateTime.now, ebitda(current_year, current_month))
+    store_metric("current-year-total-costs", DateTime.now, total_costs(current_year, current_month))
     # Done - clear cached sheet
     clear_cache!
   end
@@ -173,6 +176,22 @@ class CompanyDashboard
     {
         actual: metrics_cell("Burn actual", year)[index].to_f,
         target: metrics_cell("Burn target", year)[index].to_f,
+    }
+  end
+
+  def self.ebitda(year, month)
+    index = month - 1
+    {
+        actual: metrics_cell("EBITDA actual", year)[index].to_f,
+        target: metrics_cell("EBITDA target", year)[index].to_f,
+    }
+  end
+
+  def self.total_costs(year, month)
+    index = month - 1
+    {
+        actual: metrics_cell("Variable costs actual", year)[index].to_f + metrics_cell("Fixed costs actual", year)[index].to_f,
+        target: metrics_cell("Variable costs target", year)[index].to_f + metrics_cell("Fixed costs target", year)[index].to_f,
     }
   end
 
