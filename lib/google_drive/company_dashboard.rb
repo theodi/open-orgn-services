@@ -9,7 +9,7 @@ class CompanyDashboard
   extend MetricsHelper
 
   def self.perform
-    current_year = DateTime.now.year
+    current_year  = DateTime.now.year
     current_month = DateTime.now.month
     # reach
     store_metric("current-year-reach", DateTime.now, reach(current_year))
@@ -87,122 +87,135 @@ class CompanyDashboard
   def self.total_income(year)
     metrics_cell('Total income', year).to_i
   end
-  
+
   def self.bookings_by_type(type, year)
     {
-      actual: metrics_cell("#{type} Bookings Actual", year).to_f,
-      target: metrics_cell("#{type} Bookings Target", year).to_f
+        actual: metrics_cell("#{type} Bookings Actual", year).to_f,
+        target: metrics_cell("#{type} Bookings Target", year).to_f
     }
   end
-  
+
   def self.grant_funding(year)
     {
-      actual: metrics_cell("Grant Funding Actual", year).to_f,
-      target: metrics_cell("Grant Funding Target", year).to_f
+        actual: metrics_cell("Grant Funding Actual", year).to_f,
+        target: metrics_cell("Grant Funding Target", year).to_f
     }
   end
-  
+
   def self.income_by_type(year)
     {
-      research: metrics_cell("Research income", year).to_f,
-      training: metrics_cell("Training income", year).to_f,
-      projects: metrics_cell("Project income", year).to_f,
-      network:  metrics_cell("Network income", year).to_f
+        research: metrics_cell("Research income", year).to_f,
+        training: metrics_cell("Training income", year).to_f,
+        projects: metrics_cell("Project income", year).to_f,
+        network:  metrics_cell("Network income", year).to_f
     }
   end
-  
+
   def self.income_by_sector(year)
     {
-      research: {
-        commercial: {
-          actual: metrics_cell("Commercial research income actual", year).to_f,
-          target: metrics_cell("Commercial research income target", year).to_f
+        research: {
+            commercial:     {
+                actual: metrics_cell("Commercial research income actual", year).to_f,
+                target: metrics_cell("Commercial research income target", year).to_f
+            },
+            non_commercial: {
+                actual: metrics_cell("Non-commercial research income actual", year).to_f,
+                target: metrics_cell("Non-commercial research income target", year).to_f
+            }
         },
-        non_commercial: {
-          actual: metrics_cell("Non-commercial research income actual", year).to_f,
-          target: metrics_cell("Non-commercial research income target", year).to_f
-        }
-      },
-      training: {
-        commercial: {
-          actual: metrics_cell("Commercial training income actual", year).to_f,
-          target: metrics_cell("Commercial training income target", year).to_f
+        training: {
+            commercial:     {
+                actual: metrics_cell("Commercial training income actual", year).to_f,
+                target: metrics_cell("Commercial training income target", year).to_f
+            },
+            non_commercial: {
+                actual: metrics_cell("Non-commercial training income actual", year).to_f,
+                target: metrics_cell("Non-commercial training income target", year).to_f
+            }
         },
-        non_commercial: {
-          actual: metrics_cell("Non-commercial training income actual", year).to_f,
-          target: metrics_cell("Non-commercial training income target", year).to_f
-        }
-      },
-      projects: {
-        commercial: {
-          actual: metrics_cell("Commercial projects income actual", year).to_f,
-          target: metrics_cell("Commercial projects income target", year).to_f
+        projects: {
+            commercial:     {
+                actual: metrics_cell("Commercial projects income actual", year).to_f,
+                target: metrics_cell("Commercial projects income target", year).to_f
+            },
+            non_commercial: {
+                actual: metrics_cell("Non-commercial projects income actual", year).to_f,
+                target: metrics_cell("Non-commercial projects income target", year).to_f
+            }
         },
-        non_commercial: {
-          actual: metrics_cell("Non-commercial projects income actual", year).to_f,
-          target: metrics_cell("Non-commercial projects income target", year).to_f
+        network:  {
+            commercial:     {
+                actual: metrics_cell("Commercial network income actual", year).to_f,
+                target: metrics_cell("Commercial network income target", year).to_f
+            },
+            non_commercial: {
+                actual: metrics_cell("Non-commercial network income actual", year).to_f,
+                target: metrics_cell("Non-commercial network income target", year).to_f
+            }
         }
-      },
-      network: {
-        commercial: {
-          actual: metrics_cell("Commercial network income actual", year).to_f,
-          target: metrics_cell("Commercial network income target", year).to_f
-        },
-        non_commercial: {
-          actual: metrics_cell("Non-commercial network income actual", year).to_f,
-          target: metrics_cell("Non-commercial network income target", year).to_f
-        }
-      }
     }
   end
-  
+
   def self.headcount(year, month)
     index = month - 1
     {
-      actual: metrics_cell("Headcount actual", year)[index].to_f,
-      target: metrics_cell("Headcount target", year)[index].to_f,
+        actual: metrics_cell("Headcount actual", year)[index].to_f,
+        target: metrics_cell("Headcount target", year)[index].to_f,
     }
   end
-  
+
   def self.burn_rate(year, month)
     index = DateTime.now.month - 1
     {
-      actual: metrics_cell("Burn actual", year)[index].to_f,
-      target: metrics_cell("Burn target", year)[index].to_f,
+        actual: metrics_cell("Burn actual", year)[index].to_f,
+        target: metrics_cell("Burn target", year)[index].to_f,
     }
   end
-    
+
+  def self.people_trained(year)
+    {
+        commercial:     {
+            actual: metrics_cell("Commercial people trained actual", year).inject(0) { |sum, value| sum += value.to_i },
+            target: metrics_cell("Commercial people trained target", year).inject(0) { |sum, value| sum += value.to_i }
+        },
+        non_commercial: {
+            actual: metrics_cell("Non-commercial people trained actual", year).inject(0) { |sum, value| sum += value.to_i },
+            target: metrics_cell("Non-commercial people trained target", year).inject(0) { |sum, value| sum += value.to_i }
+        }
+    }
+  end
+
   private
 
-    def self.google_drive
-      GoogleDrive.login(ENV['GAPPS_USER_EMAIL'], ENV['GAPPS_PASSWORD'])
-    end
+  def self.google_drive
+    GoogleDrive.login(ENV['GAPPS_USER_EMAIL'], ENV['GAPPS_PASSWORD'])
+  end
 
-    def self.metrics_spreadsheet(doc_name)
-      key = @@lookups['document_keys'][ENV['RACK_ENV'] || 'production'][doc_name]
-      @@metrics_spreadsheets ||= {}
-      @@metrics_spreadsheets[key] ||= google_drive.spreadsheet_by_key(key)
-    end
+  def self.metrics_spreadsheet(doc_name)
+    key                         = @@lookups['document_keys'][ENV['RACK_ENV'] || 'production'][doc_name]
+    @@metrics_spreadsheets      ||= {}
+    @@metrics_spreadsheets[key] ||= google_drive.spreadsheet_by_key(key)
+  end
 
-    def self.metrics_worksheet doc_name, worksheet_name
-      metrics_spreadsheet(doc_name).worksheet_by_title worksheet_name.to_s
-    end
+  def self.metrics_worksheet doc_name, worksheet_name
+    metrics_spreadsheet(doc_name).worksheet_by_title worksheet_name.to_s
+  end
 
-    def self.cell_location year, identifier
-      @@lookups['cell_lookups'][year][identifier]
-    end
+  def self.cell_location year, identifier
+    @@lookups['cell_lookups'][year][identifier]
+  end
 
-    def self.metrics_cell identifier, year = nil
-      year = Date.today.year if year.nil?
-      location = cell_location(year, identifier)
-      metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]
-    end
+  def self.metrics_cell identifier, year = nil
+    year     = Date.today.year if year.nil?
+    location = cell_location(year, identifier)
+    metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]
+  end
 
-    def self.years
-      2013..Date.today.year
-    end
+  def self.years
+    2013..Date.today.year
+  end
 
-    def self.clear_cache!
-      @@metrics_spreadsheets = {}
-    end
+  def self.clear_cache!
+    @@metrics_spreadsheets = {}
+  end
 end
