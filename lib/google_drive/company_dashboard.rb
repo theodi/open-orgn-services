@@ -261,31 +261,26 @@ class CompanyDashboard
   end
 
   def self.network_size(year)
-    {
-        partners:   {
-            actual: metrics_cell("Partners actual", year).to_i,
-            target: metrics_cell("Partners target", year).to_i
-        },
-        sponsors:   {
-            actual: metrics_cell("Sponsors actual", year).to_i,
-            target: metrics_cell("Sponsors target", year).to_i
-        },
-        supporters: {
-            actual: metrics_cell("Supporters actual", year).to_i,
-            target: metrics_cell("Supporters target", year).to_i
-        },
-        startups:   {
-            actual: metrics_cell("Startups actual", year).to_i,
-            target: metrics_cell("Startups target", year).to_i
-        },
-        nodes:      {
-            actual: metrics_cell("Nodes actual", year).to_i,
-            target: metrics_cell("Nodes target", year).to_i
-        }
-    }
+    block = Proc.new { |x| x.to_i }
+    Hash[
+        {
+            partners:   'Partners',
+            sponsors:   'Sponsors',
+            supporters: 'Supporters',
+            startups:   'Startups',
+            nodes:      'Nodes'
+        }.map { |key, value| [key, metric_with_target(value, year, block)] }
+    ]
   end
 
   private
+
+  def self.metric_with_target name, year = nil, block
+    {
+        actual: block.call(metrics_cell("#{name} actual", year)),
+        target: block.call(metrics_cell("#{name} target", year))
+    }
+  end
 
   def self.google_drive
     GoogleDrive.login(ENV['GAPPS_USER_EMAIL'], ENV['GAPPS_PASSWORD'])
@@ -306,8 +301,8 @@ class CompanyDashboard
   end
 
   def self.metrics_cell identifier, year = nil
-    year     = Date.today.year if year.nil?
-    location = cell_location(year, identifier)
+    year                 = Date.today.year if year.nil?
+    location             = cell_location(year, identifier)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
     metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]
   end
