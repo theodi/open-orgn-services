@@ -172,19 +172,15 @@ class CompanyDashboard
   end
 
   def self.burn_rate(year, month)
-    index = DateTime.now.month - 1
-    {
-        actual: metrics_cell("Burn actual", year)[index].to_f,
-        target: metrics_cell("Burn target", year)[index].to_f,
-    }
+    index = month - 1
+    block = Proc.new { |x| x[index].to_f }
+    metric_with_target 'Burn', year, block
   end
 
   def self.ebitda(year, month)
     index = month - 1
-    {
-        actual: metrics_cell("EBITDA actual", year)[index].to_f,
-        target: metrics_cell("EBITDA target", year)[index].to_f,
-    }
+    block = Proc.new { |x| x[index].to_f }
+    metric_with_target 'EBITDA', year, block
   end
 
   def self.total_costs(year, month)
@@ -272,7 +268,7 @@ class CompanyDashboard
 
   private
 
-  def self.extract_metric h, year, block
+  def self.extract_metrics h, year, block
     Hash[h.map { |key, value| [key, metric_with_target(value, year, block)] }
     ]
   end
