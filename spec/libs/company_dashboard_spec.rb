@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe CompanyDashboard do
 
-  it "should store right values in metrics API", :vcr do
+  it "should store right values in metrics API" do
+    WebMock.allow_net_connect!
     Timecop.freeze(Date.new(2014, 2, 4))
     time = DateTime.now
     metrics_api_should_receive("current-year-reach", time, 775655)
@@ -18,7 +19,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
     metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
     metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
-    metrics_api_should_receive("current-year-income-by-sector", time, "{\"research\":{\"commercial\":{\"actual\":890.0,\"target\":1500.0},\"non_commercial\":{\"actual\":423.0,\"target\":750.0}},\"training\":{\"commercial\":{\"actual\":87.0,\"target\":128.12},\"non_commercial\":{\"actual\":121.0,\"target\":180.78}},\"projects\":{\"commercial\":{\"actual\":123.0,\"target\":450.0},\"non_commercial\":{\"actual\":212.0,\"target\":500.0}},\"network\":{\"commercial\":{\"actual\":78.0,\"target\":874.48},\"non_commercial\":{\"actual\":156.0,\"target\":45.2}}}")
+    metrics_api_should_receive("current-year-income-by-sector", time, '{"research":{"commercial":{"actual":890.0,"target":1500.0},"non_commercial":{"actual":423.0,"target":750.0}},"training":{"commercial":{"actual":87.0,"target":128.12},"non_commercial":{"actual":121.0,"target":180.78}},"projects":{"commercial":{"actual":123.0,"target":450.0},"non_commercial":{"actual":212.0,"target":500.0}},"network":{"commercial":{"actual":78.0,"target":874.48},"non_commercial":{"actual":156.0,"target":45.2}}}')
     metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 26.0}')
     metrics_api_should_receive("current-year-burn", time, '{"actual": 0.0,"target": 340.476666666667}')
     metrics_api_should_receive("current-year-people-trained", time, '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}')
@@ -27,6 +28,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-total-costs", time, '{"actual":0.0,"target":365.60200000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8.92},"projects":{"actual":0.0,"target":10.8166666666667},"network":{"actual":0.0,"target":5.38866666666667}},"fixed":{"staff":{"actual":0.0,"target":147.0},"associates":{"actual":0.0,"target":57.0},"office_and_operational":{"actual":0.0,"target":41.1666666666667},"delivery":{"actual":0.0,"target":43.9933333333333},"communications":{"actual":0.0,"target":26.25},"professional_fees":{"actual":0.0,"target":16.6666666666667},"software":{"actual":0.0,"target":8.4}}}}')
     CompanyDashboard.perform
     Timecop.return
+    WebMock.disable_net_connect!
   end
 
   it "should show the correct reach", :vcr do
@@ -58,7 +60,7 @@ describe CompanyDashboard do
   it "should show the correct unlocked value", :vcr do
     CompanyDashboard.value(2013).should == 16924307
     CompanyDashboard.value(2014).should == 775655
-    CompanyDashboard.value.should == 16924307
+    CompanyDashboard.value.should == 17699962
   end
 
   it "should show the correct kpi percentage", :vcr do
@@ -100,7 +102,7 @@ describe CompanyDashboard do
   end
 
   it "should show total income", :vcr do
-    CompanyDashboard.total_income(2014).should == 666
+    CompanyDashboard.total_income(2014).should == 6041
   end
 
   it "should show income by type", :vcr do

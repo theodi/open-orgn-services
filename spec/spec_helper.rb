@@ -22,9 +22,10 @@ VCR.configure do |c|
     c.filter_sensitive_data("<#{key}>") { ENV[key] }
   end
   c.cassette_library_dir     = 'spec/cassettes'
-  c.default_cassette_options = { :record => :new_episodes }
+  c.default_cassette_options = { :record => :once }
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  c.allow_http_connections_when_no_cassette = true
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
@@ -44,7 +45,9 @@ def metrics_api_should_receive(metric, time, value)
   json = JSON.parse("{\"name\":\"#{metric}\",\"time\":\"#{time.xmlschema}\",\"value\":#{value}}").to_json
   auth = { :username => ENV['METRICS_API_USERNAME'], :password => ENV['METRICS_API_PASSWORD'] }
   HTTParty.should_receive(:post).
-      with("#{ENV['METRICS_API_BASE_URL']}metrics/#{metric}", :body => json, :headers => { 'Content-Type' => 'application/json' },
-           :basic_auth                                              => auth).
+      with("#{ENV['METRICS_API_BASE_URL']}metrics/#{metric}",
+           :body       => json,
+           :headers    => { 'Content-Type' => 'application/json' },
+           :basic_auth => auth).
       once
 end
