@@ -24,7 +24,7 @@ describe CompanyDashboard do
     metrics_api_should_receive("current-year-people-trained", time, '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}')
     metrics_api_should_receive("current-year-network-size", time, '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}')
     metrics_api_should_receive("current-year-ebitda", time, '{"actual":275.5, "target":-82.7897922077922}')
-    metrics_api_should_receive("current-year-total-costs", time, '{"actual":0.0, "target":365.60200000000026}')
+    metrics_api_should_receive("current-year-total-costs", time, '{"actual":0.0,"target":365.60200000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8.92},"projects":{"actual":0.0,"target":10.8166666666667},"network":{"actual":0.0,"target":5.38866666666667}},"fixed":{"staff":{"actual":0.0,"target":147.0},"associates":{"actual":0.0,"target":57.0},"office_and_operational":{"actual":0.0,"target":41.1666666666667},"delivery":{"actual":0.0,"target":43.9933333333333},"communications":{"actual":0.0,"target":26.25},"professional_fees":{"actual":0.0,"target":16.6666666666667},"software":{"actual":0.0,"target":8.4}}}}')
     CompanyDashboard.perform
     Timecop.return
   end
