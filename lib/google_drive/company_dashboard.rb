@@ -116,28 +116,20 @@ class CompanyDashboard
 
   def self.income_by_sector(year)
     block = Proc.new { |x| x.to_f }
-    {
-        research: extract_metric(
-                      {
-            commercial:'Commercial research income',
-            non_commercial: 'Non-commercial research income'
-        }, year, block),
-        training: extract_metric(
-                      {
-            commercial: 'Commercial training income',
-            non_commercial: 'Non-commercial training income'
-        }, year, block),
-        projects: extract_metric(
-                      {
-            commercial: 'Commercial projects income',
-            non_commercial: 'Non-commercial projects income'
-        }, year, block),
-        network: extract_metric(
-                      {
-            commercial: 'Commercial network income',
-            non_commercial: 'Non-commercial network income'
-        }, year, block)
-    }
+    Hash[
+        [
+        :research,
+        :training,
+        :projects,
+        :network
+    ].map do |item|
+      [item, extract_metric(
+          {
+              commercial:"Commercial #{item.to_s} income",
+              non_commercial: "Non-commercial #{item.to_s} income"
+          }, year, block)]
+        end
+    ]
   end
 
   def self.headcount(year, month)
