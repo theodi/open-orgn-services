@@ -96,17 +96,13 @@ class CompanyDashboard
   end
 
   def self.bookings_by_type(type, year)
-    {
-        actual: metrics_cell("#{type} Bookings Actual", year).to_f,
-        target: metrics_cell("#{type} Bookings Target", year).to_f
-    }
+    block = Proc.new { |x| x.to_f }
+    metric_with_target "#{type} Bookings", year, block
   end
 
   def self.grant_funding(year)
-    {
-        actual: metrics_cell("Grant Funding Actual", year).to_f,
-        target: metrics_cell("Grant Funding Target", year).to_f
-    }
+    block = Proc.new { |x| x.to_f }
+    metric_with_target 'Grant Funding', year, block
   end
 
   def self.income_by_type(year)
@@ -165,10 +161,8 @@ class CompanyDashboard
 
   def self.headcount(year, month)
     index = month - 1
-    {
-        actual: metrics_cell("Headcount actual", year)[index].to_f,
-        target: metrics_cell("Headcount target", year)[index].to_f,
-    }
+    block = Proc.new { |x| x[index].to_f }
+    metric_with_target 'Headcount', year, block
   end
 
   def self.burn_rate(year, month)
@@ -268,7 +262,7 @@ class CompanyDashboard
 
   private
 
-  def self.extract_metrics h, year, block
+  def self.extract_metric h, year, block
     Hash[h.map { |key, value| [key, metric_with_target(value, year, block)] }
     ]
   end
