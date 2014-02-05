@@ -292,7 +292,7 @@ class CompanyDashboard
   end
 
   def self.metrics_spreadsheet(doc_name)
-    key                         = @@lookups['document_keys'][ENV['RACK_ENV'] || 'production'][doc_name]
+    key                         = @@lookups['document_keys'][environment][doc_name]
     @@metrics_spreadsheets      ||= {}
     @@metrics_spreadsheets[key] ||= google_drive.spreadsheet_by_key(key)
   end
@@ -308,7 +308,7 @@ class CompanyDashboard
   def self.metrics_cell identifier, year = nil
     year     = Date.today.year if year.nil?
     location = cell_location(year, identifier)
-    location['document'] ||= @@lookups['document_keys'][ENV['RACK_ENV'] || 'production']['default']
+    location['document'] ||= @@lookups['document_keys'][environment]['default']
     metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]
   end
 

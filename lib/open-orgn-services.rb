@@ -71,3 +71,7 @@ require 'capsulecrm/membership_renewals'
 require 'capsulecrm/pipeline_metrics'
 
 require 'google_drive/company_dashboard'
+
+def environment
+  ENV['RACK_ENV'] || 'production'
+end
