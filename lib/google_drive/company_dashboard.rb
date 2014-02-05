@@ -77,10 +77,10 @@ class CompanyDashboard
     h[:total] = metrics_cell('Network size').to_i
 
     breakdown              = {}
-    breakdown[:members]    = metrics_cell('Members').to_i
-    breakdown[:nodes]      = metrics_cell('Nodes').to_i
-    breakdown[:startups]   = metrics_cell('Startups').to_i
-    breakdown[:affiliates] = metrics_cell('Affiliates').to_i
+    breakdown[:members]    = metrics_cell('Members headline').to_i
+    breakdown[:nodes]      = metrics_cell('Nodes headline').to_i
+    breakdown[:startups]   = metrics_cell('Startups headline').to_i
+    breakdown[:affiliates] = metrics_cell('Affiliates headline').to_i
 
     h[:breakdown] = breakdown
 
