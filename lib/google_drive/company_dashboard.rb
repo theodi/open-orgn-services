@@ -308,6 +308,7 @@ class CompanyDashboard
   def self.metrics_cell identifier, year = nil
     year     = Date.today.year if year.nil?
     location = cell_location(year, identifier)
+    location['document'] ||= @@lookups['document_keys'][ENV['RACK_ENV'] || 'production']['default']
     metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]
   end
 
