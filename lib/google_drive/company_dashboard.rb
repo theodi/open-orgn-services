@@ -210,9 +210,11 @@ class CompanyDashboard
   end
 
   def self.metric_with_target name, year = nil, block
+    location             = cell_location(year, name)
+    location['document'] ||= @@lookups['document_keys'][environment]['default']
     {
-        actual: block.call(metrics_cell("#{name} actual", year)),
-        target: block.call(metrics_cell("#{name} target", year))
+        actual: block.call(metrics_worksheet(location['document'], location['sheet'])[location['actual']]),
+        target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['target']])
     }
   end
 
