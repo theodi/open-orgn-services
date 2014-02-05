@@ -248,32 +248,34 @@ class CompanyDashboard
   end
 
   def self.people_trained(year)
-    {
-        commercial:     {
-            actual: metrics_cell("Commercial people trained actual", year).inject(0) { |sum, value| sum += value.to_i },
-            target: metrics_cell("Commercial people trained target", year).inject(0) { |sum, value| sum += value.to_i }
-        },
-        non_commercial: {
-            actual: metrics_cell("Non-commercial people trained actual", year).inject(0) { |sum, value| sum += value.to_i },
-            target: metrics_cell("Non-commercial people trained target", year).inject(0) { |sum, value| sum += value.to_i }
-        }
+    block = Proc.new { |x| x.inject(0) { |sum, value| sum += value.to_i } }
+    h     = {
+        commercial:     'Commercial people trained',
+        non_commercial: 'Non-commercial people trained'
     }
+
+    extract_metric h, year, block
   end
 
   def self.network_size(year)
     block = Proc.new { |x| x.to_i }
-    Hash[
-        {
-            partners:   'Partners',
-            sponsors:   'Sponsors',
-            supporters: 'Supporters',
-            startups:   'Startups',
-            nodes:      'Nodes'
-        }.map { |key, value| [key, metric_with_target(value, year, block)] }
-    ]
+    h     = {
+        partners:   'Partners',
+        sponsors:   'Sponsors',
+        supporters: 'Supporters',
+        startups:   'Startups',
+        nodes:      'Nodes'
+    }
+
+    extract_metric h, year, block
   end
 
   private
+
+  def self.extract_metric h, year, block
+    Hash[h.map { |key, value| [key, metric_with_target(value, year, block)] }
+    ]
+  end
 
   def self.metric_with_target name, year = nil, block
     {
