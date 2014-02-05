@@ -230,50 +230,50 @@ describe CompanyDashboard do
         breakdown: {
             variable: {
                 research: {
-                    actual: 0,
-                    target: 0
+                    actual: 0.0,
+                    target: 0.0
                 },
                 training: {
-                    actual: 0,
+                    actual: 0.0,
                     target: 3.856
                 },
                 projects: {
-                    actual: 0,
-                    target: 11
+                    actual: 0.0,
+                    target: 10.8166666666667
                 },
                 network:  {
-                    actual: 0,
-                    target: 5
+                    actual: 0.0,
+                    target: 4.79933333333333
                 }
             },
             fixed:    {
                 staff:                  {
-                    actual: 5432,
-                    target: 130
+                    actual: 5432.0,
+                    target: 130.0
                 },
                 associates:             {
-                    actual: 54,
-                    target: 55
+                    actual: 54.0,
+                    target: 55.0
                 },
                 office_and_operational: {
-                    actual: 4321,
-                    target: 41
+                    actual: 4321.0,
+                    target: 41.1666666666667
                 },
                 delivery:               {
-                    actual: 54,
-                    target: 38
+                    actual: 54.0,
+                    target: 37.8833333333333
                 },
                 communications:         {
-                    actual: 6543,
-                    target: 26
+                    actual: 6543.0,
+                    target: 26.25
                 },
                 professional_fees:      {
-                    actual: 765,
-                    target: 17
+                    actual: 765.0,
+                    target: 16.6666666666667
                 },
                 software:               {
-                    actual: 4324,
-                    target: 8
+                    actual: 4324.0,
+                    target: 7.8
                 }
             }
         }

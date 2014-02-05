@@ -204,42 +204,42 @@ class CompanyDashboard
                     target: metrics_cell("Training costs target", year)[index].to_f
                 },
                 projects: {
-                    actual: 0,
-                    target: 398
+                    actual: metrics_cell("Projects costs actual", year)[index].to_f,
+                    target: metrics_cell("Projects costs target", year)[index].to_f
                 },
                 network:  {
-                    actual: 0,
-                    target: 101
+                    actual: metrics_cell("Network costs actual", year)[index].to_f,
+                    target: metrics_cell("Network costs target", year)[index].to_f
                 }
             },
             fixed:    {
                 staff:                  {
-                    actual: 5432,
-                    target: 2113
+                    actual: metrics_cell("Staff costs actual", year)[index].to_f,
+                    target: metrics_cell("Staff costs target", year)[index].to_f
                 },
                 associates:             {
-                    actual: 54,
-                    target: 858
+                    actual: metrics_cell("Associate costs actual", year)[index].to_f,
+                    target: metrics_cell("Associate costs target", year)[index].to_f
                 },
                 office_and_operational: {
-                    actual: 4321,
-                    target: 494
+                    actual: metrics_cell("Office and operational costs actual", year)[index].to_f,
+                    target: metrics_cell("Office and operational costs target", year)[index].to_f
                 },
                 delivery:               {
-                    actual: 54,
-                    target: 778
+                    actual: metrics_cell("Delivery costs actual", year)[index].to_f,
+                    target: metrics_cell("Delivery costs target", year)[index].to_f
                 },
                 communications:         {
-                    actual: 6543,
-                    target: 315
+                    actual: metrics_cell("Communications costs actual", year)[index].to_f,
+                    target: metrics_cell("Communications costs target", year)[index].to_f
                 },
                 professional_fees:      {
-                    actual: 765,
-                    target: 200
+                    actual: metrics_cell("Professional fees costs actual", year)[index].to_f,
+                    target: metrics_cell("Professional fees costs target", year)[index].to_f
                 },
                 software:               {
-                    actual: 4324,
-                    target: 111
+                    actual: metrics_cell("Software costs actual", year)[index].to_f,
+                    target: metrics_cell("Software costs target", year)[index].to_f
                 }
             }
         }
