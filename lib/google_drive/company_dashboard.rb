@@ -179,62 +179,31 @@ class CompanyDashboard
 
   def self.total_costs(year, month)
     index = month - 1
+    block = Proc.new { |x| x[index].to_f }
     {
         actual:    metrics_cell("Variable costs actual", year)[index].to_f + metrics_cell("Fixed costs actual", year)[index].to_f,
         target:    metrics_cell("Variable costs target", year)[index].to_f + metrics_cell("Fixed costs target", year)[index].to_f,
 
         breakdown: {
-            variable: {
-                research: {
-                    actual: metrics_cell("Research costs actual", year)[index].to_f,
-                    target: metrics_cell("Research costs target", year)[index].to_f
-                },
-                training: {
-                    actual: metrics_cell("Training costs actual", year)[index].to_f,
-                    target: metrics_cell("Training costs target", year)[index].to_f
-                },
-                projects: {
-                    actual: metrics_cell("Projects costs actual", year)[index].to_f,
-                    target: metrics_cell("Projects costs target", year)[index].to_f
-                },
-                network:  {
-                    actual: metrics_cell("Network costs actual", year)[index].to_f,
-                    target: metrics_cell("Network costs target", year)[index].to_f
-                }
-            },
-            fixed:    {
-                staff:                  {
-                    actual: metrics_cell("Staff costs actual", year)[index].to_f,
-                    target: metrics_cell("Staff costs target", year)[index].to_f
-                },
-                associates:             {
-                    actual: metrics_cell("Associate costs actual", year)[index].to_f,
-                    target: metrics_cell("Associate costs target", year)[index].to_f
-                },
-                office_and_operational: {
-                    actual: metrics_cell("Office and operational costs actual", year)[index].to_f,
-                    target: metrics_cell("Office and operational costs target", year)[index].to_f
-                },
-                delivery:               {
-                    actual: metrics_cell("Delivery costs actual", year)[index].to_f,
-                    target: metrics_cell("Delivery costs target", year)[index].to_f
-                },
-                communications:         {
-                    actual: metrics_cell("Communications costs actual", year)[index].to_f,
-                    target: metrics_cell("Communications costs target", year)[index].to_f
-                },
-                professional_fees:      {
-                    actual: metrics_cell("Professional fees costs actual", year)[index].to_f,
-                    target: metrics_cell("Professional fees costs target", year)[index].to_f
-                },
-                software:               {
-                    actual: metrics_cell("Software costs actual", year)[index].to_f,
-                    target: metrics_cell("Software costs target", year)[index].to_f
-                }
-            }
+            variable: extract_metric(
+                          {
+                              research: 'Research costs',
+                              training: 'Training costs',
+                              projects: 'Projects costs',
+                              network:  'Network costs'
+                          }, year, block),
+            fixed:    extract_metric(
+                          {
+                              staff:                  'Staff costs',
+                              associates:             'Associate costs',
+                              office_and_operational: 'Office and operational costs',
+                              delivery:               'Delivery costs',
+                              communications:         'Communications costs',
+                              professional_fees:      'Professional fees costs',
+                              software:               'Software costs'
+                          }, year, block)
         }
     }
-
   end
 
   def self.people_trained(year)
