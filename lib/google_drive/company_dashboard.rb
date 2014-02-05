@@ -190,9 +190,61 @@ class CompanyDashboard
   def self.total_costs(year, month)
     index = month - 1
     {
-        actual: metrics_cell("Variable costs actual", year)[index].to_f + metrics_cell("Fixed costs actual", year)[index].to_f,
-        target: metrics_cell("Variable costs target", year)[index].to_f + metrics_cell("Fixed costs target", year)[index].to_f,
+        actual:    metrics_cell("Variable costs actual", year)[index].to_f + metrics_cell("Fixed costs actual", year)[index].to_f,
+        target:    metrics_cell("Variable costs target", year)[index].to_f + metrics_cell("Fixed costs target", year)[index].to_f,
+
+        breakdown: {
+            variable: {
+                research: {
+                    actual: metrics_cell("Research costs actual", year)[index].to_f,
+                    target: metrics_cell("Research costs target", year)[index].to_f
+                },
+                training: {
+                    actual: metrics_cell("Training costs actual", year)[index].to_f,
+                    target: metrics_cell("Training costs target", year)[index].to_f
+                },
+                projects: {
+                    actual: 0,
+                    target: 398
+                },
+                network:  {
+                    actual: 0,
+                    target: 101
+                }
+            },
+            fixed:    {
+                staff:                  {
+                    actual: 5432,
+                    target: 2113
+                },
+                associates:             {
+                    actual: 54,
+                    target: 858
+                },
+                office_and_operational: {
+                    actual: 4321,
+                    target: 494
+                },
+                delivery:               {
+                    actual: 54,
+                    target: 778
+                },
+                communications:         {
+                    actual: 6543,
+                    target: 315
+                },
+                professional_fees:      {
+                    actual: 765,
+                    target: 200
+                },
+                software:               {
+                    actual: 4324,
+                    target: 111
+                }
+            }
+        }
     }
+
   end
 
   def self.people_trained(year)

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CompanyDashboard do
 
   it "should store right values in metrics API", :vcr do
-    Timecop.freeze(Date.new(2014,2,4))
+    Timecop.freeze(Date.new(2014, 2, 4))
     time = DateTime.now
     metrics_api_should_receive("current-year-reach", time, 775655)
     metrics_api_should_receive("cumulative-reach", time, 1079051)
@@ -158,7 +158,7 @@ describe CompanyDashboard do
   end
 
   it "should show headcount", :vcr do
-    Timecop.freeze(Date.new(2014,2,4))
+    Timecop.freeze(Date.new(2014, 2, 4))
     CompanyDashboard.headcount(2014, 2).should == {
         actual: 22.0,
         target: 26.0
@@ -167,7 +167,7 @@ describe CompanyDashboard do
   end
 
   it "should show burn", :vcr do
-    Timecop.freeze(Date.new(2014,1,4))
+    Timecop.freeze(Date.new(2014, 1, 4))
     CompanyDashboard.burn_rate(2014, 1).should == {
         actual: 320.0,
         target: 314.766666666667
@@ -214,19 +214,69 @@ describe CompanyDashboard do
   end
 
   it "should load EBITDA information", :vcr do
-    Timecop.freeze(Date.new(2014,1,4))
+    Timecop.freeze(Date.new(2014, 1, 4))
     CompanyDashboard.ebitda(2014, 1).should == {
-      actual: -44.5,
-      target: -69.9797922077923
+        actual: -44.5,
+        target: -69.9797922077923
     }
     Timecop.return
   end
 
   it "should load total cost information", :vcr do
-    Timecop.freeze(Date.new(2014,1,4))
+    Timecop.freeze(Date.new(2014, 1, 4))
     CompanyDashboard.total_costs(2014, 1).should == {
-      actual: 320.0,
-      target: 334.238666666667
+        actual:    320.0,
+        target:    334.238666666667,
+        breakdown: {
+            variable: {
+                research: {
+                    actual: 0,
+                    target: 0
+                },
+                training: {
+                    actual: 0,
+                    target: 3.856
+                },
+                projects: {
+                    actual: 0,
+                    target: 11
+                },
+                network:  {
+                    actual: 0,
+                    target: 5
+                }
+            },
+            fixed:    {
+                staff:                  {
+                    actual: 5432,
+                    target: 130
+                },
+                associates:             {
+                    actual: 54,
+                    target: 55
+                },
+                office_and_operational: {
+                    actual: 4321,
+                    target: 41
+                },
+                delivery:               {
+                    actual: 54,
+                    target: 38
+                },
+                communications:         {
+                    actual: 6543,
+                    target: 26
+                },
+                professional_fees:      {
+                    actual: 765,
+                    target: 17
+                },
+                software:               {
+                    actual: 4324,
+                    target: 8
+                }
+            }
+        }
     }
     Timecop.return
   end
