@@ -125,7 +125,7 @@ class CompanyDashboard
     ].map do |item|
       [item, extract_metric(
           {
-              commercial:"Commercial #{item.to_s} income",
+              commercial: "Commercial #{item.to_s} income",
               non_commercial: "Non-commercial #{item.to_s} income"
           }, year, block)]
         end
