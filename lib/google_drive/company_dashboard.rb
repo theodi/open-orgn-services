@@ -115,47 +115,28 @@ class CompanyDashboard
   end
 
   def self.income_by_sector(year)
+    block = Proc.new { |x| x.to_f }
     {
-        research: {
-            commercial:     {
-                actual: metrics_cell("Commercial research income actual", year).to_f,
-                target: metrics_cell("Commercial research income target", year).to_f
-            },
-            non_commercial: {
-                actual: metrics_cell("Non-commercial research income actual", year).to_f,
-                target: metrics_cell("Non-commercial research income target", year).to_f
-            }
-        },
-        training: {
-            commercial:     {
-                actual: metrics_cell("Commercial training income actual", year).to_f,
-                target: metrics_cell("Commercial training income target", year).to_f
-            },
-            non_commercial: {
-                actual: metrics_cell("Non-commercial training income actual", year).to_f,
-                target: metrics_cell("Non-commercial training income target", year).to_f
-            }
-        },
-        projects: {
-            commercial:     {
-                actual: metrics_cell("Commercial projects income actual", year).to_f,
-                target: metrics_cell("Commercial projects income target", year).to_f
-            },
-            non_commercial: {
-                actual: metrics_cell("Non-commercial projects income actual", year).to_f,
-                target: metrics_cell("Non-commercial projects income target", year).to_f
-            }
-        },
-        network:  {
-            commercial:     {
-                actual: metrics_cell("Commercial network income actual", year).to_f,
-                target: metrics_cell("Commercial network income target", year).to_f
-            },
-            non_commercial: {
-                actual: metrics_cell("Non-commercial network income actual", year).to_f,
-                target: metrics_cell("Non-commercial network income target", year).to_f
-            }
-        }
+        research: extract_metric(
+                      {
+            commercial:'Commercial research income',
+            non_commercial: 'Non-commercial research income'
+        }, year, block),
+        training: extract_metric(
+                      {
+            commercial: 'Commercial training income',
+            non_commercial: 'Non-commercial training income'
+        }, year, block),
+        projects: extract_metric(
+                      {
+            commercial: 'Commercial projects income',
+            non_commercial: 'Non-commercial projects income'
+        }, year, block),
+        network: extract_metric(
+                      {
+            commercial: 'Commercial network income',
+            non_commercial: 'Non-commercial network income'
+        }, year, block)
     }
   end
 
