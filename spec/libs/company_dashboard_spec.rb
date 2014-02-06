@@ -16,6 +16,7 @@ describe CompanyDashboard do
       "cumulative-bookings"                  => 2191064,
       "current-year-value-unlocked"          => 775655,
       "cumulative-value-unlocked"            => 17699962,
+      "current-year-income"                  => '{"actual":255270.833333333,"annual_target":2935183.33333333,"ytd_target":173153.3333333333}',
       "current-year-pr-pieces"               => 0,
       "current-year-kpi-performance"         => 1.0,
       "current-year-grant-funding"           => '{"actual":330000.0,"annual_target":3354617.6046176003,"ytd_target":373917.748917748}',
@@ -94,8 +95,12 @@ describe CompanyDashboard do
     }
   end
 
-  it "should show total income", :vcr do
-    CompanyDashboard.total_income(2014).should == 6041000.0
+  it "should show income", :vcr do
+    CompanyDashboard.income(2014, 2).should == {
+      actual:        255270.833333333,
+      annual_target: 2935183.33333333,
+      ytd_target:    173153.3333333333,
+    }
   end
 
   it "should show the correct bookings by sector", :vcr do

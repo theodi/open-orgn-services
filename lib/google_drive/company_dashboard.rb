@@ -81,8 +81,8 @@ class CompanyDashboard
     metrics_cell('KPI percentage', year, Proc.new {|x| x.to_f}).round(1)
   end
 
-  def self.total_income(year)
-    metrics_cell('Total income', year).to_i
+  def self.income(year, month)
+    metric_with_target('Income', year, month, Proc.new {|x| x.to_f})
   end
 
   def self.grant_funding(year, month)
