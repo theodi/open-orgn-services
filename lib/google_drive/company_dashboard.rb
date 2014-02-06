@@ -14,8 +14,6 @@ class CompanyDashboard
     {
       "current-year-reach"                   => reach(current_year),
       "cumulative-reach"                     => reach(nil),
-      "current-year-active-reach"            => reach(current_year, "Active"),
-      "current-year-passive-reach"           => reach(current_year, "Passive"),
       "current-year-bookings"                => bookings(current_year),
       "cumulative-bookings"                  => bookings(nil),
       "current-year-value-unlocked"          => value(current_year),
@@ -35,11 +33,25 @@ class CompanyDashboard
     clear_cache!
   end
 
-  def self.reach(year = nil, type = nil)
+  def self.reach(year = nil)
     if year.nil?
-      years.inject(0) { |total, year| total += reach(year, type) }
+      years.map{|year| reach(year)}.inject do |memo, reach|
+        memo = {
+          total: memo[:total] + reach[:total],
+          breakdown: {
+            active:  memo[:breakdown][:active] + reach[:breakdown][:active],
+            passive: memo[:breakdown][:passive] + reach[:breakdown][:passive],
+          }
+        }
+      end
     else
-      metrics_cell("#{type} Reach".strip, year).to_i
+      {
+        total:   metrics_cell("Total Reach", year, Proc.new {|x| x.to_i}),
+        breakdown: {
+          active:  metrics_cell("Active Reach", year, Proc.new {|x| x.to_i}),
+          passive: metrics_cell("Passive Reach", year, Proc.new {|x| x.to_i}),
+        }
+      }
     end
   end
 

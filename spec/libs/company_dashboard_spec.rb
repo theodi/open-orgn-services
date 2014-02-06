@@ -10,14 +10,13 @@ describe CompanyDashboard do
     WebMock.allow_net_connect!
     time = DateTime.now
     {
-      "current-year-reach"                   => 775655,
-      "cumulative-reach"                     => 1079051,
-      "current-year-active-reach"            => 432423,
-      "current-year-passive-reach"           => 343232,
+      "current-year-reach"                   => '{"total":775655,"breakdown":{"active":432423,"passive":343232}}',
+      "cumulative-reach"                     => '{"total":1079051,"breakdown":{"active":442949,"passive":636102}}',
       "current-year-bookings"                => 0,
       "cumulative-bookings"                  => 2191064,
       "current-year-value-unlocked"          => 775655,
       "cumulative-value-unlocked"            => 17699962,
+
       "current-year-kpi-performance"         => 1.0,
       "current-year-grant-funding"           => '{"actual":330000.0,"annual_target":3354617.6046176003,"ytd_target":373917.748917748}',
       "current-year-bookings-by-sector"      => '{"research":{"commercial":{"actual":26000.0,"annual_target":1500000.0,"ytd_target":0.0},"non_commercial":{"actual":77000.0,"annual_target":750000.0,"ytd_target":0.0}},"training":{"commercial":{"actual":75000.0,"annual_target":128120.0,"ytd_target":17360.0},"non_commercial":{"actual":25000.0,"annual_target":180780.0,"ytd_target":14580.0}},"projects":{"commercial":{"actual":1175000.0,"annual_target":450000.0,"ytd_target":0.0},"non_commercial":{"actual":1039000.0,"annual_target":500000.0,"ytd_target":50000.0}},"network":{"commercial":{"actual":245250.0,"annual_target":874480.0,"ytd_target":141440.0},"non_commercial":{"actual":39000.0,"annual_target":45200.0,"ytd_target":25200.0}}}',
@@ -36,24 +35,34 @@ describe CompanyDashboard do
     WebMock.disable_net_connect!
   end
 
-  it "should show the correct reach", :vcr do
-    CompanyDashboard.reach.should == 1079051
+  it "should show the correct cumulative reach", :vcr do
+    CompanyDashboard.reach.should == {
+      :total   => 1079051,
+      :breakdown => {
+        :active  => 442949,
+        :passive => 636102,
+      }
+    }
   end
 
   it "should show the correct reach for 2013", :vcr do
-    CompanyDashboard.reach(2013).should == 303396
+    CompanyDashboard.reach(2013).should == {
+      :total   => 303396,
+      :breakdown => {
+        :active  => 10526,
+        :passive => 292870,
+      }
+    }
   end
 
   it "should show the correct reach for 2014", :vcr do
-    CompanyDashboard.reach(2014).should == 775655
-  end
-
-  it "should show the correct active reach", :vcr do
-    CompanyDashboard.reach(2014, "Active").should == 432423
-  end
-
-  it "should show the correct passive reach", :vcr do
-    CompanyDashboard.reach(2014, "Passive").should == 343232
+    CompanyDashboard.reach(2014).should == {
+      :total   => 775655,
+      :breakdown => {
+        :active  => 432423,
+        :passive => 343232,
+      }
+    }
   end
 
   it "should show the correct bookings value", :vcr do
