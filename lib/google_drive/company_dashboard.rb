@@ -202,9 +202,10 @@ class CompanyDashboard
   def self.metric_with_target name, year = nil, block
     location             = cell_location(year, name)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
+    multiplier = location['multiplier'] || @@lookups['default_multiplier']
     {
-        actual: block.call(metrics_worksheet(location['document'], location['sheet'])[location['actual']]),
-        target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['target']])
+        actual: block.call(metrics_worksheet(location['document'], location['sheet'])[location['actual']]) * multiplier,
+        target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['target']]) * multiplier
     }
   end
 
@@ -230,7 +231,8 @@ class CompanyDashboard
     year                 = Date.today.year if year.nil?
     location             = cell_location(year, identifier)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
-    metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]
+    multiplier = location['multiplier'] || @@lookups['default_multiplier']
+    metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]].to_f * multiplier
   end
 
   def self.years
