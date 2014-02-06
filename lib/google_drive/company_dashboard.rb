@@ -75,7 +75,7 @@ class CompanyDashboard
   end
 
   def self.kpis(year)
-    metrics_cell('KPI percentage', year).to_f.round(1)
+    metrics_cell('KPI percentage', year, Proc.new {|x| x.to_f}).round(1)
   end
 
   def self.total_income(year)
