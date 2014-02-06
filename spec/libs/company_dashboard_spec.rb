@@ -18,7 +18,7 @@ describe CompanyDashboard do
       "current-year-commercial-bookings"     => '{"actual": 78000.0,"target": 874480.0}',
       "current-year-non-commercial-bookings" => '{"actual": 156000.0,"target": 45200.0}',
       "current-year-kpi-performance"         => 1.0,
-      "current-year-grant-funding"           => '{"actual": 3040000.0,"target": 3354617.6046176}',
+      "current-year-grant-funding"           => '{"actual": 3040000.0,"target": 3354617.6046176003}',
       "current-year-income-by-type"          => '{"research": 900000.0,"training": 289000.0,"projects": 900000.0,"network": 912000.0}',
       "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":890000.0,"target":1500000.0},"non_commercial":{"actual":423000.0,"target":750000.0}},"training":{"commercial":{"actual":87000.0,"target":128120.0},"non_commercial":{"actual":121000.0,"target":180780.0}},"projects":{"commercial":{"actual":123000.0,"target":450000.0},"non_commercial":{"actual":212000.0,"target":500000.0}},"network":{"commercial":{"actual":78000.0,"target":874480.0},"non_commercial":{"actual":156000.0,"target":45200.0}}}',
       "current-year-headcount"               => '{"actual": 22.0,"target": 26.0}',
@@ -26,7 +26,7 @@ describe CompanyDashboard do
       "current-year-people-trained"          => '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}',
       "current-year-network-size"            => '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}',
       "current-year-ebitda"                  => '{"actual":275500.0, "target":-82789.7922077922}',
-      "current-year-total-costs"             => '{"actual":0.0,"target":365602.00000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8920.0},"projects":{"actual":0.0,"target":10816.6666666667},"network":{"actual":0.0,"target":5388.66666666667}},"fixed":{"staff":{"actual":0.0,"target":147000.0},"associates":{"actual":0.0,"target":57000.0},"office_and_operational":{"actual":0.0,"target":41166.6666666667},"delivery":{"actual":0.0,"target":43993.3333333333},"communications":{"actual":0.0,"target":26250.0},"professional_fees":{"actual":0.0,"target":16666.6666666667},"software":{"actual":0.0,"target":8400.0}}}}',
+      "current-year-total-costs"             => '{"actual":0.0,"target":365602.0000000003,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8920.0},"projects":{"actual":0.0,"target":10816.6666666667},"network":{"actual":0.0,"target":5388.66666666667}},"fixed":{"staff":{"actual":0.0,"target":147000.0},"associates":{"actual":0.0,"target":57000.0},"office_and_operational":{"actual":0.0,"target":41166.6666666667},"delivery":{"actual":0.0,"target":43993.3333333333},"communications":{"actual":0.0,"target":26250.0},"professional_fees":{"actual":0.0,"target":16666.6666666667},"software":{"actual":0.0,"target":8400.0}}}}',
     }.each_pair do |metric, value|
       metrics_api_should_receive metric, time, value
     end
@@ -250,7 +250,7 @@ describe CompanyDashboard do
                 },
                 network:  {
                     actual: 0.0,
-                    target: 4799.33333333333
+                    target: 4799.333333333329
                 }
             },
             fixed:    {
