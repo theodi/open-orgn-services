@@ -22,7 +22,7 @@ class CompanyDashboard
       "cumulative-value-unlocked"            => value(nil),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year),
-      "current-year-income-by-sector"        => income_by_sector(current_year),
+      "current-year-bookings-by-sector"      => bookings_by_sector(current_year),
       "current-year-headcount"               => headcount(current_year, current_month),
       "current-year-burn"                    => burn_rate(current_year, current_month),
       "current-year-people-trained"          => people_trained(current_year),
@@ -87,7 +87,7 @@ class CompanyDashboard
     metric_with_target 'Grant Funding', year, block
   end
 
-  def self.income_by_sector(year, month)
+  def self.bookings_by_sector(year, month)
     block = Proc.new { |x| x.to_f }
     Hash[
         [
@@ -98,8 +98,8 @@ class CompanyDashboard
     ].map do |item|
       [item, extract_metric(
           {
-              commercial: "Commercial #{item.to_s} income",
-              non_commercial: "Non-commercial #{item.to_s} income"
+              commercial: "Commercial #{item.to_s} bookings",
+              non_commercial: "Non-commercial #{item.to_s} bookings"
           }, year, month, block)]
         end
     ]

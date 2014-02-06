@@ -20,7 +20,7 @@ describe CompanyDashboard do
       "cumulative-value-unlocked"            => 17699962,
       "current-year-kpi-performance"         => 1.0,
       "current-year-grant-funding"           => '{"actual": 3040000.0,"target": 3354617.6046176003}',
-      "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":26000.0,"annual_target":1500000.0,"ytd_target":0.0},"non_commercial":{"actual":77000.0,"annual_target":750000.0,"ytd_target":0.0}},"training":{"commercial":{"actual":75000.0,"annual_target":128120.0,"ytd_target":17360.0},"non_commercial":{"actual":25000.0,"annual_target":180780.0,"ytd_target":14580.0}},"projects":{"commercial":{"actual":1175000.0,"annual_target":450000.0,"ytd_target":0.0},"non_commercial":{"actual":1039000.0,"annual_target":500000.0,"ytd_target":50000.0}},"network":{"commercial":{"actual":245250.0,"annual_target":874480.0,"ytd_target":141440.0},"non_commercial":{"actual":39000.0,"annual_target":45200.0,"ytd_target":25200.0}}}',
+      "current-year-bookings-by-sector"      => '{"research":{"commercial":{"actual":26000.0,"annual_target":1500000.0,"ytd_target":0.0},"non_commercial":{"actual":77000.0,"annual_target":750000.0,"ytd_target":0.0}},"training":{"commercial":{"actual":75000.0,"annual_target":128120.0,"ytd_target":17360.0},"non_commercial":{"actual":25000.0,"annual_target":180780.0,"ytd_target":14580.0}},"projects":{"commercial":{"actual":1175000.0,"annual_target":450000.0,"ytd_target":0.0},"non_commercial":{"actual":1039000.0,"annual_target":500000.0,"ytd_target":50000.0}},"network":{"commercial":{"actual":245250.0,"annual_target":874480.0,"ytd_target":141440.0},"non_commercial":{"actual":39000.0,"annual_target":45200.0,"ytd_target":25200.0}}}',
       "current-year-headcount"               => '{"actual":22.0,"annual_target":34.0,"ytd_target":26.0}',
       "current-year-burn"                    => 406000.0,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
@@ -96,8 +96,8 @@ describe CompanyDashboard do
     CompanyDashboard.total_income(2014).should == 6041000.0
   end
 
-  it "should show the correct income by sector", :vcr do
-    CompanyDashboard.income_by_sector(2014, 2).should == {
+  it "should show the correct bookings by sector", :vcr do
+    CompanyDashboard.bookings_by_sector(2014, 2).should == {
       research: {
         commercial:     {
           actual:        26000.0,
