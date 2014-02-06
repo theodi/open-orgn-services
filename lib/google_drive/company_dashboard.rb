@@ -17,6 +17,7 @@ class CompanyDashboard
       "current-year-value-unlocked"          => value(current_year),
       "cumulative-value-unlocked"            => value(nil),
       "current-year-pr-pieces"               => pr_pieces(current_year),
+      "current-year-income"                  => income(current_year, current_month),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year, current_month),
       "current-year-bookings-by-sector"      => bookings_by_sector(current_year, current_month),
