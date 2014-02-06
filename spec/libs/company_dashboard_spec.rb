@@ -65,7 +65,7 @@ describe CompanyDashboard do
     }
   end
 
-  it "should show the correct number of PR pieces" do
+  it "should show the correct number of PR pieces", :vcr do
     CompanyDashboard.pr_pieces(2014).should == 0
   end
 
