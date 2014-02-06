@@ -23,7 +23,7 @@ describe CompanyDashboard do
       "current-year-headcount"               => '{"actual":22.0,"annual_target":34.0,"ytd_target":26.0}',
       "current-year-burn"                    => 406000.0,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
-      "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0}}',
+      "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0},"affiliates":{"actual":0}}',
       "current-year-ebitda"                  => '{"actual":-176729.166666667,"annual_target":-329793.728715729,"ytd_target":-833297.5844155842}',
       "current-year-total-costs"             => '{"actual":0.0,"target":365602.0000000003,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8920.0},"projects":{"actual":0.0,"target":10816.6666666667},"network":{"actual":0.0,"target":5388.66666666667}},"fixed":{"staff":{"actual":0.0,"target":147000.0},"associates":{"actual":0.0,"target":57000.0},"office_and_operational":{"actual":0.0,"target":41166.6666666667},"delivery":{"actual":0.0,"target":43993.3333333333},"communications":{"actual":0.0,"target":26250.0},"professional_fees":{"actual":0.0,"target":16666.6666666667},"software":{"actual":0.0,"target":8400.0}}}}',
     }.each_pair do |metric, value|
@@ -84,18 +84,6 @@ describe CompanyDashboard do
   it "should show the correct kpi percentage", :vcr do
     CompanyDashboard.kpis(2013).should == 100.0
     CompanyDashboard.kpis(2014).should == 1.0
-  end
-
-  it "should show the correct network size", :vcr do
-    CompanyDashboard.network.should == {
-        :total     => 0,
-        :breakdown => {
-            :members    => 0,
-            :nodes      => 0,
-            :startups   => 0,
-            :affiliates => 0
-        }
-    }
   end
 
   it "should show total grant funding", :vcr do
@@ -216,6 +204,9 @@ describe CompanyDashboard do
             actual:        11,
             annual_target: 20,
             ytd_target:    0,
+        },
+        affiliates: {
+            actual:        0,
         }
     }
   end

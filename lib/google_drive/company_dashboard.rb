@@ -77,21 +77,6 @@ class CompanyDashboard
     end
   end
 
-  def self.network
-    h         = {}
-    h[:total] = metrics_cell('Network size').to_i
-
-    breakdown              = {}
-    breakdown[:members]    = metrics_cell('Members headline').to_i
-    breakdown[:nodes]      = metrics_cell('Nodes headline').to_i
-    breakdown[:startups]   = metrics_cell('Startups headline').to_i
-    breakdown[:affiliates] = metrics_cell('Affiliates headline').to_i
-
-    h[:breakdown] = breakdown
-
-    h
-  end
-
   def self.kpis(year)
     metrics_cell('KPI percentage', year, Proc.new {|x| x.to_f}).round(1)
   end
@@ -187,9 +172,9 @@ class CompanyDashboard
         sponsors:   'Sponsors',
         supporters: 'Supporters',
         startups:   'Startups',
-        nodes:      'Nodes'
+        nodes:      'Nodes',
+        affiliates: 'Affiliates',
     }
-
     extract_metric h, year, month, block
   end
 
@@ -211,19 +196,19 @@ class CompanyDashboard
       Proc.new {|x| x.last.to_f}
     end
     multiplier = location['multiplier'] || @@lookups['default_multiplier']
-    {
-        actual: block.call(
+    data = {}
+    data[:actual] = (block.call(
             metrics_worksheet(location['document'], location['sheet'])[location['actual']]
-          ) * multiplier,
-        annual_target: block.call(
+          ) * multiplier) if location['actual']
+    data[:annual_target] = (block.call(
             metrics_worksheet(location['document'], location['sheet'])[location['annual_target']]
-          ) * multiplier,
-        ytd_target: block.call(
+          ) * multiplier) if location['annual_target']
+    data[:ytd_target] = (block.call(
             ytd_aggregator.call(
               metrics_worksheet(location['document'], location['sheet'])[location['ytd_target']].slice(0,month)
             )
-          ) * multiplier,
-    }
+          ) * multiplier) if location['ytd_target']
+    data
   end
 
   def self.google_drive
