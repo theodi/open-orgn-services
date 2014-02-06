@@ -129,9 +129,8 @@ class CompanyDashboard
   end
 
   def self.burn_rate(year, month)
-    index = month - 1
-    block = Proc.new { |x| x[index].to_f }
-    metric_with_target 'Burn', year, block
+    block = Proc.new { |x| x[month-1].to_f }
+    metrics_cell 'Burn', year, block
   end
 
   def self.ebitda(year, month)
@@ -228,15 +227,15 @@ class CompanyDashboard
   end
 
   def self.cell_location year, identifier
+    year = Date.today.year if year.nil?
     @@lookups['cell_lookups'][year][identifier]
   end
 
-  def self.metrics_cell identifier, year = nil
-    year                 = Date.today.year if year.nil?
+  def self.metrics_cell identifier, year, block
     location             = cell_location(year, identifier)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
     multiplier = location['multiplier'] || @@lookups['default_multiplier']
-    metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]].to_f * multiplier
+    block.call(metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]) * multiplier
   end
 
   def self.years
