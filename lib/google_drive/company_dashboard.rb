@@ -19,6 +19,7 @@ class CompanyDashboard
       "current-year-bookings"                => bookings(current_year),
       "cumulative-bookings"                  => bookings(nil),
       "current-year-value-unlocked"          => value(current_year),
+      "current-year-pr-pieces"               => pr_pieces(current_year),
       "cumulative-value-unlocked"            => value(nil),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year),
@@ -49,6 +50,11 @@ class CompanyDashboard
     else
       metrics_cell('Bookings', year).to_i
     end
+  end
+
+  def self.pr_pieces(year)
+    block = Proc.new { |x| x.to_i }
+    metrics_cell('PR Pieces', year, block)
   end
 
   def self.value(year = nil)
