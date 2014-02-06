@@ -143,30 +143,33 @@ class CompanyDashboard
   def self.total_costs(year, month)
     index = month - 1
     block = Proc.new { |x| x[index].to_f }
-    {
-        actual:    metrics_cell("Variable costs actual", year)[index].to_f + metrics_cell("Fixed costs actual", year)[index].to_f,
-        target:    metrics_cell("Variable costs target", year)[index].to_f + metrics_cell("Fixed costs target", year)[index].to_f,
-
-        breakdown: {
-            variable: extract_metric(
-                          {
-                              research: 'Research costs',
-                              training: 'Training costs',
-                              projects: 'Projects costs',
-                              network:  'Network costs'
-                          }, year, block),
-            fixed:    extract_metric(
-                          {
-                              staff:                  'Staff costs',
-                              associates:             'Associate costs',
-                              office_and_operational: 'Office and operational costs',
-                              delivery:               'Delivery costs',
-                              communications:         'Communications costs',
-                              professional_fees:      'Professional fees costs',
-                              software:               'Software costs'
-                          }, year, block)
-        }
+    breakdown = {
+      variable: extract_metric(
+                    {
+                        research: 'Research costs',
+                        training: 'Training costs',
+                        projects: 'Projects costs',
+                        network:  'Network costs'
+                    }, year, block),
+      fixed:    extract_metric(
+                    {
+                        staff:                  'Staff costs',
+                        associates:             'Associate costs',
+                        office_and_operational: 'Office and operational costs',
+                        delivery:               'Delivery costs',
+                        communications:         'Communications costs',
+                        professional_fees:      'Professional fees costs',
+                        software:               'Software costs'
+                    }, year, block)
     }
+    variable = metric_with_target("Variable costs", year, block)
+    fixed    = metric_with_target("Fixed costs", year, block)
+    # Smoosh it all together
+    {
+        actual:    variable[:actual] + fixed[:actual],
+        target:    variable[:target] + fixed[:target],
+        breakdown: breakdown
+    }    
   end
 
   def self.people_trained(year)
