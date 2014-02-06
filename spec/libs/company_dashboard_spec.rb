@@ -23,7 +23,7 @@ describe CompanyDashboard do
       "current-year-kpi-performance"         => 1.0,
       "current-year-grant-funding"           => '{"actual": 3040000.0,"target": 3354617.6046176003}',
       "current-year-income-by-type"          => '{"research": 900000.0,"training": 289000.0,"projects": 900000.0,"network": 912000.0}',
-      "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":890000.0,"target":1500000.0},"non_commercial":{"actual":423000.0,"target":750000.0}},"training":{"commercial":{"actual":87000.0,"target":128120.0},"non_commercial":{"actual":121000.0,"target":180780.0}},"projects":{"commercial":{"actual":123000.0,"target":450000.0},"non_commercial":{"actual":212000.0,"target":500000.0}},"network":{"commercial":{"actual":78000.0,"target":874480.0},"non_commercial":{"actual":156000.0,"target":45200.0}}}',
+      "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":26000.0,"annual_target":1500000.0,"ytd_target":0.0},"non_commercial":{"actual":77000.0,"annual_target":750000.0,"ytd_target":0.0}},"training":{"commercial":{"actual":75000.0,"annual_target":128120.0,"ytd_target":17360.0},"non_commercial":{"actual":25000.0,"annual_target":180780.0,"ytd_target":14580.0}},"projects":{"commercial":{"actual":1175000.0,"annual_target":450000.0,"ytd_target":0.0},"non_commercial":{"actual":1039000.0,"annual_target":500000.0,"ytd_target":50000.0}},"network":{"commercial":{"actual":245250.0,"annual_target":874480.0,"ytd_target":141440.0},"non_commercial":{"actual":39000.0,"annual_target":45200.0,"ytd_target":25200.0}}}',
       "current-year-headcount"               => '{"actual":22.0,"annual_target":34.0,"ytd_target":26.0}',
       "current-year-burn"                    => 406000.0,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
@@ -123,47 +123,55 @@ describe CompanyDashboard do
   end
 
   it "should show the correct income by sector", :vcr do
-    CompanyDashboard.income_by_sector(2014).should == {
-        research: {
-            commercial:     {
-                actual: 890000.0,
-                target: 1500000.0
-            },
-            non_commercial: {
-                actual: 423000.0,
-                target: 750000.0
-            }
+    CompanyDashboard.income_by_sector(2014, 2).should == {
+      research: {
+        commercial:     {
+          actual:        26000.0,
+          annual_target: 1500000.0,
+          ytd_target:    0.0,
         },
-        training: {
-            commercial:     {
-                actual: 87000.0,
-                target: 128120.0
-            },
-            non_commercial: {
-                actual: 121000.0,
-                target: 180780.0
-            }
-        },
-        projects: {
-            commercial:     {
-                actual: 123000.0,
-                target: 450000.0
-            },
-            non_commercial: {
-                actual: 212000.0,
-                target: 500000.0
-            }
-        },
-        network:  {
-            commercial:     {
-                actual: 78000.0,
-                target: 874480.0
-            },
-            non_commercial: {
-                actual: 156000.0,
-                target: 45200.0
-            }
+        non_commercial: {
+          actual:        77000.0,
+          annual_target: 750000.0,
+          ytd_target:    0.0,
         }
+      },
+      training: {
+        commercial:     {
+          actual:        75000.0,
+          annual_target: 128120.0,
+          ytd_target:    17360.0,
+        },
+        non_commercial: {
+          actual:        25000.0,
+          annual_target: 180780.0,
+          ytd_target:    14580.0,
+        }
+      },
+      projects: {
+        commercial:     {
+          actual:        1175000.0,
+          annual_target: 450000.0,
+          ytd_target:    0.0,
+        },
+        non_commercial: {
+          actual:        1039000.0,
+          annual_target: 500000.0,
+          ytd_target:    50000.0,
+        }
+      },
+      network:  {
+        commercial:     {
+          actual:        245250.0,
+          annual_target: 874480.0,
+          ytd_target:    141440.0,
+        },
+        non_commercial: {
+          actual:        39000.0,
+          annual_target: 45200.0,
+          ytd_target:    25200.0,
+        }
+      }
     }
   end
 

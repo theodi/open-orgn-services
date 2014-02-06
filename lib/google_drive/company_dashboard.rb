@@ -104,7 +104,7 @@ class CompanyDashboard
     }
   end
 
-  def self.income_by_sector(year)
+  def self.income_by_sector(year, month)
     block = Proc.new { |x| x.to_f }
     Hash[
         [
@@ -117,7 +117,7 @@ class CompanyDashboard
           {
               commercial: "Commercial #{item.to_s} income",
               non_commercial: "Non-commercial #{item.to_s} income"
-          }, year, block)]
+          }, year, month, block)]
         end
     ]
   end
