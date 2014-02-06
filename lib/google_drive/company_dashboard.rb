@@ -172,14 +172,14 @@ class CompanyDashboard
     }    
   end
 
-  def self.people_trained(year)
-    block = Proc.new { |x| x.inject(0) { |sum, value| sum += value.to_i } }
+  def self.people_trained(year, month)
+    block = Proc.new { |x| x.to_i }
     h     = {
         commercial:     'Commercial people trained',
         non_commercial: 'Non-commercial people trained'
     }
 
-    extract_metric h, year, block
+    extract_metric h, year, month, block
   end
 
   def self.network_size(year, month)
