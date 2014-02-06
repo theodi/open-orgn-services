@@ -82,9 +82,9 @@ class CompanyDashboard
     metrics_cell('Total income', year).to_i
   end
 
-  def self.grant_funding(year)
+  def self.grant_funding(year, month)
     block = Proc.new { |x| x.to_f }
-    metric_with_target 'Grant Funding', year, block
+    metric_with_target 'Grant Funding', year, month, block
   end
 
   def self.bookings_by_sector(year, month)
