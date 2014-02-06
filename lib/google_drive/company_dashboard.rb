@@ -14,8 +14,6 @@ class CompanyDashboard
     {
       "current-year-reach"                   => reach(current_year),
       "cumulative-reach"                     => reach(nil),
-      "current-year-bookings"                => bookings(current_year),
-      "cumulative-bookings"                  => bookings(nil),
       "current-year-value-unlocked"          => value(current_year),
       "cumulative-value-unlocked"            => value(nil),
       "current-year-pr-pieces"               => pr_pieces(current_year),
@@ -53,14 +51,6 @@ class CompanyDashboard
           passive: metrics_cell("Passive Reach", year, Proc.new {|x| x.to_i}),
         }
       }
-    end
-  end
-
-  def self.bookings(year = nil)
-    if year.nil?
-      years.inject(0) { |total, year| total += bookings(year) }
-    else
-      metrics_cell('Bookings', year).to_i
     end
   end
 

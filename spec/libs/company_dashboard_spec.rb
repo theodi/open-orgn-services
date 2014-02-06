@@ -12,8 +12,6 @@ describe CompanyDashboard do
     {
       "current-year-reach"                   => '{"total":775655,"breakdown":{"active":432423,"passive":343232}}',
       "cumulative-reach"                     => '{"total":1079051,"breakdown":{"active":442949,"passive":636102}}',
-      "current-year-bookings"                => 0,
-      "cumulative-bookings"                  => 2191064,
       "current-year-value-unlocked"          => 775655,
       "cumulative-value-unlocked"            => 17699962,
       "current-year-income"                  => '{"actual":255270.833333333,"annual_target":2935183.33333333,"ytd_target":173153.3333333333}',
@@ -68,12 +66,6 @@ describe CompanyDashboard do
 
   it "should show the correct number of PR pieces", :vcr do
     CompanyDashboard.pr_pieces(2014).should == 0
-  end
-
-  it "should show the correct bookings value", :vcr do
-    CompanyDashboard.bookings(2013).should == 2191064
-    CompanyDashboard.bookings(2014).should == 0
-    CompanyDashboard.bookings.should == 2191064
   end
 
   it "should show the correct unlocked value", :vcr do
