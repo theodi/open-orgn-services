@@ -29,7 +29,7 @@ class CompanyDashboard
       "current-year-headcount"               => headcount(current_year, current_month),
       "current-year-burn"                    => burn_rate(current_year, current_month),
       "current-year-people-trained"          => people_trained(current_year),
-      "current-year-network-size"            => network_size(current_year),
+      "current-year-network-size"            => network_size(current_year, current_month),
       "current-year-ebitda"                  => ebitda(current_year, current_month),
       "current-year-total-costs"             => total_costs(current_year, current_month),
     }.each_pair do |metric, value|
@@ -182,7 +182,7 @@ class CompanyDashboard
     extract_metric h, year, block
   end
 
-  def self.network_size(year)
+  def self.network_size(year, month)
     block = Proc.new { |x| x.to_i }
     h     = {
         partners:   'Partners',
@@ -192,7 +192,7 @@ class CompanyDashboard
         nodes:      'Nodes'
     }
 
-    extract_metric h, year, block
+    extract_metric h, year, month, block
   end
 
   private

@@ -2,9 +2,12 @@ require 'spec_helper'
 
 describe CompanyDashboard do
 
+  before :each do
+    Timecop.freeze(Date.new(2014, 2, 4))
+  end
+
   it "should store right values in metrics API" do
     WebMock.allow_net_connect!
-    Timecop.freeze(Date.new(2014, 2, 4))
     time = DateTime.now
     {
       "current-year-reach"                   => 775655,
@@ -24,7 +27,7 @@ describe CompanyDashboard do
       "current-year-headcount"               => '{"actual": 22.0,"target": 26.0}',
       "current-year-burn"                    => '{"actual": 0.0,"target": 340476.666666667}',
       "current-year-people-trained"          => '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}',
-      "current-year-network-size"            => '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}',
+      "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0}}',
       "current-year-ebitda"                  => '{"actual":275500.0, "target":-82789.7922077922}',
       "current-year-total-costs"             => '{"actual":0.0,"target":365602.0000000003,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8920.0},"projects":{"actual":0.0,"target":10816.6666666667},"network":{"actual":0.0,"target":5388.66666666667}},"fixed":{"staff":{"actual":0.0,"target":147000.0},"associates":{"actual":0.0,"target":57000.0},"office_and_operational":{"actual":0.0,"target":41166.6666666667},"delivery":{"actual":0.0,"target":43993.3333333333},"communications":{"actual":0.0,"target":26250.0},"professional_fees":{"actual":0.0,"target":16666.6666666667},"software":{"actual":0.0,"target":8400.0}}}}',
     }.each_pair do |metric, value|
@@ -196,26 +199,31 @@ describe CompanyDashboard do
   end
 
   it "should show correct network size", :vcr do
-    CompanyDashboard.network_size(2014).should == {
+    CompanyDashboard.network_size(2014, 2).should == {
         partners:   {
-            actual: 0,
-            target: 10
+            actual:        3,
+            annual_target: 10,
+            ytd_target:    2,
         },
         sponsors:   {
-            actual: 0,
-            target: 5
+            actual:        1,
+            annual_target: 5,
+            ytd_target:    0,
         },
         supporters: {
-            actual: 0,
-            target: 34
+            actual:        7,
+            annual_target: 34,
+            ytd_target:    2,
         },
         startups:   {
-            actual: 0,
-            target: 6
+            actual:        7,
+            annual_target: 6,
+            ytd_target:    6,
         },
         nodes:      {
-            actual: 0,
-            target: 20
+            actual:        11,
+            annual_target: 20,
+            ytd_target:    0,
         }
     }
   end
@@ -230,7 +238,6 @@ describe CompanyDashboard do
   end
 
   it "should load total cost information", :vcr do
-    Timecop.freeze(Date.new(2014, 2, 4))
     CompanyDashboard.total_costs(2014, 2).should == {
         actual:        762000.0,
         annual_target: 6619594.66666667,
@@ -297,10 +304,10 @@ describe CompanyDashboard do
             }
         }
     }
-    Timecop.return
   end
 
   after :each do
+    Timecop.return
     CompanyDashboard.clear_cache!
   end
 
