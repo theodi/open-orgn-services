@@ -116,9 +116,8 @@ class CompanyDashboard
   end
 
   def self.ebitda(year, month)
-    index = month - 1
-    block = Proc.new { |x| x[index].to_f }
-    metric_with_target 'EBITDA', year, block
+    block = Proc.new { |x| x.to_f }
+    metric_with_target 'EBITDA', year, month, block
   end
 
   def self.total_costs(year, month)

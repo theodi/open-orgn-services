@@ -25,7 +25,7 @@ describe CompanyDashboard do
       "current-year-burn"                    => 406000.0,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
       "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0}}',
-      "current-year-ebitda"                  => '{"actual":275500.0, "target":-82789.7922077922}',
+      "current-year-ebitda"                  => '{"actual":-176729.166666667,"annual_target":-329793.728715729,"ytd_target":-833297.5844155842}',
       "current-year-total-costs"             => '{"actual":0.0,"target":365602.0000000003,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8920.0},"projects":{"actual":0.0,"target":10816.6666666667},"network":{"actual":0.0,"target":5388.66666666667}},"fixed":{"staff":{"actual":0.0,"target":147000.0},"associates":{"actual":0.0,"target":57000.0},"office_and_operational":{"actual":0.0,"target":41166.6666666667},"delivery":{"actual":0.0,"target":43993.3333333333},"communications":{"actual":0.0,"target":26250.0},"professional_fees":{"actual":0.0,"target":16666.6666666667},"software":{"actual":0.0,"target":8400.0}}}}',
     }.each_pair do |metric, value|
       metrics_api_should_receive metric, time, value
@@ -208,12 +208,11 @@ describe CompanyDashboard do
   end
 
   it "should load EBITDA information", :vcr do
-    Timecop.freeze(Date.new(2014, 1, 4))
-    CompanyDashboard.ebitda(2014, 1).should == {
-        actual: -44500.0,
-        target: -69979.7922077923
+    CompanyDashboard.ebitda(2014, 2).should == {
+      actual:        -176729.166666667,
+      annual_target: -329793.728715729,
+      ytd_target:    -833297.5844155842,
     }
-    Timecop.return
   end
 
   it "should load total cost information", :vcr do
