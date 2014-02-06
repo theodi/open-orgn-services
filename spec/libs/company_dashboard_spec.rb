@@ -6,26 +6,31 @@ describe CompanyDashboard do
     WebMock.allow_net_connect!
     Timecop.freeze(Date.new(2014, 2, 4))
     time = DateTime.now
-    metrics_api_should_receive("current-year-reach", time, 775655)
-    metrics_api_should_receive("cumulative-reach", time, 1079051)
-    metrics_api_should_receive("current-year-active-reach", time, 432423)
-    metrics_api_should_receive("current-year-passive-reach", time, 343232)
-    metrics_api_should_receive("current-year-bookings", time, 0)
-    metrics_api_should_receive("cumulative-bookings", time, 2191064)
-    metrics_api_should_receive("current-year-value-unlocked", time, 775655)
-    metrics_api_should_receive("cumulative-value-unlocked", time, 17699962)
-    metrics_api_should_receive("current-year-commercial-bookings", time, '{"actual": 78.0,"target": 874.48}')
-    metrics_api_should_receive("current-year-non-commercial-bookings", time, '{"actual": 156.0,"target": 45.2}')
-    metrics_api_should_receive("current-year-kpi-performance", time, 1.0)
-    metrics_api_should_receive("current-year-grant-funding", time, '{"actual": 3040.00,"target": 3354.6176046176}')
-    metrics_api_should_receive("current-year-income-by-type", time, '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}')
-    metrics_api_should_receive("current-year-income-by-sector", time, '{"research":{"commercial":{"actual":890.0,"target":1500.0},"non_commercial":{"actual":423.0,"target":750.0}},"training":{"commercial":{"actual":87.0,"target":128.12},"non_commercial":{"actual":121.0,"target":180.78}},"projects":{"commercial":{"actual":123.0,"target":450.0},"non_commercial":{"actual":212.0,"target":500.0}},"network":{"commercial":{"actual":78.0,"target":874.48},"non_commercial":{"actual":156.0,"target":45.2}}}')
-    metrics_api_should_receive("current-year-headcount", time, '{"actual": 22.0,"target": 26.0}')
-    metrics_api_should_receive("current-year-burn", time, '{"actual": 0.0,"target": 340.476666666667}')
-    metrics_api_should_receive("current-year-people-trained", time, '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}')
-    metrics_api_should_receive("current-year-network-size", time, '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}')
-    metrics_api_should_receive("current-year-ebitda", time, '{"actual":275.5, "target":-82.7897922077922}')
-    metrics_api_should_receive("current-year-total-costs", time, '{"actual":0.0,"target":365.60200000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8.92},"projects":{"actual":0.0,"target":10.8166666666667},"network":{"actual":0.0,"target":5.38866666666667}},"fixed":{"staff":{"actual":0.0,"target":147.0},"associates":{"actual":0.0,"target":57.0},"office_and_operational":{"actual":0.0,"target":41.1666666666667},"delivery":{"actual":0.0,"target":43.9933333333333},"communications":{"actual":0.0,"target":26.25},"professional_fees":{"actual":0.0,"target":16.6666666666667},"software":{"actual":0.0,"target":8.4}}}}')
+    {
+      "current-year-reach"                   => 775655,
+      "cumulative-reach"                     => 1079051,
+      "current-year-active-reach"            => 432423,
+      "current-year-passive-reach"           => 343232,
+      "current-year-bookings"                => 0,
+      "cumulative-bookings"                  => 2191064,
+      "current-year-value-unlocked"          => 775655,
+      "cumulative-value-unlocked"            => 17699962,
+      "current-year-commercial-bookings"     => '{"actual": 78.0,"target": 874.48}',
+      "current-year-non-commercial-bookings" => '{"actual": 156.0,"target": 45.2}',
+      "current-year-kpi-performance"         => 1.0,
+      "current-year-grant-funding"           => '{"actual": 3040.00,"target": 3354.6176046176}',
+      "current-year-income-by-type"          => '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}',
+      "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":890.0,"target":1500.0},"non_commercial":{"actual":423.0,"target":750.0}},"training":{"commercial":{"actual":87.0,"target":128.12},"non_commercial":{"actual":121.0,"target":180.78}},"projects":{"commercial":{"actual":123.0,"target":450.0},"non_commercial":{"actual":212.0,"target":500.0}},"network":{"commercial":{"actual":78.0,"target":874.48},"non_commercial":{"actual":156.0,"target":45.2}}}',
+      "current-year-headcount"               => '{"actual": 22.0,"target": 26.0}',
+      "current-year-burn"                    => '{"actual": 0.0,"target": 340.476666666667}',
+      "current-year-people-trained"          => '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}',
+      "current-year-network-size"            => '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}',
+      "current-year-ebitda"                  => '{"actual":275.5, "target":-82.7897922077922}',
+      "current-year-total-costs"             => '{"actual":0.0,"target":365.60200000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8.92},"projects":{"actual":0.0,"target":10.8166666666667},"network":{"actual":0.0,"target":5.38866666666667}},"fixed":{"staff":{"actual":0.0,"target":147.0},"associates":{"actual":0.0,"target":57.0},"office_and_operational":{"actual":0.0,"target":41.1666666666667},"delivery":{"actual":0.0,"target":43.9933333333333},"communications":{"actual":0.0,"target":26.25},"professional_fees":{"actual":0.0,"target":16.6666666666667},"software":{"actual":0.0,"target":8.4}}}}',
+    }.each_pair do |metric, value|
+      metrics_api_should_receive metric, time, value
+    end
+
     CompanyDashboard.perform
     Timecop.return
     WebMock.disable_net_connect!
