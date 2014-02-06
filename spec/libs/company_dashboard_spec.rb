@@ -230,57 +230,69 @@ describe CompanyDashboard do
   end
 
   it "should load total cost information", :vcr do
-    Timecop.freeze(Date.new(2014, 1, 4))
-    CompanyDashboard.total_costs(2014, 1).should == {
-        actual:    320000.0,
-        target:    334238.666666667,
+    Timecop.freeze(Date.new(2014, 2, 4))
+    CompanyDashboard.total_costs(2014, 2).should == {
+        actual:        762000.0,
+        annual_target: 6619594.66666667,
+        ytd_target:    1380368.6666666674,
         breakdown: {
             variable: {
                 research: {
-                    actual: 0.0,
-                    target: 0.0
+                    actual: 6000.0,
+                    annual_target: 447916.66666666704,
+                    ytd_target: 0.0
                 },
                 training: {
-                    actual: 0.0,
-                    target: 3856.0
+                    actual: 8000.0,
+                    annual_target: 123560.0,
+                    ytd_target: 12776.0
                 },
                 projects: {
-                    actual: 0.0,
-                    target: 10816.6666666667
+                    actual: 10000.0,
+                    annual_target: 397925.0,
+                    ytd_target: 21633.3333333334
                 },
                 network:  {
-                    actual: 0.0,
-                    target: 4799.333333333329
+                    actual: 12000.0,
+                    annual_target: 100695.0,
+                    ytd_target: 10187.999999999998
                 }
             },
             fixed:    {
                 staff:                  {
-                    actual: 5432000.0,
-                    target: 130000.0
+                    actual: 77000.0,
+                    annual_target: 2113000.0,
+                    ytd_target: 277000.0
                 },
                 associates:             {
-                    actual: 54000.0,
-                    target: 55000.0
+                    actual: 88000.0,
+                    annual_target: 858000.0,
+                    ytd_target: 112000.0
                 },
                 office_and_operational: {
-                    actual: 4321000.0,
-                    target: 41166.6666666667
+                    actual: 97000.0,
+                    annual_target: 494000.0,
+                    ytd_target: 82333.3333333334
                 },
                 delivery:               {
-                    actual: 54000.0,
-                    target: 37883.3333333333
+                    actual: 130000.0,
+                    annual_target: 778270.0,
+                    ytd_target: 81876.6666666666
                 },
                 communications:         {
-                    actual: 6543000.0,
-                    target: 26250.0
+                    actual: 154000.0,
+                    annual_target: 315000.0,
+                    ytd_target: 52500.0
                 },
                 professional_fees:      {
-                    actual: 765000.0,
-                    target: 16666.6666666667
+                    actual: 77000.0,
+                    annual_target: 200000.0,
+                    ytd_target: 33333.3333333334,
                 },
                 software:               {
-                    actual: 4324000.0,
-                    target: 7800.0
+                    actual: 90000.0,
+                    annual_target: 110700.0,
+                    ytd_target: 16200.0
                 }
             }
         }

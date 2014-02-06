@@ -141,8 +141,7 @@ class CompanyDashboard
   end
 
   def self.total_costs(year, month)
-    index = month - 1
-    block = Proc.new { |x| x[index].to_f }
+    block = Proc.new { |x| x.to_f }
     breakdown = {
       variable: extract_metric(
                     {
@@ -150,7 +149,7 @@ class CompanyDashboard
                         training: 'Training costs',
                         projects: 'Projects costs',
                         network:  'Network costs'
-                    }, year, block),
+                    }, year, month, block),
       fixed:    extract_metric(
                     {
                         staff:                  'Staff costs',
@@ -160,14 +159,15 @@ class CompanyDashboard
                         communications:         'Communications costs',
                         professional_fees:      'Professional fees costs',
                         software:               'Software costs'
-                    }, year, block)
+                    }, year, month, block)
     }
-    variable = metric_with_target("Variable costs", year, block)
-    fixed    = metric_with_target("Fixed costs", year, block)
+    variable = metric_with_target("Variable costs", year, month, block)
+    fixed    = metric_with_target("Fixed costs", year, month, block)
     # Smoosh it all together
     {
-        actual:    variable[:actual] + fixed[:actual],
-        target:    variable[:target] + fixed[:target],
+        actual:        variable[:actual] + fixed[:actual],
+        annual_target: variable[:annual_target] + fixed[:annual_target],
+        ytd_target:    variable[:ytd_target] + fixed[:ytd_target],
         breakdown: breakdown
     }    
   end
@@ -197,18 +197,19 @@ class CompanyDashboard
 
   private
 
-  def self.extract_metric h, year, block
-    Hash[h.map { |key, value| [key, metric_with_target(value, year, block)] }
+  def self.extract_metric h, year, month, block
+    Hash[h.map { |key, value| [key, metric_with_target(value, year, month, block)] }
     ]
   end
 
-  def self.metric_with_target name, year = nil, block
+  def self.metric_with_target name, year, month, block
     location             = cell_location(year, name)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
     multiplier = location['multiplier'] || @@lookups['default_multiplier']
     {
         actual: block.call(metrics_worksheet(location['document'], location['sheet'])[location['actual']]) * multiplier,
-        target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['target']]) * multiplier
+        annual_target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['annual_target']]) * multiplier,
+        ytd_target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['ytd_target']].slice(0,month).inject(0.0){|sum,val| sum + val.to_f}) * multiplier,
     }
   end
 
