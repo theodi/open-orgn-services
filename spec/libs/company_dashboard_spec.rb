@@ -15,18 +15,18 @@ describe CompanyDashboard do
       "cumulative-bookings"                  => 2191064,
       "current-year-value-unlocked"          => 775655,
       "cumulative-value-unlocked"            => 17699962,
-      "current-year-commercial-bookings"     => '{"actual": 78.0,"target": 874.48}',
-      "current-year-non-commercial-bookings" => '{"actual": 156.0,"target": 45.2}',
+      "current-year-commercial-bookings"     => '{"actual": 78000.0,"target": 874480.0}',
+      "current-year-non-commercial-bookings" => '{"actual": 156000.0,"target": 45200.0}',
       "current-year-kpi-performance"         => 1.0,
-      "current-year-grant-funding"           => '{"actual": 3040.00,"target": 3354.6176046176}',
-      "current-year-income-by-type"          => '{"research": 900.00,"training": 289.00,"projects": 900.00,"network": 912.00}',
-      "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":890.0,"target":1500.0},"non_commercial":{"actual":423.0,"target":750.0}},"training":{"commercial":{"actual":87.0,"target":128.12},"non_commercial":{"actual":121.0,"target":180.78}},"projects":{"commercial":{"actual":123.0,"target":450.0},"non_commercial":{"actual":212.0,"target":500.0}},"network":{"commercial":{"actual":78.0,"target":874.48},"non_commercial":{"actual":156.0,"target":45.2}}}',
+      "current-year-grant-funding"           => '{"actual": 3040000.0,"target": 3354617.6046176}',
+      "current-year-income-by-type"          => '{"research": 900000.0,"training": 289000.0,"projects": 900000.0,"network": 912000.0}',
+      "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":890000.0,"target":1500000.0},"non_commercial":{"actual":423000.0,"target":750000.0}},"training":{"commercial":{"actual":87000.0,"target":128120.0},"non_commercial":{"actual":121000.0,"target":180780.0}},"projects":{"commercial":{"actual":123000.0,"target":450000.0},"non_commercial":{"actual":212000.0,"target":500000.0}},"network":{"commercial":{"actual":78000.0,"target":874480.0},"non_commercial":{"actual":156000.0,"target":45200.0}}}',
       "current-year-headcount"               => '{"actual": 22.0,"target": 26.0}',
-      "current-year-burn"                    => '{"actual": 0.0,"target": 340.476666666667}',
+      "current-year-burn"                    => '{"actual": 0.0,"target": 340476.666666667}',
       "current-year-people-trained"          => '{"commercial": {"actual": 0,"target": 190}, "non_commercial": {"actual": 0,"target": 206}}',
       "current-year-network-size"            => '{"partners":{"actual":0,"target":10},"sponsors":{"actual":0,"target":5},"supporters":{"actual":0,"target":34},"startups":{"actual":0,"target":6},"nodes":{"actual":0,"target":20}}',
-      "current-year-ebitda"                  => '{"actual":275.5, "target":-82.7897922077922}',
-      "current-year-total-costs"             => '{"actual":0.0,"target":365.60200000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8.92},"projects":{"actual":0.0,"target":10.8166666666667},"network":{"actual":0.0,"target":5.38866666666667}},"fixed":{"staff":{"actual":0.0,"target":147.0},"associates":{"actual":0.0,"target":57.0},"office_and_operational":{"actual":0.0,"target":41.1666666666667},"delivery":{"actual":0.0,"target":43.9933333333333},"communications":{"actual":0.0,"target":26.25},"professional_fees":{"actual":0.0,"target":16.6666666666667},"software":{"actual":0.0,"target":8.4}}}}',
+      "current-year-ebitda"                  => '{"actual":275500.0, "target":-82789.7922077922}',
+      "current-year-total-costs"             => '{"actual":0.0,"target":365602.00000000026,"breakdown":{"variable":{"research":{"actual":0.0,"target":0.0},"training":{"actual":0.0,"target":8920.0},"projects":{"actual":0.0,"target":10816.6666666667},"network":{"actual":0.0,"target":5388.66666666667}},"fixed":{"staff":{"actual":0.0,"target":147000.0},"associates":{"actual":0.0,"target":57000.0},"office_and_operational":{"actual":0.0,"target":41166.6666666667},"delivery":{"actual":0.0,"target":43993.3333333333},"communications":{"actual":0.0,"target":26250.0},"professional_fees":{"actual":0.0,"target":16666.6666666667},"software":{"actual":0.0,"target":8400.0}}}}',
     }.each_pair do |metric, value|
       metrics_api_should_receive metric, time, value
     end
@@ -87,35 +87,35 @@ describe CompanyDashboard do
 
   it "should show total commercial bookings", :vcr do
     CompanyDashboard.bookings_by_type("Commercial", 2014).should == {
-        actual: 78.0,
-        target: 874.48
+        actual: 78000.0,
+        target: 874480.0
     }
   end
 
   it "should show total non-commercial bookings", :vcr do
     CompanyDashboard.bookings_by_type("Non-commercial", 2014).should == {
-        actual: 156.0,
-        target: 45.2
+        actual: 156000.0,
+        target: 45200.0
     }
   end
 
   it "should show total grant funding", :vcr do
     CompanyDashboard.grant_funding(2014).should == {
-        actual: 3040.00,
-        target: 3354.6176046176
+        actual: 3040000.0,
+        target: 3354617.6046176003
     }
   end
 
   it "should show total income", :vcr do
-    CompanyDashboard.total_income(2014).should == 6041
+    CompanyDashboard.total_income(2014).should == 6041000.0
   end
 
   it "should show income by type", :vcr do
     CompanyDashboard.income_by_type(2014).should == {
-        research: 900.00,
-        training: 289.00,
-        projects: 900.00,
-        network:  912.00
+        research: 900000.0,
+        training: 289000.0,
+        projects: 900000.0,
+        network:  912000.0
     }
   end
 
@@ -123,42 +123,42 @@ describe CompanyDashboard do
     CompanyDashboard.income_by_sector(2014).should == {
         research: {
             commercial:     {
-                actual: 890.00,
-                target: 1500.00
+                actual: 890000.0,
+                target: 1500000.0
             },
             non_commercial: {
-                actual: 423.00,
-                target: 750.00
+                actual: 423000.0,
+                target: 750000.0
             }
         },
         training: {
             commercial:     {
-                actual: 87.00,
-                target: 128.12
+                actual: 87000.0,
+                target: 128120.0
             },
             non_commercial: {
-                actual: 121.00,
-                target: 180.78
+                actual: 121000.0,
+                target: 180780.0
             }
         },
         projects: {
             commercial:     {
-                actual: 123.00,
-                target: 450.00
+                actual: 123000.0,
+                target: 450000.0
             },
             non_commercial: {
-                actual: 212.00,
-                target: 500.00
+                actual: 212000.0,
+                target: 500000.0
             }
         },
         network:  {
             commercial:     {
-                actual: 78.00,
-                target: 874.48
+                actual: 78000.0,
+                target: 874480.0
             },
             non_commercial: {
-                actual: 156.00,
-                target: 45.2
+                actual: 156000.0,
+                target: 45200.0
             }
         }
     }
@@ -176,8 +176,8 @@ describe CompanyDashboard do
   it "should show burn", :vcr do
     Timecop.freeze(Date.new(2014, 1, 4))
     CompanyDashboard.burn_rate(2014, 1).should == {
-        actual: 320.0,
-        target: 314.766666666667
+        actual: 320000.0,
+        target: 314766.666666667
     }
     Timecop.return
   end
@@ -223,8 +223,8 @@ describe CompanyDashboard do
   it "should load EBITDA information", :vcr do
     Timecop.freeze(Date.new(2014, 1, 4))
     CompanyDashboard.ebitda(2014, 1).should == {
-        actual: -44.5,
-        target: -69.9797922077923
+        actual: -44500.0,
+        target: -69979.7922077923
     }
     Timecop.return
   end
@@ -232,8 +232,8 @@ describe CompanyDashboard do
   it "should load total cost information", :vcr do
     Timecop.freeze(Date.new(2014, 1, 4))
     CompanyDashboard.total_costs(2014, 1).should == {
-        actual:    320.0,
-        target:    334.238666666667,
+        actual:    320000.0,
+        target:    334238.666666667,
         breakdown: {
             variable: {
                 research: {
@@ -242,45 +242,45 @@ describe CompanyDashboard do
                 },
                 training: {
                     actual: 0.0,
-                    target: 3.856
+                    target: 3856.0
                 },
                 projects: {
                     actual: 0.0,
-                    target: 10.8166666666667
+                    target: 10816.6666666667
                 },
                 network:  {
                     actual: 0.0,
-                    target: 4.79933333333333
+                    target: 4799.33333333333
                 }
             },
             fixed:    {
                 staff:                  {
-                    actual: 5432.0,
-                    target: 130.0
+                    actual: 5432000.0,
+                    target: 130000.0
                 },
                 associates:             {
-                    actual: 54.0,
-                    target: 55.0
+                    actual: 54000.0,
+                    target: 55000.0
                 },
                 office_and_operational: {
-                    actual: 4321.0,
-                    target: 41.1666666666667
+                    actual: 4321000.0,
+                    target: 41166.6666666667
                 },
                 delivery:               {
-                    actual: 54.0,
-                    target: 37.8833333333333
+                    actual: 54000.0,
+                    target: 37883.3333333333
                 },
                 communications:         {
-                    actual: 6543.0,
-                    target: 26.25
+                    actual: 6543000.0,
+                    target: 26250.0
                 },
                 professional_fees:      {
-                    actual: 765.0,
-                    target: 16.6666666666667
+                    actual: 765000.0,
+                    target: 16666.6666666667
                 },
                 software:               {
-                    actual: 4324.0,
-                    target: 7.8
+                    actual: 4324000.0,
+                    target: 7800.0
                 }
             }
         }
