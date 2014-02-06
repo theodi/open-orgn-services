@@ -123,9 +123,8 @@ class CompanyDashboard
   end
 
   def self.headcount(year, month)
-    index = month - 1
-    block = Proc.new { |x| x[index].to_f }
-    metric_with_target 'Headcount', year, block
+    block = Proc.new { |x| x.is_a?(Array) ? x[month-1].to_f : x.to_f }
+    metric_with_target 'Headcount', year, month, block
   end
 
   def self.burn_rate(year, month)
@@ -204,11 +203,26 @@ class CompanyDashboard
   def self.metric_with_target name, year, month, block
     location             = cell_location(year, name)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
+    ytd_method = location['ytd_method'] || @@lookups['default_ytd_method']
+    ytd_aggregator = case ytd_method
+    when "sum"
+      Proc.new {|x| x.inject(0.0){|sum,val| sum + val.to_f}}
+    when "latest"
+      Proc.new {|x| x.last.to_f}
+    end
     multiplier = location['multiplier'] || @@lookups['default_multiplier']
     {
-        actual: block.call(metrics_worksheet(location['document'], location['sheet'])[location['actual']]) * multiplier,
-        annual_target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['annual_target']]) * multiplier,
-        ytd_target: block.call(metrics_worksheet(location['document'], location['sheet'])[location['ytd_target']].slice(0,month).inject(0.0){|sum,val| sum + val.to_f}) * multiplier,
+        actual: block.call(
+            metrics_worksheet(location['document'], location['sheet'])[location['actual']]
+          ) * multiplier,
+        annual_target: block.call(
+            metrics_worksheet(location['document'], location['sheet'])[location['annual_target']]
+          ) * multiplier,
+        ytd_target: block.call(
+            ytd_aggregator.call(
+              metrics_worksheet(location['document'], location['sheet'])[location['ytd_target']].slice(0,month)
+            )
+          ) * multiplier,
     }
   end
 
