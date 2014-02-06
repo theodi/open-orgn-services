@@ -95,15 +95,6 @@ class CompanyDashboard
     metric_with_target 'Grant Funding', year, block
   end
 
-  def self.income_by_type(year)
-    {
-        research: metrics_cell("Research income", year).to_f,
-        training: metrics_cell("Training income", year).to_f,
-        projects: metrics_cell("Project income", year).to_f,
-        network:  metrics_cell("Network income", year).to_f
-    }
-  end
-
   def self.income_by_sector(year, month)
     block = Proc.new { |x| x.to_f }
     Hash[
