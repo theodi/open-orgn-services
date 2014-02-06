@@ -17,8 +17,8 @@ class CompanyDashboard
       "current-year-bookings"                => bookings(current_year),
       "cumulative-bookings"                  => bookings(nil),
       "current-year-value-unlocked"          => value(current_year),
-      "current-year-pr-pieces"               => pr_pieces(current_year),
       "cumulative-value-unlocked"            => value(nil),
+      "current-year-pr-pieces"               => pr_pieces(current_year),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year),
       "current-year-bookings-by-sector"      => bookings_by_sector(current_year),
@@ -73,7 +73,7 @@ class CompanyDashboard
     if year.nil?
       years.inject(0) { |total, year| total += value(year) }
     else
-      metrics_cell('Value unlocked', year).to_i
+      metrics_cell('Value unlocked', year, Proc.new {|x| x.to_i })
     end
   end
 
