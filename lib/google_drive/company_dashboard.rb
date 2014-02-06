@@ -21,8 +21,6 @@ class CompanyDashboard
       "current-year-value-unlocked"          => value(current_year),
       "cumulative-value-unlocked"            => value(nil),
       "current-year-kpi-performance"         => kpis(current_year),
-      "current-year-commercial-bookings"     => bookings_by_type("Commercial", current_year),
-      "current-year-non-commercial-bookings" => bookings_by_type("Non-commercial", current_year),
       "current-year-grant-funding"           => grant_funding(current_year),
       "current-year-income-by-type"          => income_by_type(current_year),
       "current-year-income-by-sector"        => income_by_sector(current_year),
@@ -83,11 +81,6 @@ class CompanyDashboard
 
   def self.total_income(year)
     metrics_cell('Total income', year).to_i
-  end
-
-  def self.bookings_by_type(type, year)
-    block = Proc.new { |x| x.to_f }
-    metric_with_target "#{type} Bookings", year, block
   end
 
   def self.grant_funding(year)

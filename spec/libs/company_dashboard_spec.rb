@@ -18,8 +18,6 @@ describe CompanyDashboard do
       "cumulative-bookings"                  => 2191064,
       "current-year-value-unlocked"          => 775655,
       "cumulative-value-unlocked"            => 17699962,
-      "current-year-commercial-bookings"     => '{"actual": 78000.0,"target": 874480.0}',
-      "current-year-non-commercial-bookings" => '{"actual": 156000.0,"target": 45200.0}',
       "current-year-kpi-performance"         => 1.0,
       "current-year-grant-funding"           => '{"actual": 3040000.0,"target": 3354617.6046176003}',
       "current-year-income-by-sector"        => '{"research":{"commercial":{"actual":26000.0,"annual_target":1500000.0,"ytd_target":0.0},"non_commercial":{"actual":77000.0,"annual_target":750000.0,"ytd_target":0.0}},"training":{"commercial":{"actual":75000.0,"annual_target":128120.0,"ytd_target":17360.0},"non_commercial":{"actual":25000.0,"annual_target":180780.0,"ytd_target":14580.0}},"projects":{"commercial":{"actual":1175000.0,"annual_target":450000.0,"ytd_target":0.0},"non_commercial":{"actual":1039000.0,"annual_target":500000.0,"ytd_target":50000.0}},"network":{"commercial":{"actual":245250.0,"annual_target":874480.0,"ytd_target":141440.0},"non_commercial":{"actual":39000.0,"annual_target":45200.0,"ytd_target":25200.0}}}',
@@ -84,20 +82,6 @@ describe CompanyDashboard do
             :startups   => 0,
             :affiliates => 0
         }
-    }
-  end
-
-  it "should show total commercial bookings", :vcr do
-    CompanyDashboard.bookings_by_type("Commercial", 2014).should == {
-        actual: 78000.0,
-        target: 874480.0
-    }
-  end
-
-  it "should show total non-commercial bookings", :vcr do
-    CompanyDashboard.bookings_by_type("Non-commercial", 2014).should == {
-        actual: 156000.0,
-        target: 45200.0
     }
   end
 
