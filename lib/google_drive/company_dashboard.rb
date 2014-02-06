@@ -11,40 +11,30 @@ class CompanyDashboard
   def self.perform
     current_year  = DateTime.now.year
     current_month = DateTime.now.month
-    # reach
-    store_metric("current-year-reach", DateTime.now, reach(current_year))
-    store_metric("cumulative-reach", DateTime.now, reach(nil))
-    store_metric("current-year-active-reach", DateTime.now, reach(current_year, "Active"))
-    store_metric("current-year-passive-reach", DateTime.now, reach(current_year, "Passive"))
-    # bookings
-    store_metric("current-year-bookings", DateTime.now, bookings(current_year))
-    store_metric("cumulative-bookings", DateTime.now, bookings(nil))
-    # value-unlocked
-    store_metric("current-year-value-unlocked", DateTime.now, value(current_year))
-    store_metric("cumulative-value-unlocked", DateTime.now, value(nil))
-    # performance against KPIs
-    store_metric("current-year-kpi-performance", DateTime.now, kpis(current_year))
-    # commercial bookings
-    store_metric("current-year-commercial-bookings", DateTime.now, bookings_by_type("Commercial", current_year))
-    store_metric("current-year-non-commercial-bookings", DateTime.now, bookings_by_type("Non-commercial", current_year))
-    # grant funding
-    store_metric("current-year-grant-funding", DateTime.now, grant_funding(current_year))
-    # income by type
-    store_metric("current-year-income-by-type", DateTime.now, income_by_type(current_year))
-    # income by sector
-    store_metric("current-year-income-by-sector", DateTime.now, income_by_sector(current_year))
-    # headcount
-    store_metric("current-year-headcount", DateTime.now, headcount(current_year, current_month))
-    # burn
-    store_metric("current-year-burn", DateTime.now, burn_rate(current_year, current_month))
-    # training
-    store_metric("current-year-people-trained", DateTime.now, people_trained(current_year))
-    # network
-    store_metric("current-year-network-size", DateTime.now, network_size(current_year))
-    # cashflow
-    store_metric("current-year-ebitda", DateTime.now, ebitda(current_year, current_month))
-    store_metric("current-year-total-costs", DateTime.now, total_costs(current_year, current_month))
-    # Done - clear cached sheet
+    {
+      "current-year-reach"                   => reach(current_year),
+      "cumulative-reach"                     => reach(nil),
+      "current-year-active-reach"            => reach(current_year, "Active"),
+      "current-year-passive-reach"           => reach(current_year, "Passive"),
+      "current-year-bookings"                => bookings(current_year),
+      "cumulative-bookings"                  => bookings(nil),
+      "current-year-value-unlocked"          => value(current_year),
+      "cumulative-value-unlocked"            => value(nil),
+      "current-year-kpi-performance"         => kpis(current_year),
+      "current-year-commercial-bookings"     => bookings_by_type("Commercial", current_year),
+      "current-year-non-commercial-bookings" => bookings_by_type("Non-commercial", current_year),
+      "current-year-grant-funding"           => grant_funding(current_year),
+      "current-year-income-by-type"          => income_by_type(current_year),
+      "current-year-income-by-sector"        => income_by_sector(current_year),
+      "current-year-headcount"               => headcount(current_year, current_month),
+      "current-year-burn"                    => burn_rate(current_year, current_month),
+      "current-year-people-trained"          => people_trained(current_year),
+      "current-year-network-size"            => network_size(current_year),
+      "current-year-ebitda"                  => ebitda(current_year, current_month),
+      "current-year-total-costs"             => total_costs(current_year, current_month),
+    }.each_pair do |metric, value|
+      store_metric metric, DateTime.now, value
+    end
     clear_cache!
   end
 
