@@ -22,7 +22,6 @@ class CompanyDashboard
       "cumulative-value-unlocked"            => value(nil),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year),
-      "current-year-income-by-type"          => income_by_type(current_year),
       "current-year-income-by-sector"        => income_by_sector(current_year),
       "current-year-headcount"               => headcount(current_year, current_month),
       "current-year-burn"                    => burn_rate(current_year, current_month),
