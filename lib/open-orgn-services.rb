@@ -27,6 +27,7 @@ require 'pony'
 
 require 'helpers/metrics_helper'
 require 'helpers/membership_helper'
+require 'helpers/google_drive_helper'
 
 require 'eventbrite-client'
 require 'eventbrite/event_monitor'
@@ -70,4 +71,9 @@ require 'capsulecrm/membership_coverage'
 require 'capsulecrm/membership_renewals'
 require 'capsulecrm/pipeline_metrics'
 
-require 'google_drive/company_dashboard'
+require 'google_drive/financial_metrics'
+require 'google_drive/network_metrics'
+
+def environment
+  ENV['RACK_ENV'] || 'production'
+end
