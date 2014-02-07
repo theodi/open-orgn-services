@@ -27,6 +27,7 @@ require 'pony'
 
 require 'helpers/metrics_helper'
 require 'helpers/membership_helper'
+require 'helpers/google_drive_helper'
 
 require 'eventbrite-client'
 require 'eventbrite/event_monitor'
@@ -46,7 +47,11 @@ require 'github/outgoing_pull_request_monitor'
 require 'leftronic/dashboard_time'
 require 'leftronic/leftronic_publisher'
 require 'trello/trello_monitor'
+require 'trello/quarterly_progress'
+
 require 'hubot/hubot_monitor'
+
+require 'certificates/certificate_count'
 
 require 'signup/product_helper'
 require 'signup/signup_processor'
@@ -65,4 +70,11 @@ require 'capsulecrm/membership_count'
 require 'capsulecrm/membership_coverage'
 require 'capsulecrm/membership_renewals'
 require 'capsulecrm/pipeline_metrics'
+
 require 'google_drive/mover'
+require 'google_drive/financial_metrics'
+require 'google_drive/network_metrics'
+
+def environment
+  ENV['RACK_ENV'] || 'production'
+end
