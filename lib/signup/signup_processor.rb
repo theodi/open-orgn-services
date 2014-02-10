@@ -39,9 +39,7 @@ class SignupProcessor
     # get the base price for this level of membership
     case offer_category
     when 'supporter'
-      45
-    when 'member'
-      400
+      60
     else
       raise ArgumentError.new("Member level is invalid")
     end

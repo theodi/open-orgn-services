@@ -33,8 +33,7 @@ Feature: Processing membership signups
     When the signup processor runs
     Examples:
     | level     | level_description | price |
-    | supporter | Supporter         | 45    |
-    | member    | Member            | 400   |
+    | supporter | Supporter         | 60    |
     
 # currently an issue with leading zeros being removed from postcode and membership number
 
