@@ -12,7 +12,7 @@ module ProductHelper
   def product_value(product)
     case product.to_sym
     when :supporter
-      45
+      60
     when :member
       400
     when :sponsor

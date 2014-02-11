@@ -34,8 +34,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that opportunity should have a type of "Membership"
     Examples:
     | level     | amount |
-    | supporter | 45     |
-    | member    | 400    |
+    | supporter | 60     |
 
   Scenario: attach membership tag to existing organisation
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
