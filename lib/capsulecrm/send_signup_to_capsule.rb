@@ -42,7 +42,7 @@ class SendSignupToCapsule
         :label => 'Type',
         :text  => 'Membership'
       )
-      save_item(opportunity)
+      save_item(field)
       # Set up membership tag
       set_membership_tag(
         org,
