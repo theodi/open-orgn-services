@@ -71,6 +71,7 @@ require 'capsulecrm/membership_coverage'
 require 'capsulecrm/membership_renewals'
 require 'capsulecrm/pipeline_metrics'
 
+require 'google_drive/mover'
 require 'google_drive/financial_metrics'
 require 'google_drive/network_metrics'
 
