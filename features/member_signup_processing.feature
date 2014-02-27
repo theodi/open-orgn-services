@@ -27,7 +27,7 @@ Feature: Processing membership signups
   Scenario Outline: add signups to correct queues
     Given I requested 1 membership at the level called "<level>"
     And my purchase order reference is "ABC000001"
-    Then the invoice description should read "ODI <level_description> Membership (1010101)"
+    Then the invoice description should read "ODI <level_description> Membership (01010101)"
     And the invoice price should be "<price>"
     And I should be added to the invoicing queue
     And I should be added to the capsulecrm queue
