@@ -2,7 +2,7 @@ module SignupProcessorSupport
 
   def create_signup_processor_membership_hash
     # values defined in the step definitions and should be tidied up
-    organization    = {'name' => @company, 'vat_id' => @tax_registration_number}
+    organization    = {'name' => @company, 'vat_id' => @tax_registration_number, 'company_number' => @company_number}
     contact_person  = {'name' => @name, 'email' => @email, 'telephone' => @phone}
     billing         = {
                         'name' => @name,

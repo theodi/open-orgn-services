@@ -21,6 +21,7 @@ Feature: Processing membership signups
     And I have an invoice address (country) of "USA" 
     And I have an invoice address (postcode) of "01010"
     And my organisation has a tax registration number "A0A0A0A0"
+    And my organisation has a company number "08030289"
     And I have a membership id "01010101"
 
   Scenario Outline: add signups to correct queues

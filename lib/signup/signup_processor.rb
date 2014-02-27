@@ -8,6 +8,7 @@ class SignupProcessor
   # organization      - a hash containing the details of the member organisation
   #                   'name'
   #                   'vat_id'
+  #                   'company_number'
   #
   # contact_person    - a hash containing details of the main contact for the member organisation
   #                    'name'
@@ -81,7 +82,8 @@ class SignupProcessor
     # Save details in capsule
     
     organization = {
-      'name' => organization['name']
+      'name' => organization['name'],
+      'company_number' => organization['company_number']
     }
     membership = {
       'product_name' => purchase['offer_category'],
