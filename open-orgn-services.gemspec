@@ -29,17 +29,18 @@ Gem::Specification.new do |s|
   s.add_dependency 'google_drive'       , '~> 0.3' , '>= 0.3.6'
 
   s.add_development_dependency 'cucumber'         , '~> 1.2' , '>= 1.2.1'
-  s.add_development_dependency 'rspec'            , '~> 2.12', '>= 2.12.0'
-  s.add_development_dependency 'vcr'              , '~> 2.4' , '>= 2.4.0'
-  s.add_development_dependency 'webmock'          , '1.9.3'
   s.add_development_dependency 'dotenv'           , '~> 0.5' , '>= 0.5.0'
-  s.add_development_dependency 'simplecov-rcov'   , '~> 0.2' , '>= 0.2.3'
+  s.add_development_dependency 'email_spec'       , '~> 1.5' , '>= 1.5.0'
   s.add_development_dependency 'guard-cucumber'   , '~> 1.3' , '>= 1.3.2'
   s.add_development_dependency 'guard-spork'      , '~> 1.4' , '>= 1.4.2'
+  s.add_development_dependency 'pry'              , '~> 0.9' , '>= 0.9.12.6'
   s.add_development_dependency 'rb-fsevent'       , '~> 0.9' , '>= 0.9.3'
   s.add_development_dependency 'relish'           , '~> 0.6' , '>= 0.6.0'
+  s.add_development_dependency 'rspec'            , '~> 2.12', '>= 2.12.0'
+  s.add_development_dependency 'simplecov-rcov'   , '~> 0.2' , '>= 0.2.3'
   s.add_development_dependency 'timecop'          , '~> 0.5' , '>= 0.5.9.2'
-  s.add_development_dependency 'email_spec'       , '~> 1.5' , '>= 1.5.0'
+  s.add_development_dependency 'vcr'              , '~> 2.4' , '>= 2.4.0'
+  s.add_development_dependency 'webmock'          , '1.9.3'
 
   s.files        = Dir.glob("{lib}/**/*") + %w(LICENSE.md README.md)
   s.require_path = 'lib'

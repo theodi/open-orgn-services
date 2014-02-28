@@ -9,7 +9,3 @@ gemspec
 gem 'xeroizer', :git => 'https://github.com/theodi/xeroizer.git'
 gem 'capsulecrm', :git => 'https://github.com/theodi/capsulecrm.git'
 gem 'google_drive', :github => 'theodi/google-drive-ruby', :branch => 'support-ranges'
-
-group :development, :test do
-  gem 'pry'
-end
