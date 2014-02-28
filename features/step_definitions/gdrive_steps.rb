@@ -19,11 +19,11 @@ Given(/^there [^\s]+ (\d+) spreadsheets? in the spool$/) do |collection_size|
 end
 
 Then(/^there should be (\d+) spreadsheets? in the target$/) do |collection_size|
-  GoogleDrive::Mover.target.files.size.should == collection_size
+  GoogleDrive::Mover.target.files.size.should == collection_size.to_i
 end
 
 Then(/^there should be (\d+) spreadsheets? in the spool$/) do |collection_size|
-  GoogleDrive::Mover.spool.files.size.should == collection_size
+  GoogleDrive::Mover.spool.files.size.should == collection_size.to_i
 end
 
 Then(/^the new worksheet should match the moved spreadsheet content$/) do

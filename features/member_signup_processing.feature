@@ -21,12 +21,13 @@ Feature: Processing membership signups
     And I have an invoice address (country) of "USA" 
     And I have an invoice address (postcode) of "01010"
     And my organisation has a tax registration number "A0A0A0A0"
+    And my organisation has a company number "08030289"
     And I have a membership id "01010101"
 
   Scenario Outline: add signups to correct queues
     Given I requested 1 membership at the level called "<level>"
     And my purchase order reference is "ABC000001"
-    Then the invoice description should read "ODI <level_description> Membership (1010101)"
+    Then the invoice description should read "ODI <level_description> Membership (01010101)"
     And the invoice price should be "<price>"
     And I should be added to the invoicing queue
     And I should be added to the capsulecrm queue

@@ -1,6 +1,7 @@
 Then /^my signup should be requeued for later processing once the contact has synced from Xero$/ do
   organization = {
-    'name' => @company
+    'name' => @company,
+    'company_number' => @company_number
   }
   membership  = {
     'product_name' => @membership_level,
@@ -13,7 +14,8 @@ end
 
 When /^I sign up via the website$/ do
   organization = {
-    'name' => @company
+    'name' => @company,
+    'company_number' => @company_number
   }
   membership  = {
     'product_name' => @membership_level,
@@ -26,7 +28,8 @@ end
 
 Then /^I should be added to the capsulecrm queue$/ do
   organization = {
-    'name' => @company
+    'name' => @company,
+    'company_number' => @company_number
   }
   membership  = {
     'product_name' => @membership_level,
