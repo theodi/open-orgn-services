@@ -1,4 +1,4 @@
-INTEGER = Transform /^\d+$/ do |number|
+INTEGER = Transform /^[1-9][0-9]*$/ do |number|
   number.to_i
 end
 

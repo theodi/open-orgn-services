@@ -328,3 +328,8 @@ Then /^that data tag should have the email "(.*?)"$/ do |email|
   field.text.should == email
 end
 
+Then(/^that organisation should have a company number "(.*?)"$/) do |company_number|
+  field = @organisation.custom_fields.find{|x| x.label == "Company Number"}
+  field.should be_present
+  field.text.should == company_number
+end

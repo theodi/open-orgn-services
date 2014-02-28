@@ -13,7 +13,8 @@ class SendSignupToCapsule
   #              'contact_email'=> a contact email for the signup
   # 
   # organization - a hash containing details of the organization
-  #              'name' => the org name in Xero - should be the same as that in capsule
+  #              'name'           => the org name in Xero - should be the same as that in capsule
+  #              'company_number' => the company number for the organization
   # 
   # Returns nil.
   def self.perform(organization, membership)
@@ -42,7 +43,7 @@ class SendSignupToCapsule
         :label => 'Type',
         :text  => 'Membership'
       )
-      save_item(opportunity)
+      save_item(field)
       # Set up membership tag
       set_membership_tag(
         org,
@@ -51,6 +52,13 @@ class SendSignupToCapsule
         "Joined" => Date.parse(membership['join_date']),
         "Email"  => membership['contact_email']
       )
+      # Store company number on organization
+      field = CapsuleCRM::CustomField.new(
+        org,
+        :label => 'Company Number',
+        :text  => organization['company_number'],
+      )
+      save_item(field)
     end
   end
 
