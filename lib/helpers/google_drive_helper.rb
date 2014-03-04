@@ -49,16 +49,24 @@ module GoogleDriveHelper
     metrics_spreadsheet(doc_name).worksheet_by_title worksheet_name.to_s
   end
 
-  def cell_location year, identifier
+  def cell_location year, identifier  
     year = Date.today.year if year.nil?
     @@lookups['cell_lookups'][year][identifier]
   end
 
-  def metrics_cell identifier, year, block
+  def metrics_cell identifier, year, block, ref = "cell_ref"
     location             = cell_location(year, identifier)
     location['document'] ||= @@lookups['document_keys'][environment]['default']
     multiplier = location['multiplier'] || @@lookups['default_multiplier']
-    block.call(metrics_worksheet(location["document"], location["sheet"])[location["cell_ref"]]) * multiplier
+    block.call(metrics_worksheet(location["document"], location["sheet"])[location[ref]]) * multiplier
+  end
+  
+  def metrics_sum(metrics, block)
+    total = 0
+    metrics.each do |metric|
+      total += metrics_cell metric[0], metric[1], block, "actual"
+    end
+    total
   end
 
   def years

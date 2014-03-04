@@ -12,6 +12,7 @@ describe FinancialMetrics do
     {
       "current-year-value-unlocked"          => 775655,
       "cumulative-value-unlocked"            => 17699962,
+      "cumulative-income"                    => 258123,
       "current-year-income"                  => '{"actual":255270.833333333,"annual_target":2935183.33333333,"ytd_target":173153.3333333333}',
       "current-year-kpi-performance"         => 1.0,
       "current-year-grant-funding"           => '{"actual":330000.0,"annual_target":3354617.6046176003,"ytd_target":373917.748917748}',
@@ -54,6 +55,10 @@ describe FinancialMetrics do
       annual_target: 2935183.33333333,
       ytd_target:    173153.3333333333,
     }
+  end
+  
+  it "should show cumulative income", :vcr do
+    FinancialMetrics.income(nil, nil).should == 3123 + 255000
   end
 
   it "should show the correct bookings by sector", :vcr do
