@@ -12,6 +12,7 @@ class FinancialMetrics
       "current-year-value-unlocked"          => value(current_year),
       "cumulative-value-unlocked"            => value(nil),
       "current-year-income"                  => income(current_year, current_month),
+      "cumulative-income"                    => income(nil, nil),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year, current_month),
       "current-year-bookings-by-sector"      => bookings_by_sector(current_year, current_month),
@@ -38,7 +39,15 @@ class FinancialMetrics
   end
 
   def self.income(year, month)
-    metric_with_target('Income', year, month, Proc.new {|x| x.to_f})
+    if year.nil? && month.nil?
+      block = Proc.new { |x| x.to_i }
+      metrics_sum([
+        ['Income', 2014],
+        ['Income', 2013]
+      ], block)
+    else
+      metric_with_target('Income', year, month, Proc.new {|x| x.to_f})
+    end
   end
 
   def self.grant_funding(year, month)

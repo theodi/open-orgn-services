@@ -13,7 +13,9 @@ class NetworkMetrics
       "cumulative-reach"                     => reach(nil),
       "current-year-pr-pieces"               => pr_pieces(current_year),
       "current-year-people-trained"          => people_trained(current_year, current_month),
+      "cumulative-people-trained"            => people_trained(nil, nil),
       "current-year-network-size"            => network_size(current_year, current_month),
+      "cumulative-network-size"              => network_size(nil, nil)
     }.each_pair do |metric, value|
       store_metric metric, DateTime.now, value
     end
@@ -48,26 +50,36 @@ class NetworkMetrics
   end
 
   def self.people_trained(year, month)
-    block = Proc.new { |x| x.to_i }
-    h     = {
-        commercial:     'Commercial people trained',
-        non_commercial: 'Non-commercial people trained'
-    }
+    if year.nil? && month.nil?
+      block = Proc.new { |x| x.to_i }
+      metrics_cell('People trained', 'Cumulative', block)
+    else
+      block = Proc.new { |x| x.to_i }
+      h     = {
+          commercial:     'Commercial people trained',
+          non_commercial: 'Non-commercial people trained'
+      }
 
-    extract_metric h, year, month, block
+      extract_metric h, year, month, block
+    end
   end
 
   def self.network_size(year, month)
-    block = Proc.new { |x| x.to_i }
-    h     = {
-        partners:   'Partners',
-        sponsors:   'Sponsors',
-        supporters: 'Supporters',
-        startups:   'Startups',
-        nodes:      'Nodes',
-        affiliates: 'Affiliates',
-    }
-    extract_metric h, year, month, block
+    if year.nil? && month.nil?
+      block = Proc.new { |x| x.to_i }
+      metrics_cell('Network size', 'Cumulative', block)
+    else
+      block = Proc.new { |x| x.to_i }
+      h     = {
+          partners:   'Partners',
+          sponsors:   'Sponsors',
+          supporters: 'Supporters',
+          startups:   'Startups',
+          nodes:      'Nodes',
+          affiliates: 'Affiliates',
+      }
+      extract_metric h, year, month, block
+    end
   end
 
 end
