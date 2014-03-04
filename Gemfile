@@ -24,4 +24,5 @@ group :development, :test do
   gem 'timecop'          , '~> 0.5' 
   gem 'vcr'              , '~> 2.4' 
   gem 'webmock'          , '1.9.3'
+  gem 'mock_redis'
 end
