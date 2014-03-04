@@ -52,7 +52,7 @@ class NetworkMetrics
   def self.people_trained(year, month)
     if year.nil? && month.nil?
       block = Proc.new { |x| x.to_i }
-      metrics_cell('People trained cumulative', nil, block)
+      metrics_cell('People trained', 'Cumulative', block)
     else
       block = Proc.new { |x| x.to_i }
       h     = {
@@ -67,7 +67,7 @@ class NetworkMetrics
   def self.network_size(year, month)
     if year.nil? && month.nil?
       block = Proc.new { |x| x.to_i }
-      metrics_cell('Network size cumulative', nil, block)
+      metrics_cell('Network size', 'Cumulative', block)
     else
       block = Proc.new { |x| x.to_i }
       h     = {
