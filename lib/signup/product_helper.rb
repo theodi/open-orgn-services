@@ -12,9 +12,7 @@ module ProductHelper
   def product_value(product)
     case product.to_sym
     when :supporter
-      45
-    when :member
-      400
+      60
     when :sponsor
       25000
     when :partner
@@ -27,7 +25,7 @@ module ProductHelper
   
   def product_duration(product)
     case product.to_sym
-    when :supporter, :member
+    when :supporter
       12
     when :sponsor, :partner
       3
@@ -38,7 +36,7 @@ module ProductHelper
     
   def product_basis(product)
     case product.to_sym
-    when :supporter, :member
+    when :supporter
       'MONTH'
     when :sponsor, :partner
       'YEAR'
