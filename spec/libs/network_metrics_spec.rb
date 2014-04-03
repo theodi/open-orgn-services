@@ -10,8 +10,8 @@ describe NetworkMetrics do
     WebMock.allow_net_connect!
     time = DateTime.now
     {
-      "current-year-reach"                   => '{"total":775655,"breakdown":{"active":432423,"passive":343232}}',
-      "cumulative-reach"                     => '{"total":1079051,"breakdown":{"active":442949,"passive":636102}}',
+      "current-year-reach"                   => '{"total":70100,"breakdown":{"active":100,"passive":70000}}',
+      "cumulative-reach"                     => '{"total":373496,"breakdown":{"active":10626,"passive":362870}}',
       "current-year-pr-pieces"               => 0,
       "cumulative-people-trained"            => 234,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
@@ -28,10 +28,10 @@ describe NetworkMetrics do
 
   it "should show the correct cumulative reach", :vcr do
     NetworkMetrics.reach.should == {
-      :total   => 1079051,
+      :total   => 373496,
       :breakdown => {
-        :active  => 442949,
-        :passive => 636102,
+        :active  => 10626,
+        :passive => 362870,
       }
     }
   end
@@ -48,10 +48,10 @@ describe NetworkMetrics do
 
   it "should show the correct reach for 2014", :vcr do
     NetworkMetrics.reach(2014).should == {
-      :total   => 775655,
+      :total   => 70100,
       :breakdown => {
-        :active  => 432423,
-        :passive => 343232,
+        :active  => 100,
+        :passive => 70000,
       }
     }
   end
