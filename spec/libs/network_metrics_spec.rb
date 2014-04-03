@@ -16,7 +16,7 @@ describe NetworkMetrics do
       "cumulative-people-trained"            => 234,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
       "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0},"affiliates":{"actual":0}}',
-      "cumulative-network-size"              => 80
+      "cumulative-network-size"              => 103
     }.each_pair do |metric, value|
       metrics_api_should_receive metric, time, value
     end
@@ -74,7 +74,7 @@ describe NetworkMetrics do
         }
     }
   end
-  
+
   it "should show the cumulative number of people trained", :vcr do
     NetworkMetrics.people_trained(nil, nil).should == 234
   end
@@ -111,9 +111,9 @@ describe NetworkMetrics do
         }
     }
   end
-  
+
   it "should show the cumulative network size", :vcr do
-    NetworkMetrics.network_size(nil, nil).should == 80
+    NetworkMetrics.network_size(nil, nil).should == 103
   end
 
   after :each do
