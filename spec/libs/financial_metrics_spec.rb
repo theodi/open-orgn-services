@@ -10,11 +10,11 @@ describe FinancialMetrics do
     WebMock.allow_net_connect!
     time = DateTime.now
     {
-      "current-year-value-unlocked"          => 775655,
-      "cumulative-value-unlocked"            => 17699962,
+      "current-year-value-unlocked"          => 544441,
+      "cumulative-value-unlocked"            => 15754684,
       "cumulative-income"                    => 258123,
       "current-year-income"                  => '{"actual":255270.833333333,"annual_target":2935183.33333333,"ytd_target":173153.3333333333}',
-      "current-year-kpi-performance"         => 1.0,
+      "current-year-kpi-performance"         => 38.0,
       "current-year-grant-funding"           => '{"actual":330000.0,"annual_target":3354617.6046176003,"ytd_target":373917.748917748}',
       "current-year-bookings-by-sector"      => '{"research":{"commercial":{"actual":26000.0,"annual_target":1500000.0,"ytd_target":0.0},"non_commercial":{"actual":77000.0,"annual_target":750000.0,"ytd_target":0.0}},"training":{"commercial":{"actual":75000.0,"annual_target":128120.0,"ytd_target":17360.0},"non_commercial":{"actual":25000.0,"annual_target":180780.0,"ytd_target":14580.0}},"projects":{"commercial":{"actual":1175000.0,"annual_target":450000.0,"ytd_target":0.0},"non_commercial":{"actual":1039000.0,"annual_target":500000.0,"ytd_target":50000.0}},"network":{"commercial":{"actual":245250.0,"annual_target":874480.0,"ytd_target":141440.0},"non_commercial":{"actual":39000.0,"annual_target":45200.0,"ytd_target":25200.0}}}',
       "current-year-headcount"               => '{"actual":22.0,"annual_target":34.0,"ytd_target":26.0}',
@@ -31,14 +31,14 @@ describe FinancialMetrics do
   end
 
   it "should show the correct unlocked value", :vcr do
-    FinancialMetrics.value(2013).should == 16924307
-    FinancialMetrics.value(2014).should == 775655
-    FinancialMetrics.value.should == 17699962
+    FinancialMetrics.value(2013).should == 15210243
+    FinancialMetrics.value(2014).should == 544441
+    FinancialMetrics.value.should == 15754684
   end
 
   it "should show the correct kpi percentage", :vcr do
     FinancialMetrics.kpis(2013).should == 100.0
-    FinancialMetrics.kpis(2014).should == 1.0
+    FinancialMetrics.kpis(2014).should == 38.0
   end
 
   it "should show total grant funding", :vcr do
