@@ -65,11 +65,12 @@ class NetworkMetrics
   end
 
   def self.network_size(year, month)
+    block = Proc.new { |x| x.to_i }
     if year.nil? && month.nil?
-      block = Proc.new { |x| x.to_i }
-      metrics_cell('Network size', 'Cumulative', block)
+      years.inject(0) do |memo, year|
+        memo += metrics_cell('Network size', year, block)
+      end
     else
-      block = Proc.new { |x| x.to_i }
       h     = {
           partners:   'Partners',
           sponsors:   'Sponsors',
