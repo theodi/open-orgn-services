@@ -51,8 +51,9 @@ class NetworkMetrics
 
   def self.people_trained(year, month)
     if year.nil? && month.nil?
-      block = Proc.new { |x| x.to_i }
-      metrics_cell('People trained', 'Cumulative', block)
+      years.map{|year| people_trained(year, 12)}.inject(0) do |memo, trained|
+        memo += trained[:commercial][:actual] + trained[:non_commercial][:actual]
+      end
     else
       block = Proc.new { |x| x.to_i }
       h     = {

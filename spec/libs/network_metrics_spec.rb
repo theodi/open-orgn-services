@@ -13,7 +13,7 @@ describe NetworkMetrics do
       "current-year-reach"                   => '{"total":70100,"breakdown":{"active":100,"passive":70000}}',
       "cumulative-reach"                     => '{"total":373496,"breakdown":{"active":10626,"passive":362870}}',
       "current-year-pr-pieces"               => 0,
-      "cumulative-people-trained"            => 234,
+      "cumulative-people-trained"            => 325,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
       "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0},"affiliates":{"actual":0}}',
       "cumulative-network-size"              => 103
@@ -76,7 +76,7 @@ describe NetworkMetrics do
   end
 
   it "should show the cumulative number of people trained", :vcr do
-    NetworkMetrics.people_trained(nil, nil).should == 234
+    NetworkMetrics.people_trained(nil, nil).should == 325
   end
 
   it "should show correct network size", :vcr do
