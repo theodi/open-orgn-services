@@ -102,7 +102,7 @@ class FinancialMetrics
   end
 
   def self.ebitda(year, month)
-    block = Proc.new { |x| x.to_f }
+    block = Proc.new { |x| x.is_a?(Array) ? x.inject(0.0) {|s,v| s += v.to_f} : x.to_f }
     metric_with_target 'EBITDA', year, month, block
   end
 
