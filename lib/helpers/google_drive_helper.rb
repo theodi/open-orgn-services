@@ -24,6 +24,9 @@ module GoogleDriveHelper
     data[:actual] = (block.call(
             metrics_worksheet(location['document'], location['sheet'])[location['actual']]
           ) * multiplier) if location['actual']
+    data[:latest] = (block.call(
+            metrics_worksheet(location['document'], location['sheet'])[location['latest']].slice(0,month).last
+          ) * multiplier) if location['latest']
     data[:annual_target] = (block.call(
             metrics_worksheet(location['document'], location['sheet'])[location['annual_target']]
           ) * multiplier) if location['annual_target']
