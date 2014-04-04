@@ -13,6 +13,7 @@ class FinancialMetrics
       "cumulative-value-unlocked"            => value(nil),
       "current-year-income"                  => income(current_year, current_month),
       "cumulative-income"                    => income(nil, nil),
+      "cumulative-bookings"                  => bookings(nil),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year, current_month),
       "current-year-bookings-by-sector"      => bookings_by_sector(current_year, current_month),
@@ -36,6 +37,18 @@ class FinancialMetrics
 
   def self.kpis(year)
     metrics_cell('KPI percentage', year, Proc.new {|x| x.to_f}).round(1)
+  end
+
+  def self.bookings(year)
+    block = Proc.new { |x| x.to_f }
+    if year.nil?
+      metrics_sum([
+        ['Total bookings', 2014],
+        ['Total bookings', 2013]
+      ], block)
+    else
+      metrics_cell('Total bookings', year, block)
+    end
   end
 
   def self.income(year, month)
