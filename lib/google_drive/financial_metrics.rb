@@ -9,6 +9,7 @@ class FinancialMetrics
     current_year  = DateTime.now.year
     current_month = DateTime.now.month
     {
+      "cash-reserves"                        => cash_reserves(current_year),
       "current-year-value-unlocked"          => value(current_year),
       "cumulative-value-unlocked"            => value(nil),
       "current-year-income"                  => income(current_year, current_month),
@@ -36,6 +37,10 @@ class FinancialMetrics
 
   def self.kpis(year)
     metrics_cell('KPI percentage', year, Proc.new {|x| x.to_f}).round(1)
+  end
+
+  def self.cash_reserves(year)
+    metrics_cell('Cash reserves', year, Proc.new {|x| x.to_f})
   end
 
   def self.income(year, month)

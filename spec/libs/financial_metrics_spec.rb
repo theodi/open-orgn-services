@@ -10,6 +10,7 @@ describe FinancialMetrics do
     WebMock.allow_net_connect!
     time = DateTime.now
     {
+      "cash-reserves"                        => 1015006.28,
       "current-year-value-unlocked"          => 544441,
       "cumulative-value-unlocked"            => 15754684,
       "cumulative-income"                    => 258123,
@@ -59,6 +60,10 @@ describe FinancialMetrics do
   
   it "should show cumulative income", :vcr do
     FinancialMetrics.income(nil, nil).should == 3123 + 255000
+  end
+
+  it "should show cash reserves", :vcr do
+    FinancialMetrics.cash_reserves(2014).should == 1015006.28
   end
 
   it "should show the correct bookings by sector", :vcr do
