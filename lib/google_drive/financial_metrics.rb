@@ -14,6 +14,7 @@ class FinancialMetrics
       "cumulative-value-unlocked"            => value(nil),
       "current-year-income"                  => income(current_year, current_month),
       "cumulative-income"                    => income(nil, nil),
+      "cumulative-bookings"                  => bookings(nil),
       "current-year-kpi-performance"         => kpis(current_year),
       "current-year-grant-funding"           => grant_funding(current_year, current_month),
       "current-year-bookings-by-sector"      => bookings_by_sector(current_year, current_month),
@@ -41,6 +42,18 @@ class FinancialMetrics
 
   def self.cash_reserves(year)
     metrics_cell('Cash reserves', year, Proc.new {|x| x.to_f})
+  end
+
+  def self.bookings(year)
+    block = Proc.new { |x| x.to_f }
+    if year.nil?
+      metrics_sum([
+        ['Total bookings', 2014],
+        ['Total bookings', 2013]
+      ], block)
+    else
+      metrics_cell('Total bookings', year, block)
+    end
   end
 
   def self.income(year, month)
@@ -122,7 +135,7 @@ class FinancialMetrics
         annual_target: variable[:annual_target] + fixed[:annual_target],
         ytd_target:    variable[:ytd_target] + fixed[:ytd_target],
         breakdown: breakdown
-    }    
+    }
   end
 
 end
