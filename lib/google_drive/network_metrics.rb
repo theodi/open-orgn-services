@@ -12,6 +12,7 @@ class NetworkMetrics
       "current-year-reach"                   => reach(current_year),
       "cumulative-reach"                     => reach(nil),
       "current-year-pr-pieces"               => pr_pieces(current_year),
+      "current-year-events-hosted"           => events_hosted(current_year),
       "current-year-people-trained"          => people_trained(current_year, current_month),
       "cumulative-people-trained"            => people_trained(nil, nil),
       "current-year-network-size"            => network_size(current_year, current_month),
