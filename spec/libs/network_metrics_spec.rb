@@ -12,7 +12,7 @@ describe NetworkMetrics do
     {
       "current-year-reach"                   => '{"total":70100,"breakdown":{"active":100,"passive":70000}}',
       "cumulative-reach"                     => '{"total":373496,"breakdown":{"active":10626,"passive":362870}}',
-      "current-year-pr-pieces"               => 0,
+      "current-year-pr-pieces"               => 99,
       "current-year-events-hosted"           => 2,
       "cumulative-people-trained"            => 325,
       "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
@@ -58,7 +58,7 @@ describe NetworkMetrics do
   end
 
   it "should show the correct number of PR pieces", :vcr do
-    NetworkMetrics.pr_pieces(2014).should == 0
+    NetworkMetrics.pr_pieces(2014).should == 99
   end
 
   it "should show the correct number of events hosted", :vcr do
