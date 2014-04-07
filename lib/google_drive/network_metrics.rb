@@ -49,6 +49,11 @@ class NetworkMetrics
     metrics_cell('PR Pieces', year, block)
   end
 
+  def self.events_hosted(year)
+    block = Proc.new { |x| x.to_i }
+    metrics_cell('Events hosted', year, block)
+  end
+
   def self.people_trained(year, month)
     if year.nil? && month.nil?
       years.map{|year| people_trained(year, 12)}.inject(0) do |memo, trained|
