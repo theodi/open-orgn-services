@@ -11,8 +11,8 @@ describe QuarterlyProgress do
 
     progress = QuarterlyProgress.progress(2014)
 
-    progress[:q1].should == 9.8
-    progress[:q2].should == 0
+    progress[:q1].should == 67.5
+    progress[:q2].should == 7.9
     progress[:q3].should == 0
     progress[:q4].should == 0
   end
@@ -22,8 +22,8 @@ describe QuarterlyProgress do
     time = DateTime.now
     h    = {
         '2014' => {
-            :q1 => 9.8,
-            :q2 => 0,
+            :q1 => 67.5,
+            :q2 => 7.9,
             :q3 => 0,
             :q4 => 0
         },

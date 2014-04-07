@@ -26,7 +26,7 @@ class QuarterlyProgress
         },
         2014 => {
             :q1 => '8P2Hgzlh',
-            :q2 => nil,
+            :q2 => 'sFETRDq0',
             :q3 => nil,
             :q4 => nil,
         },
