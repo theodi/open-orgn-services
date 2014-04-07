@@ -12,6 +12,7 @@ class NetworkMetrics
       "current-year-reach"                   => reach(current_year),
       "cumulative-reach"                     => reach(nil),
       "current-year-pr-pieces"               => pr_pieces(current_year),
+      "current-year-events-hosted"           => events_hosted(current_year),
       "current-year-people-trained"          => people_trained(current_year, current_month),
       "cumulative-people-trained"            => people_trained(nil, nil),
       "current-year-network-size"            => network_size(current_year, current_month),
@@ -47,6 +48,11 @@ class NetworkMetrics
   def self.pr_pieces(year)
     block = Proc.new { |x| x.to_i }
     metrics_cell('PR Pieces', year, block)
+  end
+
+  def self.events_hosted(year)
+    block = Proc.new { |x| x.to_i }
+    metrics_cell('Events hosted', year, block)
   end
 
   def self.people_trained(year, month)
