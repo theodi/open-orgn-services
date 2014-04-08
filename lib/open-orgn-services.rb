@@ -46,6 +46,7 @@ require 'github/outgoing_pull_request_monitor'
 
 require 'leftronic/dashboard_time'
 require 'leftronic/leftronic_publisher'
+require 'trello/trello_boards'
 require 'trello/trello_monitor'
 require 'trello/quarterly_progress'
 
