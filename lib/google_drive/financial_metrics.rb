@@ -97,7 +97,11 @@ class FinancialMetrics
   end
 
   def self.burn_rate(year, month)
-    block = Proc.new { |x| x[month-1].to_f }
+    block = Proc.new do |data|
+      data = data.slice(0,month)
+      nonzero = data.select{|val| val.to_f > 0}
+      sum = nonzero.last(3).map{|x| x.to_f}.inject(0.0){|sum,val| sum += val} / nonzero.length
+    end
     metrics_cell 'Burn', year, block
   end
 
