@@ -7,24 +7,19 @@ describe NetworkMetrics do
   end
 
   it "should store right values in metrics API" do
-    WebMock.allow_net_connect!
-    time = DateTime.now
-    {
-      "current-year-reach"                   => '{"total":70100,"breakdown":{"active":100,"passive":70000}}',
-      "cumulative-reach"                     => '{"total":373496,"breakdown":{"active":10626,"passive":362870}}',
-      "current-year-pr-pieces"               => 99,
-      "current-year-events-hosted"           => 2,
-      "cumulative-people-trained"            => 325,
-      "current-year-people-trained"          => '{"commercial":{"actual":36,"annual_target":190,"ytd_target":25},"non_commercial":{"actual":55,"annual_target":206,"ytd_target":26}}',
-      "current-year-network-size"            => '{"partners":{"actual":3,"annual_target":10,"ytd_target":2},"sponsors":{"actual":1,"annual_target":5,"ytd_target":0},"supporters":{"actual":7,"annual_target":34,"ytd_target":2},"startups":{"actual":7,"annual_target":6,"ytd_target":6},"nodes":{"actual":11,"annual_target":20,"ytd_target":0},"affiliates":{"actual":0}}',
-      "cumulative-network-size"              => 103
-    }.each_pair do |metric, value|
-      metrics_api_should_receive metric, time, value
-    end
-
+    # Which methods are called?
+    NetworkMetrics.should_receive(:reach).with(2014).once
+    NetworkMetrics.should_receive(:reach).with(nil).once
+    NetworkMetrics.should_receive(:pr_pieces).with(2014).once
+    NetworkMetrics.should_receive(:events_hosted).with(2014).once
+    NetworkMetrics.should_receive(:people_trained).with(2014, 2).once
+    NetworkMetrics.should_receive(:people_trained).with(nil, nil).once
+    NetworkMetrics.should_receive(:network_size).with(2014, 2).once
+    NetworkMetrics.should_receive(:network_size).with(nil, nil).once
+    # How many metrics are stored?
+    NetworkMetrics.should_receive(:store_metric).exactly(8).times
+    # Do it
     NetworkMetrics.perform
-    Timecop.return
-    WebMock.disable_net_connect!
   end
 
   it "should show the correct cumulative reach", :vcr do

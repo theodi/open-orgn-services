@@ -7,8 +7,6 @@ describe FinancialMetrics do
   end
 
   it "should store right values in metrics API" do
-    WebMock.allow_net_connect!
-    time = DateTime.now
     # Which methods are called?
     FinancialMetrics.should_receive(:cash_reserves).with(2014).once
     FinancialMetrics.should_receive(:value).with(2014).once
