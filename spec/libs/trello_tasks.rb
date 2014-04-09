@@ -35,4 +35,15 @@ describe TrelloTasks do
     Timecop.return
   end
 
+  it "should not choke on nil values" do
+    allow(TrelloTasks).to receive(:board_ids).and_return({
+        2014 => {
+          :q1 => nil
+        }
+      })
+
+    HTTParty.should_not_receive(:post)
+    TrelloTasks.perform
+  end
+
 end
