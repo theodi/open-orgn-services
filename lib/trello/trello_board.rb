@@ -68,7 +68,7 @@ class TrelloBoard
     progress = complete.to_f / total.to_f
     no_checklist = progress.nan?
     progress = 0 if progress.nan?
-    {title: card.name, due: card.due, progress: progress, no_checklist: no_checklist}
+    {id: card.id, title: card.name, due: card.due, progress: progress, no_checklist: no_checklist}
   end
 
 end
