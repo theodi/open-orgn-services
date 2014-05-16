@@ -19,10 +19,11 @@ When /^I sign up via the website$/ do
     'company_number' => @company_number
   }
   membership  = {
-    'product_name' => @membership_level,
-    'id'           => @membership_id.to_s,
-    'join_date'    => Date.today.to_s,
-    'contact_email'=> @email
+    'product_name'    => @membership_level,
+    'supporter_level' => @supporter_level,
+    'id'              => @membership_id.to_s,
+    'join_date'       => Date.today.to_s,
+    'contact_email'   => @email
   }
   SendSignupToCapsule.perform(organization, membership)
 end
