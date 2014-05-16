@@ -42,12 +42,14 @@ class SignupProcessor
     if size == "small" || type == "non_commercial"
       {
         price: 60,
-        description: "Supporter Membership"
+        description: "Supporter Membership",
+        type: "Supporter"
       }
     else
       {
         price: 120,
-        description: "Corporate Membership Supporter"
+        description: "Corporate Membership Supporter",
+        type: "Corporate supporter"
       }
     end
   end
@@ -94,10 +96,11 @@ class SignupProcessor
       'company_number' => organization['company_number']
     }
     membership = {
-      'product_name' => purchase['offer_category'],
-      'id'           => purchase['membership_id'].to_s,
-      'join_date'    => Date.today.to_s,
-      'contact_email'=> contact_person['email']
+      'product_name'    => purchase['offer_category'],
+      'supporter_level' => membership_type[:type],
+      'id'              => purchase['membership_id'].to_s,
+      'join_date'       => Date.today.to_s,
+      'contact_email'   => contact_person['email']
     }
     Resque.enqueue(SendSignupToCapsule, organization, membership)
   end

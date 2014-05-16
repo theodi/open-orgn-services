@@ -31,6 +31,7 @@ Feature: Processing membership signups
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "ODI Supporter Membership (01010101) [Commercial]"
     And the invoice price should be "60"
+    And the supporter level should be "Supporter"
     And I should be added to the invoicing queue
     And I should be added to the capsulecrm queue
     When the signup processor runs
@@ -42,15 +43,16 @@ Feature: Processing membership signups
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "<description>"
     And the invoice price should be "<price>"
+    And the supporter level should be "<level>"
     And I should be added to the invoicing queue
     And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
-    | size  | status         | description                                                | price |
-    | small | commercial     | ODI Supporter Membership (01010101) [Commercial]           | 60    |
-    | large | commercial     | ODI Corporate Membership Supporter (01010101) [Commercial] | 120   |
-    | small | non_commercial | ODI Supporter Membership (01010101) [Non Commercial]       | 60    |
-    | large | non_commercial | ODI Supporter Membership (01010101) [Non Commercial]       | 60    |
+    | size  | status         | description                                                | level               | price |
+    | small | commercial     | ODI Supporter Membership (01010101) [Commercial]           | Supporter           | 60    |
+    | large | commercial     | ODI Corporate Membership Supporter (01010101) [Commercial] | Corporate supporter | 120   |
+    | small | non_commercial | ODI Supporter Membership (01010101) [Non Commercial]       | Supporter           | 60    |
+    | large | non_commercial | ODI Supporter Membership (01010101) [Non Commercial]       | Supporter           | 60    |
 
 
 # currently an issue with leading zeros being removed from postcode and membership number
