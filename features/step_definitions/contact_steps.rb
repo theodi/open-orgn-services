@@ -76,4 +76,10 @@ Given /^I entered a membership number "(.*?)"$/ do |membership_number|
   @membership_id = membership_number.to_s
 end
 
+Given(/^my company has a size of "(.*?)"$/) do |size|
+  @size = size
+end
 
+Given(/^my company is "(.*?)"$/) do |type|
+  @type = type
+end
