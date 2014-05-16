@@ -5,7 +5,7 @@ Then /^my signup should be requeued for later processing once the contact has sy
   }
   membership  = {
     'product_name'    => @membership_level,
-    'supporter_level' => @supporter_level,
+    'supporter_level' => "Supporter",
     'id'              => @membership_id.to_s,
     'join_date'       => Date.today.to_s,
     'contact_email'   => @email
@@ -20,7 +20,7 @@ When /^I sign up via the website$/ do
   }
   membership  = {
     'product_name'    => @membership_level,
-    'supporter_level' => @supporter_level,
+    'supporter_level' => @membership_level.titleize,
     'id'              => @membership_id.to_s,
     'join_date'       => Date.today.to_s,
     'contact_email'   => @email

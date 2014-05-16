@@ -1,21 +1,22 @@
 class SendSignupToCapsule
   @queue = :signup
-  
+
   extend ProductHelper
   extend CapsuleHelper
 
   # Public: Store details of self-signups in CapsuleCRM
   #
   # membership   - a hash containing details of the new membership
-  #              'product_name' => the membership level
-  #              'id'           => the newly-generated membership number
-  #              'join_date'    => the date of signup
-  #              'contact_email'=> a contact email for the signup
-  # 
+  #              'product_name'    => the membership level
+  #              'supporter_level' => The supporter level
+  #              'id'              => the newly-generated membership number
+  #              'join_date'       => the date of signup
+  #              'contact_email'   => a contact email for the signup
+  #
   # organization - a hash containing details of the organization
   #              'name'           => the org name in Xero - should be the same as that in capsule
   #              'company_number' => the company number for the organization
-  # 
+  #
   # Returns nil.
   def self.perform(organization, membership)
     org = find_organization(organization['name'])
@@ -24,7 +25,7 @@ class SendSignupToCapsule
     else
       # Create opportunity against organisation
       opportunity = CapsuleCRM::Opportunity.new(
-        :party_id            => org.id, 
+        :party_id            => org.id,
         :name                => "Membership at #{membership['product_name']} level",
         :currency            => 'GBP',
         :description         => "Membership #: #{membership['id']}",
@@ -47,10 +48,11 @@ class SendSignupToCapsule
       # Set up membership tag
       set_membership_tag(
         org,
-        "Level"  => membership['product_name'],
-        "ID"     => membership['id'],
-        "Joined" => Date.parse(membership['join_date']),
-        "Email"  => membership['contact_email']
+        "Level"           => membership['product_name'],
+        "Supporter Level" => membership['supporter_level'],
+        "ID"              => membership['id'],
+        "Joined"          => Date.parse(membership['join_date']),
+        "Email"           => membership['contact_email']
       )
       # Store company number on organization
       field = CapsuleCRM::CustomField.new(

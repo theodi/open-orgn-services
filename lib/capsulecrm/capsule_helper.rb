@@ -1,19 +1,20 @@
 module CapsuleHelper
-  
+
   def find_organization(query)
     # Run fuzzy capsuleCRM match
     orgs = CapsuleCRM::Organisation.find_all(:q => query)
     # Find exact name or membership ID match
     orgs.find{|x| x.name == query || field(x, "Membership", "ID").try(:text) == query}
   end
-  
+
   def set_membership_tag(party, fields)
     types = {
-      "Level"      => :text,
-      "ID"         => :text,
-      "Email"      => :text,
-      "Joined"     => :date,
-      "Newsletter" => :boolean
+      "Level"           => :text,
+      "Supporter Level" => :text,
+      "ID"              => :text,
+      "Email"           => :text,
+      "Joined"          => :date,
+      "Newsletter"      => :boolean
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end
@@ -37,7 +38,7 @@ module CapsuleHelper
     }
     set_custom_fields_on_tag(party, "DirectoryEntry", fields, types)
   end
-  
+
   def set_custom_fields_on_tag(party, tag, fields, types)
     # Create data tag
     add_data_tag(party, tag)
@@ -46,10 +47,10 @@ module CapsuleHelper
     fields.each_pair do |label,value|
       # Get data type and raise if not found
       data_type = types[label]
-      raise ArgumentError.new("Unknown field label when setting #{tag} tag: #{label}") if data_type.nil?
+      raise ArgumentError.new("Unknown field label when setting #{tag} tag: #{label}. Is the label set in the set_membership_tag or set_directory_entry_tag array?") if data_type.nil?
       # Store field
       success &&= set_custom_field_on_tag(
-        party, 
+        party,
         tag,
         :label    => label,
         data_type => value
@@ -57,7 +58,7 @@ module CapsuleHelper
     end
     success
   end
-  
+
   def add_data_tag(party, tag)
     tag = CapsuleCRM::Tag.new(
       party,
@@ -79,13 +80,13 @@ module CapsuleHelper
   def field(org, tag, field)
     org.custom_fields.find{|x| x.label == field && x.tag == tag}
   end
-  
+
   def check_errors(obj)
     unless obj
       raise "Creating the #{obj} raised the following errors: #{obj.errors.join(', ')}"
     end
   end
-  
+
   def save_item(obj)
     obj.save
     check_errors(obj)
