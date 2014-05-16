@@ -23,7 +23,7 @@ Given /^that organisation has a person called "(.*?)"$/ do |name|
     :last_name => name.split(' ', 2)[1]
   )
   p.save
-  person = @organisation.people.find do |p| 
+  person = @organisation.people.find do |p|
     [p.first_name, p.last_name].compact.join(' ') == name
   end
   person.should be_present
@@ -155,7 +155,7 @@ end
 Given(/^there is an opportunity against that organisation$/) do
   # Create opportunity against organisation
   @opportunity = CapsuleCRM::Opportunity.new(
-    :party_id            => @organisation.id, 
+    :party_id            => @organisation.id,
     :name                => "Membership",
     :milestone           => 'Closed',
     :probability         => 100,
@@ -182,7 +182,7 @@ Given(/^that opportunity is expected to close on (#{DATE})$/) do |date|
   # Mock the actual close date, as it's done by capsule internally
   if date <= Date.today
     $opportunity_closed_dates ||= {}
-    $opportunity_closed_dates[@opportunity.id] = date.to_s 
+    $opportunity_closed_dates[@opportunity.id] = date.to_s
     class CapsuleCRM::Opportunity
       def actual_close_date
         $opportunity_closed_dates[id]
@@ -332,4 +332,10 @@ Then(/^that organisation should have a company number "(.*?)"$/) do |company_num
   field = @organisation.custom_fields.find{|x| x.label == "Company Number"}
   field.should be_present
   field.text.should == company_number
+end
+
+Then(/^that data tag should have the supporter level "(.*?)"$/) do |level|
+  field = @organisation.custom_fields.find{|x| x.label == "Supporter Level" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == level
 end

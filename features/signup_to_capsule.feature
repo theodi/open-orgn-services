@@ -3,7 +3,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
 
   In order to see lower-level members in our sales pipeline
   As a commercial person
-  I want opportunities to be created in CapsuleCRM 
+  I want opportunities to be created in CapsuleCRM
   when lower-level members sign up
 
   Background:
@@ -44,6 +44,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that organisation should have a data tag
     And that data tag should have the type "Membership"
     And that data tag should have the level "supporter"
+    And that data tag should have the supporter level "Supporter"
     And that data tag should have the join date 2013-01-01
     And that data tag should have the membership number "AB1234YZ"
     And that data tag should have the email "turkleton@acme.com"
@@ -53,5 +54,3 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     When I sign up via the website
     Then there should still be just one organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a company number "08030289"
-  
-  

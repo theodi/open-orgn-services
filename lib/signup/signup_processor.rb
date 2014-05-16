@@ -1,6 +1,6 @@
 class SignupProcessor
   @queue = :signup
-  
+
   # Public: Process new signups from the member site
   #
   # expects input of the following form...
@@ -9,6 +9,8 @@ class SignupProcessor
   #                   'name'
   #                   'vat_id'
   #                   'company_number'
+  #                   'size'
+  #                   'type'
   #
   # contact_person    - a hash containing details of the main contact for the member organisation
   #                    'name'
@@ -36,22 +38,29 @@ class SignupProcessor
   # Returns nil. Queues invoicing and CRM task creation jobs.
 
 
-  def self.base_price(offer_category)
-    # get the base price for this level of membership
-    case offer_category
-    when 'supporter'
-      60
+  def self.membership_type(size, type)
+    if size == "small" || type == "non_commercial"
+      {
+        price: 60,
+        description: "Supporter Membership",
+        type: "Supporter"
+      }
     else
-      raise ArgumentError.new("Member level is invalid")
+      {
+        price: 120,
+        description: "Corporate Membership Supporter",
+        type: "Corporate supporter"
+      }
     end
   end
 
-  def self.description(membership_id, offer_category)
-      "ODI #{offer_category.capitalize} Membership (#{membership_id})"
+  def self.description(membership_id, description, type)
+      "ODI #{description} (#{membership_id}) [#{type.titleize}]"
   end
 
 
   def self.perform(organization, contact_person, billing, purchase)
+    membership_type = membership_type(organization['size'], organization['type'])
 
     invoice_to = {
       'name' => organization['name'],
@@ -71,25 +80,29 @@ class SignupProcessor
     }
     invoice_details = {
       'quantity' => 1,
-      'base_price' => base_price(purchase['offer_category']),
+      'base_price' => membership_type[:price],
       'purchase_order_reference' => purchase['purchase_order_reference'],
-      'description' => description(purchase['membership_id'], purchase['offer_category'])
+      'description' => description(purchase['membership_id'],
+                                   membership_type[:description],
+                                   organization['type']
+                                  )
     }
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
-    
+
     # Save details in capsule
-    
+
     organization = {
       'name' => organization['name'],
       'company_number' => organization['company_number']
     }
     membership = {
-      'product_name' => purchase['offer_category'],
-      'id'           => purchase['membership_id'].to_s,
-      'join_date'    => Date.today.to_s,
-      'contact_email'=> contact_person['email']
+      'product_name'    => purchase['offer_category'],
+      'supporter_level' => membership_type[:type],
+      'id'              => purchase['membership_id'].to_s,
+      'join_date'       => Date.today.to_s,
+      'contact_email'   => contact_person['email']
     }
     Resque.enqueue(SendSignupToCapsule, organization, membership)
   end
-  
+
 end

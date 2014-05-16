@@ -45,6 +45,10 @@ Then /^the invoice price should be "(.*?)"$/ do |base_price|
   @base_price = base_price
 end
 
+Then /^the supporter level should be "(.*?)"$/ do |supporter_level|
+  @supporter_level = supporter_level
+end
+
 Then /^the invoice should be due on (#{DATE})$/ do |date|
   @invoice_due_date = date
 end
