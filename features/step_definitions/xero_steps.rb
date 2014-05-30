@@ -30,7 +30,7 @@ Then /^that contact should have tax number "(.*?)"$/ do |tax_number|
   @contact.tax_number.should == tax_number
 end
 
-# Invoices 
+# Invoices
 
 Given(/^the following invoices in Xero:$/) do |table|
   table.hashes.each do |row|
@@ -83,7 +83,7 @@ Then /^that invoice should have a total of (#{FLOAT})$/ do |total|
   @invoice.total.should == total
 end
 
-# Line items 
+# Line items
 
 Then /^that invoice should contain (#{INTEGER}) line item$/ do |line_item_count|
   @line_items = @invoice.line_items
@@ -125,4 +125,8 @@ end
 Then /^an invoice should not be raised in Xero against "(.*?)"$/ do |contact_name|
   @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
   @invoice.should be_nil
+end
+
+Then(/^that invoice should include the sector "(.*?)"$/) do |sector|
+  @invoice.line_items.last.tracking.last.option.should == sector
 end
