@@ -83,3 +83,7 @@ end
 Given(/^my company is "(.*?)"$/) do |type|
   @type = type
 end
+
+Given(/^my sector is "(.*?)"$/) do |sector|
+  @sector = sector
+end

@@ -19,9 +19,10 @@ class AttendeeMonitor
     e = EventbriteClient.new ({ :app_key => ENV["EVENTBRITE_API_KEY"], :user_key => ENV["EVENTBRITE_USER_KEY"]})
     begin
       response = e.event_list_attendees(id: event_details['id'], page: 0)
-    rescue RuntimeError
+    rescue RuntimeError => e
       response = nil
     end
+
     if response
       attendees = response.parsed_response['attendees']
       orders = attendees.group_by{|x| x['attendee']['order_id']}
@@ -29,9 +30,9 @@ class AttendeeMonitor
         a = attendees.first['attendee']
         if a['amount_paid'].to_f > 0
           invoice_uid = "eventbrite-#{event_details['id']}-#{order_id}-invoice-sent"
-          
+
           date = Date.parse(event_details['starts_at']) rescue nil
-        
+
           invoice_to = {
             'name'               => a['company'],
             'contact_point'      => {
@@ -47,23 +48,24 @@ class AttendeeMonitor
               'postal_code'      => custom_answer(a, 'Billing Address (postcode)')
             },
             'vat_id'             => custom_answer(a, 'VAT reg number (if non-UK)')
-          }          
-        
+          }
+
           invoice_details =  {
             'payment_method'           => payment_method(a['order_type']),
             'quantity'                 => attendees.count,
             'base_price'               => a['amount_paid'].to_f/1.2,
             'purchase_order_reference' => custom_answer(a, 'Purchase Order Number'),
             'description'              => description(event_details['title'], date, a['first_name'], a['last_name'], a['email'], order_id, custom_answer(a, 'Membership Number')),
-            'due_date'                 => (date ? date - 7 : Date.today).to_s
+            'due_date'                 => (date ? date - 7 : Date.today).to_s,
+            'sector'                   => custom_answer(a, 'Sector')
           }
-                    
+
           Resque.enqueue(Invoicer, invoice_to, invoice_details, invoice_uid)
         end
       end
     end
   end
-  
+
   def self.custom_answer(attendee, question)
     q = attendee['answers'].find{|x| x['answer']['question'] == question}
     q ? q['answer']['answer_text'] : nil
@@ -79,12 +81,12 @@ class AttendeeMonitor
       nil
     end
   end
-  
+
   def self.description(title, date, first_name, last_name, email, order_number, membership_number)
     description = "Registration for '#{title} (#{date})' for #{first_name} #{last_name} <#{email}> ("
     description += "Order number: #{order_number}" if order_number
     description += ",Membership number: #{membership_number}" if membership_number
     description += ")"
   end
-  
+
 end
