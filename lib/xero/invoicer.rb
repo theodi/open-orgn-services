@@ -161,14 +161,4 @@ class Invoicer
     end
   end
 
-  # def self.tracking_option(sector)
-  #   return nil if sector.nil?
-  #
-  #   category = xero.TrackingCategory.all.select { |t| t.name == "Sector" }.first
-  #   raise "Sector category not set in Xero" if category.nil?
-  #
-  #   option = category.options.select { |c| c.name == sector }.first
-  #   option.nil? ? nil : [option]
-  # end
-
 end
