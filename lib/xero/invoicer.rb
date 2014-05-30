@@ -25,9 +25,10 @@ class Invoicer
   # invoice_details   - a hash containing payment details.
   #                   'payment_method'           => Payment method; 'paypal', or 'invoice'
   #                   'quantity'                 => number of tickets
-  #                   'base_price'                    => net price
+  #                   'base_price'               => net price
   #                   'purchase_order_number'    => PO number for reference
-  #                   'due_date'                 => Date the invoice is due  
+  #                   'due_date'                 => Date the invoice is due
+  #                   'sector'                   => User's sector (optional)
   #
   # invoice_uid       - a string with a unique identifier for the invoice to be raised (optional)
   #
@@ -41,7 +42,7 @@ class Invoicer
     unless invoice_sent?(invoice_uid)
       # Find appropriate contact in Xero
       contact = xero.Contact.all(:where => %{Name.ToLower() == "#{contact_name(invoice_to).downcase}"}).first
-      # Create contact if it doesn't exist, otherwise invoice them. 
+      # Create contact if it doesn't exist, otherwise invoice them.
       # Create contact will requeue this invoicing request.
       if contact.nil?
         create_contact(invoice_to)
@@ -71,30 +72,37 @@ class Invoicer
       addresses:     addresses,
       tax_number:    invoice_to['vat_id'],
     )
-    contact.save    
+    contact.save
   end
-  
+
   def self.invoice_contact(contact, invoice_to, invoice_details, invoice_uid = nil)
     # Check existing invoices for order number
     invoices = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{contact.id}")})
-    existing = invoices.find do |invoice| 
-      invoice.line_items.find do |line| 
+    existing = invoices.find do |invoice|
+      invoice.line_items.find do |line|
         line.description == invoice_details['description']
       end
     end
     unless existing
+
       # Raise invoice
-      line_items = [{
-        description:  invoice_details['description'],
-        quantity:     invoice_details['quantity'], 
-        unit_amount:  invoice_details['base_price'],
-        tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2'
-      }]
+      line_items = [
+        {
+          description:  invoice_details['description'],
+          quantity:     invoice_details['quantity'],
+          unit_amount:  invoice_details['base_price'],
+          tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2',
+        }
+      ]
       # Add an empty line item for Paypal payment if appropriate
       if invoice_details['payment_method'] == 'paypal'
-        line_items << {description: "PAID WITH PAYPAL", quantity: 0, unit_amount: 0}
+        line_items << {
+          description: "PAID WITH PAYPAL",
+          quantity: 0,
+          unit_amount: 0,
+        }
       end
-      
+
       # Create invoice
       invoice = xero.Invoice.create(
         type:       'ACCREC',
@@ -104,6 +112,9 @@ class Invoicer
         line_items: line_items,
         reference:  invoice_details['purchase_order_reference'],
       )
+
+      add_sector(invoice, invoice_details['sector']) unless invoice_details['sector'].nil?
+
       invoice.save
       # Set redis state to show the invoice has been sent
       remember_invoice(invoice_uid)
@@ -130,16 +141,23 @@ class Invoicer
       :rate_limit_sleep => 5
     )
   end
-  
+
   def self.remember_invoice(key)
     Resque.redis.set(key, true) unless key.nil?
   end
-  
+
   def self.invoice_sent?(key)
     if key.nil?
       false
     else
       Resque.redis.get(key).present?
+    end
+  end
+
+  def self.add_sector(invoice, sector)
+    invoice.line_items.each do |l|
+      category = xero.TrackingCategory.all.select { |t| t.name == "Sector" }.first
+      l.add_tracking(name: category.name, option: sector)
     end
   end
 
