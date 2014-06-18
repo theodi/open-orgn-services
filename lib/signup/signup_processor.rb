@@ -91,7 +91,7 @@ class SignupProcessor
       'payment_method' => purchase['payment_method'],
       'payment_ref' => purchase['payment_ref'],
       'quantity' => 1,
-      'invoice_freq' => 'annual',
+      'repeat' => 'annual',
       'base_price' => membership_type[:price],
       'purchase_order_reference' => purchase['purchase_order_reference'],
       'description' => description(purchase['membership_id'],

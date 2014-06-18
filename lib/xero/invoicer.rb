@@ -29,6 +29,8 @@ class Invoicer
   #                   'base_price'               => net price
   #                   'purchase_order_number'    => PO number for reference
   #                   'due_date'                 => Date the invoice is due
+  #                   'repeat'                   => How often to repeat invoice. Currently ignored, as not supported by Xero API.
+  #                                                 See https://xero.uservoice.com/forums/5528-xero-core-api/suggestions/2257421-repeating-invoices-via-the-api
   #                   'sector'                   => User's sector (optional)
   #
   # invoice_uid       - a string with a unique identifier for the invoice to be raised (optional)
