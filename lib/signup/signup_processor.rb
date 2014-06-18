@@ -30,6 +30,9 @@ class SignupProcessor
   #                    }
   #
   # purchase          - a hash containing information about the purchase
+  #                   'payment_method'
+  #                   'payment_freq'
+  #                   'payment_ref'
   #                   'offer_category'
   #                   'purchase_order_reference'
   #                   'membership_id'
@@ -79,6 +82,9 @@ class SignupProcessor
       'vat_id' => organization['vat_id']
     }
     invoice_details = {
+      'payment_method' => purchase['payment_method'],
+      'payment_freq' => purchase['payment_freq'],
+      'payment_ref' => purchase['payment_ref'],
       'quantity' => 1,
       'base_price' => membership_type[:price],
       'purchase_order_reference' => purchase['purchase_order_reference'],
@@ -86,7 +92,7 @@ class SignupProcessor
                                    membership_type[:description],
                                    organization['type']
                                   )
-    }
+    }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
 
     # Save details in capsule

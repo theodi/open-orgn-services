@@ -28,6 +28,7 @@ Feature: Processing membership signups
 
   Scenario: add signups to correct queues
     Given I requested 1 membership at the level called "supporter"
+    And I requested to pay by invoice
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "ODI Supporter Membership (01010101) [Commercial]"
     And the invoice price should be "720"
@@ -40,6 +41,7 @@ Feature: Processing membership signups
     Given I requested 1 membership at the level called "supporter"
     And my company has a size of "<size>"
     And my company is "<status>"
+    And I requested to pay by invoice
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "<description>"
     And the invoice price should be "<price>"

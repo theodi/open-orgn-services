@@ -22,6 +22,9 @@ module SignupProcessorSupport
                         }
                       }
     purchase        = {
+                        'payment_method' => @payment_method,
+                        'payment_freq'   => @payment_freq,
+                        'payment_ref'    => @payment_ref,
                         'offer_category' => @membership_level,
                         'purchase_order_reference' => @purchase_order_reference,
                         'membership_id' => @membership_id

@@ -16,3 +16,8 @@ When /^the signup processor runs$/ do
   organization, contact_person, billing, purchase = create_signup_processor_membership_hash
   SignupProcessor.perform(organization, contact_person, billing, purchase)
 end
+
+Given(/^I requested to pay by invoice$/) do
+  @payment_method = 'invoice'
+  @payment_freq = 'annual'
+end
