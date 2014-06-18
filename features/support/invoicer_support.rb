@@ -25,8 +25,8 @@ module InvoicerSupport
   def create_invoice_details_hash
     {
       'payment_method'           => @payment_method,
-      'payment_freq'             => @payment_freq,
       'payment_ref'              => @payment_ref,
+      'invoice_freq'             => @invoice_freq,
       'quantity'                 => @quantity,
       'base_price'               => @base_price,
       'purchase_order_reference' => @purchase_order_reference,

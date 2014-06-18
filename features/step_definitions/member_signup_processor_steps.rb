@@ -17,7 +17,16 @@ When /^the signup processor runs$/ do
   SignupProcessor.perform(organization, contact_person, billing, purchase)
 end
 
-Given(/^I requested to pay by invoice$/) do
-  @payment_method = 'invoice'
-  @payment_freq = 'annual'
+Given(/^I am paying by "(.*?)"$/) do |method|
+  @payment_method = method
+end
+
+Given(/^I want to pay on an? "(.*?)" basis$/) do |period|
+  @payment_freq = period
+  # Even if paying monthly, invoices are raised annually
+  @invoice_freq = 'annual'
+end
+
+Given(/^my payment reference is "(.*?)"$/) do |ref|
+  @payment_ref = ref
 end

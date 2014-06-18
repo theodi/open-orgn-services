@@ -57,8 +57,16 @@ class SignupProcessor
     end
   end
 
-  def self.description(membership_id, description, type)
-      "ODI #{description} (#{membership_id}) [#{type.titleize}]"
+  def self.description(membership_id, description, type, method, frequency, ref)
+    meth_str = case method
+    when 'credit_card'
+      'card'
+    else
+      method
+    end
+    str = "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment"
+    str += ": #{ref}" unless ref.blank?
+    str += ")"
   end
 
 
@@ -83,14 +91,17 @@ class SignupProcessor
     }
     invoice_details = {
       'payment_method' => purchase['payment_method'],
-      'payment_freq' => purchase['payment_freq'],
       'payment_ref' => purchase['payment_ref'],
       'quantity' => 1,
+      'invoice_freq' => 'annual',
       'base_price' => membership_type[:price],
       'purchase_order_reference' => purchase['purchase_order_reference'],
       'description' => description(purchase['membership_id'],
                                    membership_type[:description],
-                                   organization['type']
+                                   organization['type'],
+                                   purchase['payment_method'],
+                                   purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq'],
+                                   purchase['payment_ref']
                                   )
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
