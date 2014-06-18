@@ -42,17 +42,17 @@ class SignupProcessor
 
 
   def self.membership_type(size, type)
-    if size == "small" || type == "non_commercial"
+    if size == 'small' || type == 'non_commercial'
       {
         price: (60 * 12),
-        description: "Supporter",
-        type: "Supporter"
+        description: 'Supporter',
+        type: 'Supporter'
       }
     else
       {
         price: (120 * 12),
-        description: "Corporate Supporter",
-        type: "Corporate supporter"
+        description: 'Corporate Supporter',
+        type: 'Corporate supporter'
       }
     end
   end
