@@ -35,6 +35,10 @@ Given /^I requested an invoice$/ do
   @payment_method = 'invoice'
 end
 
+Given(/^I paid with a credit card$/) do
+  @payment_method = 'credit_card'
+end
+
 # invoice description
 
 Then /^the invoice description should read "(.*?)"$/ do |invoice_description|
