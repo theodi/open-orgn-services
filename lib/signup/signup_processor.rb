@@ -57,16 +57,14 @@ class SignupProcessor
     end
   end
 
-  def self.description(membership_id, description, type, method, frequency, ref)
+  def self.description(membership_id, description, type, method, frequency)
     meth_str = case method
     when 'credit_card'
       'card'
     else
       method
     end
-    str = "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment"
-    str += ": #{ref}" unless ref.blank?
-    str += ")"
+    str = "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment)"
   end
 
 
@@ -100,8 +98,7 @@ class SignupProcessor
                                    membership_type[:description],
                                    organization['type'],
                                    purchase['payment_method'],
-                                   purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq'],
-                                   purchase['payment_ref']
+                                   purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
                                   )
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
