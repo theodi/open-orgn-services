@@ -45,13 +45,13 @@ class SignupProcessor
     if size == "small" || type == "non_commercial"
       {
         price: (60 * 12),
-        description: "Supporter Membership",
+        description: "Supporter",
         type: "Supporter"
       }
     else
       {
         price: (120 * 12),
-        description: "Corporate Membership Supporter",
+        description: "Corporate Supporter",
         type: "Corporate supporter"
       }
     end

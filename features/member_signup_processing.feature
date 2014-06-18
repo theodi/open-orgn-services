@@ -30,7 +30,7 @@ Feature: Processing membership signups
     Given I requested 1 membership at the level called "supporter"
     And I requested to pay by invoice
     And my purchase order reference is "ABC000001"
-    Then the invoice description should read "ODI Supporter Membership (01010101) [Commercial]"
+    Then the invoice description should read "ODI Supporter (01010101) [Commercial]"
     And the invoice price should be "720"
     And the supporter level should be "Supporter"
     And I should be added to the invoicing queue
@@ -50,11 +50,11 @@ Feature: Processing membership signups
     And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
-    | size  | status         | description                                                | level               | price |
-    | small | commercial     | ODI Supporter Membership (01010101) [Commercial]           | Supporter           | 720    |
-    | large | commercial     | ODI Corporate Membership Supporter (01010101) [Commercial] | Corporate supporter | 1440   |
-    | small | non_commercial | ODI Supporter Membership (01010101) [Non Commercial]       | Supporter           | 720    |
-    | large | non_commercial | ODI Supporter Membership (01010101) [Non Commercial]       | Supporter           | 720    |
+    | size  | status         | description                                     | level               | price |
+    | small | commercial     | ODI Supporter (01010101) [Commercial]           | Supporter           | 720    |
+    | large | commercial     | ODI Corporate Supporter (01010101) [Commercial] | Corporate supporter | 1440   |
+    | small | non_commercial | ODI Supporter (01010101) [Non Commercial]       | Supporter           | 720    |
+    | large | non_commercial | ODI Supporter (01010101) [Non Commercial]       | Supporter           | 720    |
 
 
 # currently an issue with leading zeros being removed from postcode and membership number
