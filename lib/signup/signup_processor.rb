@@ -61,6 +61,8 @@ class SignupProcessor
     meth_str = case method
     when 'credit_card'
       'card'
+    when 'direct_debit'
+      'dd'
     else
       method
     end

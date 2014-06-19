@@ -23,7 +23,7 @@ class Invoicer
   #
   #                   'vat_id'        => Tax number for overseas customers
   # invoice_details   - a hash containing payment details.
-  #                   'payment_method'           => Payment method; 'paypal', 'credit_card', or 'invoice'
+  #                   'payment_method'           => Payment method; 'paypal', 'credit_card', 'direct_debit', or 'invoice'
   #                   'payment_ref'              => Payment reference if available
   #                   'quantity'                 => number of tickets
   #                   'base_price'               => net price
@@ -97,20 +97,19 @@ class Invoicer
           tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2',
         }
       ]
-      # Add an empty line item for Paypal payment if appropriate
-      if invoice_details['payment_method'] == 'paypal'
-        line_items << {
-          description: "PAID WITH PAYPAL",
+      if invoice_details['payment_method'] != 'invoice'
+        line_items = {
           quantity: 0,
           unit_amount: 0,
         }
-      end
-      if invoice_details['payment_method'] == 'credit_card'
-        line_items << {
-          description: "PAID WITH CREDIT CARD; reference #{invoice_details['payment_ref']}",
-          quantity: 0,
-          unit_amount: 0,
-        }
+        case invoice_details['payment_method']
+        when 'paypal'
+          line_items[:description] = 'PAID WITH PAYPAL'
+        when 'credit_card'
+          line_items[:description] = "PAID WITH CREDIT CARD; reference #{invoice_details['payment_ref']}"
+        when 'direct_debit'
+          line_items[:description] = "PAID BY DIRECT DEBIT; reference #{invoice_details['payment_ref']}"
+        end
       end
 
       # Create invoice
