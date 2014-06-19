@@ -30,6 +30,9 @@ class SignupProcessor
   #                    }
   #
   # purchase          - a hash containing information about the purchase
+  #                   'payment_method'
+  #                   'payment_freq'
+  #                   'payment_ref'
   #                   'offer_category'
   #                   'purchase_order_reference'
   #                   'membership_id'
@@ -39,23 +42,29 @@ class SignupProcessor
 
 
   def self.membership_type(size, type)
-    if size == "small" || type == "non_commercial"
+    if size == 'small' || type == 'non_commercial'
       {
         price: (60 * 12),
-        description: "Supporter Membership",
-        type: "Supporter"
+        description: 'Supporter',
+        type: 'Supporter'
       }
     else
       {
         price: (120 * 12),
-        description: "Corporate Membership Supporter",
-        type: "Corporate supporter"
+        description: 'Corporate Supporter',
+        type: 'Corporate supporter'
       }
     end
   end
 
-  def self.description(membership_id, description, type)
-      "ODI #{description} (#{membership_id}) [#{type.titleize}]"
+  def self.description(membership_id, description, type, method, frequency)
+    meth_str = case method
+    when 'credit_card'
+      'card'
+    else
+      method
+    end
+    str = "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment)"
   end
 
 
@@ -79,14 +88,19 @@ class SignupProcessor
       'vat_id' => organization['vat_id']
     }
     invoice_details = {
+      'payment_method' => purchase['payment_method'],
+      'payment_ref' => purchase['payment_ref'],
       'quantity' => 1,
+      'repeat' => 'annual',
       'base_price' => membership_type[:price],
       'purchase_order_reference' => purchase['purchase_order_reference'],
       'description' => description(purchase['membership_id'],
                                    membership_type[:description],
-                                   organization['type']
+                                   organization['type'],
+                                   purchase['payment_method'],
+                                   purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
                                   )
-    }
+    }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
 
     # Save details in capsule

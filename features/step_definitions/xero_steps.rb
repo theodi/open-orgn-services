@@ -114,6 +114,14 @@ Then /^that invoice should show that the payment was made with Paypal$/ do
   @invoice.line_items.last.description.should include("PAYPAL")
 end
 
+Then /^that invoice should show that the payment was made with a credit card$/ do
+  @invoice.line_items.last.description.should include("CREDIT CARD")
+end
+
+Then(/^that invoice should include the payment reference "(.*?)"$/) do |ref|
+  @invoice.line_items.last.description.should include(ref)
+end
+
 When(/^that invoice is deleted$/) do
   # Mock away the redis de-duplication here so we can test that deleted invoices are not reraised - this is an edge case now, but still worth checking in case we lose the redis state
   Invoicer.should_receive(:invoice_sent?).with(create_invoice_uid).once.and_return(false)

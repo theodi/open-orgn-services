@@ -25,11 +25,13 @@ module InvoicerSupport
   def create_invoice_details_hash
     {
       'payment_method'           => @payment_method,
+      'payment_ref'              => @payment_ref,
       'quantity'                 => @quantity,
       'base_price'               => @base_price,
       'purchase_order_reference' => @purchase_order_reference,
       'description'              => @invoice_description,
       'due_date'                 => @invoice_due_date ? @invoice_due_date.to_s : nil,
+      'repeat'                   => @invoice_freq,
       'sector'                   => @sector
     }.compact
   end

@@ -23,11 +23,14 @@ class Invoicer
   #
   #                   'vat_id'        => Tax number for overseas customers
   # invoice_details   - a hash containing payment details.
-  #                   'payment_method'           => Payment method; 'paypal', or 'invoice'
+  #                   'payment_method'           => Payment method; 'paypal', 'credit_card', or 'invoice'
+  #                   'payment_ref'              => Payment reference if available
   #                   'quantity'                 => number of tickets
   #                   'base_price'               => net price
   #                   'purchase_order_number'    => PO number for reference
   #                   'due_date'                 => Date the invoice is due
+  #                   'repeat'                   => How often to repeat invoice. Currently ignored, as not supported by Xero API.
+  #                                                 See https://xero.uservoice.com/forums/5528-xero-core-api/suggestions/2257421-repeating-invoices-via-the-api
   #                   'sector'                   => User's sector (optional)
   #
   # invoice_uid       - a string with a unique identifier for the invoice to be raised (optional)
@@ -98,6 +101,13 @@ class Invoicer
       if invoice_details['payment_method'] == 'paypal'
         line_items << {
           description: "PAID WITH PAYPAL",
+          quantity: 0,
+          unit_amount: 0,
+        }
+      end
+      if invoice_details['payment_method'] == 'credit_card'
+        line_items << {
+          description: "PAID WITH CREDIT CARD; reference #{invoice_details['payment_ref']}",
           quantity: 0,
           unit_amount: 0,
         }
