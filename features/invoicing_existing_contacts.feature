@@ -138,6 +138,22 @@ Feature: Invoicing existing contacts
     And that invoice should show that the payment was made with a credit card
     And that invoice should include the payment reference "cus_12345"
 
+  Scenario: invoices show direct debit payment method as paid
+
+    We can't actually add the payment into Xero, that
+    needs to be matched up from Gocardless. Instead, we add a zero-value
+    line item saying that it's been paid.
+
+    Given I have registered for a ticket
+    And I have not already been invoiced
+    And I paid by direct debit
+    And my payment reference is "cus_12345"
+    When the attendee invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should show that payment has been received
+    And that invoice should show that the payment was made by direct debit
+    And that invoice should include the payment reference "cus_12345"
+
   Scenario: invoices to be paid later show as unpaid
     Given I have registered for a ticket
     And I have not already been invoiced

@@ -73,11 +73,13 @@ Feature: Processing membership signups
     And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
-    | method      | period  | reference | description                                                    |
-    | invoice     | annual  |           | ODI Supporter (01010101) [Commercial] (annual invoice payment) |
-    | invoice     | monthly |           | ODI Supporter (01010101) [Commercial] (annual invoice payment) |
-    | credit_card | annual  | cus_12345 | ODI Supporter (01010101) [Commercial] (annual card payment)    |
-    | credit_card | monthly | cus_54321 | ODI Supporter (01010101) [Commercial] (monthly card payment)   |
+    | method       | period  | reference | description                                                    |
+    | invoice      | annual  |           | ODI Supporter (01010101) [Commercial] (annual invoice payment) |
+    | invoice      | monthly |           | ODI Supporter (01010101) [Commercial] (annual invoice payment) |
+    | credit_card  | annual  | cus_12345 | ODI Supporter (01010101) [Commercial] (annual card payment)    |
+    | credit_card  | monthly | cus_54321 | ODI Supporter (01010101) [Commercial] (monthly card payment)   |
+    | direct_debit | annual  | dd_32415  | ODI Supporter (01010101) [Commercial] (annual dd payment)      |
+    | direct_debit | monthly | dd_32104  | ODI Supporter (01010101) [Commercial] (monthly dd payment)     |
 
 
 # currently an issue with leading zeros being removed from postcode and membership number
