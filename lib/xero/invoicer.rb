@@ -98,18 +98,19 @@ class Invoicer
         }
       ]
       if invoice_details['payment_method'] != 'invoice'
-        line_items = {
+        payment_item = {
           quantity: 0,
           unit_amount: 0,
         }
         case invoice_details['payment_method']
         when 'paypal'
-          line_items[:description] = 'PAID WITH PAYPAL'
+          payment_item[:description] = 'PAID WITH PAYPAL'
         when 'credit_card'
-          line_items[:description] = "PAID WITH CREDIT CARD; reference #{invoice_details['payment_ref']}"
+          payment_item[:description] = "PAID WITH CREDIT CARD; reference #{invoice_details['payment_ref']}"
         when 'direct_debit'
-          line_items[:description] = "PAID BY DIRECT DEBIT; reference #{invoice_details['payment_ref']}"
+          payment_item[:description] = "PAID BY DIRECT DEBIT; reference #{invoice_details['payment_ref']}"
         end
+        line_items << payment_item
       end
 
       # Create invoice
