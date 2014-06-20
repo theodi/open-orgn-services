@@ -85,7 +85,7 @@ end
 
 # Line items
 
-Then /^that invoice should contain (#{INTEGER}) line item$/ do |line_item_count|
+Then /^that invoice should contain (#{INTEGER}) line items?$/ do |line_item_count|
   @line_items = @invoice.line_items
   @line_items.count.should == line_item_count
   if @line_items.count == 1

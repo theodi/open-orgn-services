@@ -42,7 +42,7 @@ Feature: Invoicing existing contacts
     And that invoice should be due on 2013-03-10
 
   # Invoice idempotency
-  
+
   Scenario: invoices are not generated more than once for same purchase
     Given I have registered for a ticket
     And I paid with Paypal
@@ -64,7 +64,7 @@ Feature: Invoicing existing contacts
   Scenario: invoices do not have VAT added for overseas purchasers with tax registration numbers
     Given I have registered for a ticket
     # Overseas companies only, so excluded from VAT
-    And my organisation has a tax registration number "5678" 
+    And my organisation has a tax registration number "5678"
     And I paid with Paypal
     And I have not already been invoiced
     When the attendee invoicer runs
@@ -81,7 +81,7 @@ Feature: Invoicing existing contacts
     And that invoice should contain 1 line item
     And that line item should have a quantity of 2
     And that invoice should have a total of 2.40
-    
+
   Scenario: line items should not have an account code
     Given I have registered for a ticket
     And I have not already been invoiced
@@ -95,22 +95,24 @@ Feature: Invoicing existing contacts
     And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should contain 1 line item 	
+    And that invoice should contain 1 line item
     And the line item description should include "my fantastic invoice description"
 
   # Payment methods
-    
+
   Scenario: invoices show paypal payment method as fully paid
-  
-    We can't actually add the payment into Xero, that 
+
+    We can't actually add the payment into Xero, that
     needs to be matched up from PayPal. Instead, we add a zero-value
     line item saying that it's been paid.
-  
+
     Given I have registered for a ticket
     And I have not already been invoiced
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 2 line items
+    And that invoice should have a total of 1.20
     And that invoice should show that payment has been received
     And that invoice should show that the payment was made with Paypal
 
@@ -134,6 +136,8 @@ Feature: Invoicing existing contacts
     And my payment reference is "cus_12345"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 2 line items
+    And that invoice should have a total of 1.20
     And that invoice should show that payment has been received
     And that invoice should show that the payment was made with a credit card
     And that invoice should include the payment reference "cus_12345"
@@ -150,6 +154,8 @@ Feature: Invoicing existing contacts
     And my payment reference is "cus_12345"
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 2 line items
+    And that invoice should have a total of 1.20
     And that invoice should show that payment has been received
     And that invoice should show that the payment was made by direct debit
     And that invoice should include the payment reference "cus_12345"
@@ -160,8 +166,10 @@ Feature: Invoicing existing contacts
     And I requested an invoice
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 1 line item
+    And that invoice should have a total of 1.20
     And that invoice should show that payment has not been received
-    
+
   Scenario: deleted invoices should not be re-raised
     Given I have registered for a ticket
     And I have not already been invoiced
