@@ -63,12 +63,12 @@ describe NetworkMetrics do
   it "should show number of people trained", :vcr do
     NetworkMetrics.people_trained(2014, 2).should == {
         commercial:     {
-            actual:        36,
+            actual:        34,
             annual_target: 190,
             ytd_target:    25,
         },
         non_commercial: {
-            actual:        55,
+            actual:        41,
             annual_target: 206,
             ytd_target:    26,
         }
@@ -76,7 +76,7 @@ describe NetworkMetrics do
   end
 
   it "should show the cumulative number of people trained", :vcr do
-    NetworkMetrics.people_trained(nil, nil).should == 325
+    NetworkMetrics.people_trained(nil, nil).should == 309
   end
 
   it "should show correct network size", :vcr do
