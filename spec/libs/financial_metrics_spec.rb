@@ -82,12 +82,12 @@ describe FinancialMetrics do
       },
       training: {
         commercial:     {
-          actual:        75000.0,
+          actual:        13182.95,
           annual_target: 128120.0,
           ytd_target:    17360.0,
         },
         non_commercial: {
-          actual:        25000.0,
+          actual:        133387.0,
           annual_target: 180780.0,
           ytd_target:    14580.0,
         }
