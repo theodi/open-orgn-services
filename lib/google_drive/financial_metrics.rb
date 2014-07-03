@@ -100,7 +100,8 @@ class FinancialMetrics
     block = Proc.new do |data|
       data = data.slice(0,month)
       nonzero = data.select{|val| val.to_f > 0}
-      sum = nonzero.last(3).map{|x| x.to_f}.inject(0.0){|sum,val| sum += val} / nonzero.length
+      divisor = [nonzero.length, 3].min
+      sum = nonzero.last(3).map{|x| x.to_f}.inject(0.0){|sum,val| sum += val} / divisor
     end
     metrics_cell 'Burn', year, block
   end
