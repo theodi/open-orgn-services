@@ -134,11 +134,11 @@ describe FinancialMetrics do
   end
 
   it "should load EBITDA information", :vcr do
-    FinancialMetrics.ebitda(2014, 2).should == {
-      actual:        -506729.166666667,
-      latest:        -369000.0,
+    FinancialMetrics.ebitda(2014, 6).should == {
+      actual:        -943159.2166666667,
+      latest:        -253020.0,
       annual_target: -3684411.3333333298,
-      ytd_target:    -1207215.333333334,
+      ytd_target:    -2496414.3333333326,
     }
   end
 
