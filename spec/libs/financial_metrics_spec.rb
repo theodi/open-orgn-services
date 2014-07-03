@@ -128,9 +128,9 @@ describe FinancialMetrics do
   end
 
   it "should show burn", :vcr do
-    FinancialMetrics.burn_rate(2014, 2).should == 363000.0
-    FinancialMetrics.burn_rate(2014, 4).should == 375333.3333333333
-    FinancialMetrics.burn_rate(2014, 5).should == 375333.3333333333
+    FinancialMetrics.burn_rate(2014, 2).should == 207000.0
+    FinancialMetrics.burn_rate(2014, 5).should == 265000.0
+    FinancialMetrics.burn_rate(2014, 6).should == 265000.0
   end
 
   it "should load EBITDA information", :vcr do
