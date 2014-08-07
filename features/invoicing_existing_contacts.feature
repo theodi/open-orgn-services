@@ -8,7 +8,6 @@ Feature: Invoicing existing contacts
   Background:
     Given the invoice is due on 2013-03-10
     And the invoice amount is 1.00
-    And the invoice description is "my fantastic invoice description"
     And my first name is "Bob"
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"
@@ -101,7 +100,7 @@ Feature: Invoicing existing contacts
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And the line item description should include "my fantastic invoice description"
+    And the line item description should include "Line Item Number 0"
 
   # Payment methods
 
@@ -177,7 +176,6 @@ Feature: Invoicing existing contacts
 
   Scenario: deleted invoices should not be re-raised
     Given I have registered for a ticket
-    And I requested an invoice
     And I have not already been invoiced
     And I requested an invoice
     When the attendee invoicer runs
