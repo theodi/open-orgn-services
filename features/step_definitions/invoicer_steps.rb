@@ -4,8 +4,9 @@ When /^the attendee invoicer runs$/ do
   # Set some things that must exist, if they don't already
   @invoice_description ||= SecureRandom.hex(32)
   @base_price ||= SecureRandom.random_number(9999)
+  @invoice_uid ||= create_invoice_uid
   # Invoice
-  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid)
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash, @invoice_uid)
 end
 
 When /^I have not already been invoiced$/ do

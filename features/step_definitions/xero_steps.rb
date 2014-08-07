@@ -47,7 +47,8 @@ end
 
 Given /^I have already been invoiced$/ do
   # Raise invoice
-  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash)
+  @invoice_uid = SecureRandom.uuid
+  Invoicer.perform(create_invoice_to_hash, create_invoice_details_hash, @invoice_uid)
   xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).count.should == 1
 end
 
@@ -91,6 +92,10 @@ Then /^that invoice should contain (#{INTEGER}) line items?$/ do |line_item_coun
   if @line_items.count == 1
     @line_item = @line_items.first
   end
+end
+
+Then(/^line item number (\d+) should have the description "(.*?)"$/) do |num, description|
+  @line_items[num - 1].description.should == description
 end
 
 Then /^that line item should have a quantity of (#{INTEGER})$/ do |quantity|
@@ -141,4 +146,8 @@ end
 
 Then(/^that invoice should include the sector "(.*?)"$/) do |sector|
   @invoice.line_items.last.tracking.last.option.should == sector
+end
+
+Then(/^there should be (.*?) line items$/) do |num|
+  @invoice.line_items.count.should == num
 end

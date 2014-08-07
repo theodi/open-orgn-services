@@ -18,6 +18,7 @@ end
 # deliberately left in to prompt us to converge on phrasing style
 
 Given /^my purchase order reference is "(.*?)"$/ do |purchase_order_reference|
+  @payment_method = "invoice"
   @purchase_order_reference = purchase_order_reference
 end
 

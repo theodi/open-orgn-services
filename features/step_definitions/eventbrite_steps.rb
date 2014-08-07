@@ -85,11 +85,25 @@ end
 # Registration
 
 Given /^I have registered for a ticket$/ do
-  @quantity = 1
+  @line_items = [
+    {
+      'base_price'  => "1.00",
+      'description' => "Line Item Number 0"
+    }
+  ]
 end
 
 Given /^I have registered for two tickets$/ do
-  @quantity = 2
+  @line_items = [
+    {
+      'base_price'  => "1.00",
+      'description' => "Line Item Number 1"
+    },
+    {
+      'base_price'  => "1.00",
+      'description' => "Line Item Number 2"
+    }
+  ]
 end
 
 Given /^that event has not sold any tickets$/ do
