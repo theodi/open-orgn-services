@@ -89,19 +89,24 @@ class SignupProcessor
       },
       'vat_id' => organization['vat_id']
     }
+
+    invoice_description = description(purchase['membership_id'],
+                                 membership_type[:description],
+                                 organization['type'],
+                                 purchase['payment_method'],
+                                 purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
+                                )
+
     invoice_details = {
       'payment_method' => purchase['payment_method'],
       'payment_ref' => purchase['payment_ref'],
-      'quantity' => 1,
+      'line_items' => [{
+          'quantity'    => 1,
+          'base_price'  => membership_type[:price],
+          'description' => invoice_description
+      }],
       'repeat' => 'annual',
-      'base_price' => membership_type[:price],
       'purchase_order_reference' => purchase['purchase_order_reference'],
-      'description' => description(purchase['membership_id'],
-                                   membership_type[:description],
-                                   organization['type'],
-                                   purchase['payment_method'],
-                                   purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
-                                  )
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
 

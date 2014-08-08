@@ -48,10 +48,12 @@ end
 
 Then /^the invoice description should read "(.*?)"$/ do |invoice_description|
   @invoice_description = invoice_description
+  @line_items.first['description'] ||= invoice_description
 end
 
 Then /^the invoice price should be "(.*?)"$/ do |base_price|
   @base_price = base_price
+  @line_items.first['base_price'] ||= base_price
 end
 
 Then /^the supporter level should be "(.*?)"$/ do |supporter_level|
