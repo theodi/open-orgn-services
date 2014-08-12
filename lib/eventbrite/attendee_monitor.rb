@@ -63,7 +63,7 @@ class AttendeeMonitor
           if a['attendee']['amount_paid'].to_f > 0
             invoice_details['line_items'] << {
               'base_price'  => a['attendee']['amount_paid'].to_f/1.2,
-              'description' => ticket_name(event, a['attendee']['ticket_id'])
+              'description' => line_description(ticket_name(event, a['attendee']['ticket_id']), event_details['title'], date, a['attendee']['first_name'], a['attendee']['last_name'], a['attendee']['email'], order_id, custom_answer(a['attendee'], 'Membership Number'))
             }
           end
         end
@@ -89,6 +89,13 @@ class AttendeeMonitor
     else
       nil
     end
+  end
+
+  def self.line_description(ticket_name, title, date, first_name, last_name, email, order_number, membership_number)
+    description = "#{ticket_name} for '#{title} (#{date})' for #{first_name} #{last_name} <#{email}> ("
+    description += "Order number: #{order_number}" if order_number
+    description += ",Membership number: #{membership_number}" if membership_number
+    description += ")"
   end
 
   def self.ticket_name(event_details, ticket_id)
