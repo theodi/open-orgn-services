@@ -55,7 +55,6 @@ class AttendeeMonitor
           'payment_method'           => payment_method(a['order_type']),
           'line_items'               => [],
           'purchase_order_reference' => custom_answer(a, 'Purchase Order Number'),
-          #'description'              => description(event_details['title'], date, a['first_name'], a['last_name'], a['email'], order_id, custom_answer(a, 'Membership Number')),
           'due_date'                 => (date ? date - 7 : Date.today).to_s,
           'sector'                   => custom_answer(a, 'Sector')
         }
@@ -90,13 +89,6 @@ class AttendeeMonitor
     else
       nil
     end
-  end
-
-  def self.description(title, date, first_name, last_name, email, order_number, membership_number)
-    description = "Registration for '#{title} (#{date})' for #{first_name} #{last_name} <#{email}> ("
-    description += "Order number: #{order_number}" if order_number
-    description += ",Membership number: #{membership_number}" if membership_number
-    description += ")"
   end
 
   def self.ticket_name(event_details, ticket_id)
