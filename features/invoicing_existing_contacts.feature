@@ -8,7 +8,6 @@ Feature: Invoicing existing contacts
   Background:
     Given the invoice is due on 2013-03-10
     And the invoice amount is 1.00
-    And the invoice description is "my fantastic invoice description"
     And my first name is "Bob"
     And my last name is "Fish"
     And my email address is "bob.fish@example.com"
@@ -24,6 +23,7 @@ Feature: Invoicing existing contacts
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should be a draft
+    And there should be 2 line items
 
   Scenario: invoices include purchase order numbers
     Given I have registered for a ticket
@@ -32,6 +32,7 @@ Feature: Invoicing existing contacts
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should include the reference "AB1234"
+    And there should be 1 line items
 
   Scenario: invoices have correct due date
     Given I have registered for a ticket
@@ -75,15 +76,17 @@ Feature: Invoicing existing contacts
 
   Scenario: line items have correct quantity for multiple tickets
     Given I have registered for two tickets
+    And I requested an invoice
     And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
-    And that invoice should contain 1 line item
-    And that line item should have a quantity of 2
-    And that invoice should have a total of 2.40
+    And that invoice should contain 2 line items
+    And line item number 1 should have the description "Line Item Number 1"
+    And line item number 2 should have the description "Line Item Number 2"
 
   Scenario: line items should not have an account code
     Given I have registered for a ticket
+    And I requested an invoice
     And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
@@ -92,11 +95,12 @@ Feature: Invoicing existing contacts
 
   Scenario: line item  should have description
     Given I have registered for a ticket
+    And I requested an invoice
     And I have not already been invoiced
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should contain 1 line item
-    And the line item description should include "my fantastic invoice description"
+    And the line item description should include "Line Item Number 0"
 
   # Payment methods
 

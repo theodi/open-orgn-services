@@ -26,10 +26,8 @@ module InvoicerSupport
     {
       'payment_method'           => @payment_method,
       'payment_ref'              => @payment_ref,
-      'quantity'                 => @quantity,
-      'base_price'               => @base_price,
+      'line_items'               => @line_items,
       'purchase_order_reference' => @purchase_order_reference,
-      'description'              => @invoice_description,
       'due_date'                 => @invoice_due_date ? @invoice_due_date.to_s : nil,
       'repeat'                   => @invoice_freq,
       'sector'                   => @sector

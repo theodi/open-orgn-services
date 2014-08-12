@@ -18,6 +18,7 @@ end
 # deliberately left in to prompt us to converge on phrasing style
 
 Given /^my purchase order reference is "(.*?)"$/ do |purchase_order_reference|
+  @payment_method = "invoice"
   @purchase_order_reference = purchase_order_reference
 end
 
@@ -47,10 +48,25 @@ end
 
 Then /^the invoice description should read "(.*?)"$/ do |invoice_description|
   @invoice_description = invoice_description
+  @line_items.first['description'] ||= invoice_description
 end
 
 Then /^the invoice price should be "(.*?)"$/ do |base_price|
   @base_price = base_price
+  @line_items.first['base_price'] ||= base_price
+end
+
+Then(/^the invoice should have (\d+) line items?$/) do |num|
+  @line_items ||= []
+  num.to_i.times { @line_items << {} }
+end
+
+Then(/^line item number (\d+) should have a description of "(.*?)"$/) do |index, invoice_description|
+  @line_items[index - 1]['description'] ||= invoice_description
+end
+
+Then(/^line item number (\d+) should have a price of (.*?)$/) do |index, price|
+  @line_items[index - 1]['base_price'] ||= price
 end
 
 Then /^the supporter level should be "(.*?)"$/ do |supporter_level|

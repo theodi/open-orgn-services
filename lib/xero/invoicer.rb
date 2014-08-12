@@ -87,16 +87,15 @@ class Invoicer
       end
     end
     unless existing
-
-      # Raise invoice
-      line_items = [
-        {
-          description:  invoice_details['description'],
-          quantity:     invoice_details['quantity'],
-          unit_amount:  invoice_details['base_price'],
+      line_items = []
+      invoice_details['line_items'].each do |line_item|
+        line_items << {
+          description:  line_item['description'],
+          unit_amount:  line_item['base_price'],
           tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2',
         }
-      ]
+      end
+
       if invoice_details['payment_method'] != 'invoice'
         payment_item = {
           quantity: 0,

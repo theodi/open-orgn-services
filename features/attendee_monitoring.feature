@@ -41,14 +41,20 @@ Feature: Monitoring attendee signups
   Scenario: add users to invoicing queue if they have a paid ticket
     Given I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
     And my order number is 142052968
-	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
+  Then the invoice should have 2 line items
+    And line item number 1 should have a price of 1.00
+    And line item number 1 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
+    And line item number 2 should have a price of 1.00
+    And line item number 2 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
     And I should be added to the invoicing queue along with others
     When the attendee monitor runs
 
   Scenario: don't add users to invoicing queue if they have a free ticket
     Given I have signed up for 1 ticket called "Free Ticket" which has a net price of 0.00
+    And my first name is "Steve"
+    And my last name is "Rodgers"
     And my order number is 142055824
-	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142055824,Membership number: 9101112)"
+  Then the invoice should have 0 line items
     And I should not be added to the invoicing queue
     When the attendee monitor runs
 
@@ -57,7 +63,9 @@ Feature: Monitoring attendee signups
     Given I have signed up for 1 ticket called "Cheap Ticket" which has a net price of 1.00
     And I paid with Paypal
     And my order number is 142059188
-	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
+  Then the invoice should have 1 line item
+    And line item number 1 should have a price of 1.00
+	  And line item number 1 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
     And I should be added to the invoicing queue along with others
     When the attendee monitor runs
 
@@ -65,7 +73,11 @@ Feature: Monitoring attendee signups
     Given I have signed up for 2 tickets called "Cheap Ticket" which has a net price of 1.00
     And I requested an invoice
     And my order number is 142052968
-	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
+  Then the invoice should have 2 line items
+    And line item number 1 should have a price of 1.00
+    And line item number 2 should have a price of 1.00
+	  And line item number 1 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
+    And line item number 2 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142052968,Membership number: 9101112)"
     And I should be added to the invoicing queue along with others
     When the attendee monitor runs
 
@@ -76,6 +88,8 @@ Feature: Monitoring attendee signups
     And the gross price of the event in Eventbrite is 1.20
     And I paid with Paypal
     And my order number is 142059188
-	Then the invoice description should read "Registration for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
+  Then the invoice should have 1 line item
+    And line item number 1 should have a price of 1.00
+    And line item number 1 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
     And I should be added to the invoicing queue along with others
     When the attendee monitor runs

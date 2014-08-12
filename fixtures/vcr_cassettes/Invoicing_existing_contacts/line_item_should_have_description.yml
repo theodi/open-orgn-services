@@ -1,120 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: put
-    uri: https://api.xero.com/api.xro/2.0/Contacts
-    body:
-      encoding: US-ASCII
-      string: xml=%3CContact%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%3C%2FContact%3E%0A
-    headers:
-      Charset:
-      - utf-8
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '0'
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="FutdsfA5zJlLlCVhk5mQMrIb5HrsMMP03PIxGOu2b0",
-        oauth_signature="Wi2lWOWG69rsZQekLRXPG%2BOeYkxNJS%2FRtW5a7RUXLjS341g%2FN4rSv5Ayn4DrIemQpAPKy8%2Fhxu32D5GZqEUY40iLy%2F6APddVxiRvgUz63BJ3seuftwVR6Fk5JMDCRcU5KXw5j9D%2BvRqllgqZ1EV1wxwpd8r7lkij9yCp3OPc1Zc%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473539", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/xml; charset=utf-8
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      X-S:
-      - 445760-O1VMAP03
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Wed, 14 Aug 2013 09:45:42 GMT
-      Content-Length:
-      - '1186'
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>6744c270-bc4c-4b6c-b9cc-4e06094a1a2f</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:42.0588665Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
-        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
-        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
-        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
-        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
-        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
-        \     <UpdatedDateUTC>2013-08-14T09:45:42.013</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
-        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
-    http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:42 GMT
-- request:
-    method: get
-    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name.ToLower()%20==%20%22existing%20company%20inc.%22
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Charset:
-      - utf-8
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="yCtJEROJqeun0VfUhBNYrn9xKkJ9WJxvI0ABHjUaZys",
-        oauth_signature="Z%2FTJ0EvaZ7U8YRCwD1sodn9GPJyFcihuKPB%2FrQEJ%2FiRGfon8UxEf6%2BGZMuczx6xmCTbwzA9jyohpY7ursOS8EVSA8yRNEORu%2BuX3XxBoIsZjkxcB1KMGQzLCqgwvCPzUdRgsENADsSGE8YmboAwnARM7CunCMkUzn48ZEp9bWkw%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473542", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/xml; charset=utf-8
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      X-S:
-      - 445760-O1VMAP03
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Wed, 14 Aug 2013 09:45:42 GMT
-      Content-Length:
-      - '1186'
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>4ed4d96a-6c0b-483a-9832-2bcc97b18873</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:42.7452709Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
-        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
-        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
-        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
-        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
-        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
-        \     <UpdatedDateUTC>2013-08-14T09:45:42.013</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
-        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
-    http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:43 GMT
-- request:
     method: get
     uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%2219ec9fa6-e528-489f-99f2-26793a95cd4b%22)
     body:
@@ -158,205 +44,6 @@ http_interactions:
         \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:43.4472754Z</DateTimeUTC>\r\n</Response>"
     http_version: 
   recorded_at: Wed, 14 Aug 2013 09:45:43 GMT
-- request:
-    method: put
-    uri: https://api.xero.com/api.xro/2.0/Invoices
-    body:
-      encoding: US-ASCII
-      string: xml=%3CInvoice%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CContactID%3E19ec9fa6-e528-489f-99f2-26793a95cd4b%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CUpdatedDateUTC%3E2013-08-14T08%3A45%3A42%3C%2FUpdatedDateUTC%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CDueDate%3E2013-03-10%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3Emy%20fantastic%20invoice%20description%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CQuantity%3E1%3C%2FQuantity%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%3C%2FInvoice%3E%0A
-    headers:
-      Charset:
-      - utf-8
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '0'
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="6u4coNHDSVVe20I1Y7ocIfk7DdJUFsTVB2QfYOH4Qu4",
-        oauth_signature="BKWVOk436dzg07DcLtXE5Uj4Cbdl9WnmUuCAU1w%2BD6S5%2BceIWk1%2FI1O2DAuPN0IwfiiDEsE3a06OXgBKjk%2FEdKfYEpzoLEBj1zphe1dsXsB8apQJ%2BhX9FexqiEWU3sei6g5EXBGQW%2FYsRgmMK8pAdc6pzWvWcCd%2FOBfdPnRdmA8%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473543", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/xml; charset=utf-8
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      X-S:
-      - 445760-O1VMAP03
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Wed, 14 Aug 2013 09:45:43 GMT
-      Content-Length:
-      - '2292'
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>80f0b6ca-a027-48c7-85c8-ea13ab8b5fbe</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:44.1960802Z</DateTimeUTC>\r\n
-        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
-        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
-        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
-        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
-        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
-        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
-        \       <UpdatedDateUTC>2013-08-14T09:45:42.013</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
-        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2013-08-14T00:00:00</Date>\r\n
-        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
-        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
-        \       <LineItem>\r\n          <Description>my fantastic invoice description</Description>\r\n
-        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
-        \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
-        \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
-        \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
-        \     <UpdatedDateUTC>2013-08-14T09:45:44.133</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
-        \     <Type>ACCREC</Type>\r\n      <InvoiceID>f08523e3-89e5-4591-a1c8-61c9a85db932</InvoiceID>\r\n
-        \     <InvoiceNumber>INV-0117</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
-        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
-        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
-    http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:44 GMT
-- request:
-    method: post
-    uri: https://api.xero.com/api.xro/2.0/Invoices
-    body:
-      encoding: US-ASCII
-      string: xml=%3CInvoice%3E%0A%20%20%3CInvoice%3E%0A%20%20%20%20%3CContactID%3E19ec9fa6-e528-489f-99f2-26793a95cd4b%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CUpdatedDateUTC%3E2013-08-14T08%3A45%3A42%3C%2FUpdatedDateUTC%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Etrue%3C%2FIsCustomer%3E%0A%20%20%3C%2FInvoice%3E%0A%20%20%3CDate%3E2013-08-14%3C%2FDate%3E%0A%20%20%3CDueDate%3E2013-03-10%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3Emy%20fantastic%20invoice%20description%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%20%20%3CTaxAmount%3E0.2%3C%2FTaxAmount%3E%0A%20%20%20%20%20%20%3CLineAmount%3E1.0%3C%2FLineAmount%3E%0A%20%20%20%20%20%20%3CQuantity%3E1.0%3C%2FQuantity%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CSubTotal%3E1.0%3C%2FSubTotal%3E%0A%20%20%3CTotalTax%3E0.2%3C%2FTotalTax%3E%0A%20%20%3CTotal%3E1.2%3C%2FTotal%3E%0A%20%20%3CUpdatedDateUTC%3E2013-08-14T08%3A45%3A44%3C%2FUpdatedDateUTC%3E%0A%20%20%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CInvoiceID%3Ef08523e3-89e5-4591-a1c8-61c9a85db932%3C%2FInvoiceID%3E%0A%20%20%3CInvoiceNumber%3EINV-0117%3C%2FInvoiceNumber%3E%0A%20%20%3CAmountDue%3E1.2%3C%2FAmountDue%3E%0A%20%20%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A%20%20%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%3C%2FInvoice%3E%0A
-    headers:
-      Charset:
-      - utf-8
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '0'
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="x4OdUrRIj3QzaLhAI72IMBG7OKKtLy5a1ts2EZtRSU",
-        oauth_signature="n9%2FwoxVyOnGieN9VJ1l3fbQz8QSzHsjLAbBVA%2B%2BscMMR23UGY055Vu7S%2FOHB9BauNH8bC14FbnryQ5d8uy2DrSpJyjzy1dSqJAiMMtpOoUifOF48wTpBee1v28mBFCjEpphMNu6LdQNxXoIcOt3diYeO9i1xdkbvR9M45UmG4p8%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473544", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/xml; charset=utf-8
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      X-S:
-      - 445760-O1VMAP03
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Wed, 14 Aug 2013 09:45:44 GMT
-      Content-Length:
-      - '2455'
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>2d9ef33a-97fd-433e-b853-bd9bc8471d2f</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:44.9916853Z</DateTimeUTC>\r\n
-        \ <Invoices>\r\n    <Invoice>\r\n      <Warnings>\r\n        <Warning>\r\n
-        \         <Message>Only AUTHORISED invoices may have SentToContact updated.</Message>\r\n
-        \       </Warning>\r\n      </Warnings>\r\n      <Contact>\r\n        <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
-        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
-        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
-        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
-        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
-        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
-        \       <UpdatedDateUTC>2013-08-14T09:45:42.013</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
-        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2013-08-14T00:00:00</Date>\r\n
-        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
-        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
-        \       <LineItem>\r\n          <Description>my fantastic invoice description</Description>\r\n
-        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
-        \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
-        \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
-        \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
-        \     <UpdatedDateUTC>2013-08-14T09:45:44.943</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
-        \     <Type>ACCREC</Type>\r\n      <InvoiceID>f08523e3-89e5-4591-a1c8-61c9a85db932</InvoiceID>\r\n
-        \     <InvoiceNumber>INV-0117</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
-        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
-        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
-    http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:45 GMT
-- request:
-    method: get
-    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name%20==%20%22Existing%20Company%20Inc.%22
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Charset:
-      - utf-8
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="dmUeQoug4I2BQ5NM3z8LX6111ywleohu6EyjMeYxU",
-        oauth_signature="G65ephHk2CL4CqBqZgrpxe6EaYpRDmAn1gtSiytfNz0VFkg8rJEdJFPi8uMCta%2FWG7XIu%2FHMvsYZxihedb3MtDDreKH7%2FwOX0RvfDQVIRPV4JED%2F45fySXkN8NKG9TIrybUrwvZ2njscI1ANaGcIekO%2FSEIlmX0032z%2F3Kwjt8o%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473545", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/xml; charset=utf-8
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      X-S:
-      - 445760-O1VMAP03
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Wed, 14 Aug 2013 09:45:45 GMT
-      Content-Length:
-      - '1185'
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>8c7608de-db62-4000-81f3-36bd5dc924c2</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:45.7092899Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
-        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
-        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
-        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
-        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
-        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
-        \     <UpdatedDateUTC>2013-08-14T09:45:42.013</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
-        \     <IsCustomer>true</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
-    http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:46 GMT
 - request:
     method: get
     uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%2219ec9fa6-e528-489f-99f2-26793a95cd4b%22)%20AND%20Status%20!=%20%22DELETED%22
@@ -479,26 +166,22 @@ http_interactions:
     http_version: 
   recorded_at: Wed, 14 Aug 2013 09:45:50 GMT
 - request:
-    method: post
-    uri: https://api.xero.com/api.xro/2.0/Invoices
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%22385e768c-9c46-4f14-8cac-98f14c63d2e4%22)
     body:
       encoding: US-ASCII
-      string: xml=%3CInvoice%3E%0A%20%20%3CInvoice%3E%0A%20%20%20%20%3CContactID%3E19ec9fa6-e528-489f-99f2-26793a95cd4b%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CUpdatedDateUTC%3E2013-08-14T08%3A45%3A42%3C%2FUpdatedDateUTC%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Etrue%3C%2FIsCustomer%3E%0A%20%20%3C%2FInvoice%3E%0A%20%20%3CDate%3E2013-08-14%3C%2FDate%3E%0A%20%20%3CDueDate%3E2013-03-10%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDELETED%3C%2FStatus%3E%0A%20%20%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3Emy%20fantastic%20invoice%20description%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%20%20%3CTaxAmount%3E0.2%3C%2FTaxAmount%3E%0A%20%20%20%20%20%20%3CLineAmount%3E1.0%3C%2FLineAmount%3E%0A%20%20%20%20%20%20%3CQuantity%3E1.0%3C%2FQuantity%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CSubTotal%3E1.0%3C%2FSubTotal%3E%0A%20%20%3CTotalTax%3E0.2%3C%2FTotalTax%3E%0A%20%20%3CTotal%3E1.2%3C%2FTotal%3E%0A%20%20%3CUpdatedDateUTC%3E2013-08-14T08%3A45%3A44%3C%2FUpdatedDateUTC%3E%0A%20%20%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CInvoiceID%3Ef08523e3-89e5-4591-a1c8-61c9a85db932%3C%2FInvoiceID%3E%0A%20%20%3CInvoiceNumber%3EINV-0117%3C%2FInvoiceNumber%3E%0A%20%20%3CAmountDue%3E1.2%3C%2FAmountDue%3E%0A%20%20%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A%20%20%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%3C%2FInvoice%3E%0A
+      string: ''
     headers:
       Charset:
       - utf-8
-      Content-Type:
-      - application/x-www-form-urlencoded
       Accept:
       - ! '*/*'
       User-Agent:
       - OAuth gem v0.4.7
-      Content-Length:
-      - '0'
       Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="ijh0CaF5ia5eKd4RQ93tyzKl6hdx8NYJuHXZWOJ6vDI",
-        oauth_signature="R1TD0dI1O4btEqK%2FAF7gdcuKX103S4Yj16bWICstOS%2FL%2BPO8s%2B%2FI90sMMxR93uS5LK22SfeJZgrH00eFzRSHwpu1HdocM7Y0EzvTRXRSxXvGaZNse47S2F%2FdoKR9%2B%2B1VTGFfcYA10P3cwtnuQsXuKpJLLYifoncfJTHV17Qm90I%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473550", oauth_token="<XERO_CONSUMER_KEY>",
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="mbTg9lCTX7FMPC18sYzrqvLLigbtz65wAknUbnmqQ",
+        oauth_signature="dvUXRANI9obCEBJ%2BNdmTIiCTp3pEagwKXPJa5wlhTMO%2BCAeV7B5Q6x%2BUrI5EZVrngDf%2FqHxVQTRWt3cWUoyLgUabi%2F7Q7Ofuj07sqjsuyrs7SZLogKaFL8t892xiQmFNUqwWH5ZHflIfDQ48RQkT3fSidL4JnvhJNxyZ%2BoO7868%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407407097", oauth_token="<XERO_CONSUMER_KEY>",
         oauth_version="1.0"
   response:
     status:
@@ -512,49 +195,832 @@ http_interactions:
       Www-Authenticate:
       - OAuth Realm="api.xero.com"
       X-S:
-      - 445760-O1VMAP03
+      - 445761-O1VMAP04
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Wed, 14 Aug 2013 09:45:50 GMT
+      - Thu, 07 Aug 2014 10:24:56 GMT
       Content-Length:
-      - '2294'
+      - '297'
     body:
       encoding: US-ASCII
       string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>db9d8da3-c403-4752-aca1-215e48d83e06</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:50.8261227Z</DateTimeUTC>\r\n
-        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
+        \ <Id>4ca1cb1e-25c8-493b-940b-038d78ff59f8</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T10:24:56.7231289Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 10:24:59 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%22d5a2ad74-2b24-434b-b382-362052d22c10%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="ISX56O78YGZHAjmQVZfRdeGfIq7LIbxaJ84i77YaQ90",
+        oauth_signature="DaxkXr3vfBgmkseNYpDVEQ6kGDopCEErgpZfQIWME9Fz51BaESR4k1hBhaSlgc8mvDwg76axmrvYVADYmF6pPXxkbTiFMS9gSvYjPW4qTqN7dMxKaU2omfA%2Be3XO9NiLdIedabuDBTe%2BNbAc7rJyDcc%2B0yTYIe5%2B7zX2ROS22v8%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407408723", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 445761-O1VMAP04
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 10:52:02 GMT
+      Content-Length:
+      - '297'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>63e6fecd-4382-4895-9a0b-3c521ec8dd5e</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T10:52:02.4459922Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 10:52:05 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%22f2343c1a-b84d-4ff7-b10d-cc02af13f957%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="TzJxnupSF6bSsOuMzuxKMux3GqqLXlQMTG6vaxbHc",
+        oauth_signature="m8GSQWPpUI9LOvIlmsIfmoP55fxmGvifEqM9X6HlF3KAyvZWY%2BVzr6t07TeXnryS2tfOQlf0vW4Y2q5qNVx8o4l9yDrM2Tj0iXnYJChz9hG5tq5rMOJ2QE7Yuqiun%2B31lPtjFHYUyHwBjtAJJIdboWJudV3i4sqBHFMlGW4YDJM%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407414782", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:33:01 GMT
+      Content-Length:
+      - '297'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>b4163714-8c43-4d02-b8b5-665c9e3eaa69</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:33:01.7268045Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:33:07 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%2283ff60e1-77f7-4a8b-9102-88ccf4490885%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="q094GKQV5qLjpfNtCwln4cZU2MPTqJwbxeCTw6FoPU",
+        oauth_signature="btcDFIG2qJ0AFTshgYjqUd80Ov0wLl8fBJI4PQCB5lQK5Uv2RebUjVjqEN%2FzPiHh9%2BtCbdnMU4rFnvcrI4uxTen0jNsTIgOiAl1ujPlGawnLfGAArArhSNDUVn6kpJd%2BdzlrBUBSVBPIKsMuukM%2FpPuk3HlhwwxXzG6bHTY%2FYBI%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416009", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:53:26 GMT
+      Content-Length:
+      - '297'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>e4013ebf-6b99-4c01-9f67-cd66f47bc551</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:53:27.0211674Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:53:32 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%2283ff60e1-77f7-4a8b-9102-88ccf4490885%22)%20AND%20Status%20!=%20%22DELETED%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="Av81BfR0zIbcJaatfG22QOkIoGlRAVdZ6JWjORshs",
+        oauth_signature="n3R6ftzjOm7LICMVVwiVEv75bToo3W%2Blqtg8eTJeb57s2Wa5cGhwhmV9bfw4PYPwfICyKdXij0aEOkurRohPNybSajdFoMXBVp4FuSdMNPxtY5VvSeGq8c88oIRi2GIGNHavfLWL7vXOHTrx4HIo8k4BcyBS3TEMpgf7skKdW80%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416019", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:53:36 GMT
+      Content-Length:
+      - '1219'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>7f7cb59b-b3b9-4826-b8a1-ef00e4808482</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:53:36.3813474Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>83ff60e1-77f7-4a8b-9102-88ccf4490885</ContactID>\r\n
+        \       <Name>Existing Company Inc.</Name>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <SubTotal>1.00</SubTotal>\r\n
+        \     <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n      <UpdatedDateUTC>2014-08-07T12:53:32.543</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>4d95980e-f540-4b72-a9b2-3af211509d45</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0105</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <AmountCredited>0.00</AmountCredited>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:53:41 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices/4d95980e-f540-4b72-a9b2-3af211509d45
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="KWQOlVKVSWmbHvdYT4nmzeogpZJsfZCRO8O5trlV4",
+        oauth_signature="Y818hkQcaK3IvKElqNd2G2Qdq1VNmQNVxIb2v0UESA9S5fEcp8EbujB2002%2FqAm2RnVW8Fc6vqHHh8IIagEOzcHa2XIh1O2IqxotFTtR67KPpPaMFBIZ0FrKVWHjUAenmBerpQEAMY%2BzIq5JYfnXkEP1ZZrtsjJEuRQokk4oAoc%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416021", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:53:37 GMT
+      Content-Length:
+      - '2327'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>65240766-80c2-4e0c-afce-7fc5e4bd70de</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:53:38.0349792Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>83ff60e1-77f7-4a8b-9102-88ccf4490885</ContactID>\r\n
         \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
-        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
-        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
         \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
-        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
-        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
         \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
         \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
-        \       <UpdatedDateUTC>2013-08-14T09:45:42.013</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
-        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2013-08-14T00:00:00</Date>\r\n
-        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DELETED</Status>\r\n
+        \       <UpdatedDateUTC>2014-08-07T12:53:21.187</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
         \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
-        \       <LineItem>\r\n          <Description>my fantastic invoice description</Description>\r\n
+        \       <LineItem>\r\n          <Description>Line Item Number 0</Description>\r\n
         \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
         \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
         \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
         \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
-        \     <UpdatedDateUTC>2013-08-14T09:45:50.793</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
-        \     <Type>ACCREC</Type>\r\n      <InvoiceID>f08523e3-89e5-4591-a1c8-61c9a85db932</InvoiceID>\r\n
-        \     <InvoiceNumber>INV-0117</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:53:32.543</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
+        \     <Type>ACCREC</Type>\r\n      <InvoiceID>4d95980e-f540-4b72-a9b2-3af211509d45</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0105</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:53:43 GMT
+- request:
+    method: put
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="8fw5U6AwWw79fWIZHVLf0DGtPvTBJ2Ox8kaSlLLjfg",
+        oauth_signature="M7JBFg5dLBK0XvPIQgujAmRecpdMViX8juzyE97MdtQJ6PGFwdUKbQb4CXy4cdC9w5Z48%2BETWqYdGWLNZ461gF9E1MxJpopatES897lZvxiGMelHXX09dB1sujR5YkHNeEXXu%2BBJFfJC3s0kQeYO9Tym4jYmxHqFnHF13SDEgb0%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416291", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:10 GMT
+      Content-Length:
+      - '1188'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>066f16b1-345a-4918-a15b-e3289c937e40</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:10.353816Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
+        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:16 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name.ToLower()%20==%20%22existing%20company%20inc.%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="F5rgmjzyRGbPeuxhX1p0oOCf4R3hHVBu5zI3qJIQlM",
+        oauth_signature="ZFy7ShIoGRHZGMaqF5QZz%2FiGev%2Bp2FGoBJ7NtDgAOkIyjgh7xgpELJvhckI6FrkJ1anRchA7lPnT%2BxZfAbX4JFKgRVDAifG342%2BUBpToa%2B0ZOIsuHyRU1tce8p2VMVkppBe%2FdxfSxt1H74%2BlkabPM2CtinJRE5R6srOT8yk2FOI%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416296", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:14 GMT
+      Content-Length:
+      - '1235'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>c8c3d08b-35bb-4e15-b0c2-f0d76b3b0788</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:15.0963072Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
+        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>false</IsCustomer>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:21 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%226fcd82ad-9548-43ad-a2c3-470f8fe82cc8%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="iwErxrBpsirj7zPgyuJBig8cUTx6sUZz6C7wsffdhs",
+        oauth_signature="haJH2kO%2F9r5ytP9ddXPRCzJDkxq6useIG3TowQE8vu77ZWYgWgHX63sZkIMGMw3ejsPS8TQT9Bjhc6QiLMa2Ke9Cw7B1U%2FoBpQUT1HvQrnkYStw1Dhm5XQbPG8kEMVmVgaoQcNM%2FEnbiTJvAcWXmKfVn5Rl8n%2BDPVISDKGuB9qQ%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416301", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:20 GMT
+      Content-Length:
+      - '297'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>3de49152-e978-46e4-b5a7-673d3550d9ea</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:21.3052266Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:26 GMT
+- request:
+    method: put
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3CInvoice%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CContactID%3E6fcd82ad-9548-43ad-a2c3-470f8fe82cc8%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CUpdatedDateUTC%3E2014-08-07T11%3A58%3A10%3C%2FUpdatedDateUTC%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CDueDate%3E2013-03-10%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3ELine%20Item%20Number%200%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="uqaYaeZqMAFjS6L4icSPpz82vWmrtvuft2Yu5pRuE",
+        oauth_signature="m214nAJEOjOV22Z70XJdj5aqzKW1EcV2R6%2FBzGO88O7fC2%2FqrOqfeo4gxabsZvD7KpERv55G9325F20MNs97OOEIEVwodHhmPcatkQtYyG3Lw%2FjNzPoi2M3w8Dz6WHfXJ3XVgcvyES5oisWoDpu%2BAYR6ah41VKFQqczRe0gXIv8%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416306", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:25 GMT
+      Content-Length:
+      - '2281'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>4a5b1f2a-a45c-47c6-b39e-caf5adac9dff</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:25.5329079Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
+        \       <LineItem>\r\n          <Description>Line Item Number 0</Description>\r\n
+        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
+        \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
+        \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
+        \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:25.503</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
+        \     <Type>ACCREC</Type>\r\n      <InvoiceID>0b252d4f-e087-45e4-a9f5-e9d3736ec997</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0112</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
         \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
         \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
     http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:51 GMT
+  recorded_at: Thu, 07 Aug 2014 12:58:31 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3CInvoice%3E%0A%20%20%3CInvoice%3E%0A%20%20%20%20%3CContactID%3E6fcd82ad-9548-43ad-a2c3-470f8fe82cc8%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CUpdatedDateUTC%3E2014-08-07T11%3A58%3A10%3C%2FUpdatedDateUTC%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Etrue%3C%2FIsCustomer%3E%0A%20%20%3C%2FInvoice%3E%0A%20%20%3CDate%3E2014-08-07%3C%2FDate%3E%0A%20%20%3CDueDate%3E2013-03-10%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3ELine%20Item%20Number%200%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%20%20%3CTaxAmount%3E0.2%3C%2FTaxAmount%3E%0A%20%20%20%20%20%20%3CLineAmount%3E1.0%3C%2FLineAmount%3E%0A%20%20%20%20%20%20%3CQuantity%3E1.0%3C%2FQuantity%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CSubTotal%3E1.0%3C%2FSubTotal%3E%0A%20%20%3CTotalTax%3E0.2%3C%2FTotalTax%3E%0A%20%20%3CTotal%3E1.2%3C%2FTotal%3E%0A%20%20%3CUpdatedDateUTC%3E2014-08-07T11%3A58%3A25%3C%2FUpdatedDateUTC%3E%0A%20%20%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CInvoiceID%3E0b252d4f-e087-45e4-a9f5-e9d3736ec997%3C%2FInvoiceID%3E%0A%20%20%3CInvoiceNumber%3EINV-0112%3C%2FInvoiceNumber%3E%0A%20%20%3CAmountDue%3E1.2%3C%2FAmountDue%3E%0A%20%20%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A%20%20%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="nEaUK8gjxcLjPvU2TcvJGlvpHJUVUAtrjPFdq89A7M",
+        oauth_signature="FRhsnVIa45whcwr4c%2FXW551G3rh5CjVeRYg9cs8Y5ikSIbOg22UEsV97Dn9yDE2cbQGVfJZ%2BQg%2BHWO0%2F547zaz3mr5cFsIzTc%2FDfqjIlo1uCHddMmgWyoA5Lw5PYQz9xRMOtvdDojCySaqgiPaDxBR%2Fr5WVfDESzr0zi%2FGs2lqY%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416311", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:29 GMT
+      Content-Length:
+      - '2444'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>813f41e4-eda8-42c7-ae78-6f4a535a3e79</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:29.4953841Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Warnings>\r\n        <Warning>\r\n
+        \         <Message>Only AUTHORISED invoices may have SentToContact updated.</Message>\r\n
+        \       </Warning>\r\n      </Warnings>\r\n      <Contact>\r\n        <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
+        \       <LineItem>\r\n          <Description>Line Item Number 0</Description>\r\n
+        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
+        \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
+        \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
+        \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:29.463</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
+        \     <Type>ACCREC</Type>\r\n      <InvoiceID>0b252d4f-e087-45e4-a9f5-e9d3736ec997</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0112</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:35 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name%20==%20%22Existing%20Company%20Inc.%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="w5W35pfxTuP6CG3aeuq6aKFgzXaVq101YERIb9fuk",
+        oauth_signature="Q940J3Q4NBd4DjQK52pw6WMnF4pEgOFnRFRF1ppNipBxRDFhf%2FQI98dTHSWC6bijK0NWPZUNvo0TqAJ%2FdjTxbicNO4aG9wFhOGzGDmZ6rAbmyt4qSBMQmXXuVbDWfrhZzaWk%2BXrV5qqpDVcQvPVSwSotJyoPxsAjuFdlewRRC3g%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416315", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:32 GMT
+      Content-Length:
+      - '1234'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>bbf38096-14d3-4383-be70-ca1f830778ca</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:33.2550564Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
+        Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
+        \       </Address>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
+        \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \     <IsCustomer>true</IsCustomer>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:39 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%226fcd82ad-9548-43ad-a2c3-470f8fe82cc8%22)%20AND%20Status%20!=%20%22DELETED%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="AI261vhDCkHflWWe3KcLkL4ZdI3i5GKLeeH8EPZNuY",
+        oauth_signature="jwV6NT%2FlTnA7TWivqx%2FhUHTKpOS2D4dXn0BTFqtqvNxoX29cn3laYvZFtz68L2%2Bba66seb3Ssla8b0EvW7n0Wse5%2BDIdJ5Z3P8uSNNiAz0ZdkaKVnoVYyDSL4jdZ12tMMyuE3fnebYkkawqRpZ5EROXkOzI1nByhPd6gkWTGqzQ%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416319", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:37 GMT
+      Content-Length:
+      - '1218'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>44dabb6f-b2b1-4f9f-9d5d-b7ac7f5b2d55</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:37.966347Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \       <Name>Existing Company Inc.</Name>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <SubTotal>1.00</SubTotal>\r\n
+        \     <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n      <UpdatedDateUTC>2014-08-07T12:58:29.463</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>0b252d4f-e087-45e4-a9f5-e9d3736ec997</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0112</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <AmountCredited>0.00</AmountCredited>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:43 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices/0b252d4f-e087-45e4-a9f5-e9d3736ec997
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="oVb6vroVsJ9v00COGIDqEEblAzZDc1kHLZmCUGtJzFc",
+        oauth_signature="dljq7tJ7akwOrQpfoJKIxzsLe7%2B61UmNk9Jc1p5et1wpa4291hQ36TRNizL7Qw0JuZKFZbb60mnDsHj2atQrWe5FatvrsX21luTalc2qnsEG5PzLjfeE4D7q0TCwB%2F2fmoysu%2FCyaJhmgwA5dXn3KCel2hmRty9PUB1nmQozDjQ%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416323", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:41 GMT
+      Content-Length:
+      - '2327'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>cefafb8d-8fcf-4ec9-a747-a5ccdf38a02e</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:42.1160268Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
+        \       <LineItem>\r\n          <Description>Line Item Number 0</Description>\r\n
+        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
+        \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
+        \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
+        \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:29.463</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
+        \     <Type>ACCREC</Type>\r\n      <InvoiceID>0b252d4f-e087-45e4-a9f5-e9d3736ec997</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0112</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:48 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3CInvoice%3E%0A%20%20%3CInvoice%3E%0A%20%20%20%20%3CContactID%3E6fcd82ad-9548-43ad-a2c3-470f8fe82cc8%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EExisting%20Company%20Inc.%3C%2FName%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CUpdatedDateUTC%3E2014-08-07T11%3A58%3A10%3C%2FUpdatedDateUTC%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Etrue%3C%2FIsCustomer%3E%0A%20%20%3C%2FInvoice%3E%0A%20%20%3CDate%3E2014-08-07%3C%2FDate%3E%0A%20%20%3CDueDate%3E2013-03-10%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDELETED%3C%2FStatus%3E%0A%20%20%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3ELine%20Item%20Number%200%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E1.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%20%20%3CTaxAmount%3E0.2%3C%2FTaxAmount%3E%0A%20%20%20%20%20%20%3CLineAmount%3E1.0%3C%2FLineAmount%3E%0A%20%20%20%20%20%20%3CQuantity%3E1.0%3C%2FQuantity%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CSubTotal%3E1.0%3C%2FSubTotal%3E%0A%20%20%3CTotalTax%3E0.2%3C%2FTotalTax%3E%0A%20%20%3CTotal%3E1.2%3C%2FTotal%3E%0A%20%20%3CUpdatedDateUTC%3E2014-08-07T11%3A58%3A29%3C%2FUpdatedDateUTC%3E%0A%20%20%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CInvoiceID%3E0b252d4f-e087-45e4-a9f5-e9d3736ec997%3C%2FInvoiceID%3E%0A%20%20%3CInvoiceNumber%3EINV-0112%3C%2FInvoiceNumber%3E%0A%20%20%3CAmountDue%3E1.2%3C%2FAmountDue%3E%0A%20%20%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A%20%20%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="XdXVhGzeKDDptkyXhiTBJ97vIHChwQ8mynnLhfsvV4E",
+        oauth_signature="Q7Rwjy%2Fn2%2BVjyi2puhSu7uqytkb9b7dLLrDuBsJUdlA%2Br%2Bvi%2BpvfsQ%2FLbBQF8VNuNMAfV9ysgBxsXI2mm744ecCJQhMYBD5IYZddiWUpflQ4kMwn%2BMyTMgCZ7aeEJsi9RB0dzVZnrIIcYbjgUqlEkKrV0AzUMR3XREUeIfOs47I%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416328", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      X-S:
+      - 505390-O1VMAP05
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Thu, 07 Aug 2014 12:58:43 GMT
+      Content-Length:
+      - '2283'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>3a5cecd3-5e93-4dee-94d3-366c89e4a236</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:44.7524775Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Existing Company
+        Inc.</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2014-08-07T12:58:10.323</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2014-08-07T00:00:00</Date>\r\n
+        \     <DueDate>2013-03-10T00:00:00</DueDate>\r\n      <Status>DELETED</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems>\r\n
+        \       <LineItem>\r\n          <Description>Line Item Number 0</Description>\r\n
+        \         <UnitAmount>1.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
+        \         <TaxAmount>0.20</TaxAmount>\r\n          <LineAmount>1.00</LineAmount>\r\n
+        \         <Quantity>1.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
+        \     <SubTotal>1.00</SubTotal>\r\n      <TotalTax>0.20</TotalTax>\r\n      <Total>1.20</Total>\r\n
+        \     <UpdatedDateUTC>2014-08-07T12:58:44.737</UpdatedDateUTC>\r\n      <CurrencyCode>GBP</CurrencyCode>\r\n
+        \     <Type>ACCREC</Type>\r\n      <InvoiceID>0b252d4f-e087-45e4-a9f5-e9d3736ec997</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0112</InvoiceNumber>\r\n      <AmountDue>1.20</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Thu, 07 Aug 2014 12:58:50 GMT
 - request:
     method: post
     uri: https://api.xero.com/api.xro/2.0/Contacts
     body:
       encoding: US-ASCII
-      string: xml=%3CContact%3E%0A%20%20%3CContactID%3E19ec9fa6-e528-489f-99f2-26793a95cd4b%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%2019ec9fa6-e528-489f-99f2-26793a95cd4b%3C%2FName%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CUpdatedDateUTC%3E2013-08-14T08%3A45%3A42%3C%2FUpdatedDateUTC%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Etrue%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+      string: xml=%3CContact%3E%0A%20%20%3CContactID%3E6fcd82ad-9548-43ad-a2c3-470f8fe82cc8%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%206fcd82ad-9548-43ad-a2c3-470f8fe82cc8%3C%2FName%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CUpdatedDateUTC%3E2014-08-07T11%3A58%3A10%3C%2FUpdatedDateUTC%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Etrue%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
     headers:
       Charset:
       - utf-8
@@ -567,9 +1033,9 @@ http_interactions:
       Content-Length:
       - '0'
       Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="fUBGWSLEZPMB1bKG5eHbLncCRZjXlFCdADTZnKrLKvo",
-        oauth_signature="Tc8r8Byfm8y7vBmeXXz2CgIgYdXMuyy%2F7snESIBzGI1nGf8Ha6Pny%2FuMx03YH3yj7ARDCMClotp7G44HrTINKfHggBCCbCb0MuwkMwVNf9ut%2BW64GZKt%2BkzugEDMT76lgTiUd4hc5CrSclXd0iP2Sizl4I1YKwUpoeYbtQUae8k%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1376473551", oauth_token="<XERO_CONSUMER_KEY>",
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="milxA2GYmENt72dg2fR9HHbFxrdxRvKxRfK6LWg",
+        oauth_signature="MjjLodYUieivn8tbZcOKAysH9hri7Onv08iZQ4TfdkmJuILxLP3GhmpFZk3EiOk0P0Us0YcJXwWbj6ek3jGQakHQq1VkrO8ayQdI8POxvBNdmc2WpjtBZiU1a%2FI%2FV%2FSyiTtLQW46bDLeJHpFx9BdGMyegB1zb3iVU%2FL%2F%2FWML%2BZM%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1407416330", oauth_token="<XERO_CONSUMER_KEY>",
         oauth_version="1.0"
   response:
     status:
@@ -583,30 +1049,30 @@ http_interactions:
       Www-Authenticate:
       - OAuth Realm="api.xero.com"
       X-S:
-      - 445760-O1VMAP03
+      - 505390-O1VMAP05
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Wed, 14 Aug 2013 09:45:51 GMT
+      - Thu, 07 Aug 2014 12:58:46 GMT
       Content-Length:
-      - '1221'
+      - '1225'
     body:
       encoding: US-ASCII
       string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>cfdf2f17-f2f4-4578-9421-44e92d03af91</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Demo App</ProviderName>\r\n  <DateTimeUTC>2013-08-14T09:45:51.7933289Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>19ec9fa6-e528-489f-99f2-26793a95cd4b</ContactID>\r\n
+        \ <Id>3e1cb7be-3f42-4558-aa3c-30eb006943a1</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Beardstroke</ProviderName>\r\n  <DateTimeUTC>2014-08-07T12:58:46.5309117Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</ContactID>\r\n
         \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
-        Inc. 19ec9fa6-e528-489f-99f2-26793a95cd4b</Name>\r\n      <Addresses>\r\n
+        Inc. 6fcd82ad-9548-43ad-a2c3-470f8fe82cc8</Name>\r\n      <Addresses>\r\n
         \       <Address>\r\n          <AddressType>STREET</AddressType>\r\n        </Address>\r\n
         \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n        </Address>\r\n
-        \     </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
+        \     </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
         \       </Phone>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
-        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-08-14T09:45:51.73</UpdatedDateUTC>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2014-08-07T12:58:46.517</UpdatedDateUTC>\r\n
         \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>true</IsCustomer>\r\n
         \   </Contact>\r\n  </Contacts>\r\n</Response>"
     http_version: 
-  recorded_at: Wed, 14 Aug 2013 09:45:52 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Thu, 07 Aug 2014 12:58:51 GMT
+recorded_with: VCR 2.8.0
