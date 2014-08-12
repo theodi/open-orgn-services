@@ -56,6 +56,19 @@ Then /^the invoice price should be "(.*?)"$/ do |base_price|
   @line_items.first['base_price'] ||= base_price
 end
 
+Then(/^the invoice should have (\d+) line items?$/) do |num|
+  @line_items ||= []
+  num.to_i.times { @line_items << {} }
+end
+
+Then(/^line item number (\d+) should have a description of "(.*?)"$/) do |index, invoice_description|
+  @line_items[index - 1]['description'] ||= invoice_description
+end
+
+Then(/^line item number (\d+) should have a price of (.*?)$/) do |index, price|
+  @line_items[index - 1]['base_price'] ||= price
+end
+
 Then /^the supporter level should be "(.*?)"$/ do |supporter_level|
   @supporter_level = supporter_level
 end
