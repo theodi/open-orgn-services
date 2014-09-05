@@ -80,6 +80,8 @@ require 'google_drive/network_metrics'
 
 require 'precisemedia/press_metrics'
 
+require 'diversity/diversity_metrics'
+
 def environment
   ENV['RACK_ENV'] || 'production'
 end
