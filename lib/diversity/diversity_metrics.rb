@@ -9,6 +9,7 @@ class DiversityMetrics
     {
       "diversity-gender" => gender
     }.each_pair do |metric, value|
+      puts value.inspect
       store_metric metric, DateTime.now, value
     end
   end
