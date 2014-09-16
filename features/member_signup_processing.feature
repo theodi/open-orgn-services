@@ -13,7 +13,7 @@ Feature: Processing membership signups
     Given my name is "Joe Nerd"
     And my email address is "joe@nerd.eg"
     And I work for "Nerd Enterprises Inc"
-    And my company has a size of "small"
+    And my company has a size of "<10"
     And my company is "commercial"
     And I have an invoice contact email of "finance@nerd.eg"
     And I have an invoice phone number of "+1 1010 101010"
@@ -52,15 +52,15 @@ Feature: Processing membership signups
     And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
-    | size  | status         | description                                                              | level               | price |
-    | small | commercial     | ODI Supporter (01010101) [Commercial] (annual invoice payment)           | Supporter           | 720    |
-    | large | commercial     | ODI Corporate Supporter (01010101) [Commercial] (annual invoice payment) | Corporate supporter | 1440   |
-    | small | non_commercial | ODI Supporter (01010101) [Non Commercial] (annual invoice payment)       | Supporter           | 720    |
-    | large | non_commercial | ODI Supporter (01010101) [Non Commercial] (annual invoice payment)       | Supporter           | 720    |
+    | size     | status         | description                                                              | level               | price |
+    | <10      | commercial     | ODI Supporter (01010101) [Commercial] (annual invoice payment)           | Supporter           | 720    |
+    | >1000    | commercial     | ODI Corporate Supporter (01010101) [Commercial] (annual invoice payment) | Corporate supporter | 1440   |
+    | 51-250   | non_commercial | ODI Supporter (01010101) [Non Commercial] (annual invoice payment)       | Supporter           | 720    |
+    | 251-1000 | non_commercial | ODI Supporter (01010101) [Non Commercial] (annual invoice payment)       | Supporter           | 720    |
 
   Scenario Outline: handle payment methods and frequencies
     Given I requested 1 membership at the level called "supporter"
-    And my company has a size of "small"
+    And my company has a size of "10-50"
     And my company is "commercial"
     And my purchase order reference is "ABC000001"
     And I am paying by "<method>"
