@@ -339,3 +339,15 @@ Then(/^that data tag should have the supporter level "(.*?)"$/) do |level|
   field.should be_present
   field.text.should == level
 end
+
+Then(/^that data tag should have the size "(.*?)"$/) do |size|
+  field = @organisation.custom_fields.find{|x| x.label == "Size" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == size
+end
+
+Then(/^that data tag should have the sector "(.*?)"$/) do |sector|
+  field = @organisation.custom_fields.find{|x| x.label == "Sector" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == sector
+end

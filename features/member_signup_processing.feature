@@ -15,6 +15,7 @@ Feature: Processing membership signups
     And I work for "Nerd Enterprises Inc"
     And my company has a size of "<10"
     And my company is "commercial"
+    And my sector is "Healthcare"
     And I have an invoice contact email of "finance@nerd.eg"
     And I have an invoice phone number of "+1 1010 101010"
     And I have an invoice address (line1) of "01 Geek Street, Techington"
