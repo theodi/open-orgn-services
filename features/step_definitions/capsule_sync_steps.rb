@@ -90,12 +90,16 @@ end
 Given /^I have updated my membership details$/ do
   @updated_email = 'contact@weyland-yutani.com'
   @updated_newsletter = true
+  @updated_size = '<10'
+  @updated_sector = 'Other'
 end
 
 When /^the job is run to update my membership details in capsule$/ do
   SaveMembershipDetailsToCapsule.perform(@organization_membership_id, {
     'email'      => @updated_email,
-    'newsletter' => @updated_newsletter
+    'newsletter' => @updated_newsletter,
+    'size'       => @updated_size,
+    'sector'     => @updated_sector
   })
 end
 
@@ -109,4 +113,16 @@ Then /^that data tag should have my updated newsletter preferences$/ do
   field = @organisation.custom_fields.find{|x| x.label == "Newsletter" && x.tag == @tag.name}
   field.should be_present
   field.boolean.should == @updated_newsletter
+end
+
+Then(/^that data tag should have my updated size$/) do
+  field = @organisation.custom_fields.find{|x| x.label == "Size" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == @updated_size
+end
+
+Then(/^that data tag should have my updated sector$/) do
+  field = @organisation.custom_fields.find{|x| x.label == "Sector" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == @updated_sector
 end

@@ -14,7 +14,9 @@ module CapsuleHelper
       "ID"              => :text,
       "Email"           => :text,
       "Joined"          => :date,
-      "Newsletter"      => :boolean
+      "Newsletter"      => :boolean,
+      "Size"            => :text,
+      "Sector"          => :text,
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end
