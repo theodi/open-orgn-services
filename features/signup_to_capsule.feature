@@ -14,6 +14,8 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that it's 2013-01-01 14:35
     And my membership number is "AB1234YZ"
     And my organisation has a company number "08030289"
+    And my company has a size of "<10"
+    And my sector is "Healthcare"
 
   Scenario: wait for Xero to capsule sync
     Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
@@ -47,6 +49,8 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that data tag should have the supporter level "Supporter"
     And that data tag should have the join date 2013-01-01
     And that data tag should have the membership number "AB1234YZ"
+    And that data tag should have the size "<10"
+    And that data tag should have the sector "Healthcare"
     And that data tag should have the email "turkleton@acme.com"
 
   Scenario: set company number on existing organisation
