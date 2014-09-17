@@ -52,6 +52,8 @@ Then /^the observer should be notified with the organisation's information$/ do
     'product_name'  => @organization_membership_level,
     'id'            => @organization_membership_id,      
     'newsletter'    => (@organization_membership_newsletter == 'true'),
+    'size'          => @organization_size,
+    'sector'        => @organization_sector
   }.compact
   description = [
     @organization_directoryentry_description,
