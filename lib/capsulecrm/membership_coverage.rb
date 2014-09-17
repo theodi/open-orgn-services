@@ -10,7 +10,7 @@ class MembershipCoverage
 
     data = {}
 
-    sectors.each do |sector|
+    coverage_sectors.each do |sector|
       # Load parties in the sector
       parties = CapsuleCRM::Organisation.find_all(tag: sector) + CapsuleCRM::Person.find_all(tag: sector)
       # Split by level

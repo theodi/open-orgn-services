@@ -96,7 +96,7 @@ module CapsuleHelper
     ["Invoiced", "Lost", "No project", "Contract Signed"].include?(opportunity.milestone)
   end
 
-  def sectors
+  def coverage_sectors
     [
       "Charity, Not-for-Profit",
       "Data & Information Services",
