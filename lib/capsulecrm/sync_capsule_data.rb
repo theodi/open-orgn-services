@@ -16,6 +16,8 @@ class SyncCapsuleData
         'product_name'  => field(org, "Membership", "Level").try(:text),
         'id'            => field(org, "Membership", "ID").try(:text),
         'newsletter'    => field(org, "Membership", "Newsletter").try(:boolean),
+        'size'          => field(org, "Membership", "Size").try(:text),
+        'sector'        => field(org, "Membership", "Sector").try(:text),
       }.compact
       description = [
         field(org, "DirectoryEntry", "Description").try(:text),

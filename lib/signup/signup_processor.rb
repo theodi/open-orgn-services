@@ -11,6 +11,7 @@ class SignupProcessor
   #                   'company_number'
   #                   'size'
   #                   'type'
+  #                   'sector'
   #
   # contact_person    - a hash containing details of the main contact for the member organisation
   #                    'name'
@@ -42,7 +43,7 @@ class SignupProcessor
 
 
   def self.membership_type(size, type)
-    if size == 'small' || type == 'non_commercial'
+    if %w(<10 10-50 51-250).include?(size) || type == 'non_commercial'
       {
         price: (60 * 12),
         description: 'Supporter',
@@ -107,12 +108,13 @@ class SignupProcessor
       }],
       'repeat' => 'annual',
       'purchase_order_reference' => purchase['purchase_order_reference'],
+      'sector' => organization['sector']
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
 
     # Save details in capsule
 
-    organization = {
+    organization_details = {
       'name' => organization['name'],
       'company_number' => organization['company_number']
     }
@@ -121,9 +123,11 @@ class SignupProcessor
       'supporter_level' => membership_type[:type],
       'id'              => purchase['membership_id'].to_s,
       'join_date'       => Date.today.to_s,
-      'contact_email'   => contact_person['email']
+      'contact_email'   => contact_person['email'],
+      'size'            => organization['size'],
+      'sector'          => organization['sector']
     }
-    Resque.enqueue(SendSignupToCapsule, organization, membership)
+    Resque.enqueue(SendSignupToCapsule, organization_details, membership)
   end
 
 end

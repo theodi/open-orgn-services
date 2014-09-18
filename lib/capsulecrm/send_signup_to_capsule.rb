@@ -12,6 +12,8 @@ class SendSignupToCapsule
   #              'id'              => the newly-generated membership number
   #              'join_date'       => the date of signup
   #              'contact_email'   => a contact email for the signup
+  #              'size'            => the organization's size
+  #              'sector'          => the organization's sector
   #
   # organization - a hash containing details of the organization
   #              'name'           => the org name in Xero - should be the same as that in capsule
@@ -52,7 +54,9 @@ class SendSignupToCapsule
         "Supporter Level" => membership['supporter_level'],
         "ID"              => membership['id'],
         "Joined"          => Date.parse(membership['join_date']),
-        "Email"           => membership['contact_email']
+        "Email"           => membership['contact_email'],
+        "Size"            => membership['size'],
+        "Sector"          => membership['sector']
       )
       # Store company number on organization
       field = CapsuleCRM::CustomField.new(

@@ -8,8 +8,8 @@ Feature: Store updated membership details in capsuleCRM
     Given there is an existing organisation in CapsuleCRM called "Weyland-Yutani Corp"
     Given that organisation has a data tag called "Membership"
     And that data tag has the following fields:
-    | Level   | Email                   | ID       | Newsletter |
-    | partner | info@weyland-yutani.com | AB1234FG | false      |
+    | Level   | Email                   | ID       | Newsletter | Size  | Sector          |
+    | partner | info@weyland-yutani.com | AB1234FG | false      | >1000 | Data/Technology |
 
   Scenario: Membership information should be stored
     Given I have updated my membership details
@@ -19,4 +19,5 @@ Feature: Store updated membership details in capsuleCRM
     And that data tag should have the type "Membership"
     And that data tag should have my updated email
     And that data tag should have my updated newsletter preferences
-  
+    And that data tag should have my updated size
+    And that data tag should have my updated sector

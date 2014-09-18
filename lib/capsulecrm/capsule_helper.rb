@@ -14,7 +14,9 @@ module CapsuleHelper
       "ID"              => :text,
       "Email"           => :text,
       "Joined"          => :date,
-      "Newsletter"      => :boolean
+      "Newsletter"      => :boolean,
+      "Size"            => :text,
+      "Sector"          => :text,
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end
@@ -96,7 +98,7 @@ module CapsuleHelper
     ["Invoiced", "Lost", "No project", "Contract Signed"].include?(opportunity.milestone)
   end
 
-  def sectors
+  def coverage_sectors
     [
       "Charity, Not-for-Profit",
       "Data & Information Services",

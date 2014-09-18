@@ -7,7 +7,8 @@ module SignupProcessorSupport
       'vat_id'         => @tax_registration_number,
       'company_number' => @company_number,
       'size'           => @size,
-      'type'           => @type
+      'type'           => @type,
+      'sector'         => @sector
     }
     contact_person = {
       'name'      => @name,

@@ -10,6 +10,8 @@ class SaveMembershipDetailsToCapsule
   # membership        - a hash containing details for the membership
   #                   'email'        => the contact email address
   #                   'newsletter'   => whether to send a newsletter or not
+  #                   'size'         => the organization size
+  #                   'sector'       => the organization's industry sector
   # 
   # Returns nil.
 
@@ -22,6 +24,8 @@ class SaveMembershipDetailsToCapsule
         org,
         'Email'      => membership['email'],
         'Newsletter' => membership['newsletter'],
+        'Size'       => membership['size'],
+        'Sector'     => membership['sector']
       )
       unless success
         requeue(membership_id, membership)
