@@ -1,4 +1,4 @@
-require 'csv'
+require 'json'
 require 'httparty'
 
 class CertificateCount
@@ -7,9 +7,9 @@ class CertificateCount
   extend MetricsHelper
 
   def self.odcs(year = nil)
-    response = HTTParty.get("https://certificates.theodi.org/status.csv").body
-    csv      = CSV.parse(response)
-    csv.last[3].to_i
+    response = HTTParty.get("https://certificates.theodi.org/datasets/info.json")
+    info = JSON.parse(response.body)
+    info['published_certificate_count'].to_i
   end
 
   def self.perform
