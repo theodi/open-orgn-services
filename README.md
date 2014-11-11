@@ -66,7 +66,6 @@ The following environment variables should be set in order to use this gem.
     TRELLO_DEV_KEY
     TRELLO_DEV_SECRET
     TRELLO_MEMBER_KEY
-    TRELLO_CLEANUP_BOARD
     
     GITHUB_ORGANISATION
     GITHUB_OAUTH_TOKEN
