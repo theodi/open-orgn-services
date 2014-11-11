@@ -16,7 +16,7 @@ describe QuarterlyProgress do
     progress[:q1].should == 91.6
     progress[:q2].should == 87.5
     progress[:q3].should == 63.6
-    progress[:q4].should == 9.9
+    progress[:q4].should == 10.6
   end
 
   it "should store right values in metrics API", :vcr do
@@ -27,7 +27,7 @@ describe QuarterlyProgress do
             :q1 => 91.6,
             :q2 => 87.5,
             :q3 => 63.6,
-            :q4 => 9.9
+            :q4 => 10.6
         },
         '2013' => {
             :q1 => 97.0,
