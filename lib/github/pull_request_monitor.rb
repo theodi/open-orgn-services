@@ -5,6 +5,8 @@ class Github::PullRequestMonitor
   
   @queue = :metrics
   
+  extend MetricsHelper
+  
   def self.perform
     # Connect
     github = Github.connection
@@ -18,9 +20,9 @@ class Github::PullRequestMonitor
       closed_pulls = github.pulls.list(ENV['GITHUB_ORGANISATION'], repo.name, state: 'closed')
       pull_requests += closed_pulls.count
     end
-    # Push into leftronic
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OPENPRS'], open_pull_requests
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_PULLS'], pull_requests
+    # Push into metrics
+    store_metric "github-open-pull-requests", DateTime.now, open_pull_requests
+    store_metric "github-total-pull-requests", DateTime.now, pull_requests
   rescue Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed
     # We sometimes get oauth timeouts on these requests. Let's just absorb them quietly and wait for the next time round.
     nil
