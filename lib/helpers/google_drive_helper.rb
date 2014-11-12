@@ -54,7 +54,7 @@ module GoogleDriveHelper
 
   def cell_location year, identifier  
     year = Date.today.year if year.nil?
-    @@lookups['cell_lookups'][year][identifier]
+    @@lookups['cell_lookups'][year][identifier] rescue nil
   end
 
   def metrics_cell identifier, year, block, ref = "cell_ref"
