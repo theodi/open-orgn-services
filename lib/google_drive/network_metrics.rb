@@ -36,7 +36,8 @@ class NetworkMetrics
       end
     else
       {
-        total:   metrics_cell("Total Reach", year, Proc.new {|x| x.to_i}),
+        total:   metrics_cell("Active Reach", year, Proc.new {|x| x.to_i}) + 
+                 metrics_cell("Passive Reach", year, Proc.new {|x| x.to_i}),
         breakdown: {
           active:  metrics_cell("Active Reach", year, Proc.new {|x| x.to_i}),
           passive: metrics_cell("Passive Reach", year, Proc.new {|x| x.to_i}),
