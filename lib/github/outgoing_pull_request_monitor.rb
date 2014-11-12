@@ -2,6 +2,8 @@ class Github::OutgoingPullRequestMonitor
   
   @queue = :metrics
   
+  extend MetricsHelper
+
   def self.perform
     # Connect
     github = Github.connection
@@ -20,8 +22,8 @@ class Github::OutgoingPullRequestMonitor
         outgoing_pull_requests += count
       end
     end
-    # Push into leftronic
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_OUTGOING_PRS'], outgoing_pull_requests
+    # Push into metrics
+    store_metric "github-outgoing-pull-requests", DateTime.now, outgoing_pull_requests
   rescue Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed
     # We sometimes get oauth timeouts on these requests. Let's just absorb them quietly and wait for the next time round.
     nil

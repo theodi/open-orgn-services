@@ -7,5 +7,8 @@ Feature: Hubot monitoring
   
   Scenario: count people in IRC
     Given there are 5 people in IRC
-    Then the number 5 should be stored in the irc stat
+    Then the following data should be stored in the "irc-theodi-users" metric
+      """
+      5
+      """
     When the hubot monitor runs

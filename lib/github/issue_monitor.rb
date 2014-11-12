@@ -2,6 +2,8 @@ class Github::IssueMonitor
   
   @queue = :metrics
   
+  extend MetricsHelper
+  
   def self.perform
     # Connect
     github = Github.connection
@@ -10,8 +12,8 @@ class Github::IssueMonitor
     github.repos.list(user: ENV['GITHUB_ORGANISATION']) do |repo|
       open_issues += repo.open_issues_count
     end
-    # Push into leftronic
-    Resque.enqueue LeftronicPublisher, :number, ENV['LEFTRONIC_GITHUB_ISSUES'], open_issues
+    # Push into metrics
+    store_metric "github-open-issue-count", DateTime.now, open_issues
   rescue Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed
     # We sometimes get oauth timeouts on these requests. Let's just absorb them quietly and wait for the next time round.
     nil
