@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rufus-scheduler'    , '< 3.0.0'
   s.add_dependency 'pony'               , '~> 1.6' , '>= 1.6.2'
   s.add_dependency 'google_drive'       , '~> 0.3' , '>= 0.3.6'
+  s.add_dependency 'curb'               , '~> 0.8' , '>= 0.8.6'
 
   s.files        = Dir.glob("{lib}/**/*") + %w(LICENSE.md README.md)
   s.require_path = 'lib'
