@@ -1,3 +1,5 @@
+require 'curb'
+
 class DependencyMetrics
   
   @queue = :metrics
