@@ -44,6 +44,8 @@ require 'github/watchers_forks_monitor'
 require 'github/pull_request_monitor'
 require 'github/outgoing_pull_request_monitor'
 
+require 'gemnasium/dependency_metrics'
+
 require 'trello/trello_board'
 require 'trello/trello_boards'
 require 'trello/trello_tasks'
