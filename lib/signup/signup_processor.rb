@@ -103,9 +103,6 @@ class SignupProcessor
                                  purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
                                 )
 
-                                binding.pry
-
-
     invoice_details = {
       'payment_method' => purchase['payment_method'],
       'payment_ref' => purchase['payment_ref'],
