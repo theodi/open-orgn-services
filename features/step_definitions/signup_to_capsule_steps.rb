@@ -36,7 +36,7 @@ Then /^I should be added to the capsulecrm queue$/ do
   organization = {
     'name' => @company,
     'company_number' => @company_number
-  }
+  }.compact
   membership  = {
     'product_name'     => @membership_level,
     'supporter_level'  => @supporter_level,
@@ -45,6 +45,6 @@ Then /^I should be added to the capsulecrm queue$/ do
     'contact_email'    => @email,
     'size'             => @size,
     'sector'           => @sector
-  }
+  }.compact
   Resque.should_receive(:enqueue).with(SendSignupToCapsule, organization, membership).once
 end
