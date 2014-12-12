@@ -17,9 +17,9 @@ end
 
 When /^I sign up via the website$/ do
   organization = {
-    'name' => @company,
+    'name' => @company || @contact_name,
     'company_number' => @company_number
-  }
+  }.compact
   membership  = {
     'product_name'    => @membership_level,
     'supporter_level' => @membership_level.titleize,
@@ -28,7 +28,7 @@ When /^I sign up via the website$/ do
     'contact_email'   => @email,
     'size'            => @size,
     'sector'          => @sector
-  }
+  }.compact
   SendSignupToCapsule.perform(organization, membership)
 end
 

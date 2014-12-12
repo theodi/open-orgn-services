@@ -293,6 +293,7 @@ Then /^that organisation should have a data tag$/ do
   tags.size.should == 1
   @tag = tags.first
   @tag.should_not be_nil
+  @party = @organisation
 end
 
 Then /^that data tag should have the type "(.*?)"$/ do |type|
@@ -302,28 +303,29 @@ end
 Then /^that organisation should have a "(.*?)" data tag$/ do |type|
   @tag = @organisation.tags.find{|x| x.name == type}
   @tag.should_not be_nil
+  @party = @organisation
 end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
-  field = @organisation.custom_fields.find{|x| x.label == "Level" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "Level" && x.tag == @tag.name}
   field.should be_present
   field.text.should == level
 end
 
 Then /^that data tag should have the join date (#{DATE})$/ do |date|
-  field = @organisation.custom_fields.find{|x| x.label == "Joined" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "Joined" && x.tag == @tag.name}
   field.should be_present
   field.date.should == date
 end
 
 Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
-  field = @organisation.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
   field.should be_present
   field.text.should == membership_number
 end
 
 Then /^that data tag should have the email "(.*?)"$/ do |email|
-  field = @organisation.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
   field.should be_present
   field.text.should == email
 end
@@ -335,19 +337,19 @@ Then(/^that organisation should have a company number "(.*?)"$/) do |company_num
 end
 
 Then(/^that data tag should have the supporter level "(.*?)"$/) do |level|
-  field = @organisation.custom_fields.find{|x| x.label == "Supporter Level" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "Supporter Level" && x.tag == @tag.name}
   field.should be_present
   field.text.should == level
 end
 
 Then(/^that data tag should have the size "(.*?)"$/) do |size|
-  field = @organisation.custom_fields.find{|x| x.label == "Size" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "Size" && x.tag == @tag.name}
   field.should be_present
   field.text.should == size
 end
 
 Then(/^that data tag should have the sector "(.*?)"$/) do |sector|
-  field = @organisation.custom_fields.find{|x| x.label == "Sector" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "Sector" && x.tag == @tag.name}
   field.should be_present
   field.text.should == sector
 end
