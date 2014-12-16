@@ -51,7 +51,7 @@ class SignupProcessor
       }
     else
       {
-        price: (120 * 12),
+        price: 2200,
         description: 'Corporate Supporter',
         type: 'Corporate supporter'
       }
