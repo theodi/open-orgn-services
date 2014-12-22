@@ -9,6 +9,7 @@ gemspec
 gem 'xeroizer', :git => 'https://github.com/theodi/xeroizer.git'
 gem 'capsulecrm', :git => 'https://github.com/theodi/capsulecrm.git'
 gem 'google_drive', :github => 'theodi/google-drive-ruby', :branch => 'support-ranges'
+gem 'eventbrite-client', :github => 'theodi/eventbrite-client.rb', :branch => 'update-dependencies'
 
 group :development, :test do
   gem 'cucumber'         , '~> 1.2'
