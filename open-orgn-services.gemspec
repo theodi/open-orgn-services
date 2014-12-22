@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.8.24"
 
   s.add_dependency 'rake'               , '~> 10.0', '>= 10.0.3'
-  s.add_dependency 'eventbrite-client'  , '~> 0.1' , '>= 0.1.4'
+  s.add_dependency 'eventbrite-client'  , '~> 0.1' , '>= 0.1.3'
   s.add_dependency 'resque'             , '~> 1.23', '>= 1.23.0'
   s.add_dependency 'resque-scheduler'   , '~> 2.0' , '>= 2.0.0'
   s.add_dependency 'github_api'         , '~> 0.9' , '>= 0.9.0', '<= 0.10.1'
