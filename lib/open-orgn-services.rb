@@ -81,6 +81,8 @@ require 'precisemedia/press_metrics'
 
 require 'diversity/diversity_metrics'
 
+require 'airbrake/application_errors'
+
 def environment
   ENV['RACK_ENV'] || 'production'
 end

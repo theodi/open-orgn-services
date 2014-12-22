@@ -73,3 +73,5 @@ The following environment variables should be set in order to use this gem.
     HUBOT_USER_LIST
     
     JENKINS_URL
+
+    AIRBRAKE_API_KEY
