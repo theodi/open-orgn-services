@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'github_api'         , '~> 0.9' , '>= 0.9.0', '<= 0.10.1'
   s.add_dependency 'activemodel'        , '~> 3.2' , '>= 3.2.12'
   s.add_dependency 'ruby-trello'        , '~> 0.5' , '>= 0.5.1'
-  s.add_dependency 'xeroizer'           , '~> 2.15', '>= 2.15.3'
+  s.add_dependency 'xeroizer'           , '~> 2.15', '>= 2.15.6'
   s.add_dependency 'capsulecrm'
   s.add_dependency 'fog'                , '~> 1.12', '>= 1.12.1'
   s.add_dependency 'httparty'
