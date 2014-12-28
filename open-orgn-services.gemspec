@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-spork'       , '~> 1.4'
   s.add_development_dependency 'pry'               , '~> 0.9'
   s.add_development_dependency 'rb-fsevent'        , '~> 0.9'
-  s.add_development_dependency 'simplecov-rcov'    , '~> 0.2'
+  s.add_development_dependency 'coveralls'         , '~> 0.7'
   s.add_development_dependency 'timecop'           , '~> 0.5'
   s.add_development_dependency 'vcr'               , '~> 2.9' 
   s.add_development_dependency 'webmock'           , '1.9.3'
