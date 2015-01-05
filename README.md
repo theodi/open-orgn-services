@@ -19,7 +19,7 @@ And require if necessary:
 
     require 'open-orgn-services'
 
-Configuration is loaded from environment variables. See the environment section below for the list of which variables must be set. The main one to make sure you add is `RESQUE_REDIS_SERVER`, which should be the hostname and port of the redis server where jobs should be queued.
+Configuration is loaded from environment variables. See the environment section below for the list of which variables must be set.
 
 License
 -------
@@ -44,34 +44,29 @@ Environment
 
 The following environment variables should be set in order to use this gem.
 
-    RESQUE_REDIS_HOST
-    RESQUE_REDIS_PORT
-    RESQUE_REDIS_PASSWORD (optional)
+    COURSES_TARGET_URL
     
     EVENTBRITE_API_KEY
     EVENTBRITE_USER_KEY
     EVENTBRITE_ORGANIZER_ID
     
-    XERO_CONSUMER_KEY
-    XERO_CONSUMER_SECRET
-    XERO_PRIVATE_KEY_PATH
+    RACKSPACE_USERNAME
+    RACKSPACE_API_KEY
+    RACKSPACE_CONTAINER
+    
+    GAPPS_FINANCE_SPOOL_COLLECTION
+    GAPPS_FINANCE_TARGET_COLLECTION
+    GAPPS_FINANCE_TARGET_KEY
+    GAPPS_USER_EMAIL
+    GAPPS_PASSWORD
     
     CAPSULECRM_ACCOUNT_NAME
     CAPSULECRM_API_TOKEN
     CAPSULECRM_DEFAULT_OWNER
     
-    COURSES_RSYNC_PATH
-    COURSES_TARGET_URL
-    
     TRELLO_DEV_KEY
-    TRELLO_DEV_SECRET
     TRELLO_MEMBER_KEY
-    
-    GITHUB_ORGANISATION
-    GITHUB_OAUTH_TOKEN
-    
-    HUBOT_USER_LIST
-    
-    JENKINS_URL
 
-    AIRBRAKE_API_KEY
+    XERO_CONSUMER_KEY
+    XERO_CONSUMER_SECRET
+    XERO_PRIVATE_KEY_PATH

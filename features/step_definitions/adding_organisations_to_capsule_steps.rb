@@ -46,10 +46,6 @@ Given /^I change my organisation details$/ do
   @tagline       = "synergising solution empowerment"
 end
 
-Given /^the date and time is (#{DATETIME})$/ do |date|
-  @date = date.to_s
-end
-
 When /^the directory entry job runs$/ do
   organization = {
       'name'        => @name
@@ -144,14 +140,6 @@ Given /^that organisation has a directory entry$/ do
   end
 end
 
-Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|
-  Timecop.freeze(datetime) do
-    organisation = CapsuleCRM::Organisation.new(:name => @name)
-    organisation.save
-    @capsule_cleanup << organisation
-  end
-end
-
 Then /^my details should be stored in that data tag$/ do
   tests = {
     "Description"   => @description.slice(0,250),
@@ -168,30 +156,6 @@ Then /^my details should be stored in that data tag$/ do
     "Linkedin"      => @linkedin,
     "Facebook"      => @facebook,
     "Tagline"       => @tagline,
-  }.compact
-  tests.each_pair do |field_name, value|
-    field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
-    field.should be_present
-    field.text.should == value
-  end
-end
-
-Then /^my original details should still be stored in that data tag$/ do
-  tests = {
-    "Description"   => @original_description.slice(0,250),
-    "Description-2" => @original_description.slice(250,250),
-    "Description-3" => @original_description.slice(500,250),
-    "Description-4" => @original_description.slice(750,250),
-    "Homepage"      => @original_homepage,
-    "Logo"          => @original_logo,
-    "Thumbnail"     => @original_thumb,
-    "Contact"       => @original_contact_name,
-    "Phone"         => @original_contact_phone,
-    "Email"         => @original_contact_email,
-    "Twitter"       => @original_twitter,
-    "Linkedin"      => @original_linkedin,
-    "Facebook"      => @original_facebook,
-    "Tagline"       => @original_tagline,
   }.compact
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
