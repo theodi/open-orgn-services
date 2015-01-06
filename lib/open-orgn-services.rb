@@ -5,6 +5,7 @@ class Hash
 end
 
 require 'resque'
+require 'resque/scheduler'
 
 # Configure CapsuleCRM connection
 require 'capsulecrm'
