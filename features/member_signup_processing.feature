@@ -55,7 +55,7 @@ Feature: Processing membership signups
     Examples:
     | size     | status         | description                                                              | level               | price |
     | <10      | commercial     | ODI Supporter (01010101) [Commercial] (annual invoice payment)           | Supporter           | 720    |
-    | >1000    | commercial     | ODI Corporate Supporter (01010101) [Commercial] (annual invoice payment) | Corporate supporter | 1440   |
+    | >1000    | commercial     | ODI Corporate Supporter (01010101) [Commercial] (annual invoice payment) | Corporate supporter | 2200   |
     | 51-250   | non_commercial | ODI Supporter (01010101) [Non Commercial] (annual invoice payment)       | Supporter           | 720    |
     | 251-1000 | non_commercial | ODI Supporter (01010101) [Non Commercial] (annual invoice payment)       | Supporter           | 720    |
 
