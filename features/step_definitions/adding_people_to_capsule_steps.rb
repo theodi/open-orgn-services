@@ -9,16 +9,20 @@ Given(/^there is no person in CapsuleCRM called "(.*?)"$/) do |person_name|
   CapsuleCRM::Person.find_all(:q => person_name).should be_empty
 end
 
-Given(/^there is an existing person in CapsuleCRM called "(.*?)"$/) do |person_name|
-  CapsuleCRM::Person.find_all(:q => person_name).should be_empty
+Given(/^there is an existing person in CapsuleCRM called "(.*?)" with email "(.*?)"$/) do |person_name, email|
+  CapsuleCRM::Person.find_all(:email => email).should be_empty
   @person = CapsuleCRM::Person.new(:first_name => person_name.split(" ")[0], last_name: person_name.split(" ")[1])
+  @person.emails << CapsuleCRM::Email.new(@person, address: email)
   @person.save
-  CapsuleCRM::Person.find_all(:q => person_name).should_not be_empty
+  CapsuleCRM::Person.find_all(:email => email).should_not be_empty
   @capsule_cleanup << @person
 end
 
-Given(/^there should still be just one person in CapsuleCRM called "(.*?)"$/) do |person_name|
-  CapsuleCRM::Person.find_all(:q => person_name).should_not be_empty
+Given(/^there should still be just one person in CapsuleCRM called "(.*?)" with email "(.*?)"$/) do |person_name, email|
+  p = CapsuleCRM::Person.find_all(:email => email).first
+  p.should_not be_nil
+  p.first_name.should == person_name.split(" ")[0]
+  p.last_name.should == person_name.split(" ")[1]
 end
 
 Given(/^that person is a member$/) do

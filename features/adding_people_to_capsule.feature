@@ -21,10 +21,10 @@ Feature: Add person details to Capsule CRM
 
   Scenario: attach membership tag to existing person
     Given I requested 1 membership at the level called "individual"
-    And there is an existing person in CapsuleCRM called "Arnold Rimmer"
+    And there is an existing person in CapsuleCRM called "Arnold Rimmer" with email "rimmer@jmc.com"
     And that it's 2013-01-01 14:35
     When I sign up via the website
-    Then there should still be just one person in CapsuleCRM called "Arnold Rimmer"
+    Then there should still be just one person in CapsuleCRM called "Arnold Rimmer" with email "rimmer@jmc.com"
     And that person should have a data tag
     And that data tag should have the type "Membership"
     And that data tag should have the level "individual"

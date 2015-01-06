@@ -17,12 +17,13 @@ class SendSignupToCapsule
   #
   # party    - a hash containing details of the organization or person
   #              'name'           => the org / person name in Xero - should be the same as that in capsule
-  #              'company_number' => the company number for the organization
+  #              'company_number' => the company number for the person or organization
+  #              'email'          => the email address for the person or organization
   #
   # Returns nil.
   def self.perform(party, membership)
     if membership['product_name'] == "individual"
-      p = find_person(party['name'])
+      p = find_person(party['email'])
     else
       p = find_organization(party['name'])
     end

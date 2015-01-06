@@ -121,7 +121,8 @@ class SignupProcessor
 
     organization_details = {
       'name' => organization['name'],
-      'company_number' => organization['company_number']
+      'company_number' => organization['company_number'],
+      'email' => billing['email']
     }.compact
     membership = {
       'product_name'    => purchase['offer_category'],

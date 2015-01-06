@@ -8,11 +8,7 @@ module CapsuleHelper
   end
 
   def find_person(query)
-    # Run fuzzy capsuleCRM match
-    people = CapsuleCRM::Person.find_all(:q => query)
-    # Find exact name or membership ID match
-    names = query.split(" ")
-    people.find{|x| (x.first_name == names[0] && x.last_name == names[1] ) || field(x, "Membership", "ID").try(:text) == query}
+    CapsuleCRM::Person.find_all(:email => query).first
   end
 
   def set_membership_tag(party, fields)
