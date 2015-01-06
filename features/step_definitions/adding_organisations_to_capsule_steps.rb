@@ -46,10 +46,6 @@ Given /^I change my organisation details$/ do
   @tagline       = "synergising solution empowerment"
 end
 
-Given /^the date and time is (#{DATETIME})$/ do |date|
-  @date = date.to_s
-end
-
 When /^the directory entry job runs$/ do
   organization = {
       'name'        => @name
@@ -141,14 +137,6 @@ Given /^that organisation has a directory entry$/ do
       :boolean => (value == "true")
     )
     field.save
-  end
-end
-
-Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|
-  Timecop.freeze(datetime) do
-    organisation = CapsuleCRM::Organisation.new(:name => @name)
-    organisation.save
-    @capsule_cleanup << organisation
   end
 end
 

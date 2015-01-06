@@ -1,52 +1,37 @@
 GIT
-  remote: git://github.com/theodi/google-drive-ruby.git
-  revision: 2ac538abec2dfc3ae45079946fbb2bd4f68970ba
-  branch: support-ranges
+  remote: git://github.com/theodi/eventbrite-client.rb.git
+  revision: ba10abee2c38ae8cd6a5af834ab73c40d37aff2d
+  branch: update-dependencies
   specs:
-    google_drive (0.3.6)
-      nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
-      oauth (>= 0.3.6)
-      oauth2 (>= 0.5.0)
+    eventbrite-client (0.1.3)
+      httparty (~> 0.8)
+      tzinfo (~> 0.3)
 
 GIT
-  remote: https://github.com/theodi/capsulecrm.git
-  revision: 5351f3995366a2ecaff018776886fc1a115461ee
+  remote: git://github.com/xmacinka/capsulecrm.git
+  revision: c098caa30db0dc4b2a03fe7139b73e8a314ae962
   specs:
     capsulecrm (0.0.4)
       activemodel (>= 3.0.5)
       activesupport (>= 3.0.5)
       httparty (>= 0.7.4)
 
-GIT
-  remote: https://github.com/theodi/xeroizer.git
-  revision: 7c86c917eaf515bcec012ea0fbf682669d50fbaa
-  specs:
-    xeroizer (2.15.3)
-      activesupport (~> 3.2.12)
-      builder (>= 2.1.2)
-      i18n
-      nokogiri
-      oauth (~> 0.4.5)
-
 PATH
   remote: .
   specs:
-    open-orgn-services (0.0.0)
+    open-orgn-services (0.1.0)
       activemodel (~> 3.2, >= 3.2.12)
       capsulecrm
       curb (~> 0.8, >= 0.8.6)
-      eventbrite-client (~> 0.1, >= 0.1.4)
+      eventbrite-client (~> 0.1, >= 0.1.3)
       fog (~> 1.12, >= 1.12.1)
-      github_api (~> 0.9, >= 0.9.0, <= 0.10.1)
       google_drive (~> 0.3, >= 0.3.6)
       httparty
       pony (~> 1.6, >= 1.6.2)
       rake (~> 10.0, >= 10.0.3)
       resque (~> 1.23, >= 1.23.0)
-      resque-scheduler (~> 2.0, >= 2.0.0)
-      ruby-trello (~> 0.5, >= 0.5.1)
       rufus-scheduler (< 3.0.0)
-      xeroizer (~> 2.15, >= 2.15.3)
+      xeroizer (~> 2.15, >= 2.15.6)
 
 GEM
   remote: https://rubygems.org/
@@ -59,16 +44,23 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.6)
-    archive-tar-minitar (0.5.2)
+    autoparse (0.3.3)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
     builder (3.0.4)
-    celluloid (0.16.0)
-      timers (~> 4.0.0)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
+    coveralls (0.7.1)
+      multi_json (~> 1.3)
+      rest-client
+      simplecov (>= 0.7)
+      term-ansicolor
+      thor
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
-    cucumber (1.3.17)
+    cucumber (1.3.18)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12)
@@ -83,41 +75,47 @@ GEM
     email_spec (1.6.0)
       launchy (~> 2.1)
       mail (~> 2.2)
-    eventbrite-client (0.1.4)
-      httparty (~> 0.8.0)
-      tzinfo (~> 0.3.22)
-    excon (0.42.0)
-    faraday (0.8.9)
-      multipart-post (~> 1.2.0)
+    excon (0.42.1)
+    extlib (0.9.16)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.25.0)
+    fog (1.26.0)
+      fog-atmos
       fog-brightbox (~> 0.4)
-      fog-core (~> 1.25)
+      fog-core (~> 1.27, >= 1.27.1)
+      fog-ecloud
       fog-json
       fog-profitbricks
       fog-radosgw (>= 0.0.2)
       fog-sakuracloud (>= 0.0.4)
       fog-softlayer
+      fog-storm_on_demand
       fog-terremark
       fog-vmfusion
       fog-voxel
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-      opennebula
-    fog-brightbox (0.7.0)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-brightbox (0.7.1)
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.25.0)
+    fog-core (1.27.2)
       builder
       excon (~> 0.38)
       formatador (~> 0.2)
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
+    fog-ecloud (0.0.2)
+      fog-core
+      fog-xml
     fog-json (1.0.0)
       multi_json (~> 1.0)
     fog-profitbricks (0.0.1)
@@ -131,7 +129,10 @@ GEM
     fog-sakuracloud (0.1.1)
       fog-core
       fog-json
-    fog-softlayer (0.3.25)
+    fog-softlayer (0.3.26)
+      fog-core
+      fog-json
+    fog-storm_on_demand (0.1.0)
       fog-core
       fog-json
     fog-terremark (0.0.3)
@@ -149,57 +150,66 @@ GEM
     formatador (0.2.5)
     gherkin (2.12.2)
       multi_json (~> 1.3)
-    github_api (0.10.1)
-      addressable
-      faraday (~> 0.8.1)
-      hashie (>= 1.2)
-      multi_json (~> 1.4)
-      nokogiri (~> 1.5.2)
-      oauth2
-    guard (2.10.1)
+    google-api-client (0.8.1.1)
+      activesupport (>= 3.2)
+      addressable (~> 2.3)
+      autoparse (~> 0.3)
+      extlib (~> 0.9)
+      faraday (~> 0.9)
+      launchy (~> 2.4)
+      multi_json (~> 1.10)
+      retriable (~> 1.4)
+      signet (~> 0.6)
+    google_drive (0.3.11)
+      google-api-client (>= 0.7.0)
+      nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
+      oauth (>= 0.3.6)
+      oauth2 (>= 0.5.0)
+    guard (1.8.3)
       formatador (>= 0.2.4)
-      listen (~> 2.7)
-      lumberjack (~> 1.0)
-      pry (>= 0.9.12)
-      thor (>= 0.18.1)
+      listen (~> 1.3)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
     guard-cucumber (1.4.1)
       cucumber (>= 1.2.0)
       guard (>= 1.1.0)
-    guard-spork (1.5.1)
+    guard-spork (1.5.2)
       childprocess (>= 0.2.3)
-      guard (>= 1.1)
+      guard (~> 1.1)
       spork (>= 0.8.4)
-    hashie (3.3.2)
-    hitimes (1.2.2)
-    httparty (0.8.3)
-      multi_json (~> 1.0)
-      multi_xml
-    i18n (0.6.11)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
     json (1.8.1)
     jwt (1.2.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    listen (2.8.3)
-      celluloid (>= 0.15.2)
+    listen (1.3.1)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+      rb-kqueue (>= 0.2)
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mock_redis (0.13.2)
+    mini_portile (0.6.1)
+    mock_redis (0.14.0)
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multi_test (0.1.1)
     multi_xml (0.5.5)
-    multipart-post (1.2.0)
+    multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
-    nokogiri (1.5.11)
+    netrc (0.7.7)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
     oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
@@ -207,85 +217,63 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    opennebula (4.10.1)
-      json
-      nokogiri
-      rbvmomi
     pony (1.11)
       mail (>= 2.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.5.2)
+    rack (1.6.0)
     rack-protection (1.5.3)
       rack
     rake (10.4.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    rbvmomi (1.8.2)
-      builder
-      nokogiri (>= 1.4.1)
-      trollop
-    rdoc (4.1.2)
-      json (~> 1.4)
-    redis (3.1.0)
+    rb-kqueue (0.2.3)
+      ffi (>= 0.5.0)
+    redis (3.2.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
-    relish (0.7)
-      archive-tar-minitar (>= 0.5.2)
-      json (>= 1.4.6)
-      rest-client (>= 1.6.1)
     resque (1.25.2)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
       redis-namespace (~> 1.3)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
-    resque-scheduler (2.5.1)
-      redis (>= 3.0.0)
-      resque (~> 1.25)
-      rufus-scheduler (~> 2.0)
-    rest-client (1.6.8)
-      mime-types (~> 1.16)
-      rdoc (>= 2.4.2)
-    rspec (2.99.0)
-      rspec-core (~> 2.99.0)
-      rspec-expectations (~> 2.99.0)
-      rspec-mocks (~> 2.99.0)
-    rspec-core (2.99.2)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    retriable (1.4.1)
     rspec-expectations (2.99.2)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.99.2)
-    ruby-trello (0.6.0)
-      activemodel
-      addressable (~> 2.3)
-      json
-      oauth (~> 0.4.5)
-      rest-client (~> 1.6.7)
     rufus-scheduler (2.0.24)
       tzinfo (>= 0.3.22)
     safe_yaml (1.0.4)
+    signet (0.6.0)
+      addressable (~> 2.3)
+      extlib (~> 0.9)
+      faraday (~> 0.9)
+      jwt (~> 1.0)
+      multi_json (~> 1.10)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    simplecov-rcov (0.2.3)
-      simplecov (>= 0.4.1)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     slop (3.6.0)
     spork (0.9.2)
+    term-ansicolor (1.3.0)
+      tins (~> 1.0)
     thor (0.19.1)
     tilt (1.4.1)
     timecop (0.7.1)
-    timers (4.0.1)
-      hitimes
-    trollop (2.0)
+    tins (1.3.3)
     tzinfo (0.3.42)
     vcr (2.9.3)
     vegas (0.1.11)
@@ -293,26 +281,32 @@ GEM
     webmock (1.9.3)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
+    xeroizer (2.15.6)
+      activesupport
+      builder (>= 2.1.2)
+      i18n
+      nokogiri
+      oauth (>= 0.4.5)
+      tzinfo
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   capsulecrm!
+  coveralls (~> 0.7)
   cucumber (~> 1.2)
   dotenv (~> 0.5)
   email_spec (~> 1.5)
-  google_drive!
+  eventbrite-client!
   guard-cucumber (~> 1.3)
   guard-spork (~> 1.4)
-  mock_redis
+  mock_redis (~> 0.14)
   open-orgn-services!
   pry (~> 0.9)
   rb-fsevent (~> 0.9)
-  relish (~> 0.6)
-  rspec (~> 2.12)
-  simplecov-rcov (~> 0.2)
+  rspec-expectations (~> 2.14)
+  rspec-mocks (~> 2.14)
   timecop (~> 0.5)
   vcr (~> 2.9)
   webmock (= 1.9.3)
-  xeroizer!

@@ -10,18 +10,6 @@ Given /^an event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, 
   }
 end
 
-Given /^another event in Eventbrite called "(.*?)" with id (#{INTEGER})$/ do |title, id|
-  @events << {
-    'title' => title,
-    'id'    => id.to_s,
-    'live'  => true
-  }
-end
-
-Given /^the event is happening on (#{DATE})$/ do |date|
-  @events.last['starts_at'] = date.to_s
-end
-
 Given /^the event is happening in the past$/ do
   # this is set in eventbrite
 end
