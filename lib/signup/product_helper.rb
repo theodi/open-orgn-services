@@ -17,15 +17,17 @@ module ProductHelper
       25000
     when :partner
       50000
+    when :individual
+      108
     else
       raise ArgumentError.new("Unknown product name #{product}")
     end
   end
-  
-  
+
+
   def product_duration(product)
     case product.to_sym
-    when :supporter
+    when :supporter, :individual
       12
     when :sponsor, :partner
       3
@@ -33,12 +35,12 @@ module ProductHelper
       raise ArgumentError.new("Unknown product name #{product}")
     end
   end
-    
+
   def product_basis(product)
     case product.to_sym
     when :supporter
       'MONTH'
-    when :sponsor, :partner
+    when :sponsor, :partner, :individual
       'YEAR'
     else
       raise ArgumentError.new("Unknown product name #{product}")

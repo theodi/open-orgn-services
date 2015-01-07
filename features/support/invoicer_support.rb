@@ -4,7 +4,7 @@ module InvoicerSupport
 
   def create_invoice_to_hash
     {
-      'name'               => @company,
+      'name'               => @company || @name,
       'contact_point'      => {
         'name'             => @name || @first_name + " " + @last_name,
         'email'            => @invoice_email,

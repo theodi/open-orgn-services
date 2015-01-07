@@ -42,8 +42,14 @@ class SignupProcessor
   # Returns nil. Queues invoicing and CRM task creation jobs.
 
 
-  def self.membership_type(size, type)
-    if %w(<10 10-50 51-250).include?(size) || type == 'non_commercial'
+  def self.membership_type(size, type, category)
+    if category == 'individual'
+      {
+        price: 108,
+        description: 'Individual supporter',
+        type: 'Individual'
+      }
+    elsif %w(<10 10-50 51-250).include?(size) || type == 'non_commercial'
       {
         price: (60 * 12),
         description: 'Supporter',
@@ -72,10 +78,9 @@ class SignupProcessor
 
 
   def self.perform(organization, contact_person, billing, purchase)
-    membership_type = membership_type(organization['size'], organization['type'])
-
+    membership_type = membership_type(organization['size'], organization['type'], purchase['offer_category'])
     invoice_to = {
-      'name' => organization['name'],
+      'name' => organization['name'] || contact_person['name'],
       'contact_point' => {
         'name' => billing['name'],
         'email' => billing['email'],
@@ -89,11 +94,11 @@ class SignupProcessor
         'postal_code' => billing['address']['postal_code']
       },
       'vat_id' => organization['vat_id']
-    }
+    }.compact
 
     invoice_description = description(purchase['membership_id'],
                                  membership_type[:description],
-                                 organization['type'],
+                                 organization['type'] || purchase['offer_category'],
                                  purchase['payment_method'],
                                  purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
                                 )
@@ -116,8 +121,9 @@ class SignupProcessor
 
     organization_details = {
       'name' => organization['name'],
-      'company_number' => organization['company_number']
-    }
+      'company_number' => organization['company_number'],
+      'email' => billing['email']
+    }.compact
     membership = {
       'product_name'    => purchase['offer_category'],
       'supporter_level' => membership_type[:type],
@@ -126,7 +132,7 @@ class SignupProcessor
       'contact_email'   => contact_person['email'],
       'size'            => organization['size'],
       'sector'          => organization['sector']
-    }
+    }.compact
     Resque.enqueue(SendSignupToCapsule, organization_details, membership)
   end
 

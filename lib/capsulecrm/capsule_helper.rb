@@ -7,6 +7,10 @@ module CapsuleHelper
     orgs.find{|x| x.name == query || field(x, "Membership", "ID").try(:text) == query}
   end
 
+  def find_person(query)
+    CapsuleCRM::Person.find_all(:email => query).first
+  end
+
   def set_membership_tag(party, fields)
     types = {
       "Level"           => :text,
@@ -47,6 +51,7 @@ module CapsuleHelper
     # Set custom fields
     success = true
     fields.each_pair do |label,value|
+      next if value.nil?
       # Get data type and raise if not found
       data_type = types[label]
       raise ArgumentError.new("Unknown field label when setting #{tag} tag: #{label}. Is the label set in the set_membership_tag or set_directory_entry_tag array?") if data_type.nil?

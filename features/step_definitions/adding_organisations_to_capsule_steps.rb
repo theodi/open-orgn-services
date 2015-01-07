@@ -19,11 +19,11 @@ end
 
 Given /^I change my organisation details$/ do
   # Store old details
-  @original_name          = @name        
-  @original_description   = @description 
-  @original_homepage      = @homepage    
-  @original_logo          = @logo        
-  @original_thumb         = @thumb       
+  @original_name          = @name
+  @original_description   = @description
+  @original_homepage      = @homepage
+  @original_logo          = @logo
+  @original_thumb         = @thumb
   @original_contact_name  = @contact_name
   @original_contact_phone = @contact_phone
   @original_contact_email = @contact_email
@@ -31,7 +31,7 @@ Given /^I change my organisation details$/ do
   @original_linkedin      = @linkedin
   @original_facebook      = @facebook
   @original_tagline       = @tagline
-  # Update details  
+  # Update details
   @name          = "The RAND Corporation"
   @description   = "Bacon ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto"
   @homepage      = "http://www.example.com/homepage"
@@ -60,11 +60,11 @@ When /^the directory entry job runs$/ do
       'email'       => @contact_email,
       'twitter'     => @twitter,
       'linkedin'    => @linkedin,
-      'facebook'    => @facebook,      
+      'facebook'    => @facebook,
       'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
-  
+
   SendDirectoryEntryToCapsule.perform(@membership_id, organization, directory_entry, date)
 end
 
@@ -86,7 +86,7 @@ Then /^my directory entry should be requeued for later processing once the conta
       'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
-  
+
   Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
 end
 
@@ -156,6 +156,30 @@ Then /^my details should be stored in that data tag$/ do
     "Linkedin"      => @linkedin,
     "Facebook"      => @facebook,
     "Tagline"       => @tagline,
+  }.compact
+  tests.each_pair do |field_name, value|
+    field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
+    field.should be_present
+    field.text.should == value
+  end
+end
+
+Then /^my original details should still be stored in that data tag$/ do
+  tests = {
+    "Description"   => @original_description.slice(0,250),
+    "Description-2" => @original_description.slice(250,250),
+    "Description-3" => @original_description.slice(500,250),
+    "Description-4" => @original_description.slice(750,250),
+    "Homepage"      => @original_homepage,
+    "Logo"          => @original_logo,
+    "Thumbnail"     => @original_thumb,
+    "Contact"       => @original_contact_name,
+    "Phone"         => @original_contact_phone,
+    "Email"         => @original_contact_email,
+    "Twitter"       => @original_twitter,
+    "Linkedin"      => @original_linkedin,
+    "Facebook"      => @original_facebook,
+    "Tagline"       => @original_tagline,
   }.compact
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
