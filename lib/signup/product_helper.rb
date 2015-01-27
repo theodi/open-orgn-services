@@ -27,7 +27,9 @@ module ProductHelper
 
   def product_duration(product)
     case product.to_sym
-    when :supporter, :individual
+    when :individual
+      1
+    when :supporter
       12
     when :sponsor, :partner
       3

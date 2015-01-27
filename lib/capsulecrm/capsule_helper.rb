@@ -11,6 +11,16 @@ module CapsuleHelper
     CapsuleCRM::Person.find_all(:email => query).first
   end
 
+  def find_org_by_membership_id(membership_id)
+    parties = CapsuleCRM::Organisation.find_all(:q => membership_id)
+    parties.find{|x| field(x, "Membership", "ID").try(:text) == membership_id}
+  end
+
+  def find_person_by_membership_id(membership_id)
+    parties = CapsuleCRM::Person.find_all(:q => membership_id)
+    parties.find{|x| field(x, "Membership", "ID").try(:text) == membership_id}
+  end
+
   def set_membership_tag(party, fields)
     types = {
       "Level"           => :text,

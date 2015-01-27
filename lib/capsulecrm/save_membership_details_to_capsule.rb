@@ -16,12 +16,12 @@ class SaveMembershipDetailsToCapsule
   # Returns nil.
 
   def self.perform(membership_id, membership)
-    org = find_organization(membership_id)
-    if org.nil?
+    party = find_org_by_membership_id(membership_id) || find_person_by_membership_id(membership_id)
+    if party.nil?
       requeue(membership_id, membership)
     else
       success = set_membership_tag(
-        org,
+        party,
         'Email'      => membership['email'],
         'Newsletter' => membership['newsletter'],
         'Size'       => membership['size'],
