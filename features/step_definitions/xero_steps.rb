@@ -127,10 +127,6 @@ Then /^an invoice should not be raised in Xero against "(.*?)"$/ do |contact_nam
   @invoice.should be_nil
 end
 
-Then(/^that invoice should include the sector "(.*?)"$/) do |sector|
-  @invoice.line_items.last.tracking.last.option.should == sector
-end
-
 Then(/^there should be (.*?) line items$/) do |num|
   @invoice.line_items.count.should == num
 end
