@@ -27,8 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'curb'               , '~> 0.8' , '>= 0.8.6'
 
   s.add_development_dependency 'cucumber'          , '~> 1.2'
-  s.add_development_dependency 'rspec-mocks'       , '~> 2.14'
-  s.add_development_dependency 'rspec-expectations', '~> 2.14'
+  s.add_development_dependency 'rspec-mocks'       , '~> 2.14.6'
+  s.add_development_dependency 'rspec-expectations', '~> 2.14.5'
   s.add_development_dependency 'dotenv'            , '~> 0.5'
   s.add_development_dependency 'email_spec'        , '~> 1.5'
   s.add_development_dependency 'guard-cucumber'    , '~> 1.3'
