@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pony'               , '~> 1.6' , '>= 1.6.2'
   s.add_dependency 'google_drive'       , '~> 0.3' , '>= 0.3.6'
   s.add_dependency 'curb'               , '~> 0.8' , '>= 0.8.6'
+  s.add_dependency 'chargify_api_ares'  , '~> 1.3' , '>= 1.3.1'
 
   s.add_development_dependency 'cucumber'          , '~> 1.2'
   s.add_development_dependency 'rspec-mocks'       , '~> 2.14.6'
