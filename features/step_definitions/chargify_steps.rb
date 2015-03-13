@@ -17,3 +17,9 @@ Then(/^data for the cash report should match:$/) do |table|
   report = @reporter.cash_report
   table.diff!(report)
 end
+
+Then(/^data for the booking value report should match:$/) do |table|
+  report = @reporter.booking_value_report
+  table.diff!(report)
+end
+

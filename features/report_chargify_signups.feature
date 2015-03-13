@@ -37,7 +37,12 @@ Feature: Email a report to finance
      | 2015-03-10 14:21:40 | MEMNUM3           | 48219026     | individual-supporter        | payment          | 90     | 18   | 108   |
      |                     |                   |              |                             | totals           | 6350   | 1270 | 7620  |
 
-
   Scenario: the booking value report contains the correct data
 
-      | product name | signup count | booking value | net | tax | total
+    Then data for the booking value report should match:
+
+      | product name               | signup count | booking value | net  | tax | total |
+      | individual-supporter       | 5            | 90            | 450  | 90  | 540   |
+      | supporter_annual           | 3            | 720           | 2160 | 432 | 2592  |
+      | corporate-supporter_annual | 2            | 2200          | 4400 | 880 | 5280  |
+      | supporter_monthly          | 1            | 720           | 720  | 144 | 864   |
