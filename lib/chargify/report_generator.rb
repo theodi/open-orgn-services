@@ -5,6 +5,10 @@ class ReportGenerator
   @queue = :directory
 
   def self.perform
+    previous_month = Date.today.prev_month
+    email = ENV.fetch('FINANCE_EMAIL')
+    reporter = new(email, previous_month.beginning_of_month, previous_month.end_of_month)
+    reporter.send_report
   end
 
   def initialize(email, start_date, end_date)

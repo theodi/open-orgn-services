@@ -33,3 +33,22 @@ Then(/^finance should receive an email with subject "(.*?)"$/) do |subject|
   emails.size.should == 1
   open_email(@email, with_subject: subject)
 end
+
+Then(/^the email from "(.*?)" envar is used$/) do |var|
+  @email = ENV.fetch(var)
+end
+
+Then(/^the start_date is "(#{DATE})"$/) do |start_date|
+  @start_date = start_date
+end
+
+Then(/^the end_date is "(#{DATE})"$/) do |end_date|
+  @end_date = end_date
+end
+
+When(/^the ReportGenerator job is performed$/) do
+  reporter = double("ReportGenerator")
+  expect(ReportGenerator).to receive(:new).with(@email, @start_date, @end_date).and_return(reporter)
+  expect(reporter).to receive(:send_report)
+  ReportGenerator.perform
+end
