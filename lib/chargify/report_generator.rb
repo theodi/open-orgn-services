@@ -1,13 +1,43 @@
 require 'chargify_api_ares'
+require 'csv'
 
 class ReportGenerator
   @queue = :directory
 
-  def initialize(start_date, end_date)
+  def self.perform
+  end
+
+  def initialize(email, start_date, end_date)
+    @email = email
     @start_date, @end_date = start_date, end_date
   end
 
-  def send_report(email)
+  def send_report
+    subject = "Membership finance report for #{@end_date.strftime("%B %Y")}"
+    body = "For the dates between #{@start_date} and #{@end_date}"
+    cash_report_csv = generate_csv(cash_report)
+    booking_value_report_csv = generate_csv(booking_value_report)
+
+    mail = Pony.mail({
+      :to => @email,
+      :from => 'robots@theodi.org',
+      :subject => subject,
+      :body => body,
+      :attachments => {
+        "cash-report.csv" => cash_report_csv,
+        "booking-value-report.csv" => booking_value_report_csv
+      },
+      :via => :smtp,
+      :via_options => {
+        :user_name => ENV["MANDRILL_USERNAME"],
+        :password => ENV["MANDRILL_PASSWORD"],
+        :domain => "theodi.org",
+        :address => "smtp.mandrillapp.com",
+        :port => 587,
+        :authentication => :plain,
+        :enable_starttls_auto => true
+      }
+    })
   end
 
   def fetch_data
@@ -29,6 +59,14 @@ class ReportGenerator
     @products = {}
     @transactions.map(&:product_id).uniq.each do |id|
       @products[id] = Chargify::Product.find(id)
+    end
+  end
+
+  def generate_csv(data)
+    CSV.generate(:encoding => 'utf-8') do |csv|
+      data.each do |row|
+        csv << row
+      end
     end
   end
 

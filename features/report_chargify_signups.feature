@@ -14,9 +14,10 @@ Feature: Email a report to finance
 
   Scenario: Report the transactions and the end of the month
 
-    Then it should email a report to 'finance@theodi.org'
-    And attach a cash_report.csv
-    And attach a booking_value_report.csv
+    When the job is triggered
+    Then finance should receive an email with subject "Membership finance report for March 2015"
+    And there should be an attachment named "cash-report.csv"
+    And there should be an attachment named "booking-value-report.csv"
 
   Scenario: the cash report contains the correct data
 

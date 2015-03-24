@@ -9,7 +9,8 @@ Given(/^the chargify environment variables are set$/) do
 end
 
 Given(/^I want to run the report for (#{DATE}) to (#{DATE})$/) do |start_date, end_date|
-  @reporter = ReportGenerator.new(start_date, end_date)
+  @email = ENV['FINANCE_EMAIL']
+  @reporter = ReportGenerator.new(@email, start_date, end_date)
   @reporter.fetch_data
 end
 
@@ -23,3 +24,12 @@ Then(/^data for the booking value report should match:$/) do |table|
   table.diff!(report)
 end
 
+When(/^the job is triggered$/) do
+  @reporter.send_report
+end
+
+Then(/^finance should receive an email with subject "(.*?)"$/) do |subject|
+  emails = unread_emails_for(@email).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }
+  emails.size.should == 1
+  open_email(@email, with_subject: subject)
+end
