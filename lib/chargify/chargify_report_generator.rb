@@ -1,7 +1,7 @@
 require 'chargify_api_ares'
 require 'csv'
 
-class ReportGenerator
+class ChargifyReportGenerator
   @queue = :directory
 
   def self.perform

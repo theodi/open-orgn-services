@@ -8,4 +8,4 @@ Feature: Report chargify income to finance@theodi.org
     Then the email from "FINANCE_EMAIL" envar is used
     And the start_date is "2015-02-01"
     And the end_date is "2015-02-28"
-    When the ReportGenerator job is performed
+    When the ChargifyReportGenerator job is performed

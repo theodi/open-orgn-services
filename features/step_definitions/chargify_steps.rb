@@ -10,7 +10,7 @@ end
 
 Given(/^I want to run the report for (#{DATE}) to (#{DATE})$/) do |start_date, end_date|
   @email = ENV['FINANCE_EMAIL']
-  @reporter = ReportGenerator.new(@email, start_date, end_date)
+  @reporter = ChargifyReportGenerator.new(@email, start_date, end_date)
   @reporter.fetch_data
 end
 
@@ -46,9 +46,9 @@ Then(/^the end_date is "(#{DATE})"$/) do |end_date|
   @end_date = end_date
 end
 
-When(/^the ReportGenerator job is performed$/) do
-  reporter = double("ReportGenerator")
-  expect(ReportGenerator).to receive(:new).with(@email, @start_date, @end_date).and_return(reporter)
+When(/^the ChargifyReportGenerator job is performed$/) do
+  reporter = double("ChargifyReportGenerator")
+  expect(ChargifyReportGenerator).to receive(:new).with(@email, @start_date, @end_date).and_return(reporter)
   expect(reporter).to receive(:send_report)
-  ReportGenerator.perform
+  ChargifyReportGenerator.perform
 end
