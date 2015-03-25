@@ -49,6 +49,7 @@ end
 When(/^the ChargifyReportGenerator job is performed$/) do
   reporter = double("ChargifyReportGenerator")
   expect(ChargifyReportGenerator).to receive(:new).with(@email, @start_date, @end_date).and_return(reporter)
+  expect(reporter).to receive(:fetch_data)
   expect(reporter).to receive(:send_report)
   ChargifyReportGenerator.perform
 end

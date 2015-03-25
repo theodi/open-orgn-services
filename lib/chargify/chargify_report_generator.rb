@@ -8,6 +8,7 @@ class ChargifyReportGenerator
     previous_month = Date.today.prev_month
     email = ENV.fetch('FINANCE_EMAIL')
     reporter = new(email, previous_month.beginning_of_month, previous_month.end_of_month)
+    reporter.fetch_data
     reporter.send_report
   end
 
