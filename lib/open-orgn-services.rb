@@ -24,6 +24,8 @@ require 'eventbrite/attendee_monitor'
 require 'eventbrite/event_summary_generator'
 require 'eventbrite/event_summary_uploader'
 
+require 'chargify/chargify_report_generator'
+
 require 'xero/invoicer'
 
 require 'signup/product_helper'
