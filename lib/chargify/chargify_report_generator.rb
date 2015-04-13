@@ -80,28 +80,36 @@ class ChargifyReportGenerator
     totals = {
       'amount' => 0,
       'tax' => 0,
+      'discount' => 0,
       'total' => 0
     }
-    table << ['date', 'membership number', 'statement id', 'membership type', 'transaction type', 'amount', 'tax', 'total']
+    table << ['date', 'membership number', 'statement id', 'membership type', 'transaction type', 'amount', 'tax', 'discount', 'total']
     transactions = @transactions.group_by(&:subscription_id)
     transactions.keys.sort.each do |subscription_id|
       txns = transactions[subscription_id].group_by(&:type)
-      payment = txns['Payment'].first
+      vars = extract_identifiers(txns)
       charges =  txns['Charge'].group_by(&:kind)
-      customer = @customers[payment.customer_id]
-      product = @products[payment.product_id]
+      customer = @customers[vars[:customer_id]]
+      product = @products[vars[:product_id]]
       totals['amount'] += charges['baseline'].first.amount_in_cents
-      totals['tax'] += charges['tax'].first.amount_in_cents
-      totals['total'] += payment.amount_in_cents
+      if charges['tax'].present?
+        tax_amount = charges['tax'].first.amount_in_cents.to_i
+        totals['tax'] += tax_amount
+      else
+        tax_amount = 0
+      end
+      totals['discount'] += vars[:discount]
+      totals['total'] += vars[:total]
       row = [
-        payment.created_at.to_s(:db),
-        customer.reference,
-        payment.statement_id.to_s,
+        vars[:created_at].to_s(:db),
+        customer.reference.to_s,
+        vars[:statement_id].to_s,
         product.handle,
         "payment",
         "%d" % (charges['baseline'].first.amount_in_cents/100),
-        "%d" % (charges['tax'].first.amount_in_cents.to_i/100),
-        "%d" % (payment.amount_in_cents.to_i/100)
+        "%d" % (tax_amount/100),
+        "%d" % (vars[:discount]/100),
+        "%d" % (vars[:total]/100)
       ]
       table << row
       if txns['Refund'].present?
@@ -112,6 +120,7 @@ class ChargifyReportGenerator
       "", "", "", "", "totals",
       (totals['amount']/100).to_s,
       (totals['tax']/100).to_s,
+      (totals['discount']/100).to_s,
       (totals['total']/100).to_s
     ]
     return table
@@ -135,6 +144,7 @@ class ChargifyReportGenerator
         "refund",
         "-%d" % (charges['baseline'].first.amount_in_cents/100),
         "-%d" % (charges['tax'].first.amount_in_cents.to_i/100),
+        "0",
         "-%d" % (payment.amount_in_cents.to_i/100)
       ]
     else
@@ -151,6 +161,25 @@ class ChargifyReportGenerator
         "-%d" % (refund.amount_in_cents.to_i/100)
       ]
     end
+  end
+
+  def extract_identifiers(txns)
+    obj = (txns['Payment'] || txns['Adjustment'] || txns['Charge']).first
+    if obj.type == 'Adjustment'
+      total = txns.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
+      discount = obj.amount_in_cents
+    else
+      total = obj.amount_in_cents
+      discount = 0
+    end
+    return {
+      customer_id: obj.customer_id,
+      product_id: obj.product_id,
+      statement_id: obj.statement_id,
+      created_at: obj.created_at,
+      discount: discount,
+      total: total
+    }
   end
 
   def booking_value_report
