@@ -58,3 +58,10 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     When I sign up via the website
     Then there should still be just one organisation in CapsuleCRM called "ACME widgets Inc."
     And that organisation should have a company number "08030289"
+
+  Scenario: Organisation search should be case insensitive
+    Given there is an existing organisation in CapsuleCRM called "acme widgets Inc."
+    When I sign up via the website
+    Then there should still be just one organisation in CapsuleCRM called "acme widgets Inc."
+    And that organisation should have a data tag
+    And that organisation should have an opportunity against it
