@@ -4,7 +4,7 @@ module CapsuleHelper
     # Run fuzzy capsuleCRM match
     orgs = CapsuleCRM::Organisation.find_all(:q => query)
     # Find exact name or membership ID match
-    orgs.find{|x| x.name == query || field(x, "Membership", "ID").try(:text) == query}
+    orgs.find{|x| x.name.upcase == query.upcase || field(x, "Membership", "ID").try(:text) == query}
   end
 
   def find_person(query)
