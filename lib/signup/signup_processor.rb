@@ -57,7 +57,7 @@ class SignupProcessor
       }
     else
       {
-        price: (120 * 12),
+        price: 2200,
         description: 'Corporate Supporter',
         type: 'Corporate supporter'
       }
@@ -103,9 +103,6 @@ class SignupProcessor
                                  purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
                                 )
 
-                                binding.pry
-
-
     invoice_details = {
       'payment_method' => purchase['payment_method'],
       'payment_ref' => purchase['payment_ref'],
@@ -124,7 +121,8 @@ class SignupProcessor
 
     organization_details = {
       'name' => organization['name'],
-      'company_number' => organization['company_number']
+      'company_number' => organization['company_number'],
+      'email' => billing['email']
     }.compact
     membership = {
       'product_name'    => purchase['offer_category'],

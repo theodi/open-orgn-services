@@ -19,11 +19,11 @@ end
 
 Given /^I change my organisation details$/ do
   # Store old details
-  @original_name          = @name        
-  @original_description   = @description 
-  @original_homepage      = @homepage    
-  @original_logo          = @logo        
-  @original_thumb         = @thumb       
+  @original_name          = @name
+  @original_description   = @description
+  @original_homepage      = @homepage
+  @original_logo          = @logo
+  @original_thumb         = @thumb
   @original_contact_name  = @contact_name
   @original_contact_phone = @contact_phone
   @original_contact_email = @contact_email
@@ -31,7 +31,7 @@ Given /^I change my organisation details$/ do
   @original_linkedin      = @linkedin
   @original_facebook      = @facebook
   @original_tagline       = @tagline
-  # Update details  
+  # Update details
   @name          = "The RAND Corporation"
   @description   = "Bacon ipsum dolor sit amet pig strip steak jerky shankle sausage prosciutto"
   @homepage      = "http://www.example.com/homepage"
@@ -44,10 +44,6 @@ Given /^I change my organisation details$/ do
   @linkedin      = "http://linkedin.com/company/j-m-c"
   @facebook      = "http://facebook.com/pages/j-m-c"
   @tagline       = "synergising solution empowerment"
-end
-
-Given /^the date and time is (#{DATETIME})$/ do |date|
-  @date = date.to_s
 end
 
 When /^the directory entry job runs$/ do
@@ -64,11 +60,11 @@ When /^the directory entry job runs$/ do
       'email'       => @contact_email,
       'twitter'     => @twitter,
       'linkedin'    => @linkedin,
-      'facebook'    => @facebook,      
+      'facebook'    => @facebook,
       'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
-  
+
   SendDirectoryEntryToCapsule.perform(@membership_id, organization, directory_entry, date)
 end
 
@@ -90,7 +86,7 @@ Then /^my directory entry should be requeued for later processing once the conta
       'tagline'     => @tagline,
   }
   date = DateTime.now.to_s
-  
+
   Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
 end
 
@@ -141,14 +137,6 @@ Given /^that organisation has a directory entry$/ do
       :boolean => (value == "true")
     )
     field.save
-  end
-end
-
-Given /^the organisation was updated on (#{DATETIME})$/ do |datetime|
-  Timecop.freeze(datetime) do
-    organisation = CapsuleCRM::Organisation.new(:name => @name)
-    organisation.save
-    @capsule_cleanup << organisation
   end
 end
 

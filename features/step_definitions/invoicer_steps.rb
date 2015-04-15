@@ -22,14 +22,10 @@ Then /^I should be added to the invoicing queue$/ do
   end
 end
 
-Then(/^my booking should not be requeued$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 Then /^I should be added to the invoicing queue along with others$/ do
   # Set expectation
+  Resque.stub(:enqueue)
   Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
-  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^I should not be added to the invoicing queue$/ do

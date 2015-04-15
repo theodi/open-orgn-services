@@ -30,8 +30,8 @@ Given(/^the events have the following ticket types:$/) do |tickets|
 end
 
 Then /^the event summary generator should be queued$/ do
+  Resque.stub(:enqueue)
   Resque.should_receive(:enqueue).with(EventSummaryGenerator, @events).once
-  Resque.should_receive(:enqueue).any_number_of_times
 end
 
 Then /^the courses summary uploader should be queued with the following JSON:$/ do |json|

@@ -122,8 +122,6 @@ class Invoicer
         reference:  invoice_details['purchase_order_reference'],
       )
 
-      add_sector(invoice, invoice_details['sector']) unless invoice_details['sector'].nil?
-
       invoice.save
       # Set redis state to show the invoice has been sent
       remember_invoice(invoice_uid)
@@ -160,13 +158,6 @@ class Invoicer
       false
     else
       Resque.redis.get(key).present?
-    end
-  end
-
-  def self.add_sector(invoice, sector)
-    invoice.line_items.each do |l|
-      category = xero.TrackingCategory.all.select { |t| t.name == "Sector" }.first
-      l.add_tracking(name: category.name, option: sector)
     end
   end
 

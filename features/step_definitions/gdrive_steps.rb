@@ -10,10 +10,6 @@ Then(/^the aggregate spreadsheet should have (\d+) worksheets$/) do |worksheets_
   step "the aggregate spreadsheet has #{worksheets_size} worksheets"
 end
 
-Then(/^nothing should happen on gdrive$/) do
-  GoogleDrive.should_not_receive(:login)
-end
-
 Given(/^there [^\s]+ (\d+) spreadsheets? in the spool$/) do |collection_size|
   step "there should be #{collection_size} spreadsheets in the spool"
 end

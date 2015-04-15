@@ -32,19 +32,6 @@ end
 
 # Invoices
 
-Given(/^the following invoices in Xero:$/) do |table|
-  table.hashes.each do |row|
-    steps %{
-      Given there is a contact in Xero for "#{row["organisation"]}"
-      And that contact has a paid invoice in Xero for #{row["amount"]} for "#{row["description"]}" on sales code "#{row["sales_code"]}"
-      And that invoice was raised on #{Date.today - row["raise_x_days_ago"].to_i.days}
-    }
-    if row["paid"] == "true"
-      step "And that invoice has been paid"
-    end
-  end
-end
-
 Given /^I have already been invoiced$/ do
   # Raise invoice
   @invoice_uid = SecureRandom.uuid
@@ -98,10 +85,6 @@ Then(/^line item number (\d+) should have the description "(.*?)"$/) do |num, de
   @line_items[num - 1].description.should == description
 end
 
-Then /^that line item should have a quantity of (#{INTEGER})$/ do |quantity|
-  @line_item.quantity.should == quantity
-end
-
 Then /^that line item should not have account code set$/ do
   @line_item.account_code.should be_nil
 end
@@ -142,10 +125,6 @@ end
 Then /^an invoice should not be raised in Xero against "(.*?)"$/ do |contact_name|
   @invoice = xero.Invoice.all(:where => %{Contact.ContactID = GUID("#{@contact.id}") AND Status != "DELETED"}).last
   @invoice.should be_nil
-end
-
-Then(/^that invoice should include the sector "(.*?)"$/) do |sector|
-  @invoice.line_items.last.tracking.last.option.should == sector
 end
 
 Then(/^there should be (.*?) line items$/) do |num|
