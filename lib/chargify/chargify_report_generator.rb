@@ -25,6 +25,7 @@ class ChargifyReportGenerator
 
     mail = Pony.mail({
       :to => @email,
+      :cc => "members@theodi.org",
       :from => 'robots@theodi.org',
       :subject => subject,
       :body => body,
