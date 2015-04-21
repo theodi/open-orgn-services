@@ -25,6 +25,7 @@ class ChargifyReportGenerator
 
     mail = Pony.mail({
       :to => @email,
+      :cc => "members@theodi.org",
       :from => 'robots@theodi.org',
       :subject => subject,
       :body => body,
@@ -83,7 +84,7 @@ class ChargifyReportGenerator
       'discount' => 0,
       'total' => 0
     }
-    table << ['date', 'membership number', 'statement id', 'membership type', 'transaction type', 'amount', 'tax', 'discount', 'total']
+    table << ['date', 'membership number', 'statement id', 'membership type', 'transaction type', 'coupon', 'amount', 'tax', 'discount', 'total']
     transactions = @transactions.group_by(&:subscription_id)
     transactions.keys.sort.each do |subscription_id|
       txns = transactions[subscription_id].group_by(&:type)
@@ -106,6 +107,7 @@ class ChargifyReportGenerator
         vars[:statement_id].to_s,
         product.handle,
         "payment",
+        vars[:coupon].to_s,
         "%d" % (charges['baseline'].first.amount_in_cents/100),
         "%d" % (tax_amount/100),
         "%d" % (vars[:discount]/100),
@@ -117,7 +119,7 @@ class ChargifyReportGenerator
       end
     end
     table << [
-      "", "", "", "", "totals",
+      "", "", "", "", "", "totals",
       (totals['amount']/100).to_s,
       (totals['tax']/100).to_s,
       (totals['discount']/100).to_s,
@@ -142,6 +144,7 @@ class ChargifyReportGenerator
         refund.statement_id.to_s,
         product.handle,
         "refund",
+        "",
         "-%d" % (charges['baseline'].first.amount_in_cents/100),
         "-%d" % (charges['tax'].first.amount_in_cents.to_i/100),
         "0",
@@ -156,6 +159,7 @@ class ChargifyReportGenerator
         refund.statement_id.to_s,
         product.handle,
         "refund",
+        "",
         "-%d" % (refund.amount_in_cents.to_i/100),
         "0",
         "-%d" % (refund.amount_in_cents.to_i/100)
@@ -167,6 +171,7 @@ class ChargifyReportGenerator
     obj = (txns['Payment'] || txns['Adjustment'] || txns['Charge']).first
     if obj.type == 'Adjustment'
       total = txns.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
+      coupon_code = extract_coupon_code(obj)
       discount = obj.amount_in_cents
     else
       total = obj.amount_in_cents
@@ -178,8 +183,13 @@ class ChargifyReportGenerator
       statement_id: obj.statement_id,
       created_at: obj.created_at,
       discount: discount,
+      coupon: coupon_code,
       total: total
     }
+  end
+
+  def extract_coupon_code(txn)
+    /Coupon: (.+) -/.match(txn.memo)[1]
   end
 
   def booking_value_report
