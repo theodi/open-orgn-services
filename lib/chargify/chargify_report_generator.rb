@@ -88,32 +88,34 @@ class ChargifyReportGenerator
     transactions = @transactions.group_by(&:subscription_id)
     transactions.keys.sort.each do |subscription_id|
       txns = transactions[subscription_id].group_by(&:type)
-      vars = extract_identifiers(txns)
-      charges =  txns['Charge'].group_by(&:kind)
-      customer = @customers[vars[:customer_id]]
-      product = @products[vars[:product_id]]
-      totals['amount'] += charges['baseline'].first.amount_in_cents
-      if charges['tax'].present?
-        tax_amount = charges['tax'].first.amount_in_cents.to_i
-        totals['tax'] += tax_amount
-      else
-        tax_amount = 0
+      if (txns.keys - %w[Refund]).present?
+        vars = extract_identifiers(txns)
+        charges =  txns['Charge'].group_by(&:kind)
+        customer = @customers[vars[:customer_id]]
+        product = @products[vars[:product_id]]
+        totals['amount'] += charges['baseline'].first.amount_in_cents
+        if charges['tax'].present?
+          tax_amount = charges['tax'].first.amount_in_cents.to_i
+          totals['tax'] += tax_amount
+        else
+          tax_amount = 0
+        end
+        totals['discount'] += vars[:discount]
+        totals['total'] += vars[:total]
+        row = [
+          vars[:created_at].to_s(:db),
+          customer.reference.to_s,
+          vars[:statement_id].to_s,
+          product.handle,
+          "payment",
+          vars[:coupon].to_s,
+          "%d" % (charges['baseline'].first.amount_in_cents/100),
+          "%d" % (tax_amount/100),
+          "%d" % (vars[:discount]/100),
+          "%d" % (vars[:total]/100)
+        ]
+        table << row
       end
-      totals['discount'] += vars[:discount]
-      totals['total'] += vars[:total]
-      row = [
-        vars[:created_at].to_s(:db),
-        customer.reference.to_s,
-        vars[:statement_id].to_s,
-        product.handle,
-        "payment",
-        vars[:coupon].to_s,
-        "%d" % (charges['baseline'].first.amount_in_cents/100),
-        "%d" % (tax_amount/100),
-        "%d" % (vars[:discount]/100),
-        "%d" % (vars[:total]/100)
-      ]
-      table << row
       if txns['Refund'].present?
         txns['Refund'].each { |refund| table << refund_row(refund, totals) }
       end
