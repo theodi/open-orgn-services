@@ -3,7 +3,7 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = "open-orgn-services"
-  s.version     = "0.1.0"
+  s.version     = "0.1.1"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["James Smith", "Sam Pikesley", "Tom Heath", "Stuart Harrison"]
   s.email       = ["tech@theodi.org"]
