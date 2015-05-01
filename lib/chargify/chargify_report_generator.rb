@@ -138,7 +138,12 @@ class ChargifyReportGenerator
     charges = txns['Charge'].group_by(&:kind)
     if payment.amount_in_cents == refund.amount_in_cents
       totals['amount'] -= charges['baseline'].first.amount_in_cents
-      totals['tax'] -= charges['tax'].first.amount_in_cents
+      if charges['tax'].present?
+        tax_amount = charges['tax'].first.amount_in_cents.to_i
+        totals['tax'] -= tax_amount
+      else
+        tax_amount = 0
+      end
       totals['total'] -= payment.amount_in_cents
       [
         refund.created_at.to_s(:db),
@@ -148,7 +153,7 @@ class ChargifyReportGenerator
         "refund",
         "",
         "-%d" % (charges['baseline'].first.amount_in_cents/100),
-        "-%d" % (charges['tax'].first.amount_in_cents.to_i/100),
+        "-%d" % (tax_amount/100),
         "0",
         "-%d" % (payment.amount_in_cents.to_i/100)
       ]
