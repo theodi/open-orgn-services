@@ -17,11 +17,6 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And my company has a size of "<10"
     And my sector is "Healthcare"
 
-  Scenario: wait for Xero to capsule sync
-    Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
-    Then my signup should be requeued for later processing once the contact has synced from Xero
-    When I sign up via the website
-
   Scenario Outline: attach opportunities to existing organisations
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
     And I requested membership at the level called "<level>"
