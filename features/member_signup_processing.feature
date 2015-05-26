@@ -39,6 +39,12 @@ Feature: Processing membership signups
     And I should be added to the capsulecrm queue
     When the signup processor runs
 
+  @capsulecrm
+  Scenario: add contact details to CapsuleCRM
+    Given I requested 1 membership at the level called "supporter"
+    And the signup processor runs
+    Then my organisation contact details should exist in CapsuleCRM
+
   Scenario Outline: generate correct prices and descriptions
     Given I requested 1 membership at the level called "supporter"
     And my company has a size of "<size>"

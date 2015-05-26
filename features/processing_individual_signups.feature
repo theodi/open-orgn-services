@@ -25,3 +25,9 @@ Feature: Processing individual membership signups
     And I should be added to the invoicing queue
     And I should be added to the capsulecrm queue
     When the signup processor runs
+
+  @capsulecrm
+  Scenario: add contact details to CapsuleCRM
+    Given I requested 1 membership at the level called "individual"
+    When the signup processor runs
+    Then my contact details should exist in CapsuleCRM
