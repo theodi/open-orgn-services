@@ -48,6 +48,20 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that data tag should have the sector "Healthcare"
     And that data tag should have the email "turkleton@acme.com"
 
+  Scenario: attach membership tag to new organisation
+    Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
+    When I sign up via the website
+    Then there should still be just one organisation in CapsuleCRM called "ACME widgets Inc."
+    And that organisation should have a data tag
+    And that data tag should have the type "Membership"
+    And that data tag should have the level "supporter"
+    And that data tag should have the supporter level "Supporter"
+    And that data tag should have the join date 2013-01-01
+    And that data tag should have the membership number "AB1234YZ"
+    And that data tag should have the size "<10"
+    And that data tag should have the sector "Healthcare"
+    And that data tag should have the email "turkleton@acme.com"
+
   Scenario: set company number on existing organisation
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
     When I sign up via the website
