@@ -23,55 +23,51 @@ class SendSignupToCapsule
   # Returns nil.
   def self.perform(party, membership)
     if membership['product_name'] == "individual"
-      p = find_person(party['email'])
+      p = find_or_create_person(party)
     else
-      p = find_organization(party['name'])
+      p = find_or_create_organization(party)
     end
-    if p.nil?
-      Resque.enqueue_in(1.hour, SendSignupToCapsule, party, membership)
-    else
-      # Create opportunity against organisation
-      opportunity = CapsuleCRM::Opportunity.new(
-        :party_id            => p.id,
-        :name                => "Membership at #{membership['product_name']} level",
-        :currency            => 'GBP',
-        :description         => "Membership #: #{membership['id']}",
-        :value               => product_value(membership['product_name']),
-        :duration            => product_duration(membership['product_name']),
-        :duration_basis      => product_basis(membership['product_name']),
-        :milestone           => 'Invoiced',
-        :probability         => 100,
-        :expected_close_date => Date.parse(membership['join_date']),
-        :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
-      )
-      save_item(opportunity)
-      # Write custom field for opportunity type
+    # Create opportunity against organisation
+    opportunity = CapsuleCRM::Opportunity.new(
+      :party_id            => p.id,
+      :name                => "Membership at #{membership['product_name']} level",
+      :currency            => 'GBP',
+      :description         => "Membership #: #{membership['id']}",
+      :value               => product_value(membership['product_name']),
+      :duration            => product_duration(membership['product_name']),
+      :duration_basis      => product_basis(membership['product_name']),
+      :milestone           => 'Invoiced',
+      :probability         => 100,
+      :expected_close_date => Date.parse(membership['join_date']),
+      :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
+    )
+    save_item(opportunity)
+    # Write custom field for opportunity type
+    field = CapsuleCRM::CustomField.new(
+      opportunity,
+      :label => 'Type',
+      :text  => 'Membership'
+    )
+    save_item(field)
+    # Set up membership tag
+    set_membership_tag(
+      p,
+      "Level"           => membership['product_name'],
+      "Supporter Level" => membership['supporter_level'],
+      "ID"              => membership['id'],
+      "Joined"          => Date.parse(membership['join_date']),
+      "Email"           => membership['contact_email'],
+      "Size"            => membership['size'],
+      "Sector"          => membership['sector']
+    )
+    unless membership['product_name'] == "individual"
+      # Store company number on organization
       field = CapsuleCRM::CustomField.new(
-        opportunity,
-        :label => 'Type',
-        :text  => 'Membership'
+        p,
+        :label => 'Company Number',
+        :text  => party['company_number'],
       )
       save_item(field)
-      # Set up membership tag
-      set_membership_tag(
-        p,
-        "Level"           => membership['product_name'],
-        "Supporter Level" => membership['supporter_level'],
-        "ID"              => membership['id'],
-        "Joined"          => Date.parse(membership['join_date']),
-        "Email"           => membership['contact_email'],
-        "Size"            => membership['size'],
-        "Sector"          => membership['sector']
-      )
-      unless membership['product_name'] == "individual"
-        # Store company number on organization
-        field = CapsuleCRM::CustomField.new(
-          p,
-          :label => 'Company Number',
-          :text  => party['company_number'],
-        )
-        save_item(field)
-      end
     end
   end
 

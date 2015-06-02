@@ -32,3 +32,17 @@ Feature: Add person details to Capsule CRM
     And that data tag should have the membership number "HG5646HD"
     And that data tag should have the sector "Healthcare"
     And that data tag should have the email "rimmer@jmc.com"
+
+  Scenario: attach membership tag to new person
+    Given I requested 1 membership at the level called "individual"
+    And there is no person in CapsuleCRM called "Arnold Rimmer"
+    And that it's 2013-01-01 14:35
+    When I sign up via the website
+    Then there should still be just one person in CapsuleCRM called "Arnold Rimmer" with email "rimmer@jmc.com"
+    And that person should have a data tag
+    And that data tag should have the type "Membership"
+    And that data tag should have the level "individual"
+    And that data tag should have the join date 2013-01-01
+    And that data tag should have the membership number "HG5646HD"
+    And that data tag should have the sector "Healthcare"
+    And that data tag should have the email "rimmer@jmc.com"

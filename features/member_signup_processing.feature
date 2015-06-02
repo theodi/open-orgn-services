@@ -27,7 +27,7 @@ Feature: Processing membership signups
     And my organisation has a company number "08030289"
     And I have a membership id "01010101"
 
-  Scenario: add signups to correct queues
+  Scenario: add signups to invoicing queue
     Given I requested 1 membership at the level called "supporter"
     And I am paying by "invoice"
     And I want to pay on an "annual" basis
@@ -36,8 +36,13 @@ Feature: Processing membership signups
     And the invoice price should be "720"
     And the supporter level should be "Supporter"
     And I should be added to the invoicing queue
-    And I should be added to the capsulecrm queue
     When the signup processor runs
+
+  @capsulecrm
+  Scenario: add contact details to CapsuleCRM
+    Given I requested 1 membership at the level called "supporter"
+    And the signup processor runs
+    Then my organisation contact details should exist in CapsuleCRM
 
   Scenario Outline: generate correct prices and descriptions
     Given I requested 1 membership at the level called "supporter"
@@ -50,7 +55,6 @@ Feature: Processing membership signups
     And the invoice price should be "<price>"
     And the supporter level should be "<level>"
     And I should be added to the invoicing queue
-    And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
     | size     | status         | description                                                              | level               | price |
@@ -71,7 +75,6 @@ Feature: Processing membership signups
     And the invoice price should be "720"
     And the supporter level should be "Supporter"
     And I should be added to the invoicing queue
-    And I should be added to the capsulecrm queue
     When the signup processor runs
     Examples:
     | method       | period  | reference | description                                                    |

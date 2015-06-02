@@ -1,5 +1,31 @@
 module CapsuleHelper
 
+  def find_or_create_person(party)
+    person = find_person(party['email'])
+    if person.nil?
+      first_name, last_name = party['name'].split(" ")
+      person = CapsuleCRM::Person.new(
+        first_name: first_name,
+        last_name: last_name
+      )
+      person.emails << CapsuleCRM::Email.new(person, address: party['email'])
+      person.save
+    end
+    person
+  end
+
+  def find_or_create_organization(party)
+    org = find_organization(party['name'])
+    if org.nil?
+      org = CapsuleCRM::Organisation.new(
+        name: party['name']
+      )
+      org.emails << CapsuleCRM::Email.new(org, address: party['email'])
+      org.save
+    end
+    org
+  end
+
   def find_organization(query)
     # Run fuzzy capsuleCRM match
     orgs = CapsuleCRM::Organisation.find_all(:q => query)

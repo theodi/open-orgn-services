@@ -78,7 +78,26 @@ class SignupProcessor
 
 
   def self.perform(organization, contact_person, billing, purchase)
+    # Save details in capsule
     membership_type = membership_type(organization['size'], organization['type'], purchase['offer_category'])
+
+    organization_details = {
+      'name' => organization['name'] || contact_person['name'],
+      'company_number' => organization['company_number'],
+      'email' => billing['email']
+    }.compact
+    membership = {
+      'product_name'    => purchase['offer_category'],
+      'supporter_level' => membership_type[:type],
+      'id'              => purchase['membership_id'].to_s,
+      'join_date'       => Date.today.to_s,
+      'contact_email'   => contact_person['email'],
+      'size'            => organization['size'],
+      'sector'          => organization['sector']
+    }.compact
+
+    SendSignupToCapsule.perform(organization_details, membership)
+
     invoice_to = {
       'name' => organization['name'] || contact_person['name'],
       'contact_point' => {
@@ -116,24 +135,6 @@ class SignupProcessor
       'sector' => organization['sector']
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
-
-    # Save details in capsule
-
-    organization_details = {
-      'name' => organization['name'],
-      'company_number' => organization['company_number'],
-      'email' => billing['email']
-    }.compact
-    membership = {
-      'product_name'    => purchase['offer_category'],
-      'supporter_level' => membership_type[:type],
-      'id'              => purchase['membership_id'].to_s,
-      'join_date'       => Date.today.to_s,
-      'contact_email'   => contact_person['email'],
-      'size'            => organization['size'],
-      'sector'          => organization['sector']
-    }.compact
-    Resque.enqueue(SendSignupToCapsule, organization_details, membership)
   end
 
 end
