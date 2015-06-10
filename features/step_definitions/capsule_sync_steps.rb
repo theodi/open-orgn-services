@@ -19,8 +19,8 @@ Given /^a membership has been created for me$/ do
 end
 
 Then /^that (organisation|person) should be queued for sync$/ do |target|
-  target = instance_variable_get("@#{target}")
-  Resque.should_receive(:enqueue).with(SyncCapsuleData, target.id)
+  type = instance_variable_get("@#{target}")
+  Resque.should_receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
 end
 
 Then /^that (organisation|person) should not be queued for sync$/ do |target|

@@ -5,13 +5,17 @@ class CapsuleSyncMonitor
 
   # This monitors capsuleCRM for changes and queues up individual changes for update in the frontend app
   def self.perform
-    orgs.each { |org| enqueue_sync(org) }
-    people.each { |person| enqueue_sync(person) }
+    [
+      :orgs,
+      :people
+    ].each do |type|
+      self.send(type).each { |t| enqueue_sync(t, t.class.name.demodulize) }
+    end
   end
 
-  def self.enqueue_sync(org)
+  def self.enqueue_sync(org, type)
     if org.updated_at > 2.hours.ago
-      Resque.enqueue(SyncCapsuleData, org.id)
+      Resque.enqueue(SyncCapsuleData, org.id, type)
     end
   end
 
