@@ -24,8 +24,8 @@ Then /^that (organisation|person) should be queued for sync$/ do |target|
 end
 
 Then /^that (organisation|person) should not be queued for sync$/ do |target|
-  target = instance_variable_get("@#{target}")
-  Resque.should_not_receive(:enqueue).with(SyncCapsuleData, target.id)
+  type = instance_variable_get("@#{target}")
+  Resque.should_not_receive(:enqueue).with(SyncCapsuleData, target.id, target.titleize)
 end
 
 When /^the capsule monitor runs$/ do
