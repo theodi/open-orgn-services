@@ -105,7 +105,7 @@ Given /^I have updated my membership details$/ do
 end
 
 When /^the job is run to update my membership details in capsule$/ do
-  SaveMembershipDetailsToCapsule.perform(instance_variable_get("#{target}membership_id"), {
+  SaveMembershipDetailsToCapsule.perform(@organisation_membership_id, {
     'email'      => @updated_email,
     'newsletter' => @updated_newsletter,
     'size'       => @updated_size,
