@@ -1,5 +1,5 @@
 @vcr @capsulecrm
-Feature: Synchronize data update in CapsuleCRM
+Feature: Synchronize data update in CapsuleCRM for people
   In order to keep the member directory up to date
   As a commercial team member
   I want my changes in CapsuleCRM to be reflected in the members directory
