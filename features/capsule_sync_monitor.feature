@@ -11,7 +11,7 @@ Feature: Synchronize data update in CapsuleCRM
 
   @timecop
   Scenario: Queue updated CapsuleCRM contacts for directory sync
-    Given that it's 1 hours into the future
+    Given that it's 2015-06-10 13:58
     Then that organisation should be queued for sync
     When the capsule monitor runs
 
