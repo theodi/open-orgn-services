@@ -1,6 +1,6 @@
 Given /^that data tag has the following fields:$/ do |table|
   table.hashes.each do |row|
-    row.each_pair do |key, value|      
+    row.each_pair do |key, value|
       instance_variable_set("@organization_#{@tag.name.downcase}_#{key.downcase.delete('-')}", value)
       field = CapsuleCRM::CustomField.new(
         @organisation,
@@ -18,12 +18,14 @@ Given /^a membership has been created for me$/ do
   @membership_id = "AB6543GF"
 end
 
-Then /^that organisation should be queued for sync$/ do
-  Resque.should_receive(:enqueue).with(SyncCapsuleData, @organisation.id)
+Then /^that (organisation|person) should be queued for sync$/ do |target|
+  target = instance_variable_get("@#{target}")
+  Resque.should_receive(:enqueue).with(SyncCapsuleData, target.id)
 end
 
-Then /^that organisation should not be queued for sync$/ do
-  Resque.should_not_receive(:enqueue).with(SyncCapsuleData, @organisation.id)
+Then /^that (organisation|person) should not be queued for sync$/ do |target|
+  target = instance_variable_get("@#{target}")
+  Resque.should_not_receive(:enqueue).with(SyncCapsuleData, target.id)
 end
 
 When /^the capsule monitor runs$/ do
@@ -50,7 +52,7 @@ Then /^the observer should be notified with the organisation's information$/ do
   membership = {
     'email'         => @organization_membership_email,
     'product_name'  => @organization_membership_level,
-    'id'            => @organization_membership_id,      
+    'id'            => @organization_membership_id,
     'newsletter'    => (@organization_membership_newsletter == 'true'),
     'size'          => @organization_membership_size,
     'sector'        => @organization_membership_sector
@@ -71,7 +73,7 @@ Then /^the observer should be notified with the organisation's information$/ do
     'email'         => @organization_directoryentry_email,
     'twitter'       => @organization_directoryentry_twitter,
     'linkedin'      => @organization_directoryentry_linkedin,
-    'facebook'      => @organization_directoryentry_facebook,      
+    'facebook'      => @organization_directoryentry_facebook,
     'tagline'       => @organization_directoryentry_tagline,
   }.compact
   MyObserverClass.should_receive(:update).with(membership, directory_entry, @organisation.id)

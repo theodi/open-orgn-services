@@ -148,9 +148,9 @@ end
 
 # Data tags
 
-Given /^that organisation has a tag called "(.*?)"$/ do |tag_name|
+Given /^that (organisation|person) has a tag called "(.*?)"$/ do |target, tag_name|
   @tag = CapsuleCRM::Tag.new(
-    @organisation,
+    instance_variable_get("@#{target}"),
     :name => tag_name
   )
   @tag.save
@@ -158,7 +158,7 @@ end
 
 Given /^that organisation has a data tag called "(.*?)"$/ do |tag_name|
   steps %{
-    Given that organisation has a tag called "#{tag_name}"
+    Given that organisation has a tag called "#{tag_name.to_s}"
   }
 end
 
