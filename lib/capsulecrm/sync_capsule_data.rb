@@ -2,47 +2,46 @@ require "observer"
 
 class SyncCapsuleData
   @queue = :directory # This runs inside the directory app
-  
+
   extend Observable
   extend CapsuleHelper
-  
-  # Syncs a single organization into the local DB
-  def self.perform(organization_id)
-    # Get the organization from capsule
-    org = CapsuleCRM::Organisation.find(organization_id)
-    if org
+
+  # Syncs a single person or organisarion into the local DB
+  def self.perform(id, type)
+    # Get the subject from capsule
+    subject = "CapsuleCRM::#{type.titleize}".constantize.find(id)
+    if subject
       membership = {
-        'email'         => field(org, "Membership", "Email").try(:text),
-        'product_name'  => field(org, "Membership", "Level").try(:text),
-        'id'            => field(org, "Membership", "ID").try(:text),
-        'newsletter'    => field(org, "Membership", "Newsletter").try(:boolean),
-        'size'          => field(org, "Membership", "Size").try(:text),
-        'sector'        => field(org, "Membership", "Sector").try(:text),
+        'email'         => field(subject, "Membership", "Email").try(:text),
+        'product_name'  => field(subject, "Membership", "Level").try(:text),
+        'id'            => field(subject, "Membership", "ID").try(:text),
+        'newsletter'    => field(subject, "Membership", "Newsletter").try(:boolean),
+        'size'          => field(subject, "Membership", "Size").try(:text),
+        'sector'        => field(subject, "Membership", "Sector").try(:text),
       }.compact
       description = [
-        field(org, "DirectoryEntry", "Description").try(:text),
-        field(org, "DirectoryEntry", "Description-2").try(:text),
-        field(org, "DirectoryEntry", "Description-3").try(:text),
-        field(org, "DirectoryEntry", "Description-4").try(:text)
+        field(subject, "DirectoryEntry", "Description").try(:text),
+        field(subject, "DirectoryEntry", "Description-2").try(:text),
+        field(subject, "DirectoryEntry", "Description-3").try(:text),
+        field(subject, "DirectoryEntry", "Description-4").try(:text)
       ].compact.join
       directory_entry = {
-        'active'        => field(org, "DirectoryEntry", "Active").try(:boolean).try(:to_s),
-        'name'          => org.name,
+        'active'        => field(subject, "DirectoryEntry", "Active").try(:boolean).try(:to_s),
+        'name'          => subject.name,
         'description'   => description.present? ? description : nil,
-        'url'           => field(org, "DirectoryEntry", "Homepage").try(:text),
-        'contact'       => field(org, "DirectoryEntry", "Contact").try(:text),
-        'phone'         => field(org, "DirectoryEntry", "Phone").try(:text),
-        'email'         => field(org, "DirectoryEntry", "Email").try(:text),
-        'twitter'       => field(org, "DirectoryEntry", "Twitter").try(:text),
-        'linkedin'      => field(org, "DirectoryEntry", "Linkedin").try(:text),
-        'facebook'      => field(org, "DirectoryEntry", "Facebook").try(:text),          
-        'tagline'       => field(org, "DirectoryEntry", "Tagline").try(:text),          
+        'url'           => field(subject, "DirectoryEntry", "Homepage").try(:text),
+        'contact'       => field(subject, "DirectoryEntry", "Contact").try(:text),
+        'phone'         => field(subject, "DirectoryEntry", "Phone").try(:text),
+        'email'         => field(subject, "DirectoryEntry", "Email").try(:text),
+        'twitter'       => field(subject, "DirectoryEntry", "Twitter").try(:text),
+        'linkedin'      => field(subject, "DirectoryEntry", "Linkedin").try(:text),
+        'facebook'      => field(subject, "DirectoryEntry", "Facebook").try(:text),
+        'tagline'       => field(subject, "DirectoryEntry", "Tagline").try(:text),
       }.compact
       # Notify the observers
       changed
-      notify_observers(membership, directory_entry, organization_id)
+      notify_observers(membership, directory_entry, id)
     end
   end
-  
-end
 
+end

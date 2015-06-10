@@ -46,7 +46,7 @@ Given /^an observer object has been registered$/ do
 end
 
 When /^the capsule sync job for that organisation runs$/ do
-  SyncCapsuleData.perform(@organisation.id)
+  SyncCapsuleData.perform(@organisation.id, "organisation")
 end
 
 Then /^the observer should be notified with the organisation's information$/ do
