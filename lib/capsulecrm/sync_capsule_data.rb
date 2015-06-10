@@ -27,7 +27,7 @@ class SyncCapsuleData
       ].compact.join
       directory_entry = {
         'active'        => field(subject, "DirectoryEntry", "Active").try(:boolean).try(:to_s),
-        'name'          => subject.name,
+        'name'          => subject.respond_to?(:name) ? subject.name : nil,
         'description'   => description.present? ? description : nil,
         'url'           => field(subject, "DirectoryEntry", "Homepage").try(:text),
         'contact'       => field(subject, "DirectoryEntry", "Contact").try(:text),

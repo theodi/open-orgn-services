@@ -1,9 +1,13 @@
 Given /^that data tag has the following fields:$/ do |table|
   table.hashes.each do |row|
     row.each_pair do |key, value|
-      instance_variable_set("@organization_#{@tag.name.downcase}_#{key.downcase.delete('-')}", value)
+      if @organisation
+        instance_variable_set("@organisation_#{@tag.name.downcase}_#{key.downcase.delete('-')}", value)
+      else
+        instance_variable_set("@person_#{@tag.name.downcase}_#{key.downcase.delete('-')}", value)
+      end
       field = CapsuleCRM::CustomField.new(
-        @organisation,
+        (@organisation || @person),
         :tag => @tag.name,
         :label => key,
         :text => value,
@@ -45,39 +49,40 @@ Given /^an observer object has been registered$/ do
   MyObserverClass.register
 end
 
-When /^the capsule sync job for that organisation runs$/ do
-  SyncCapsuleData.perform(@organisation.id, "organisation")
+When /^the capsule sync job for that (person|organisation) runs$/ do |target|
+  SyncCapsuleData.perform(instance_variable_get("@#{target}").id, target)
 end
 
-Then /^the observer should be notified with the organisation's information$/ do
+Then /^the observer should be notified with the (organisation|person)'s information$/ do |target|
   membership = {
-    'email'         => @organization_membership_email,
-    'product_name'  => @organization_membership_level,
-    'id'            => @organization_membership_id,
-    'newsletter'    => (@organization_membership_newsletter == 'true'),
-    'size'          => @organization_membership_size,
-    'sector'        => @organization_membership_sector
+    'email'         => instance_variable_get("@#{target}_membership_email"),
+    'product_name'  => instance_variable_get("@#{target}_membership_level"),
+    'id'            => instance_variable_get("@#{target}_membership_id"),
+    'newsletter'    => (instance_variable_get("@#{target}_membership_newsletter") == 'true'),
+    'size'          => instance_variable_get("@#{target}_membership_size"),
+    'sector'        => instance_variable_get("@#{target}_membership_sector")
   }.compact
   description = [
-    @organization_directoryentry_description,
-    @organization_directoryentry_description2,
-    @organization_directoryentry_description3,
-    @organization_directoryentry_description4
+    instance_variable_get("@#{target}_directoryentry_description"),
+    instance_variable_get("@#{target}_directoryentry_description2"),
+    instance_variable_get("@#{target}_directoryentry_description3"),
+    instance_variable_get("@#{target}_directoryentry_description4")
   ].compact.join
   directory_entry = {
-    'active'        => @organization_directoryentry_active,
-    'name'          => @organisation.name,
+    'active'        => instance_variable_get("@#{target}_directoryentry_active"),
+    'name'          => instance_variable_get("@#{target}").respond_to?(:name) ? instance_variable_get("@#{target}").name : nil ,
     'description'   => description.present? ? description : nil,
-    'url'           => @organization_directoryentry_homepage,
-    'contact'       => @organization_directoryentry_contact,
-    'phone'         => @organization_directoryentry_phone,
-    'email'         => @organization_directoryentry_email,
-    'twitter'       => @organization_directoryentry_twitter,
-    'linkedin'      => @organization_directoryentry_linkedin,
-    'facebook'      => @organization_directoryentry_facebook,
-    'tagline'       => @organization_directoryentry_tagline,
+    'url'           => instance_variable_get("@#{target}_directoryentry_homepage"),
+    'contact'       => instance_variable_get("@#{target}_directoryentry_contact"),
+    'phone'         => instance_variable_get("@#{target}_directoryentry_phone"),
+    'email'         => instance_variable_get("@#{target}_directoryentry_email"),
+    'twitter'       => instance_variable_get("@#{target}_directoryentry_twitter"),
+    'linkedin'      => instance_variable_get("@#{target}_directoryentry_linkedin"),
+    'facebook'      => instance_variable_get("@#{target}_directoryentry_facebook"),
+    'tagline'       => instance_variable_get("@#{target}_directoryentry_tagline"),
   }.compact
-  MyObserverClass.should_receive(:update).with(membership, directory_entry, @organisation.id)
+
+  MyObserverClass.should_receive(:update).with(membership, directory_entry, instance_variable_get("@#{target}").id)
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do
@@ -100,7 +105,7 @@ Given /^I have updated my membership details$/ do
 end
 
 When /^the job is run to update my membership details in capsule$/ do
-  SaveMembershipDetailsToCapsule.perform(@organization_membership_id, {
+  SaveMembershipDetailsToCapsule.perform(instance_variable_get("#{target}membership_id"), {
     'email'      => @updated_email,
     'newsletter' => @updated_newsletter,
     'size'       => @updated_size,
