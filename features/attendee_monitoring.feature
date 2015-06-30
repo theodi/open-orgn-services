@@ -93,3 +93,9 @@ Feature: Monitoring attendee signups
     And line item number 1 should have a description of "Cheap Ticket for '[Test Event 00] Drupal: Down the Rabbit Hole (2013-03-17)' for Bob Fish <bob.fish@example.com> (Order number: 142059188,Membership number: 9101112)"
     And I should be added to the invoicing queue along with others
     When the attendee monitor runs
+
+  Scenario: free membership tickets get queued in Capsule
+    Given there is no person in CapsuleCRM called "Bob Fish"
+    And I have signed up for 1 ticket called "Ticket and free membership" which has a net price of 100.00
+    Then my details should be added to the Capsule queue
+    When the attendee monitor runs
