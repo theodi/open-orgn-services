@@ -124,4 +124,11 @@ class AttendeeMonitor
     ticket['ticket']['name']
   end
 
+  def self.has_membership?(ticket)
+    [
+      'individual supporter package',
+      'summit sme package',
+      'summit platinum corporate package'
+    ].include?(ticket.downcase)
+  end
 end

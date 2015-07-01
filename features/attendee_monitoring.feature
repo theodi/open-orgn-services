@@ -96,6 +96,6 @@ Feature: Monitoring attendee signups
 
   Scenario: free membership tickets get queued in Capsule
     Given there is no person in CapsuleCRM called "Bob Fish"
-    And I have signed up for 1 ticket called "Ticket and free membership" which has a net price of 100.00
     Then my details should be added to the Capsule queue
+    And I have signed up for 1 ticket called "Individual supporter package" which has a net price of 100.00
     When the attendee monitor runs
