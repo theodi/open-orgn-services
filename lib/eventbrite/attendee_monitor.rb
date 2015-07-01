@@ -69,12 +69,12 @@ class AttendeeMonitor
             }
           end
 
-          if ticket.match(/membership/)
+          if has_membership?(ticket)
             attendee = a['attendee']
 
             membership = {
-              'product_name' => 'supporter',
-              'supporter_level' => 'supporter',
+              'product_name' => membership_type(ticket),
+              'supporter_level' => membership_type(ticket),
               'join_date' => Date.today,
               'contact_email' => attendee['email']
             }
@@ -131,4 +131,13 @@ class AttendeeMonitor
       'summit platinum corporate package'
     ].include?(ticket.downcase)
   end
+
+  def self.membership_type(ticket)
+    if ticket.downcase == 'individual supporter package'
+      'individual'
+    else
+      'supporter'
+    end
+  end
+
 end
