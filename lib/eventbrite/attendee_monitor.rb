@@ -60,11 +60,31 @@ class AttendeeMonitor
         }
 
         attendees.each do |a|
+          ticket = ticket_name(event, a['attendee']['ticket_id'])
+
           if a['attendee']['amount_paid'].to_f > 0
             invoice_details['line_items'] << {
               'base_price'  => a['attendee']['amount_paid'].to_f/1.2,
-              'description' => line_description(ticket_name(event, a['attendee']['ticket_id']), event_details['title'], date, a['attendee']['first_name'], a['attendee']['last_name'], a['attendee']['email'], order_id, custom_answer(a['attendee'], 'Membership Number'))
+              'description' => line_description(ticket, event_details['title'], date, a['attendee']['first_name'], a['attendee']['last_name'], a['attendee']['email'], order_id, custom_answer(a['attendee'], 'Membership Number'))
             }
+          end
+
+          if has_membership?(ticket)
+            attendee = a['attendee']
+
+            membership = {
+              'product_name' => membership_type(ticket),
+              'supporter_level' => membership_type(ticket),
+              'join_date' => Date.today,
+              'contact_email' => attendee['email']
+            }
+
+            party = {
+              'name' => "#{attendee['first_name']} #{attendee['last_name']}",
+              'email' => attendee['email']
+            }
+
+            Resque.enqueue(SendSignupToCapsule, membership, party)
           end
         end
 
@@ -76,6 +96,7 @@ class AttendeeMonitor
   end
 
   def self.custom_answer(attendee, question)
+    return "" if attendee['answers'].nil?
     q = attendee['answers'].find{|x| x['answer']['question'] == question}
     q ? q['answer']['answer_text'] : nil
   end
@@ -101,6 +122,22 @@ class AttendeeMonitor
   def self.ticket_name(event_details, ticket_id)
     ticket = event_details["event"]["tickets"].find {|t| t['ticket']['id'] == ticket_id}
     ticket['ticket']['name']
+  end
+
+  def self.has_membership?(ticket)
+    [
+      'individual supporter package',
+      'summit sme package',
+      'summit platinum corporate package'
+    ].include?(ticket.downcase)
+  end
+
+  def self.membership_type(ticket)
+    if ticket.downcase == 'individual supporter package'
+      'individual'
+    else
+      'supporter'
+    end
   end
 
 end
