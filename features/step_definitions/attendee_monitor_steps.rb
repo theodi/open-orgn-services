@@ -20,7 +20,7 @@ When /^my details should be added to the Capsule queue$/ do
     'email' => @email
   }
 
-  Resque.should_receive(:enqueue).with(SendSignupToCapsule, membership, party).once
+  Resque.should_receive(:enqueue).with(SendSignupToCapsule, party, membership).once
   Resque.should_receive(:enqueue).with(Invoicer, kind_of(Hash), kind_of(Hash), kind_of(String)).any_number_of_times
   Resque.should_receive(:enqueue).with(SendSignupToCapsule, kind_of(Hash), kind_of(Hash)).any_number_of_times
 end
