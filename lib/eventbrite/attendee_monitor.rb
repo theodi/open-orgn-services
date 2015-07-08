@@ -84,7 +84,7 @@ class AttendeeMonitor
               'email' => attendee['email']
             }
 
-            Resque.enqueue(SendSignupToCapsule, membership, party)
+            Resque.enqueue(SendSignupToCapsule, party, membership)
           end
         end
 

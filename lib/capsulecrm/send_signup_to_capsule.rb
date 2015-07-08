@@ -6,6 +6,11 @@ class SendSignupToCapsule
 
   # Public: Store details of self-signups in CapsuleCRM
   #
+  # party    - a hash containing details of the organization or person
+  #              'name'           => the org / person name in Xero - should be the same as that in capsule
+  #              'company_number' => the company number for the person or organization
+  #              'email'          => the email address for the person or organization
+  #
   # membership   - a hash containing details of the new membership
   #              'product_name'    => the membership level
   #              'supporter_level' => The supporter level
@@ -14,11 +19,6 @@ class SendSignupToCapsule
   #              'contact_email'   => a contact email for the signup
   #              'size'            => the organization's size
   #              'sector'          => the organization's sector
-  #
-  # party    - a hash containing details of the organization or person
-  #              'name'           => the org / person name in Xero - should be the same as that in capsule
-  #              'company_number' => the company number for the person or organization
-  #              'email'          => the email address for the person or organization
   #
   # Returns nil.
   def self.perform(party, membership)
