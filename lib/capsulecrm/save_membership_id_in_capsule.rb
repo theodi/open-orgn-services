@@ -5,16 +5,24 @@ class SaveMembershipIdInCapsule
 
   # Public: Store details of self-signups in CapsuleCRM
   #
-  # organization_name - The name of the organization to store against
+  # organization_name - If not nil, The name of the organization to store against
+  # individual_email  - If not nil, the email of the individual member to store against
   # membership_id     - The membership ID to store
   # 
   # Returns nil.
-  def self.perform(organization_name, membership_id)
+  def self.perform(organization_name, individual_email, membership_id)
     # Find organization
-    organization = find_organization(organization_name)
-    raise ArgumentError.new("Organization name #{organization_name} not found") if organization.nil?
+    if organization_name
+      party = find_organization(organization_name)
+      raise ArgumentError.new("Organization name #{organization_name} not found") if party.nil?
+    elsif individual_email
+      party = find_person(individual_email)
+      raise ArgumentError.new("Person #{individual_email} not found") if party.nil?
+    else
+      raise ArgumentError.new("No party details supplied for member #{membership_id}")
+    end
     # Store membership ID
-    set_membership_tag(organization, "ID" => membership_id)
+    set_membership_tag(party, "ID" => membership_id)
   end
     
 end

@@ -86,11 +86,11 @@ Then /^the observer should be notified with the (organisation|person)'s informat
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do
-  SaveMembershipIdInCapsule.perform(@organisation.name, @membership_id)
+  SaveMembershipIdInCapsule.perform(@organisation.try(:name), @person ? @person.emails[0].address : nil, @membership_id)
 end
 
 Then /^that data tag should have my new membership number set$/ do
-  field = @organisation.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
+  field = @party.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
   field.should be_present
   field.text.should == @membership_id
 end
