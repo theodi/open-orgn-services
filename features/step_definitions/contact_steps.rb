@@ -87,3 +87,7 @@ end
 Given(/^my sector is "(.*?)"$/) do |sector|
   @sector = sector
 end
+
+Given(/^I signed up via the "Leeds node"$/) do
+  @origin = "odi-leeds"
+end

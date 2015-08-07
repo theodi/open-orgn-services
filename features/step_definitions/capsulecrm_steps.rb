@@ -205,6 +205,12 @@ Then /^that data tag should have the email "(.*?)"$/ do |email|
   field.text.should == email
 end
 
+Then(/^that data tag should have the origin "(.*?)"$/) do |origin|
+  field = @party.custom_fields.find{|x| x.label == "Origin" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == origin
+end
+
 Then(/^that organisation should have a company number "(.*?)"$/) do |company_number|
   field = @organisation.custom_fields.find{|x| x.label == "Company Number"}
   field.should be_present

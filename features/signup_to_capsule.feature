@@ -16,6 +16,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And my organisation has a company number "08030289"
     And my company has a size of "<10"
     And my sector is "Healthcare"
+    And I signed up via the "Leeds node"
 
   Scenario Outline: attach opportunities to existing organisations
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."
@@ -47,6 +48,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that data tag should have the size "<10"
     And that data tag should have the sector "Healthcare"
     And that data tag should have the email "turkleton@acme.com"
+    And that data tag should have the origin "odi-leeds"
 
   Scenario: attach membership tag to new organisation
     Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
@@ -61,6 +63,7 @@ Feature: Create opportunities and tags against organisations in CapsuleCRM
     And that data tag should have the size "<10"
     And that data tag should have the sector "Healthcare"
     And that data tag should have the email "turkleton@acme.com"
+    And that data tag should have the origin "odi-leeds"
 
   Scenario: set company number on existing organisation
     Given there is an existing organisation in CapsuleCRM called "ACME widgets Inc."

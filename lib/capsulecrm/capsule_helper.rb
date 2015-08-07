@@ -57,6 +57,7 @@ module CapsuleHelper
       "Newsletter"      => :boolean,
       "Size"            => :text,
       "Sector"          => :text,
+      "Origin"          => :text
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end
