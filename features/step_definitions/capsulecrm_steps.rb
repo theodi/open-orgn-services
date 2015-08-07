@@ -42,6 +42,7 @@ Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$
   organisations = CapsuleCRM::Organisation.find_all(:q => organisation_name)
   organisations.size.should == 1
   @organisation = organisations.first
+  @capsule_cleanup << @organisation
 end
 
 # People
