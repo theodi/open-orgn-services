@@ -1,112 +1,12 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Weyland-Yutani%20Corp
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 17 Sep 2014 09:42:38 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
-      Content-Length:
-      - '74'
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><parties size="0"/>
-    http_version: 
-  recorded_at: Wed, 17 Sep 2014 09:42:37 GMT
-- request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n
-        \ <about nil=\"true\"/>\n  <name>Weyland-Yutani Corp</name>\n  <contacts/>\n</organisation>\n"
-    headers:
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Wed, 17 Sep 2014 09:42:38 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491
-      Content-Length:
-      - 0
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Wed, 17 Sep 2014 09:42:38 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Weyland-Yutani%20Corp
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 17 Sep 2014 09:42:39 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
-      Content-Length:
-      - '371'
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><parties size="1"><organisation><id>67665491</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1410794109/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T09:42:38Z</createdOn><updatedOn>2014-09-17T09:42:38Z</updatedOn><name>Weyland-Yutani
-        Corp</name></organisation></parties>
-    http_version: 
-  recorded_at: Wed, 17 Sep 2014 09:42:38 GMT
-- request:
     method: post
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/tag/Membership
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n
-        \ <tag>\n    <name>Membership</name>\n  </tag>\n</tags>\n"
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
     headers:
       Content-Type:
       - text/xml
@@ -122,8 +22,7 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Location:
       - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/tag/Membership
       Content-Length:
@@ -138,8 +37,8 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Level</label>\n    <text>partner</text>\n    <tag>Membership</tag>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>partner</text>\n    <tag>Membership</tag>\n
         \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
@@ -157,16 +56,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '198'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="1"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:39 GMT
 - request:
@@ -174,9 +72,9 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Email</label>\n    <text>info@weyland-yutani.com</text>\n
-        \   <tag>Membership</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>info@weyland-yutani.com</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -187,23 +85,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 17 Sep 2014 09:42:40
-        GMT
+      - Wed, 17 Sep 2014 09:42:40 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '319'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="2"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="2"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:40 GMT
 - request:
@@ -211,8 +107,8 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>ID</label>\n    <text>AB1234FG</text>\n    <tag>Membership</tag>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>ID</label>\n    <text>AB1234FG</text>\n    <tag>Membership</tag>\n
         \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
@@ -230,16 +126,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '422'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="3"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:40 GMT
 - request:
@@ -247,8 +142,8 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Newsletter</label>\n    <text>false</text>\n    <tag>Membership</tag>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Newsletter</label>\n    <text>false</text>\n    <tag>Membership</tag>\n
         \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
@@ -266,16 +161,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '422'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="3"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:41 GMT
 - request:
@@ -283,9 +177,9 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Size</label>\n    <text>&gt;1000</text>\n
-        \   <tag>Membership</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Size</label>\n    <text>&gt;1000</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -302,16 +196,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '527'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="4"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="4"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:41 GMT
 - request:
@@ -319,9 +212,9 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Sector</label>\n    <text>Data/Technology</text>\n
-        \   <tag>Membership</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Data/Technology</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
         \ </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -338,50 +231,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '641'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="5"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
-    http_version: 
-  recorded_at: Wed, 17 Sep 2014 09:42:42 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=AB1234FG
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 17 Sep 2014 09:42:43 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
-      Content-Length:
-      - '371'
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><parties size="1"><organisation><id>67665491</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1410794109/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T09:42:38Z</createdOn><updatedOn>2014-09-17T09:42:42Z</updatedOn><name>Weyland-Yutani
-        Corp</name></organisation></parties>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:42 GMT
 - request:
@@ -405,16 +263,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '641'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="5"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:43 GMT
 - request:
@@ -422,8 +279,8 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/tag/Membership
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n
-        \ <tag>\n    <name>Membership</name>\n  </tag>\n</tags>\n"
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
     headers:
       Content-Type:
       - text/xml
@@ -439,16 +296,14 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '126'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:43 GMT
 - request:
@@ -456,10 +311,9 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Email</label>\n    <text>contact@weyland-yutani.com</text>\n
-        \   <tag>Membership</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
-        \ </customField>\n</customFields>\n"
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>contact@weyland-yutani.com</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
     headers:
       Content-Type:
       - text/xml
@@ -475,16 +329,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '644'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="5"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:44 GMT
 - request:
@@ -492,10 +345,9 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Newsletter</label>\n    <text nil=\"true\"/>\n
-        \   <tag>Membership</tag>\n    <date nil=\"true\"/>\n    <boolean type=\"boolean\">true</boolean>\n
-        \ </customField>\n</customFields>\n"
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Newsletter</label>\n    <text nil=\"true\"/>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">true</boolean>\n  </customField>\n</customFields>\n"
     headers:
       Content-Type:
       - text/xml
@@ -511,16 +363,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '757'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:44 GMT
 - request:
@@ -528,10 +379,9 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Size</label>\n    <text>&lt;10</text>\n
-        \   <tag>Membership</tag>\n    <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n
-        \ </customField>\n</customFields>\n"
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Size</label>\n    <text>&lt;10</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
     headers:
       Content-Type:
       - text/xml
@@ -547,16 +397,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '755'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:45 GMT
 - request:
@@ -564,8 +413,8 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n
-        \ <customField>\n    <label>Sector</label>\n    <text>Other</text>\n    <tag>Membership</tag>\n
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Other</text>\n    <tag>Membership</tag>\n
         \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
     headers:
       Content-Type:
@@ -582,52 +431,17 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '745'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:45 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Weyland-Yutani%20Corp
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 17 Sep 2014 09:42:55 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
-      Content-Length:
-      - '371'
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><parties size="1"><organisation><id>67665491</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1410794109/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T09:42:38Z</createdOn><updatedOn>2014-09-17T09:42:44Z</updatedOn><name>Weyland-Yutani
-        Corp</name></organisation></parties>
-    http_version: 
-  recorded_at: Wed, 17 Sep 2014 09:42:55 GMT
 - request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/67665491/tag
@@ -649,16 +463,14 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '126'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:55 GMT
 - request:
@@ -682,16 +494,15 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - '745'
       Content-Type:
       - ! '*/*;charset=UTF-8'
     body:
       encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8"
-        standalone="yes"?><customFields size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>66774682</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>66774684</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>66774685</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>66774686</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>66774687</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>66774689</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:56 GMT
 - request:
@@ -715,8 +526,7 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10
-        GMT; Path=/
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
       Content-Length:
       - 0
     body:
@@ -724,4 +534,1793 @@ http_interactions:
       string: ''
     http_version: 
   recorded_at: Wed, 17 Sep 2014 09:42:56 GMT
-recorded_with: VCR 2.8.0
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/tag/Membership
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:19 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2534'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:19 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>partner</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:20 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2532'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '198'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:20 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>info@weyland-yutani.com</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:20 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2528'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '319'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="2"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:20 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>ID</label>\n    <text>AB1234FG</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:21 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2524'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '422'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:21 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Newsletter</label>\n    <text>false</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:21 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2523'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '422'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:22 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Size</label>\n    <text>&gt;1000</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:22 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2522'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '527'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="4"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:22 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Data/Technology</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:23 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2521'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '641'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:23 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:24 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2519'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '641'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:24 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/tag/Membership
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:24 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2518'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '126'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:24 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>contact@weyland-yutani.com</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:25 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2517'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '644'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:25 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Newsletter</label>\n    <text nil=\"true\"/>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">true</boolean>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:26 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2516'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '757'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>83386153</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:26 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Size</label>\n    <text>&lt;10</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:26 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2515'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '755'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>83386153</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:26 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Other</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:27 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2514'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '745'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>83386153</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:27 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/tag
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:28 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2512'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '126'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:28 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:28 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2511'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '745'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386147</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386148</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386149</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386150</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>83386151</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>83386153</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:28 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:29 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2510'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:29 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723564
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:29 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:30 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Weyland-Yutani%20Corp
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:51 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2508'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '74'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:51 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n  <about
+        nil=\"true\"/>\n  <name>Weyland-Yutani Corp</name>\n  <contacts/>\n</organisation>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:51 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2507'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:51 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Weyland-Yutani%20Corp
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:52 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2506'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '371'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>86723575</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-08-07T14:10:52Z</createdOn><updatedOn>2015-08-07T14:10:52Z</updatedOn><name>Weyland-Yutani
+        Corp</name></organisation></parties>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:52 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/tag/Membership
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:52 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2505'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:52 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>partner</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:53 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2504'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '198'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:53 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>info@weyland-yutani.com</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:53 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2503'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '319'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="2"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:54 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>ID</label>\n    <text>AB1234FG</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:54 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2502'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '422'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:54 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Newsletter</label>\n    <text>false</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:55 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2501'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '422'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:55 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Size</label>\n    <text>&gt;1000</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:55 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2500'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '527'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="4"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:56 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Data/Technology</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">false</boolean>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2499'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '641'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:56 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=AB1234FG
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2498'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '371'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>86723575</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-08-07T14:10:52Z</createdOn><updatedOn>2015-08-07T14:10:57Z</updatedOn><name>Weyland-Yutani
+        Corp</name></organisation></parties>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:57 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2497'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '641'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>info@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:57 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/tag/Membership
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:58 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2496'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '126'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:58 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>contact@weyland-yutani.com</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:58 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2495'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '644'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:59 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Newsletter</label>\n    <text nil=\"true\"/>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean type=\"boolean\">true</boolean>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:10:59 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2494'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '757'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&gt;1000</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>83386166</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:10:59 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Size</label>\n    <text>&lt;10</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:00 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2493'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '755'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Data/Technology</text></customField><customField><id>83386166</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Other</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:00 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2492'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '745'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>83386166</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Weyland-Yutani%20Corp
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:01 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2491'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '371'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>86723575</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-08-07T14:10:52Z</createdOn><updatedOn>2015-08-07T14:11:01Z</updatedOn><name>Weyland-Yutani
+        Corp</name></organisation></parties>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:01 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/tag
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:01 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2490'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '126'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:01 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575/customfield
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:02 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2489'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '745'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>83386161</id><tag>Membership</tag><label>Level</label><text>partner</text></customField><customField><id>83386162</id><tag>Membership</tag><label>Email</label><text>contact@weyland-yutani.com</text></customField><customField><id>83386163</id><tag>Membership</tag><label>ID</label><text>AB1234FG</text></customField><customField><id>83386164</id><tag>Membership</tag><label>Size</label><text>&lt;10</text></customField><customField><id>83386165</id><tag>Membership</tag><label>Sector</label><text>Other</text></customField><customField><id>83386166</id><tag>Membership</tag><label>Newsletter</label><boolean>true</boolean></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:02 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:02 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2488'
+      X-Ratelimit-Reset:
+      - '1438958151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:02 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723575
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 07 Aug 2015 14:11:03 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Fri, 07 Aug 2015 14:11:03 GMT
+recorded_with: VCR 2.9.3

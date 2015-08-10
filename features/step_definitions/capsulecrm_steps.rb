@@ -42,6 +42,7 @@ Then /^there should still be just one organisation in CapsuleCRM called "(.*?)"$
   organisations = CapsuleCRM::Organisation.find_all(:q => organisation_name)
   organisations.size.should == 1
   @organisation = organisations.first
+  @capsule_cleanup << @organisation
 end
 
 # People
@@ -202,6 +203,12 @@ Then /^that data tag should have the email "(.*?)"$/ do |email|
   field = @party.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
   field.should be_present
   field.text.should == email
+end
+
+Then(/^that data tag should have the origin "(.*?)"$/) do |origin|
+  field = @party.custom_fields.find{|x| x.label == "Origin" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == origin
 end
 
 Then(/^that organisation should have a company number "(.*?)"$/) do |company_number|

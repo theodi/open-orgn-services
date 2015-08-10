@@ -19,6 +19,7 @@ class SendSignupToCapsule
   #              'contact_email'   => a contact email for the signup
   #              'size'            => the organization's size
   #              'sector'          => the organization's sector
+  #              'origin'          => the origin of the signup ('odihq' or other Node)
   #
   # Returns nil.
   def self.perform(party, membership)
@@ -58,7 +59,8 @@ class SendSignupToCapsule
       "Joined"          => Date.parse(membership['join_date']),
       "Email"           => membership['contact_email'],
       "Size"            => membership['size'],
-      "Sector"          => membership['sector']
+      "Sector"          => membership['sector'],
+      "Origin"          => membership['origin']
     )
     unless membership['product_name'] == "individual"
       # Store company number on organization

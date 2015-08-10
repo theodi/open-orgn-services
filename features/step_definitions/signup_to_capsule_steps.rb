@@ -11,7 +11,8 @@ When /^I sign up via the website$/ do
     'join_date'       => Date.today.to_s,
     'contact_email'   => @email,
     'size'            => @size,
-    'sector'          => @sector
+    'sector'          => @sector,
+    'origin'          => @origin
   }.compact
   SendSignupToCapsule.perform(organization, membership)
 end
