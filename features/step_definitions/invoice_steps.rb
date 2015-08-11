@@ -56,9 +56,18 @@ Then /^the invoice price should be "(.*?)"$/ do |base_price|
   @line_items.first['base_price'] ||= base_price
 end
 
+Then(/^the invoice discount should be "(.*?)"$/) do |discount|
+  @discount = discount.gsub!(/%\z/, "")
+  @line_items.first['discount_rate'] ||= @discount
+end
+
 Then(/^the invoice should have (\d+) line items?$/) do |num|
   @line_items ||= []
   num.to_i.times { @line_items << {} }
+end
+
+Then(/^the invoice discount should be empty$/) do
+  @line_items.first['discount_rate'] = nil
 end
 
 Then(/^line item number (\d+) should have a description of "(.*?)"$/) do |index, invoice_description|

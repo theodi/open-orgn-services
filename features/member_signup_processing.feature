@@ -34,6 +34,7 @@ Feature: Processing membership signups
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "ODI Supporter (01010101) [Commercial] (annual invoice payment)"
     And the invoice price should be "720"
+    And the invoice discount should be empty
     And the supporter level should be "Supporter"
     And I should be added to the invoicing queue
     When the signup processor runs
@@ -53,6 +54,7 @@ Feature: Processing membership signups
     And my purchase order reference is "ABC000001"
     Then the invoice description should read "<description>"
     And the invoice price should be "<price>"
+    And the invoice discount should be empty
     And the supporter level should be "<level>"
     And I should be added to the invoicing queue
     When the signup processor runs
@@ -73,6 +75,7 @@ Feature: Processing membership signups
     And my payment reference is "<reference>"
     Then the invoice description should read "<description>"
     And the invoice price should be "720"
+    And the invoice discount should be empty
     And the supporter level should be "Supporter"
     And I should be added to the invoicing queue
     When the signup processor runs
