@@ -93,6 +93,12 @@ Then /^that invoice should show that payment has been received$/ do
   @invoice.line_items.last.description.should include("PAID")
 end
 
+Then(/^the invoice does not contain does not show paid with$/) do
+  $stdout.puts @invoice.line_items.inspect
+
+  @invoice.line_items.last.description.should_not include("PAID")
+end
+
 Then /^that invoice should show that payment has not been received$/ do
   @invoice.amount_paid.should == 0.0
   @invoice.amount_due.should  == @invoice.total
