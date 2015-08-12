@@ -1,6 +1,5 @@
 @vcr @clean_up_xero_contact @clean_up_xero_invoice
-Feature: Invoicing existing personal contacts
-
+Feature: Invoicing existing personal contacts for training
   In order to be invoiced for the training
   As a prospective delegate
   I want to be sent an invoice when I sign up to attend an event
@@ -15,15 +14,16 @@ Feature: Invoicing existing personal contacts
     And I do not work for anyone
     And there is a contact in Xero for "Bob Fish (bob.fish@example.com)"
 
-  Scenario: invoices are raised
+  Scenario: Invoices are raised
     Given I have registered for a ticket
     And I paid with Paypal
     When the attendee invoicer runs
     Then an invoice should be raised in Xero against "Bob Fish (bob.fish@example.com)"
 
-  Scenario: invoices are not generated more than once for same purchase
+  Scenario: Invoices are not generated more than once for same purchase
     Given I have registered for a ticket
     And I paid with Paypal
     And I have already been invoiced
     When the attendee invoicer runs
     Then I should not be invoiced again
+
