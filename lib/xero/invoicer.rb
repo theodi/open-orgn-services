@@ -93,6 +93,7 @@ class Invoicer
           description:  line_item['description'],
           unit_amount:  line_item['base_price'],
           tax_type:     invoice_to['vat_id'] ? 'NONE' : 'OUTPUT2',
+          discount_rate: line_item['discount_rate']
         }
       end
 

@@ -38,6 +38,7 @@ class SignupProcessor
   #                   'offer_category'
   #                   'purchase_order_reference'
   #                   'membership_id'
+  #                   'discount'
 
 
   # Returns nil. Queues invoicing and CRM task creation jobs.
@@ -128,9 +129,10 @@ class SignupProcessor
       'payment_method' => purchase['payment_method'],
       'payment_ref' => purchase['payment_ref'],
       'line_items' => [{
-          'quantity'    => 1,
-          'base_price'  => membership_type[:price],
-          'description' => invoice_description
+          'quantity'      => 1,
+          'base_price'    => membership_type[:price],
+          'discount_rate' => purchase['discount'],
+          'description'   => invoice_description
       }],
       'repeat' => 'annual',
       'purchase_order_reference' => purchase['purchase_order_reference'],

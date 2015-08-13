@@ -33,7 +33,8 @@ module SignupProcessorSupport
       'payment_ref'              => @payment_ref,
       'offer_category'           => @membership_level,
       'purchase_order_reference' => @purchase_order_reference,
-      'membership_id'            => @membership_id
+      'membership_id'            => @membership_id,
+      'discount'                 => @discount
     }
     [organization, contact_person, billing, purchase]
   end
