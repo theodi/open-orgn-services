@@ -142,6 +142,18 @@ Feature: Invoicing
     And that invoice should show that the payment was made by direct debit
     And that invoice should include the payment reference "cus_12345"
 
+  Scenario: Invoices show invoice payment method as unpaid
+    Given I have made a purchase
+    And I have not already been invoiced
+    And I requested an invoice
+    And my payment reference is "cus_12345"
+    When the invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should contain 1 line items
+    And that invoice should have a total of 1.20
+    And that invoice should show that payment has not been received
+    And the invoice does not contain does not show paid with
+
   Scenario: Invoices to be paid later show as unpaid
     Given I have made a purchase
     And I have not already been invoiced
