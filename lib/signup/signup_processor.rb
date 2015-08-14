@@ -104,7 +104,7 @@ class SignupProcessor
       'vat_id' => organization['vat_id']
     }.compact
 
-    invoice_description = description(purchase['membership_id'],
+    invoice_description = invoice_description(purchase['membership_id'],
                                  membership_type[:description],
                                  organization['type'] || purchase['offer_category'],
                                  purchase['payment_method'],
@@ -155,7 +155,7 @@ class SignupProcessor
     end
   end
 
-  def description(membership_id, description, type, method, frequency)
+  def invoice_description(membership_id, description, type, method, frequency)
     "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{format_payment_method(method)} payment)"
   end
 

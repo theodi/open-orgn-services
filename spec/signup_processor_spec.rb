@@ -236,7 +236,7 @@ describe SignupProcessor do
     end
   end
 
-  describe "#description" do
+  describe "#invoice_description" do
     let(:membership_id) { "12345" }
     let(:description) { "Individual supporter" }
     let(:type) { "individual" }
@@ -244,7 +244,7 @@ describe SignupProcessor do
     let(:method) { "credit_card" }
 
     it "returns the correct description" do
-      expect(subject.description(membership_id, description, type, method, frequency)).to eq(
+      expect(subject.invoice_description(membership_id, description, type, method, frequency)).to eq(
         "ODI Individual supporter (12345) [Individual] (annual card payment)"
       )
     end
