@@ -101,7 +101,8 @@ class SignupProcessor
     else
       method
     end
-    str = "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment)"
+
+    "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment)"
   end
 
   def perform
