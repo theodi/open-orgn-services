@@ -1,4 +1,12 @@
-require "active_support/inflector"
+# TODO This is temporary until we inject the
+# dependency at which point we will use a test
+# double instead
+Resque = Class.new do
+  def self.enqueue(klass, invoice_to, invoice_details)
+  end
+end
+
+Invoicer = Class.new
 
 require_relative "../lib/signup/signup_processor"
 
@@ -7,13 +15,172 @@ describe SignupProcessor do
     SignupProcessor.new(organization, contact_person, billing, purchase)
   end
 
-  let(:organization) {}
+  let(:organization_name) { "Mr Test" }
 
-  let(:contact_person) {}
+  let(:organization_type) {}
 
-  let(:billing) {}
+  let(:organization) do
+    {
+      "name"           => organization_name,
+      "company_number" => "123456",
+      "size"           => "10-50",
+      "sector"         => "Education",
+      "origin"         => "odi-leeds",
+      "type"           => organization_type
+    }
+  end
 
-  let(:purchase) {}
+  let(:contact_person) do
+    {
+      "name"  => "Contact person",
+      "email" => "contact@person.com"
+    }
+  end
+
+  let(:billing) do
+    {
+      "name" => "Billing person",
+      "email" => "test@example.com",
+      "telephone" => "01234 567890",
+      "address" => {
+        "street_address"   => "1 Some Street",
+        "address_locality" => "Some town",
+        "address_region"   => "Some region",
+        "address_country"  => "Some country",
+        "postal_code"      => "Some postcode"
+      }
+    }
+  end
+
+  let(:purchase) do
+    {
+      "offer_category"           => "individual",
+      "membership_id"            => 123456,
+      "payment_method"           => "credit_card",
+      "payment_freq"             => "annual",
+      "payment_ref"              => "012345",
+      "discount"                 => 50.0,
+      "purchase_order_reference" => "PO1234"
+    }
+  end
+
+  describe "#perform" do
+    let(:expected_organization_details_name) { "Mr Test" }
+
+    let(:expected_organization_details) do
+      {
+        "name"            => expected_organization_details_name,
+        "company_number"  => "123456",
+        "email"           => "test@example.com"
+      }
+    end
+
+    let(:expected_membership_details) do
+      {
+        "product_name"    => "individual",
+        "supporter_level" => "Individual",
+        "id"              => "123456",
+        "join_date"       => Date.today.to_s, # Not ideal, but no times so should ok?
+        "contact_email"   => "contact@person.com",
+        "size"            => "10-50",
+        "sector"          => "Education",
+        "origin"          => "odi-leeds"
+      }
+    end
+
+    let(:expected_invoice_to_name) { "Mr Test" }
+
+    let(:expected_invoice_to) do
+      {
+        "name" => expected_invoice_to_name,
+        "contact_point" => {
+          "name"      => "Billing person",
+          "email"     => "test@example.com",
+          "telephone" => "01234 567890"
+        },
+        "address" => {
+          "street_address"   => "1 Some Street",
+          "address_locality" => "Some town",
+          "address_region"   => "Some region",
+          "address_country"  => "Some country",
+          "postal_code"      => "Some postcode"
+        }
+      }
+    end
+
+    let(:expected_invoice_line_item_description) do
+      "ODI Individual supporter (123456) [Individual] (annual card payment)"
+    end
+
+    let(:expected_invoice_details) do
+      {
+        "payment_method" => "credit_card",
+        "payment_ref" => "012345",
+        "line_items" => [
+          {
+            "quantity"      => 1,
+            "base_price"    => 108,
+            "discount_rate" => 50.0,
+            "description"   => expected_invoice_line_item_description
+          }
+        ],
+        "repeat"                   => "annual",
+        "purchase_order_reference" => "PO1234",
+        "sector"                   => "Education"
+      }
+    end
+
+    it "should save the signup details to the CRM" do
+      expect(SendSignupToCapsule).to receive(:perform).with(
+        expected_organization_details, expected_membership_details
+      ).once
+
+      expect(Resque).to receive(:enqueue).with(
+        Invoicer, expected_invoice_to, expected_invoice_details
+      ).once
+
+      subject.perform
+    end
+
+    context "organization name is empty" do
+      let(:organization_name) { nil }
+
+      let(:expected_organization_details_name) { "Contact person" }
+      let(:expected_invoice_to_name) { "Contact person" }
+
+      it "should save the signup details to the CRM" do
+        expect(SendSignupToCapsule).to receive(:perform).with(
+          expected_organization_details, expected_membership_details
+        ).once
+
+        expect(Resque).to receive(:enqueue).with(
+          Invoicer, expected_invoice_to, expected_invoice_details
+        ).once
+
+        subject.perform
+      end
+    end
+
+    context "organization type is empty" do
+      let(:organization_type) { "non_commercial" }
+
+      let(:expected_invoice_line_item_description) do
+        "ODI Individual supporter (123456) [Non Commercial] (annual card payment)"
+      end
+
+      it "should save the signup details to the CRM" do
+        expect(SendSignupToCapsule).to receive(:perform).with(
+          expected_organization_details, expected_membership_details
+        ).once
+
+        expect(Resque).to receive(:enqueue).with(
+          Invoicer, expected_invoice_to, expected_invoice_details
+        ).once
+
+        subject.perform
+      end
+    end
+  end
 
   describe "#membership_type" do
     let(:size) { }

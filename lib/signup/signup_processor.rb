@@ -1,3 +1,11 @@
+require "active_support/inflector"
+require "date"
+
+require_relative '../hash_compact'
+require_relative "../signup/product_helper"
+require_relative "../capsulecrm/capsule_helper"
+require_relative "../capsulecrm/send_signup_to_capsule"
+
 class SignupProcessor
   @queue = :signup
 
