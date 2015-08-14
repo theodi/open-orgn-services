@@ -93,7 +93,11 @@ class SignupProcessor
   end
 
   def description(membership_id, description, type, method, frequency)
-    meth_str = case method
+    "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{format_payment_method(method)} payment)"
+  end
+
+  def format_payment_method(method)
+    case method
     when 'credit_card'
       'card'
     when 'direct_debit'
@@ -101,8 +105,6 @@ class SignupProcessor
     else
       method
     end
-
-    "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment)"
   end
 
   def perform

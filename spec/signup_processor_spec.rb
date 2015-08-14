@@ -241,34 +241,37 @@ describe SignupProcessor do
     let(:description) { "Individual supporter" }
     let(:type) { "individual" }
     let(:frequency) { "annual" }
+    let(:method) { "credit_card" }
 
+    it "returns the correct description" do
+      expect(subject.description(membership_id, description, type, method, frequency)).to eq(
+        "ODI Individual supporter (12345) [Individual] (annual card payment)"
+      )
+    end
+  end
+
+  describe "#format_payment_method" do
     context "payment method is credit card" do
-      let(:method) { "credit_card" }
+      let(:payment_method) { "credit_card" }
 
-      it "returns the correct description" do
-        expect(subject.description(membership_id, description, type, method, frequency)).to eq(
-          "ODI Individual supporter (12345) [Individual] (annual card payment)"
-        )
+      it "returns 'card'" do
+        expect(subject.format_payment_method(payment_method)).to eq("card")
       end
     end
 
     context "payment method is direct debit" do
-      let(:method) { "direct_debit" }
+      let(:payment_method) { "direct_debit" }
 
-      it "returns the correct description" do
-        expect(subject.description(membership_id, description, type, method, frequency)).to eq(
-          "ODI Individual supporter (12345) [Individual] (annual dd payment)"
-        )
+      it "returns 'direct_debit'" do
+        expect(subject.format_payment_method(payment_method)).to eq("dd")
       end
     end
 
-    context "payment method is something other than credit card or direct debit" do
-      let(:method) { "invoice" }
+    context "payment method is something else" do
+      let(:payment_method) { "invoice" }
 
-      it "returns the correct description" do
-        expect(subject.description(membership_id, description, type, method, frequency)).to eq(
-          "ODI Individual supporter (12345) [Individual] (annual invoice payment)"
-        )
+      it "returns what was passed in" do
+        expect(subject.format_payment_method(payment_method)).to eq("invoice")
       end
     end
   end
