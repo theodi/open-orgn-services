@@ -15,6 +15,60 @@ describe SignupProcessor do
 
   let(:purchase) {}
 
+  describe "#membership_type" do
+    let(:size) { }
+    let(:type) { }
+    let(:category) { }
+
+    context "individual" do
+      let(:category) { "individual" }
+
+      it "returns the details for individual supporters" do
+        expect(subject.membership_type(size, type, category)).to eq({
+          price:       108,
+          description: "Individual supporter",
+          type:        "Individual"
+        })
+      end
+    end
+
+    context "corporate supporter" do
+      let(:category) { "corporate" }
+
+      it "returns the details for corporate supporters" do
+        expect(subject.membership_type(size, type, category)).to eq({
+          price:       2200,
+          description: "Corporate Supporter",
+          type:        "Corporate supporter"
+        })
+      end
+    end
+
+    context "non-commercial supporter" do
+      let(:type) { "non_commercial" }
+
+      it "returns the details for supporters" do
+        expect(subject.membership_type(size, type, category)).to eq({
+          price:       720,
+          description: "Supporter",
+          type:        "Supporter"
+        })
+      end
+    end
+
+    context "supporter with valid organisation size" do
+      let(:size) { "10-50" }
+
+      it "returns the details for supporters" do
+        expect(subject.membership_type(size, type, category)).to eq({
+          price:       720,
+          description: "Supporter",
+          type:        "Supporter"
+        })
+      end
+    end
+  end
+
   describe "#description" do
     let(:membership_id) { "12345" }
     let(:description) { "Individual supporter" }
