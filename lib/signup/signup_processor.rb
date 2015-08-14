@@ -43,8 +43,20 @@ class SignupProcessor
 
   # Returns nil. Queues invoicing and CRM task creation jobs.
 
+  def self.perform(organization, contact_person, billing, purchase)
+    self.new(organization, contact_person, billing, purchase).perform
+  end
 
-  def self.membership_type(size, type, category)
+  attr_reader :organization, :contact_person, :billing, :purchase
+
+  def initialize(organization, contact_person, billing, purchase)
+    @organization   = organization
+    @contact_person = contact_person
+    @billing        = billing
+    @purchase       = purchase
+  end
+
+  def membership_type(size, type, category)
     if category == 'individual'
       {
         price: 108,
@@ -72,7 +84,7 @@ class SignupProcessor
     end
   end
 
-  def self.description(membership_id, description, type, method, frequency)
+  def description(membership_id, description, type, method, frequency)
     meth_str = case method
     when 'credit_card'
       'card'
@@ -84,8 +96,8 @@ class SignupProcessor
     str = "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{meth_str} payment)"
   end
 
+  def perform
 
-  def self.perform(organization, contact_person, billing, purchase)
     # Save details in capsule
     membership_type = membership_type(organization['size'], organization['type'], purchase['offer_category'])
 
@@ -146,5 +158,5 @@ class SignupProcessor
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
   end
-
 end
+
