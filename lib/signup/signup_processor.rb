@@ -64,49 +64,6 @@ class SignupProcessor
     @purchase       = purchase
   end
 
-  def membership_type(size, type, category)
-    if category == 'individual'
-      {
-        price: 108,
-        description: 'Individual supporter',
-        type: 'Individual'
-      }
-    elsif category == 'student'
-      {
-        price: 0,
-        description: 'Individual student supporter',
-        type: 'Student'
-      }
-    elsif %w(<10 10-50 51-250).include?(size) || type == 'non_commercial'
-      {
-        price: (60 * 12),
-        description: 'Supporter',
-        type: 'Supporter'
-      }
-    else
-      {
-        price: 2200,
-        description: 'Corporate Supporter',
-        type: 'Corporate supporter'
-      }
-    end
-  end
-
-  def description(membership_id, description, type, method, frequency)
-    "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{format_payment_method(method)} payment)"
-  end
-
-  def format_payment_method(method)
-    case method
-    when 'credit_card'
-      'card'
-    when 'direct_debit'
-      'dd'
-    else
-      method
-    end
-  end
-
   def perform
 
     # Save details in capsule
@@ -168,6 +125,49 @@ class SignupProcessor
       'sector' => organization['sector']
     }.compact
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
+  end
+
+  def membership_type(size, type, category)
+    if category == 'individual'
+      {
+        price: 108,
+        description: 'Individual supporter',
+        type: 'Individual'
+      }
+    elsif category == 'student'
+      {
+        price: 0,
+        description: 'Individual student supporter',
+        type: 'Student'
+      }
+    elsif %w(<10 10-50 51-250).include?(size) || type == 'non_commercial'
+      {
+        price: (60 * 12),
+        description: 'Supporter',
+        type: 'Supporter'
+      }
+    else
+      {
+        price: 2200,
+        description: 'Corporate Supporter',
+        type: 'Corporate supporter'
+      }
+    end
+  end
+
+  def description(membership_id, description, type, method, frequency)
+    "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{format_payment_method(method)} payment)"
+  end
+
+  def format_payment_method(method)
+    case method
+    when 'credit_card'
+      'card'
+    when 'direct_debit'
+      'dd'
+    else
+      method
+    end
   end
 end
 
