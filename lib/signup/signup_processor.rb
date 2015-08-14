@@ -47,8 +47,7 @@ class SignupProcessor
   #                   'purchase_order_reference'
   #                   'membership_id'
   #                   'discount'
-
-
+  #
   # Returns nil. Queues invoicing and CRM task creation jobs.
 
   def self.perform(organization, contact_person, billing, purchase)
@@ -70,60 +69,65 @@ class SignupProcessor
     membership_type = membership_type(organization['size'], organization['type'], purchase['offer_category'])
 
     organization_details = {
-      'name' => organization['name'] || contact_person['name'],
-      'company_number' => organization['company_number'],
-      'email' => billing['email']
+      "name"           => organization["name"] || contact_person["name"],
+      "company_number" => organization["company_number"],
+      "email"          => billing["email"]
     }.compact
+
     membership = {
-      'product_name'    => purchase['offer_category'],
-      'supporter_level' => membership_type[:type],
-      'id'              => purchase['membership_id'].to_s,
-      'join_date'       => Date.today.to_s,
-      'contact_email'   => contact_person['email'],
-      'size'            => organization['size'],
-      'sector'          => organization['sector'],
-      'origin'          => organization['origin']
+      "product_name"    => purchase["offer_category"],
+      "supporter_level" => membership_type[:type],
+      "id"              => purchase["membership_id"].to_s,
+      "join_date"       => Date.today.to_s,
+      "contact_email"   => contact_person["email"],
+      "size"            => organization["size"],
+      "sector"          => organization["sector"],
+      "origin"          => organization["origin"]
     }.compact
 
     SendSignupToCapsule.perform(organization_details, membership)
 
     invoice_to = {
-      'name' => organization['name'] || contact_person['name'],
-      'contact_point' => {
-        'name' => billing['name'],
-        'email' => billing['email'],
-        'telephone' => billing['telephone'],
+      "name" => organization["name"] || contact_person["name"],
+      "contact_point" => {
+        "name"      => billing["name"],
+        "email"     => billing["email"],
+        "telephone" => billing["telephone"],
       },
-      'address' => {
-        'street_address' => billing['address']['street_address'],
-        'address_locality' => billing['address']['address_locality'],
-        'address_region' => billing['address']['address_region'],
-        'address_country' => billing['address']['address_country'],
-        'postal_code' => billing['address']['postal_code']
+      "address" => {
+        "street_address"   => billing["address"]["street_address"],
+        "address_locality" => billing["address"]["address_locality"],
+        "address_region"   => billing["address"]["address_region"],
+        "address_country"  => billing["address"]["address_country"],
+        "postal_code"      => billing["address"]["postal_code"]
       },
-      'vat_id' => organization['vat_id']
+      "vat_id" => organization["vat_id"]
     }.compact
 
-    invoice_description = invoice_description(purchase['membership_id'],
-                                 membership_type[:description],
-                                 organization['type'] || purchase['offer_category'],
-                                 purchase['payment_method'],
-                                 purchase['payment_method'] == 'invoice' ? 'annual' : purchase['payment_freq']
-                                )
+    invoice_description = invoice_description(
+      purchase["membership_id"],
+      membership_type[:description],
+      organization["type"] || purchase["offer_category"],
+      purchase["payment_method"],
+      purchase["payment_method"] == "invoice" ? "annual" : purchase["payment_freq"]
+    )
 
     invoice_details = {
-      'payment_method' => purchase['payment_method'],
-      'payment_ref' => purchase['payment_ref'],
-      'line_items' => [{
-          'quantity'      => 1,
-          'base_price'    => membership_type[:price],
-          'discount_rate' => purchase['discount'],
-          'description'   => invoice_description
-      }],
-      'repeat' => 'annual',
-      'purchase_order_reference' => purchase['purchase_order_reference'],
-      'sector' => organization['sector']
+      "payment_method" => purchase["payment_method"],
+      "payment_ref"    => purchase["payment_ref"],
+      "line_items" => [
+        {
+          "quantity"      => 1,
+          "base_price"    => membership_type[:price],
+          "discount_rate" => purchase["discount"],
+          "description"   => invoice_description
+        }
+      ],
+      "repeat"                   => "annual",
+      "purchase_order_reference" => purchase["purchase_order_reference"],
+      "sector"                   => organization["sector"]
     }.compact
+
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
   end
 
