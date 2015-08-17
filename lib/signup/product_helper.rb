@@ -20,7 +20,7 @@ module ProductHelper
     when :individual
       108
     else
-      raise ArgumentError.new("Unknown product name #{product}")
+      raise ArgumentError.new("Unknown product value #{product}")
     end
   end
 
@@ -34,7 +34,7 @@ module ProductHelper
     when :sponsor, :partner
       3
     else
-      raise ArgumentError.new("Unknown product name #{product}")
+      raise ArgumentError.new("Unknown product duration #{product}")
     end
   end
 
@@ -45,7 +45,7 @@ module ProductHelper
     when :sponsor, :partner, :individual
       'YEAR'
     else
-      raise ArgumentError.new("Unknown product name #{product}")
+      raise ArgumentError.new("Unknown product basis #{product}")
     end
   end
 
