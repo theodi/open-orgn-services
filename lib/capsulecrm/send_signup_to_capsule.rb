@@ -23,7 +23,7 @@ class SendSignupToCapsule
   #
   # Returns nil.
   def self.perform(party, membership)
-    if membership['product_name'] == "individual"
+    if %w(individual student).include?(membership['product_name'])
       p = find_or_create_person(party)
     else
       p = find_or_create_organization(party)
@@ -53,7 +53,7 @@ class SendSignupToCapsule
     # Set up membership tag
     set_membership_tag(
       p,
-      "Level"           => membership['product_name'],
+      "Level"           => level(membership['product_name']),
       "Supporter Level" => membership['supporter_level'],
       "ID"              => membership['id'],
       "Joined"          => Date.parse(membership['join_date']),
@@ -73,4 +73,9 @@ class SendSignupToCapsule
     end
   end
 
+  def self.level(product_name)
+    return "individual" if product_name == "student"
+
+    product_name
+  end
 end

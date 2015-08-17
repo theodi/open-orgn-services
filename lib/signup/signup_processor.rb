@@ -51,6 +51,12 @@ class SignupProcessor
         description: 'Individual supporter',
         type: 'Individual'
       }
+    elsif category == 'student'
+      {
+        price: 0,
+        description: 'Individual student supporter',
+        type: 'Student'
+      }
     elsif %w(<10 10-50 51-250).include?(size) || type == 'non_commercial'
       {
         price: (60 * 12),
