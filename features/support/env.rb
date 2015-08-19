@@ -31,10 +31,6 @@ Spork.each_run do
     c.default_cassette_options = { :record => :once }
     c.cassette_library_dir = 'fixtures/vcr_cassettes'
     c.hook_into :webmock
-
-    if ENV['VCR_DEBUG']
-      c.debug_logger = STDOUT
-    end
   end
 
   VCR.cucumber_tags do |t|
