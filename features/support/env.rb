@@ -1,7 +1,7 @@
 $:.unshift File.join( File.dirname(__FILE__), "..", "..", "lib")
 
 require 'coveralls'
-Coveralls.wear!
+Coveralls.wear_merged!
 
 require 'dotenv'
 
