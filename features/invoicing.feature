@@ -1,11 +1,12 @@
-@vcr @clean_up_xero_contact @clean_up_xero_invoice
+@vcr @clean_up_xero_contact @clean_up_xero_invoice @timecop
 Feature: Invoicing
   In order to keep track of customer purchases
   As an administrator
   I want invoices to be created
 
   Background:
-    Given the invoice is due on 2013-03-10
+    Given that it's around the time the cassettes were recorded
+    And the invoice is due on 2013-03-10
     And the invoice amount is 1.00
     And my first name is "Bob"
     And my last name is "Fish"
@@ -173,4 +174,3 @@ Feature: Invoicing
     When that invoice is deleted
     When the invoicer runs
     Then an invoice should not be raised in Xero against "Existing Company Inc."
-

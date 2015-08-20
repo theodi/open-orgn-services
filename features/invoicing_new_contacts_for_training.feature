@@ -1,10 +1,11 @@
-@vcr @clean_up_xero_contact
+@vcr @clean_up_xero_contact @timecop
 Feature: Invoicing new contacts for training events
   In order to be invoiced for the training so that my company or government department can pay for it
   As a prospective delegate
   I want to be sent an invoice when I sign up to attend an event
 
   Background:
+    Given that it's around the time the cassettes were recorded
     Given an event in Eventbrite called "[Test Event 00] Drupal: Down the Rabbit Hole" with id 5441375300
     And the net price of the event is 1.00
     And my first name is "Bob"
@@ -49,11 +50,11 @@ Feature: Invoicing new contacts for training events
     And that company has an invoice address (line2) of "The Rough End"
     And that company has an invoice address (city) of "London"
     And that company has an invoice address (region) of "Greater London"
-    And that company has an invoice address (country) of "UK" 
-    And that company has an invoice address (postcode) of "EC1A 1AA" 
+    And that company has an invoice address (country) of "UK"
+    And that company has an invoice address (postcode) of "EC1A 1AA"
     And there is no contact in Xero for "New Company Inc."
     And I have registered for a ticket
-    Then the attendee invoicer should be requeued    
+    Then the attendee invoicer should be requeued
     When the attendee invoicer runs
     Then a contact should exist in Xero for "New Company Inc."
     And that contact should have email "finance@newcompany.com"
@@ -63,4 +64,3 @@ Feature: Invoicing new contacts for training events
     And that contact should have postal address (region) of "Greater London"
     And that contact should have postal address (country) of "UK"
     And that contact should have postal address (postal_code) of "EC1A 1AA"
-

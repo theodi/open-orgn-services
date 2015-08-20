@@ -134,3 +134,10 @@ end
 Then(/^there should be (.*?) line items$/) do |num|
   @invoice.line_items.count.should == num
 end
+
+Given(/^that it's around the time the cassettes were recorded$/) do
+  unless VCR.current_cassette.nil? || VCR.current_cassette.record_mode == :all
+    datetime = File.ctime(VCR.current_cassette.file)
+    Timecop.travel(datetime)
+  end
+end
