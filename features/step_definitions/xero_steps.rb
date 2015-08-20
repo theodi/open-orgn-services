@@ -93,6 +93,10 @@ Then /^that invoice should show that payment has been received$/ do
   @invoice.line_items.last.description.should include("PAID")
 end
 
+Then(/^the invoice does not contain does not show paid with$/) do
+  @invoice.line_items.last.description.should_not include("PAID")
+end
+
 Then /^that invoice should show that payment has not been received$/ do
   @invoice.amount_paid.should == 0.0
   @invoice.amount_due.should  == @invoice.total
@@ -129,4 +133,11 @@ end
 
 Then(/^there should be (.*?) line items$/) do |num|
   @invoice.line_items.count.should == num
+end
+
+Given(/^that it's around the time the cassettes were recorded$/) do
+  unless VCR.current_cassette.nil? || VCR.current_cassette.record_mode == :all
+    datetime = File.ctime(VCR.current_cassette.file)
+    Timecop.travel(datetime)
+  end
 end
