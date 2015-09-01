@@ -38,7 +38,7 @@ class SendDirectoryEntryToCapsule
       requeue(membership_id, organization, directory_entry, date)
     else
       # Chunk description into 250-char sections
-      description = directory_entry['description'].scan(/.{1,250}/)
+      description = directory_entry['description'].to_s.scan(/.{1,250}/)
       # Store
       fields = {
         'Active'        => directory_entry['active'],
