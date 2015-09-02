@@ -11,6 +11,7 @@ class SendDirectoryEntryToCapsule
   #                   'name'         => the organisation name
   #
   # directory_entry   - a hash containing details of the directory entry
+  #                   'active'       => whether the organization should be active or not
   #                   'description'  => the description that will appear against the
   #                                     organisation in the business directory
   #                   'homepage'     => the website address of the business
@@ -37,9 +38,10 @@ class SendDirectoryEntryToCapsule
       requeue(membership_id, organization, directory_entry, date)
     else
       # Chunk description into 250-char sections
-      description = directory_entry['description'].scan(/.{1,250}/)
+      description = directory_entry['description'].to_s.scan(/.{1,250}/)
       # Store
       fields = {
+        'Active'        => directory_entry['active'],
         'Description'   => description[0],
         'Description-2' => description[1],
         'Description-3' => description[2],

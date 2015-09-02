@@ -64,6 +64,7 @@ module CapsuleHelper
 
   def set_directory_entry_tag(party, fields)
     types = {
+      'Active'        => :boolean,
       'Description'   => :text,
       'Description-2' => :text,
       'Description-3' => :text,
