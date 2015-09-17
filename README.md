@@ -21,6 +21,11 @@ And require if necessary:
 
 Configuration is loaded from environment variables. See the environment section below for the list of which variables must be set.
 
+Development
+-----------
+
+You can start a local console using `foreman run bundle console`. This loads the app and environment.
+
 License
 -------
 
