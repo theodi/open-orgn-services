@@ -24,7 +24,7 @@ module CRM
 
     def custom_field(tag, label)
       record.custom_fields.find do |field|
-        field.label == "Newsletter" && field.tag == "Membership"
+        field.label == label && field.tag == tag
       end
     end
   end
