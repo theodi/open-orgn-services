@@ -30,6 +30,22 @@ below for the list of which variables must be set.
 You can start a local console using `foreman run bundle console`. This loads
 the app and environment.
 
+## Testing
+
+There are Cucumber features and RSpec unit tests.
+
+You can run the Cucumber features with
+
+    bundle exec cucumber features
+
+And the specs with
+
+    bundle exec rspec
+
+Make sure that all environment variables are setup to point to test systems as
+the test systems may be hit during test runs. This especially applies to
+Capsule CRM, Xero, Eventbrite and Mailchimp.
+
 ## License
 
 This code is open source under the MIT license. See the LICENSE.md file for 
