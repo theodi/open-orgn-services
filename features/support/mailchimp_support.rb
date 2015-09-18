@@ -4,7 +4,7 @@ module MailchimpSupport
       { id: ENV.fetch("MAILCHIMP_LIST_ID") }
     )
 
-    members["data"].map { |member| member["email"] }
+    members["data"]
   end
 end
 

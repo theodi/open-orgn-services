@@ -38,10 +38,14 @@ When(/^the mailing list syncronization job runs$/) do
 end
 
 Then(/^the member will subscribed to the mailing list$/) do
-  expect(mailing_list_members).to include(@member.emails.first.address)
+  email_addresses = mailing_list_members.map { |s| s["email"] }
+
+  expect(email_addresses).to include(@member.emails.first.address)
 end
 
 Then(/^the member will unsubscribed to the mailing list$/) do
-  expect(mailing_list_members).to_not include(@member.emails.first.address)
+  email_addresses = mailing_list_members.map { |s| s["email"] }
+
+  expect(email_addresses).to_not include(@member.emails.first.address)
 end
 
