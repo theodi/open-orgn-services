@@ -27,7 +27,7 @@ describe UpdateMailingList do
       it "unsubscribes the user from the list" do
         allow(member).to receive(:newsletter?).and_return(true)
 
-        expect(mailing_list).to receive(:subscribe).with("test@example.com")
+        expect(mailing_list).to receive(:subscribe).with(email: "test@example.com")
 
         subject.perform
       end
@@ -37,7 +37,7 @@ describe UpdateMailingList do
       it "subscribes the user to the list" do
         allow(member).to receive(:newsletter?).and_return(false)
 
-        expect(mailing_list).to receive(:unsubscribe).with("test@example.com")
+        expect(mailing_list).to receive(:unsubscribe).with(email: "test@example.com")
 
         subject.perform
       end

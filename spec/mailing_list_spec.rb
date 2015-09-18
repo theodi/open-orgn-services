@@ -3,11 +3,12 @@ require_relative "../lib/mailing_list/mailing_list"
 describe MailingList do
 
   subject do
-    MailingList.new("test@example.com", 1234)
+    MailingList.new(attributes, 1234)
   end
 
-  let(:api)     { double("Mailchimp API") }
-  let(:list)    { double("Mailchimp list") }
+  let(:api)        { double("Mailchimp API") }
+  let(:list)       { double("Mailchimp list") }
+  let(:attributes) { { email: "test@example.com" } }
 
   before do
     subject.api = api

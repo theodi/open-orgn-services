@@ -1,27 +1,27 @@
 require 'gibbon'
 
 class MailingList
-  def self.subscribe(email)
-    new(email).subscribe
+  def self.subscribe(params)
+    new(params).subscribe
   end
 
-  def self.unsubscribe(email)
-    new(email).unsubscribe
+  def self.unsubscribe(params)
+    new(params).unsubscribe
   end
 
   attr_writer :api
-  attr_reader :email
+  attr_reader :attributes
 
-  def initialize(email, list_id = nil)
-    @email   = email
-    @list_id = list_id
+  def initialize(attributes, list_id = nil)
+    @attributes = OpenStruct.new(attributes)
+    @list_id    = list_id
   end
 
   def subscribe
     api.lists.subscribe({
       :id => list_id,
       :email => {
-        :email => email
+        :email => attributes.email
       },
       :double_optin => false
     })
@@ -31,7 +31,7 @@ class MailingList
     api.lists.unsubscribe(
       :id => list_id,
       :email => {
-        :email => email
+        :email => attributes.email
       },
       :delete_member => true,
       :send_notify   => false,
