@@ -1,5 +1,5 @@
 require "active_support/core_ext/string"
-require 'crm/crm_party'
+require "crm/crm_party"
 
 module CRM
   class Data
