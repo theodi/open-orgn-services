@@ -98,3 +98,6 @@ The following environment variables should be set in order to use this gem.
     XERO_CONSUMER_SECRET
     XERO_PRIVATE_KEY_PATH
 
+    MAILCHIMP_API_KEY
+    MAILCHIMP_LIST_ID
+
