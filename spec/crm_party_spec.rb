@@ -25,35 +25,22 @@ describe CRM::Party do
   end
 
   describe "#newsletter?" do
-    context "there is no membership tag" do
-
-      let(:custom_fields) { [] }
-
-      it "should return false" do
-        expect(subject.newsletter?).to eq(false)
-      end
+    let(:custom_fields) do
+      [OpenStruct.new({ "tag"=>"Membership", "label"=>"Newsletter", "boolean" => true })]
     end
 
-    context "there is a membership tag but no newsletter preference" do
+    it "should return true" do
+      expect(subject.newsletter?).to eq(true)
+    end
+  end
 
-      let(:custom_fields) do
-        [OpenStruct.new({ "tag"=>"Membership", "label"=>"Supporter", "text" => "Supporter Level" })]
-      end
-
-      it "should return false" do
-        expect(subject.newsletter?).to eq(false)
-      end
+  describe "#level" do
+    let(:custom_fields) do
+      [OpenStruct.new({ "tag"=>"Membership", "label"=>"Level", "text" => "supporter" })]
     end
 
-    context "there is a membership tag and newsletter preference is true" do
-
-      let(:custom_fields) do
-        [OpenStruct.new({ "tag"=>"Membership", "label"=>"Newsletter", "boolean" => true })]
-      end
-
-      it "should return true" do
-        expect(subject.newsletter?).to eq(true)
-      end
+    it "should return the level" do
+      expect(subject.level).to eq("supporter")
     end
   end
 end

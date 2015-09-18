@@ -9,7 +9,7 @@ describe UpdateMailingList do
   let(:id) { 123 }
   let(:type) { "Person" }
   let(:mailing_list) { double("Mailing list") }
-  let(:member) { double("Member", email: "test@example.com") }
+  let(:member) { double("Member", email: "test@example.com", level: "supporter") }
   let(:crm) { double("CRM") }
 
   before do
@@ -27,7 +27,8 @@ describe UpdateMailingList do
       it "unsubscribes the user from the list" do
         allow(member).to receive(:newsletter?).and_return(true)
 
-        expect(mailing_list).to receive(:subscribe).with(email: "test@example.com")
+        expect(mailing_list).to receive(:subscribe)
+          .with(email: "test@example.com", level: "supporter")
 
         subject.perform
       end

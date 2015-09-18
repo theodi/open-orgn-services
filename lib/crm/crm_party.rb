@@ -1,3 +1,5 @@
+require "crm/crm_tag"
+
 module CRM
   class Party
     attr_reader :record
@@ -11,21 +13,13 @@ module CRM
     end
 
     def newsletter
-      if field = custom_field("Membership", "Newsletter")
-        return field.boolean
-      end
-
-      false
+      CRM::Tag.boolean(record, "Membership", "Newsletter")
     end
 
     alias_method :newsletter?, :newsletter
 
-    private
-
-    def custom_field(tag, label)
-      record.custom_fields.find do |field|
-        field.label == label && field.tag == tag
-      end
+    def level
+      CRM::Tag.text(record, "Membership", "Level")
     end
   end
 end

@@ -17,7 +17,7 @@ class UpdateMailingList
 
   def perform
     if member.newsletter?
-      mailing_list.subscribe(email: member.email)
+      mailing_list.subscribe(email: member.email, level: member.level)
     else
       mailing_list.unsubscribe(email: member.email)
     end

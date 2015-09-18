@@ -23,6 +23,9 @@ class MailingList
       :email => {
         :email => attributes.email
       },
+      :merge_vars => {
+        :LEVEL => attributes.level
+      },
       :double_optin => false
     })
   end
