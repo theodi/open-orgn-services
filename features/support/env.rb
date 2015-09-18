@@ -13,6 +13,7 @@ require 'vcr'
 require 'webmock/cucumber'
 require 'cucumber/rspec/doubles'
 require 'timecop'
+require 'faker'
 require 'pry'
 
 Spork.prefork do

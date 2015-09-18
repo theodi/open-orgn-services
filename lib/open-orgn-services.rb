@@ -36,6 +36,12 @@ require 'capsulecrm/save_membership_id_in_capsule'
 require 'capsulecrm/save_membership_details_to_capsule'
 require 'capsulecrm/send_opportunity_reminders'
 
+require 'capsulecrm/capsule_members'
+require 'mailing_list/sync_mailing_list'
+require 'mailing_list/update_mailing_list'
+require 'mailing_list/mailing_list'
+require 'crm/crm_data'
+
 def environment
   ENV['RACK_ENV'] || 'production'
 end

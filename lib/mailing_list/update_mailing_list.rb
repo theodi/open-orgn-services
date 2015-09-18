@@ -34,7 +34,7 @@ class UpdateMailingList
   end
 
   def crm
-    @crm ||= CRM
+    @crm ||= CRM::Data
   end
 
   def mailing_list
