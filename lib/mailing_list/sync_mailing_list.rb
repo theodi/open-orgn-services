@@ -1,7 +1,7 @@
 require 'active_support/core_ext/numeric/time'
 
 class SyncMailingList
-  @queue = :mailing_list
+  @queue = :mailinglist
 
   def self.perform
     new.perform

@@ -1,7 +1,7 @@
 require "active_support/core_ext/string/inflections"
 
 class UpdateMailingList
-  @queue = :mailing_list
+  @queue = :mailinglist
 
   def self.perform(id, type)
     new(id, type).perform
