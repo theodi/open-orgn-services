@@ -1,4 +1,4 @@
-require_relative "../lib/mailing_list/update_mailing_list"
+require_relative "../../lib/mailing_list/update_mailing_list"
 
 describe UpdateMailingList do
 

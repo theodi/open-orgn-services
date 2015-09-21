@@ -8,7 +8,7 @@ end
 
 Invoicer = Class.new
 
-require_relative "../lib/signup/signup_processor"
+require_relative "../../lib/signup/signup_processor"
 
 describe SignupProcessor do
   subject do

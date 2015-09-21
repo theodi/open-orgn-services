@@ -1,4 +1,4 @@
-require_relative "../lib/signup/product_helper"
+require_relative "../../lib/signup/product_helper"
 
 describe ProductHelper do
 

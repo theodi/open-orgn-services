@@ -1,4 +1,4 @@
-require_relative "../lib/mailing_list/sync_mailing_list"
+require_relative "../../lib/mailing_list/sync_mailing_list"
 
 UpdateMailingList = Class.new
 

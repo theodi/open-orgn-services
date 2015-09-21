@@ -1,4 +1,4 @@
-require_relative "../lib/crm/crm_data"
+require_relative "../../lib/crm/crm_data"
 
 describe CRM::Data do
 

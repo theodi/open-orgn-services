@@ -1,4 +1,4 @@
-require_relative "../lib/crm/crm_party"
+require_relative "../../lib/crm/crm_party"
 
 describe CRM::Party do
 

@@ -1,4 +1,4 @@
-require_relative "../lib/crm/crm_tag"
+require_relative "../../lib/crm/crm_tag"
 
 describe CRM::Tag do
 
