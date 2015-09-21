@@ -1,6 +1,9 @@
 require 'gibbon'
 
 class MailingList
+  SubscribeFailure   = Class.new(StandardError)
+  UnsubscribeFailure = Class.new(StandardError)
+
   def self.subscribe(params)
     new(params).subscribe
   end
@@ -28,6 +31,8 @@ class MailingList
       },
       :double_optin => false
     })
+  rescue Gibbon::MailChimpError => e
+    raise SubscribeFailure, e.message
   end
 
   def unsubscribe
@@ -40,6 +45,8 @@ class MailingList
       :send_notify   => false,
       :send_goodbye  => false
     )
+  rescue Gibbon::MailChimpError => e
+    raise UnsubscribeFailure, e.message
   end
 
   def api
