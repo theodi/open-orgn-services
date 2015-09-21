@@ -1,11 +1,7 @@
 # TODO This is temporary until we inject the
 # dependency at which point we will use a test
 # double instead
-Resque = Class.new do
-  def self.enqueue(klass, invoice_to, invoice_details)
-  end
-end
-
+Resque   = Class.new { def self.enqueue(*args); end }
 Invoicer = Class.new
 
 require_relative "../../lib/signup/signup_processor"
