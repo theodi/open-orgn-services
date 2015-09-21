@@ -1,8 +1,9 @@
 require 'gibbon'
 
 class MailingList
-  SubscribeFailure   = Class.new(StandardError)
-  UnsubscribeFailure = Class.new(StandardError)
+  Failure            = Class.new(StandardError)
+  SubscribeFailure   = Class.new(Failure)
+  UnsubscribeFailure = Class.new(Failure)
 
   def self.subscribe(params)
     new(params).subscribe

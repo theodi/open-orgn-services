@@ -21,6 +21,9 @@ class UpdateMailingList
     else
       mailing_list.unsubscribe(email: member.email)
     end
+  rescue MailingList::Failure
+    # We don't care at the moment
+    false
   end
 
   private

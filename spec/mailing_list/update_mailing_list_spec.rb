@@ -43,6 +43,15 @@ describe UpdateMailingList do
         subject.perform
       end
     end
+
+    context "cannot subscribe or unsubscribe" do
+      it "should return false" do
+        allow(member).to receive(:newsletter?).and_return(true)
+        allow(mailing_list).to receive(:subscribe).and_raise(MailingList::Failure)
+
+        expect(subject.perform).to eq(false)
+      end
+    end
   end
 end
 
