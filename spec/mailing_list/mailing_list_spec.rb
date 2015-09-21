@@ -25,7 +25,7 @@ describe MailingList do
         expect(list).to receive(:subscribe).with(a_hash_including(
           :id           => 1234,
           :email        => { :email => "test@example.com" },
-          :merge_vars   => { :LEVEL => "supporter" },
+          :merge_vars   => { :FNAME => "", :LNAME => "", :LEVEL => "supporter" },
           :double_optin => false
         ))
 

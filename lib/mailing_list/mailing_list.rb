@@ -27,6 +27,8 @@ class MailingList
         :email => attributes.email
       },
       :merge_vars => {
+        :FNAME => "",
+        :LNAME => "",
         :LEVEL => attributes.level
       },
       :double_optin => false
