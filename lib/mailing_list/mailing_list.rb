@@ -52,11 +52,19 @@ class MailingList
   end
 
   def api
-    @api ||= Gibbon::API.new
+    @api ||= Gibbon::API.new(api_key)
+  end
+
+  def api_key
+    @api_key ||= ENV.fetch("MAILCHIMP_API_KEY") do
+      raise ArgumentError, "MAILCHIMP_API_KEY is missing"
+    end
   end
 
   def list_id
-    @list_id ||= ENV.fetch("MAILCHIMP_LIST_ID")
+    @list_id ||= ENV.fetch("MAILCHIMP_LIST_ID") do
+      raise ArgumentError, "MAILCHIMP_LIST_ID is missing"
+    end
   end
 end
 

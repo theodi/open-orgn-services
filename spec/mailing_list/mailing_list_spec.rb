@@ -3,11 +3,12 @@ require_relative "../../lib/mailing_list/mailing_list"
 describe MailingList do
 
   subject do
-    MailingList.new(attributes, 1234)
+    MailingList.new(attributes, list_id)
   end
 
   let(:api)        { double("Mailchimp API") }
   let(:list)       { double("Mailchimp list") }
+  let(:list_id)    { 1234 }
   let(:attributes) { { email: "test@example.com", level: "supporter" } }
 
   before do
@@ -68,6 +69,22 @@ describe MailingList do
 
         expect { subject.unsubscribe }.to raise_error(MailingList::UnsubscribeFailure)
       end
+    end
+  end
+
+  describe "#api_key" do
+    let(:api_key) { nil }
+
+    it "should raise an exception if the Mailchimp API key is missing" do
+      expect { subject.api_key }.to raise_error(ArgumentError, "MAILCHIMP_API_KEY is missing")
+    end
+  end
+
+  describe "#list_id" do
+    let(:list_id) { nil }
+
+    it "should raise an exception if the Mailchimp List ID is missing" do
+      expect { subject.list_id }.to raise_error(ArgumentError, "MAILCHIMP_LIST_ID is missing")
     end
   end
 end
