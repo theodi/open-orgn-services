@@ -9,7 +9,8 @@ Given /^I requested (\d+) membership at the level called "(.*?)"$/ do |quantity,
   @line_items = [{
       'quantity'    => quantity,
       'base_price'  => nil,
-      'description' => nil
+      'description' => nil,
+      'payment_method' => 'invoice'
   }]
 end
 
