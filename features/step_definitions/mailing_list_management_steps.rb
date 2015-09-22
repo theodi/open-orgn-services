@@ -3,7 +3,7 @@ Given(/^that a member has requested to (NOT be on|be on) the mailing list in the
 
   # Create member in Capsule
   @member = CapsuleCRM::Organisation.new(name: Faker::Company.name)
-  @member.emails << CapsuleCRM::Email.new(@member, address: Faker::Internet.email)
+  @member.emails << CapsuleCRM::Email.new(@member, address: "shane_fadel@kris.net")
   @member.save
 
   # Save membership tag

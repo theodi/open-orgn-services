@@ -1,4 +1,4 @@
-@capsulecrm @mailchimp
+@vcr @capsulecrm @mailchimp
 Feature: Manage mailing list
   In order to keep the mailing list correct
   As a commercial team member
