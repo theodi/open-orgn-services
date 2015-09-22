@@ -6,11 +6,11 @@ end
 Given /^I requested (\d+) membership at the level called "(.*?)"$/ do |quantity, membership_level|
   @quantity = quantity
   @membership_level = membership_level
+  @payment_method = 'invoice'
   @line_items = [{
       'quantity'    => quantity,
       'base_price'  => nil,
-      'description' => nil,
-      'payment_method' => 'invoice'
+      'description' => nil
   }]
 end
 
