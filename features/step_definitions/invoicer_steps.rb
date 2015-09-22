@@ -16,9 +16,39 @@ end
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
   if create_invoice_uid.nil?
-    Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash).once
+    Resque.should_receive(:enqueue) do |arg1, arg2, arg3|
+      arg1.should == Invoicer
+      arg2.should == create_invoice_to_hash
+      arg3['payment_method'].should == create_invoice_details_hash['payment_method']
+      arg3['repeat'].should == create_invoice_details_hash['repeat']
+      arg3['purchase_order_reference'].should == create_invoice_details_hash['purchase_order_reference']
+      arg3['sector'].should == create_invoice_details_hash['sector']
+
+      create_invoice_details_hash['line_items'].each_with_index do |k, i|
+        arg3['line_items'][i]['quantity'].should == k['quantity']
+        arg3['line_items'][i]['base_price'].should == k['base_price']
+        arg3['line_items'][i]['description'].should == k['description']
+        arg3['line_items'][i]['payment_method'].should == k['payment_method']
+        arg3['line_items'][i]['discount_rate'].should == k['discount_rate']
+      end
+    end
   else
-    Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
+    Resque.should_receive(:enqueue) do |arg1, arg2, arg3, arg4|
+      arg1.should == Invoicer
+      arg2.should == create_invoice_to_hash
+      arg3['payment_method'].should == create_invoice_details_hash['payment_method']
+      arg3['repeat'].should == create_invoice_details_hash['repeat']
+      arg3['purchase_order_reference'].should == create_invoice_details_hash['purchase_order_reference']
+      arg3['sector'].should == create_invoice_details_hash['sector']
+      create_invoice_details_hash['line_items'].each_with_index do |k, i|
+        arg3['line_items'][i]['quantity'].should == k['quantity']
+        arg3['line_items'][i]['base_price'].should == k['base_price']
+        arg3['line_items'][i]['description'].should == k['description']
+        arg3['line_items'][i]['payment_method'].should == k['payment_method']
+        arg3['line_items'][i]['discount_rate'].should == k['discount_rate']
+      end
+      arg4.should == create_invoice_uid
+    end
   end
 end
 
