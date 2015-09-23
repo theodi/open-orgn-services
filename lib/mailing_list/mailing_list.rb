@@ -57,14 +57,14 @@ class MailingList
   end
 
   def api_key
-    @api_key ||= ENV.fetch("MAILCHIMP_API_KEY") do
-      raise ArgumentError, "MAILCHIMP_API_KEY is missing"
+    @api_key ||= ENV.fetch("MAILING_LIST_API_KEY") do
+      raise ArgumentError, "MAILING_LIST_API_KEY is missing"
     end
   end
 
   def list_id
-    @list_id ||= ENV.fetch("MAILCHIMP_LIST_ID") do
-      raise ArgumentError, "MAILCHIMP_LIST_ID is missing"
+    @list_id ||= ENV.fetch("MAILING_LIST_LIST_ID") do
+      raise ArgumentError, "MAILING_LIST_LIST_ID is missing"
     end
   end
 end

@@ -10,11 +10,15 @@ class MailchimpCleaner
   end
 
   def list
-    Gibbon::API.new.lists
+    Gibbon::API.new(api_key).lists
+  end
+
+  def api_key
+    @api_key ||= ENV.fetch("MAILING_LIST_API_KEY")
   end
 
   def list_id
-    @list_id ||= ENV.fetch("MAILCHIMP_LIST_ID")
+    @list_id ||= ENV.fetch("MAILING_LIST_LIST_ID")
   end
 
   def clean

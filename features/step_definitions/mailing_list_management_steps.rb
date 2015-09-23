@@ -29,8 +29,8 @@ Given(/^that a member has requested to (NOT be on|be on) the mailing list in the
 end
 
 Given(/^the member is already on the mailing list$/) do
-  Gibbon::API.new.lists.subscribe({
-    :id => ENV.fetch("MAILCHIMP_LIST_ID"),
+  Gibbon::API.new(ENV.fetch("MAILING_LIST_API_KEY")).lists.subscribe({
+    :id => ENV.fetch("MAILING_LIST_LIST_ID"),
     :email => {
       :email => @member.emails.first.address
     },
