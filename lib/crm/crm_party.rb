@@ -9,6 +9,8 @@ module CRM
     end
 
     def email
+      return nil if record.emails.empty?
+
       record.emails.first.address
     end
 
