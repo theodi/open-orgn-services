@@ -4,12 +4,16 @@ describe CRM::Party do
 
   let(:custom_fields) { [] }
 
+  let(:emails) do
+    [
+      OpenStruct.new({ address: "test2@example.com" }),
+      OpenStruct.new({ address: "test1@example.com" })
+    ]
+  end
+
   let(:crm_record) do
     double("CRM Person/Organization",
-      emails: [
-        OpenStruct.new({ address: "test2@example.com" }),
-        OpenStruct.new({ address: "test1@example.com" })
-      ],
+      emails: emails,
       custom_fields: custom_fields
     )
   end
@@ -21,6 +25,14 @@ describe CRM::Party do
   describe "#email" do
     it "should return the first email" do
       expect(subject.email).to eq("test2@example.com")
+    end
+
+    context "there are no emails" do
+      let(:emails) { [] }
+
+      it "should return nil" do
+        expect(subject.email).to eq(nil)
+      end
     end
   end
 
