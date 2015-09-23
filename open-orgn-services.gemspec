@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activemodel'        , '~> 3.2' , '>= 3.2.12'
   s.add_dependency 'xeroizer'           , '~> 2.15', '>= 2.15.6'
   s.add_dependency 'capsulecrm'
+  s.add_dependency 'gibbon'             , '~> 1.2'
   s.add_dependency 'fog'                , '~> 1.12', '>= 1.12.1'
   s.add_dependency 'httparty'
   s.add_dependency 'rufus-scheduler'    , '< 3.0.0'
@@ -27,9 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'chargify_api_ares'  , '~> 1.3' , '>= 1.3.1'
 
   s.add_development_dependency 'cucumber'          , '~> 1.2'
-  s.add_development_dependency 'rspec-core'        , '~> 2.14.6'
-  s.add_development_dependency 'rspec-mocks'       , '~> 2.14.6'
-  s.add_development_dependency 'rspec-expectations', '~> 2.14.5'
+  s.add_development_dependency 'rspec'             , '~> 3.3'
   s.add_development_dependency 'dotenv'            , '~> 0.5'
   s.add_development_dependency 'email_spec'        , '~> 1.5'
   s.add_development_dependency 'guard-cucumber'    , '~> 1.3'
@@ -40,6 +39,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'timecop'           , '~> 0.5'
   s.add_development_dependency 'vcr'               , '~> 2.9'
   s.add_development_dependency 'webmock'           , '1.9.3'
+  s.add_development_dependency 'faker'             , '~> 1.5'
   s.add_development_dependency 'mock_redis'        , '~> 0.14'
 
   s.files        = Dir.glob("{lib}/**/*") + %w(LICENSE.md README.md)

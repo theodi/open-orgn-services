@@ -30,3 +30,12 @@ After("@clean_up_xero_invoice") do
     end
   end
 end
+
+Before("@mailchimp") do
+  @mailchimp_cleanup = []
+end
+
+After("@mailchimp") do
+  MailchimpCleaner.clean!(@mailchimp_cleanup)
+end
+
