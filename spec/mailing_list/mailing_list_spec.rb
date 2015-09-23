@@ -1,3 +1,9 @@
+require "helpers"
+
+RSpec.configure do |c|
+  c.include Helpers
+end
+
 require_relative "../../lib/mailing_list/mailing_list"
 
 describe MailingList do
@@ -75,6 +81,12 @@ describe MailingList do
   describe "#api_key" do
     let(:api_key) { nil }
 
+    around(:each) do |example|
+      remove_env_var("MAILCHIMP_API_KEY") do
+        example.run
+      end
+    end
+
     it "should raise an exception if the Mailchimp API key is missing" do
       expect { subject.api_key }.to raise_error(ArgumentError, "MAILCHIMP_API_KEY is missing")
     end
@@ -82,6 +94,12 @@ describe MailingList do
 
   describe "#list_id" do
     let(:list_id) { nil }
+
+    around(:each) do |example|
+      remove_env_var("MAILCHIMP_LIST_ID") do
+        example.run
+      end
+    end
 
     it "should raise an exception if the Mailchimp List ID is missing" do
       expect { subject.list_id }.to raise_error(ArgumentError, "MAILCHIMP_LIST_ID is missing")
