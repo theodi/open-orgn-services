@@ -40,9 +40,7 @@ Then /^I should be added to the invoicing queue along with others$/ do
 end
 
 Then /^I should not be added to the invoicing queue$/ do
-  Resque.should_not_receive(:enqueue).with(no_args) do |klass, user, payment|
-    payment[:line_items] == @line_items
-  end
+  Resque.should_not_receive(:enqueue).with(no_args)
 end
 
 Then /^the attendee invoicer should be requeued$/ do
