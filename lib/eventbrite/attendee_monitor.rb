@@ -68,24 +68,6 @@ class AttendeeMonitor
               'description' => line_description(ticket, event_details['title'], date, a['attendee']['first_name'], a['attendee']['last_name'], a['attendee']['email'], order_id, custom_answer(a['attendee'], 'Membership Number'))
             }
           end
-
-          if has_membership?(ticket)
-            attendee = a['attendee']
-
-            membership = {
-              'product_name' => membership_type(ticket),
-              'supporter_level' => membership_type(ticket),
-              'join_date' => Date.today,
-              'contact_email' => attendee['email']
-            }
-
-            party = {
-              'name' => "#{attendee['first_name']} #{attendee['last_name']}",
-              'email' => attendee['email']
-            }
-
-            Resque.enqueue(SendSignupToCapsule, party, membership)
-          end
         end
 
         if invoice_details['line_items'].count > 0
