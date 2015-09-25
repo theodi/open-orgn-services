@@ -21,6 +21,7 @@ class SignupProcessor
   #                   'type'
   #                   'sector'
   #                   'origin'
+  #                   'newsletter'
   #
   # contact_person    - a hash containing details of the main contact for the member organisation
   #                    'name'
@@ -82,7 +83,8 @@ class SignupProcessor
       "contact_email"   => contact_person["email"],
       "size"            => organization["size"],
       "sector"          => organization["sector"],
-      "origin"          => organization["origin"]
+      "origin"          => organization["origin"],
+      "newsletter"      => organization["newsletter"]
     }.compact
 
     SendSignupToCapsule.perform(organization_details, membership)

@@ -60,7 +60,8 @@ class SendSignupToCapsule
       "Email"           => membership['contact_email'],
       "Size"            => membership['size'],
       "Sector"          => membership['sector'],
-      "Origin"          => membership['origin']
+      "Origin"          => membership['origin'],
+      "Newsletter"      => membership['newsletter']
     )
     unless membership['product_name'] == "individual"
       # Store company number on organization
