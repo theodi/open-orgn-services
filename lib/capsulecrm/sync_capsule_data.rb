@@ -12,12 +12,13 @@ class SyncCapsuleData
     subject = "CapsuleCRM::#{type.titleize}".constantize.find(id)
     if subject
       membership = {
-        'email'         => field(subject, "Membership", "Email").try(:text),
-        'product_name'  => field(subject, "Membership", "Level").try(:text),
-        'id'            => field(subject, "Membership", "ID").try(:text),
-        'newsletter'    => field(subject, "Membership", "Newsletter").try(:boolean),
-        'size'          => field(subject, "Membership", "Size").try(:text),
-        'sector'        => field(subject, "Membership", "Sector").try(:text),
+        'email'                    => field(subject, "Membership", "Email").try(:text),
+        'product_name'             => field(subject, "Membership", "Level").try(:text),
+        'id'                       => field(subject, "Membership", "ID").try(:text),
+        'newsletter'               => field(subject, "Membership", "Newsletter").try(:boolean),
+        'share_with_third_parties' => field(subject, "Membership", "Share with third parties").try(:boolean),
+        'size'                     => field(subject, "Membership", "Size").try(:text),
+        'sector'                   => field(subject, "Membership", "Sector").try(:text),
       }.compact
       description = [
         field(subject, "DirectoryEntry", "Description").try(:text),

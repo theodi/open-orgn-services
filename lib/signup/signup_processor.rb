@@ -22,6 +22,7 @@ class SignupProcessor
   #                   'sector'
   #                   'origin'
   #                   'newsletter'
+  #                   'share_with_third_parties'
   #
   # contact_person    - a hash containing details of the main contact for the member organisation
   #                    'name'
@@ -76,15 +77,16 @@ class SignupProcessor
     }.compact
 
     membership = {
-      "product_name"    => purchase["offer_category"],
-      "supporter_level" => membership_type[:type],
-      "id"              => purchase["membership_id"].to_s,
-      "join_date"       => Date.today.to_s,
-      "contact_email"   => contact_person["email"],
-      "size"            => organization["size"],
-      "sector"          => organization["sector"],
-      "origin"          => organization["origin"],
-      "newsletter"      => organization["newsletter"]
+      "product_name"             => purchase["offer_category"],
+      "supporter_level"          => membership_type[:type],
+      "id"                       => purchase["membership_id"].to_s,
+      "join_date"                => Date.today.to_s,
+      "contact_email"            => contact_person["email"],
+      "size"                     => organization["size"],
+      "sector"                   => organization["sector"],
+      "origin"                   => organization["origin"],
+      "newsletter"               => organization["newsletter"],
+      "share_with_third_parties" => organization["share_with_third_parties"]
     }.compact
 
     SendSignupToCapsule.perform(organization_details, membership)

@@ -22,10 +22,11 @@ class SaveMembershipDetailsToCapsule
     else
       success = set_membership_tag(
         party,
-        'Email'      => membership['email'],
-        'Newsletter' => membership['newsletter'],
-        'Size'       => membership['size'],
-        'Sector'     => membership['sector']
+        'Email'                    => membership['email'],
+        'Newsletter'               => membership['newsletter'],
+        'Share with third parties' => membership['share_with_third_parties'],
+        'Size'                     => membership['size'],
+        'Sector'                   => membership['sector']
       )
       unless success
         requeue(membership_id, membership)
