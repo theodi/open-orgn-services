@@ -15,7 +15,14 @@ describe MailingList do
   let(:api)        { double("Mailchimp API") }
   let(:list)       { double("Mailchimp list") }
   let(:list_id)    { 1234 }
-  let(:attributes) { { email: "test@example.com", level: "supporter" } }
+  let(:attributes) do
+    {
+      email: "test@example.com",
+      level: "supporter",
+      contact_first_name: "Test",
+      contact_last_name: "Example"
+    }
+  end
 
   before do
     subject.api = api
@@ -32,7 +39,7 @@ describe MailingList do
         expect(list).to receive(:subscribe).with(a_hash_including(
           :id           => 1234,
           :email        => { :email => "test@example.com" },
-          :merge_vars   => { :FNAME => "", :LNAME => "", :LEVEL => "supporter" },
+          :merge_vars   => { :FNAME => "Test", :LNAME => "Example", :LEVEL => "supporter" },
           :double_optin => false
         ))
 

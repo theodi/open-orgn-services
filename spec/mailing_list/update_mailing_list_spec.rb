@@ -9,7 +9,14 @@ describe UpdateMailingList do
   let(:id) { 123 }
   let(:type) { "Person" }
   let(:mailing_list) { double("Mailing list") }
-  let(:member) { double("Member", email: "test@example.com", level: "supporter") }
+  let(:member) do
+    double("Member",
+      email: "test@example.com",
+      level: "supporter",
+      contact_first_name: "Test",
+      contact_last_name: "Example",
+    )
+  end
   let(:crm) { double("CRM") }
 
   before do
@@ -28,7 +35,12 @@ describe UpdateMailingList do
         allow(member).to receive(:newsletter?).and_return(true)
 
         expect(mailing_list).to receive(:subscribe)
-          .with(email: "test@example.com", level: "supporter")
+          .with(
+            email: "test@example.com",
+            level: "supporter",
+            contact_first_name: "Test",
+            contact_last_name: "Example"
+          )
 
         subject.perform
       end
