@@ -58,7 +58,9 @@ module CapsuleHelper
       "Share with third parties" => :boolean,
       "Size"                     => :text,
       "Sector"                   => :text,
-      "Origin"                   => :text
+      "Origin"                   => :text,
+      "Contact first name"       => :text,
+      "Contact last name"        => :text
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end

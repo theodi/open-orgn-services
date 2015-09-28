@@ -46,3 +46,5 @@ Feature: Add person details to Capsule CRM
     And that data tag should have the membership number "HG5646HD"
     And that data tag should have the sector "Healthcare"
     And that data tag should have the email "rimmer@jmc.com"
+    And that data tag should have the contact first name of "Arnold"
+    And that data tag should have the contact last name of "Rimmer"
