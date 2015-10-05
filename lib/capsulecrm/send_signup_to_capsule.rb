@@ -53,15 +53,16 @@ class SendSignupToCapsule
     # Set up membership tag
     set_membership_tag(
       p,
-      "Level"           => level(membership['product_name']),
-      "Supporter Level" => membership['supporter_level'],
-      "ID"              => membership['id'],
-      "Joined"          => Date.parse(membership['join_date']),
-      "Email"           => membership['contact_email'],
-      "Size"            => membership['size'],
-      "Sector"          => membership['sector'],
-      "Origin"          => membership['origin'],
-      "Newsletter"      => membership['newsletter']
+      "Level"                     => level(membership['product_name']),
+      "Supporter Level"           => membership['supporter_level'],
+      "ID"                        => membership['id'],
+      "Joined"                    => Date.parse(membership['join_date']),
+      "Email"                     => membership['contact_email'],
+      "Size"                      => membership['size'],
+      "Sector"                    => membership['sector'],
+      "Origin"                    => membership['origin'],
+      "Newsletter"                => membership['newsletter'],
+      "Share with third parties"  => membership['share_with_third_parties']
     )
     unless membership['product_name'] == "individual"
       # Store company number on organization
