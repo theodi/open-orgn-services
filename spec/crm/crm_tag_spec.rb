@@ -73,6 +73,16 @@ describe CRM::Tag do
         expect(subject.value).to eq(nil)
       end
     end
+
+    context "tag exists but field does not and block has been supplied" do
+      let(:custom_field) do
+        double(tag: "Membership", label: "Nope", text: "Nope")
+      end
+
+      it "returns runs the block" do
+        expect(subject.value { "Block value" } ).to eq("Block value")
+      end
+    end
   end
 end
 

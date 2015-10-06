@@ -8,6 +8,18 @@ module CRM
       @record = record
     end
 
+    def contact_first_name
+      CRM::Tag.text(record, "Membership", "Contact first name") do
+        record.first_name if record.respond_to?(:first_name)
+      end
+    end
+
+    def contact_last_name
+      CRM::Tag.text(record, "Membership", "Contact last name") do
+        record.last_name if record.respond_to?(:last_name)
+      end
+    end
+
     def email
       return nil if record.emails.empty?
 

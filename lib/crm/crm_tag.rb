@@ -1,12 +1,12 @@
 module CRM
   class Tag
 
-    def self.boolean(record, tag, label)
-      new(record, :boolean, tag, label).value
+    def self.boolean(record, tag, label, &block)
+      new(record, :boolean, tag, label).value(&block)
     end
 
-    def self.text(record, tag, label)
-      new(record, :text, tag, label).value
+    def self.text(record, tag, label, &block)
+      new(record, :text, tag, label).value(&block)
     end
 
     attr_reader :record, :type, :tag, :label
@@ -18,10 +18,14 @@ module CRM
       @label  = label
     end
 
-    def value
+    def value(&block)
       field(tag, label).send(type)
     rescue ArgumentError
-      default_value
+      if block_given?
+        yield
+      else
+        default_value
+      end
     end
 
     private

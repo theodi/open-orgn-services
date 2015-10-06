@@ -28,8 +28,8 @@ class MailingList
         :email => attributes.email
       },
       :merge_vars => {
-        :FNAME => "",
-        :LNAME => "",
+        :FNAME => attributes.contact_first_name,
+        :LNAME => attributes.contact_last_name,
         :LEVEL => attributes.level
       },
       :double_optin => false

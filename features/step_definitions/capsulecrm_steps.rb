@@ -234,3 +234,16 @@ Then(/^that data tag should have the sector "(.*?)"$/) do |sector|
   field.should be_present
   field.text.should == sector
 end
+
+Then(/^that data tag should have the contact first name of "(.*?)"$/) do |first_name|
+  field = @party.custom_fields.find{|x| x.label == "Contact first name" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == first_name
+end
+
+Then(/^that data tag should have the contact last name of "(.*?)"$/) do |last_name|
+  field = @party.custom_fields.find{|x| x.label == "Contact last name" && x.tag == @tag.name}
+  field.should be_present
+  field.text.should == last_name
+end
+

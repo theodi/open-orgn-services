@@ -23,6 +23,20 @@ Given(/^that a member has requested to (NOT be on|be on) the mailing list in the
     tag: "Membership"
   }).save
 
+  # Save contact first name
+  CapsuleCRM::CustomField.new(@member, {
+    label: "Contact first name",
+    text: "Test",
+    tag: "Membership"
+  }).save
+
+  # Save contact last name
+  CapsuleCRM::CustomField.new(@member, {
+    label: "Contact last name",
+    text: "Example",
+    tag: "Membership"
+  }).save
+
   # Comment to leave members in Capsule for debugging
   @capsule_cleanup << @member
   @mailchimp_cleanup << @member
@@ -50,6 +64,8 @@ Then(/^the member will subscribed to the mailing list$/) do
 
   expect(email_addresses).to include(@member.emails.first.address)
   expect(member["merges"]["LEVEL"]).to eq("supporter")
+  expect(member["merges"]["FNAME"]).to eq("Test")
+  expect(member["merges"]["LNAME"]).to eq("Example")
 end
 
 Then(/^the member will unsubscribed to the mailing list$/) do

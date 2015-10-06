@@ -50,7 +50,10 @@ class SendSignupToCapsule
       :text  => 'Membership'
     )
     save_item(field)
+
     # Set up membership tag
+    first_name, last_name = party['name'].split(" ")
+
     set_membership_tag(
       p,
       "Level"                     => level(membership['product_name']),
@@ -62,8 +65,11 @@ class SendSignupToCapsule
       "Sector"                    => membership['sector'],
       "Origin"                    => membership['origin'],
       "Newsletter"                => membership['newsletter'],
-      "Share with third parties"  => membership['share_with_third_parties']
+      "Share with third parties"  => membership['share_with_third_parties'],
+      "Contact first name"        => first_name,
+      "Contact last name"         => last_name
     )
+
     unless membership['product_name'] == "individual"
       # Store company number on organization
       field = CapsuleCRM::CustomField.new(
