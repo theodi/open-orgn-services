@@ -24,6 +24,7 @@ Given(/^there should still be just one person in CapsuleCRM called "(.*?)" with 
   p.first_name.should == person_name.split(" ")[0]
   p.last_name.should == person_name.split(" ")[1]
   @person ||= p
+  @capsule_cleanup << @person
 end
 
 Given(/^that person is a member$/) do
