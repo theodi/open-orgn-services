@@ -1,14 +1,14 @@
 # Setup
 
 Given /^there is no organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
-  CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
+  expect(CapsuleCRM::Organisation.find_all(:q => organisation_name)).to be_empty
 end
 
 Given /^there is an existing organisation in CapsuleCRM called "(.*?)"$/ do |organisation_name|
-  CapsuleCRM::Organisation.find_all(:q => organisation_name).should be_empty
+  expect(CapsuleCRM::Organisation.find_all(:q => organisation_name)).to be_empty
   @organisation = CapsuleCRM::Organisation.new(:name => organisation_name)
   @organisation.save
-  CapsuleCRM::Organisation.find_all(:q => organisation_name).should_not be_empty
+  expect(CapsuleCRM::Organisation.find_all(:q => organisation_name)).not_to be_empty
   @capsule_cleanup << @organisation
 end
 
@@ -172,7 +172,7 @@ Then /^that organisation should have a data tag$/ do
 end
 
 Then /^that data tag should have the type "(.*?)"$/ do |type|
-  @tag.name.should == type
+  expect(@tag.name).to eq(type)
 end
 
 Then /^that organisation should have a "(.*?)" data tag$/ do |type|
@@ -183,26 +183,26 @@ end
 
 Then /^that data tag should have the level "(.*?)"$/ do |level|
   field = @party.custom_fields.find{|x| x.label == "Level" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == level
+  expect(field).to be_present
+  expect(field.text).to eq(level)
 end
 
 Then /^that data tag should have the join date (#{DATE})$/ do |date|
   field = @party.custom_fields.find{|x| x.label == "Joined" && x.tag == @tag.name}
-  field.should be_present
-  field.date.should == date
+  expect(field).to be_present
+  expect(field.date).to eq(date)
 end
 
 Then /^that data tag should have the membership number "(.*?)"$/ do |membership_number|
   field = @party.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == membership_number
+  expect(field).to be_present
+  expect(field.text).to eq(membership_number)
 end
 
 Then /^that data tag should have the email "(.*?)"$/ do |email|
   field = @party.custom_fields.find{|x| x.label == "Email" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == email
+  expect(field).to be_present
+  expect(field.text).to eq(email)
 end
 
 Then(/^that data tag should have the origin "(.*?)"$/) do |origin|
@@ -231,8 +231,14 @@ end
 
 Then(/^that data tag should have the sector "(.*?)"$/) do |sector|
   field = @party.custom_fields.find{|x| x.label == "Sector" && x.tag == @tag.name}
+  expect(field).to be_present
+  expect(field.text).to eq(sector)
+end
+
+Then(/^that data tag should have the university email "(.*?)"$/) do |university_email|
+  field = @party.custom_fields.find{|x| x.label == "University email" && x.tag == @tag.name}
   field.should be_present
-  field.text.should == sector
+  field.text.should == university_email
 end
 
 Then(/^that data tag should have the contact first name of "(.*?)"$/) do |first_name|

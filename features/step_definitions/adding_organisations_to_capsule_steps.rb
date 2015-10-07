@@ -87,7 +87,7 @@ Then /^my directory entry should be requeued for later processing once the conta
   }
   date = DateTime.now.to_s
 
-  Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
+  expect(Resque).to receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
 end
 
 Given /^that organisation is a member$/ do

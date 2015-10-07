@@ -6,23 +6,23 @@ Given /^I have signed up as an individual member$/ do
 end
 
 Given(/^there is no person in CapsuleCRM called "(.*?)"$/) do |person_name|
-  CapsuleCRM::Person.find_all(:q => person_name).should be_empty
+  expect(CapsuleCRM::Person.find_all(:q => person_name)).to be_empty
 end
 
 Given(/^there is an existing person in CapsuleCRM called "(.*?)" with email "(.*?)"$/) do |person_name, email|
-  CapsuleCRM::Person.find_all(:email => email).should be_empty
+  expect(CapsuleCRM::Person.find_all(:email => email)).to be_empty
   @person = CapsuleCRM::Person.new(:first_name => person_name.split(" ")[0], last_name: person_name.split(" ")[1])
   @person.emails << CapsuleCRM::Email.new(@person, address: email)
   @person.save
-  CapsuleCRM::Person.find_all(:email => email).should_not be_empty
+  expect(CapsuleCRM::Person.find_all(:email => email)).not_to be_empty
   @capsule_cleanup << @person
 end
 
 Given(/^there should still be just one person in CapsuleCRM called "(.*?)" with email "(.*?)"$/) do |person_name, email|
   p = CapsuleCRM::Person.find_all(:email => email).first
-  p.should_not be_nil
-  p.first_name.should == person_name.split(" ")[0]
-  p.last_name.should == person_name.split(" ")[1]
+  expect(p).not_to be_nil
+  expect(p.first_name).to eq(person_name.split(" ")[0])
+  expect(p.last_name).to eq(person_name.split(" ")[1])
   @person ||= p
   @capsule_cleanup << @person
 end
@@ -53,9 +53,9 @@ end
 
 Then(/^that person should have a data tag$/) do
   tags = @person.tags
-  tags.size.should == 1
+  expect(tags.size).to eq(1)
   @tag = tags.first
-  @tag.should_not be_nil
+  expect(@tag).not_to be_nil
   @party = @person
 end
 
