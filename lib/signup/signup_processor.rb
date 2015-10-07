@@ -77,16 +77,32 @@ class SignupProcessor
     }.compact
 
     membership = {
-      "product_name"             => purchase["offer_category"],
-      "supporter_level"          => membership_type[:type],
-      "id"                       => purchase["membership_id"].to_s,
-      "join_date"                => Date.today.to_s,
-      "contact_email"            => contact_person["email"],
-      "size"                     => organization["size"],
-      "sector"                   => organization["sector"],
-      "origin"                   => organization["origin"],
-      "newsletter"               => organization["newsletter"],
-      "share_with_third_parties" => organization["share_with_third_parties"]
+      "product_name"                   => purchase["offer_category"],
+      "supporter_level"                => membership_type[:type],
+      "id"                             => purchase["membership_id"].to_s,
+      "join_date"                      => Date.today.to_s,
+      "contact_email"                  => contact_person["email"],
+      "twitter"                        => contact_person["twitter"],
+      "size"                           => organization["size"],
+      "sector"                         => organization["sector"],
+      "origin"                         => organization["origin"],
+      "newsletter"                     => organization["newsletter"],
+      "share_with_third_parties"       => organization["share_with_third_parties"],
+      "dob"                            => contact_person["dob"],
+      "university_email"               => contact_person["university_email"],
+      "university_street_address"      => contact_person["university_street_address"],
+      "university_address_locality"    => contact_person["university_address_locality"],
+      "university_address_region"      => contact_person["university_address_region"],
+      "university_address_country"     => contact_person["university_address_country"],
+      "university_postal_code"         => contact_person["university_postal_code"],
+      "university_country"             => contact_person["university_country"],
+      "university_name"                => contact_person["university_name"],
+      "university_name_other"          => contact_person["university_name_other"],
+      "university_course_name"         => contact_person["university_course_name"],
+      "university_qualification"       => contact_person["university_qualification"],
+      "university_qualification_other" => contact_person["university_qualification_other"],
+      "university_course_start_date"   => contact_person["university_course_start_date"],
+      "university_course_end_date"     => contact_person["university_course_end_date"]
     }.compact
 
     SendSignupToCapsule.perform(organization_details, membership)
