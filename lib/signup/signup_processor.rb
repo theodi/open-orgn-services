@@ -9,49 +9,6 @@ require_relative "../capsulecrm/send_signup_to_capsule"
 class SignupProcessor
   @queue = :signup
 
-  # Public: Process new signups from the member site
-  #
-  # expects input of the following form...
-  #
-  # organization      - a hash containing the details of the member organisation
-  #                   'name'
-  #                   'vat_id'
-  #                   'company_number'
-  #                   'size'
-  #                   'type'
-  #                   'sector'
-  #                   'origin'
-  #                   'newsletter'
-  #                   'share_with_third_parties'
-  #
-  # contact_person    - a hash containing details of the main contact for the member organisation
-  #                    'name'
-  #                    'email'
-  #                    'telephone'
-  #
-  # billing           - a hash containing the details of the billing contact for the member organisation
-  #                   'name'
-  #                   'email'
-  #                   'telephone'
-  #                   'address' => {
-  #                      'street_address' => ...,
-  #                      'address_locality',
-  #                      'address_region',
-  #                      'address_country',
-  #                      'postal_code'
-  #                    }
-  #
-  # purchase          - a hash containing information about the purchase
-  #                   'payment_method'
-  #                   'payment_freq'
-  #                   'payment_ref'
-  #                   'offer_category'
-  #                   'purchase_order_reference'
-  #                   'membership_id'
-  #                   'discount'
-  #
-  # Returns nil. Queues invoicing and CRM task creation jobs.
-
   def self.perform(organization, contact_person, billing, purchase)
     self.new(organization, contact_person, billing, purchase).perform
   end
