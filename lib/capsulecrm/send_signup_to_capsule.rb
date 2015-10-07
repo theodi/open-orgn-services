@@ -52,6 +52,7 @@ class SendSignupToCapsule
       "Contact first name"             => first_name,
       "Contact last name"              => last_name,
       "DOB"                            => membership['dob'],
+      "Country"                        => membership['country'],
       "University email"               => membership['university_email'],
       "University address street"      => membership['university_street_address'],
       "University address locality"    => membership['university_address_locality'],

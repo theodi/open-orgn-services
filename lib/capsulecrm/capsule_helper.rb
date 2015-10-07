@@ -63,6 +63,7 @@ module CapsuleHelper
       "Contact first name"             => :text,
       "Contact last name"              => :text,
       "DOB"                            => :date,
+      "Country"                        => :text,
       "University email"               => :text,
       "University address street"      => :text,
       "University address locality"    => :text,

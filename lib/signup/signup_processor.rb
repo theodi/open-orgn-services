@@ -46,6 +46,7 @@ class SignupProcessor
       "newsletter"                     => organization["newsletter"],
       "share_with_third_parties"       => organization["share_with_third_parties"],
       "dob"                            => contact_person["dob"],
+      "country"                        => contact_person["country"],
       "university_email"               => contact_person["university_email"],
       "university_street_address"      => contact_person["university_street_address"],
       "university_address_locality"    => contact_person["university_address_locality"],
