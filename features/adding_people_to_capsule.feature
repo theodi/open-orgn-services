@@ -5,14 +5,7 @@ Feature: Add person details to Capsule CRM
   I want data to be inserted into Capsule CRM
   So Capsule is treated as the canonical data source
 
-  Scenario: wait for Xero to capsule sync
-    Given I have signed up as an individual member
-    And my membership number is "HG5646HD"
-    And there is no person in CapsuleCRM called "Arnold Rimmer"
-    Then my directory entry should be requeued for later processing once the contact has synced from Xero
-    When the directory entry job runs
-
-  Scenario: attach membership tag to existing person
+  Scenario: Add Membership tag to existing individual signup
     Given I have signed up as an individual member
     And my membership number is "HG5646HD"
     And my sector is "Healthcare"
@@ -29,7 +22,7 @@ Feature: Add person details to Capsule CRM
     And that data tag should have the sector "Healthcare"
     And that data tag should have the email "rimmer@jmc.com"
 
-  Scenario: attach membership tag to new person
+  Scenario: Add Membership tag to new individual signup
     Given I have signed up as an individual member
     And my membership number is "HG5646HD"
     And my sector is "Healthcare"
@@ -47,3 +40,11 @@ Feature: Add person details to Capsule CRM
     And that data tag should have the email "rimmer@jmc.com"
     And that data tag should have the contact first name of "Arnold"
     And that data tag should have the contact last name of "Rimmer"
+
+  Scenario: Requeue Xero job if contact does not exist yet
+    Given I have signed up as an individual member
+    And my membership number is "HG5646HD"
+    And there is no person in CapsuleCRM called "Arnold Rimmer"
+    Then my directory entry should be requeued for later processing once the contact has synced from Xero
+    When the directory entry job runs
+
