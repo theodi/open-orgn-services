@@ -24,13 +24,13 @@ end
 
 Then /^that (organisation|person) should be queued for sync$/ do |target|
   type = instance_variable_get("@#{target}")
-  Resque.should_receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
-  Resque.should_receive(:enqueue).at_most(1).times
+  expect(Resque).to receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
+  expect(Resque).to receive(:enqueue).at_most(1).times
 end
 
 Then /^that (organisation|person) should not be queued for sync$/ do |target|
   type = instance_variable_get("@#{target}")
-  Resque.should_not_receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
+  expect(Resque).not_to receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
 end
 
 When /^the capsule monitor runs$/ do
@@ -91,8 +91,8 @@ end
 
 Then /^that data tag should have my new membership number set$/ do
   field = @party.custom_fields.find{|x| x.label == "ID" && x.tag == @tag.name}
-  field.should be_present
-  field.text.should == @membership_id
+  expect(field).to be_present
+  expect(field.text).to eq(@membership_id)
 end
 
 # Store membership details

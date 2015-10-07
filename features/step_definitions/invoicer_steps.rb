@@ -10,37 +10,36 @@ When /^the attendee invoicer runs$/ do
 end
 
 When /^I have not already been invoiced$/ do
-  Invoicer.should_receive(:invoice_sent?).with(create_invoice_uid).once.and_return(false)
+  expect(Invoicer).to receive(:invoice_sent?).with(create_invoice_uid).once.and_return(false)
 end
 
 Then /^I should be added to the invoicing queue$/ do
   # Set expectation
   Resque.should_receive(:enqueue) do |arg1, arg2, arg3|
-    arg1.should == Invoicer
-    arg2.should == create_invoice_to_hash
-    arg3['payment_method'].should == create_invoice_details_hash['payment_method']
-    arg3['repeat'].should == create_invoice_details_hash['repeat']
-    arg3['purchase_order_reference'].should == create_invoice_details_hash['purchase_order_reference']
-    arg3['sector'].should == create_invoice_details_hash['sector']
+    expect(arg1).to eq(Invoicer)
+    expect(arg2).to eq(create_invoice_to_hash)
+    expect(arg3['payment_method']).to eq(create_invoice_details_hash['payment_method'])
+    expect(arg3['repeat']).to eq(create_invoice_details_hash['repeat'])
+    expect(arg3['purchase_order_reference']).to eq(create_invoice_details_hash['purchase_order_reference'])
+    expect(arg3['sector']).to eq(create_invoice_details_hash['sector'])
 
     create_invoice_details_hash['line_items'].each_with_index do |k, i|
-      arg3['line_items'][i]['quantity'].should == k['quantity']
-      arg3['line_items'][i]['base_price'].should == k['base_price']
-      arg3['line_items'][i]['description'].should == k['description']
-      arg3['line_items'][i]['payment_method'].should == k['payment_method']
-      arg3['line_items'][i]['discount_rate'].should == k['discount_rate']
+      expect(arg3['line_items'][i]['quantity']).to eq(k['quantity'])
+      expect(arg3['line_items'][i]['base_price']).to eq(k['base_price'])
+      expect(arg3['line_items'][i]['description']).to eq(k['description'])
+      expect(arg3['line_items'][i]['payment_method']).to eq(k['payment_method'])
+      expect(arg3['line_items'][i]['discount_rate']).to eq(k['discount_rate'])
     end
   end
 end
 
 Then /^I should be added to the invoicing queue along with others$/ do
-  # Set expectation
-  Resque.stub(:enqueue)
-  Resque.should_receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
+  allow(Resque).to receive(:enqueue)
+  expect(Resque).to receive(:enqueue).with(Invoicer, create_invoice_to_hash, create_invoice_details_hash, create_invoice_uid).once
 end
 
 Then /^I should not be added to the invoicing queue$/ do
-  Resque.should_not_receive(:enqueue).with(no_args)
+  expect(Resque).not_to receive(:enqueue).with(no_args)
 end
 
 Then /^the attendee invoicer should be requeued$/ do

@@ -56,5 +56,5 @@ end
 
 Then /^the JSON document should be available at the target URL$/ do
   uri = URI(ENV['COURSES_TARGET_URL'])
-  Net::HTTP.get(uri).should == @json
+  expect(Net::HTTP.get(uri)).to eq(@json)
 end

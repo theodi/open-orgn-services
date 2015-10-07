@@ -159,8 +159,8 @@ Then /^my details should be stored in that data tag$/ do
   }.compact
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
-    field.should be_present
-    field.text.should == value
+    expect(field).to be_present
+    expect(field.text).to eq(value)
   end
 end
 

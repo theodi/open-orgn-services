@@ -30,7 +30,7 @@ end
 
 Then(/^finance should receive an email with subject "(.*?)"$/) do |subject|
   emails = unread_emails_for(@email).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }
-  emails.size.should == 1
+  expect(emails.size).to eq(1)
   open_email(@email, with_subject: subject)
 end
 
