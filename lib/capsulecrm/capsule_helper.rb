@@ -49,18 +49,34 @@ module CapsuleHelper
 
   def set_membership_tag(party, fields)
     types = {
-      "Level"                    => :text,
-      "Supporter Level"          => :text,
-      "ID"                       => :text,
-      "Email"                    => :text,
-      "Joined"                   => :date,
-      "Newsletter"               => :boolean,
-      "Share with third parties" => :boolean,
-      "Size"                     => :text,
-      "Sector"                   => :text,
-      "Origin"                   => :text,
-      "Contact first name"       => :text,
-      "Contact last name"        => :text
+      "Level"                          => :text,
+      "Supporter Level"                => :text,
+      "ID"                             => :text,
+      "Email"                          => :text,
+      "Twitter"                        => :text,
+      "Joined"                         => :date,
+      "Newsletter"                     => :boolean,
+      "Share with third parties"       => :boolean,
+      "Size"                           => :text,
+      "Sector"                         => :text,
+      "Origin"                         => :text,
+      "Contact first name"             => :text,
+      "Contact last name"              => :text,
+      "DOB"                            => :date,
+      "University email"               => :text,
+      "University address street"      => :text,
+      "University address locality"    => :text,
+      "University address region"      => :text,
+      "University address country"     => :text,
+      "University address postcode"    => :text,
+      "University country"             => :text,
+      "University name"                => :text,
+      "University name other"          => :text,
+      "University course name"         => :text,
+      "University qualification"       => :text,
+      "University qualification other" => :text,
+      "University course start"        => :date,
+      "University course end"          => :date
     }
     set_custom_fields_on_tag(party, "Membership", fields, types)
   end

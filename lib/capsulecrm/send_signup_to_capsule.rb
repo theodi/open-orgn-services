@@ -4,24 +4,6 @@ class SendSignupToCapsule
   extend ProductHelper
   extend CapsuleHelper
 
-  # Public: Store details of self-signups in CapsuleCRM
-  #
-  # party    - a hash containing details of the organization or person
-  #              'name'           => the org / person name in Xero - should be the same as that in capsule
-  #              'company_number' => the company number for the person or organization
-  #              'email'          => the email address for the person or organization
-  #
-  # membership   - a hash containing details of the new membership
-  #              'product_name'    => the membership level
-  #              'supporter_level' => The supporter level
-  #              'id'              => the newly-generated membership number
-  #              'join_date'       => the date of signup
-  #              'contact_email'   => a contact email for the signup
-  #              'size'            => the organization's size
-  #              'sector'          => the organization's sector
-  #              'origin'          => the origin of the signup ('odihq' or other Node)
-  #
-  # Returns nil.
   def self.perform(party, membership)
     if %w(individual student).include?(membership['product_name'])
       p = find_or_create_person(party)
@@ -56,18 +38,34 @@ class SendSignupToCapsule
 
     set_membership_tag(
       p,
-      "Level"                     => level(membership['product_name']),
-      "Supporter Level"           => membership['supporter_level'],
-      "ID"                        => membership['id'],
-      "Joined"                    => Date.parse(membership['join_date']),
-      "Email"                     => membership['contact_email'],
-      "Size"                      => membership['size'],
-      "Sector"                    => membership['sector'],
-      "Origin"                    => membership['origin'],
-      "Newsletter"                => membership['newsletter'],
-      "Share with third parties"  => membership['share_with_third_parties'],
-      "Contact first name"        => first_name,
-      "Contact last name"         => last_name
+      "Level"                          => level(membership['product_name']),
+      "Supporter Level"                => membership['supporter_level'],
+      "ID"                             => membership['id'],
+      "Joined"                         => Date.parse(membership['join_date']),
+      "Email"                          => membership['contact_email'],
+      "Twitter"                        => membership['twitter'],
+      "Size"                           => membership['size'],
+      "Sector"                         => membership['sector'],
+      "Origin"                         => membership['origin'],
+      "Newsletter"                     => membership['newsletter'],
+      "Share with third parties"       => membership['share_with_third_parties'],
+      "Contact first name"             => first_name,
+      "Contact last name"              => last_name,
+      "DOB"                            => membership['dob'],
+      "University email"               => membership['university_email'],
+      "University address street"      => membership['university_street_address'],
+      "University address locality"    => membership['university_address_locality'],
+      "University address region"      => membership['university_address_region'],
+      "University address country"     => membership['university_address_country'],
+      "University address postcode"    => membership['university_postal_code'],
+      "University country"             => membership['university_country'],
+      "University name"                => membership['university_name'],
+      "University name other"          => membership['university_name_other'],
+      "University course name"         => membership['university_course_name'],
+      "University qualification"       => membership['university_qualification'],
+      "University qualification other" => membership['university_qualification_other'],
+      "University course start"        => membership['university_course_start_date'],
+      "University course end"          => membership['university_course_end_date']
     )
 
     unless membership['product_name'] == "individual"
