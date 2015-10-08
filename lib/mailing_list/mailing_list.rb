@@ -28,9 +28,15 @@ class MailingList
         :email => attributes.email
       },
       :merge_vars => {
-        :FNAME => attributes.contact_first_name,
-        :LNAME => attributes.contact_last_name,
-        :LEVEL => attributes.level
+        :FNAME      => attributes.contact_first_name,
+        :LNAME      => attributes.contact_last_name,
+        :LEVEL      => attributes.level,
+        :COUNTRY    => attributes.country,
+        :TWITTER    => attributes.twitter,
+        :JOIN_DATE  => attributes.join_date,
+        :ORG_SECTOR => attributes.organization_sector,
+        :ORG_NAME   => attributes.organization_name,
+        :ORG_SIZE   => attributes.organization_size
       },
       :double_optin => false
     })

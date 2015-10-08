@@ -47,6 +47,19 @@ describe CRM::Tag do
       end
     end
 
+    context "date value" do
+      let(:label) { "Joined" }
+      let(:type)  { :date }
+
+      let(:custom_field) do
+        double(tag: "Membership", label: "Joined", date: Date.parse("01/01/2015"))
+      end
+
+      it "returns the value" do
+        expect(subject.value.to_s).to eq("2015-01-01")
+      end
+    end
+
     context "tag does not exist" do
       let(:tag) { "DoesNotExist" }
       let(:label) { "Dunno" }

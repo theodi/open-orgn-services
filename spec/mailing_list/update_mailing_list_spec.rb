@@ -15,6 +15,12 @@ describe UpdateMailingList do
       level: "supporter",
       contact_first_name: "Test",
       contact_last_name: "Example",
+      country: "United Kingdom",
+      twitter: "@twitter",
+      join_date: "07/10/2015",
+      organization_sector: "Sector",
+      organization_name: "Organization name",
+      organization_size: "<1000"
     )
   end
   let(:crm) { double("CRM") }
@@ -39,7 +45,13 @@ describe UpdateMailingList do
             email: "test@example.com",
             level: "supporter",
             contact_first_name: "Test",
-            contact_last_name: "Example"
+            contact_last_name: "Example",
+            country: "United Kingdom",
+            twitter: "@twitter",
+            join_date: "07/10/2015",
+            organization_sector: "Sector",
+            organization_name: "Organization name",
+            organization_size: "<1000"
           )
 
         subject.perform
