@@ -92,6 +92,6 @@ When(/^my contact name is generated$/) do
   @contact_name = Invoicer.contact_name(create_invoice_to_hash)
 end
 
-Then(/^the generated name should be "(.*?)"$/) do |arg1|
-  @contact_name.should == arg1
+Then(/^the generated name should be "(.*?)"$/) do |name|
+  expect(@contact_name).to eq(name)
 end

@@ -87,7 +87,7 @@ Then /^my directory entry should be requeued for later processing once the conta
   }
   date = DateTime.now.to_s
 
-  Resque.should_receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
+  expect(Resque).to receive(:enqueue_in).with(1.hour, SendDirectoryEntryToCapsule, @membership_id, organization, directory_entry, date).once
 end
 
 Given /^that organisation is a member$/ do
@@ -159,8 +159,8 @@ Then /^my details should be stored in that data tag$/ do
   }.compact
   tests.each_pair do |field_name, value|
     field = @organisation.custom_fields.find{|x| x.label == field_name && x.tag == @tag.name}
-    field.should be_present
-    field.text.should == value
+    expect(field).to be_present
+    expect(field.text).to eq(value)
   end
 end
 

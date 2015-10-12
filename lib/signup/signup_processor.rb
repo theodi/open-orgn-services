@@ -9,49 +9,6 @@ require_relative "../capsulecrm/send_signup_to_capsule"
 class SignupProcessor
   @queue = :signup
 
-  # Public: Process new signups from the member site
-  #
-  # expects input of the following form...
-  #
-  # organization      - a hash containing the details of the member organisation
-  #                   'name'
-  #                   'vat_id'
-  #                   'company_number'
-  #                   'size'
-  #                   'type'
-  #                   'sector'
-  #                   'origin'
-  #                   'newsletter'
-  #                   'share_with_third_parties'
-  #
-  # contact_person    - a hash containing details of the main contact for the member organisation
-  #                    'name'
-  #                    'email'
-  #                    'telephone'
-  #
-  # billing           - a hash containing the details of the billing contact for the member organisation
-  #                   'name'
-  #                   'email'
-  #                   'telephone'
-  #                   'address' => {
-  #                      'street_address' => ...,
-  #                      'address_locality',
-  #                      'address_region',
-  #                      'address_country',
-  #                      'postal_code'
-  #                    }
-  #
-  # purchase          - a hash containing information about the purchase
-  #                   'payment_method'
-  #                   'payment_freq'
-  #                   'payment_ref'
-  #                   'offer_category'
-  #                   'purchase_order_reference'
-  #                   'membership_id'
-  #                   'discount'
-  #
-  # Returns nil. Queues invoicing and CRM task creation jobs.
-
   def self.perform(organization, contact_person, billing, purchase)
     self.new(organization, contact_person, billing, purchase).perform
   end
@@ -77,16 +34,33 @@ class SignupProcessor
     }.compact
 
     membership = {
-      "product_name"             => purchase["offer_category"],
-      "supporter_level"          => membership_type[:type],
-      "id"                       => purchase["membership_id"].to_s,
-      "join_date"                => Date.today.to_s,
-      "contact_email"            => contact_person["email"],
-      "size"                     => organization["size"],
-      "sector"                   => organization["sector"],
-      "origin"                   => organization["origin"],
-      "newsletter"               => organization["newsletter"],
-      "share_with_third_parties" => organization["share_with_third_parties"]
+      "product_name"                   => purchase["offer_category"],
+      "supporter_level"                => membership_type[:type],
+      "id"                             => purchase["membership_id"].to_s,
+      "join_date"                      => Date.today.to_s,
+      "contact_email"                  => contact_person["email"],
+      "twitter"                        => contact_person["twitter"],
+      "size"                           => organization["size"],
+      "sector"                         => organization["sector"],
+      "origin"                         => organization["origin"],
+      "newsletter"                     => organization["newsletter"],
+      "share_with_third_parties"       => organization["share_with_third_parties"],
+      "dob"                            => contact_person["dob"],
+      "country"                        => contact_person["country"],
+      "university_email"               => contact_person["university_email"],
+      "university_street_address"      => contact_person["university_street_address"],
+      "university_address_locality"    => contact_person["university_address_locality"],
+      "university_address_region"      => contact_person["university_address_region"],
+      "university_address_country"     => contact_person["university_address_country"],
+      "university_postal_code"         => contact_person["university_postal_code"],
+      "university_country"             => contact_person["university_country"],
+      "university_name"                => contact_person["university_name"],
+      "university_name_other"          => contact_person["university_name_other"],
+      "university_course_name"         => contact_person["university_course_name"],
+      "university_qualification"       => contact_person["university_qualification"],
+      "university_qualification_other" => contact_person["university_qualification_other"],
+      "university_course_start_date"   => contact_person["university_course_start_date"],
+      "university_course_end_date"     => contact_person["university_course_end_date"]
     }.compact
 
     SendSignupToCapsule.perform(organization_details, membership)

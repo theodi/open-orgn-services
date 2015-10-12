@@ -28,8 +28,24 @@ describe SignupProcessor do
 
   let(:contact_person) do
     {
-      "name"  => "Contact person",
-      "email" => "contact@person.com"
+      "name"                           => "Contact person",
+      "email"                          => "contact@person.com",
+      "twitter"                        => "@twitter",
+      "dob"                            => "DOB",
+      "university_email"               => "uni-email@example.com",
+      "university_street_address"      => "Uni street address",
+      "university_address_locality"    => "Uni address locality",
+      "university_address_region"      => "Uni address region",
+      "university_address_country"     => "Uni address country",
+      "university_postal_code"         => "Uni postcode",
+      "university_country"             => "Uni country",
+      "university_name"                => "Uni name",
+      "university_name_other"          => "Uni name other",
+      "university_course_name"         => "Uni course name",
+      "university_qualification"       => "Uni qualification",
+      "university_qualification_other" => "Uni qualification other",
+      "university_course_start_date"   => "Uni course start date",
+      "university_course_end_date"     => "Uni course end date"
     }
   end
 
@@ -73,14 +89,30 @@ describe SignupProcessor do
 
     let(:expected_membership_details) do
       {
-        "product_name"    => "individual",
-        "supporter_level" => "Individual",
-        "id"              => "123456",
-        "join_date"       => Date.today.to_s, # Not ideal, but no times so should ok?
-        "contact_email"   => "contact@person.com",
-        "size"            => "10-50",
-        "sector"          => "Education",
-        "origin"          => "odi-leeds"
+        "product_name"                   => "individual",
+        "supporter_level"                => "Individual",
+        "id"                             => "123456",
+        "join_date"                      => Date.today.to_s, # Not ideal, but no times so should ok?
+        "contact_email"                  => "contact@person.com",
+        "twitter"                        => "@twitter",
+        "size"                           => "10-50",
+        "sector"                         => "Education",
+        "origin"                         => "odi-leeds",
+        "dob"                            => "DOB",
+        "university_email"               => "uni-email@example.com",
+        "university_street_address"      => "Uni street address",
+        "university_address_locality"    => "Uni address locality",
+        "university_address_region"      => "Uni address region",
+        "university_address_country"     => "Uni address country",
+        "university_postal_code"         => "Uni postcode",
+        "university_country"             => "Uni country",
+        "university_name"                => "Uni name",
+        "university_name_other"          => "Uni name other",
+        "university_course_name"         => "Uni course name",
+        "university_qualification"       => "Uni qualification",
+        "university_qualification_other" => "Uni qualification other",
+        "university_course_start_date"   => "Uni course start date",
+        "university_course_end_date"     => "Uni course end date"
       }
     end
 
