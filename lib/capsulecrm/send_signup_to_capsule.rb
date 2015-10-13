@@ -47,6 +47,7 @@ class SendSignupToCapsule
       "Size"                           => membership['size'],
       "Sector"                         => membership['sector'],
       "Origin"                         => membership['origin'],
+      "Coupon"                         => membership['coupon'],
       "Newsletter"                     => membership['newsletter'],
       "Share with third parties"       => membership['share_with_third_parties'],
       "Contact first name"             => first_name,

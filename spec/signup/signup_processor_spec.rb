@@ -60,7 +60,8 @@ describe SignupProcessor do
         "address_region"   => "Some region",
         "address_country"  => "Some country",
         "postal_code"      => "Some postcode"
-      }
+      },
+      "coupon" => "COUPON"
     }
   end
 
@@ -98,6 +99,7 @@ describe SignupProcessor do
         "size"                           => "10-50",
         "sector"                         => "Education",
         "origin"                         => "odi-leeds",
+        "coupon"                         => "COUPON",
         "dob"                            => "DOB",
         "university_email"               => "uni-email@example.com",
         "university_street_address"      => "Uni street address",
