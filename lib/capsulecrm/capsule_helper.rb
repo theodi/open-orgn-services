@@ -60,6 +60,7 @@ module CapsuleHelper
       "Size"                           => :text,
       "Sector"                         => :text,
       "Origin"                         => :text,
+      "Coupon"                         => :text,
       "Contact first name"             => :text,
       "Contact last name"              => :text,
       "DOB"                            => :date,

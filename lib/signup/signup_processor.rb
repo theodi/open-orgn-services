@@ -43,6 +43,7 @@ class SignupProcessor
       "size"                           => organization["size"],
       "sector"                         => organization["sector"],
       "origin"                         => organization["origin"],
+      "coupon"                         => billing["coupon"],
       "newsletter"                     => organization["newsletter"],
       "share_with_third_parties"       => organization["share_with_third_parties"],
       "dob"                            => contact_person["dob"],
