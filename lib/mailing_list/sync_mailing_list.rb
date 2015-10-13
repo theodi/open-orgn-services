@@ -8,10 +8,15 @@ class SyncMailingList
   end
 
   attr_writer :members, :queue
+  attr_reader :since
+
+  def initialize(since = 24.hours.ago)
+    @since = since
+  end
 
   def perform
     members.each do |member|
-      if updated_within_24_hours?(member)
+      if requires_update?(member)
         queue.enqueue(UpdateMailingList, member.id, member.class.to_s.demodulize)
       end
     end
@@ -19,8 +24,8 @@ class SyncMailingList
 
   private
 
-  def updated_within_24_hours?(member)
-    member.updated_at > 24.hours.ago
+  def requires_update?(member)
+    member.updated_at > since
   end
 
   def queue
