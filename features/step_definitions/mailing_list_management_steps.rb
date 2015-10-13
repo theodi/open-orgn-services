@@ -2,40 +2,27 @@ Given(/^that a member has requested to (NOT be on|be on) the mailing list in the
   receive_newsletter = (subscribe_or_unsubcribe == "be on" ? true : false)
 
   # Create member in Capsule
-  @member = CapsuleCRM::Organisation.new(name: Faker::Company.name)
+  @member = CapsuleCRM::Organisation.new(name: "Foobar Inc")
   @member.emails << CapsuleCRM::Email.new(@member, address: "shane_fadel@kris.net")
   @member.save
 
   # Save membership tag
   CapsuleCRM::Tag.new(@member, :name => "Membership").save
 
-  # Save newsletter preference to true
-  CapsuleCRM::CustomField.new(@member, {
-    label: "Newsletter",
-    boolean: receive_newsletter,
-    tag: "Membership"
-  }).save
-
-  # Save supporter level
-  CapsuleCRM::CustomField.new(@member, {
-    label: "Level",
-    text: "supporter",
-    tag: "Membership"
-  }).save
-
-  # Save contact first name
-  CapsuleCRM::CustomField.new(@member, {
-    label: "Contact first name",
-    text: "Test",
-    tag: "Membership"
-  }).save
-
-  # Save contact last name
-  CapsuleCRM::CustomField.new(@member, {
-    label: "Contact last name",
-    text: "Example",
-    tag: "Membership"
-  }).save
+  # Create custom fields in Capsule CRM
+  [
+    { tag: "Membership", label: "Newsletter",         boolean: receive_newsletter },
+    { tag: "Membership", label: "Level",              text: "supporter" },
+    { tag: "Membership", label: "Contact first name", text: "Test" },
+    { tag: "Membership", label: "Contact last name",  text: "Example" },
+    { tag: "Membership", label: "Country",            text: "United Kingdom" },
+    { tag: "Membership", label: "Twitter",            text: "@twitter" },
+    { tag: "Membership", label: "Joined",             date: Date.parse("01/01/2015") },
+    { tag: "Membership", label: "Sector",             text: "Education" },
+    { tag: "Membership", label: "Size",               text: ">1000" }
+  ].each do |attributes|
+    CapsuleCRM::CustomField.new(@member, attributes).save
+  end
 
   # Comment to leave members in Capsule for debugging
   @capsule_cleanup << @member
@@ -66,6 +53,12 @@ Then(/^the member will subscribed to the mailing list$/) do
   expect(member["merges"]["LEVEL"]).to eq("supporter")
   expect(member["merges"]["FNAME"]).to eq("Test")
   expect(member["merges"]["LNAME"]).to eq("Example")
+  expect(member["merges"]["COUNTRY"]).to eq("United Kingdom")
+  expect(member["merges"]["TWITTER"]).to eq("@twitter")
+  expect(member["merges"]["JOIN_DATE"]).to eq("2015-01-01")
+  expect(member["merges"]["ORG_SECTOR"]).to eq("Education")
+  expect(member["merges"]["ORG_NAME"]).to eq("Foobar Inc")
+  expect(member["merges"]["ORG_SIZE"]).to eq(">1000")
 end
 
 Then(/^the member will unsubscribed to the mailing list$/) do

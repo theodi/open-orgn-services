@@ -20,7 +20,13 @@ describe MailingList do
       email: "test@example.com",
       level: "supporter",
       contact_first_name: "Test",
-      contact_last_name: "Example"
+      contact_last_name: "Example",
+      country: "United Kingdom",
+      twitter: "@twitter",
+      join_date: "07/10/2015",
+      organization_sector: "Sector",
+      organization_name: "Organization name",
+      organization_size: "<1000"
     }
   end
 
@@ -39,7 +45,17 @@ describe MailingList do
         expect(list).to receive(:subscribe).with(a_hash_including(
           :id           => 1234,
           :email        => { :email => "test@example.com" },
-          :merge_vars   => { :FNAME => "Test", :LNAME => "Example", :LEVEL => "supporter" },
+          :merge_vars   => {
+            :FNAME      => "Test",
+            :LNAME      => "Example",
+            :LEVEL      => "supporter",
+            :COUNTRY    => "United Kingdom",
+            :TWITTER    => "@twitter",
+            :JOIN_DATE  => "07/10/2015",
+            :ORG_SECTOR => "Sector",
+            :ORG_NAME   => "Organization name",
+            :ORG_SIZE   => "<1000"
+          },
           :double_optin => false
         ))
 

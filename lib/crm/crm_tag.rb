@@ -9,6 +9,10 @@ module CRM
       new(record, :text, tag, label).value(&block)
     end
 
+    def self.date(record, tag, label, &block)
+      new(record, :date, tag, label).value(&block)
+    end
+
     attr_reader :record, :type, :tag, :label
 
     def initialize(record, type, tag, label)

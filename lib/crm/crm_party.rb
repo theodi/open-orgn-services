@@ -35,6 +35,30 @@ module CRM
     def level
       CRM::Tag.text(record, "Membership", "Level")
     end
+
+    def country
+      CRM::Tag.text(record, "Membership", "Country")
+    end
+
+    def twitter
+      CRM::Tag.text(record, "Membership", "Twitter")
+    end
+
+    def join_date
+      CRM::Tag.date(record, "Membership", "Joined")
+    end
+
+    def organization_sector
+      CRM::Tag.text(record, "Membership", "Sector")
+    end
+
+    def organization_name
+      record.name if record.respond_to?(:name)
+    end
+
+    def organization_size
+      CRM::Tag.text(record, "Membership", "Size")
+    end
   end
 end
 
