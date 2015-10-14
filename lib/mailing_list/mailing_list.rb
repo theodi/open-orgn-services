@@ -38,7 +38,8 @@ class MailingList
         :ORG_NAME   => attributes.organization_name,
         :ORG_SIZE   => attributes.organization_size
       },
-      :double_optin => false
+      :double_optin => false,
+      :update_existing => true
     })
   rescue Gibbon::MailChimpError => e
     raise SubscribeFailure, e.message

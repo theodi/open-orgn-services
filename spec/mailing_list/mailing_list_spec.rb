@@ -56,7 +56,8 @@ describe MailingList do
             :ORG_NAME   => "Organization name",
             :ORG_SIZE   => "<1000"
           },
-          :double_optin => false
+          :double_optin => false,
+          :update_existing => true
         ))
 
         subject.subscribe
