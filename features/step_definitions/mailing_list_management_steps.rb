@@ -1,4 +1,4 @@
-Given(/^that a member has requested to (NOT be on|be on) the mailing list in the 24 hours$/) do |subscribe_or_unsubcribe|
+Given(/^that a member has requested to (NOT be on|be on) the mailing list$/) do |subscribe_or_unsubcribe|
   receive_newsletter = (subscribe_or_unsubcribe == "be on" ? true : false)
 
   # Create member in Capsule
