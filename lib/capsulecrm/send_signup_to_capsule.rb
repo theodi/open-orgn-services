@@ -7,9 +7,12 @@ class SendSignupToCapsule
   def self.perform(party, membership)
     if %w(individual student).include?(membership['product_name'])
       p = find_or_create_person(party)
+      first_name, last_name = party['name'].split(" ")
     else
       p = find_or_create_organization(party)
+      first_name, last_name = party['contact_name'].split(" ")
     end
+
     # Create opportunity against organisation
     opportunity = CapsuleCRM::Opportunity.new(
       :party_id            => p.id,
@@ -25,6 +28,7 @@ class SendSignupToCapsule
       :owner               => ENV['CAPSULECRM_DEFAULT_OWNER'],
     )
     save_item(opportunity)
+
     # Write custom field for opportunity type
     field = CapsuleCRM::CustomField.new(
       opportunity,
@@ -32,9 +36,6 @@ class SendSignupToCapsule
       :text  => 'Membership'
     )
     save_item(field)
-
-    # Set up membership tag
-    first_name, last_name = party['name'].split(" ")
 
     set_membership_tag(
       p,

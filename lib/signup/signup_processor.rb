@@ -29,6 +29,7 @@ class SignupProcessor
 
     organization_details = {
       "name"           => organization["name"] || contact_person["name"],
+      "contact_name"   => contact_person["name"],
       "company_number" => organization["company_number"],
       "email"          => billing["email"]
     }.compact

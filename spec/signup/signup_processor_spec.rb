@@ -83,6 +83,7 @@ describe SignupProcessor do
     let(:expected_organization_details) do
       {
         "name"            => expected_organization_details_name,
+        "contact_name"    => "Contact person",
         "company_number"  => "123456",
         "email"           => "test@example.com"
       }

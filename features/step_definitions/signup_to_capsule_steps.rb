@@ -1,6 +1,7 @@
 When /^I sign up via the website$/ do
   organization = {
     'name' => @company || @contact_name,
+    'contact_name' => @contact_name,
     'company_number' => @company_number,
     'email' => @email
   }.compact
