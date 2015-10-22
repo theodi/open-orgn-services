@@ -1,7 +1,8 @@
 # stuff about me
 
 Given /^my name is "(.*?)"$/ do |name|
-  @name = name
+  @name         = name
+  @contact_name = name
 end
 
 Given /^my first name is "(.*?)"$/ do |name|
