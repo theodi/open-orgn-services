@@ -56,6 +56,16 @@ describe CRM::Party do
     end
   end
 
+  describe "#supporter_level" do
+    let(:custom_fields) do
+      [OpenStruct.new({ "tag"=>"Membership", "label"=>"Supporter Level", "text" => "supporter" })]
+    end
+
+    it "should return the supporter_level" do
+      expect(subject.supporter_level).to eq("supporter")
+    end
+  end
+
   describe "#contact_first_name" do
     context "membership tag fields are missing" do
       let(:custom_fields) { [] }
