@@ -25,7 +25,7 @@ end
 Then /^that (organisation|person) should be queued for sync$/ do |target|
   type = instance_variable_get("@#{target}")
   expect(Resque).to receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
-  expect(Resque).to receive(:enqueue).at_most(1).times
+  expect(Resque).to receive(:enqueue).at_least(1).times
 end
 
 Then /^that (organisation|person) should not be queued for sync$/ do |target|
