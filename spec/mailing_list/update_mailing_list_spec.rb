@@ -1,3 +1,4 @@
+require_relative "../../lib/mailing_list/mailing_list"
 require_relative "../../lib/mailing_list/update_mailing_list"
 
 describe UpdateMailingList do
@@ -13,6 +14,7 @@ describe UpdateMailingList do
     double("Member",
       email: "test@example.com",
       level: "supporter",
+      supporter_level: "Individual",
       contact_first_name: "Test",
       contact_last_name: "Example",
       country: "United Kingdom",
@@ -44,6 +46,7 @@ describe UpdateMailingList do
           .with(
             email: "test@example.com",
             level: "supporter",
+            supporter_level: "Individual",
             contact_first_name: "Test",
             contact_last_name: "Example",
             country: "United Kingdom",

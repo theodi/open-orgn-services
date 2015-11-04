@@ -19,6 +19,7 @@ describe MailingList do
     {
       email: "test@example.com",
       level: "supporter",
+      supporter_level: "Individual",
       contact_first_name: "Test",
       contact_last_name: "Example",
       country: "United Kingdom",
@@ -49,6 +50,7 @@ describe MailingList do
             :FNAME      => "Test",
             :LNAME      => "Example",
             :LEVEL      => "supporter",
+            :SLEVEL     => "Individual",
             :COUNTRY    => "United Kingdom",
             :TWITTER    => "@twitter",
             :JOIN_DATE  => "07/10/2015",

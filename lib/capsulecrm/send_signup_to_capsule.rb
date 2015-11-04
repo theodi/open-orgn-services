@@ -79,8 +79,11 @@ class SendSignupToCapsule
   end
 
   def self.level(product_name)
-    return "individual" if product_name == "student"
-
-    product_name
+    case product_name
+    when "student"
+      "individual"
+    else
+      product_name
+    end
   end
 end

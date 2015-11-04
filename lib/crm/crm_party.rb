@@ -36,6 +36,10 @@ module CRM
       CRM::Tag.text(record, "Membership", "Level")
     end
 
+    def supporter_level
+      CRM::Tag.text(record, "Membership", "Supporter Level")
+    end
+
     def country
       CRM::Tag.text(record, "Membership", "Country")
     end

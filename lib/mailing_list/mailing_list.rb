@@ -31,6 +31,7 @@ class MailingList
         :FNAME      => attributes.contact_first_name,
         :LNAME      => attributes.contact_last_name,
         :LEVEL      => attributes.level,
+        :SLEVEL     => attributes.supporter_level,
         :COUNTRY    => attributes.country,
         :TWITTER    => attributes.twitter,
         :JOIN_DATE  => attributes.join_date,
