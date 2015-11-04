@@ -1,25 +1,25 @@
-@vcr
+@vcr @timecop
 Feature: Create a JSON description of all upcoming events
 
   In order to display upcoming events on the main website
   As a developer
   I want to be able to access a JSON file including the details from some client-side Javascript
-  
+
   Background:
     Given that it's 2013-04-22 19:00
     And the following events exist:
-    
+
       | title                                                | id         | url                                        | starts_at        | ends_at          | capacity | location            |
-      | Past Event                                           | 5530182926 | http://www.eventbrite.com/event/5530182926 | 2013-02-14 07:00 | 2013-02-14 08:00 | 100      |                     | 
+      | Past Event                                           | 5530182926 | http://www.eventbrite.com/event/5530182926 | 2013-02-14 07:00 | 2013-02-14 08:00 | 100      |                     |
       | Big Event (2013-02-14)                               | 5531683414 | http://www.eventbrite.com/event/5531683414 | 2013-02-14 19:00 | 2013-02-14 22:00 | 10       | The ODI             |
       | Friday lunchtime lectures: Something something data  | 6339143549 | http://www.eventbrite.com/event/6339143549 | 2013-05-31 13:00 | 2013-05-31 13:45 | 100      | The ODI             |
       | Friday lunchtime lectures: We heard you like data... | 6339320077 | http://www.eventbrite.com/event/6339320077 | 2013-06-07 13:00 | 2013-06-07 13:45 | 100      | The ODI             |
       | Open Data, Law and Licensing                         | 5519765768 | http://www.eventbrite.com/event/5519765768 | 2013-06-16 09:30 | 2013-06-16 12:30 | 100      | Open Data Institute |
       | [Test Event 00] Drupal: Down the Rabbit Hole         | 5441375300 | http://www.eventbrite.com/event/5441375300 | 2013-06-17 19:00 | 2013-06-17 22:00 | 200      | The office          |
       | How to Find an Eventbrite Event ID                   | 5449726278 | http://foobarrubbishevent.eventbrite.com   | 2013-06-24 19:00 | 2013-06-24 22:00 | 10       |                     |
-      
+
     And the events have the following ticket types:
-    
+
       | event_id    | name                                  | price   | currency | starts_at        | ends_at          | tickets   |
       | 5531683414  | Cheap Seats                           | 0.66    | GBP      |                  | 2013-02-14 18:00 | 10        |
       | 5530182926  | Free but useless                      | 0.00    | GBP      |                  | 2013-02-14 06:00 | 100       |
@@ -30,12 +30,12 @@ Feature: Create a JSON description of all upcoming events
       | 5519765768  | Early Bird                            | 195.40  | GBP      |                  | 2013-06-16 08:30 | 100       |
       | 5519765768  | Members, Civil Servants and Charities | 185.15  | GBP      |                  | 2013-06-16 08:30 | 100       |
       | 6339143549  | Guest                                 | 0       | GBP      |                  | 2013-05-31 12:00 | 100       |
-      | 6339320077  | Guest                                 | 0       | GBP      |                  | 2013-06-07 12:00 | 100       |  
-  
+      | 6339320077  | Guest                                 | 0       | GBP      |                  | 2013-06-07 12:00 | 100       |
+
   Scenario: Queue event summary generator
     Then the event summary generator should be queued
 		When we poll eventbrite for all events
-    
+
   Scenario: Generate JSON
     Then the courses summary uploader should be queued with the following JSON:
     """
