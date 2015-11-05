@@ -13,6 +13,7 @@ Given(/^that a member has requested to (NOT be on|be on) the mailing list$/) do 
   [
     { tag: "Membership", label: "Newsletter",         boolean: receive_newsletter },
     { tag: "Membership", label: "Level",              text: "supporter" },
+    { tag: "Membership", label: "Supporter Level",    text: "Individual" },
     { tag: "Membership", label: "Contact first name", text: "Test" },
     { tag: "Membership", label: "Contact last name",  text: "Example" },
     { tag: "Membership", label: "Country",            text: "United Kingdom" },
@@ -51,6 +52,7 @@ Then(/^the member will subscribed to the mailing list$/) do
 
   expect(email_addresses).to include(@member.emails.first.address)
   expect(member["merges"]["LEVEL"]).to eq("supporter")
+  expect(member["merges"]["SLEVEL"]).to eq("Individual")
   expect(member["merges"]["FNAME"]).to eq("Test")
   expect(member["merges"]["LNAME"]).to eq("Example")
   expect(member["merges"]["COUNTRY"]).to eq("United Kingdom")
@@ -79,6 +81,7 @@ Given(/^that a member is already on the mailing list and is reprocessed$/) do
       :FNAME      => "Existing first name",
       :LNAME      => "Existing last name",
       :LEVEL      => "individual",
+      :SLEVEL     => "Individual",
       :COUNTRY    => "United Kingdom",
       :TWITTER    => "@existing_twitter",
       :JOIN_DATE  => "01/01/2015",
@@ -99,6 +102,7 @@ Given(/^that a member is already on the mailing list and is reprocessed$/) do
   [
     { tag: "Membership", label: "Newsletter",         boolean: true },
     { tag: "Membership", label: "Level",              text: "supporter" },
+    { tag: "Membership", label: "Supporter Level",    text: "Student" },
     { tag: "Membership", label: "Contact first name", text: "New first name" },
     { tag: "Membership", label: "Contact last name",  text: "New last name" },
     { tag: "Membership", label: "Country",            text: "France" },
@@ -123,6 +127,7 @@ Then(/^the members details will be updated$/) do
   expect(member["merges"]["FNAME"]).to eq("New first name")
   expect(member["merges"]["LNAME"]).to eq("New last name")
   expect(member["merges"]["LEVEL"]).to eq("supporter")
+  expect(member["merges"]["SLEVEL"]).to eq("Student")
   expect(member["merges"]["COUNTRY"]).to eq("France")
   expect(member["merges"]["TWITTER"]).to eq("@new_twitter")
   expect(member["merges"]["JOIN_DATE"]).to eq("2015-02-02")
