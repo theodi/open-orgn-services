@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.8.24"
 
   s.add_dependency 'rake'               , '~> 10.0', '>= 10.0.3'
-  s.add_dependency 'eventbrite-client'  , '~> 0.1' , '>= 0.1.3'
   s.add_dependency 'resque'             , '~> 1.23', '>= 1.23.0'
   s.add_dependency 'resque-scheduler'   , '~> 2.5', '>=2.5.5'
   s.add_dependency 'activemodel'        , '~> 3.2' , '>= 3.2.12'
@@ -26,6 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'pony'               , '~> 1.6' , '>= 1.6.2'
   s.add_dependency 'curb'               , '~> 0.8' , '>= 0.8.6'
   s.add_dependency 'chargify_api_ares'  , '~> 1.3' , '>= 1.3.1'
+  s.add_dependency 'faraday'            , '~> 0.9' , '>= 0.9.2'
+  s.add_dependency 'faraday_middleware' , '~> 0.10', '>= 0.10.0'
 
   s.add_development_dependency 'cucumber'          , '~> 1.2'
   s.add_development_dependency 'rspec'             , '~> 3.3'

@@ -13,7 +13,7 @@ require 'pony'
 
 require 'helpers/membership_helper'
 
-require 'eventbrite-client'
+require 'eventbrite/client.rb'
 require 'eventbrite/event_monitor'
 require 'eventbrite/attendee_monitor'
 require 'eventbrite/event_summary_generator'
