@@ -146,7 +146,7 @@ describe SignupProcessor do
         "line_items" => [
           {
             "quantity"      => 1,
-            "base_price"    => 108,
+            "base_price"    => 90,
             "discount_rate" => 50.0,
             "description"   => expected_invoice_line_item_description
           }
@@ -219,7 +219,7 @@ describe SignupProcessor do
 
       it "returns the details for individual supporters" do
         expect(subject.membership_type).to eq({
-          price:       108,
+          price:       90,
           description: "Individual supporter",
           type:        "Individual"
         })

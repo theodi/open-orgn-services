@@ -20,7 +20,7 @@ Feature: Processing individual membership signups
     And I want to pay on an "annual" basis
     And my payment reference is "cus_12345"
     Then the invoice description should read "ODI Individual supporter (01010101) [Individual] (annual card payment)"
-    And the invoice price should be "108"
+    And the invoice price should be "90"
     And the invoice discount should be empty
     And the supporter level should be "Individual"
     And I should be added to the invoicing queue
@@ -32,7 +32,7 @@ Feature: Processing individual membership signups
     And I want to pay on an "annual" basis
     And my payment reference is "cus_12345"
     Then the invoice description should read "ODI Individual supporter (01010101) [Individual] (annual card payment)"
-    And the invoice price should be "108"
+    And the invoice price should be "90"
     And the invoice discount should be "50%"
     And the supporter level should be "Individual"
     And I should be added to the invoicing queue

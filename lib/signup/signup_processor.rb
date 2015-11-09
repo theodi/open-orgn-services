@@ -106,7 +106,7 @@ class SignupProcessor
   def membership_type
     if category == 'individual'
       {
-        price: 108,
+        price: 90,
         description: 'Individual supporter',
         type: 'Individual'
       }
