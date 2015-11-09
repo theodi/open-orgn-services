@@ -104,10 +104,6 @@ class SignupProcessor
   end
 
   def membership_type
-    size     = organization['size']
-    type     = organization['type']
-    category = purchase['offer_category']
-
     if category == 'individual'
       {
         price: 108,
@@ -133,6 +129,18 @@ class SignupProcessor
         type: 'Corporate supporter'
       }
     end
+  end
+
+  def size
+    organization['size']
+  end
+
+  def type
+    organization['type']
+  end
+
+  def category
+    purchase['offer_category']
   end
 
   def invoice_description(membership_id, description, type, method, frequency)
