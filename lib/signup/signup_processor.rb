@@ -23,10 +23,6 @@ class SignupProcessor
   end
 
   def perform
-
-    # Save details in capsule
-    membership_type = membership_type(organization['size'], organization['type'], purchase['offer_category'])
-
     organization_details = {
       "name"           => organization["name"] || contact_person["name"],
       "contact_name"   => contact_person["name"],
@@ -107,7 +103,11 @@ class SignupProcessor
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
   end
 
-  def membership_type(size, type, category)
+  def membership_type
+    size     = organization['size']
+    type     = organization['type']
+    category = purchase['offer_category']
+
     if category == 'individual'
       {
         price: 108,

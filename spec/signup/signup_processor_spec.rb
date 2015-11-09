@@ -15,11 +15,13 @@ describe SignupProcessor do
 
   let(:organization_type) {}
 
+  let(:size) { "10-50" }
+
   let(:organization) do
     {
       "name"           => organization_name,
       "company_number" => "123456",
-      "size"           => "10-50",
+      "size"           => size,
       "sector"         => "Education",
       "origin"         => "odi-leeds",
       "type"           => organization_type
@@ -61,9 +63,11 @@ describe SignupProcessor do
     }
   end
 
+  let(:category) { "individual" }
+
   let(:purchase) do
     {
-      "offer_category"           => "individual",
+      "offer_category"           => category,
       "membership_id"            => 123456,
       "payment_method"           => "credit_card",
       "payment_freq"             => "annual",
@@ -214,7 +218,7 @@ describe SignupProcessor do
       let(:category) { "individual" }
 
       it "returns the details for individual supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       108,
           description: "Individual supporter",
           type:        "Individual"
@@ -226,7 +230,7 @@ describe SignupProcessor do
       let(:category) { "corporate" }
 
       it "returns the details for corporate supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       2200,
           description: "Corporate Supporter",
           type:        "Corporate supporter"
@@ -235,10 +239,10 @@ describe SignupProcessor do
     end
 
     context "non-commercial supporter" do
-      let(:type) { "non_commercial" }
+      let(:organization_type) { "non_commercial" }
 
       it "returns the details for supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       720,
           description: "Supporter",
           type:        "Supporter"
@@ -250,7 +254,7 @@ describe SignupProcessor do
       let(:size) { "10-50" }
 
       it "returns the details for supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       720,
           description: "Supporter",
           type:        "Supporter"
