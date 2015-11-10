@@ -34,13 +34,10 @@ class ChargifyReportGenerator
   end
 
   def reports
-    cash_report_csv = generate_csv(cash_report)
-    booking_value_report_csv = generate_csv(booking_value_report)
-
-    {
-      "cash-report.csv" => cash_report_csv,
-      "booking-value-report.csv" => booking_value_report_csv
-    }
+    [:cash_report, :booking_value_report].each_with_object({}) do |report, hash|
+      key = "#{report.to_s.dasherize}.csv"
+      hash[key] = generate_csv(self.send(report))
+    end
   end
 
   def send_report
