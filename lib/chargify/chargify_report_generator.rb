@@ -12,9 +12,25 @@ class ChargifyReportGenerator
     reporter.send_report
   end
 
+  def self.save_csvs
+    previous_month = Date.today.prev_month
+    reporter = new(nil, previous_month.beginning_of_month, previous_month.end_of_month)
+    reporter.fetch_data
+    reporter.save
+  end
+
   def initialize(email, start_date, end_date)
     @email = email
     @start_date, @end_date = start_date, end_date
+  end
+
+  def save
+    [:cash_report, :booking_value_report].each do |report|
+      filename = "#{report.to_s.dasherize}.csv"
+      File.open(filename, 'w') do |f|
+        f.write(generate_csv(self.send(report)))
+      end
+    end
   end
 
   def send_report
