@@ -1,6 +1,5 @@
 @vcr
 Feature: Email a report to finance
-
   In order to keep track of revenue from membership signups
   As finance
   I need a report about monthly signups for each membership tier
@@ -8,19 +7,16 @@ Feature: Email a report to finance
   And information on any money that has been refunded
 
   Background:
-
     Given the chargify environment variables are set
     When I want to run the report for 2015-03-01 to 2015-03-31
 
   Scenario: Report the transactions and the end of the month
-
     When the job is triggered
     Then finance should receive an email with subject "Membership finance report for March 2015"
     And there should be an attachment named "cash-report.csv"
     And there should be an attachment named "booking-value-report.csv"
 
   Scenario: the cash report contains the correct data
-
     Then data for the cash report should match:
 
       | date                | membership number | statement id | membership type             | transaction type | coupon | amount | tax  | discount | total |
@@ -39,7 +35,6 @@ Feature: Email a report to finance
       |                     |                   |              |                             |                  | totals | 6350   | 1270 | 0        | 7620  |
 
   Scenario: the booking value report contains the correct data
-
     Then data for the booking value report should match:
 
       | product name               | signup count | booking value | net  | tax | total |
@@ -49,7 +44,6 @@ Feature: Email a report to finance
       | supporter_monthly          | 1            | 720           | 720  | 144 | 864   |
 
   Scenario: the cash report with coupon adjustments contains the correct data
-
     When I want to run the report for 2015-02-20 to 2015-02-21
     Then data for the cash report should match:
 
