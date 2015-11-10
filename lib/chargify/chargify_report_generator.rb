@@ -25,10 +25,9 @@ class ChargifyReportGenerator
   end
 
   def save
-    [:cash_report, :booking_value_report].each do |report|
-      filename = "#{report.to_s.dasherize}.csv"
+    reports.each do |filename, report|
       File.open(filename, 'w') do |f|
-        f.write(generate_csv(self.send(report)))
+        f.write(report)
       end
     end
   end
