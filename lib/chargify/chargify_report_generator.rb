@@ -33,11 +33,19 @@ class ChargifyReportGenerator
     end
   end
 
+  def reports
+    cash_report_csv = generate_csv(cash_report)
+    booking_value_report_csv = generate_csv(booking_value_report)
+
+    {
+      "cash-report.csv" => cash_report_csv,
+      "booking-value-report.csv" => booking_value_report_csv
+    }
+  end
+
   def send_report
     subject = "Membership finance report for #{@end_date.strftime("%B %Y")}"
     body = "For the dates between #{@start_date} and #{@end_date}"
-    cash_report_csv = generate_csv(cash_report)
-    booking_value_report_csv = generate_csv(booking_value_report)
 
     mail = Pony.mail({
       :to => @email,
@@ -45,10 +53,7 @@ class ChargifyReportGenerator
       :from => 'robots@theodi.org',
       :subject => subject,
       :body => body,
-      :attachments => {
-        "cash-report.csv" => cash_report_csv,
-        "booking-value-report.csv" => booking_value_report_csv
-      },
+      :attachments => reports,
       :via => :smtp,
       :via_options => {
         :user_name => ENV["MANDRILL_USERNAME"],
