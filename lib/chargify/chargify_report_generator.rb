@@ -4,6 +4,8 @@ require 'csv'
 class ChargifyReportGenerator
   @queue = :directory
 
+  AVAILABLE_REPORTS = [:cash_report, :booking_value_report]
+
   def self.perform
     previous_month = Date.today.prev_month
     email = ENV.fetch('FINANCE_EMAIL')
@@ -33,7 +35,7 @@ class ChargifyReportGenerator
   end
 
   def reports
-    [:cash_report, :booking_value_report].each_with_object({}) do |report, hash|
+    AVAILABLE_REPORTS.each_with_object({}) do |report, hash|
       key = "#{report.to_s.dasherize}.csv"
       hash[key] = generate_csv(self.send(report))
     end
