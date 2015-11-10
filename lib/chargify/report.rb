@@ -13,6 +13,10 @@ module Reports
         end
       end
     end
+
+    def data
+      raise ArgumentError, "You must implement `#data`"
+    end
   end
 end
 
