@@ -2,9 +2,20 @@ require_relative "report"
 
 module Reports
   class BookingValueReport < Report
+    def headers
+      [
+        'product name',
+        'signup count',
+        'booking value',
+        'net',
+        'tax',
+        'total'
+      ]
+    end
+
     def data
       table = []
-      table << ['product name', 'signup count', 'booking value', 'net', 'tax', 'total']
+      table << headers
       @products.values.each do |product|
         count = @transactions.count { |txn| txn.type == 'Payment' && txn.product_id == product.id }
         amount = if product.handle =~ /monthly$/

@@ -2,6 +2,21 @@ require_relative "report"
 
 module Reports
   class CashReport < Report
+    def headers
+      [
+        'date',
+        'membership number',
+        'statement id',
+        'membership type',
+        'transaction type',
+        'coupon',
+        'amount',
+        'tax',
+        'discount',
+        'total'
+      ]
+    end
+
     def data
       table = []
       totals = {
@@ -10,7 +25,7 @@ module Reports
         'discount' => 0,
         'total' => 0
       }
-      table << ['date', 'membership number', 'statement id', 'membership type', 'transaction type', 'coupon', 'amount', 'tax', 'discount', 'total']
+      table << headers
       transactions = @transactions.group_by(&:subscription_id)
       transactions.keys.sort.each do |subscription_id|
         txns = transactions[subscription_id].group_by(&:type)
