@@ -68,7 +68,7 @@ module Reports
         (totals['discount']/100).to_s,
         (totals['total']/100).to_s
       ]
-      return table
+      table
     end
 
     def extract_identifiers(txns)
@@ -81,7 +81,8 @@ module Reports
         total = obj.amount_in_cents
         discount = 0
       end
-      return {
+
+      {
         customer_id: obj.customer_id,
         product_id: obj.product_id,
         statement_id: obj.statement_id,
