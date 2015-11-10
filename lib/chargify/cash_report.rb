@@ -17,6 +17,10 @@ module Reports
       ]
     end
 
+    def transactions
+      @transactions.group_by(&:subscription_id)
+    end
+
     def data
       table = []
       totals = {
@@ -26,7 +30,6 @@ module Reports
         'total' => 0
       }
       table << headers
-      transactions = @transactions.group_by(&:subscription_id)
       transactions.keys.sort.each do |subscription_id|
         txns = transactions[subscription_id].group_by(&:type)
         if (txns.keys - %w[Refund]).present?
