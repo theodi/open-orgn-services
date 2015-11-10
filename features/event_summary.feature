@@ -32,10 +32,6 @@ Feature: Create a JSON description of all upcoming events
       | 6339143549  | Guest                                 | 0       | GBP      |                  | 2013-05-31 12:00 | 100       |
       | 6339320077  | Guest                                 | 0       | GBP      |                  | 2013-06-07 12:00 | 100       |  
   
-  Scenario: Queue event summary generator
-    Then the event summary generator should be queued
-		When we poll eventbrite for all events
-    
   Scenario: Generate JSON
     Then the courses summary uploader should be queued with the following JSON:
     """
