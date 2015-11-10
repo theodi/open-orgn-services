@@ -15,13 +15,13 @@ Given(/^I want to run the report for (#{DATE}) to (#{DATE})$/) do |start_date, e
 end
 
 Then(/^data for the cash report should match:$/) do |table|
-  report = @reporter.cash_report
-  table.diff!(report)
+  report = @reporter.reports["cash-report.csv"]
+  table.diff!(CSV.parse(report))
 end
 
 Then(/^data for the booking value report should match:$/) do |table|
-  report = @reporter.booking_value_report
-  table.diff!(report)
+  report = @reporter.reports["booking-value-report.csv"]
+  table.diff!(CSV.parse(report))
 end
 
 When(/^the job is triggered$/) do

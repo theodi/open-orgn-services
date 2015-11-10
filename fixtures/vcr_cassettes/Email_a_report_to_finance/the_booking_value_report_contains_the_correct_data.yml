@@ -2027,4 +2027,128 @@ http_interactions:
         \   </public_signup_page>\n  </public_signup_pages>\n</product>\n"
     http_version: 
   recorded_at: Tue, 24 Mar 2015 14:55:04 GMT
+- request:
+    method: get
+    uri: https://<CHARGIFY_API_KEY>:X@<CHARGIFY_SUBDOMAIN>.chargify.com/subscriptions/8020365/transactions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      Content-Type:
+      - application/xml; charset=utf-8
+      Date:
+      - Tue, 10 Nov 2015 16:46:32 GMT
+      Etag:
+      - ! '"98d851954c46a178eeb6e877e8808155"'
+      P3p:
+      - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
+      Server:
+      - nginx + Phusion Passenger
+      Set-Cookie:
+      - _chargify_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiJTcxZWU0M2Q4ZTcyNTkyMmVlZTc3ZWY4OTE5OWNiMjA0BjsAVEkiF3NlbGxlcl9jcmVkZW50aWFscwY7AEZJIgGAMmFjODc3MmQyYTNmYTUyZGIzNzFkNTQ2ZjdmNWY0ZTYyMDMxZWRlMWM0N2FjMzgwZDQ3ZTNlYTIzYzVjYWRhYjc2YmQ1MTkwZmM4NzY5ZDg5OWE0YzI0ZjU1YWU0YWUxMjEzNWU3NWYzYmZjZjM3ZWIwNzk4MTA5MDQ1OTkwMmQGOwBGSSIac2VsbGVyX2NyZWRlbnRpYWxzX2lkBjsARmkCSFw%3D--e908be8b7a8d7b0ae4a1a4779b5c6ac587e2db21;
+        domain=.chargify.com; path=/; secure; HttpOnly
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Powered-By:
+      - Phusion Passenger
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 297d2d0a-0466-4176-a395-5ae1c72fcf6e
+      X-Runtime:
+      - '0.112478'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions type=\"array\">\n
+        \ <transaction>\n    <id type=\"integer\">87010675</id>\n    <subscription_id
+        type=\"integer\">8020365</subscription_id>\n    <type>Refund</type>\n    <kind
+        nil=\"true\"/>\n    <transaction_type>refund</transaction_type>\n    <success
+        type=\"boolean\">true</success>\n    <amount_in_cents type=\"integer\">86400</amount_in_cents>\n
+        \   <memo>test refund</memo>\n    <created_at type=\"datetime\">2015-03-06T14:35:21+00:00</created_at>\n
+        \   <starting_balance_in_cents type=\"integer\">0</starting_balance_in_cents>\n
+        \   <ending_balance_in_cents type=\"integer\">0</ending_balance_in_cents>\n
+        \   <gateway_used>bogus</gateway_used>\n    <gateway_transaction_id nil=\"true\"/>\n
+        \   <gateway_order_id nil=\"true\"/>\n    <payment_id type=\"integer\">87009359</payment_id>\n
+        \   <product_id type=\"integer\">3651000</product_id>\n    <tax_id nil=\"true\"/>\n
+        \   <component_id nil=\"true\"/>\n    <statement_id type=\"integer\">48052021</statement_id>\n
+        \   <customer_id type=\"integer\">7866032</customer_id>\n  </transaction>\n
+        \ <transaction>\n    <id type=\"integer\">87009359</id>\n    <subscription_id
+        type=\"integer\">8020365</subscription_id>\n    <type>Payment</type>\n    <kind
+        nil=\"true\"/>\n    <transaction_type>payment</transaction_type>\n    <success
+        type=\"boolean\">true</success>\n    <amount_in_cents type=\"integer\">86400</amount_in_cents>\n
+        \   <memo>Frank Zappa - Organisation - SME/Nonprofit ODI support: Signup payment</memo>\n
+        \   <created_at type=\"datetime\">2015-03-06T14:16:13+00:00</created_at>\n
+        \   <starting_balance_in_cents type=\"integer\">86400</starting_balance_in_cents>\n
+        \   <ending_balance_in_cents type=\"integer\">0</ending_balance_in_cents>\n
+        \   <gateway_used>bogus</gateway_used>\n    <gateway_transaction_id>53433</gateway_transaction_id>\n
+        \   <gateway_order_id nil=\"true\"/>\n    <payment_id nil=\"true\"/>\n    <product_id
+        type=\"integer\">3651000</product_id>\n    <tax_id nil=\"true\"/>\n    <component_id
+        nil=\"true\"/>\n    <statement_id type=\"integer\">48051286</statement_id>\n
+        \   <customer_id type=\"integer\">7866032</customer_id>\n    <card_number>XXXX-XXXX-XXXX-1</card_number>\n
+        \   <card_expiration>04/2021</card_expiration>\n    <card_type>bogus</card_type>\n
+        \ </transaction>\n  <transaction>\n    <id type=\"integer\">87009358</id>\n
+        \   <subscription_id type=\"integer\">8020365</subscription_id>\n    <type>Charge</type>\n
+        \   <kind>tax</kind>\n    <transaction_type>charge</transaction_type>\n    <success
+        type=\"boolean\">true</success>\n    <amount_in_cents type=\"integer\">14400</amount_in_cents>\n
+        \   <memo>GB Tax (20.0%)</memo>\n    <created_at type=\"datetime\">2015-03-06T14:16:13+00:00</created_at>\n
+        \   <starting_balance_in_cents type=\"integer\">72000</starting_balance_in_cents>\n
+        \   <ending_balance_in_cents type=\"integer\">86400</ending_balance_in_cents>\n
+        \   <gateway_used nil=\"true\"/>\n    <gateway_transaction_id nil=\"true\"/>\n
+        \   <gateway_order_id nil=\"true\"/>\n    <payment_id type=\"integer\">87009359</payment_id>\n
+        \   <product_id type=\"integer\">3651000</product_id>\n    <tax_id nil=\"true\"/>\n
+        \   <component_id nil=\"true\"/>\n    <statement_id type=\"integer\">48051286</statement_id>\n
+        \   <customer_id type=\"integer\">7866032</customer_id>\n    <original_amount_in_cents
+        nil=\"true\"/>\n    <discount_amount_in_cents nil=\"true\"/>\n    <taxable_amount_in_cents
+        nil=\"true\"/>\n    <taxations type=\"array\"/>\n  </transaction>\n  <transaction>\n
+        \   <id type=\"integer\">87009357</id>\n    <subscription_id type=\"integer\">8020365</subscription_id>\n
+        \   <type>Charge</type>\n    <kind>baseline</kind>\n    <transaction_type>charge</transaction_type>\n
+        \   <success type=\"boolean\">true</success>\n    <amount_in_cents type=\"integer\">72000</amount_in_cents>\n
+        \   <memo>Organisation - SME/Nonprofit ODI support (6 Mar 2015 - 6 Mar 2016)</memo>\n
+        \   <created_at type=\"datetime\">2015-03-06T14:16:12+00:00</created_at>\n
+        \   <starting_balance_in_cents type=\"integer\">0</starting_balance_in_cents>\n
+        \   <ending_balance_in_cents type=\"integer\">72000</ending_balance_in_cents>\n
+        \   <gateway_used nil=\"true\"/>\n    <gateway_transaction_id nil=\"true\"/>\n
+        \   <gateway_order_id nil=\"true\"/>\n    <payment_id type=\"integer\">87009359</payment_id>\n
+        \   <product_id type=\"integer\">3651000</product_id>\n    <tax_id nil=\"true\"/>\n
+        \   <component_id nil=\"true\"/>\n    <statement_id type=\"integer\">48051286</statement_id>\n
+        \   <customer_id type=\"integer\">7866032</customer_id>\n    <original_amount_in_cents
+        nil=\"true\"/>\n    <discount_amount_in_cents nil=\"true\"/>\n    <taxable_amount_in_cents
+        type=\"integer\">72000</taxable_amount_in_cents>\n    <taxations type=\"array\">\n
+        \     <taxation>\n        <tax_id nil=\"true\"/>\n        <tax_charge_id type=\"integer\">87009358</tax_charge_id>\n
+        \       <tax_name>TWH Tax</tax_name>\n        <rate>0.2</rate>\n        <tax_amount_in_cents
+        type=\"integer\">14400</tax_amount_in_cents>\n        <tax_rules type=\"array\">\n
+        \         <tax_rule>\n            <tax_rule_id nil=\"true\"/>\n            <country_code>GB</country_code>\n
+        \           <subdivision_code>GB</subdivision_code>\n            <rate>0.2</rate>\n
+        \           <tax_amount_in_cents type=\"integer\">14400</tax_amount_in_cents>\n
+        \           <description>Standard Rate - UNITED KINGDOM</description>\n          </tax_rule>\n
+        \       </tax_rules>\n      </taxation>\n    </taxations>\n  </transaction>\n</transactions>\n"
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 16:46:32 GMT
 recorded_with: VCR 2.9.3
