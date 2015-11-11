@@ -18,20 +18,21 @@ module Reports
       ]
     end
 
+    def totals
+      @totals ||= {
+        'amount'   => 0,
+        'tax'      => 0,
+        'discount' => 0,
+        'total'    => 0
+      }
+    end
+
     def transactions
       @transactions.group_by(&:subscription_id)
     end
 
     def data
       table = []
-
-      totals = {
-        'amount' => 0,
-        'tax' => 0,
-        'discount' => 0,
-        'total' => 0
-      }
-
       table << headers
 
       transactions.keys.sort.each do |subscription_id|
