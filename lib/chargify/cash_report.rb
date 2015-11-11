@@ -24,30 +24,37 @@ module Reports
 
     def data
       table = []
+
       totals = {
         'amount' => 0,
         'tax' => 0,
         'discount' => 0,
         'total' => 0
       }
+
       table << headers
+
       transactions.keys.sort.each do |subscription_id|
         txns = transactions[subscription_id].group_by(&:type)
         if (txns.keys - %w[Refund]).present?
           vars = extract_identifiers(txns)
-          charges =  txns['Charge'].group_by(&:kind)
+
+          charges  = txns['Charge'].group_by(&:kind)
           customer = @customers[vars[:customer_id]]
-          product = @products[vars[:product_id]]
-          totals['amount'] += charges['baseline'].first.amount_in_cents
+          product  = @products[vars[:product_id]]
+
           if charges['tax'].present?
             tax_amount = charges['tax'].first.amount_in_cents.to_i
-            totals['tax'] += tax_amount
           else
             tax_amount = 0
           end
+
+          totals['amount']   += charges['baseline'].first.amount_in_cents
           totals['discount'] += vars[:discount]
-          totals['total'] += vars[:total]
-          row = [
+          totals['total']    += vars[:total]
+          totals['tax']      += tax_amount
+
+          table << [
             vars[:created_at].to_s(:db),
             company_name(customer),
             customer.reference.to_s,
@@ -60,8 +67,8 @@ module Reports
             "%d" % (tax_amount/100),
             "%d" % (vars[:total]/100)
           ]
-          table << row
         end
+
         if txns['Refund'].present?
           txns['Refund'].each { |refund| table << refund_row(refund, totals) }
         end
