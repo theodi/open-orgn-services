@@ -43,10 +43,10 @@ module Reports
           customer = @customers[vars[:customer_id]]
           product  = @products[vars[:product_id]]
 
-          if charges['tax'].present?
-            tax_amount = charges['tax'].first.amount_in_cents.to_i
+          tax_amount = if charges['tax'].present?
+            charges['tax'].first.amount_in_cents.to_i
           else
-            tax_amount = 0
+            0
           end
 
           totals['amount']   += charges['baseline'].first.amount_in_cents
