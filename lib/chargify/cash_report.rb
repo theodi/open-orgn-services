@@ -37,37 +37,9 @@ module Reports
 
       transactions.keys.sort.each do |subscription_id|
         subscriber_transactions = transactions[subscription_id].group_by(&:type)
+
         if (subscriber_transactions.keys - %w[Refund]).present?
-          vars = extract_identifiers(subscriber_transactions)
-
-          charges  = subscriber_transactions['Charge'].group_by(&:kind)
-          customer = @customers[vars[:customer_id]]
-          product  = @products[vars[:product_id]]
-
-          tax_amount = if charges['tax'].present?
-            charges['tax'].first.amount_in_cents.to_i
-          else
-            0
-          end
-
-          totals['amount']   += charges['baseline'].first.amount_in_cents
-          totals['discount'] += vars[:discount]
-          totals['total']    += vars[:total]
-          totals['tax']      += tax_amount
-
-          table << [
-            vars[:created_at].to_s(:db),
-            company_name(customer),
-            customer.reference.to_s,
-            vars[:statement_id].to_s,
-            product.handle,
-            "payment",
-            vars[:coupon].to_s,
-            "%d" % (charges['baseline'].first.amount_in_cents / 100),
-            "%d" % (vars[:discount] / 100),
-            "%d" % (tax_amount / 100),
-            "%d" % (vars[:total] / 100)
-          ]
+          table << charge_row(subscriber_transactions)
         end
 
         if subscriber_transactions['Refund'].present?
@@ -129,6 +101,39 @@ module Reports
 
     def extract_coupon_code(txn)
       /Coupon: (.+) -/.match(txn.memo)[1]
+    end
+
+    def charge_row(subscriber_transactions)
+      vars = extract_identifiers(subscriber_transactions)
+
+      charges  = subscriber_transactions['Charge'].group_by(&:kind)
+      customer = @customers[vars[:customer_id]]
+      product  = @products[vars[:product_id]]
+
+      tax_amount = if charges['tax'].present?
+        charges['tax'].first.amount_in_cents.to_i
+      else
+        0
+      end
+
+      totals['amount']   += charges['baseline'].first.amount_in_cents
+      totals['discount'] += vars[:discount]
+      totals['total']    += vars[:total]
+      totals['tax']      += tax_amount
+
+      [
+        vars[:created_at].to_s(:db),
+        company_name(customer),
+        customer.reference.to_s,
+        vars[:statement_id].to_s,
+        product.handle,
+        "payment",
+        vars[:coupon].to_s,
+        "%d" % (charges['baseline'].first.amount_in_cents / 100),
+        "%d" % (vars[:discount] / 100),
+        "%d" % (tax_amount / 100),
+        "%d" % (vars[:total] / 100)
+      ]
     end
 
     def refund_row(refund)
