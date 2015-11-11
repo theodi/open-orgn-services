@@ -2,7 +2,7 @@ require_relative "report"
 
 module Reports
   class CashReport < Report
-    def headers
+    def headers_row
       [
         'date',
         'company',
@@ -33,7 +33,7 @@ module Reports
 
     def data
       table = []
-      table << headers
+      table << headers_row
 
       transactions.keys.sort.each do |subscription_id|
         subscriber_transactions = transactions[subscription_id].group_by(&:type)
