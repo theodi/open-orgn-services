@@ -11,8 +11,8 @@ module Reports
         'transaction type',
         'coupon',
         'original net price',
-        'tax',
         'discount',
+        'tax',
         'total'
       ]
     end
@@ -54,8 +54,8 @@ module Reports
             "payment",
             vars[:coupon].to_s,
             "%d" % (charges['baseline'].first.amount_in_cents/100),
-            "%d" % (tax_amount/100),
             "%d" % (vars[:discount]/100),
+            "%d" % (tax_amount/100),
             "%d" % (vars[:total]/100)
           ]
           table << row
@@ -67,8 +67,8 @@ module Reports
       table << [
         "", "", "", "", "", "totals",
         (totals['amount']/100).to_s,
-        (totals['tax']/100).to_s,
         (totals['discount']/100).to_s,
+        (totals['tax']/100).to_s,
         (totals['total']/100).to_s
       ]
       table
@@ -123,8 +123,8 @@ module Reports
           "refund",
           "",
           "-%d" % (charges['baseline'].first.amount_in_cents/100),
-          "-%d" % (tax_amount/100),
           "0",
+          "-%d" % (tax_amount/100),
           "-%d" % (payment.amount_in_cents.to_i/100)
         ]
       else
