@@ -63,10 +63,10 @@ module Reports
             product.handle,
             "payment",
             vars[:coupon].to_s,
-            "%d" % (charges['baseline'].first.amount_in_cents/100),
-            "%d" % (vars[:discount]/100),
-            "%d" % (tax_amount/100),
-            "%d" % (vars[:total]/100)
+            "%d" % (charges['baseline'].first.amount_in_cents / 100),
+            "%d" % (vars[:discount] / 100),
+            "%d" % (tax_amount / 100),
+            "%d" % (vars[:total] / 100)
           ]
         end
 
@@ -90,10 +90,10 @@ module Reports
         "",
         "",
         "totals",
-        (totals['amount']/100).to_s,
-        (totals['discount']/100).to_s,
-        (totals['tax']/100).to_s,
-        (totals['total']/100).to_s
+        (totals['amount'] / 100).to_s,
+        (totals['discount'] / 100).to_s,
+        (totals['tax'] / 100).to_s,
+        (totals['total'] / 100).to_s
       ]
     end
 
@@ -154,10 +154,10 @@ module Reports
           product.handle,
           "refund",
           "",
-          "-%d" % (charges['baseline'].first.amount_in_cents/100),
+          "-%d" % (charges['baseline'].first.amount_in_cents / 100),
           "0",
-          "-%d" % (tax_amount/100),
-          "-%d" % (payment.amount_in_cents.to_i/100)
+          "-%d" % (tax_amount / 100),
+          "-%d" % (payment.amount_in_cents.to_i / 100)
         ]
       else
         totals['amount'] -= refund.amount_in_cents
@@ -169,9 +169,9 @@ module Reports
           product.handle,
           "refund",
           "",
-          "-%d" % (refund.amount_in_cents.to_i/100),
+          "-%d" % (refund.amount_in_cents.to_i / 100),
           "0",
-          "-%d" % (refund.amount_in_cents.to_i/100)
+          "-%d" % (refund.amount_in_cents.to_i / 100)
         ]
       end
     end
