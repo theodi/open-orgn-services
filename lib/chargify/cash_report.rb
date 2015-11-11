@@ -5,6 +5,7 @@ module Reports
     def headers
       [
         'date',
+        'company',
         'membership number',
         'statement id',
         'membership type',
@@ -48,6 +49,7 @@ module Reports
           totals['total'] += vars[:total]
           row = [
             vars[:created_at].to_s(:db),
+            company_name(customer),
             customer.reference.to_s,
             vars[:statement_id].to_s,
             product.handle,
@@ -65,13 +67,21 @@ module Reports
         end
       end
       table << [
-        "", "", "", "", "", "totals",
+        "", "", "", "", "", "", "totals",
         (totals['amount']/100).to_s,
         (totals['discount']/100).to_s,
         (totals['tax']/100).to_s,
         (totals['total']/100).to_s
       ]
       table
+    end
+
+    def company_name(customer)
+      if customer.organization.present?
+        customer.organization
+      else
+        [customer.first_name, customer.last_name].join(" ")
+      end
     end
 
     def extract_identifiers(txns)
@@ -117,6 +127,7 @@ module Reports
         totals['total'] -= payment.amount_in_cents
         [
           refund.created_at.to_s(:db),
+          company_name(customer),
           customer.reference,
           refund.statement_id.to_s,
           product.handle,
