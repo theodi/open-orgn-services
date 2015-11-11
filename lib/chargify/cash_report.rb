@@ -72,16 +72,16 @@ module Reports
 
         if txns['Refund'].present?
           txns['Refund'].each do |refund|
-            table << refund_row(refund, totals)
+            table << refund_row(refund)
           end
         end
       end
 
-      table << total_row(totals)
+      table << total_row
       table
     end
 
-    def total_row(totals)
+    def total_row
       [
         "",
         "",
@@ -131,7 +131,7 @@ module Reports
       /Coupon: (.+) -/.match(txn.memo)[1]
     end
 
-    def refund_row(refund, totals)
+    def refund_row(refund)
       customer = @customers[refund.customer_id]
       product = @products[refund.product_id]
       txns = Chargify::Transaction.all(from: "/subscriptions/#{refund.subscription_id}/transactions").group_by(&:type) 
