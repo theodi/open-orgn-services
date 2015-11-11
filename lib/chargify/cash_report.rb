@@ -2,6 +2,8 @@ require_relative "report"
 
 module Reports
   class CashReport < Report
+    SPACER = ""
+
     def headers_row
       [
         'date',
@@ -55,12 +57,12 @@ module Reports
 
     def total_row
       [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        SPACER,
+        SPACER,
+        SPACER,
+        SPACER,
+        SPACER,
+        SPACER,
         "totals",
         (totals['amount'] / 100).to_s,
         (totals['discount'] / 100).to_s,
