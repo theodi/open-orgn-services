@@ -66,13 +66,21 @@ module Reports
           txns['Refund'].each { |refund| table << refund_row(refund, totals) }
         end
       end
+
       table << [
-        "", "", "", "", "", "", "totals",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "totals",
         (totals['amount']/100).to_s,
         (totals['discount']/100).to_s,
         (totals['tax']/100).to_s,
         (totals['total']/100).to_s
       ]
+
       table
     end
 
