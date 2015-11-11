@@ -64,11 +64,27 @@ module Reports
         SPACER,
         SPACER,
         "totals",
-        (totals['amount'] / 100).to_s,
-        (totals['discount'] / 100).to_s,
-        (totals['tax'] / 100).to_s,
-        (totals['total'] / 100).to_s
+        total_net,
+        total_discount,
+        total_tax,
+        total
       ]
+    end
+
+    def total_net
+      (totals['amount'] / 100).to_s
+    end
+
+    def total
+      (totals['total'] / 100).to_s
+    end
+
+    def total_discount
+      (totals['discount'] / 100).to_s
+    end
+
+    def total_tax
+      (totals['tax'] / 100).to_s
     end
 
     def company_name(customer)
