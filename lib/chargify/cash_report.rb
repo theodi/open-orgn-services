@@ -10,7 +10,7 @@ module Reports
         'membership type',
         'transaction type',
         'coupon',
-        'amount',
+        'original net price',
         'tax',
         'discount',
         'total'
