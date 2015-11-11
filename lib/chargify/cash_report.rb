@@ -67,7 +67,12 @@ module Reports
         end
       end
 
-      table << [
+      table << total_row(totals)
+      table
+    end
+
+    def total_row(totals)
+      [
         "",
         "",
         "",
@@ -80,8 +85,6 @@ module Reports
         (totals['tax']/100).to_s,
         (totals['total']/100).to_s
       ]
-
-      table
     end
 
     def company_name(customer)
