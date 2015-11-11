@@ -71,7 +71,9 @@ module Reports
         end
 
         if txns['Refund'].present?
-          txns['Refund'].each { |refund| table << refund_row(refund, totals) }
+          txns['Refund'].each do |refund|
+            table << refund_row(refund, totals)
+          end
         end
       end
 
