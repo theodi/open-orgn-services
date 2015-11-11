@@ -87,14 +87,6 @@ module Reports
       (totals['tax'] / 100).to_s
     end
 
-    def company_name(customer)
-      if customer.organization.present?
-        customer.organization
-      else
-        [customer.first_name, customer.last_name].join(" ")
-      end
-    end
-
     def extract_identifiers(transactions)
       obj = (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
       if obj.type == 'Adjustment'
@@ -115,10 +107,6 @@ module Reports
         coupon: coupon_code,
         total: total
       }
-    end
-
-    def extract_coupon_code(txn)
-      /Coupon: (.+) -/.match(txn.memo)[1]
     end
 
     def charge_row(subscriber_transactions)
@@ -196,6 +184,18 @@ module Reports
           "0",
           "-%d" % (refund.amount_in_cents.to_i / 100)
         ]
+      end
+    end
+
+    def extract_coupon_code(txn)
+      /Coupon: (.+) -/.match(txn.memo)[1]
+    end
+
+    def company_name(customer)
+      if customer.organization.present?
+        customer.organization
+      else
+        [customer.first_name, customer.last_name].join(" ")
       end
     end
   end
