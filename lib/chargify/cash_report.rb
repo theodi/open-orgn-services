@@ -36,11 +36,11 @@ module Reports
       table << headers
 
       transactions.keys.sort.each do |subscription_id|
-        txns = transactions[subscription_id].group_by(&:type)
-        if (txns.keys - %w[Refund]).present?
-          vars = extract_identifiers(txns)
+        subscriber_transactions = transactions[subscription_id].group_by(&:type)
+        if (subscriber_transactions.keys - %w[Refund]).present?
+          vars = extract_identifiers(subscriber_transactions)
 
-          charges  = txns['Charge'].group_by(&:kind)
+          charges  = subscriber_transactions['Charge'].group_by(&:kind)
           customer = @customers[vars[:customer_id]]
           product  = @products[vars[:product_id]]
 
@@ -70,8 +70,8 @@ module Reports
           ]
         end
 
-        if txns['Refund'].present?
-          txns['Refund'].each do |refund|
+        if subscriber_transactions['Refund'].present?
+          subscriber_transactions['Refund'].each do |refund|
             table << refund_row(refund)
           end
         end
@@ -105,10 +105,10 @@ module Reports
       end
     end
 
-    def extract_identifiers(txns)
-      obj = (txns['Payment'] || txns['Adjustment'] || txns['Charge']).first
+    def extract_identifiers(transactions)
+      obj = (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
       if obj.type == 'Adjustment'
-        total = txns.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
+        total = transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
         coupon_code = extract_coupon_code(obj)
         discount = obj.amount_in_cents
       else
@@ -134,9 +134,9 @@ module Reports
     def refund_row(refund)
       customer = @customers[refund.customer_id]
       product = @products[refund.product_id]
-      txns = Chargify::Transaction.all(from: "/subscriptions/#{refund.subscription_id}/transactions").group_by(&:type) 
-      payment = txns['Payment'].first
-      charges = txns['Charge'].group_by(&:kind)
+      refund_transactions = Chargify::Transaction.all(from: "/subscriptions/#{refund.subscription_id}/transactions").group_by(&:type)
+      payment = refund_transactions['Payment'].first
+      charges = refund_transactions['Charge'].group_by(&:kind)
       if payment.amount_in_cents == refund.amount_in_cents
         totals['amount'] -= charges['baseline'].first.amount_in_cents
         if charges['tax'].present?
