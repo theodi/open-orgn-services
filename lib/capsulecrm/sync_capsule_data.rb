@@ -13,7 +13,7 @@ class SyncCapsuleData
     if subject
       membership = {
         'email'                    => field(subject, "Membership", "Email").try(:text),
-        'product_name'             => field(subject, "Membership", "Level").try(:text),
+        'product_name'             => product_name(subject),
         'id'                       => field(subject, "Membership", "ID").try(:text),
         'newsletter'               => field(subject, "Membership", "Newsletter").try(:boolean),
         'share_with_third_parties' => field(subject, "Membership", "Share with third parties").try(:boolean),
@@ -45,4 +45,14 @@ class SyncCapsuleData
     end
   end
 
+  def self.product_name(subject)
+    level           = field(subject, "Membership", "Level").try(:text)
+    supporter_level = field(subject, "Membership", "Supporter Level").try(:text)
+
+    if level == "individual" && supporter_level == "Student"
+      "student"
+    else
+      level
+    end
+  end
 end
