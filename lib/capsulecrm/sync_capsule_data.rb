@@ -46,6 +46,13 @@ class SyncCapsuleData
   end
 
   def self.product_name(subject)
-    field(subject, "Membership", "Level").try(:text)
+    level           = field(subject, "Membership", "Level").try(:text)
+    supporter_level = field(subject, "Membership", "Supporter Level").try(:text)
+
+    if level == "individual" && supporter_level == "Student"
+      "student"
+    else
+      level
+    end
   end
 end
