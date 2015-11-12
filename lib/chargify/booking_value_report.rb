@@ -33,7 +33,9 @@ module Reports
       end
 
       def count
-        transactions.count { |txn| txn.type == 'Payment' && txn.product_id == product.id }
+        transactions.count do |transaction|
+          transaction.type == 'Payment' && transaction.product_id == product.id
+        end
       end
 
       def amount
