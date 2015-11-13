@@ -87,30 +87,8 @@ module Reports
       (totals['tax'] / 100).to_s
     end
 
-    def extract_identifiers(transactions)
-      obj = (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
-      if obj.type == 'Adjustment'
-        total = transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
-        coupon_code = extract_coupon_code(obj)
-        discount = obj.amount_in_cents
-      else
-        total = obj.amount_in_cents
-        discount = 0
-      end
-
-      {
-        customer_id: obj.customer_id,
-        product_id: obj.product_id,
-        statement_id: obj.statement_id,
-        created_at: obj.created_at,
-        discount: discount,
-        coupon: coupon_code,
-        total: total
-      }
-    end
-
     def charge_row(subscriber_transactions)
-      vars = extract_identifiers(subscriber_transactions)
+      vars = SubscriberTransaction.new(subscriber_transactions).attributes
 
       charges  = subscriber_transactions['Charge'].group_by(&:kind)
       customer = @customers[vars[:customer_id]]
@@ -187,15 +165,46 @@ module Reports
       end
     end
 
-    def extract_coupon_code(txn)
-      /Coupon: (.+) -/.match(txn.memo)[1]
-    end
-
     def company_name(customer)
       if customer.organization.present?
         customer.organization
       else
         [customer.first_name, customer.last_name].join(" ")
+      end
+    end
+
+    class SubscriberTransaction
+      attr_reader :transactions
+
+      def initialize(transactions)
+        @transactions = transactions
+      end
+
+      def attributes
+        obj = (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
+
+        if obj.type == 'Adjustment'
+          total = transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
+          coupon_code = extract_coupon_code(obj)
+          discount = obj.amount_in_cents
+        else
+          total = obj.amount_in_cents
+          discount = 0
+        end
+
+        {
+          customer_id: obj.customer_id,
+          product_id: obj.product_id,
+          statement_id: obj.statement_id,
+          created_at: obj.created_at,
+          discount: discount,
+          coupon: coupon_code,
+          total: total
+        }
+      end
+
+      def extract_coupon_code(txn)
+        /Coupon: (.+) -/.match(txn.memo)[1]
       end
     end
   end
