@@ -188,13 +188,19 @@ module Reports
         obj.type == 'Adjustment'
       end
 
+      def total
+        if adjustment?
+          transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
+        else
+          obj.amount_in_cents
+        end
+      end
+
       def attributes
         if adjustment?
-          total = transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
           coupon_code = extract_coupon_code(obj)
           discount = obj.amount_in_cents
         else
-          total = obj.amount_in_cents
           discount = 0
         end
 
