@@ -91,8 +91,8 @@ module Reports
       vars = SubscriberTransaction.new(subscriber_transactions).attributes
 
       charges  = subscriber_transactions['Charge'].group_by(&:kind)
-      customer = @customers[vars[:customer_id]]
-      product  = @products[vars[:product_id]]
+      customer = @customers[vars.customer_id]
+      product  = @products[vars.product_id]
 
       tax_amount = if charges['tax'].present?
         charges['tax'].first.amount_in_cents.to_i
@@ -101,22 +101,22 @@ module Reports
       end
 
       totals['amount']   += charges['baseline'].first.amount_in_cents
-      totals['discount'] += vars[:discount]
-      totals['total']    += vars[:total]
+      totals['discount'] += vars.discount
+      totals['total']    += vars.total
       totals['tax']      += tax_amount
 
       [
-        vars[:created_at].to_s(:db),
+        vars.created_at.to_s(:db),
         company_name(customer),
         customer.reference.to_s,
-        vars[:statement_id].to_s,
+        vars.statement_id.to_s,
         product.handle,
         "payment",
-        vars[:coupon].to_s,
+        vars.coupon.to_s,
         "%d" % (charges['baseline'].first.amount_in_cents / 100),
-        "%d" % (vars[:discount] / 100),
+        "%d" % (vars.discount / 100),
         "%d" % (tax_amount / 100),
-        "%d" % (vars[:total] / 100)
+        "%d" % (vars.total / 100)
       ]
     end
 
@@ -192,7 +192,7 @@ module Reports
           discount = 0
         end
 
-        {
+        OpenStruct.new({
           customer_id: obj.customer_id,
           product_id: obj.product_id,
           statement_id: obj.statement_id,
@@ -200,7 +200,7 @@ module Reports
           discount: discount,
           coupon: coupon_code,
           total: total
-        }
+        })
       end
 
       def extract_coupon_code(txn)
