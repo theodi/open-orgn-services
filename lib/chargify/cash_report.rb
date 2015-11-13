@@ -88,7 +88,7 @@ module Reports
     end
 
     def charge_row(subscriber_transactions)
-      vars = SubscriberTransaction.new(subscriber_transactions).attributes
+      vars = SubscriberTransaction.new(subscriber_transactions)
 
       charges  = subscriber_transactions['Charge'].group_by(&:kind)
       customer = @customers[vars.customer_id]
@@ -112,7 +112,7 @@ module Reports
         vars.statement_id.to_s,
         product.handle,
         "payment",
-        vars.coupon.to_s,
+        vars.coupon_code.to_s,
         "%d" % (charges['baseline'].first.amount_in_cents / 100),
         "%d" % (vars.discount / 100),
         "%d" % (tax_amount / 100),
@@ -230,18 +230,6 @@ module Reports
         return unless adjustment?
 
         /Coupon: (.+) -/.match(obj.memo)[1]
-      end
-
-      def attributes
-        OpenStruct.new({
-          customer_id: customer_id,
-          product_id: product_id,
-          statement_id: statement_id,
-          created_at: created_at,
-          discount: discount,
-          coupon: coupon_code,
-          total: total
-        })
       end
     end
   end
