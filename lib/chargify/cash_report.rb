@@ -197,7 +197,9 @@ module Reports
       end
 
       def charges_and_adjustments
-        transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}
+        transactions.values.flatten.select do |transaction|
+          %w[Charge Adjustment].include?(transaction.type)
+        end
       end
 
       def discount
