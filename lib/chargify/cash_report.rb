@@ -180,9 +180,11 @@ module Reports
         @transactions = transactions
       end
 
-      def attributes
-        obj = (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
+      def obj
+        (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
+      end
 
+      def attributes
         if obj.type == 'Adjustment'
           total = transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
           coupon_code = extract_coupon_code(obj)
