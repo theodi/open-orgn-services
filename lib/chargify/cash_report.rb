@@ -174,6 +174,8 @@ module Reports
     end
 
     class SubscriberTransaction
+      extend Forwardable
+
       attr_reader :transactions
 
       def initialize(transactions)
@@ -210,21 +212,7 @@ module Reports
         end
       end
 
-      def customer_id
-        obj.customer_id
-      end
-
-      def product_id
-        obj.product_id
-      end
-
-      def statement_id
-        obj.statement_id
-      end
-
-      def created_at
-        obj.created_at
-      end
+      def_delegators :obj, :customer_id, :product_id, :statement_id, :created_at
 
       def coupon_code
         return "" unless adjustment?
