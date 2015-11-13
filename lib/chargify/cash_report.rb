@@ -204,11 +204,13 @@ module Reports
         end
       end
 
-      def attributes
+      def coupon_code
         if adjustment?
-          coupon_code = extract_coupon_code(obj)
+          extract_coupon_code(obj)
         end
+      end
 
+      def attributes
         OpenStruct.new({
           customer_id: obj.customer_id,
           product_id: obj.product_id,
