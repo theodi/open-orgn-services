@@ -24,6 +24,8 @@ module Reports
       table
     end
 
+    # When we add a breakdown of each product this could
+    # be renamed to RowGroup or similar?
     class Row
       attr_reader :transactions, :product
 
@@ -34,7 +36,7 @@ module Reports
 
       def count
         transactions.count do |transaction|
-          transaction.type == 'Payment' && transaction.product_id == product.id
+          transaction.type == 'Payment' && transaction.memo =~ /Signup payment/ && transaction.product_id == product.id
         end
       end
 

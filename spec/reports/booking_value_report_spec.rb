@@ -4,20 +4,21 @@ describe Reports::BookingValueReport do
 
   let(:transactions) do
     [
-      double("Transaction", type: 'Payment', product_id: "456"),
-      double("Transaction", type: 'Payment', product_id: "456"),
-      double("Transaction", type: 'Payment', product_id: "456"),
-      double("Transaction", type: 'Payment', product_id: "456"),
-      double("Transaction", type: 'Payment', product_id: "456"),
+      double("Transaction", type: 'Payment', product_id: "456", memo: "Alex Hilson - Individual Supporter: Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "456", memo: "Andrew Green - Individual Supporter: Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "456", memo: "Kirsty Wall - Individual Supporter: Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "456", memo: "Frank Miller - Individual Supporter: Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "456", memo: "Neil Gibson - Individual Supporter: Signup payment"),
 
-      double("Transaction", type: 'Payment', product_id: "789"),
-      double("Transaction", type: 'Payment', product_id: "789"),
-      double("Transaction", type: 'Payment', product_id: "789"),
+      double("Transaction", type: 'Payment', product_id: "789", memo: "Mark Flowers - Supporter (annual): Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "789", memo: "Denise Weller - Supporter (annual): Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "789", memo: "Gretta Simpson - Supporter (annual): Signup payment"),
 
-      double("Transaction", type: 'Payment', product_id: "012"),
-      double("Transaction", type: 'Payment', product_id: "012"),
+      double("Transaction", type: 'Payment', product_id: "012", memo: "Peter Miller - Supporter (annual): Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "012", memo: "Frederick Green - Supporter (annual): Signup payment"),
 
-      double("Transaction", type: 'Payment', product_id: "345"),
+      double("Transaction", type: 'Payment', product_id: "345", memo: "Geraldine Branson - Supporter (monthly): Signup payment"),
+      double("Transaction", type: 'Payment', product_id: "345", memo: "Kate Leech - Supporter (monthly): Renewal payment"),
     ]
   end
 
