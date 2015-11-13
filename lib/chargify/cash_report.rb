@@ -210,6 +210,22 @@ module Reports
         end
       end
 
+      def customer_id
+        obj.customer_id
+      end
+
+      def product_id
+        obj.product_id
+      end
+
+      def statement_id
+        obj.statement_id
+      end
+
+      def created_at
+        obj.created_at
+      end
+
       def coupon_code
         return unless adjustment?
 
@@ -218,10 +234,10 @@ module Reports
 
       def attributes
         OpenStruct.new({
-          customer_id: obj.customer_id,
-          product_id: obj.product_id,
-          statement_id: obj.statement_id,
-          created_at: obj.created_at,
+          customer_id: customer_id,
+          product_id: product_id,
+          statement_id: statement_id,
+          created_at: created_at,
           discount: discount,
           coupon: coupon_code,
           total: total
