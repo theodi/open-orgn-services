@@ -206,7 +206,7 @@ module Reports
 
       def coupon_code
         if adjustment?
-          extract_coupon_code(obj)
+          /Coupon: (.+) -/.match(obj.memo)[1]
         end
       end
 
@@ -220,10 +220,6 @@ module Reports
           coupon: coupon_code,
           total: total
         })
-      end
-
-      def extract_coupon_code(txn)
-        /Coupon: (.+) -/.match(txn.memo)[1]
       end
     end
   end
