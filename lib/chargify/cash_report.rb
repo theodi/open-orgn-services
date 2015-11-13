@@ -190,10 +190,14 @@ module Reports
 
       def total
         if adjustment?
-          transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
+          charges_and_adjustments.sum(&:amount_in_cents)
         else
           obj.amount_in_cents
         end
+      end
+
+      def charges_and_adjustments
+        transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}
       end
 
       def discount
