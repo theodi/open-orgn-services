@@ -205,9 +205,9 @@ module Reports
       end
 
       def coupon_code
-        if adjustment?
-          /Coupon: (.+) -/.match(obj.memo)[1]
-        end
+        return unless adjustment?
+
+        /Coupon: (.+) -/.match(obj.memo)[1]
       end
 
       def attributes
