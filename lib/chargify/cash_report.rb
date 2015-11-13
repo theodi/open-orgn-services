@@ -184,8 +184,12 @@ module Reports
         (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
       end
 
+      def adjustment?
+        obj.type == 'Adjustment'
+      end
+
       def attributes
-        if obj.type == 'Adjustment'
+        if adjustment?
           total = transactions.values.flatten.select {|t| %w[Charge Adjustment].include?(t.type)}.sum(&:amount_in_cents)
           coupon_code = extract_coupon_code(obj)
           discount = obj.amount_in_cents
