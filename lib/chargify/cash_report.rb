@@ -109,10 +109,10 @@ module Reports
         vars.created_at.to_s(:db),
         company_name(customer),
         customer.reference.to_s,
-        vars.statement_id.to_s,
+        vars.statement_id,
         product.handle,
         "payment",
-        vars.coupon_code.to_s,
+        vars.coupon_code,
         "%d" % (charges['baseline'].first.amount_in_cents / 100),
         "%d" % (vars.discount / 100),
         "%d" % (tax_amount / 100),
@@ -227,7 +227,7 @@ module Reports
       end
 
       def coupon_code
-        return unless adjustment?
+        return "" unless adjustment?
 
         /Coupon: (.+) -/.match(obj.memo)[1]
       end
