@@ -196,12 +196,17 @@ module Reports
         end
       end
 
+      def discount
+        if adjustment?
+          obj.amount_in_cents
+        else
+          0
+        end
+      end
+
       def attributes
         if adjustment?
           coupon_code = extract_coupon_code(obj)
-          discount = obj.amount_in_cents
-        else
-          discount = 0
         end
 
         OpenStruct.new({
