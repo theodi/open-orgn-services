@@ -13,6 +13,7 @@ module Reports
         'membership type',
         'transaction type',
         'coupon',
+        'coupon amount',
         'original net price',
         'discount',
         'tax',
@@ -64,6 +65,7 @@ module Reports
         SPACER,
         SPACER,
         "totals",
+        SPACER,
         total_net,
         total_discount,
         total_tax,
@@ -90,20 +92,13 @@ module Reports
     def charge_row(subscriber_transactions)
       vars = SubscriberTransaction.new(subscriber_transactions)
 
-      charges  = subscriber_transactions['Charge'].group_by(&:kind)
       customer = @customers[vars.customer_id]
       product  = @products[vars.product_id]
 
-      tax_amount = if charges['tax'].present?
-        charges['tax'].first.amount_in_cents.to_i
-      else
-        0
-      end
-
-      totals['amount']   += charges['baseline'].first.amount_in_cents
+      totals['amount']   += vars.net_price
       totals['discount'] += vars.discount
       totals['total']    += vars.total
-      totals['tax']      += tax_amount
+      totals['tax']      += vars.tax_amount
 
       [
         vars.created_at.to_s(:db),
@@ -113,11 +108,20 @@ module Reports
         product.handle,
         "payment",
         vars.coupon_code,
-        "%d" % (charges['baseline'].first.amount_in_cents / 100),
+        coupon_amount(vars.coupon_amount),
+        "%d" % (vars.net_price / 100),
         "%d" % (vars.discount / 100),
-        "%d" % (tax_amount / 100),
+        "%d" % (vars.tax_amount / 100),
         "%d" % (vars.total / 100)
       ]
+    end
+
+    def coupon_amount(amount)
+      if amount.nil?
+        ""
+      else
+        "%d%" % amount
+      end
     end
 
     def refund_row(refund)
@@ -142,6 +146,7 @@ module Reports
           refund.statement_id.to_s,
           product.handle,
           "refund",
+          "",
           "",
           "-%d" % (charges['baseline'].first.amount_in_cents / 100),
           "0",
@@ -198,6 +203,22 @@ module Reports
         end
       end
 
+      def net_price
+        charges['baseline'].first.amount_in_cents
+      end
+
+      def tax_amount
+        if charges['tax'].present?
+          charges['tax'].first.amount_in_cents.to_i
+        else
+          0
+        end
+      end
+
+      def charges
+        transactions['Charge'].group_by(&:kind)
+      end
+
       def charges_and_adjustments
         transactions.values.flatten.select do |transaction|
           %w[Charge Adjustment].include?(transaction.type)
@@ -219,6 +240,13 @@ module Reports
 
         /Coupon: (.+) -/.match(obj.memo)[1]
       end
+
+      def coupon_amount
+        return if discount.zero?
+
+        (discount.abs / (net_price / 100))
+      end
+
     end
   end
 end
