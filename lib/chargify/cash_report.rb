@@ -157,42 +157,41 @@ module Reports
       end
     end
 
-    class Charge
+    class ChargeRow
+      attr_reader :charge
 
-      class ChargeRow
-        attr_reader :charge
-
-        def initialize(charge)
-          @charge = charge
-        end
-
-        def row
-          [
-            charge.created_at.to_s(:db),
-            charge.company_name,
-            charge.customer_reference,
-            charge.statement_id,
-            charge.product_handle,
-            "payment",
-            charge.coupon_code,
-            format_coupon_amount(charge.coupon_amount),
-            "%d" % (charge.net_price / 100),
-            "%d" % (charge.discount / 100),
-            "%d" % (charge.net_after_discount / 100),
-            "%d" % (charge.tax_amount / 100),
-            "%d" % (charge.total / 100)
-          ]
-        end
-
-        def format_coupon_amount(amount)
-          if amount.nil?
-            ""
-          else
-            "%d%" % amount
-          end
-        end
+      def initialize(charge)
+        @charge = charge
       end
 
+      def row
+        [
+          charge.created_at.to_s(:db),
+          charge.company_name,
+          charge.customer_reference,
+          charge.statement_id,
+          charge.product_handle,
+          "payment",
+          charge.coupon_code,
+          format_coupon_amount(charge.coupon_amount),
+          "%d" % (charge.net_price / 100),
+          "%d" % (charge.discount / 100),
+          "%d" % (charge.net_after_discount / 100),
+          "%d" % (charge.tax_amount / 100),
+          "%d" % (charge.total / 100)
+        ]
+      end
+
+      def format_coupon_amount(amount)
+        if amount.nil?
+          ""
+        else
+          "%d%" % amount
+        end
+      end
+    end
+
+    class Charge
       extend Forwardable
 
       attr_reader :transactions, :products, :customers
