@@ -164,30 +164,63 @@ module Reports
         @charge = charge
       end
 
+      delegate :company_name, :customer_reference, :statement_id,
+        :product_handle, :coupon_code, to: :charge
+
       def row
         [
-          charge.created_at.to_s(:db),
-          charge.company_name,
-          charge.customer_reference,
-          charge.statement_id,
-          charge.product_handle,
+          created_at,
+          company_name,
+          customer_reference,
+          statement_id,
+          product_handle,
           "payment",
-          charge.coupon_code,
-          format_coupon_amount(charge.coupon_amount),
-          "%d" % (charge.net_price / 100),
-          "%d" % (charge.discount / 100),
-          "%d" % (charge.net_after_discount / 100),
-          "%d" % (charge.tax_amount / 100),
-          "%d" % (charge.total / 100)
+          coupon_code,
+          coupon_amount,
+          net_price,
+          discount,
+          net_after_discount,
+          tax_amount,
+          total
         ]
       end
 
-      def format_coupon_amount(amount)
-        if amount.nil?
+      def created_at
+        charge.created_at.to_s(:db)
+      end
+
+      def net_price
+        format_value(:net_price)
+      end
+
+      def discount
+        format_value(:discount)
+      end
+
+      def net_after_discount
+        format_value(:net_after_discount)
+      end
+
+      def tax_amount
+        format_value(:tax_amount)
+      end
+
+      def total
+        format_value(:total)
+      end
+
+      def coupon_amount
+        if charge.coupon_amount.nil?
           ""
         else
-          "%d%" % amount
+          "%d%" % charge.coupon_amount
         end
+      end
+
+      private
+
+      def format_value(value)
+        "%d" % (charge.send(value) / 100)
       end
     end
 
