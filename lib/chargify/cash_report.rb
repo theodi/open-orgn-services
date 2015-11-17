@@ -99,29 +99,7 @@ module Reports
       totals['total']    += row.total
       totals['tax']      += row.tax_amount
 
-      [
-        row.created_at.to_s(:db),
-        row.company_name,
-        row.customer_reference,
-        row.statement_id,
-        row.product_handle,
-        "payment",
-        row.coupon_code,
-        coupon_amount(row.coupon_amount),
-        "%d" % (row.net_price / 100),
-        "%d" % (row.discount / 100),
-        "%d" % (row.net_after_discount / 100),
-        "%d" % (row.tax_amount / 100),
-        "%d" % (row.total / 100)
-      ]
-    end
-
-    def coupon_amount(amount)
-      if amount.nil?
-        ""
-      else
-        "%d%" % amount
-      end
+      row.row
     end
 
     def refund_row(refund)
@@ -188,6 +166,32 @@ module Reports
         @transactions = transactions
         @products     = products
         @customers    = customers
+      end
+
+      def row
+        [
+          created_at.to_s(:db),
+          company_name,
+          customer_reference,
+          statement_id,
+          product_handle,
+          "payment",
+          coupon_code,
+          format_coupon_amount(coupon_amount),
+          "%d" % (net_price / 100),
+          "%d" % (discount / 100),
+          "%d" % (net_after_discount / 100),
+          "%d" % (tax_amount / 100),
+          "%d" % (total / 100)
+        ]
+      end
+
+      def format_coupon_amount(amount)
+        if amount.nil?
+          ""
+        else
+          "%d%" % amount
+        end
       end
 
       def obj
