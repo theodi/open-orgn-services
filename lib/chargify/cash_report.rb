@@ -92,27 +92,27 @@ module Reports
     end
 
     def charge_row(subscriber_transactions)
-      vars = SubscriberTransaction.new(subscriber_transactions, @products, @customers)
+      row = ChargeRow.new(subscriber_transactions, @products, @customers)
 
-      totals['amount']   += vars.net_price
-      totals['discount'] += vars.discount
-      totals['total']    += vars.total
-      totals['tax']      += vars.tax_amount
+      totals['amount']   += row.net_price
+      totals['discount'] += row.discount
+      totals['total']    += row.total
+      totals['tax']      += row.tax_amount
 
       [
-        vars.created_at.to_s(:db),
-        vars.company_name,
-        vars.customer_reference,
-        vars.statement_id,
-        vars.product_handle,
+        row.created_at.to_s(:db),
+        row.company_name,
+        row.customer_reference,
+        row.statement_id,
+        row.product_handle,
         "payment",
-        vars.coupon_code,
-        coupon_amount(vars.coupon_amount),
-        "%d" % (vars.net_price / 100),
-        "%d" % (vars.discount / 100),
-        "%d" % (vars.net_after_discount / 100),
-        "%d" % (vars.tax_amount / 100),
-        "%d" % (vars.total / 100)
+        row.coupon_code,
+        coupon_amount(row.coupon_amount),
+        "%d" % (row.net_price / 100),
+        "%d" % (row.discount / 100),
+        "%d" % (row.net_after_discount / 100),
+        "%d" % (row.tax_amount / 100),
+        "%d" % (row.total / 100)
       ]
     end
 
@@ -179,7 +179,7 @@ module Reports
       end
     end
 
-    class SubscriberTransaction
+    class ChargeRow
       extend Forwardable
 
       attr_reader :transactions, :products, :customers
