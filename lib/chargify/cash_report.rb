@@ -92,14 +92,14 @@ module Reports
     end
 
     def charge_row(subscriber_transactions)
-      row = ChargeRow.new(subscriber_transactions, @products, @customers)
+      row = Charge.new(subscriber_transactions, @products, @customers)
 
       totals['amount']   += row.net_price
       totals['discount'] += row.discount
       totals['total']    += row.total
       totals['tax']      += row.tax_amount
 
-      row.row
+      row.to_row
     end
 
     def refund_row(refund)
@@ -157,7 +157,42 @@ module Reports
       end
     end
 
-    class ChargeRow
+    class Charge
+
+      class ChargeRow
+        attr_reader :charge
+
+        def initialize(charge)
+          @charge = charge
+        end
+
+        def row
+          [
+            charge.created_at.to_s(:db),
+            charge.company_name,
+            charge.customer_reference,
+            charge.statement_id,
+            charge.product_handle,
+            "payment",
+            charge.coupon_code,
+            format_coupon_amount(charge.coupon_amount),
+            "%d" % (charge.net_price / 100),
+            "%d" % (charge.discount / 100),
+            "%d" % (charge.net_after_discount / 100),
+            "%d" % (charge.tax_amount / 100),
+            "%d" % (charge.total / 100)
+          ]
+        end
+
+        def format_coupon_amount(amount)
+          if amount.nil?
+            ""
+          else
+            "%d%" % amount
+          end
+        end
+      end
+
       extend Forwardable
 
       attr_reader :transactions, :products, :customers
@@ -168,30 +203,8 @@ module Reports
         @customers    = customers
       end
 
-      def row
-        [
-          created_at.to_s(:db),
-          company_name,
-          customer_reference,
-          statement_id,
-          product_handle,
-          "payment",
-          coupon_code,
-          format_coupon_amount(coupon_amount),
-          "%d" % (net_price / 100),
-          "%d" % (discount / 100),
-          "%d" % (net_after_discount / 100),
-          "%d" % (tax_amount / 100),
-          "%d" % (total / 100)
-        ]
-      end
-
-      def format_coupon_amount(amount)
-        if amount.nil?
-          ""
-        else
-          "%d%" % amount
-        end
+      def to_row
+        ChargeRow.new(self).row
       end
 
       def obj
