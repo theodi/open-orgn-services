@@ -90,10 +90,7 @@ module Reports
     end
 
     def charge_row(subscriber_transactions)
-      vars = SubscriberTransaction.new(subscriber_transactions)
-
-      customer = @customers[vars.customer_id]
-      product  = @products[vars.product_id]
+      vars = SubscriberTransaction.new(subscriber_transactions, @products, @customers)
 
       totals['amount']   += vars.net_price
       totals['discount'] += vars.discount
@@ -102,10 +99,10 @@ module Reports
 
       [
         vars.created_at.to_s(:db),
-        company_name(customer),
-        customer.reference.to_s,
+        vars.company_name,
+        vars.customer_reference,
         vars.statement_id,
-        product.handle,
+        vars.product_handle,
         "payment",
         vars.coupon_code,
         coupon_amount(vars.coupon_amount),
@@ -181,10 +178,12 @@ module Reports
     class SubscriberTransaction
       extend Forwardable
 
-      attr_reader :transactions
+      attr_reader :transactions, :products, :customers
 
-      def initialize(transactions)
+      def initialize(transactions, products, customers)
         @transactions = transactions
+        @products     = products
+        @customers    = customers
       end
 
       def obj
@@ -234,6 +233,30 @@ module Reports
       end
 
       def_delegators :obj, :customer_id, :product_id, :statement_id, :created_at
+
+      def customer
+        @customers[customer_id]
+      end
+
+      def product
+        @products[product_id]
+      end
+
+      def company_name
+        if customer.organization.present?
+          customer.organization
+        else
+          [customer.first_name, customer.last_name].join(" ")
+        end
+      end
+
+      def customer_reference
+        customer.reference.to_s
+      end
+
+      def product_handle
+        product.handle
+      end
 
       def coupon_code
         return "" unless adjustment?
