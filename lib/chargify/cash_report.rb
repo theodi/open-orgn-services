@@ -44,7 +44,14 @@ module Reports
         subscriber_transactions = transactions[subscription_id].group_by(&:type)
 
         if (subscriber_transactions.keys - %w[Refund]).present?
-          table << charge_row(subscriber_transactions)
+          row = Charge.new(subscriber_transactions, @products, @customers)
+
+          totals['amount']   += row.net_price
+          totals['discount'] += row.discount
+          totals['total']    += row.total
+          totals['tax']      += row.tax_amount
+
+          table << row.to_row
         end
 
         if subscriber_transactions['Refund'].present?
@@ -90,17 +97,6 @@ module Reports
 
     def total_tax
       (totals['tax'] / 100).to_s
-    end
-
-    def charge_row(subscriber_transactions)
-      row = Charge.new(subscriber_transactions, @products, @customers)
-
-      totals['amount']   += row.net_price
-      totals['discount'] += row.discount
-      totals['total']    += row.total
-      totals['tax']      += row.tax_amount
-
-      row.to_row
     end
 
     def refund_row(refund)
