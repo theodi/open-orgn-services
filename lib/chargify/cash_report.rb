@@ -16,6 +16,7 @@ module Reports
         'coupon amount',
         'original net price',
         'discount',
+        'net after discount',
         'tax',
         'total'
       ]
@@ -68,6 +69,7 @@ module Reports
         SPACER,
         total_net,
         total_discount,
+        SPACER,
         total_tax,
         total
       ]
@@ -108,6 +110,7 @@ module Reports
         coupon_amount(vars.coupon_amount),
         "%d" % (vars.net_price / 100),
         "%d" % (vars.discount / 100),
+        "%d" % (vars.net_after_discount / 100),
         "%d" % (vars.tax_amount / 100),
         "%d" % (vars.total / 100)
       ]
@@ -147,6 +150,7 @@ module Reports
           "",
           "-%d" % (charges['baseline'].first.amount_in_cents / 100),
           "0",
+          "",
           "-%d" % (tax_amount / 100),
           "-%d" % (payment.amount_in_cents.to_i / 100)
         ]
@@ -204,6 +208,10 @@ module Reports
 
       def net_price
         charges['baseline'].first.amount_in_cents
+      end
+
+      def net_after_discount
+        net_price - discount.abs
       end
 
       def tax_amount
