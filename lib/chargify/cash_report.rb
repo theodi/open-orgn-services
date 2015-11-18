@@ -43,7 +43,7 @@ module Reports
       transactions.keys.sort.each do |subscription_id|
         subscriber_transactions = transactions[subscription_id].group_by(&:type)
 
-        if (subscriber_transactions.keys - %w[Refund]).present?
+        if (subscriber_transactions.keys - %w[Refund InfoTransaction]).present?
           row = Charge.new(subscriber_transactions, @products, @customers)
 
           totals['amount']   += row.net_price
