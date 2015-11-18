@@ -18,15 +18,15 @@ module Reports
       table << headers
 
       @products.values.each do |product|
-        table << Row.new(@transactions, product).row
+        ProductRow.new(@transactions, product).rows.each do |row|
+          table << row
+        end
       end
 
       table
     end
 
-    # When we add a breakdown of each product this could
-    # be renamed to RowGroup or similar?
-    class Row
+    class ProductRow
       attr_reader :transactions, :product
 
       def initialize(transactions, product)
@@ -58,6 +58,12 @@ module Reports
 
       def tax
         0.2 * net
+      end
+
+      def rows
+        [
+          row
+        ]
       end
 
       def row
