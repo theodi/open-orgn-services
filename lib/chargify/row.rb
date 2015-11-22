@@ -31,11 +31,11 @@ module Reports
     end
 
     def tax
-      '%.2f' % (0.2 * net)
+      0.2 * net
     end
 
     def total
-      '%.2f' % (1.2 * net)
+      1.2 * net
     end
 
     def row
@@ -44,8 +44,8 @@ module Reports
         booking_value,
         signup_count,
         '%.2f' % net,
-        tax,
-        total
+        '%.2f' % tax,
+        '%.2f' % total
       ]
     end
   end
