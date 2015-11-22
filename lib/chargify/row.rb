@@ -43,7 +43,7 @@ module Reports
         title,
         booking_value,
         signup_count,
-        net.to_s,
+        '%.2f' % net,
         tax,
         total
       ]
