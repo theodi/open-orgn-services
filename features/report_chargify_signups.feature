@@ -37,11 +37,11 @@ Feature: Email a report to finance
   Scenario: the booking value report contains the correct data
     Then data for the booking value report should match:
 
-      | product name               | signup count | booking value | net  | tax | total |
-      | individual-supporter       | 5            | 90            | 450  | 90  | 540   |
-      | supporter_annual           | 3            | 720           | 2160 | 432 | 2592  |
-      | corporate-supporter_annual | 2            | 2200          | 4400 | 880 | 5280  |
-      | supporter_monthly          | 1            | 720           | 720  | 144 | 864   |
+      | product name                         | signup count | booking value | net     | tax    | total   |
+      | individual-supporter NO COUPON       | 5            | 90            | 450.00  | 90.00  | 540.00  |
+      | supporter_annual NO COUPON           | 3            | 720           | 2160.00 | 432.00 | 2592.00 |
+      | corporate-supporter_annual NO COUPON | 2            | 2200          | 4400.00 | 880.00 | 5280.00 |
+      | supporter_monthly NO COUPON          | 1            | 720           | 60.00   | 12.00  | 72.00   |
 
   Scenario: the cash report with coupon adjustments contains the correct data
     When I want to run the report for 2015-02-20 to 2015-02-21

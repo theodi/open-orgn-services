@@ -48,10 +48,10 @@ describe Reports::BookingValueReport do
 
   it "returns the data" do
     expect(subject.data).to include(["product name",                      "booking value", "signup count", "net",      "tax",      "total"])
-    expect(subject.data).to include(["individual-supporter NO COUPON",    90,              3,              "288.00",   "57.60",    "345.60"])
+    expect(subject.data).to include(["individual-supporter NO COUPON",    90,              3,              "270.00",   "54.00",    "324.00"])
     expect(subject.data).to include(["individual-supporter MENTOR",       90,              3,              "0.00",     "0.00",     "0.00"])
-    expect(subject.data).to include(["supporter_annual NO COUPON",        720,             2,              "1584.00",  "316.80",   "1900.80"])
-    expect(subject.data).to include(["supporter_annual SUMMIT2015",       720,             1,              "610.00",   "122.00",   "732.00"])
+    expect(subject.data).to include(["supporter_annual NO COUPON",        720,             2,              "1440.00",  "288.00",   "1728.00"])
+    expect(subject.data).to include(["supporter_annual SUMMIT2015",       720,             1,              "489.00",   "97.80",    "586.80"])
     expect(subject.data).to include(["supporter_legacy_annual NO COUPON", 0,               1,              "540.00",   "108.00",   "648.00"])
     expect(subject.data).to include(["supporter_monthly ODISTARTUP",      720,             1,              "0.00",     "0.00",     "0.00"])
   end

@@ -18,6 +18,12 @@ module Reports
       end
     end
 
+    def taxes
+      transactions.select do |transaction|
+        transaction.type == "Charge"
+      end
+    end
+
     # We assume that all transactions have the same product_id, this would seem
     # to make sense but we do not control it as they come from Chargify
     def product_id
@@ -32,6 +38,10 @@ module Reports
       coupons.reduce(0) { |total, coupon| coupon.amount_in_cents.abs }
     end
 
+    def taxes_total
+      taxes.reduce(0) { |total, charge| charge.amount_in_cents }
+    end
+
     # There should never be a payment present if there is a 100% coupon
     # present. There should always be a payment present if there is a non-100%
     # coupon present.
@@ -42,7 +52,8 @@ module Reports
       if payments_total.zero?
         0
       else
-        payments_total - coupons_total
+        # Payments include tax so we need to remove the taxes to get the net figure
+        payments_total - coupons_total - taxes_total
       end
     end
 

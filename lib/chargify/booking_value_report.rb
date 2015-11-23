@@ -42,18 +42,31 @@ module Reports
     end
 
     def transactions_by_customer
-      customer_transactions.group_by(&:customer_id).map do |customer_id, transactions|
-        Transaction.new(transactions)
+      signup_transactions.keys.map do |customer_id|
+        Transaction.new(
+          customer_transactions[customer_id]
+        )
       end
     end
 
+    # Payments and Coupons represent **actual** signups
+    def signup_transactions
+      @signup_transactions ||= (payments + coupons).group_by(&:customer_id)
+    end
+
     def customer_transactions
-      payments + coupons
+      @customer_transactions ||= (payments + coupons + tax_charges).group_by(&:customer_id)
     end
 
     def payments
       transactions.select do |transaction|
         transaction.type == "Payment" && transaction.memo =~ /Signup payment/
+      end
+    end
+
+    def tax_charges
+      transactions.select do |transaction|
+        transaction.type == "Charge" && transaction.kind == "tax"
       end
     end
 

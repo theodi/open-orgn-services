@@ -30,8 +30,16 @@ describe Reports::Transaction do
     )
   end
 
+
+  let(:vat_charge) do
+    double("VAT",
+      type: "Charge",
+      amount_in_cents: 1200
+    )
+  end
+
   let(:transactions) do
-    [payment, coupon]
+    [payment, coupon, vat_charge]
   end
 
   subject do
@@ -42,6 +50,7 @@ describe Reports::Transaction do
     it "should return coupon transactions" do
       expect(subject.coupons).to include(coupon)
       expect(subject.coupons).to_not include(payment)
+      expect(subject.coupons).to_not include(vat_charge)
     end
   end
 
@@ -49,6 +58,15 @@ describe Reports::Transaction do
     it "should return payment transactions" do
       expect(subject.payments).to include(payment)
       expect(subject.payments).to_not include(coupon)
+      expect(subject.payments).to_not include(vat_charge)
+    end
+  end
+
+  describe "#taxes" do
+    it "should return tax (charge) transactions" do
+      expect(subject.taxes).to include(vat_charge)
+      expect(subject.taxes).to_not include(payment)
+      expect(subject.taxes).to_not include(coupon)
     end
   end
 
@@ -67,6 +85,12 @@ describe Reports::Transaction do
   describe "#coupons_total" do
     it "sums all coupons" do
       expect(subject.coupons_total).to eq(9000)
+    end
+  end
+
+  describe "#taxes_total" do
+    it "sums all taxes" do
+      expect(subject.taxes_total).to eq(1200)
     end
   end
 
@@ -98,6 +122,16 @@ describe Reports::Transaction do
 
       it "returns the total" do
         expect(subject.net_total).to eq(0)
+      end
+    end
+
+    context "payment, 50% coupon and VAT charge" do
+      let(:transactions) do
+        [payment, fifty_percent_coupon, vat_charge]
+      end
+
+      it "returns the total" do
+        expect(subject.net_total).to eq(3300)
       end
     end
   end
