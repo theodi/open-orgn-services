@@ -41,6 +41,11 @@ describe Reports::BookingValueReport do
     expect(subject.coupons.size).to eq(5)
   end
 
+  it "returns customer transactions" do
+    expect(subject.transactions_by_customer.size).to eq(11)
+    expect(subject.transactions_by_customer.map { |c| c.class.to_s }.uniq.first).to eq("Reports::Transaction")
+  end
+
   it "returns the data" do
     expect(subject.data).to include(["product name",                      "booking value", "signup count", "net",      "tax",      "total"])
     expect(subject.data).to include(["individual-supporter NO COUPON",    90,              3,              "288.00",   "57.60",    "345.60"])
