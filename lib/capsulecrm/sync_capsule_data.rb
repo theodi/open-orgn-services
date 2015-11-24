@@ -19,6 +19,8 @@ class SyncCapsuleData
         'share_with_third_parties' => field(subject, "Membership", "Share with third parties").try(:boolean),
         'size'                     => field(subject, "Membership", "Size").try(:text),
         'sector'                   => field(subject, "Membership", "Sector").try(:text),
+        'contact_first_name'       => field(subject, "Membership", "Contact first name").try(:text),
+        'contact_last_name'        => field(subject, "Membership", "Contact last name").try(:text),
       }.compact
       description = [
         field(subject, "DirectoryEntry", "Description").try(:text),
