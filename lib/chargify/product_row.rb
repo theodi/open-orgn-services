@@ -16,7 +16,15 @@ module Reports
     end
 
     def booking_value
-      net_total / count
+      if product_group =~ /monthly/
+        product_price * 12
+      else
+        product_price
+      end
+    end
+
+    def product_price
+      (net_total / count)
     end
 
     def net_total
