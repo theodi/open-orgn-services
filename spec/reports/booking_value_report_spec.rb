@@ -4,17 +4,21 @@ require_relative "../../lib/chargify/booking_value_report"
 
 describe Reports::BookingValueReport do
 
-  let(:customers) {}
-  let(:products) do
-    {
-      3661561 => double("Product", id: "3661561", handle: "individual-supporter", price_in_cents: 9000),
-      3660202 => double("Product", id: "3660202", handle: "supporter_annual", price_in_cents: 72000),
-      3660323 => double("Product", id: "3660323", handle: "corporate-supporter_legacy_annual", price_in_cents: 220000),
-      3661534 => double("Product", id: "3661534", handle: "supporter_monthly", price_in_cents: 6000),
-      3660319 => double("Product", id: "3660319", handle: "supporter_legacy_annual", price_in_cents: 0), #???
-      3661562 => double("Product", id: "3661562", handle: "holding-individual-supporter", price_in_cents: 0), #???
-      3708026 => double("Product", id: "3708026", handle: "individual-supporter-student", price_in_cents: 0), #???
-    }
+  let(:products) { [] }
+  let(:customers) { [] }
+
+  let(:subscriptions) do
+    [
+      double("Subscription", "signup_revenue" => "90.00",  "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10245249), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "signup_revenue" => "0.00",   "coupon_code"=>"ODISTARTUP", "product_price_in_cents"=>6000,  "customer" => double("Customer", "id" => 10243863), "product" => double("Product", "handle" => "supporter_monthly")),
+      double("Subscription", "signup_revenue" => "90.00",  "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10228995), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "signup_revenue" => "725.76", "coupon_code"=>"SUMMIT2015", "product_price_in_cents"=>72000, "customer" => double("Customer", "id" => 10213864), "product" => double("Product", "handle" => "supporter_annual")),
+      double("Subscription", "signup_revenue" => "0.00",   "coupon_code"=>nil,          "product_price_in_cents"=>0,     "customer" => double("Customer", "id" => 10122655), "product" => double("Product", "handle" => "holding-individual-supporter")),
+      double("Subscription", "signup_revenue" => "0.00",   "coupon_code"=>nil,          "product_price_in_cents"=>0,     "customer" => double("Customer", "id" => 10122644), "product" => double("Product", "handle" => "holding-individual-supporter")),
+      double("Subscription", "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10070902), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "signup_revenue" => "108.00", "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10041288), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10027416), "product" => double("Product", "handle" => "individual-supporter"))
+    ]
   end
 
   let(:transactions) do
@@ -26,34 +30,20 @@ describe Reports::BookingValueReport do
   end
 
   subject do
-    Reports::BookingValueReport.new(transactions, customers, products)
+    Reports::BookingValueReport.new(transactions, customers, products, subscriptions)
   end
 
   it "loads all the transaction fixtures" do
     expect(transactions.size).to eq(189)
   end
 
-  it "returns signup payments" do
-    expect(subject.payments.size).to eq(7)
-  end
-
-  it "returns all the coupons" do
-    expect(subject.coupons.size).to eq(5)
-  end
-
-  it "returns customer transactions" do
-    expect(subject.transactions_by_customer.size).to eq(11)
-    expect(subject.transactions_by_customer.map { |c| c.class.to_s }.uniq.first).to eq("Reports::Transaction")
-  end
-
   it "returns the data" do
-    expect(subject.data).to include(["product name",                      "booking value", "signup count", "net",      "tax",      "total"])
-    expect(subject.data).to include(["individual-supporter NO COUPON",    90,              3,              "270.00",   "54.00",    "324.00"])
-    expect(subject.data).to include(["individual-supporter MENTOR",       90,              3,              "0.00",     "0.00",     "0.00"])
-    expect(subject.data).to include(["supporter_annual NO COUPON",        720,             2,              "1440.00",  "288.00",   "1728.00"])
-    expect(subject.data).to include(["supporter_annual SUMMIT2015",       720,             1,              "489.00",   "97.80",    "586.80"])
-    expect(subject.data).to include(["supporter_legacy_annual NO COUPON", 0,               1,              "540.00",   "108.00",   "648.00"])
-    expect(subject.data).to include(["supporter_monthly ODISTARTUP",      720,             1,              "0.00",     "0.00",     "0.00"])
+    expect(subject.data).to include(["product name",                            "booking value",   "signup count", "net",    "tax",    "total"])
+    expect(subject.data).to include(["individual-supporter NO COUPON",          "90.00",           3,              "270.00", "18.00",  "288.00"])
+    expect(subject.data).to include(["supporter_monthly ODISTARTUP",            "0.00",            1,              "0.00",   "0.00",   "0.00"])
+    expect(subject.data).to include(["supporter_annual SUMMIT2015",             "604.80",          1,              "604.80", "120.96", "725.76"])
+    expect(subject.data).to include(["holding-individual-supporter NO COUPON",  "0.00",            2,              "0.00",   "0.00",   "0.00"])
+    expect(subject.data).to include(["individual-supporter MENTOR",             "0.00",            2,              "0.00",   "0.00",   "0.00"])
   end
 end
 

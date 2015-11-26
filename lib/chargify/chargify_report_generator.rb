@@ -42,7 +42,7 @@ class ChargifyReportGenerator
       key = "#{report.to_s.dasherize}.csv"
       klass = report_klass(report)
 
-      hash[key] = klass.new(@transactions, @customers, @products).generate
+      hash[key] = klass.new(@transactions, @customers, @products, @subscriptions).generate
     end
   end
 
@@ -93,6 +93,25 @@ class ChargifyReportGenerator
     @products = {}
     @transactions.map(&:product_id).uniq.each do |id|
       @products[id] = Chargify::Product.find(id)
+    end
+
+    params = {
+      date_field: "created_at",
+      start_date: @start_date.to_s,
+      end_date: @end_date.to_s,
+      state: "active",
+      per_page: per_page,
+      page: 1
+    }
+
+    @subscriptions = []
+    subscriptions = Chargify::Subscription.find(:all, params: params)
+    @subscriptions.concat(subscriptions)
+
+    until subscriptions.size < per_page do
+      params[:page] += 1
+      subscriptions = Chargify::Subscription.find(:all, params: params)
+      @subscriptions.concat(subscriptions)
     end
   end
 end

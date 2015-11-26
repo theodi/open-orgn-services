@@ -8,15 +8,16 @@ Feature: Email a report to finance
 
   Background:
     Given the chargify environment variables are set
-    When I want to run the report for 2015-03-01 to 2015-03-31
 
   Scenario: Report the transactions and the end of the month
+    Given I want to run the report for 2015-03-01 to 2015-03-31
     When the job is triggered
     Then finance should receive an email with subject "Membership finance report for March 2015"
     And there should be an attachment named "cash-report.csv"
     And there should be an attachment named "booking-value-report.csv"
 
   Scenario: the cash report contains the correct data
+    Given I want to run the report for 2015-03-01 to 2015-03-31
     Then data for the cash report should match:
 
       | date                | company           | membership number | statement id | membership type             | transaction type | coupon | coupon amount | original net price | discount | net after discount | tax  | total |
@@ -35,16 +36,18 @@ Feature: Email a report to finance
       |                     |                   |                   |              |                             |                  | totals |               | 6350               | 0        |                    | 1270 | 7620  |
 
   Scenario: the booking value report contains the correct data
+    Given I want to run the report for 2015-10-01 to 2015-10-31
     Then data for the booking value report should match:
 
-      | product name                         | signup count | booking value | net     | tax    | total   |
-      | individual-supporter NO COUPON       | 5            | 90            | 450.00  | 90.00  | 540.00  |
-      | supporter_annual NO COUPON           | 3            | 720           | 2160.00 | 432.00 | 2592.00 |
-      | corporate-supporter_annual NO COUPON | 2            | 2200          | 4400.00 | 880.00 | 5280.00 |
-      | supporter_monthly NO COUPON          | 1            | 720           | 60.00   | 12.00  | 72.00   |
+      | product name                           | booking value | signup count | net    | tax    | total  |
+      | individual-supporter NO COUPON         | 90.00         | 3            | 270.00 | 18.00  | 288.00 |
+      | supporter_monthly ODISTARTUP           | 0.00          | 1            | 0.00   | 0.00   | 0.00   |
+      | supporter_annual SUMMIT2015            | 604.80        | 1            | 604.80 | 120.96 | 725.76 |
+      | holding-individual-supporter NO COUPON | 0.00          | 2            | 0.00   | 0.00   | 0.00   |
+      | individual-supporter MENTOR            | 0.00          | 2            | 0.00   | 0.00   | 0.00   |
 
   Scenario: the cash report with coupon adjustments contains the correct data
-    When I want to run the report for 2015-02-20 to 2015-02-21
+    Given I want to run the report for 2015-02-20 to 2015-02-21
     Then data for the cash report should match:
 
       | date                | company                   | membership number | statement id | membership type            | transaction type | coupon    | coupon amount | original net price | discount | net after discount | tax | total |

@@ -1,9 +1,10 @@
 module Reports
   class Report
-    def initialize(transactions, customers, products)
-      @transactions = transactions
-      @customers    = customers
-      @products     = products
+    def initialize(transactions, customers, products, subscriptions)
+      @transactions  = transactions
+      @customers     = customers
+      @products      = products
+      @subscriptions = subscriptions
     end
 
     def generate
