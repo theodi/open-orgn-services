@@ -1,3 +1,4 @@
+# require "awesome_print"
 require_relative "report"
 require_relative "charge"
 
@@ -36,12 +37,19 @@ module Reports
       @transactions.group_by(&:subscription_id)
     end
 
+    def subscription_is_cancelled?(subscription_id)
+      subscription = @subscriptions.find { |s| s.id == subscription_id }
+      subscription.state == "canceled"
+    end
+
     def data
       table = []
       table << headers_row
 
       transactions.keys.sort.each do |subscription_id|
         subscriber_transactions = transactions[subscription_id].group_by(&:type)
+
+        next if subscription_is_cancelled?(subscription_id)
 
         if (subscriber_transactions.keys - %w[Refund InfoTransaction]).present?
           row = Charge.new(subscriber_transactions, @products, @customers)
