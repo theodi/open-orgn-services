@@ -30,9 +30,13 @@ module Reports
     end
 
     def subscriptions
-      @subscriptions.map do |subscription|
+      active_subscriptions.map do |subscription|
         Signup.new(subscription, tax_charges)
       end
+    end
+
+    def active_subscriptions
+      @subscriptions.select { |s| s.state == "active" }
     end
 
     def tax_charges
