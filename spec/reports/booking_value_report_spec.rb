@@ -9,16 +9,19 @@ describe Reports::BookingValueReport do
 
   let(:subscriptions) do
     [
-      double("Subscription", "state" => "active",   "signup_revenue" => "90.00",  "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10245249), "product" => double("Product", "handle" => "individual-supporter")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>"ODISTARTUP", "product_price_in_cents"=>6000,  "customer" => double("Customer", "id" => 10243863), "product" => double("Product", "handle" => "supporter_monthly")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "90.00",  "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10228995), "product" => double("Product", "handle" => "individual-supporter")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "725.76", "coupon_code"=>"SUMMIT2015", "product_price_in_cents"=>72000, "customer" => double("Customer", "id" => 10213864), "product" => double("Product", "handle" => "supporter_annual")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>nil,          "product_price_in_cents"=>0,     "customer" => double("Customer", "id" => 10122655), "product" => double("Product", "handle" => "holding-individual-supporter")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>nil,          "product_price_in_cents"=>0,     "customer" => double("Customer", "id" => 10122644), "product" => double("Product", "handle" => "holding-individual-supporter")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10070902), "product" => double("Product", "handle" => "individual-supporter")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "108.00", "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10041288), "product" => double("Product", "handle" => "individual-supporter")),
-      double("Subscription", "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10027416), "product" => double("Product", "handle" => "individual-supporter")),
-      double("Subscription", "state" => "canceled", "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10027416), "product" => double("Product", "handle" => "individual-supporter"))
+      double("Subscription", "created_at" => Time.parse("2015-10-01 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "90.00",  "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10245249), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "created_at" => Time.parse("2015-10-12 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>"ODISTARTUP", "product_price_in_cents"=>6000,  "customer" => double("Customer", "id" => 10243863), "product" => double("Product", "handle" => "supporter_monthly")),
+      double("Subscription", "created_at" => Time.parse("2015-10-13 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "90.00",  "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10228995), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "created_at" => Time.parse("2015-10-21 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "725.76", "coupon_code"=>"SUMMIT2015", "product_price_in_cents"=>72000, "customer" => double("Customer", "id" => 10213864), "product" => double("Product", "handle" => "supporter_annual")),
+      double("Subscription", "created_at" => Time.parse("2015-10-26 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>nil,          "product_price_in_cents"=>0,     "customer" => double("Customer", "id" => 10122655), "product" => double("Product", "handle" => "holding-individual-supporter")),
+      double("Subscription", "created_at" => Time.parse("2015-10-26 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>nil,          "product_price_in_cents"=>0,     "customer" => double("Customer", "id" => 10122644), "product" => double("Product", "handle" => "holding-individual-supporter")),
+      double("Subscription", "created_at" => Time.parse("2015-10-28 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10070902), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "created_at" => Time.parse("2015-10-28 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "108.00", "coupon_code"=>nil,          "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10041288), "product" => double("Product", "handle" => "individual-supporter")),
+      double("Subscription", "created_at" => Time.parse("2015-10-31 15:02:07 UTC"), "state" => "active",   "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10027416), "product" => double("Product", "handle" => "individual-supporter")),
+
+      double("Cancelled",    "created_at" => Time.parse("2015-10-26 15:02:07 UTC"), "state" => "canceled", "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10027416), "product" => double("Product", "handle" => "individual-supporter")),
+
+      double("Active, wrong month", "created_at" => Time.parse("2015-09-26 15:02:07 UTC"), "state" => "active", "signup_revenue" => "0.00",   "coupon_code"=>"MENTOR",     "product_price_in_cents"=>9000,  "customer" => double("Customer", "id" => 10027416), "product" => double("Product", "handle" => "individual-supporter")),
     ]
   end
 
@@ -30,8 +33,12 @@ describe Reports::BookingValueReport do
     @transactions
   end
 
+  let(:start_date) { Date.parse("2015-10-01") }
+
+  let(:end_date)   { Date.parse("2015-10-31") }
+
   subject do
-    Reports::BookingValueReport.new(transactions, customers, products, subscriptions)
+    Reports::BookingValueReport.new(start_date, end_date, transactions, customers, products, subscriptions)
   end
 
   it "loads all the transaction fixtures" do

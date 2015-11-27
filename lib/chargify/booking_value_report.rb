@@ -36,7 +36,13 @@ module Reports
     end
 
     def active_subscriptions
-      @subscriptions.select { |s| s.state == "active" }
+      @subscriptions.select do |s|
+        s.state == "active" && falls_within_report_dates?(s.created_at)
+      end
+    end
+
+    def falls_within_report_dates?(created_at)
+      report_date_range.include?(Date.parse(created_at.to_s))
     end
 
     def tax_charges

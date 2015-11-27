@@ -42,7 +42,7 @@ class ChargifyReportGenerator
       key = "#{report.to_s.dasherize}.csv"
       klass = report_klass(report)
 
-      hash[key] = klass.new(@transactions, @customers, @products, @subscriptions).generate
+      hash[key] = klass.new(@start_date, @end_date, @transactions, @customers, @products, @subscriptions).generate
     end
   end
 
