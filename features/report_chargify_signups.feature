@@ -77,7 +77,7 @@ Feature: Email a report to finance
       | 2015-09-25 15:37:31 | Lydia Pintscher                     | LY3441CL          | 58040223    | individual-supporter    | payment          | MENTOR      | 100%          | 90                 | -90      | 0                  | 0   | 0     |
       | 2015-09-28 12:34:04 | Houses of Parliament                | TC9587KS          | 58172726    | individual-supporter    | payment          |             |               | 90                 | 0        | 90                 | 18  | 108   |
       | 2015-09-28 16:17:15 | Tobias Buerger                      | IG1866LU          | 58183744    | individual-supporter    | payment          | MENTOR      | 100%          | 90                 | -90      | 0                  | 0   | 0     |
-      |                     |                                     |                   |             |                         |                  | totals      |               | 12250              | -5980    |                    | 390 | 6660  |
+      |                     |                                     |                   |             |                         |                  | totals      |               | 3750               | -2070    |                    | 228 | 1908  |
 
   Scenario: the booking value report contains the correct data
     Given I want to run the report for 2015-10-01 to 2015-10-31
