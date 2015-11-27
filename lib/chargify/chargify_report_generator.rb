@@ -97,9 +97,6 @@ class ChargifyReportGenerator
 
     params = {
       date_field: "created_at",
-      start_date: @start_date.to_s,
-      end_date: @end_date.to_s,
-      state: "active",
       per_page: per_page,
       page: 1
     }
