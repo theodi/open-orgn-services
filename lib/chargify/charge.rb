@@ -20,16 +20,8 @@ module Reports
       (transactions['Payment'] || transactions['Adjustment'] || transactions['Charge']).first
     end
 
-    def adjustment?
-      obj.type == 'Adjustment'
-    end
-
     def total
-      if adjustment?
-        charges_and_adjustments.sum(&:amount_in_cents)
-      else
-        obj.amount_in_cents
-      end
+      charges_and_adjustments.sum(&:amount_in_cents)
     end
 
     def net_price
@@ -58,12 +50,14 @@ module Reports
       end
     end
 
-    def discount
-      if adjustment?
-        obj.amount_in_cents
-      else
-        0
+    def adjustments
+      transactions.values.flatten.select do |transaction|
+        %w[Adjustment].include?(transaction.type)
       end
+    end
+
+    def discount
+      adjustments.sum(&:amount_in_cents)
     end
 
     def_delegators :obj, :customer_id, :product_id, :statement_id, :created_at
@@ -92,10 +86,14 @@ module Reports
       product.handle
     end
 
-    def coupon_code
-      return "" unless adjustment?
+    def coupons
+      adjustments.select { |adjustment| adjustment.kind == "coupon" }
+    end
 
-      /Coupon: (.+) -/.match(obj.memo)[1]
+    def coupon_code
+      return "" if coupons.empty?
+
+      /Coupon: (.+) -/.match(coupons.first.memo)[1]
     end
 
     def coupon_amount

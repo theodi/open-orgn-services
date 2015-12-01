@@ -62,7 +62,7 @@ module Reports
     private
 
     def format_value(value)
-      "%d" % (charge.send(value) / 100)
+      "%.2f" % (charge.send(value).to_f / 100)
     end
   end
 end

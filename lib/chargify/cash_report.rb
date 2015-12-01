@@ -130,11 +130,11 @@ module Reports
           "refund",
           "",
           "",
-          "-%d" % (charges['baseline'].first.amount_in_cents / 100),
-          "0",
+          "-%.2f" % (charges['baseline'].first.amount_in_cents / 100),
+          "0.00",
           "",
-          "-%d" % (tax_amount / 100),
-          "-%d" % (payment.amount_in_cents.to_i / 100)
+          "-%.2f" % (tax_amount / 100),
+          "-%.2f" % (payment.amount_in_cents.to_i / 100)
         ]
       else
         totals['amount'] -= refund.amount_in_cents
@@ -146,9 +146,9 @@ module Reports
           product.handle,
           "refund",
           "",
-          "-%d" % (refund.amount_in_cents.to_i / 100),
+          "-%.2f" % (refund.amount_in_cents.to_i / 100),
           "0",
-          "-%d" % (refund.amount_in_cents.to_i / 100)
+          "-%.2f" % (refund.amount_in_cents.to_i / 100)
         ]
       end
     end
