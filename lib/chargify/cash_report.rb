@@ -36,13 +36,45 @@ module Reports
       @transactions.group_by(&:subscription_id)
     end
 
+    def payments
+      @transactions.select { |t| t.type == "Payment" }
+    end
+
+    def adjustments
+      @transactions.select { |t| t.type == "Adjustment" }
+    end
+
     def subscription_is_cancelled?(subscription_id)
       subscription = @subscriptions.find { |s| s.id == subscription_id }
       subscription.state == "canceled"
     end
 
+    def has_payment?(charge)
+      payments.find do |payment|
+        payment.subscription_id == charge.subscription_id
+      end
+    end
+
+    def has_adjustment?(charge)
+      adjustments.find do |adjustment|
+        adjustment.subscription_id == charge.subscription_id
+      end
+    end
+
     def transactions_for_subscription(subscription_id)
-      transactions[subscription_id].group_by(&:type)
+      subscription_transactions = transactions[subscription_id]
+
+      subscription_transactions.each do |transaction|
+        next unless transaction.type == "Charge"
+
+        if !transaction.amount_in_cents.zero? && !has_adjustment?(transaction)
+          if !has_payment?(transaction)
+            return {}
+          end
+        end
+      end
+
+      subscription_transactions.group_by(&:type)
     end
 
     def data
@@ -54,7 +86,7 @@ module Reports
 
         next if subscription_is_cancelled?(subscription_id)
 
-        if (subscriber_transactions.keys - %w[Refund InfoTransaction]).present?
+        if (subscriber_transactions.keys - %w[Payment Refund InfoTransaction]).present?
           row = Charge.new(subscriber_transactions, @products, @customers)
 
           totals['amount']   += row.net_price
