@@ -41,12 +41,16 @@ module Reports
       subscription.state == "canceled"
     end
 
+    def transactions_for_subscription(subscription_id)
+      transactions[subscription_id].group_by(&:type)
+    end
+
     def data
       table = []
       table << headers_row
 
       transactions.keys.sort.each do |subscription_id|
-        subscriber_transactions = transactions[subscription_id].group_by(&:type)
+        subscriber_transactions = transactions_for_subscription(subscription_id)
 
         next if subscription_is_cancelled?(subscription_id)
 
