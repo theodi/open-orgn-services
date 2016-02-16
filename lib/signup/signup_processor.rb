@@ -106,7 +106,7 @@ class SignupProcessor
   def membership_type
     if category == 'individual'
       {
-        price: 90,
+        price: individual_amount,
         description: 'Individual supporter',
         type: 'Individual'
       }
@@ -143,6 +143,10 @@ class SignupProcessor
     purchase['offer_category']
   end
 
+  def individual_amount
+    purchase['amount_paid'] || 90
+  end
+
   def invoice_description(membership_id, description, type, method, frequency)
     "ODI #{description} (#{membership_id}) [#{type.titleize}] (#{frequency} #{format_payment_method(method)} payment)"
   end
@@ -158,4 +162,3 @@ class SignupProcessor
     end
   end
 end
-
