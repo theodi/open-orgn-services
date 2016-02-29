@@ -1,0 +1,634 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?email=finance@nerd.eg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:34 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3999'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '74'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:34 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <about nil=\"<VCR_DEBUG>\"/>\n
+        \ <firstName>Joe</firstName>\n  <lastName>Nerd</lastName>\n  <title nil=\"<VCR_DEBUG>\"/>\n
+        \ <jobTitle nil=\"<VCR_DEBUG>\"/>\n  <organisationId nil=\"<VCR_DEBUG>\"/>\n
+        \ <contacts>\n    <email>\n      <type nil=\"<VCR_DEBUG>\"/>\n      <emailAddress>finance@nerd.eg</emailAddress>\n
+        \   </email>\n  </contacts>\n</person>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:35 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3998'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:35 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/opportunity
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
+        at individual level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">108</value>\n
+        \ <milestone>Invoiced</milestone>\n  <probability type=\"integer\">100</probability>\n
+        \ <description>Membership #: 01010101</description>\n  <duration type=\"integer\">1</duration>\n
+        \ <durationBasis>YEAR</durationBasis>\n  <expectedCloseDate type=\"date\">2016-02-16</expectedCloseDate>\n
+        \ <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:35 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3997'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/4018481
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:36 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/4018481/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Type</label>\n    <text>Membership</text>\n    <tag nil=\"<VCR_DEBUG>\"/>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:36 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3996'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5595411</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:36 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/tag/Membership
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
+        \ </tag>\n</tags>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:37 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3995'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:37 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Level</label>\n    <text>individual</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:37 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3994'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '201'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:37 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Supporter Level</label>\n    <text>Individual</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:38 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3993'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '319'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="2"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:38 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>ID</label>\n    <text>01010101</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:38 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3992'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '422'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="3"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>93393436</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:39 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Joined</label>\n    <text nil=\"<VCR_DEBUG>\"/>\n    <tag>Membership</tag>\n
+        \   <date type=\"date\">2016-02-16</date>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n
+        \ </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:39 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3991'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '541'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="4"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>93393436</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>93393437</id><tag>Membership</tag><label>Joined</label><date>2016-02-16T00:00:00Z</date></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:39 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Email</label>\n    <text>joe@nerd.eg</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:40 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3990'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '650'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="5"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>93393436</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>93393437</id><tag>Membership</tag><label>Joined</label><date>2016-02-16T00:00:00Z</date></customField><customField><id>93393438</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:40 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Sector</label>\n    <text>Healthcare</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:40 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3989'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '759'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="6"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>93393436</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>93393437</id><tag>Membership</tag><label>Joined</label><date>2016-02-16T00:00:00Z</date></customField><customField><id>93393438</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>93393439</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:40 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Contact first name</label>\n    <text>Joe</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:41 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3988'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '873'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="7"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>93393436</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>93393437</id><tag>Membership</tag><label>Joined</label><date>2016-02-16T00:00:00Z</date></customField><customField><id>93393438</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>93393439</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>93393440</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:41 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/97912683/customfields
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
+        \   <label>Contact last name</label>\n    <text>Nerd</text>\n    <tag>Membership</tag>\n
+        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Feb 2016 13:11:42 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3987'
+      X-Ratelimit-Reset:
+      - '1455629751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - ! '*/*;charset=UTF-8'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>93393434</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>93393435</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>93393436</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>93393437</id><tag>Membership</tag><label>Joined</label><date>2016-02-16T00:00:00Z</date></customField><customField><id>93393438</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>93393439</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>93393440</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>93393441</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Tue, 16 Feb 2016 13:11:42 GMT
+recorded_with: VCR 2.9.3

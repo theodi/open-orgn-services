@@ -38,6 +38,18 @@ Feature: Processing individual membership signups
     And I should be added to the invoicing queue
     When the signup processor runs
 
+  Scenario: Add signups with flexible pricing to the correct queues
+    Given I requested 1 membership at the level called "individual"
+    And I am paying by "credit_card"
+    And I paid "5"
+    And I want to pay on an "annual" basis
+    And my payment reference is "cus_12345"
+    Then the invoice description should read "ODI Individual supporter (01010101) [Individual] (annual card payment)"
+    And the invoice price should be "5"
+    And the supporter level should be "Individual"
+    And I should be added to the invoicing queue
+    When the signup processor runs
+
   @capsulecrm
   Scenario: add contact details to CapsuleCRM
     Given I requested 1 membership at the level called "individual"

@@ -207,6 +207,57 @@ describe SignupProcessor do
         subject.perform
       end
     end
+
+    context "individual signing up with flexible pricing" do
+      let(:category) { 'individual' }
+
+      let(:expected_invoice_line_item_description) do
+        "ODI Individual supporter (123456) [Individual] (annual card payment)"
+      end
+
+      let(:purchase) do
+        {
+          "offer_category"           => category,
+          "membership_id"            => 123456,
+          "payment_method"           => "credit_card",
+          "payment_freq"             => "annual",
+          "payment_ref"              => "012345",
+          "discount"                 => 0,
+          "purchase_order_reference" => "PO1234",
+          "amount_paid"              => 5
+        }
+      end
+
+      let(:expected_invoice_details) do
+        {
+          "payment_method" => "credit_card",
+          "payment_ref" => "012345",
+          "line_items" => [
+            {
+              "quantity"      => 1,
+              "base_price"    => 5,
+              "discount_rate" => 0,
+              "description"   => expected_invoice_line_item_description
+            }
+          ],
+          "repeat"                   => "annual",
+          "purchase_order_reference" => "PO1234",
+          "sector"                   => "Education"
+        }
+      end
+
+      it "should save the signup details to the CRM" do
+        expect(SendSignupToCapsule).to receive(:perform).with(
+          expected_organization_details, expected_membership_details
+        ).once
+
+        expect(Resque).to receive(:enqueue).with(
+          Invoicer, expected_invoice_to, expected_invoice_details
+        ).once
+
+        subject.perform
+      end
+    end
   end
 
   describe "#membership_type" do
@@ -303,4 +354,3 @@ describe SignupProcessor do
     end
   end
 end
-

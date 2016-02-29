@@ -34,7 +34,8 @@ module SignupProcessorSupport
       'offer_category'           => @membership_level,
       'purchase_order_reference' => @purchase_order_reference,
       'membership_id'            => @membership_id,
-      'discount'                 => @discount
+      'discount'                 => @discount,
+      'amount_paid'              => @amount_paid
     }
     [organization, contact_person, billing, purchase]
   end
