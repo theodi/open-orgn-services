@@ -35,10 +35,6 @@ Feature: Create a JSON description of all upcoming events
       | 5441375300  | Summit SME package                    | 205.65  | GBP      | 2015-07-01 04:30 | 2020-06-17 18:00 | 199       |
       | 5441375300  | Summit platinum corporate package     | 306.5   | GBP      | 2015-07-01 04:30 | 2020-06-17 18:00 | 99        |
 
-  Scenario: Queue event summary generator
-    Then the event summary generator should be queued
-		When we poll eventbrite for all events
-
   Scenario: Generate JSON
     Then the courses summary uploader should be queued with the following JSON:
     """
