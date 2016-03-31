@@ -6,7 +6,13 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
@@ -15,36 +21,55 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 15 Feb 2013 13:28:16 GMT
+      - Wed, 04 Nov 2015 15:37:40 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       X-Service:
       - djc
+      Content-Security-Policy-Report-Only:
+      - 'default-src https: ;script-src https: ''unsafe-inline'' ''unsafe-eval'' ;
+        style-src https: ''unsafe-inline'' ; img-src https: about: data: ; connect-src
+        https: about: ; font-src data: https: ; object-src https: ; media-src https:
+        ; frame-src https: ; report-uri https://www.eventbrite.com/ajax/csp-violation/action'
+      X-Ua-Compatible:
+      - IE=edge
       Pragma:
       - no-cache
       Cache-Control:
       - no-cache, must-revalidate, no-cache="Set-Cookie", private
       P3p:
       - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
+      X-Frame-Options:
+      - SAMEORIGIN
       Set-Cookie:
-      - G=v%3D1%26i%3D186f3592-cb87-4cdb-b782-c2e35477d1a7%26a%3D290%26s%3DAPDvTK5wY9bNv0QrNGlAgxMemUZeIUgAAw;
-        Domain=.eventbrite.com; expires=Sat, 15-Feb-2014 13:28:16 GMT; Path=/
-      - eblang=lo%3Den_US%26la%3Den-us; Domain=.eventbrite.com; expires=Sat, 15-Feb-2014
-        13:28:16 GMT; Path=/
-      - mgref=typeins; Domain=.eventbrite.com; expires=Sat, 15-Feb-2014 13:28:16 GMT;
+      - AN=; expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0; Path=/
+      - G=v%3D2%26i%3D89b81ef3-c999-4d10-9977-d2b18edf6cd5%26a%3D670%26s%3Dae56de4cc60a2e6a55f7202f8748dde00528a674;
+        Domain=.eventbrite.com; expires=Thu, 03-Nov-2016 15:37:40 GMT; httponly; Path=/
+      - SP=AGQgbblrDlK46sBQYr9PDPwNAI2p55SuhhGqo94RAddiVVNQ3uUneS9d39MsKbPT3D1Y7b_OdCYbUrC7NTw9mpjlfLwiGhQSyBENXK3HYhgU263Sjd97RB8qZLYKhhqOE0JGyOCTTndu_6EPbeLF0GuFTJC4-hq1ky2rv_df1wnnyL5XH-Z232jYU0EKIkd5hgvzar0osDxS0utTIPjvKt7AZsDGlIzEfB4gNNugFRLkpGRhEgicONw;
+        Domain=.eventbrite.com; httponly; Path=/
+      - SS=AE3DLHR64Gr4YVPN_OpU5346aSO9isKRZA; Domain=.eventbrite.com; httponly; Path=/;
+        secure
+      - ebEventToTrack=; expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0; Path=/
+      - eblang=lo%3Den_US%26la%3Den-us; Domain=.eventbrite.com; expires=Thu, 03-Nov-2016
+        15:37:40 GMT; httponly; Path=/
+      - mgref=typeins; Domain=.eventbrite.com; expires=Thu, 03-Nov-2016 15:37:40 GMT;
+        httponly; Max-Age=31536000; Path=/
+      - mgrefby=; Domain=.eventbrite.com; expires=Thu, 03-Nov-2016 15:37:40 GMT; httponly;
         Max-Age=31536000; Path=/
-      - mgrefby=; Domain=.eventbrite.com; expires=Sat, 15-Feb-2014 13:28:16 GMT; Max-Age=31536000;
-        Path=/
     body:
-      encoding: US-ASCII
-      string: ! '{"attendees": [], "error": {"error_type": "Not Found", "error_message":
+      encoding: UTF-8
+      string: '{"attendees": [], "error": {"error_type": "Not Found", "error_message":
         "No records were found with the given parameters.."}}'
     http_version: 
-  recorded_at: Fri, 15 Feb 2013 13:28:17 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Wed, 04 Nov 2015 15:37:41 GMT
+recorded_with: VCR 2.9.3

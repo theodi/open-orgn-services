@@ -36,3 +36,7 @@ end
 Given(/^my payment reference is "(.*?)"$/) do |ref|
   @payment_ref = ref
 end
+
+Given(/^I paid "(.*?)"$/) do |amount|
+  @amount_paid = amount
+end

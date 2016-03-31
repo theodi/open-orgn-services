@@ -15,13 +15,19 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:18 GMT
+      - Wed, 04 Nov 2015 16:30:47 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3960'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Content-Length:
       - '74'
       X-Xss-Protection:
@@ -31,22 +37,33 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
     http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:15:18 GMT
+  recorded_at: Wed, 04 Nov 2015 16:30:49 GMT
 - request:
     method: post
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <about nil=\"true\"/>\n
-        \ <firstName>Arnold</firstName>\n  <lastName>Rimmer</lastName>\n  <title nil=\"true\"/>\n
-        \ <jobTitle nil=\"true\"/>\n  <organisationId nil=\"true\"/>\n  <contacts>\n
-        \   <email>\n      <type nil=\"true\"/>\n      <emailAddress>rimmer@jmc.com</emailAddress>\n
-        \   </email>\n  </contacts>\n</person>\n"
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <about nil="true"/>
+          <firstName>Arnold</firstName>
+          <lastName>Rimmer</lastName>
+          <title nil="true"/>
+          <jobTitle nil="true"/>
+          <organisationId nil="true"/>
+          <contacts>
+            <email>
+              <type nil="true"/>
+              <emailAddress>rimmer@jmc.com</emailAddress>
+            </email>
+          </contacts>
+        </person>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -58,15 +75,21 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:18 GMT
+      - Wed, 04 Nov 2015 16:30:48 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3959'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930949
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91911165
       Content-Length:
       - '0'
       X-Xss-Protection:
@@ -76,10 +99,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:15:18 GMT
+  recorded_at: Wed, 04 Nov 2015 16:30:49 GMT
 - request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?email=rimmer@jmc.com
@@ -95,13 +118,19 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:19 GMT
+      - Wed, 04 Nov 2015 16:30:48 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3958'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Content-Length:
       - '472'
       X-Xss-Protection:
@@ -111,19 +140,24 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>82930949</id><contacts><email><id>159722447</id><emailAddress>rimmer@jmc.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-06-10T12:15:19Z</createdOn><updatedOn>2015-06-10T12:15:19Z</updatedOn><firstName>Arnold</firstName><lastName>Rimmer</lastName></person></parties>
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91911165</id><contacts><email><id>177147402</id><emailAddress>rimmer@jmc.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T16:30:48Z</createdOn><updatedOn>2015-11-04T16:30:48Z</updatedOn><firstName>Arnold</firstName><lastName>Rimmer</lastName></person></parties>
     http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:15:19 GMT
+  recorded_at: Wed, 04 Nov 2015 16:30:50 GMT
 - request:
     method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930949/tag/Membership
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91911165/tag/Membership
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
-        \ </tag>\n</tags>\n"
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -135,15 +169,21 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:20 GMT
+      - Wed, 04 Nov 2015 16:30:49 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3957'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930949/tag/Membership
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91911165/tag/Membership
       Content-Length:
       - '0'
       X-Xss-Protection:
@@ -153,10 +193,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:15:21 GMT
+  recorded_at: Wed, 04 Nov 2015 16:30:50 GMT
 - request:
     method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?tag=Membership
@@ -172,15 +212,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:22 GMT
+      - Wed, 04 Nov 2015 16:30:49 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3956'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Content-Length:
-      - '1128'
+      - '5725'
       X-Xss-Protection:
       - 1; mode=block
       X-Content-Type-Options:
@@ -188,12 +234,14 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="3"><person><id>82930949</id><contacts><email><id>159722447</id><emailAddress>rimmer@jmc.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-06-10T12:15:19Z</createdOn><updatedOn>2015-06-10T12:15:20Z</updatedOn><firstName>Arnold</firstName><lastName>Rimmer</lastName></person><organisation><id>67706736</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T13:07:05Z</createdOn><updatedOn>2014-09-17T14:05:51Z</updatedOn><name>Flibble
-        Inc</name></organisation><organisation><id>82925322</id><contacts><email><id>159714604</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T11:12:03Z</createdOn><updatedOn>2015-06-10T11:12:26Z</updatedOn><name>Nerd
-        Enterprises Inc</name></organisation></parties>
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="14"><person><id>91911165</id><contacts><email><id>177147402</id><emailAddress>rimmer@jmc.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T16:30:48Z</createdOn><updatedOn>2015-11-04T16:30:49Z</updatedOn><firstName>Arnold</firstName><lastName>Rimmer</lastName></person><organisation><id>91878445</id><contacts><email><id>177069287</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:06:17Z</createdOn><updatedOn>2015-11-04T14:06:49Z</updatedOn><name>Nerd
+        Enterprises Inc</name></organisation><organisation><id>91068665</id><contacts><email><id>175450152</id><emailAddress>jordan.elver+testorg15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-10-21T16:17:41Z</createdOn><updatedOn>2015-10-21T16:17:53Z</updatedOn><name>Test
+        15</name></organisation><person><id>89630115</id><contacts><email><id>172686786</id><emailAddress>jordan.elver+testindividual1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-09-26T11:44:56Z</createdOn><updatedOn>2015-10-06T20:34:14Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><person><id>91869809</id><contacts><email><id>177053892</id><emailAddress>jordan.elver+testindividualagain1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:08:52Z</createdOn><updatedOn>2015-11-04T11:09:01Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><organisation><id>88008527</id><contacts><email><id>169490412</id><emailAddress>jordan.elver+testorg1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T11:30:08Z</createdOn><updatedOn>2015-09-21T15:22:07Z</updatedOn><name>Test
+        organization 1</name></organisation><organisation><id>88010863</id><contacts><email><id>169494474</id><emailAddress>jordan.elver+testorg6@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T12:57:11Z</createdOn><updatedOn>2015-09-16T09:36:49Z</updatedOn><name>Test
+        organization 6</name></organisation><person><id>90633311</id><contacts><email><id>174605242</id><emailAddress>jordan.elver+teststudent3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:09:55Z</createdOn><updatedOn>2015-10-13T11:10:20Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633325</id><contacts><email><id>174605270</id><emailAddress>jordan.elver+teststudent4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:10:21Z</createdOn><updatedOn>2015-10-13T11:11:01Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633969</id><contacts><email><id>174606535</id><emailAddress>jordan.elver+teststudent5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:27:59Z</createdOn><updatedOn>2015-10-13T11:28:22Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91068583</id><contacts><email><id>175450021</id><emailAddress>jordan.elver+teststudent15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-21T16:14:14Z</createdOn><updatedOn>2015-10-21T16:14:34Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91868889</id><contacts><email><id>177052193</id><emailAddress>jordan.elver+teststudentagain3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T10:51:44Z</createdOn><updatedOn>2015-11-04T10:52:00Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91869187</id><contacts><email><id>177052844</id><emailAddress>jordan.elver+teststudentagain4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:00:27Z</createdOn><updatedOn>2015-11-04T11:00:44Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91870291</id><contacts><email><id>177054716</id><emailAddress>jordan.elver+teststudentagain5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:26:15Z</createdOn><updatedOn>2015-11-04T11:26:31Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person></parties>
     http_version: 
   recorded_at: Wed, 10 Jun 2015 14:05:00 GMT
 - request:
@@ -211,15 +259,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:23 GMT
+      - Wed, 04 Nov 2015 16:30:50 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3955'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Content-Length:
-      - '1128'
+      - '5725'
       X-Xss-Protection:
       - 1; mode=block
       X-Content-Type-Options:
@@ -227,17 +281,19 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="3"><person><id>82930949</id><contacts><email><id>159722447</id><emailAddress>rimmer@jmc.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-06-10T12:15:19Z</createdOn><updatedOn>2015-06-10T12:15:20Z</updatedOn><firstName>Arnold</firstName><lastName>Rimmer</lastName></person><organisation><id>67706736</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T13:07:05Z</createdOn><updatedOn>2014-09-17T14:05:51Z</updatedOn><name>Flibble
-        Inc</name></organisation><organisation><id>82925322</id><contacts><email><id>159714604</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T11:12:03Z</createdOn><updatedOn>2015-06-10T11:12:26Z</updatedOn><name>Nerd
-        Enterprises Inc</name></organisation></parties>
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="14"><person><id>91911165</id><contacts><email><id>177147402</id><emailAddress>rimmer@jmc.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T16:30:48Z</createdOn><updatedOn>2015-11-04T16:30:49Z</updatedOn><firstName>Arnold</firstName><lastName>Rimmer</lastName></person><organisation><id>91878445</id><contacts><email><id>177069287</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:06:17Z</createdOn><updatedOn>2015-11-04T14:06:49Z</updatedOn><name>Nerd
+        Enterprises Inc</name></organisation><organisation><id>91068665</id><contacts><email><id>175450152</id><emailAddress>jordan.elver+testorg15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-10-21T16:17:41Z</createdOn><updatedOn>2015-10-21T16:17:53Z</updatedOn><name>Test
+        15</name></organisation><person><id>89630115</id><contacts><email><id>172686786</id><emailAddress>jordan.elver+testindividual1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-09-26T11:44:56Z</createdOn><updatedOn>2015-10-06T20:34:14Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><person><id>91869809</id><contacts><email><id>177053892</id><emailAddress>jordan.elver+testindividualagain1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:08:52Z</createdOn><updatedOn>2015-11-04T11:09:01Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><organisation><id>88008527</id><contacts><email><id>169490412</id><emailAddress>jordan.elver+testorg1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T11:30:08Z</createdOn><updatedOn>2015-09-21T15:22:07Z</updatedOn><name>Test
+        organization 1</name></organisation><organisation><id>88010863</id><contacts><email><id>169494474</id><emailAddress>jordan.elver+testorg6@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T12:57:11Z</createdOn><updatedOn>2015-09-16T09:36:49Z</updatedOn><name>Test
+        organization 6</name></organisation><person><id>90633311</id><contacts><email><id>174605242</id><emailAddress>jordan.elver+teststudent3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:09:55Z</createdOn><updatedOn>2015-10-13T11:10:20Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633325</id><contacts><email><id>174605270</id><emailAddress>jordan.elver+teststudent4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:10:21Z</createdOn><updatedOn>2015-10-13T11:11:01Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633969</id><contacts><email><id>174606535</id><emailAddress>jordan.elver+teststudent5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:27:59Z</createdOn><updatedOn>2015-10-13T11:28:22Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91068583</id><contacts><email><id>175450021</id><emailAddress>jordan.elver+teststudent15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-21T16:14:14Z</createdOn><updatedOn>2015-10-21T16:14:34Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91868889</id><contacts><email><id>177052193</id><emailAddress>jordan.elver+teststudentagain3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T10:51:44Z</createdOn><updatedOn>2015-11-04T10:52:00Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91869187</id><contacts><email><id>177052844</id><emailAddress>jordan.elver+teststudentagain4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:00:27Z</createdOn><updatedOn>2015-11-04T11:00:44Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91870291</id><contacts><email><id>177054716</id><emailAddress>jordan.elver+teststudentagain5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:26:15Z</createdOn><updatedOn>2015-11-04T11:26:31Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person></parties>
     http_version: 
   recorded_at: Wed, 10 Jun 2015 14:05:00 GMT
 - request:
     method: delete
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930949
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91911165
     body:
       encoding: US-ASCII
       string: ''
@@ -250,13 +306,19 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Jun 2015 12:15:24 GMT
+      - Wed, 04 Nov 2015 16:30:50 GMT
       Server:
       - Apache
       X-Frame-Options:
       - DENY
       Set-Cookie:
       - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3954'
+      X-Ratelimit-Reset:
+      - '1446654951'
+      X-Ratelimit-Limit:
+      - '4000'
       Content-Length:
       - '0'
       X-Xss-Protection:
@@ -266,7 +328,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     http_version: 
   recorded_at: Wed, 10 Jun 2015 14:05:00 GMT

@@ -23,7 +23,7 @@ http_interactions:
       Content-Length:
       - '482'
       Content-Type:
-      - ! '*/*'
+      - "*/*"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>46899166</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1376906618/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2013-09-13T14:27:19Z</createdOn><updatedOn>2013-09-13T14:27:19Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>46899159</organisationId><organisationName>ACME
@@ -53,7 +53,7 @@ http_interactions:
       Content-Length:
       - '482'
       Content-Type:
-      - ! '*/*'
+      - "*/*"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>46899166</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1376906618/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2013-09-13T14:27:19Z</createdOn><updatedOn>2013-09-13T14:27:19Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>46899159</organisationId><organisationName>ACME
@@ -65,10 +65,21 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/46899166
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <jobTitle>CTO</jobTitle>\n
-        \ <contacts>\n    <email>\n      <type>Work</type>\n      <emailAddress>turkleton@acme.com</emailAddress>\n
-        \   </email>\n    <phone>\n      <type>Work</type>\n      <phoneNumber>+44
-        1738 494032</phoneNumber>\n    </phone>\n  </contacts>\n</person>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
     headers:
       Content-Type:
       - text/xml
@@ -86,7 +97,7 @@ http_interactions:
       Content-Length:
       - '679'
       Content-Type:
-      - ! '*/*'
+      - "*/*"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>46899166</id><contacts><email><id>89920663</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>89920664</id><type>Work</type><phoneNumber>+44
@@ -99,12 +110,20 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/46899159/opportunity
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
-        at partner level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">50000</value>\n
-        \ <milestone>Prospect</milestone>\n  <probability type=\"integer\">10</probability>\n
-        \ <description>Hey, I really want us to join the ODI!</description>\n  <duration
-        type=\"integer\">3</duration>\n  <durationBasis>YEAR</durationBasis>\n  <expectedCloseDate
-        type=\"date\">2013-11-13</expectedCloseDate>\n  <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2013-11-13</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
     headers:
       Content-Type:
       - text/xml
@@ -133,9 +152,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/1628217/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Type</label>\n    <text>Membership</text>\n    <tag nil=\"true\"/>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       Content-Type:
       - text/xml
@@ -153,7 +180,7 @@ http_interactions:
       Content-Length:
       - '178'
       Content-Type:
-      - ! '*/*'
+      - "*/*"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -165,10 +192,15 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/46899166/task
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<task>\n  <description>Call
-        Turk Turkleton to discuss partner membership</description>\n  <dueDateTime
-        type=\"datetime\">2013-09-14T09:00:00+01:00</dueDateTime>\n  <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n
-        \ <category>Call</category>\n  <detail>Hey, I really want us to join the ODI!</detail>\n</task>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2013-09-14T09:00:00+01:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
     headers:
       Content-Type:
       - text/xml
@@ -215,7 +247,7 @@ http_interactions:
       Content-Length:
       - '703'
       Content-Type:
-      - ! '*/*'
+      - "*/*"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>46899166</id><contacts><email><id>89920663</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>89920664</id><type>Work</type><phoneNumber>+44
@@ -279,187 +311,6 @@ http_interactions:
   recorded_at: Fri, 13 Sep 2013 14:27:36 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 07 Aug 2015 14:07:50 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '2615'
-      X-Ratelimit-Reset:
-      - '1438958151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Content-Length:
-      - '74'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
-    http_version: 
-  recorded_at: Fri, 07 Aug 2015 14:07:50 GMT
-- request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n  <about
-        nil=\"true\"/>\n  <name>ACME widgets Inc.</name>\n  <contacts/>\n</organisation>\n"
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Fri, 07 Aug 2015 14:07:51 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '2614'
-      X-Ratelimit-Reset:
-      - '1438958151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723425
-      Content-Length:
-      - '0'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Fri, 07 Aug 2015 14:07:51 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 07 Aug 2015 14:07:51 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '2613'
-      X-Ratelimit-Reset:
-      - '1438958151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Content-Length:
-      - '369'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>86723425</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-08-07T14:07:51Z</createdOn><updatedOn>2015-08-07T14:07:51Z</updatedOn><name>ACME
-        widgets Inc.</name></organisation></parties>
-    http_version: 
-  recorded_at: Fri, 07 Aug 2015 14:07:51 GMT
-- request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <about nil=\"true\"/>\n
-        \ <firstName>Turk</firstName>\n  <lastName>Turkleton</lastName>\n  <title
-        nil=\"true\"/>\n  <jobTitle nil=\"true\"/>\n  <organisationId type=\"integer\">86723425</organisationId>\n
-        \ <contacts/>\n</person>\n"
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Fri, 07 Aug 2015 14:07:52 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '2612'
-      X-Ratelimit-Reset:
-      - '1438958151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723426
-      Content-Length:
-      - '0'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Fri, 07 Aug 2015 14:07:52 GMT
-- request:
-    method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723425/people
     body:
       encoding: US-ASCII
@@ -495,55 +346,11 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>86723426</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-08-07T14:07:53Z</createdOn><updatedOn>2015-08-07T14:07:53Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>86723425</organisationId><organisationName>ACME
         widgets Inc.</organisationName></person></parties>
-    http_version: 
-  recorded_at: Fri, 07 Aug 2015 14:07:53 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 07 Aug 2015 14:07:53 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '2610'
-      X-Ratelimit-Reset:
-      - '1438958151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Content-Length:
-      - '369'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>86723425</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-08-07T14:07:51Z</createdOn><updatedOn>2015-08-07T14:07:51Z</updatedOn><name>ACME
-        widgets Inc.</name></organisation></parties>
     http_version: 
   recorded_at: Fri, 07 Aug 2015 14:07:53 GMT
 - request:
@@ -583,7 +390,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>86723426</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-08-07T14:07:53Z</createdOn><updatedOn>2015-08-07T14:07:53Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>86723425</organisationId><organisationName>ACME
@@ -595,10 +402,21 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/86723426
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<person>\n  <jobTitle>CTO</jobTitle>\n
-        \ <contacts>\n    <email>\n      <type>Work</type>\n      <emailAddress>turkleton@acme.com</emailAddress>\n
-        \   </email>\n    <phone>\n      <type>Work</type>\n      <phoneNumber>+44
-        1738 494032</phoneNumber>\n    </phone>\n  </contacts>\n</person>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -632,7 +450,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>86723426</id><contacts><email><id>167007898</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>167007899</id><type>Work</type><phoneNumber>+44
@@ -645,12 +463,20 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723425/opportunity
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
-        at partner level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">50000</value>\n
-        \ <milestone>Prospect</milestone>\n  <probability type=\"integer\">10</probability>\n
-        \ <description>Hey, I really want us to join the ODI!</description>\n  <duration
-        type=\"integer\">3</duration>\n  <durationBasis>YEAR</durationBasis>\n  <expectedCloseDate
-        type=\"date\">2015-10-07</expectedCloseDate>\n  <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2015-10-07</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -695,9 +521,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3478433/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Type</label>\n    <text>Membership</text>\n    <tag nil=\"true\"/>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -731,7 +565,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -743,10 +577,15 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723426/task
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<task>\n  <description>Call
-        Turk Turkleton to discuss partner membership</description>\n  <dueDateTime
-        type=\"datetime\">2015-08-08T09:00:00+01:00</dueDateTime>\n  <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n
-        \ <category>Call</category>\n  <detail>Hey, I really want us to join the ODI!</detail>\n</task>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-08-08T09:00:00+01:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -788,50 +627,6 @@ http_interactions:
   recorded_at: Fri, 07 Aug 2015 14:07:56 GMT
 - request:
     method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 07 Aug 2015 14:07:56 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '2596'
-      X-Ratelimit-Reset:
-      - '1438958151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Content-Length:
-      - '369'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>86723425</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1438678403/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-08-07T14:07:51Z</createdOn><updatedOn>2015-08-07T14:07:51Z</updatedOn><name>ACME
-        widgets Inc.</name></organisation></parties>
-    http_version: 
-  recorded_at: Fri, 07 Aug 2015 14:07:57 GMT
-- request:
-    method: get
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/86723425/people
     body:
       encoding: US-ASCII
@@ -867,7 +662,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>86723426</id><contacts><email><id>167007898</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>167007899</id><type>Work</type><phoneNumber>+44
@@ -991,4 +786,3624 @@ http_interactions:
         not found</message></response>
     http_version: 
   recorded_at: Fri, 07 Aug 2015 14:07:59 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870023/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:53 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3484'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870024</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:16:53Z</createdOn><updatedOn>2015-11-04T11:16:53Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91870023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:54 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870023/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:54 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3482'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870024</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:16:53Z</createdOn><updatedOn>2015-11-04T11:16:53Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91870023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:55 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91870024
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:55 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3481'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91870024</id><contacts><email><id>177054247</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177054248</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:16:53Z</createdOn><updatedOn>2015-11-04T11:16:55.200Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91870023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:56 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870023/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:55 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3480'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728280
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:56 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728280/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3479'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5148369</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:57 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870024/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3478'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33201361
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:57 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870023/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3476'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870024</id><contacts><email><id>177054247</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177054248</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:16:53Z</createdOn><updatedOn>2015-11-04T11:16:55Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91870023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:58 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870023
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3475'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:59 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870024
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:58 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3474'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:59 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870023
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:16:58 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:16:59 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870533/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:06 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2680'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870534</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:35:06Z</createdOn><updatedOn>2015-11-04T11:35:06Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91870533</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:07 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870533/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:07 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2678'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870534</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:35:06Z</createdOn><updatedOn>2015-11-04T11:35:06Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91870533</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:08 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91870534
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:07 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2677'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91870534</id><contacts><email><id>177055154</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177055155</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:35:06Z</createdOn><updatedOn>2015-11-04T11:35:07.944Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91870533</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:09 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870533/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:08 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2676'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728377
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:09 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728377/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:08 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2675'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5148559</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:10 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870534/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:09 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2674'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33202081
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:10 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870533/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:10 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2672'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870534</id><contacts><email><id>177055154</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177055155</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:35:06Z</createdOn><updatedOn>2015-11-04T11:35:08Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91870533</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:11 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870533
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:10 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2671'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:12 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870534
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:11 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2670'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:12 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870533
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:11 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:35:12 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871211/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:00 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3143'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91871212</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:52:00Z</createdOn><updatedOn>2015-11-04T11:52:00Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91871211</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:01 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871211/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:01 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3140'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91871212</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:52:00Z</createdOn><updatedOn>2015-11-04T11:52:00Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91871211</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:02 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91871212
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:01 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3138'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91871212</id><contacts><email><id>177056183</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177056184</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:52:00Z</createdOn><updatedOn>2015-11-04T11:52:01.894Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91871211</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:03 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871211/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:02 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3137'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728461
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:03 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728461/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:02 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3135'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5148779</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:03 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871212/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:03 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3133'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33202708
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:04 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871211/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:04 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3130'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91871212</id><contacts><email><id>177056183</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177056184</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:52:00Z</createdOn><updatedOn>2015-11-04T11:52:02Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91871211</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:05 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871211
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:04 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3128'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:05 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871212
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:05 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3126'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:06 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871211
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:05 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:52:06 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872938/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:55 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3793'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91872939</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T12:36:55Z</createdOn><updatedOn>2015-11-04T12:36:55Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91872938</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:36:56 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872938/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3789'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91872939</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T12:36:55Z</createdOn><updatedOn>2015-11-04T12:36:55Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91872938</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:36:57 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91872939
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3788'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91872939</id><contacts><email><id>177059586</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177059587</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T12:36:55Z</createdOn><updatedOn>2015-11-04T12:36:57.068Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91872938</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:36:58 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872938/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3786'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728652
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:36:58 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728652/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3784'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149218</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:36:59 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872939/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:58 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3782'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33204342
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:36:59 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872938/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:59 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3779'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91872939</id><contacts><email><id>177059586</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177059587</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T12:36:55Z</createdOn><updatedOn>2015-11-04T12:36:57Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91872938</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:37:00 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872938
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:36:59 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3777'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:37:00 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872939
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:37:00 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3776'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:37:01 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872938
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:37:00 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:37:01 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875023/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:52 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3879'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91875024</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:36:52Z</createdOn><updatedOn>2015-11-04T13:36:52Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91875023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:53 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875023/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:53 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3877'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91875024</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:36:52Z</createdOn><updatedOn>2015-11-04T13:36:52Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91875023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:54 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91875024
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:53 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3876'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91875024</id><contacts><email><id>177062974</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177062975</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:36:52Z</createdOn><updatedOn>2015-11-04T13:36:53.905Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91875023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:55 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875023/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:54 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3875'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728911
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:55 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728911/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:54 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3874'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149640</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:55 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875024/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:55 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3873'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33206479
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:56 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875023/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3871'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91875024</id><contacts><email><id>177062974</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177062975</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:36:52Z</createdOn><updatedOn>2015-11-04T13:36:54Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91875023</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:57 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875023
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:56 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3870'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:57 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875024
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:57 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3869'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:58 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875023
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:36:57 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:36:58 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877770/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:12 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3037'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91877771</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:53:13Z</createdOn><updatedOn>2015-11-04T13:53:13Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91877770</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:14 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877770/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:13 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3035'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91877771</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:53:13Z</createdOn><updatedOn>2015-11-04T13:53:13Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91877770</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:15 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91877771
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:14 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3034'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91877771</id><contacts><email><id>177067981</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177067982</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:53:13Z</createdOn><updatedOn>2015-11-04T13:53:14.535Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91877770</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:15 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877770/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:14 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3033'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729012
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:16 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729012/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:15 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3032'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149805</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:16 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877771/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:15 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3031'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33207182
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:17 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877770/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:16 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3029'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91877771</id><contacts><email><id>177067981</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177067982</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T13:53:13Z</createdOn><updatedOn>2015-11-04T13:53:15Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91877770</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:18 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877770
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:17 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3028'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:18 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877771
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:17 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3027'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:19 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91877770
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:18 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:53:19 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:42 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2199'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '74'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:43 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <organisation>
+          <about nil="true"/>
+          <name>ACME widgets Inc.</name>
+          <contacts/>
+        </organisation>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:42 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2198'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:44 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:43 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2197'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '369'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>91878497</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:43Z</createdOn><updatedOn>2015-11-04T14:07:43Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:44 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <about nil="true"/>
+          <firstName>Turk</firstName>
+          <lastName>Turkleton</lastName>
+          <title nil="true"/>
+          <jobTitle nil="true"/>
+          <organisationId type="integer">91878497</organisationId>
+          <contacts/>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:43 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2196'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878498
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:44 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:44 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2195'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91878498</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:44Z</createdOn><updatedOn>2015-11-04T14:07:44Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91878497</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:45 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:44 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2194'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '369'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>91878497</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:43Z</createdOn><updatedOn>2015-11-04T14:07:43Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:45 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:45 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2193'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '482'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91878498</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:44Z</createdOn><updatedOn>2015-11-04T14:07:44Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><organisationId>91878497</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:46 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/person/91878498
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <person>
+          <jobTitle>CTO</jobTitle>
+          <contacts>
+            <email>
+              <type>Work</type>
+              <emailAddress>turkleton@acme.com</emailAddress>
+            </email>
+            <phone>
+              <type>Work</type>
+              <phoneNumber>+44 1738 494032</phoneNumber>
+            </phone>
+          </contacts>
+        </person>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:45 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2192'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '681'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><id>91878498</id><contacts><email><id>177069392</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177069393</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:44Z</createdOn><updatedOn>2015-11-04T14:07:45.633Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91878497</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:46 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at partner level</name>
+          <currency>GBP</currency>
+          <value type="integer">50000</value>
+          <milestone>Prospect</milestone>
+          <probability type="integer">10</probability>
+          <description>Hey, I really want us to join the ODI!</description>
+          <duration type="integer">3</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2016-01-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:46 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2191'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729110
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:47 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729110/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:46 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2190'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149979</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:47 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878498/task
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <task>
+          <description>Call Turk Turkleton to discuss partner membership</description>
+          <dueDateTime type="datetime">2015-11-05T09:00:00+00:00</dueDateTime>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+          <category>Call</category>
+          <detail>Hey, I really want us to join the ODI!</detail>
+        </task>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:46 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2189'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/task/33207923
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:48 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=ACME%20widgets%20Inc.
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:47 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2188'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '369'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>91878497</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:43Z</createdOn><updatedOn>2015-11-04T14:07:43Z</updatedOn><name>ACME
+        widgets Inc.</name></organisation></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:48 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497/people
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:47 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2187'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '705'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91878498</id><contacts><email><id>177069392</id><type>Work</type><emailAddress>turkleton@acme.com</emailAddress></email><phone><id>177069393</id><type>Work</type><phoneNumber>+44
+        1738 494032</phoneNumber></phone></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T14:07:44Z</createdOn><updatedOn>2015-11-04T14:07:46Z</updatedOn><firstName>Turk</firstName><lastName>Turkleton</lastName><jobTitle>CTO</jobTitle><organisationId>91878497</organisationId><organisationName>ACME
+        widgets Inc.</organisationName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:48 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:48 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2186'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:49 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878498
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:48 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2185'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:50 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878497
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:07:49 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '110'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><message>party
+        not found</message></response>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:07:50 GMT
 recorded_with: VCR 2.9.3

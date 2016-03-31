@@ -25,7 +25,7 @@ end
 Then /^that (organisation|person) should be queued for sync$/ do |target|
   type = instance_variable_get("@#{target}")
   expect(Resque).to receive(:enqueue).with(SyncCapsuleData, type.id, target.titleize)
-  expect(Resque).to receive(:enqueue).at_most(1).times
+  expect(Resque).to receive(:enqueue).at_least(1).times
 end
 
 Then /^that (organisation|person) should not be queued for sync$/ do |target|
@@ -82,7 +82,7 @@ Then /^the observer should be notified with the (organisation|person)'s informat
     'tagline'       => instance_variable_get("@#{target}_directoryentry_tagline"),
   }.compact
 
-  MyObserverClass.should_receive(:update).with(membership, directory_entry, instance_variable_get("@#{target}").id)
+  expect(MyObserverClass).to receive(:update).with(membership, directory_entry, instance_variable_get("@#{target}").id)
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do
