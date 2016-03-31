@@ -82,7 +82,7 @@ Then /^the observer should be notified with the (organisation|person)'s informat
     'tagline'       => instance_variable_get("@#{target}_directoryentry_tagline"),
   }.compact
 
-  MyObserverClass.should_receive(:update).with(membership, directory_entry, instance_variable_get("@#{target}").id)
+  expect(MyObserverClass).to receive(:update).with(membership, directory_entry, instance_variable_get("@#{target}").id)
 end
 
 When /^the job is run to store the membership ID back into capsule$/ do

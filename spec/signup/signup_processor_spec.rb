@@ -15,11 +15,13 @@ describe SignupProcessor do
 
   let(:organization_type) {}
 
+  let(:size) { "10-50" }
+
   let(:organization) do
     {
       "name"           => organization_name,
       "company_number" => "123456",
-      "size"           => "10-50",
+      "size"           => size,
       "sector"         => "Education",
       "origin"         => "odi-leeds",
       "type"           => organization_type
@@ -61,9 +63,11 @@ describe SignupProcessor do
     }
   end
 
+  let(:category) { "individual" }
+
   let(:purchase) do
     {
-      "offer_category"           => "individual",
+      "offer_category"           => category,
       "membership_id"            => 123456,
       "payment_method"           => "credit_card",
       "payment_freq"             => "annual",
@@ -142,7 +146,7 @@ describe SignupProcessor do
         "line_items" => [
           {
             "quantity"      => 1,
-            "base_price"    => 108,
+            "base_price"    => 90,
             "discount_rate" => 50.0,
             "description"   => expected_invoice_line_item_description
           }
@@ -203,6 +207,57 @@ describe SignupProcessor do
         subject.perform
       end
     end
+
+    context "individual signing up with flexible pricing" do
+      let(:category) { 'individual' }
+
+      let(:expected_invoice_line_item_description) do
+        "ODI Individual supporter (123456) [Individual] (annual card payment)"
+      end
+
+      let(:purchase) do
+        {
+          "offer_category"           => category,
+          "membership_id"            => 123456,
+          "payment_method"           => "credit_card",
+          "payment_freq"             => "annual",
+          "payment_ref"              => "012345",
+          "discount"                 => 0,
+          "purchase_order_reference" => "PO1234",
+          "amount_paid"              => 5
+        }
+      end
+
+      let(:expected_invoice_details) do
+        {
+          "payment_method" => "credit_card",
+          "payment_ref" => "012345",
+          "line_items" => [
+            {
+              "quantity"      => 1,
+              "base_price"    => 5,
+              "discount_rate" => 0,
+              "description"   => expected_invoice_line_item_description
+            }
+          ],
+          "repeat"                   => "annual",
+          "purchase_order_reference" => "PO1234",
+          "sector"                   => "Education"
+        }
+      end
+
+      it "should save the signup details to the CRM" do
+        expect(SendSignupToCapsule).to receive(:perform).with(
+          expected_organization_details, expected_membership_details
+        ).once
+
+        expect(Resque).to receive(:enqueue).with(
+          Invoicer, expected_invoice_to, expected_invoice_details
+        ).once
+
+        subject.perform
+      end
+    end
   end
 
   describe "#membership_type" do
@@ -214,8 +269,8 @@ describe SignupProcessor do
       let(:category) { "individual" }
 
       it "returns the details for individual supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
-          price:       108,
+        expect(subject.membership_type).to eq({
+          price:       90,
           description: "Individual supporter",
           type:        "Individual"
         })
@@ -226,7 +281,7 @@ describe SignupProcessor do
       let(:category) { "corporate" }
 
       it "returns the details for corporate supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       2200,
           description: "Corporate Supporter",
           type:        "Corporate supporter"
@@ -235,10 +290,10 @@ describe SignupProcessor do
     end
 
     context "non-commercial supporter" do
-      let(:type) { "non_commercial" }
+      let(:organization_type) { "non_commercial" }
 
       it "returns the details for supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       720,
           description: "Supporter",
           type:        "Supporter"
@@ -250,7 +305,7 @@ describe SignupProcessor do
       let(:size) { "10-50" }
 
       it "returns the details for supporters" do
-        expect(subject.membership_type(size, type, category)).to eq({
+        expect(subject.membership_type).to eq({
           price:       720,
           description: "Supporter",
           type:        "Supporter"
@@ -299,4 +354,3 @@ describe SignupProcessor do
     end
   end
 end
-

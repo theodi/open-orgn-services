@@ -1,6 +1,5 @@
 @vcr
 Feature: Email a report to finance
-
   In order to keep track of revenue from membership signups
   As finance
   I need a report about monthly signups for each membership tier
@@ -8,56 +7,224 @@ Feature: Email a report to finance
   And information on any money that has been refunded
 
   Background:
-
     Given the chargify environment variables are set
-    When I want to run the report for 2015-03-01 to 2015-03-31
 
   Scenario: Report the transactions and the end of the month
-
+    Given I want to run the report for 2015-03-01 to 2015-03-31
     When the job is triggered
     Then finance should receive an email with subject "Membership finance report for March 2015"
     And there should be an attachment named "cash-report.csv"
     And there should be an attachment named "booking-value-report.csv"
 
   Scenario: the cash report contains the correct data
-
+    Given I want to run the report for 2015-11-01 to 2015-11-30
     Then data for the cash report should match:
 
-      | date                | membership number | statement id | membership type             | transaction type | coupon | amount | tax  | discount | total |
-      | 2015-03-02 11:36:05 | XK4240RD          | 47700918     | individual-supporter        | payment          |        | 90     | 18   | 0        | 108   |
-      | 2015-03-02 11:56:58 | MEMNUM0           | 47701405     | individual-supporter        | payment          |        | 90     | 18   | 0        | 108   |
-      | 2015-03-04 10:36:57 | YV8920WD          | 47813535     | individual-supporter        | payment          |        | 90     | 18   | 0        | 108   |
-      | 2015-03-04 10:42:59 | DV3064BO          | 47813975     | individual-supporter        | payment          |        | 90     | 18   | 0        | 108   |
-      | 2015-03-04 11:23:29 | WI8347MG          | 47815044     | corporate-supporter_annual  | payment          |        | 2200   | 440  | 0        | 2640  |
-      | 2015-03-04 11:34:29 | JD6183RS          | 47815091     | supporter_annual            | payment          |        | 720    | 144  | 0        | 864   |
-      | 2015-03-06 14:16:13 | ST0665UQ          | 48051286     | supporter_annual            | payment          |        | 720    | 144  | 0        | 864   |
-      | 2015-03-06 14:35:21 | ST0665UQ          | 48052021     | supporter_annual            | refund           |        | -720   | -144 | 0        | -864  |
-      | 2015-03-09 14:52:33 | RO8859CT          | 48175665     | supporter_monthly           | payment          |        | 60     | 12   | 0        | 72    |
-      | 2015-03-09 14:55:20 | YD9737TJ          | 48175697     | corporate-supporter_annual  | payment          |        | 2200   | 440  | 0        | 2640  |
-      | 2015-03-10 12:14:23 | KM3941LD          | 48214914     | supporter_annual            | payment          |        | 720    | 144  | 0        | 864   |
-      | 2015-03-10 14:21:40 | MEMNUM3           | 48219026     | individual-supporter        | payment          |        | 90     | 18   | 0        | 108   |
-      |                     |                   |              |                             |                  | totals | 6350   | 1270 | 0        | 7620  |
+      | date                | company                             | membership number | statement id | membership type              | transaction type | coupon     | coupon amount | original net price | discount | net after discount | tax    | total  |
+      | 2015-11-11 16:21:34 | iGeolise                            | ED3719XS          | 60250703     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-18 00:02:42 | emapsite                            | RY0622DT          | 60545799     | supporter_annual             | payment          |            |               | 720.00             | 0.00     | 720.00             | 144.00 | 864.00 |
+      | 2015-11-22 09:21:16 | Big Data Partnership                | RE2054JO          | 60753238     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-01 13:02:35 | Deliver Change Ltd                  | BG2374IK          | 59748127     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-15 12:01:49 | IMIN LTD                            | UJ3966SJ          | 60424732     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-22 16:01:28 | Signal Noise                        | GH9206SP          | 60763382     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-28 16:21:06 | Emu Analytics Limited               | TZ3130DN          | 61058595     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-05 15:01:38 | GeoWise Limited                     | PZ0603JE          | 59961810     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-14 10:20:54 | ESI Limited                         | ZU1679SB          | 60380551     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-01 12:20:42 | Design For Social Change Ltd (D4SC) | AF2083GK          | 59746602     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-26 12:02:12 | Resurgence                          | DM2894ZW          | 60946634     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-11-02 19:21:51 | William Mattull                     | UG8964OO          | 59827449     | individual-supporter         | payment          |            |               | 90.00              | 0.00     | 90.00              | 0.00   | 90.00  |
+      | 2015-11-03 19:34:59 | Ahmed Ali                           | AN3650XK          | 59879489     | individual-supporter         | payment          | TRAINEE    | 33%           | 90.00              | -29.70   | 60.30              | 0.00   | 60.30  |
+      | 2015-11-05 12:47:59 | College of Policing                 | MO3708KF          | 59957026     | individual-supporter         | payment          | TRAINEE    | 33%           | 90.00              | -29.70   | 60.30              | 12.06  | 72.36  |
+      | 2015-11-05 13:05:38 | Rental Hotspots                     | IT7731GG          | 59957650     | individual-supporter         | payment          |            |               | 90.00              | 0.00     | 90.00              | 18.00  | 108.00 |
+      | 2015-11-08 19:31:35 | MyWave Limited                      | NM1836IU          | 60111616     | supporter_annual             | payment          |            |               | 720.00             | 0.00     | 720.00             | 0.00   | 720.00 |
+      | 2015-11-13 13:35:36 | Caution Your Blast Ltd              | ZH6982KK          | 60337546     | supporter_annual             | payment          |            |               | 720.00             | 0.00     | 720.00             | 144.00 | 864.00 |
+      | 2015-11-18 11:05:22 | Hari Yedoti                         | TI0765JL          | 60563214     | individual-supporter         | payment          | TRAINEE    | 33%           | 90.00              | -29.70   | 60.30              | 12.06  | 72.36  |
+      | 2015-11-22 18:15:32 | Charlotte Sturley                   | PL4676UL          | 60767558     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-22 21:57:58 | Laura Matthews                      | NJ7929OR          | 60775277     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-23 16:08:54 | Nicola Yates                        | JQ7304MK          | 60812338     | individual-supporter         | payment          | TRAINEE    | 33%           | 90.00              | -29.70   | 60.30              | 12.06  | 72.36  |
+      | 2015-11-23 23:02:16 | Lok Man Tam                         | DC3932EJ          | 60830345     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-24 09:37:10 | University of Leeds                 | WD7968HU          | 60846927     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-24 11:17:31 | victor ho                           | QZ3343HP          | 60849491     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 11:26:45 | Uxbridge College                    |                   | 60898740     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 11:31:47 | Uxbridge College                    |                   | 60898772     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 11:36:12 | Uxbridge College                    |                   | 60898788     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 11:39:13 | Uxbridge College                    |                   | 60898809     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 11:40:40 | Uxbridge College                    |                   | 60898823     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:04:41 | Uxbridge College                    |                   | 60899814     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:06:33 | Uxbridge College                    |                   | 60899828     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:08:43 | Uxbridge College                    |                   | 60899843     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:10:45 | Uxbridge College                    |                   | 60899859     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:12:26 | Uxbridge College                    |                   | 60899875     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:14:03 | Uxbridge College                    |                   | 60899890     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:18:53 | Uxbridge College                    |                   | 60899928     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:22:47 | Richard Williamson                  |                   | 60900132     | holding-individual-supporter | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:22:50 | Uxbridge College                    |                   | 60900153     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:24:51 | Uxbridge College                    |                   | 60900359     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:26:46 | Uxbridge College                    |                   | 60900374     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 12:28:12 | Uxbridge College                    |                   | 60900395     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:39:22 | Uxbridge College                    |                   | 60906850     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:41:40 | Uxbridge College                    |                   | 60907429     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:43:43 | Uxbridge College                    |                   | 60907451     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:44:59 | Uxbridge College                    |                   | 60907496     | holding-individual-supporter | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:46:35 | Uxbridge College                    |                   | 60907522     | holding-individual-supporter | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:47:51 | Uxbridge College                    |                   | 60907558     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:55:13 | Uxbridge College                    |                   | 60907680     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:58:23 | Uxbridge College                    |                   | 60907735     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 15:59:47 | Uxbridge College                    |                   | 60907760     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:01:25 | Uxbridge College                    |                   | 60907962     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:04:03 | Uxbridge College                    |                   | 60908491     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:06:55 | Uxbridge College                    |                   | 60908537     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:09:22 | Uxbridge College                    |                   | 60908587     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:10:32 | Uxbridge College                    |                   | 60908612     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:13:18 | Uxbridge College                    |                   | 60908649     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:14:47 | Uxbridge College                    |                   | 60908669     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:16:56 | Uxbridge College                    |                   | 60908686     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:24:03 | Uxbridge College                    |                   | 60909393     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:25:32 | Uxbridge College                    |                   | 60909406     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-25 16:26:50 | Uxbridge College                    |                   | 60909422     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-26 15:12:12 | Uxbridge College                    |                   | 60952152     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-26 15:13:44 | Uxbridge College                    |                   | 60952162     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-26 15:15:23 | Uxbridge College                    |                   | 60952173     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-26 15:17:26 | Uxbridge College                    |                   | 60952182     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-26 15:19:00 | Uxbridge College                    |                   | 60952194     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-26 15:20:16 | Uxbridge College                    |                   | 60952200     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 11:04:52 | New Citizenship Project             | RB7496IV          | 60993449     | supporter_annual             | payment          | ODISTARTUP | 100%          | 720.00             | -720.00  | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 14:58:23 | Uxbridge College                    |                   | 60999946     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 14:59:52 | Uxbridge College                    |                   | 60999960     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:01:20 | Uxbridge College                    |                   | 60999983     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:02:43 | Uxbridge College                    |                   | 61000528     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:04:51 | Uxbridge College                    |                   | 61000612     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:10:29 | Uxbridge College                    |                   | 61000646     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:16:06 | Uxbridge College                    |                   | 61000696     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:18:24 | Uxbridge College                    |                   | 61000715     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 15:21:27 | Uxbridge College                    |                   | 61000794     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:15:52 | Uxbridge College                    |                   | 61002816     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:17:46 | Uxbridge College                    |                   | 61002836     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:19:28 | Uxbridge College                    |                   | 61002845     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:21:24 | Uxbridge College                    |                   | 61002880     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:22:38 | Uxbridge College                    |                   | 61003412     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:23:58 | Uxbridge College                    |                   | 61003425     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:25:19 | Uxbridge College                    |                   | 61003434     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:26:29 | Uxbridge College                    |                   | 61003440     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:28:02 | Uxbridge College                    |                   | 61003451     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:29:18 | Uxbridge College                    |                   | 61003458     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:30:25 | Uxbridge College                    |                   | 61003465     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:31:29 | Uxbridge College                    |                   | 61003474     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:32:58 | Uxbridge College                    |                   | 61003482     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:34:12 | Uxbridge College                    |                   | 61003488     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:35:16 | Uxbridge College                    |                   | 61003494     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:36:24 | Uxbridge College                    |                   | 61003502     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:37:32 | Uxbridge College                    |                   | 61003510     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:39:23 | Uxbridge College                    |                   | 61003520     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:42:21 | Uxbridge College                    |                   | 61003992     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:43:29 | Uxbridge College                    |                   | 61004211     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:44:49 | Uxbridge College                    |                   | 61004216     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:46:27 | Uxbridge College                    |                   | 61004226     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:47:36 | Uxbridge College                    |                   | 61004232     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:48:48 | Uxbridge College                    |                   | 61004238     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:50:05 | Uxbridge College                    |                   | 61004249     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:51:12 | Uxbridge College                    |                   | 61004255     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:52:58 | Uxbridge College                    |                   | 61004268     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:54:01 | Uxbridge College                    |                   | 61004274     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:55:25 | Uxbridge College                    |                   | 61004282     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:56:42 | Uxbridge College                    |                   | 61004300     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:57:45 | Uxbridge College                    |                   | 61004311     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 16:59:00 | Uxbridge College                    |                   | 61004319     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:00:03 | Uxbridge College                    |                   | 61004326     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:01:11 | Uxbridge College                    |                   | 61004332     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:02:35 | Uxbridge College                    |                   | 61004662     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:04:05 | Uxbridge College                    |                   | 61005328     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:05:32 | Uxbridge College                    |                   | 61005976     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:07:10 | Uxbridge College                    |                   | 61006433     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:08:24 | Uxbridge College                    |                   | 61006443     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:09:55 | Uxbridge College                    |                   | 61006458     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-27 17:11:00 | Uxbridge College                    |                   | 61006465     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-28 11:40:01 | University of Leeds                 | IE8993QB          | 61047338     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-30 10:57:22 | University of Leeds                 | MB9097DG          | 61139888     | individual-supporter-student | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-11-30 11:51:01 | National Audit Office               | KW9325LH          | 61141282     | supporter_annual             | payment          |            |               | 720.00             | 0.00     | 720.00             | 144.00 | 864.00 |
+      |                     |                                     |                   |              |                              |                  | totals     |               | 4740               | -839     |                    | 606    | 4507   |
+
+  Scenario: the cash report contains the correct data
+    Given I want to run the report for 2015-10-01 to 2015-10-31
+    Then data for the cash report should match:
+
+      | date                | company                             | membership number | statement id | membership type              | transaction type | coupon     | coupon amount | original net price | discount | net after discount | tax    | total  |
+      | 2015-10-11 16:21:32 | iGeolise                            | ED3719XS          | 58807982     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-13 23:01:56 | Ontotext                            | LO4564ZG          | 58908100     | supporter_legacy_annual      | payment          |            |               | 540.00             | 0.00     | 540.00             | 0.00   | 540.00 |
+      | 2015-10-21 18:42:40 | Ordnance Survey                     | YF4159PF          | 59010822     | supporter_annual             | payment          |            |               | 720.00             | 0.00     | 720.00             | 0.00   | 720.00 |
+      | 2015-10-23 23:02:00 | Market Research Society             | VG8264SU          | 59361793     | supporter_annual             | payment          |            |               | 720.00             | 0.00     | 720.00             | 144.00 | 864.00 |
+      | 2015-10-22 09:21:14 | Big Data Partnership                | RE2054JO          | 59284291     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-01 13:02:08 | Deliver Change Ltd                  | BG2374IK          | 58336601     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-15 12:02:23 | IMIN LTD                            | UJ3966SJ          | 58979784     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-22 16:02:17 | Signal Noise                        | GH9206SP          | 59295819     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-07 20:41:25 | Singular Intelligence Limited       | NL4014DC          | 58646392     | supporter_monthly            | payment          |            | 360%          | 60.00              | -216.00  | -156.00            | 12.00  | -144.00 |
+      | 2015-10-28 16:20:52 | Emu Analytics Limited               | TZ3130DN          | 59569837     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-05 15:08:17 | GeoWise Limited                     | PZ0603JE          | 58534691     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-14 10:21:07 | ESI Limited                         | ZU1679SB          | 58925166     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-01 12:20:49 | Design For Social Change Ltd (D4SC) | AF2083GK          | 58334935     | supporter_monthly            | payment          |            |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00  |
+      | 2015-10-02 07:42:30 | PwC                                 | SK4173EF          | 58394869     | individual-supporter         | payment          | MENTOR     | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00   |
+      | 2015-10-04 13:08:30 | Phil Allen                          | PB7953RJ          | 58489318     | individual-supporter         | payment          |            |               | 90.00              | 0.00     | 90.00              | 18.00  | 108.00 |
+      | 2015-10-07 10:42:54 | Coleman & Pearse                    | TF0731HG          | 58624496     | individual-supporter         | payment          | MENTOR     | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00   |
+      | 2015-10-13 09:26:51 | John Kellas                         |                   | 58881052     | holding-individual-supporter | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-10-13 09:30:05 | Gerald Milward-Oliver               |                   | 58881096     | holding-individual-supporter | payment          |            |               | 0.00               | 0.00     | 0.00               | 0.00   | 0.00   |
+      | 2015-10-22 13:53:07 | ITO World Ltd                       | EX8473WQ          | 59291184     | supporter_annual             | payment          | SUMMIT2015 | 16%           | 720.00             | -115.20  | 604.80             | 120.96 | 725.76 |
+      | 2015-10-23 20:38:20 | Hend Saud Alhazzani                 | UK1920ZW          | 59356044     | individual-supporter         | payment          |            |               | 90.00              | 0.00     | 90.00              | 0.00   | 90.00  |
+      | 2015-10-26 11:45:05 | Resurgence                          | DM2894ZW          | 59453839     | supporter_monthly            | payment          | ODISTARTUP | 100%          | 60.00              | -60.00   | 0.00               | 0.00   | 0.00   |
+      | 2015-10-26 15:02:15 | Seunghun Jang                       | NK9481CJ          | 59459652     | individual-supporter         | payment          |            |               | 90.00              | 0.00     | 90.00              | 0.00   | 90.00  |
+      |                     |                                     |                   |              |                              |                  | totals     |               | 3810               | -572     |                    | 402    | 3641    |
+
+  Scenario: the cash report contains the correct data
+    Given I want to run the report for 2015-09-01 to 2015-09-30
+    Then data for the cash report should match:
+
+      | date                | company                             | membership number | statement id| membership type         | transaction type | coupon      | coupon amount | original net price | discount | net after discount | tax    | total   |
+      | 2015-09-11 16:21:21 | iGeolise                            | ED3719XS          | 57413813    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-02 15:33:08 | Images&Co Ltd                       | VM9556SP          | 56968155    | supporter_legacy_annual | payment          |             |               | 540.00             | 0.00     | 540.00             | 0.00   | 540.00  |
+      | 2015-09-07 23:01:56 | Oasis Loss Modelling Framework      | DH9645KA          | 57240140    | supporter_legacy_annual | payment          |             |               | 540.00             | 0.00     | 540.00             | 108.00 | 648.00  |
+      | 2015-09-22 09:21:00 | Big Data Partnership                | RE2054JO          | 57887343    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-01 13:01:39 | Deliver Change Ltd                  | BG2374IK          | 56931908    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-15 12:01:54 | IMIN LTD                            | UJ3966SJ          | 57581240    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-22 16:01:59 | Signal Noise                        | GH9206SP          | 57899184    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-07 20:40:55 | Singular Intelligence Limited       | NL4014DC          | 57234271    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-28 16:20:44 | Emu Analytics Limited               | TZ3130DN          | 58183839    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-05 15:01:30 | GeoWise Limited                     | PZ0603JE          | 57137691    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-14 10:21:04 | ESI Limited                         | ZU1679SB          | 57531564    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-15 12:32:51 | Christiana Dankwa                   | WT8786FG          | 57582066    | individual-supporter    | refund           |             |               | -90.00             | 0.00     |                    | -18.00 | -108.00 |
+      | 2015-09-01 12:01:52 | Design For Social Change Ltd (D4SC) | AF2083GK          | 56929639    | supporter_monthly       | payment          |             |               | 60.00              | 0.00     | 60.00              | 12.00  | 72.00   |
+      | 2015-09-04 09:56:48 | Clanmil Housing Association         | AQ0201OD          | 57085528    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 07:35:49 | Institute for Applied Informatics   | WG0685GG          | 57527632    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 07:40:02 | Wolters Kluwer Deutschland GmbH     | YN4078UF          | 57527655    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 08:25:04 | Lieven Janssen                      | BO7112XU          | 57528673    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 08:35:14 | 201010 Ltd                          | VZ6871CJ          | 57528785    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 09:20:27 | Christoph Pinkel                    | DD6238PE          | 57529892    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 09:48:37 | Interdependent Thoughts             | II8695SI          | 57530845    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 10:43:34 | Zach Beauvais                       | TR6735OJ          | 57532290    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-14 14:50:57 | Kate Northstone                     | UB4712EG          | 57539667    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-15 20:06:31 | Niels Erik Kaaber Rasmussen         | HV7343ZD          | 57601748    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-16 15:24:39 | University of Milano Bicocca        | WP2222EE          | 57638251    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-16 15:45:35 | emapsite                            | DW1850JL          | 57638980    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-18 07:46:18 | Daniel Rudmark                      | EX3510UH          | 57717841    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-18 13:38:24 | Carl Rodrigues                      | TP5921MO          | 57725195    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-19 19:04:21 | Empolis                             | AH3305JS          | 57777465    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-21 06:11:07 | British Telecom                     | KJ7341EC          | 57838985    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-24 13:18:45 | CABI                                | GG8714TK          | 57989237    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-24 13:21:02 | CAB International                   | MK2889FR          | 57989343    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-24 13:27:59 | CABI                                | IW1257LR          | 57989719    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-24 14:04:16 | CAB International                   | TY7894YE          | 57990878    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-25 12:07:40 | Khalied Al Barrak                   | HC6986JK          | 58033847    | individual-supporter    | payment          | ODITRAINING | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-25 15:37:31 | Lydia Pintscher                     | LY3441CL          | 58040223    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      | 2015-09-28 12:34:04 | Houses of Parliament                | TC9587KS          | 58172726    | individual-supporter    | payment          |             |               | 90.00              | 0.00     | 90.00              | 18.00  | 108.00  |
+      | 2015-09-28 16:17:15 | Tobias Buerger                      | IG1866LU          | 58183744    | individual-supporter    | payment          | MENTOR      | 100%          | 90.00              | -90.00   | 0.00               | 0.00   | 0.00    |
+      |                     |                                     |                   |             |                         |                  | totals      |               | 3750            | -2070 |                    | 228 | 1908 |
 
   Scenario: the booking value report contains the correct data
-
+    Given I want to run the report for 2015-10-01 to 2015-10-31
     Then data for the booking value report should match:
 
-      | product name               | signup count | booking value | net  | tax | total |
-      | individual-supporter       | 5            | 90            | 450  | 90  | 540   |
-      | supporter_annual           | 3            | 720           | 2160 | 432 | 2592  |
-      | corporate-supporter_annual | 2            | 2200          | 4400 | 880 | 5280  |
-      | supporter_monthly          | 1            | 720           | 720  | 144 | 864   |
+      | product name                           | booking value | signup count | net    | tax    | total  |
+      | individual-supporter NO COUPON         | 90.00         | 3            | 270.00 | 18.00  | 288.00 |
+      | supporter_monthly ODISTARTUP           | 0.00          | 1            | 0.00   | 0.00   | 0.00   |
+      | supporter_annual SUMMIT2015            | 604.80        | 1            | 604.80 | 120.96 | 725.76 |
+      | holding-individual-supporter NO COUPON | 0.00          | 2            | 0.00   | 0.00   | 0.00   |
+      | individual-supporter MENTOR            | 0.00          | 2            | 0.00   | 0.00   | 0.00   |
 
-  Scenario: the cash report with coupon adjustments contains the correct data
-
-    When I want to run the report for 2015-02-20 to 2015-02-21
-    Then data for the cash report should match:
-
-      | date                | membership number | statement id | membership type            | transaction type | coupon    | amount | tax | discount | total |
-      | 2015-02-20 11:48:49 | HC2362FT          | 47125224     | individual-supporter       | payment          |           | 90     | 0   | 0        | 90    |
-      | 2015-02-20 11:58:58 | II3980RK          | 47125255     | individual-supporter       | payment          | SUPERFREE | 90     | 0   | -90      | 0     |
-      | 2015-02-20 12:07:19 | NK2275JC          | 47125709     | supporter_annual           | payment          |           | 720    | 0   | 0        | 720   |
-      | 2015-02-20 12:18:40 | AD0597TT          | 47125774     | corporate-supporter_annual | payment          |           | 2200   | 440 | 0        | 2640  |
-      | 2015-02-20 14:15:48 | ZT1079FY          | 47128978     | corporate-supporter_annual | payment          |           | 2200   | 440 | 0        | 2640  |
-      | 2015-02-20 17:06:16 |                   | 47136873     | individual-supporter       | payment          |           | 90     | 18  | 0        | 108   |
-      |                     |                   |              |                            |                  | totals    | 5390   | 898 | -90      | 6198  |
