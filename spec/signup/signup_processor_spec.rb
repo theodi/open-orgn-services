@@ -1,9 +1,3 @@
-# TODO This is temporary until we inject the
-# dependency at which point we will use a test
-# double instead
-Resque   = Class.new { def self.enqueue(*args); end }
-Invoicer = Class.new
-
 require_relative "../../lib/signup/signup_processor"
 
 describe SignupProcessor do
