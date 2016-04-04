@@ -11,7 +11,7 @@ describe OrderInvoicer do
     expect(Resque).to receive(:enqueue).with(
       Invoicer,
       expected_invoice_to,
-      hash_including(expected_invoice_details),
+      expected_invoice_details,
       expected_invoice_id)
     OrderInvoicer.perform(order_uri)
   end
@@ -38,6 +38,7 @@ describe OrderInvoicer do
   end
   let(:expected_invoice_details) do
     {
+      "payment_method" => "invoice",
       "line_items" => [
         {
           "base_price" => 26950,

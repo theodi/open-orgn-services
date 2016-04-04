@@ -39,7 +39,7 @@ class OrderInvoicer
     line_items = attendees.map { |attendee| order_line(order, attendee, ticket_classes) }
 
     invoice_details =  {
-      'payment_method'           => "mystery", #TODO: find out what
+      'payment_method'           => 'invoice', #TODO: we can't find this out using the Eventbrite API - so we raise an invoice no matter what
       'line_items'               => line_items,
       'purchase_order_reference' => details['Purchase Order Number'],
       'due_date'                 => due_date.iso8601,
