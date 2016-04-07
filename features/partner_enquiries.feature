@@ -1,9 +1,9 @@
-@vcr @capsulecrm
+@vcr @capsulecrm @timecop
 Feature: Raise tasks and opportunities in CapsuleCRM for higher-level memberships
 
   In order to get higher-level members in
   As a commercial person
-  I want opportunities to be created in CapsuleCRM 
+  I want opportunities to be created in CapsuleCRM
   when interested parties fill in the web form
 
   Background:
@@ -14,7 +14,7 @@ Feature: Raise tasks and opportunities in CapsuleCRM for higher-level membership
     And my phone number is "+44 1738 494032"
     And my interest is "Hey, I really want us to join the ODI!"
     And I requested membership at the level called "partner"
-  
+
   Scenario: Create new organisation and person
     Given there is no organisation in CapsuleCRM called "ACME widgets Inc."
     When I have asked to be contacted

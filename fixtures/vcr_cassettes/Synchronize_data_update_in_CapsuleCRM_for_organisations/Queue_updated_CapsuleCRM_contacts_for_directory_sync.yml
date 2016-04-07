@@ -1,127 +1,17 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Omni%20Consumer%20Products
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 10 Jun 2015 12:14:43 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      Content-Length:
-      - '74'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
-    http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:14:44 GMT
-- request:
-    method: post
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<organisation>\n  <about
-        nil=\"true\"/>\n  <name>Omni Consumer Products</name>\n  <contacts/>\n</organisation>\n"
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Date:
-      - Wed, 10 Jun 2015 12:14:44 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      Location:
-      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930941
-      Content-Length:
-      - '0'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-    body:
-      encoding: US-ASCII
-      string: ''
-    http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:14:44 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Omni%20Consumer%20Products
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 10 Jun 2015 12:14:45 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      Content-Length:
-      - '374'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>82930941</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T12:14:45Z</createdOn><updatedOn>2015-06-10T12:14:45Z</updatedOn><name>Omni
-        Consumer Products</name></organisation></parties>
-    http_version: 
-  recorded_at: Wed, 10 Jun 2015 12:14:45 GMT
-- request:
     method: post
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930941/tag/Membership
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
-        \ </tag>\n</tags>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -160,8 +50,13 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930941/tag/DirectoryEntry
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>DirectoryEntry</name>\n
-        \ </tag>\n</tags>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -196,86 +91,6 @@ http_interactions:
     http_version: 
   recorded_at: Wed, 10 Jun 2015 12:14:46 GMT
 - request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?tag=Membership
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 10 Jun 2015 12:14:47 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      Content-Length:
-      - '1030'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="3"><organisation><id>67706736</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T13:07:05Z</createdOn><updatedOn>2014-09-17T14:05:51Z</updatedOn><name>Flibble
-        Inc</name></organisation><organisation><id>82925322</id><contacts><email><id>159714604</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T11:12:03Z</createdOn><updatedOn>2015-06-10T11:12:26Z</updatedOn><name>Nerd
-        Enterprises Inc</name></organisation><organisation><id>82930941</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T12:14:45Z</createdOn><updatedOn>2015-06-10T12:14:46Z</updatedOn><name>Omni
-        Consumer Products</name></organisation></parties>
-    http_version: 
-  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?tag=Membership
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 10 Jun 2015 12:14:47 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      Content-Length:
-      - '1030'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="3"><organisation><id>67706736</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2014-09-17T13:07:05Z</createdOn><updatedOn>2014-09-17T14:05:51Z</updatedOn><name>Flibble
-        Inc</name></organisation><organisation><id>82925322</id><contacts><email><id>159714604</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T11:12:03Z</createdOn><updatedOn>2015-06-10T11:12:26Z</updatedOn><name>Nerd
-        Enterprises Inc</name></organisation><organisation><id>82930941</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1433844004/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-06-10T12:14:45Z</createdOn><updatedOn>2015-06-10T12:14:46Z</updatedOn><name>Omni
-        Consumer Products</name></organisation></parties>
-    http_version: 
-  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
-- request:
     method: delete
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/82930941
     body:
@@ -307,6 +122,1813 @@ http_interactions:
       - max-age=31536000
     body:
       encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91869956/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:14:13 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3757'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91869956/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:14:14 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91869956/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:14:13 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3756'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91869956/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:14:14 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91869956
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:14:14 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3754'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870386/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:29:43 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3141'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870386/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:29:44 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870386/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:29:44 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3140'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870386/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:29:45 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870386
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:29:46 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3138'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870400/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:30:16 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3134'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870400/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:30:17 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870400/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:30:17 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3133'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870400/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:30:18 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870400
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:30:18 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3131'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870448/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:32:13 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2958'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870448/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:32:15 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870448/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:32:14 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2957'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870448/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:32:15 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870448
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:32:15 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2955'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871109/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:48:49 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3597'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871109/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:48:50 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871109/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:48:49 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3596'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871109/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:48:50 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871109
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:48:50 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3594'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871633/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:58:21 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2820'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871633/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:58:22 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871633/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:58:21 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2819'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871633/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 11:58:23 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91871633
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:58:22 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2817'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872841/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:33:30 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2110'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872841/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:33:31 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872841/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:33:30 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2109'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872841/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:33:32 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91872841
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:33:31 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2107'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91873143/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:45:34 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3402'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91873143/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:45:35 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91873143/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:45:34 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3401'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91873143/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 12:45:35 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91873143
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:45:35 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3399'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91874915/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:33:07 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3160'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91874915/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:33:08 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91874915/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:33:08 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3159'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91874915/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:33:09 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91874915
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:33:09 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3156'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875308/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:46:09 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3396'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875308/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:46:10 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875308/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:46:09 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3395'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875308/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 13:46:11 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91875308
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:46:11 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3392'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Omni%20Consumer%20Products
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:26 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2557'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '74'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="0"/>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:00:27 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/organisation
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <organisation>
+          <about nil="true"/>
+          <name>Omni Consumer Products</name>
+          <contacts/>
+        </organisation>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:26 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2556'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878125
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:00:28 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Omni%20Consumer%20Products
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:27 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2555'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '374'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><organisation><id>91878125</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:00:27Z</createdOn><updatedOn>2015-11-04T14:00:27Z</updatedOn><name>Omni
+        Consumer Products</name></organisation></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:00:28 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878125/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:27 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2554'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878125/tag/Membership
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:00:29 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878125/tag/DirectoryEntry
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>DirectoryEntry</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:28 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2553'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878125/tag/DirectoryEntry
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:00:29 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?tag=Membership
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:28 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2552'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '6012'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="15"><person><id>91870047</id><contacts><email><id>177054276</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:17:16Z</createdOn><updatedOn>2015-11-04T11:17:21Z</updatedOn><firstName>Joe</firstName><lastName>Nerd</lastName></person><organisation><id>91877722</id><contacts><email><id>177067896</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T13:51:38Z</createdOn><updatedOn>2015-11-04T13:52:12Z</updatedOn><name>Nerd
+        Enterprises Inc</name></organisation><organisation><id>91878125</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:00:27Z</createdOn><updatedOn>2015-11-04T14:00:28Z</updatedOn><name>Omni
+        Consumer Products</name></organisation><organisation><id>91068665</id><contacts><email><id>175450152</id><emailAddress>jordan.elver+testorg15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-10-21T16:17:41Z</createdOn><updatedOn>2015-10-21T16:17:53Z</updatedOn><name>Test
+        15</name></organisation><person><id>89630115</id><contacts><email><id>172686786</id><emailAddress>jordan.elver+testindividual1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-09-26T11:44:56Z</createdOn><updatedOn>2015-10-06T20:34:14Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><person><id>91869809</id><contacts><email><id>177053892</id><emailAddress>jordan.elver+testindividualagain1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:08:52Z</createdOn><updatedOn>2015-11-04T11:09:01Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><organisation><id>88008527</id><contacts><email><id>169490412</id><emailAddress>jordan.elver+testorg1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T11:30:08Z</createdOn><updatedOn>2015-09-21T15:22:07Z</updatedOn><name>Test
+        organization 1</name></organisation><organisation><id>88010863</id><contacts><email><id>169494474</id><emailAddress>jordan.elver+testorg6@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T12:57:11Z</createdOn><updatedOn>2015-09-16T09:36:49Z</updatedOn><name>Test
+        organization 6</name></organisation><person><id>90633311</id><contacts><email><id>174605242</id><emailAddress>jordan.elver+teststudent3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:09:55Z</createdOn><updatedOn>2015-10-13T11:10:20Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633325</id><contacts><email><id>174605270</id><emailAddress>jordan.elver+teststudent4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:10:21Z</createdOn><updatedOn>2015-10-13T11:11:01Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633969</id><contacts><email><id>174606535</id><emailAddress>jordan.elver+teststudent5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:27:59Z</createdOn><updatedOn>2015-10-13T11:28:22Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91068583</id><contacts><email><id>175450021</id><emailAddress>jordan.elver+teststudent15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-21T16:14:14Z</createdOn><updatedOn>2015-10-21T16:14:34Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91868889</id><contacts><email><id>177052193</id><emailAddress>jordan.elver+teststudentagain3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T10:51:44Z</createdOn><updatedOn>2015-11-04T10:52:00Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91869187</id><contacts><email><id>177052844</id><emailAddress>jordan.elver+teststudentagain4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:00:27Z</createdOn><updatedOn>2015-11-04T11:00:44Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91870291</id><contacts><email><id>177054716</id><emailAddress>jordan.elver+teststudentagain5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:26:15Z</createdOn><updatedOn>2015-11-04T11:26:31Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person></parties>
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?tag=Membership
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:29 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2551'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '6012'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="15"><person><id>91870047</id><contacts><email><id>177054276</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:17:16Z</createdOn><updatedOn>2015-11-04T11:17:21Z</updatedOn><firstName>Joe</firstName><lastName>Nerd</lastName></person><organisation><id>91877722</id><contacts><email><id>177067896</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T13:51:38Z</createdOn><updatedOn>2015-11-04T13:52:12Z</updatedOn><name>Nerd
+        Enterprises Inc</name></organisation><organisation><id>91878125</id><contacts/><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:00:27Z</createdOn><updatedOn>2015-11-04T14:00:28Z</updatedOn><name>Omni
+        Consumer Products</name></organisation><organisation><id>91068665</id><contacts><email><id>175450152</id><emailAddress>jordan.elver+testorg15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-10-21T16:17:41Z</createdOn><updatedOn>2015-10-21T16:17:53Z</updatedOn><name>Test
+        15</name></organisation><person><id>89630115</id><contacts><email><id>172686786</id><emailAddress>jordan.elver+testindividual1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-09-26T11:44:56Z</createdOn><updatedOn>2015-10-06T20:34:14Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><person><id>91869809</id><contacts><email><id>177053892</id><emailAddress>jordan.elver+testindividualagain1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:08:52Z</createdOn><updatedOn>2015-11-04T11:09:01Z</updatedOn><firstName>Test</firstName><lastName>individual</lastName></person><organisation><id>88008527</id><contacts><email><id>169490412</id><emailAddress>jordan.elver+testorg1@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T11:30:08Z</createdOn><updatedOn>2015-09-21T15:22:07Z</updatedOn><name>Test
+        organization 1</name></organisation><organisation><id>88010863</id><contacts><email><id>169494474</id><emailAddress>jordan.elver+testorg6@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-09-01T12:57:11Z</createdOn><updatedOn>2015-09-16T09:36:49Z</updatedOn><name>Test
+        organization 6</name></organisation><person><id>90633311</id><contacts><email><id>174605242</id><emailAddress>jordan.elver+teststudent3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:09:55Z</createdOn><updatedOn>2015-10-13T11:10:20Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633325</id><contacts><email><id>174605270</id><emailAddress>jordan.elver+teststudent4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:10:21Z</createdOn><updatedOn>2015-10-13T11:11:01Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>90633969</id><contacts><email><id>174606535</id><emailAddress>jordan.elver+teststudent5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-13T11:27:59Z</createdOn><updatedOn>2015-10-13T11:28:22Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91068583</id><contacts><email><id>175450021</id><emailAddress>jordan.elver+teststudent15@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-10-21T16:14:14Z</createdOn><updatedOn>2015-10-21T16:14:34Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91868889</id><contacts><email><id>177052193</id><emailAddress>jordan.elver+teststudentagain3@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T10:51:44Z</createdOn><updatedOn>2015-11-04T10:52:00Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91869187</id><contacts><email><id>177052844</id><emailAddress>jordan.elver+teststudentagain4@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:00:27Z</createdOn><updatedOn>2015-11-04T11:00:44Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person><person><id>91870291</id><contacts><email><id>177054716</id><emailAddress>jordan.elver+teststudentagain5@gmail.com</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:26:15Z</createdOn><updatedOn>2015-11-04T11:26:31Z</updatedOn><firstName>Test</firstName><lastName>student</lastName></person></parties>
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 13:58:00 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91878125
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:00:29 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2550'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
       string: ''
     http_version: 
   recorded_at: Wed, 10 Jun 2015 13:58:00 GMT

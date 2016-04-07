@@ -11,16 +11,18 @@ http_interactions:
       - utf-8
       Content-Type:
       - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
       - '0'
       Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="zG4a44i1mkHVNC5tTfjRj8dqSHA4MhPvIalTSjf6MxA",
-        oauth_signature="V2vXfeYKEcpsvpHidThFtP5xSiSztN6BgMKAG4RFrWLQPNSR1uGizAj18i827n90UMiLEQ2oCB%2B5mLHwNKpHc3DzwGdzJ7lbr5YHCKyda6YhzhBIvIwf5tupyv0bbtL00XUUrwmU6VGa92fRfXz35ygfDnY70f9ap4Q41TxcCys%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1378896019", oauth_token="<XERO_CONSUMER_KEY>",
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="v0pT9pJmB9NGEjdhXrxHvcBwNsBRIAU9d8NdKpNy4",
+        oauth_signature="JxgX9aTlptsi07DIkj4UuyyAQiz23VW%2F8Syi1Dxgqda9%2F6x7twYBQOtyf44RMAnf9Nj4U5QrRAMcp7xb%2F2g7pVWBoTlMBgNSsGUVIoWY70PRDpsoJIbS6DHNw1CTP05%2Bmwtu8nNJ9Q%2BSv5PxXuGfyMaM%2BIt6MC2%2BjhOijI9mK7M%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646049", oauth_token="<XERO_CONSUMER_KEY>",
         oauth_version="1.0"
   response:
     status:
@@ -31,55 +33,60 @@ http_interactions:
       - private
       Content-Type:
       - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
       Www-Authenticate:
       - OAuth Realm="api.xero.com"
-      X-S:
-      - 445758-O1VMAP01
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Wed, 11 Sep 2013 10:40:20 GMT
+      - Wed, 04 Nov 2015 14:07:28 GMT
       Content-Length:
-      - '1184'
+      - '459'
     body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>7c5735a4-9b76-4809-a839-575b4bb044eb</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Grrrrr</ProviderName>\r\n  <DateTimeUTC>2013-09-11T10:40:21.2872825Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>f4eb3460-59d5-4d6c-9d82-fdd746c2888b</ContactID>\r\n
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>8da57c9f-5ddb-47bf-9fc2-3011eeed9ad1</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:07:29.3567792Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>eb3f2a4d-b27e-4980-a78f-edd30a5dfe29</ContactID>\r\n
         \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
         Inc.</Name>\r\n      <Addresses>\r\n        <Address>\r\n          <AddressType>POBOX</AddressType>\r\n
         \       </Address>\r\n        <Address>\r\n          <AddressType>STREET</AddressType>\r\n
         \       </Address>\r\n      </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n
         \         <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
+        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
         \         <PhoneType>DEFAULT</PhoneType>\r\n        </Phone>\r\n        <Phone>\r\n
-        \         <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
-        \     <UpdatedDateUTC>2013-09-11T10:40:21.257</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
+        \         <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n      </Phones>\r\n
+        \     <UpdatedDateUTC>2015-11-04T14:07:29.293</UpdatedDateUTC>\r\n      <IsSupplier>false</IsSupplier>\r\n
         \     <IsCustomer>false</IsCustomer>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
     http_version: 
-  recorded_at: Wed, 11 Sep 2013 10:40:21 GMT
+  recorded_at: Wed, 04 Nov 2015 14:07:30 GMT
 - request:
     method: post
     uri: https://api.xero.com/api.xro/2.0/Contacts
     body:
       encoding: US-ASCII
-      string: xml=%3CContact%3E%0A%20%20%3CContactID%3Ef4eb3460-59d5-4d6c-9d82-fdd746c2888b%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%20f4eb3460-59d5-4d6c-9d82-fdd746c2888b%3C%2FName%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CUpdatedDateUTC%3E2013-09-11T09%3A40%3A21%3C%2FUpdatedDateUTC%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+      string: xml=%3CContact%3E%0A%20%20%3CContactID%3Eeb3f2a4d-b27e-4980-a78f-edd30a5dfe29%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3EExisting%20Company%20Inc.%20eb3f2a4d-b27e-4980-a78f-edd30a5dfe29%3C%2FName%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
     headers:
       Charset:
       - utf-8
       Content-Type:
       - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
       - '0'
       Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="2bzOutbzxN3WujhlKGiJ1L9WsmXFfBukPSpNdvKiXM",
-        oauth_signature="Nmtjfk4KUCGWLR1725no9QguulrmFy3wyICo3j9Kyyv0xq%2Fa2jHel47LCuKjfotSIFPTS1FnXMl9rzmc2qF29treZiPKDWn4X8StBZyU2tdh7MA9MAHvv7HGlDFy8phli6%2ByLWRnIHZPzDfpvlMggjlkefRhy2LIGgd3VPNICss%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1378896021", oauth_token="<XERO_CONSUMER_KEY>",
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="nJ9FpqKqDYXMs7IVVKgno1uX7EPkW2MmLdI7CQ",
+        oauth_signature="JGSGx7EHixckb%2BfhN%2BmUMoXYn5pCl4gC39T%2F6W9pSyIgs55AjQYNs3RumfwAfGE6JAuJ2j%2FA02J4J3hPfNQAQpZJoCMIpZdb%2Bc4IMSslAAApoNoo0R8ckvst1Oyh8Ht59GOUUDWeFf%2FC40ssn0Q8%2BTHTX93sMbYaFJg77CXQnZk%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646050", oauth_token="<XERO_CONSUMER_KEY>",
         oauth_version="1.0"
   response:
     status:
@@ -90,33 +97,36 @@ http_interactions:
       - private
       Content-Type:
       - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
       Www-Authenticate:
       - OAuth Realm="api.xero.com"
-      X-S:
-      - 445758-O1VMAP01
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Wed, 11 Sep 2013 10:40:23 GMT
+      - Wed, 04 Nov 2015 14:07:28 GMT
       Content-Length:
-      - '1220'
+      - '462'
     body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>14736fcf-b4fd-45b3-a5d9-2160eb102134</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Grrrrr</ProviderName>\r\n  <DateTimeUTC>2013-09-11T10:40:24.110973Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>f4eb3460-59d5-4d6c-9d82-fdd746c2888b</ContactID>\r\n
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>ae171d01-39bc-4303-953d-44a99b20e50c</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:07:29.9028002Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>eb3f2a4d-b27e-4980-a78f-edd30a5dfe29</ContactID>\r\n
         \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Existing Company
-        Inc. f4eb3460-59d5-4d6c-9d82-fdd746c2888b</Name>\r\n      <Addresses>\r\n
+        Inc. eb3f2a4d-b27e-4980-a78f-edd30a5dfe29</Name>\r\n      <Addresses>\r\n
         \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n        </Address>\r\n
         \       <Address>\r\n          <AddressType>STREET</AddressType>\r\n        </Address>\r\n
         \     </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
         \       </Phone>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
-        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2013-09-11T10:40:24.097</UpdatedDateUTC>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
+        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2015-11-04T14:07:29.887</UpdatedDateUTC>\r\n
         \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
         \   </Contact>\r\n  </Contacts>\r\n</Response>"
     http_version: 
-  recorded_at: Wed, 11 Sep 2013 10:40:24 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Wed, 04 Nov 2015 14:07:30 GMT
+recorded_with: VCR 2.9.3

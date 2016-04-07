@@ -1,7 +1,5 @@
 require_relative "../../lib/mailing_list/sync_mailing_list"
 
-UpdateMailingList = Class.new
-
 describe SyncMailingList do
 
   subject do

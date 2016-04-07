@@ -1,59 +1,24 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?email=finance@nerd.eg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 22 Sep 2015 15:35:36 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '3889'
-      X-Ratelimit-Reset:
-      - '1442936151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Content-Length:
-      - '468'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>89391110</id><contacts><email><id>172257846</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1442835119/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-09-22T15:29:23Z</createdOn><updatedOn>2015-09-22T15:29:29Z</updatedOn><firstName>Joe</firstName><lastName>Nerd</lastName></person></parties>
-    http_version: 
-  recorded_at: Tue, 22 Sep 2015 15:35:37 GMT
-- request:
     method: post
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/opportunity
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opportunity>\n  <name>Membership
-        at individual level</name>\n  <currency>GBP</currency>\n  <value type=\"integer\">108</value>\n
-        \ <milestone>Invoiced</milestone>\n  <probability type=\"integer\">100</probability>\n
-        \ <description>Membership #: 01010101</description>\n  <duration type=\"integer\">1</duration>\n
-        \ <durationBasis>YEAR</durationBasis>\n  <expectedCloseDate type=\"date\">2015-09-22</expectedCloseDate>\n
-        \ <owner><CAPSULECRM_DEFAULT_OWNER></owner>\n</opportunity>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at individual level</name>
+          <currency>GBP</currency>
+          <value type="integer">108</value>
+          <milestone>Invoiced</milestone>
+          <probability type="integer">100</probability>
+          <description>Membership #: 01010101</description>
+          <duration type="integer">1</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2015-09-22</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -98,9 +63,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3606937/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Type</label>\n    <text>Membership</text>\n    <tag nil=\"<VCR_DEBUG>\"/>\n
-        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -134,7 +107,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -146,8 +119,13 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/tag/Membership
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tags>\n  <tag>\n    <name>Membership</name>\n
-        \ </tag>\n</tags>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -181,7 +159,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
@@ -192,9 +170,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Level</label>\n    <text>individual</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Level</label>
+            <text>individual</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -228,7 +214,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -241,9 +227,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Supporter Level</label>\n    <text>Individual</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Supporter Level</label>
+            <text>Individual</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -277,7 +271,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -290,9 +284,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>ID</label>\n    <text>01010101</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>ID</label>
+            <text>01010101</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -326,7 +328,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -339,10 +341,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Joined</label>\n    <text nil=\"<VCR_DEBUG>\"/>\n    <tag>Membership</tag>\n
-        \   <date type=\"date\">2015-09-22</date>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n
-        \ </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Joined</label>
+            <text nil="true"/>
+            <tag>Membership</tag>
+            <date type="date">2015-09-22</date>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -376,7 +385,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -389,9 +398,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Email</label>\n    <text>joe@nerd.eg</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Email</label>
+            <text>joe@nerd.eg</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -425,7 +442,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -438,9 +455,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Sector</label>\n    <text>Healthcare</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"<VCR_DEBUG>\"/>\n    <boolean nil=\"<VCR_DEBUG>\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Sector</label>
+            <text>Healthcare</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -474,7 +499,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Content-Type:
-      - ! '*/*;charset=UTF-8'
+      - "*/*;charset=UTF-8"
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
@@ -482,67 +507,6 @@ http_interactions:
         Level</label><text>Individual</text></customField><customField><id>85851297</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>85851298</id><tag>Membership</tag><label>Joined</label><date>2015-09-22T00:00:00Z</date></customField><customField><id>85851299</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>85851300</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField></customFields>
     http_version: 
   recorded_at: Tue, 22 Sep 2015 15:35:42 GMT
-- request:
-    method: get
-    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name.ToLower()%20==%20%22joe%20nerd%22
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Charset:
-      - utf-8
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="FCoHpT0NtudbmdcrvYNYySJ8hXqol1UMK1z4y4a3dA",
-        oauth_signature="OYDUHM9St01%2BaGPZe1ZXSY3VtM1G1HNZ8x4S%2F8noEmf0PeCYRAOOagvtPLCwiBTXWIH6Ocka%2FzlKgdxhJqL1ba73LUrAhHNBvb7Gw1y23BFRuX21fhCozs1K%2B%2FPU1He3lvMqhtlofBi%2FzhQQilgWAsPQ%2FvxgUPf70OQ5yjsoWF0%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1442936142", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Length:
-      - '1534'
-      Content-Type:
-      - text/xml; charset=utf-8
-      X-S:
-      - 445761-O1VMAP04
-      - 445761-O1VMAP04
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Tue, 22 Sep 2015 15:35:43 GMT
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>f6fa86fe-b162-4438-b3d3-2ad8317226c5</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Bollocks</ProviderName>\r\n  <DateTimeUTC>2015-09-22T15:35:43.7558254Z</DateTimeUTC>\r\n
-        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>bd76df57-3115-41c4-98d7-2a8a4d6893fa</ContactID>\r\n
-        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Joe Nerd</Name>\r\n
-        \     <EmailAddress>finance@nerd.eg</EmailAddress>\r\n      <Addresses>\r\n
-        \       <Address>\r\n          <AddressType>STREET</AddressType>\r\n        </Address>\r\n
-        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n          <AddressLine1>01
-        Geek Street, Techington</AddressLine1>\r\n          <City>Austin</City>\r\n
-        \         <Region>Techsus</Region>\r\n          <PostalCode>01010</PostalCode>\r\n
-        \         <Country>USA</Country>\r\n        </Address>\r\n      </Addresses>\r\n
-        \     <Phones>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
-        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
-        \         <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n        </Phone>\r\n
-        \       <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n
-        \       <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n
-        \     </Phones>\r\n      <UpdatedDateUTC>2015-09-22T13:47:31.<MAILCHIMP_LIST_ID></UpdatedDateUTC>\r\n
-        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
-        \     <HasAttachments>false</HasAttachments>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
-    http_version: 
-  recorded_at: Tue, 22 Sep 2015 15:35:43 GMT
 - request:
     method: get
     uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%22bd76df57-3115-41c4-98d7-2a8a4d6893fa%22)
@@ -553,7 +517,7 @@ http_interactions:
       Charset:
       - utf-8
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
@@ -583,210 +547,11 @@ http_interactions:
       - Tue, 22 Sep 2015 15:35:43 GMT
     body:
       encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
         \ <Id>722ab50a-ec6b-4396-a1b9-ffcfef2c2178</Id>\r\n  <Status>OK</Status>\r\n
         \ <ProviderName>Bollocks</ProviderName>\r\n  <DateTimeUTC>2015-09-22T15:35:44.2706386Z</DateTimeUTC>\r\n</Response>"
     http_version: 
   recorded_at: Tue, 22 Sep 2015 15:35:44 GMT
-- request:
-    method: put
-    uri: https://api.xero.com/api.xro/2.0/Invoices
-    body:
-      encoding: US-ASCII
-      string: xml=%3CInvoice%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CContactID%3Ebd76df57-3115-41c4-98d7-2a8a4d6893fa%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EJoe%20Nerd%3C%2FName%3E%0A%20%20%20%20%3CEmailAddress%3Efinance%40nerd.eg%3C%2FEmailAddress%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%20%20%3CAddressLine1%3E01%20Geek%20Street%2C%20Techington%3C%2FAddressLine1%3E%0A%20%20%20%20%20%20%20%20%3CCity%3EAustin%3C%2FCity%3E%0A%20%20%20%20%20%20%20%20%3CRegion%3ETechsus%3C%2FRegion%3E%0A%20%20%20%20%20%20%20%20%3CPostalCode%3E01010%3C%2FPostalCode%3E%0A%20%20%20%20%20%20%20%20%3CCountry%3EUSA%3C%2FCountry%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%20%20%3CPhoneNumber%3E%2B1%201010%20101010%3C%2FPhoneNumber%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CDueDate%3E2015-09-22%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3EODI%20Individual%20supporter%20%2801010101%29%20%5BIndividual%5D%20%28annual%20invoice%20payment%29%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E108%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%3C%2FInvoice%3E%0A
-    headers:
-      Charset:
-      - utf-8
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '0'
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="jrH8i1ItT5TruiskWAv1yiVqDgQ2ItW4iB6FIKRYk4",
-        oauth_signature="bGsVqWoYWsvUyd6ZY7gXJMDJFXKrYFSSuUw90DWSi6HfndaMoAf%2BURvMrVLqyit1xjRfVwSwOHTbt%2BwzYlkNoWSeFI10%2Byo3Z%2BynwB2W4qHWANox7iEWAmcmhtKZ4mbW11Zg81TAPVZVDApZQVuhC%2FljvOOE7Zm654oUW4QJ9Fk%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1442936144", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Length:
-      - '2733'
-      Content-Type:
-      - text/xml; charset=utf-8
-      X-S:
-      - 445761-O1VMAP04
-      - 445761-O1VMAP04
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Tue, 22 Sep 2015 15:35:44 GMT
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>c4720665-cd30-4249-949d-3fc603b7449e</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Bollocks</ProviderName>\r\n  <DateTimeUTC>2015-09-22T15:35:44.9414558Z</DateTimeUTC>\r\n
-        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>bd76df57-3115-41c4-98d7-2a8a4d6893fa</ContactID>\r\n
-        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Joe Nerd</Name>\r\n
-        \       <EmailAddress>finance@nerd.eg</EmailAddress>\r\n        <Addresses>\r\n
-        \         <Address>\r\n            <AddressType>STREET</AddressType>\r\n          </Address>\r\n
-        \         <Address>\r\n            <AddressType>POBOX</AddressType>\r\n            <AddressLine1>01
-        Geek Street, Techington</AddressLine1>\r\n            <City>Austin</City>\r\n
-        \           <Region>Techsus</Region>\r\n            <PostalCode>01010</PostalCode>\r\n
-        \           <Country>USA</Country>\r\n          </Address>\r\n        </Addresses>\r\n
-        \       <Phones>\r\n          <Phone>\r\n            <PhoneType>DEFAULT</PhoneType>\r\n
-        \           <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n          </Phone>\r\n
-        \         <Phone>\r\n            <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n
-        \         <Phone>\r\n            <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n
-        \         <Phone>\r\n            <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n
-        \       </Phones>\r\n        <UpdatedDateUTC>2015-09-22T13:47:31.<MAILCHIMP_LIST_ID></UpdatedDateUTC>\r\n
-        \       <IsSupplier>false</IsSupplier>\r\n        <IsCustomer><VCR_DEBUG></IsCustomer>\r\n
-        \     </Contact>\r\n      <Date>2015-09-22T00:00:00</Date>\r\n      <DueDate>2015-09-22T00:00:00</DueDate>\r\n
-        \     <Status>DRAFT</Status>\r\n      <LineAmountTypes>Exclusive</LineAmountTypes>\r\n
-        \     <LineItems>\r\n        <LineItem>\r\n          <Description>ODI Individual
-        supporter (01010101) [Individual] (annual invoice payment)</Description>\r\n
-        \         <UnitAmount>108.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
-        \         <TaxAmount>21.60</TaxAmount>\r\n          <LineAmount>108.00</LineAmount>\r\n
-        \         <Quantity>1.0000</Quantity>\r\n          <LineItemID>b720c423-a14f-4806-8bbe-f782459342c3</LineItemID>\r\n
-        \       </LineItem>\r\n      </LineItems>\r\n      <SubTotal>108.00</SubTotal>\r\n
-        \     <TotalTax>21.60</TotalTax>\r\n      <Total>129.60</Total>\r\n      <UpdatedDateUTC>2015-09-22T15:35:44.91</UpdatedDateUTC>\r\n
-        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>3735ea71-3efe-426c-9421-405038ddddb5</InvoiceID>\r\n
-        \     <InvoiceNumber>INV-0002</InvoiceNumber>\r\n      <AmountDue>129.60</AmountDue>\r\n
-        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
-        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
-    http_version: 
-  recorded_at: Tue, 22 Sep 2015 15:35:44 GMT
-- request:
-    method: post
-    uri: https://api.xero.com/api.xro/2.0/Invoices
-    body:
-      encoding: US-ASCII
-      string: xml=%3CInvoice%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CContactID%3Ebd76df57-3115-41c4-98d7-2a8a4d6893fa%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EJoe%20Nerd%3C%2FName%3E%0A%20%20%20%20%3CEmailAddress%3Efinance%40nerd.eg%3C%2FEmailAddress%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%20%20%3CAddressLine1%3E01%20Geek%20Street%2C%20Techington%3C%2FAddressLine1%3E%0A%20%20%20%20%20%20%20%20%3CCity%3EAustin%3C%2FCity%3E%0A%20%20%20%20%20%20%20%20%3CRegion%3ETechsus%3C%2FRegion%3E%0A%20%20%20%20%20%20%20%20%3CPostalCode%3E01010%3C%2FPostalCode%3E%0A%20%20%20%20%20%20%20%20%3CCountry%3EUSA%3C%2FCountry%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%20%20%3CPhoneNumber%3E%2B1%201010%20101010%3C%2FPhoneNumber%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3E<VCR_DEBUG>%3C%2FIsCustomer%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CDate%3E2015-09-22%3C%2FDate%3E%0A%20%20%3CDueDate%3E2015-09-22%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3EODI%20Individual%20supporter%20%2801010101%29%20%5BIndividual%5D%20%28annual%20invoice%20payment%29%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E108.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%20%20%3CTaxAmount%3E21.6%3C%2FTaxAmount%3E%0A%20%20%20%20%20%20%3CLineAmount%3E108.0%3C%2FLineAmount%3E%0A%20%20%20%20%20%20%3CQuantity%3E1.0%3C%2FQuantity%3E%0A%20%20%20%20%20%20%3CLineItemId%3Eb720c423-a14f-4806-8bbe-f782459342c3%3C%2FLineItemId%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CSubTotal%3E108.0%3C%2FSubTotal%3E%0A%20%20%3CTotalTax%3E21.6%3C%2FTotalTax%3E%0A%20%20%3CTotal%3E129.6%3C%2FTotal%3E%0A%20%20%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CInvoiceID%3E3735ea71-3efe-426c-9421-405038ddddb5%3C%2FInvoiceID%3E%0A%20%20%3CInvoiceNumber%3EINV-0002%3C%2FInvoiceNumber%3E%0A%20%20%3CAmountDue%3E129.6%3C%2FAmountDue%3E%0A%20%20%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A%20%20%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%20%20%3CCurrencyRate%3E1.0%3C%2FCurrencyRate%3E%0A%3C%2FInvoice%3E%0A
-    headers:
-      Charset:
-      - utf-8
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '0'
-      Authorization:
-      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="vMtOl5F1MhLzMFkscWF4Y1PFkzcJqAOpJGn5pi0CJ1o",
-        oauth_signature="NnEkGOoUzocgwLmWgpJsIiMuUMikvB5XKgpQtGgLFBuLfvKvPnZRJBRioQMxRy9RCbOXxcwQopx8yynlPnos2Y8%2BzuOYTLErQWVNJStF76dvD0uo4ZvZfnHdwrz0%2Fgej5DuiX6xGizTQXLiDI56jGXnJK7YEFOLKYd%2F7PdCjUOQ%3D",
-        oauth_signature_method="RSA-SHA1", oauth_timestamp="1442936144", oauth_token="<XERO_CONSUMER_KEY>",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Length:
-      - '2897'
-      Content-Type:
-      - text/xml; charset=utf-8
-      X-S:
-      - 445761-O1VMAP04
-      - 445761-O1VMAP04
-      Www-Authenticate:
-      - OAuth Realm="api.xero.com"
-      Strict-Transport-Security:
-      - max-age=31536000
-      Date:
-      - Tue, 22 Sep 2015 15:35:44 GMT
-    body:
-      encoding: US-ASCII
-      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
-        \ <Id>b7b0a4b6-2ae1-48fd-a4f4-5bc653e513f3</Id>\r\n  <Status>OK</Status>\r\n
-        \ <ProviderName>Bollocks</ProviderName>\r\n  <DateTimeUTC>2015-09-22T15:35:45.5030702Z</DateTimeUTC>\r\n
-        \ <Invoices>\r\n    <Invoice>\r\n      <Warnings>\r\n        <Warning>\r\n
-        \         <Message>Only AUTHORISED invoices may have SentToContact updated.</Message>\r\n
-        \       </Warning>\r\n      </Warnings>\r\n      <Contact>\r\n        <ContactID>bd76df57-3115-41c4-98d7-2a8a4d6893fa</ContactID>\r\n
-        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Joe Nerd</Name>\r\n
-        \       <EmailAddress>finance@nerd.eg</EmailAddress>\r\n        <Addresses>\r\n
-        \         <Address>\r\n            <AddressType>STREET</AddressType>\r\n          </Address>\r\n
-        \         <Address>\r\n            <AddressType>POBOX</AddressType>\r\n            <AddressLine1>01
-        Geek Street, Techington</AddressLine1>\r\n            <City>Austin</City>\r\n
-        \           <Region>Techsus</Region>\r\n            <PostalCode>01010</PostalCode>\r\n
-        \           <Country>USA</Country>\r\n          </Address>\r\n        </Addresses>\r\n
-        \       <Phones>\r\n          <Phone>\r\n            <PhoneType>DEFAULT</PhoneType>\r\n
-        \           <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n          </Phone>\r\n
-        \         <Phone>\r\n            <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n
-        \         <Phone>\r\n            <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n
-        \         <Phone>\r\n            <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n
-        \       </Phones>\r\n        <UpdatedDateUTC>2015-09-22T13:47:31.<MAILCHIMP_LIST_ID></UpdatedDateUTC>\r\n
-        \       <IsSupplier>false</IsSupplier>\r\n        <IsCustomer><VCR_DEBUG></IsCustomer>\r\n
-        \     </Contact>\r\n      <Date>2015-09-22T00:00:00</Date>\r\n      <DueDate>2015-09-22T00:00:00</DueDate>\r\n
-        \     <Status>DRAFT</Status>\r\n      <LineAmountTypes>Exclusive</LineAmountTypes>\r\n
-        \     <LineItems>\r\n        <LineItem>\r\n          <Description>ODI Individual
-        supporter (01010101) [Individual] (annual invoice payment)</Description>\r\n
-        \         <UnitAmount>108.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
-        \         <TaxAmount>21.60</TaxAmount>\r\n          <LineAmount>108.00</LineAmount>\r\n
-        \         <Quantity>1.0000</Quantity>\r\n          <LineItemID>343054ab-8a2c-4f68-bac1-561ce302ae19</LineItemID>\r\n
-        \       </LineItem>\r\n      </LineItems>\r\n      <SubTotal>108.00</SubTotal>\r\n
-        \     <TotalTax>21.60</TotalTax>\r\n      <Total>129.60</Total>\r\n      <UpdatedDateUTC>2015-09-22T15:35:45.473</UpdatedDateUTC>\r\n
-        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>3735ea71-3efe-426c-9421-405038ddddb5</InvoiceID>\r\n
-        \     <InvoiceNumber>INV-0002</InvoiceNumber>\r\n      <AmountDue>129.60</AmountDue>\r\n
-        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
-        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
-    http_version: 
-  recorded_at: Tue, 22 Sep 2015 15:35:45 GMT
-- request:
-    method: get
-    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Joe%20Nerd
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - CapsuleCRM ruby gem
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Tue, 22 Sep 2015 15:35:45 GMT
-      Server:
-      - Apache
-      X-Frame-Options:
-      - DENY
-      Set-Cookie:
-      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-      X-Ratelimit-Remaining:
-      - '3879'
-      X-Ratelimit-Reset:
-      - '1442936151'
-      X-Ratelimit-Limit:
-      - '4000'
-      Content-Length:
-      - '468'
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=31536000
-      Content-Type:
-      - ! '*/*;charset=UTF-8'
-    body:
-      encoding: US-ASCII
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>89391110</id><contacts><email><id>172257846</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1442835119/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-09-22T15:29:23Z</createdOn><updatedOn>2015-09-22T15:29:29Z</updatedOn><firstName>Joe</firstName><lastName>Nerd</lastName></person></parties>
-    http_version: 
-  recorded_at: Tue, 22 Sep 2015 15:35:45 GMT
 - request:
     method: delete
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110
@@ -833,9 +598,17 @@ http_interactions:
     uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/89391110/customfields
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<customFields>\n  <customField>\n
-        \   <label>Contact first name</label>\n    <text>Joe</text>\n    <tag>Membership</tag>\n
-        \   <date nil=\"true\"/>\n    <boolean nil=\"true\"/>\n  </customField>\n</customFields>\n"
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Contact first name</label>
+            <text>Joe</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
     headers:
       User-Agent:
       - CapsuleCRM ruby gem
@@ -866,4 +639,1570 @@ http_interactions:
         not found</message></response>
     http_version: 
   recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728288/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:17:29 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3412'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5148380</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728383/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:35:42 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2609'
+      X-Ratelimit-Reset:
+      - '1446636951'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5148565</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728470/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 11:52:35 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3063'
+      X-Ratelimit-Reset:
+      - '1446640551'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5148797</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728660/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 12:37:29 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3675'
+      X-Ratelimit-Reset:
+      - '1446644151'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149225</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3728918/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:37:27 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '3808'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149646</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729019/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 13:53:48 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2966'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149847</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Fri, 01 Feb 2013 13:45:00 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?email=finance@nerd.eg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:18 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2126'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '844'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="2"><person><id>91870047</id><contacts><email><id>177054276</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:17:16Z</createdOn><updatedOn>2015-11-04T14:08:10Z</updatedOn><firstName>Joe</firstName><lastName>Nerd</lastName></person><organisation><id>91878445</id><contacts><email><id>177069287</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/org_avatar_70.png</pictureURL><createdOn>2015-11-04T14:06:17Z</createdOn><updatedOn>2015-11-04T14:06:49Z</updatedOn><name>Nerd
+        Enterprises Inc</name></organisation></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:19 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/opportunity
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <opportunity>
+          <name>Membership at individual level</name>
+          <currency>GBP</currency>
+          <value type="integer">108</value>
+          <milestone>Invoiced</milestone>
+          <probability type="integer">100</probability>
+          <description>Membership #: 01010101</description>
+          <duration type="integer">1</duration>
+          <durationBasis>YEAR</durationBasis>
+          <expectedCloseDate type="date">2015-11-04</expectedCloseDate>
+          <owner><CAPSULECRM_DEFAULT_OWNER></owner>
+        </opportunity>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:18 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2125'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Location:
+      - https://<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729116
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:19 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/opportunity/3729116/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Type</label>
+            <text>Membership</text>
+            <tag nil="true"/>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:18 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2124'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '178'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="1"><customField><id>5149985</id><label>Type</label><text>Membership</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:20 GMT
+- request:
+    method: post
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/tag/Membership
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <tags>
+          <tag>
+            <name>Membership</name>
+          </tag>
+        </tags>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:19 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2123'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '126'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><tags size="1"><tag><id>796299</id><name>Membership</name></tag></tags>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:20 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Level</label>
+            <text>individual</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:19 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2122'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:21 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Supporter Level</label>
+            <text>Individual</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:20 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2121'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:21 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>ID</label>
+            <text>01010101</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:20 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2120'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:21 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Joined</label>
+            <text nil="true"/>
+            <tag>Membership</tag>
+            <date type="date">2015-11-04</date>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:21 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2119'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:22 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Email</label>
+            <text>joe@nerd.eg</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:21 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2118'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:22 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Sector</label>
+            <text>Healthcare</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:22 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2117'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:23 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Contact first name</label>
+            <text>Joe</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:22 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2116'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:23 GMT
+- request:
+    method: put
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047/customfields
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <customFields>
+          <customField>
+            <label>Contact last name</label>
+            <text>Nerd</text>
+            <tag>Membership</tag>
+            <date nil="true"/>
+            <boolean nil="true"/>
+          </customField>
+        </customFields>
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:22 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2115'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '987'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><customFields
+        size="8"><customField><id>88181105</id><tag>Membership</tag><label>Level</label><text>individual</text></customField><customField><id>88181106</id><tag>Membership</tag><label>Supporter
+        Level</label><text>Individual</text></customField><customField><id>88181107</id><tag>Membership</tag><label>ID</label><text>01010101</text></customField><customField><id>88181108</id><tag>Membership</tag><label>Joined</label><date>2015-11-04T00:00:00Z</date></customField><customField><id>88181109</id><tag>Membership</tag><label>Email</label><text>joe@nerd.eg</text></customField><customField><id>88181110</id><tag>Membership</tag><label>Sector</label><text>Healthcare</text></customField><customField><id>88181111</id><tag>Membership</tag><label>Contact
+        first name</label><text>Joe</text></customField><customField><id>88181112</id><tag>Membership</tag><label>Contact
+        last name</label><text>Nerd</text></customField></customFields>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:24 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name.ToLower()%20==%20%22joe%20nerd%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="QDn5K7HRZlt7ojz275qnLz1QKOYs03K2wJzvnI6Rc",
+        oauth_signature="Rs117OUmwLOx8XefLY52OSKtRlLQFyPViuFdZQyZhCxVbWVK1hMG1MTeKLS3Cy1QVpCOZjRNvTo7WvV9kNTyhxXU4vRsWQGhXRwaMqCUtGBKpF2kRBGz4ukkW9kLRTuhx%2FRVIvJNvkQz8SjJMEbOSaIWTbh62IkxKPzKndvXw0g%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646104", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:23 GMT
+      Content-Length:
+      - '227'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>4963976d-5191-4a4d-a4f3-cec47b7935f2</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:24.2708912Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:25 GMT
+- request:
+    method: put
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CName%3EJoe%20Nerd%3C%2FName%3E%0A%20%20%3CEmailAddress%3Efinance%40nerd.eg%3C%2FEmailAddress%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3CPhoneNumber%3E%2B1%201010%20101010%3C%2FPhoneNumber%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3CAddressLine1%3E01%20Geek%20Street%2C%20Techington%3C%2FAddressLine1%3E%0A%20%20%20%20%20%20%3CCity%3EAustin%3C%2FCity%3E%0A%20%20%20%20%20%20%3CRegion%3ETechsus%3C%2FRegion%3E%0A%20%20%20%20%20%20%3CCountry%3EUSA%3C%2FCountry%3E%0A%20%20%20%20%20%20%3CPostalCode%3E01010%3C%2FPostalCode%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="8sira2bnExLM5RC1fMRR7DrqbprF1W95L6bcpsgweA",
+        oauth_signature="bkUu2flgK90kYJwhCe00o8nMEJyrPWG6moxZbbavitJ%2BTb9OePkVYRcpduHPiwcD7HXjLOwV%2FFj9Klp%2Fy%2BH8ja3sHjC1gmh4KaWDEQmUv2SIo7NgATAWbGlde1JDYFA9kMgayfg1Fo9ExtW9wzzx8qT9%2ByuR0sUQcp%2BtMvUim2I%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646105", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:24 GMT
+      Content-Length:
+      - '587'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>e06e29bd-0e05-4834-9c8f-6bcb8e13dbee</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:24.8169122Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>f507bcab-1a64-42ff-b085-2fd28ca47097</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Joe Nerd</Name>\r\n
+        \     <EmailAddress>finance@nerd.eg</EmailAddress>\r\n      <Addresses>\r\n
+        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n          <AddressLine1>01
+        Geek Street, Techington</AddressLine1>\r\n          <City>Austin</City>\r\n
+        \         <Region>Techsus</Region>\r\n          <PostalCode>01010</PostalCode>\r\n
+        \         <Country>USA</Country>\r\n        </Address>\r\n        <Address>\r\n
+        \         <AddressType>STREET</AddressType>\r\n        </Address>\r\n      </Addresses>\r\n
+        \     <Phones>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \         <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n
+        \     </Phones>\r\n      <UpdatedDateUTC>2015-11-04T14:08:24.787</UpdatedDateUTC>\r\n
+        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:25 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Contacts
+    body:
+      encoding: US-ASCII
+      string: xml=%3CContact%3E%0A%20%20%3CContactID%3Ef507bcab-1a64-42ff-b085-2fd28ca47097%3C%2FContactID%3E%0A%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%3CName%3EJoe%20Nerd%3C%2FName%3E%0A%20%20%3CEmailAddress%3Efinance%40nerd.eg%3C%2FEmailAddress%3E%0A%20%20%3CAddresses%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3CAddressLine1%3E01%20Geek%20Street%2C%20Techington%3C%2FAddressLine1%3E%0A%20%20%20%20%20%20%3CCity%3EAustin%3C%2FCity%3E%0A%20%20%20%20%20%20%3CRegion%3ETechsus%3C%2FRegion%3E%0A%20%20%20%20%20%20%3CPostalCode%3E01010%3C%2FPostalCode%3E%0A%20%20%20%20%20%20%3CCountry%3EUSA%3C%2FCountry%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%3C%2FAddress%3E%0A%20%20%3C%2FAddresses%3E%0A%20%20%3CPhones%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3CPhoneNumber%3E%2B1%201010%20101010%3C%2FPhoneNumber%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%3C%2FPhone%3E%0A%20%20%3C%2FPhones%3E%0A%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%3C%2FContact%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="XL0lJOXz3AgxyBkExqrPmVjjaGXuduDJfYy84zYYhs",
+        oauth_signature="n0qOzl7W4rUutajLNy%2BMF0C9jAj58b70U6j8r8PV3CBr8gP6Irl2lxZvzu2GD1NW9pYY7THau8R8AahYqLIrqaRSJqHOiCPmIeo%2BnuDjphBOU02%2BTwXtF3wnXx8FZJ0ToAR%2BYaLBWOz%2FNt0Bk89WJ3KsilAWLYLmgPhnm%2Bjzc38%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646105", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:24 GMT
+      Content-Length:
+      - '588'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>422a81b2-f861-447d-8175-2bec4fd875a9</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:25.331732Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>f507bcab-1a64-42ff-b085-2fd28ca47097</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Joe Nerd</Name>\r\n
+        \     <EmailAddress>finance@nerd.eg</EmailAddress>\r\n      <Addresses>\r\n
+        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n          <AddressLine1>01
+        Geek Street, Techington</AddressLine1>\r\n          <City>Austin</City>\r\n
+        \         <Region>Techsus</Region>\r\n          <PostalCode>01010</PostalCode>\r\n
+        \         <Country>USA</Country>\r\n        </Address>\r\n        <Address>\r\n
+        \         <AddressType>STREET</AddressType>\r\n        </Address>\r\n      </Addresses>\r\n
+        \     <Phones>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \         <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n
+        \     </Phones>\r\n      <UpdatedDateUTC>2015-11-04T14:08:24.787</UpdatedDateUTC>\r\n
+        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:26 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts?where=Name.ToLower()%20==%20%22joe%20nerd%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="mkWpuIAJCWn6K8rDD35q2eGjDcX5I6ReXLF7Tv1ow",
+        oauth_signature="BLmukHOpFVmJPk3BHjQPqtm9a0cjoDTA7nsbp3SXMRzxh5yKfbZy6dTRE4LOwc9e77HGJlo9nbWe6nEsOxGN6gnHuGQBkGFzAclxTrf%2B%2FPAiLY62LPDe7cm9Yd2UuJqu4hmPA7YAzMfUlbXeHfvGCE8njIRM2EZAI2s2bi0e0Gk%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646106", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:25 GMT
+      Content-Length:
+      - '606'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>95135b7f-0e39-4617-ac59-d32c18cdadb6</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:25.877753Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>f507bcab-1a64-42ff-b085-2fd28ca47097</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Joe Nerd</Name>\r\n
+        \     <EmailAddress>finance@nerd.eg</EmailAddress>\r\n      <Addresses>\r\n
+        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n          <AddressLine1>01
+        Geek Street, Techington</AddressLine1>\r\n          <City>Austin</City>\r\n
+        \         <Region>Techsus</Region>\r\n          <PostalCode>01010</PostalCode>\r\n
+        \         <Country>USA</Country>\r\n        </Address>\r\n        <Address>\r\n
+        \         <AddressType>STREET</AddressType>\r\n        </Address>\r\n      </Addresses>\r\n
+        \     <Phones>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \         <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n        </Phone>\r\n
+        \       <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n        </Phone>\r\n
+        \     </Phones>\r\n      <UpdatedDateUTC>2015-11-04T14:08:24.787</UpdatedDateUTC>\r\n
+        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>false</IsCustomer>\r\n
+        \     <HasAttachments>false</HasAttachments>\r\n    </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:26 GMT
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices?where=Contact.ContactID%20=%20GUID(%22f507bcab-1a64-42ff-b085-2fd28ca47097%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Charset:
+      - utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="Vo0n0mKH7YE561rNcblgRCUTGvDQaghd8lqdNa1gko",
+        oauth_signature="rSzH%2BZnzBxOxc9TuCdZSNFtW9NMZ4WS9GroxGuj1K4JLdtiZ1kvpMwa8sa2GT64qQHSC72KPdESK5uCGEI0y5mzmdOmkx5I3CsEQ1MdyKOrQ9nXny3napJ1jUFMFpXoxvB8RaaXyctbVxxvUm8s3Sr%2FsdtM1BTv0rIoL%2BFPYhcY%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646106", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:25 GMT
+      Content-Length:
+      - '226'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>c7b8b17c-2a56-4557-8622-30767a01e225</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:26.3769722Z</DateTimeUTC>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:27 GMT
+- request:
+    method: put
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3CInvoice%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CContactID%3Ef507bcab-1a64-42ff-b085-2fd28ca47097%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EJoe%20Nerd%3C%2FName%3E%0A%20%20%20%20%3CEmailAddress%3Efinance%40nerd.eg%3C%2FEmailAddress%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%20%20%3CAddressLine1%3E01%20Geek%20Street%2C%20Techington%3C%2FAddressLine1%3E%0A%20%20%20%20%20%20%20%20%3CCity%3EAustin%3C%2FCity%3E%0A%20%20%20%20%20%20%20%20%3CRegion%3ETechsus%3C%2FRegion%3E%0A%20%20%20%20%20%20%20%20%3CPostalCode%3E01010%3C%2FPostalCode%3E%0A%20%20%20%20%20%20%20%20%3CCountry%3EUSA%3C%2FCountry%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%20%20%3CPhoneNumber%3E%2B1%201010%20101010%3C%2FPhoneNumber%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3Efalse%3C%2FIsCustomer%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CDueDate%3E2015-11-04%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3EODI%20Individual%20supporter%20%2801010101%29%20%5BIndividual%5D%20%28annual%20invoice%20payment%29%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E108%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="WlXjmK4lKwzBQrrqUeOTaiQqI03dbNL6lw1UZpP6aE",
+        oauth_signature="IjKelfEXNRHEvdE%2BYOCXJy%2B1fCbqlXWbB85ul4Hu3%2FGZNJv1qGEtE9%2BN77CkZ4%2BU07bSlKrOIVnypA0QcYA%2B%2B9cW4So8pLCFdo9lMVurrrIhwG6rdKaoI3QRWZ7uP7Ej0CWs9FTnnXv%2BXCusLx9YGsFsFBCKyOKB5OCbW%2FueuLw%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646107", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:26 GMT
+      Content-Length:
+      - '996'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>d5569a3f-3951-4e75-b438-e8ffda84a389</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:27.047798Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>f507bcab-1a64-42ff-b085-2fd28ca47097</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Joe Nerd</Name>\r\n
+        \       <EmailAddress>finance@nerd.eg</EmailAddress>\r\n        <Addresses>\r\n
+        \         <Address>\r\n            <AddressType>POBOX</AddressType>\r\n            <AddressLine1>01
+        Geek Street, Techington</AddressLine1>\r\n            <City>Austin</City>\r\n
+        \           <Region>Techsus</Region>\r\n            <PostalCode>01010</PostalCode>\r\n
+        \           <Country>USA</Country>\r\n          </Address>\r\n          <Address>\r\n
+        \           <AddressType>STREET</AddressType>\r\n          </Address>\r\n
+        \       </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n            <PhoneType>DEFAULT</PhoneType>\r\n
+        \           <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n          </Phone>\r\n
+        \         <Phone>\r\n            <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n
+        \         <Phone>\r\n            <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n
+        \         <Phone>\r\n            <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n
+        \       </Phones>\r\n        <UpdatedDateUTC>2015-11-04T14:08:24.787</UpdatedDateUTC>\r\n
+        \       <IsSupplier>false</IsSupplier>\r\n        <IsCustomer>1</IsCustomer>\r\n
+        \     </Contact>\r\n      <Date>2015-11-04T00:00:00</Date>\r\n      <DueDate>2015-11-04T00:00:00</DueDate>\r\n
+        \     <Status>DRAFT</Status>\r\n      <LineAmountTypes>Exclusive</LineAmountTypes>\r\n
+        \     <LineItems>\r\n        <LineItem>\r\n          <Description>ODI Individual
+        supporter (01010101) [Individual] (annual invoice payment)</Description>\r\n
+        \         <UnitAmount>108.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
+        \         <TaxAmount>21.60</TaxAmount>\r\n          <LineAmount>108.00</LineAmount>\r\n
+        \         <Quantity>1.0000</Quantity>\r\n          <LineItemID>f4e4316c-a9e1-4da3-a18a-f73968dfb49f</LineItemID>\r\n
+        \       </LineItem>\r\n      </LineItems>\r\n      <SubTotal>108.00</SubTotal>\r\n
+        \     <TotalTax>21.60</TotalTax>\r\n      <Total>129.60</Total>\r\n      <UpdatedDateUTC>2015-11-04T14:08:27.017</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>69e824f2-e965-455c-b992-5c5509cd3bcd</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0081</InvoiceNumber>\r\n      <AmountDue>129.60</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:28 GMT
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3CInvoice%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CContactID%3Ef507bcab-1a64-42ff-b085-2fd28ca47097%3C%2FContactID%3E%0A%20%20%20%20%3CContactStatus%3EACTIVE%3C%2FContactStatus%3E%0A%20%20%20%20%3CName%3EJoe%20Nerd%3C%2FName%3E%0A%20%20%20%20%3CEmailAddress%3Efinance%40nerd.eg%3C%2FEmailAddress%3E%0A%20%20%20%20%3CAddresses%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3EPOBOX%3C%2FAddressType%3E%0A%20%20%20%20%20%20%20%20%3CAddressLine1%3E01%20Geek%20Street%2C%20Techington%3C%2FAddressLine1%3E%0A%20%20%20%20%20%20%20%20%3CCity%3EAustin%3C%2FCity%3E%0A%20%20%20%20%20%20%20%20%3CRegion%3ETechsus%3C%2FRegion%3E%0A%20%20%20%20%20%20%20%20%3CPostalCode%3E01010%3C%2FPostalCode%3E%0A%20%20%20%20%20%20%20%20%3CCountry%3EUSA%3C%2FCountry%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%20%20%3CAddress%3E%0A%20%20%20%20%20%20%20%20%3CAddressType%3ESTREET%3C%2FAddressType%3E%0A%20%20%20%20%20%20%3C%2FAddress%3E%0A%20%20%20%20%3C%2FAddresses%3E%0A%20%20%20%20%3CPhones%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDEFAULT%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%20%20%3CPhoneNumber%3E%2B1%201010%20101010%3C%2FPhoneNumber%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EDDI%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EFAX%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%20%20%3CPhone%3E%0A%20%20%20%20%20%20%20%20%3CPhoneType%3EMOBILE%3C%2FPhoneType%3E%0A%20%20%20%20%20%20%3C%2FPhone%3E%0A%20%20%20%20%3C%2FPhones%3E%0A%20%20%20%20%3CIsSupplier%3Efalse%3C%2FIsSupplier%3E%0A%20%20%20%20%3CIsCustomer%3E1%3C%2FIsCustomer%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CDate%3E2015-11-04%3C%2FDate%3E%0A%20%20%3CDueDate%3E2015-11-04%3C%2FDueDate%3E%0A%20%20%3CStatus%3EDRAFT%3C%2FStatus%3E%0A%20%20%3CLineAmountTypes%3EExclusive%3C%2FLineAmountTypes%3E%0A%20%20%3CLineItems%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3EODI%20Individual%20supporter%20%2801010101%29%20%5BIndividual%5D%20%28annual%20invoice%20payment%29%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E108.0%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CTaxType%3EOUTPUT2%3C%2FTaxType%3E%0A%20%20%20%20%20%20%3CTaxAmount%3E21.6%3C%2FTaxAmount%3E%0A%20%20%20%20%20%20%3CLineAmount%3E108.0%3C%2FLineAmount%3E%0A%20%20%20%20%20%20%3CQuantity%3E1.0%3C%2FQuantity%3E%0A%20%20%20%20%20%20%3CLineItemId%3Ef4e4316c-a9e1-4da3-a18a-f73968dfb49f%3C%2FLineItemId%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CSubTotal%3E108.0%3C%2FSubTotal%3E%0A%20%20%3CTotalTax%3E21.6%3C%2FTotalTax%3E%0A%20%20%3CTotal%3E129.6%3C%2FTotal%3E%0A%20%20%3CCurrencyCode%3EGBP%3C%2FCurrencyCode%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CInvoiceID%3E69e824f2-e965-455c-b992-5c5509cd3bcd%3C%2FInvoiceID%3E%0A%20%20%3CInvoiceNumber%3EINV-0081%3C%2FInvoiceNumber%3E%0A%20%20%3CAmountDue%3E129.6%3C%2FAmountDue%3E%0A%20%20%3CAmountPaid%3E0.0%3C%2FAmountPaid%3E%0A%20%20%3CSentToContact%3Efalse%3C%2FSentToContact%3E%0A%20%20%3CCurrencyRate%3E1.0%3C%2FCurrencyRate%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_consumer_key="<XERO_CONSUMER_KEY>", oauth_nonce="pl9lvX3NxONjsFOfBfTKTfhv7N8fUTjO07O73z5mXw",
+        oauth_signature="ZvecngjcloBttlp8%2FqZDjPT3PMCndNsZf4VkzTmedCXry5qTJAOWrYj6No7t4wwMDXv4itFGbEKiIeIpHwrKVkCl2HuofqIeHknu4Tx7t%2BQ%2BpKN3rjnP9Gy6Q%2B8ePSrLw5F4RT3xV4Y6Jva8S3sMs%2F2wsUknB0fL%2Bq3Dqb3QKeI%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1446646108", oauth_token="<XERO_CONSUMER_KEY>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-S:
+      - 445759-O1VMAP02
+      - 445760-O1VMAP03
+      Www-Authenticate:
+      - OAuth Realm="api.xero.com"
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 04 Nov 2015 14:08:27 GMT
+      Content-Length:
+      - '1058'
+    body:
+      encoding: ASCII-8BIT
+      string: "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>25914d3c-c98c-41fd-9fae-5d4a1612161d</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>Just the worst</ProviderName>\r\n  <DateTimeUTC>2015-11-04T14:08:27.6562214Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Warnings>\r\n        <Warning>\r\n
+        \         <Message>Only AUTHORISED invoices may have SentToContact updated.</Message>\r\n
+        \       </Warning>\r\n      </Warnings>\r\n      <Contact>\r\n        <ContactID>f507bcab-1a64-42ff-b085-2fd28ca47097</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Joe Nerd</Name>\r\n
+        \       <EmailAddress>finance@nerd.eg</EmailAddress>\r\n        <Addresses>\r\n
+        \         <Address>\r\n            <AddressType>POBOX</AddressType>\r\n            <AddressLine1>01
+        Geek Street, Techington</AddressLine1>\r\n            <City>Austin</City>\r\n
+        \           <Region>Techsus</Region>\r\n            <PostalCode>01010</PostalCode>\r\n
+        \           <Country>USA</Country>\r\n          </Address>\r\n          <Address>\r\n
+        \           <AddressType>STREET</AddressType>\r\n          </Address>\r\n
+        \       </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n            <PhoneType>DEFAULT</PhoneType>\r\n
+        \           <PhoneNumber>+1 1010 101010</PhoneNumber>\r\n          </Phone>\r\n
+        \         <Phone>\r\n            <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n
+        \         <Phone>\r\n            <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n
+        \         <Phone>\r\n            <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n
+        \       </Phones>\r\n        <UpdatedDateUTC>2015-11-04T14:08:24.787</UpdatedDateUTC>\r\n
+        \       <IsSupplier>false</IsSupplier>\r\n        <IsCustomer>1</IsCustomer>\r\n
+        \     </Contact>\r\n      <Date>2015-11-04T00:00:00</Date>\r\n      <DueDate>2015-11-04T00:00:00</DueDate>\r\n
+        \     <Status>DRAFT</Status>\r\n      <LineAmountTypes>Exclusive</LineAmountTypes>\r\n
+        \     <LineItems>\r\n        <LineItem>\r\n          <Description>ODI Individual
+        supporter (01010101) [Individual] (annual invoice payment)</Description>\r\n
+        \         <UnitAmount>108.00</UnitAmount>\r\n          <TaxType>OUTPUT2</TaxType>\r\n
+        \         <TaxAmount>21.60</TaxAmount>\r\n          <LineAmount>108.00</LineAmount>\r\n
+        \         <Quantity>1.0000</Quantity>\r\n          <LineItemID>3f6c6b50-3f00-4b49-bf3f-f35fec021417</LineItemID>\r\n
+        \       </LineItem>\r\n      </LineItems>\r\n      <SubTotal>108.00</SubTotal>\r\n
+        \     <TotalTax>21.60</TotalTax>\r\n      <Total>129.60</Total>\r\n      <UpdatedDateUTC>2015-11-04T14:08:27.61</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>GBP</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>69e824f2-e965-455c-b992-5c5509cd3bcd</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0081</InvoiceNumber>\r\n      <AmountDue>129.60</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n    </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:28 GMT
+- request:
+    method: get
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party?q=Joe%20Nerd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:27 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2114'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '468'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - "*/*;charset=UTF-8"
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><parties size="1"><person><id>91870047</id><contacts><email><id>177054276</id><emailAddress>finance@nerd.eg</emailAddress></email></contacts><pictureURL>https://d365sd3k9yw37.cloudfront.net/a/1446197034/theme/default/images/person_avatar_70.png</pictureURL><createdOn>2015-11-04T11:17:16Z</createdOn><updatedOn>2015-11-04T14:08:10Z</updatedOn><firstName>Joe</firstName><lastName>Nerd</lastName></person></parties>
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:29 GMT
+- request:
+    method: delete
+    uri: https://<CAPSULECRM_API_TOKEN>:x@<CAPSULECRM_ACCOUNT_NAME>.capsulecrm.com/api/party/91870047
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - CapsuleCRM ruby gem
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 04 Nov 2015 14:08:28 GMT
+      Server:
+      - Apache
+      X-Frame-Options:
+      - DENY
+      Set-Cookie:
+      - JSESSIONID=; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+      X-Ratelimit-Remaining:
+      - '2113'
+      X-Ratelimit-Reset:
+      - '1446647751'
+      X-Ratelimit-Limit:
+      - '4000'
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 04 Nov 2015 14:08:30 GMT
 recorded_with: VCR 2.9.3
