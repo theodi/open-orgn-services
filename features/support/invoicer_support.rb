@@ -30,7 +30,8 @@ module InvoicerSupport
       'purchase_order_reference' => @purchase_order_reference,
       'due_date'                 => @invoice_due_date ? @invoice_due_date.to_s : nil,
       'repeat'                   => @invoice_freq,
-      'sector'                   => @sector
+      'sector'                   => @sector,
+      'line_amount_types'        => @line_amount_types
     }.compact
   end
 

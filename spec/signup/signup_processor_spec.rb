@@ -147,7 +147,8 @@ describe SignupProcessor do
         ],
         "repeat"                   => "annual",
         "purchase_order_reference" => "PO1234",
-        "sector"                   => "Education"
+        "sector"                   => "Education",
+        "line_amount_types"        => "Inclusive"
       }
     end
 
@@ -236,7 +237,8 @@ describe SignupProcessor do
           ],
           "repeat"                   => "annual",
           "purchase_order_reference" => "PO1234",
-          "sector"                   => "Education"
+          "sector"                   => "Education",
+          "line_amount_types"        => "Inclusive"
         }
       end
 
@@ -269,6 +271,10 @@ describe SignupProcessor do
           type:        "Individual"
         })
       end
+
+      it "tells Xero to raise an invoice inclusive of VAT" do
+        expect(subject.line_amount_types).to eq('Inclusive')
+      end
     end
 
     context "corporate supporter" do
@@ -280,6 +286,10 @@ describe SignupProcessor do
           description: "Corporate Supporter",
           type:        "Corporate supporter"
         })
+      end
+
+      it "tells Xero to raise an invoice inclusive of VAT" do
+        expect(subject.line_amount_types).to eq('Exclusive')
       end
     end
 

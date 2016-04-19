@@ -66,6 +66,24 @@ Feature: Invoicing
     Then an invoice should be raised in Xero against "Existing Company Inc."
     And that invoice should have a total of 1.00
 
+  Scenario: Invoices do not have VAT added if the line amount type is inclusive
+    Given I have made a purchase
+    And my purchase has a line item type of "Inclusive"
+    And I paid with Paypal
+    And I have not already been invoiced
+    When the invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should have a total of 1.00
+
+  Scenario: Invoices have VAT added if the line amount type is exclusive
+    Given I have made a purchase
+    And my purchase has a line item type of "Exclusive"
+    And I paid with Paypal
+    And I have not already been invoiced
+    When the invoicer runs
+    Then an invoice should be raised in Xero against "Existing Company Inc."
+    And that invoice should have a total of 1.20
+
   Scenario: Line items have correct quantity for multiple items
     Given I have purchased two items
     And I requested an invoice

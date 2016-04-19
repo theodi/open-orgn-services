@@ -120,6 +120,7 @@ class Invoicer
         due_date:   invoice_details['due_date'] ? Date.parse(invoice_details['due_date']) : Date.today,
         status:     'DRAFT',
         line_items: line_items,
+        line_amount_types: invoice_details['line_amount_types'] || "Exclusive",
         reference:  invoice_details['purchase_order_reference'],
       )
 
