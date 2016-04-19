@@ -97,10 +97,15 @@ class SignupProcessor
       ],
       "repeat"                   => "annual",
       "purchase_order_reference" => purchase["purchase_order_reference"],
-      "sector"                   => organization["sector"]
+      "sector"                   => organization["sector"],
+      "line_amount_types"        => line_amount_types
     }.compact
 
     Resque.enqueue(Invoicer, invoice_to, invoice_details)
+  end
+
+  def line_amount_types
+    category == 'individual' ? "Inclusive" : "Exclusive"
   end
 
   def membership_type

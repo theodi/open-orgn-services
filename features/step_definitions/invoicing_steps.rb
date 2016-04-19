@@ -17,6 +17,10 @@ Given(/^I have made a purchase$/) do
   ]
 end
 
+Given(/^my purchase has a line item type of "(.*?)"$/) do |type|
+  @line_amount_types = type
+end
+
 Given(/^I have purchased two items$/) do
   @line_items = [
     {
@@ -29,4 +33,3 @@ Given(/^I have purchased two items$/) do
     }
   ]
 end
-
